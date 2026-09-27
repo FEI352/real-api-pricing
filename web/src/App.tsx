@@ -174,6 +174,55 @@ function CheckBox({
     />
   );
 }
+/** Channel legend clamped to one line; a toggle reveals the wrapped rest. */
+function OneLineLegend({
+  label,
+  signature,
+  zh,
+  trailing,
+  children,
+}: {
+  label: string;
+  signature: string;
+  zh: boolean;
+  trailing: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(0);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => {
+      const items = [...el.children] as HTMLElement[];
+      const top = items[0]?.offsetTop ?? 0;
+      setHidden(items.filter((item) => item.offsetTop > top + 4).length);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [signature]);
+  return (
+    <div className={open ? "legend-row is-open" : "legend-row"}>
+      <div ref={ref} className="legend" role="group" aria-label={label}>
+        {children}
+      </div>
+      {hidden > 0 && (
+        <button
+          className="legend-more"
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? (zh ? "收起" : "Less") : `+${hidden}`}
+          <CaretDown size={11} />
+        </button>
+      )}
+      {trailing}
+    </div>
+  );
+}
 
 export default function App() {
   const [data, setData] = useState<SiteData | null>(null);
@@ -457,7 +506,18 @@ function Explorer({
       hintEn: "Adopted subscription allowances",
       hintCn: "全部已采用订阅额度",
     },
+    {
+      view: "table",
+      en: "Full table",
+      cn: "完整数据表",
+      shortEn: "Table",
+      shortCn: "数据表",
+      hintEn: "Every plan, configuration and source",
+      hintCn: "每个套餐、评测配置与来源",
+    },
   ];
+  const scored = state.view === "pareto" || state.view === "table";
+  const [chartSlot, setChartSlot] = useState<HTMLDivElement | null>(null);
   const sort = (key: string) =>
     patch({
       sort: key,
@@ -500,11 +560,6 @@ function Explorer({
   );
   const boardInfo = data.boards[state.board];
   const boardVersion = boardInfo.name.match(/\bv\d+(?:\.\d+)+/)?.[0];
-  const scrollToTable = () => {
-    const table = document.getElementById("all-data");
-    table?.scrollIntoView({ behavior: "smooth", block: "start" });
-    table?.focus({ preventScroll: true });
-  };
   return (
     <>
       <a className="skip-link" href="#workspace">
@@ -600,9 +655,6 @@ function Explorer({
           <>
             <section className="intro">
               <div className="intro-copy">
-                <p className="eyebrow">
-                  {t("Independent data · open methodology", "独立数据 · 公开口径")}
-                </p>
                 <h1>
                   {zh ? (
                     <>
@@ -656,8 +708,10 @@ function Explorer({
                         <ChartScatter size={16} />
                       ) : tab.view === "price" ? (
                         <Coins size={16} />
-                      ) : (
+                      ) : tab.view === "allowance" ? (
                         <ChartBar size={16} />
+                      ) : (
+                        <Table size={16} />
                       )}
                       <span className="tab-long">{t(tab.en, tab.cn)}</span>
                       <span className="tab-short" aria-hidden="true">
@@ -665,10 +719,6 @@ function Explorer({
                       </span>
                     </button>
                   ))}
-                  <button className="view-tab table-jump" onClick={scrollToTable}>
-                    <Table size={16} />
-                    <span>{t("Full table", "完整数据表")}</span>
-                  </button>
                 </div>
                 <div className="chart-actions">
                   <button
@@ -699,7 +749,7 @@ function Explorer({
                   )}
                 </div>
               </div>
-              {state.view === "pareto" && (
+              {scored && (
                 <div className="board-tabs" role="group" aria-label={t("Leaderboards", "榜单")}>
                   {Object.keys(data.boards).map((id) => (
                     <button
@@ -713,47 +763,38 @@ function Explorer({
                   ))}
                 </div>
               )}
-              <div className="chart-heading">
-                <h2>
-                  {state.view === "pareto"
-                    ? t("Price meets performance", "真实单价与模型能力")
-                    : state.view === "price"
-                      ? t("Every model. Its real price.", "每个模型的真实单价。")
-                      : t("How much can you actually use?", "每月实际能用多少？")}
-                </h2>
-                <p>
-                  {state.view === "pareto" ? (
-                    <>
-                      <span>
-                        {metricLabel(boardInfo.metric, state.lang)}
-                        {boardVersion ? ` ${boardVersion}` : ""}
-                        {state.board === "arena_code" ? t(" · WebDev Overall", " · 网页开发 Overall") : ""}
-                      </span>
-                      <span>
-                        {t("Snapshot", "快照")} {boardInfo.snapshot}
-                      </span>
-                      <a href={boardInfo.url} target="_blank" rel="noreferrer">
-                        {t("Source", "来源")}
-                        <ArrowUpRight size={12} />
-                      </a>
-                    </>
-                  ) : state.view === "price" ? (
+              <p className="view-context">
+                {scored ? (
+                  <>
                     <span>
-                      {t(
-                        "Monthly subscription fee ÷ usable tokens. Metered APIs use the project workload (Anthropic models price the input share as cache writes).",
-                        "订阅月费 ÷ 可用 token；按量 API 采用项目统一负载（Anthropic 档以缓存写替代普通输入份额）。",
-                      )}
+                      {metricLabel(boardInfo.metric, state.lang)}
+                      {boardVersion ? ` ${boardVersion}` : ""}
+                      {state.board === "arena_code" ? t(" · WebDev Overall", " · 网页开发 Overall") : ""}
                     </span>
-                  ) : (
                     <span>
-                      {t(
-                        "Saturated use · all token types · subscription plans only",
-                        "饱和使用 · 全口径 token · 仅订阅套餐",
-                      )}
+                      {t("Snapshot", "快照")} {boardInfo.snapshot}
                     </span>
-                  )}
-                </p>
-              </div>
+                    <a href={boardInfo.url} target="_blank" rel="noreferrer">
+                      {t("Source", "来源")}
+                      <ArrowUpRight size={12} />
+                    </a>
+                  </>
+                ) : state.view === "price" ? (
+                  <span>
+                    {t(
+                      "Monthly subscription fee ÷ usable tokens. Metered APIs use the project workload (Anthropic models price the input share as cache writes).",
+                      "订阅月费 ÷ 可用 token；按量 API 采用项目统一负载（Anthropic 档以缓存写替代普通输入份额）。",
+                    )}
+                  </span>
+                ) : (
+                  <span>
+                    {t(
+                      "Saturated use · all token types · subscription plans only",
+                      "饱和使用 · 全口径 token · 仅订阅套餐",
+                    )}
+                  </span>
+                )}
+              </p>
               <div className="toolbar">
                 <button className="select-models" onClick={() => setPanel("models")}>
                   <CheckSquare size={17} />
@@ -771,7 +812,7 @@ function Explorer({
                   {t("Filters", "筛选")}
                   {activeFilters.length > 0 && <span className="count">{activeFilters.length}</span>}
                 </button>
-                {state.view === "pareto" && (
+                {scored && (
                   <label
                     className="config-select"
                     title={t(
@@ -795,9 +836,74 @@ function Explorer({
                     </select>
                   </label>
                 )}
+                {state.view === "allowance" && (
+                  <div className="fee-bands" role="group" aria-label={t("Monthly subscription fee", "订阅月费分档")}>
+                    <span className="fee-label">{t("Monthly fee", "月费")}</span>
+                    <div className="segmented">
+                      <button aria-pressed={state.feeBand === "all"} onClick={() => patch({ feeBand: "all" })}>
+                        {t("All", "全部")}
+                      </button>
+                      {feeBands.map((b) => (
+                        <button
+                          key={b.id}
+                          aria-pressed={state.feeBand === b.id}
+                          title={zh ? b.labelZh : b.labelEn}
+                          onClick={() => patch({ feeBand: b.id })}
+                        >
+                          {b.label}
+                        </button>
+                      ))}
+                    </div>
+                    <span
+                      className="fee-note"
+                      tabIndex={0}
+                      role="note"
+                      title={t(
+                        "USD per month · CNY plans use the project exchange rate. All includes plans over $300.",
+                        "美元 / 月 · 人民币套餐按项目汇率折算；全部包含超过 $300 的套餐。",
+                      )}
+                      aria-label={t(
+                        "USD per month · CNY plans use the project exchange rate. All includes plans over $300.",
+                        "美元 / 月 · 人民币套餐按项目汇率折算；全部包含超过 $300 的套餐。",
+                      )}
+                    >
+                      <Info size={15} />
+                    </span>
+                  </div>
+                )}
                 <span className="toolbar-space" />
+                <div className="chart-tools-slot" ref={setChartSlot} />
+                {state.view !== "pareto" && (
+                  <label className="search toolbar-search">
+                    <MagnifyingGlass size={16} />
+                    <input
+                      type="search"
+                      aria-label={t("Search", "搜索")}
+                      placeholder={t("Search model, plan or channel…", "搜索模型、套餐或渠道…")}
+                      value={state.query}
+                      onChange={(e) => patch({ query: e.target.value })}
+                    />
+                    {state.query && (
+                      <button
+                        className="icon-button"
+                        onClick={() => patch({ query: "" })}
+                        aria-label={t("Clear search", "清空搜索")}
+                      >
+                        <X size={14} />
+                      </button>
+                    )}
+                  </label>
+                )}
                 <span className="results-count">
-                  <b>{pts.length}</b> {t("points in view", "个数据点")}
+                  {state.view === "pareto" ? (
+                    <>
+                      <b>{pts.length}</b> {t("points", "个数据点")}
+                    </>
+                  ) : (
+                    <>
+                      <b>{shown.length}</b> {t("results", "条结果")}
+                    </>
+                  )}
                 </span>
               </div>
               {(activeFilters.length > 0 || state.selected !== null) && (
@@ -819,7 +925,19 @@ function Explorer({
                   </button>
                 </div>
               )}
-              <div className="legend" role="group" aria-label={t("Access channels", "订阅渠道")}>
+              <OneLineLegend
+                label={t("Access channels", "订阅渠道")}
+                signature={legendCounts.map(([c, n]) => c + n).join("|")}
+                zh={zh}
+                trailing={
+                  state.view === "pareto" && state.frontier ? (
+                    <span className="frontier-legend">
+                      <i />
+                      {t("Frontier of current selection", "当前筛选前沿")}
+                    </span>
+                  ) : null
+                }
+              >
                 {legendCounts.map(([c, n]) => {
                   const active = state.channels.includes(c);
                   const muted = state.channels.length > 0 && !active;
@@ -852,39 +970,7 @@ function Explorer({
                     </button>
                   );
                 })}
-                {state.view === "pareto" && state.frontier && (
-                  <span className="frontier-legend">
-                    <i />
-                    {t("Frontier of current selection", "当前筛选前沿")}
-                  </span>
-                )}
-              </div>
-              {state.view === "allowance" && (
-                <div className="fee-bands" role="group" aria-label={t("Monthly subscription fee", "订阅月费分档")}>
-                  <strong>{t("Monthly fee", "按订阅月费")}</strong>
-                  <div className="segmented">
-                    <button aria-pressed={state.feeBand === "all"} onClick={() => patch({ feeBand: "all" })}>
-                      {t("All", "全部")}
-                    </button>
-                    {feeBands.map((b) => (
-                      <button
-                        key={b.id}
-                        aria-pressed={state.feeBand === b.id}
-                        title={zh ? b.labelZh : b.labelEn}
-                        onClick={() => patch({ feeBand: b.id })}
-                      >
-                        {b.label}
-                      </button>
-                    ))}
-                  </div>
-                  <small>
-                    {t(
-                      "USD per month · CNY plans use the project exchange rate. All includes plans over $300.",
-                      "美元 / 月 · 人民币套餐按项目汇率折算；全部包含超过 $300 的套餐。",
-                    )}
-                  </small>
-                </div>
-              )}
+              </OneLineLegend>
               {!pts.length || (state.view === "pareto" && !gs.length) ? (
                 <div className="empty">
                   <ChartScatter size={35} />
@@ -904,7 +990,7 @@ function Explorer({
                     {t("Reset selection", "恢复全部数据")}
                   </button>
                 </div>
-              ) : state.view !== "pareto" ? (
+              ) : state.view === "table" ? null : state.view !== "pareto" ? (
                 <Ranking
                   rows={rows}
                   state={state}
@@ -923,53 +1009,149 @@ function Explorer({
                   onSelect={setDetail}
                   onSearch={(find, lock) => patch({ find, lock })}
                   handle={chart}
+                  toolsSlot={chartSlot}
                 />
               )}
-              <div className="chart-foot">
-                <p>
-                  <Info size={15} />
-                  <span>
-                    {state.view === "pareto"
-                      ? t(
-                          "Further right is cheaper; higher is more capable. Hover a legend entry to isolate a channel, click to filter. Click any point for its evidence.",
-                          "越右越便宜，越高能力越强。悬停图例可突出某个渠道，点击即筛选；点击数据点查看证据。",
-                        )
-                      : t(
-                          "Scroll inside the list to browse every result. Select a row to inspect its sources.",
-                          "在列表内滚动浏览全部结果，点击任意一行查看来源。",
+              {state.view === "pareto" && (
+                <div className="chart-foot">
+                  {noScore.length > 0 ? (
+                    <details className="unscored">
+                      <summary>
+                        {noScore.length} {t("points without a matching score", "个数据点缺少匹配分数")}
+                      </summary>
+                      <p>
+                        {t(
+                          "No archived score matches this model and the current configuration filters. No score is inferred.",
+                          "当前模型与配置筛选没有匹配的存档分数，不推算补分。",
                         )}
-                  </span>
-                </p>
-                {state.view === "pareto" && (
+                      </p>
+                      <div>
+                        {noScore.map((p) => (
+                          <button
+                            key={p.id}
+                            onClick={() => setDetail([{ key: p.id, point: p, mapping: null, score: null }])}
+                          >
+                            {p.model_display} · {displayPlan(p.plan, state.lang)}
+                            <ArrowUpRight size={12} />
+                          </button>
+                        ))}
+                      </div>
+                    </details>
+                  ) : (
+                    <span />
+                  )}
                   <span className="foot-stats">
                     {gs.length} {t("plotted coordinates", "绘制坐标")} · {front.length}{" "}
                     {t("on the frontier", "前沿坐标")}
                   </span>
-                )}
-              </div>
-              {state.view === "pareto" && noScore.length > 0 && (
-                <details className="unscored">
-                  <summary>
-                    {noScore.length} {t("points without a matching score", "个数据点缺少匹配分数")}
-                  </summary>
-                  <p>
-                    {t(
-                      "No archived score matches this model and the current configuration filters. No score is inferred.",
-                      "当前模型与配置筛选没有匹配的存档分数，不推算补分。",
+                </div>
+              )}
+              {state.view === "table" && pts.length > 0 && (
+                <div className="table-view">
+                  <div
+                    className="table-scroll"
+                    ref={tableScroll}
+                    role="region"
+                    tabIndex={0}
+                    aria-label={t("Scrollable data table", "可滚动数据明细表")}
+                  >
+                    <table>
+                      <thead>
+                        <tr>
+                          <th className="row-number">#</th>
+                          {sortHead("model", "Model", "模型")}
+                          {sortHead("plan", "Plan · channel", "套餐 · 渠道")}
+                          {sortHead("price", "Real price / MTok", "真实单价 / MTok", true)}
+                          {sortHead("fee", "Monthly fee", "订阅月费", true)}
+                          {sortHead("allowance", "Monthly tokens", "月 token", true)}
+                          {sortHead("score", "Score", "分数", true)}
+                          <th>{t("Quota confidence", "额度置信度")}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {shown.slice(0, tableLimit).map((r, i) => {
+                          const config = r.mapping
+                            ? [r.mapping.agent_harness, effortLabel(r.mapping.reasoning_effort, state.lang), r.mapping.service_mode]
+                                .filter(Boolean)
+                                .join(" · ")
+                            : "";
+                          return (
+                            <tr
+                              key={r.key}
+                              onClick={() => setDetail([r])}
+                              className={frontRows.has(r.key) ? "frontier-row" : undefined}
+                            >
+                              <td className="row-number">{i + 1}</td>
+                              <td>
+                                <button
+                                  className="model-cell"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setDetail([r]);
+                                  }}
+                                >
+                                  <BrandMarks point={r.point} size={24} />
+                                  <span>
+                                    <strong>{r.point.model_display}</strong>
+                                    {config && <small>{config}</small>}
+                                  </span>
+                                </button>
+                              </td>
+                              <td>
+                                <strong className="plan-name">{displayPlan(r.point.plan, state.lang)}</strong>
+                                <small className="channel-line">
+                                  <i className="vendor-dot" style={{ background: dotColors(color(r.point), theme === "dark").fill }} />
+                                  {accessLine(r.point)} · {filterValue(r.point.billing)}
+                                </small>
+                              </td>
+                              <td className="numeric real-price">
+                                {price(r.point.real_usd_per_mtok)}
+                                {frontRows.has(r.key) && (
+                                  <small className="frontier-tag">{t("Frontier", "前沿")}</small>
+                                )}
+                              </td>
+                              <td className="numeric">
+                                {r.point.billing === "metered" ? "—" : price(r.point.price_usd)}
+                                {r.point.currency === "CNY" && <small>¥{r.point.original_price}</small>}
+                              </td>
+                              <td className="numeric">{allowance(r.point, state.lang)}</td>
+                              <td className="numeric">
+                                {number(r.score, state.lang, 2)}
+                                {r.mapping?.score_is_estimated && <small>{t("AA estimate", "AA 估计值")}</small>}
+                                {r.mapping?.score_is_self_reported && <small>{t("vendor self-report", "厂商自报")}</small>}
+                              </td>
+                              <td>
+                                <span className={`confidence ${r.point.confidence}`}>
+                                  <i />
+                                  {filterValue(r.point.confidence)}
+                                </span>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                        {tableLimit < shown.length && (
+                          <tr className="sentinel-row" aria-hidden="true">
+                            <td colSpan={8}>
+                              <span ref={(el) => void (tableSentinel.current = el)}>
+                                {t("Loading more rows…", "正在加载更多行…")}
+                              </span>
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                    {!shown.length && (
+                      <div className="empty table-empty">
+                        <h3>{t("No matching rows", "没有匹配的行")}</h3>
+                        <button onClick={() => patch({ query: "" })}>{t("Clear the search", "清除搜索")}</button>
+                      </div>
                     )}
-                  </p>
-                  <div>
-                    {noScore.map((p) => (
-                      <button
-                        key={p.id}
-                        onClick={() => setDetail([{ key: p.id, point: p, mapping: null, score: null }])}
-                      >
-                        {p.model_display} · {displayPlan(p.plan, state.lang)}
-                        <ArrowUpRight size={12} />
-                      </button>
-                    ))}
                   </div>
-                </details>
+                  <ResizeHandle
+                    target={tableScroll}
+                    label={t("Drag to resize the table · double-click to reset", "拖动调整表格高度，双击恢复")}
+                  />
+                </div>
               )}
             </section>
             <aside className="method-note">
@@ -985,167 +1167,6 @@ function Explorer({
                 </button>
               </p>
             </aside>
-            <section className="data-section" id="all-data" tabIndex={-1}>
-              <div className="table-heading">
-                <div>
-                  <h2>{t("The data, in detail.", "数据明细。")}</h2>
-                  <p>
-                    {t(
-                      "Every plan, configuration and source. Sort any column; select a row for its evidence.",
-                      "每个套餐、评测配置与来源。可按任意列排序，点击一行查看依据。",
-                    )}
-                  </p>
-                </div>
-                <button
-                  className="text-button"
-                  onClick={() =>
-                    downloadText(csv(shown, state.lang), "real-api-pricing-selection.csv", "text/csv;charset=utf-8")
-                  }
-                >
-                  <DownloadSimple size={16} />
-                  {t("Export CSV", "导出 CSV")}
-                </button>
-              </div>
-              <div className="table-tools">
-                <label className="search">
-                  <MagnifyingGlass size={16} />
-                  <input
-                    type="search"
-                    aria-label={t("Search table", "搜索表格")}
-                    placeholder={t("Search models, plans or configurations…", "搜索模型、套餐或配置…")}
-                    value={state.query}
-                    onChange={(e) => patch({ query: e.target.value })}
-                  />
-                  {state.query && (
-                    <button
-                      className="icon-button"
-                      onClick={() => patch({ query: "" })}
-                      aria-label={t("Clear search", "清空搜索")}
-                    >
-                      <X size={14} />
-                    </button>
-                  )}
-                </label>
-                <span>
-                  <b>{shown.length}</b> {t("rows", "行")}
-                  {state.view !== "pareto" && (
-                    <span className="table-reference">
-                      {" · "}
-                      {t("Score: highest matching reference", "分数：匹配配置最高参考值")}
-                    </span>
-                  )}
-                </span>
-              </div>
-              <div
-                className="table-scroll"
-                ref={tableScroll}
-                role="region"
-                tabIndex={0}
-                aria-label={t("Scrollable data table", "可滚动数据明细表")}
-              >
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="row-number">#</th>
-                      {sortHead("model", "Model", "模型")}
-                      {sortHead("plan", "Plan · channel", "套餐 · 渠道")}
-                      {sortHead("price", "Real price / MTok", "真实单价 / MTok", true)}
-                      {sortHead("fee", "Monthly fee", "订阅月费", true)}
-                      {sortHead("allowance", "Monthly tokens", "月 token", true)}
-                      {sortHead("score", "Score", "分数", true)}
-                      <th>{t("Quota confidence", "额度置信度")}</th>
-                      <th>
-                        <span className="sr-only">{t("Details", "详情")}</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {shown.slice(0, tableLimit).map((r, i) => {
-                      const config = r.mapping && state.view === "pareto"
-                        ? [r.mapping.agent_harness, effortLabel(r.mapping.reasoning_effort, state.lang), r.mapping.service_mode]
-                            .filter(Boolean)
-                            .join(" · ")
-                        : "";
-                      return (
-                        <tr
-                          key={r.key}
-                          onClick={() => setDetail([r])}
-                          className={frontRows.has(r.key) && state.view === "pareto" ? "frontier-row" : undefined}
-                        >
-                          <td className="row-number">{i + 1}</td>
-                          <td>
-                            <button
-                              className="model-cell"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setDetail([r]);
-                              }}
-                            >
-                              <BrandMarks point={r.point} size={24} />
-                              <span>
-                                <strong>{r.point.model_display}</strong>
-                                {config && <small>{config}</small>}
-                              </span>
-                            </button>
-                          </td>
-                          <td>
-                            <strong className="plan-name">{displayPlan(r.point.plan, state.lang)}</strong>
-                            <small className="channel-line">
-                              <i className="vendor-dot" style={{ background: dotColors(color(r.point), theme === "dark").fill }} />
-                              {accessLine(r.point)} · {filterValue(r.point.billing)}
-                            </small>
-                          </td>
-                          <td className="numeric real-price">
-                            {price(r.point.real_usd_per_mtok)}
-                            {frontRows.has(r.key) && state.view === "pareto" && (
-                              <small className="frontier-tag">{t("Frontier", "前沿")}</small>
-                            )}
-                          </td>
-                          <td className="numeric">
-                            {r.point.billing === "metered" ? "—" : price(r.point.price_usd)}
-                            {r.point.currency === "CNY" && <small>¥{r.point.original_price}</small>}
-                          </td>
-                          <td className="numeric">{allowance(r.point, state.lang)}</td>
-                          <td className="numeric">
-                            {number(r.score, state.lang, 2)}
-                            {r.mapping?.score_is_estimated && <small>{t("AA estimate", "AA 估计值")}</small>}
-                            {r.mapping?.score_is_self_reported && <small>{t("vendor self-report", "厂商自报")}</small>}
-                          </td>
-                          <td>
-                            <span className={`confidence ${r.point.confidence}`}>
-                              <i />
-                              {filterValue(r.point.confidence)}
-                            </span>
-                          </td>
-                          <td className="row-arrow">
-                            <ArrowUpRight size={14} />
-                          </td>
-                        </tr>
-                      );
-                    })}
-                    {tableLimit < shown.length && (
-                      <tr className="sentinel-row" aria-hidden="true">
-                        <td colSpan={9}>
-                          <span ref={(el) => void (tableSentinel.current = el)}>
-                            {t("Loading more rows…", "正在加载更多行…")}
-                          </span>
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-                {!shown.length && (
-                  <div className="empty table-empty">
-                    <h3>{t("No matching rows", "没有匹配的行")}</h3>
-                    <button onClick={() => patch({ query: "" })}>{t("Clear the search", "清除搜索")}</button>
-                  </div>
-                )}
-              </div>
-              <ResizeHandle
-                target={tableScroll}
-                label={t("Drag to resize the table · double-click to reset", "拖动调整表格高度，双击恢复")}
-              />
-            </section>
           </>
         )}
       </main>
@@ -1412,7 +1433,15 @@ function Explorer({
           {panel === "download" && (
             <div className="download-list">
               <h3>{t("Current selection", "当前选择")}</h3>
-              {(["png", "svg"] as const).map((format) => (
+              {(state.view === "price" || state.view === "allowance") && (
+                <p className="panel-description">
+                  {t(
+                    "Ranking images include every filtered row, not only the rows on screen.",
+                    "排名图片包含全部筛选行，不只是屏幕上可见的行。",
+                  )}
+                </p>
+              )}
+              {state.view !== "table" && (["png", "svg"] as const).map((format) => (
                 <button
                   key={format}
                   disabled={!chart.current || state.view === "method"}

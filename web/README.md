@@ -28,15 +28,16 @@ The raw downloads retain the original computed fields. The smaller website datas
 
 ## Data and behavior
 
-- Three linked views: price–capability scatterplot, real-price ranking, and monthly-allowance ranking. Every leaderboard stays independent; scores are never mixed across boards.
+- Four linked views: price–capability scatterplot, real-price ranking, monthly-allowance ranking, and the full table (`#view=table`, which uses the scatterplot's per-configuration score rows for the selected leaderboard). Every leaderboard stays independent; scores are never mixed across boards.
+- One toolbar per view holds model selection, filters, the benchmark-configuration switch (scatterplot and table), the fee bands (allowance), the chart navigation controls (scatterplot) or the search box (rankings and table), and a single result count.
 - All adopted points and all archived benchmark configurations are selected initially. Model selection expands to channels and individual plan/model points. Empty selection is distinct from selecting everything.
 - Filters within one category are ORed; categories are ANDed. Harness, effort, and mode filters restrict benchmark references. Plans without matching scores stay in the table and in price/allowance views. Those ranking views use one row per plan/model, with any table score labeled as the highest matching reference.
 - The frontier is recomputed for the filtered set with strict dominance. Equal coordinates are grouped only for rendering; every plan/configuration member remains inspectable. Lowest price is on the right. Endpoint extensions cannot imply the highest score at the cheapest price.
 - Detail dialogs distinguish quota confidence from mapping confidence, show original adoption evidence, and link to public archives. Original-language evidence is retained; English display labels translate Chinese plan qualifiers without changing IDs or values.
-- The table search and sorting affect the table and its CSV, while the global model/filter state affects both chart and table. Tables and rankings scroll inside bounded panels and render progressively as you scroll; CSV and image exports include every matching row.
+- Search is one shared query across the rankings, the table and the CSV; table sorting affects the table and its CSV, while the global model/filter state affects every view. Tables and rankings scroll inside bounded panels and render progressively as you scroll; CSV and image exports include every matching row.
 - Share links serialize state in the URL hash. Removed IDs and invalid settings are ignored with an explicit notice. CSV text is quoted and formula-like text escaped.
 - PNG/SVG exports use the current chart. Mobile dialogs fill the screen; long ranking charts and wide tables scroll within their containers.
-- Real-price and monthly-allowance ranking views use responsive React rows with comparison bars. Search is shared with the detail table and all filtered rows remain reachable; PNG/SVG exports capture the current view with its range and units labeled.
+- Real-price and monthly-allowance ranking views use responsive React rows with comparison bars; all filtered rows remain reachable, and PNG/SVG exports capture the current view with its range and units labeled.
 
 ## Fee bands
 
@@ -60,7 +61,8 @@ The scatterplot is a purpose-built SVG scene, not a charting library.
 - **Geometry lives in `chartScene.ts`** (pure, unit-tested): the reversed log price axis, 1-2-5 log ticks that thin whole decades on narrow plots and skip the unmetered `$0` slot, nice score ticks, and zoom-about-pointer / pan / box-zoom maths. Logos, names and leaders share the chart's coordinate system, so they can never lag a drag.
 - **Names take the nearest free slot.** `placeTextLabels` tries above, below, right, left, then the diagonals, at three distances from the marker edge, and scores each candidate on label collisions, covered markers, crossing leaders, leader length and plot-edge overflow. A name with no clear slot is dropped instead of stacked. Widths come from canvas `measureText` with the rendered font (re-measured once the web font loads). During a gesture names ride with their points; the solver re-runs when the gesture settles.
 - **Interaction.** Hover hit-tests in pixel space (badges win over dots by relative distance) and feeds the React hover card; click opens the evidence dialog; drag pans, Box zoom frames a rectangle, the wheel zooms inside the plot rectangle only, double-click on empty plot space or Reset restores the view, and arrow keys / + / − / 0 work when the plot has focus. Touch: horizontal drag pans, pinch zooms, vertical swipes keep scrolling the page.
-- **Legend.** Channel entries show point counts; hovering one isolates that channel in the chart and rankings, clicking toggles the channel filter.
+- **Legend.** Channel entries show point counts; hovering one isolates that channel in the chart and rankings, clicking toggles the channel filter. On desktop the legend is clamped to one line with a "+N" toggle for the rest; on mobile it scrolls horizontally.
+- **Navigation controls** (pan, box zoom, zoom, reset, point search) render through a portal into the shared toolbar, so they do not take a row of their own or cover the plot.
 
 Channel colours come from `../config/channel-colors.json`, shared with the Python charts (its `channels` array is also the single id-prefix → channel map); `python scripts/checks/verify_palette.py` enforces a minimum CIEDE2000 distance between channels present in the data. Dark mode swaps near-black provider marks for light ink so they stay visible.
 

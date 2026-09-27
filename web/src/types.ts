@@ -1,7 +1,7 @@
 import type { Lock } from "./domain";
 
 export type Lang = "en" | "zh";
-export type View = "pareto" | "price" | "allowance" | "method";
+export type View = "pareto" | "price" | "allowance" | "table" | "method";
 export interface Point {
   id: string;
   plan_id: string;

@@ -408,6 +408,17 @@ test("Legacy #s=<json> share links still restore with the same validation", () =
   assert.equal(restored.state.view, "price");
   assert.deepEqual(restored.state.channels, ["Cursor"]);
 });
+test("The full-table view round-trips and keeps the chart's per-configuration rows", () => {
+  const restored = restore("#lang=en&view=table", data);
+  assert.equal(restored.warning, false);
+  assert.equal(restored.state.view, "table");
+  assert.equal(serialize(restored.state), "#lang=en&view=table");
+  const all = { ...defaultState(), configuration: "all" as const };
+  assert.deepEqual(
+    rowsFor(data, { ...all, view: "table" }).map((r) => r.key),
+    rowsFor(data, all).map((r) => r.key),
+  );
+});
 test("Unknown enum values in a short link warn and fall back to defaults", () => {
   const restored = restore("#lang=zh&view=nope", data);
   assert.equal(restored.warning, true);
