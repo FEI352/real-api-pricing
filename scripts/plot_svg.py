@@ -145,10 +145,14 @@ def label_position(p, board, x, y):
     # 仅调标签；绝不移动数据点。按这组已核对前沿的邻近关系安排引线和对齐。
     model = p["model"]
     if model == "claude-opus-5":
+        if board == "aa_coding_agent_index":
+            return x - 10, y - 62, "end"
         return x - 24, y - 49, "end"
     if model == "gpt-6-astra":
         if board == "aa_intelligence_index":
             return x - 24, y + 30, "end"
+        if board == "aa_coding_agent_index":
+            return x + 24, y - 108, "start"
     if model == "claude-opus-4.8":
         if board == "aa_intelligence_index":
             return x + 24, y + 43, "start"
@@ -160,26 +164,46 @@ def label_position(p, board, x, y):
     if model == "mimo-v2.6-pro":
         if board == "aa_intelligence_index":
             return x - 30, y + 20, "end"
+        if board == "arena_code":
+            return x + 28, y - 47, "start"
+    if model == "mimo-v2.6-flash":
+        if board == "deepswe_1_1":
+            return x + 112, y + 159, "end"
     if model == "mimo-v2.5":
         if board == "aa_intelligence_index":
-            return x - 235, y - 72, "end"
+            return x + 22, y - 25, "start"
     if model == "step-5-preview":
         if board == "aa_intelligence_index":
-            return x + 5, y + 28, "end"
+            return x + 45, y - 140, "start"
+        if board == "aa_terminal_bench_4":
+            return x - 1, y + 41, "end"
+    if model == "gemini-3.8-flash":
+        if board == "aa_coding_agent_index":
+            return x + 131, y + 33, "end"
     if model == "glm-5.3":
         if board == "aa_intelligence_index":
             return x + 24, y - 108, "start"
-        return x + 24, y - (58 if board == "arena_code" else 31), "start"
+        if board == "arena_code":
+            return x + 75, y + 29, "end"
+        return x + 24, y - 31, "start"
     if model == "glm-5.3-flash":
+        if board == "aa_intelligence_index":
+            return x + 23, y - 95, "start"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
+        if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
+            return x + 10, y - 50, "start"
+        if model == "deepseek-v4.1-flash" and board == "deepswe_1_1":
+            return x - 180, y + 182, "end"
+        if model == "deepseek-v4.1-flash" and board == "terminal_bench_4":
+            return x - 54, y - 25, "end"
         return x - 24, y + 49, "end"
     if model == "gpt-5.6-luna":
         # TB4 全量里 Luna 分数最低（官方 17.27% / AA 0%），标签整体下移会压过图框下缘。
         if board in ("terminal_bench_4", "aa_terminal_bench_4"):
             return x + 5, y + 25, "end"
         if board == "aa_intelligence_index":
-            return x - 30, y + 113, "end"
+            return x + 174, y - 6, "end"
         return x + 5, y + 57, "end"
     if model == "gpt-5.6-terra":
         if board == "aa_intelligence_index":
@@ -187,12 +211,14 @@ def label_position(p, board, x, y):
         return x + 24, y - 55, "start"
     if model == "step-3.7-flash":
         if board == "aa_intelligence_index":
-            return x - 25, y + 12, "end"
+            return x - 53, y - 116, "end"
     if model == "step-3.5-flash":
         if board == "aa_intelligence_index":
-            return x - 390, y - 62, "end"
+            return x - 155, y - 51, "end"
     if model == "swe-2":
         # 不计额度点贴右边界，标签只能往左上放，且要避开 TB4 里 Luna 的下方标签。
+        if board == "terminal_bench_4":
+            return x + 74, y + 27, "end"
         return x - 30, y + 34, "end"
     return x - 20, y - 52, "end"
 
