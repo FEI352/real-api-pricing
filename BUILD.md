@@ -21,12 +21,13 @@ python scripts/checks/verify_fee_bands.py
 python scripts/checks/verify_chart_labels.py
 python scripts/publish_charts.py
 python scripts/checks/verify_svg.py
+python scripts/checks/verify_label_overlap.py
 python scripts/checks/verify_four_boards.py
 python scripts/checks/verify_publication.py
 python scripts/checks/verify_palette.py
 ```
 
-CI (`.github/workflows/ci.yml`) runs this pipeline on Ubuntu for every PR and every push to `main`, then fails if the committed `data/`, `derived/` or text-comparable `charts/` outputs (tables, interactive HTML, hand-written Pareto SVGs) differ from a fresh run, and fails when `python scripts/readme_stats.py --check` finds stale README statistics. On pull requests the data job also runs `python scripts/checks/verify_snapshot_date.py --base FETCH_HEAD`, which fails when `data/adopted.csv` changed without `conventions.json` `updatedAt` advancing past the base branch — or being equal to today's date when the base is already today. PNGs and matplotlib SVGs depend on the rendering machine's fonts, so CI rebuilds them only to feed the checks; render and commit them locally. A second job runs the website's `npm test` and `npm run build`.
+CI (`.github/workflows/ci.yml`) runs this pipeline on Ubuntu for every PR and every push to `main`, then fails if the committed `data/`, `derived/` or text-comparable `charts/` outputs (tables, interactive HTML, hand-written Pareto SVGs) differ from a fresh run, and fails when `python scripts/readme_stats.py --check` finds stale README statistics. On pull requests the data job also runs `python scripts/checks/verify_snapshot_date.py --base FETCH_HEAD`, which fails when `data/adopted.csv` changed without `conventions.json` `updatedAt` advancing past the base branch — or being equal to today's date when the base is already today. PNGs and matplotlib SVGs depend on the rendering machine's fonts, so CI rebuilds them only to feed the checks; render and commit them locally. `verify_label_overlap.py` measures real glyph boxes and therefore needs the chart fonts (Microsoft YaHei / Noto Sans CJK SC); it prints a SKIP line and passes under `CHART_FONT_FALLBACK=1`. A second job runs the website's `npm test` and `npm run build`.
 
 On Windows, set `PYTHONIOENCODING=utf-8` if the console cannot print Chinese filenames. `plot_static.py` is a compatibility entry point for `plot_svg.py`.
 
