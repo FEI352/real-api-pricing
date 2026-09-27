@@ -185,8 +185,8 @@ function ChartScene(p: SceneProps) {
       )}
       <g>
         {/* grid */}
-        {yTicks.map((t) => (
-          <line key={`gy${t.label}`} x1={box.left} x2={box.right} y1={t.pos} y2={t.pos} stroke={c.grid} />
+        {yTicks.map((t, i) => (
+          <line key={`gy${i}`} x1={box.left} x2={box.right} y1={t.pos} y2={t.pos} stroke={c.grid} />
         ))}
         {xTicks.map((t) => (
           <line
@@ -211,9 +211,9 @@ function ChartScene(p: SceneProps) {
         )}
         {/* tick labels */}
         <g fontSize={p.mobile ? 10.5 : 11.5} fill={c.text} style={{ fontVariantNumeric: "tabular-nums" }}>
-          {yTicks.map((t) =>
+          {yTicks.map((t, i) =>
             t.pos >= box.top - 1 && t.pos <= box.bottom + 1 ? (
-              <text key={`ty${t.label}`} x={box.left - 10} y={t.pos} textAnchor="end" dominantBaseline="central">
+              <text key={`ty${i}`} x={box.left - 10} y={t.pos} textAnchor="end" dominantBaseline="central">
                 {t.label}
               </text>
             ) : null,

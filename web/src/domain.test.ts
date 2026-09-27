@@ -59,6 +59,7 @@ import {
   hitTest,
   homeView,
   makeBox,
+  niceStep,
   panBy,
   priceTicks,
   scoreTicks,
@@ -874,6 +875,33 @@ test("Price ticks use plain decimals, stay in view, keep their spacing and skip 
   narrow.forEach((t, i) => i && assert.ok(t.pos - narrow[i - 1].pos >= 54 - 1e-6));
   const y = scoreTicks({ xl: 1, xr: 0, yb: 1403, yt: 1517 }, box, "en");
   assert.ok(y.length >= 3 && y.every((t) => /^1,[45]\d\d$/.test(t.label)));
+});
+test("Score ticks stay unique and exact at every zoom depth, with decimals derived from the step", () => {
+  const box = makeBox(800, 560, { l: 60, r: 20, t: 20, b: 60 }); // plot height 480
+  for (const span of [40, 15, 1, 0.1, 0.01, 0.001, 1e-5]) {
+    const v = { xl: 1, xr: 0, yb: 40, yt: 40 + span };
+    const ticks = scoreTicks(v, box, "en");
+    const step = niceStep(span, Math.max(2, Math.round(box.height / 64)));
+    const k0 = Math.ceil(v.yb / step);
+    const labels = ticks.map((t) => t.label);
+    assert.equal(
+      new Set(labels).size,
+      labels.length,
+      `span ${span} produced duplicate labels: ${labels}`,
+    );
+    ticks.forEach((t, i) => {
+      const trueValue = (k0 + i) * step;
+      const parsed = Number(t.label.replace(/,/g, ""));
+      assert.ok(
+        Math.abs(parsed - trueValue) <= 1e-9 * Math.max(1, Math.abs(trueValue)),
+        `span ${span} tick ${i}: label ${t.label} vs true ${trueValue}`,
+      );
+    });
+  }
+  // span 20 / count 8 → raw 2.5 → step 2.5: ticks 40, 42.5, 45, … must keep
+  // the half digit rather than rounding to "43".
+  const half = scoreTicks({ xl: 1, xr: 0, yb: 40, yt: 60 }, box, "en");
+  assert.ok(half.some((t) => t.label === "42.5"));
 });
 test("Hit testing prefers the nearest target relative to its size", () => {
   const items = [
