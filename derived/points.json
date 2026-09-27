@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-26",
+ "generatedAt": "2026-09-27",
  "mix": {
   "cache": 0.97,
   "input": 0.025,
@@ -42393,14 +42393,14 @@
     "currency": "USD"
    },
    "price_usd": 100.0,
-   "monthly_yi": 150.852,
-   "real_usd_per_mtok": 0.0066290139,
+   "monthly_yi": 150.85,
+   "real_usd_per_mtok": 0.0066291018,
    "list_blended_usd_per_mtok": 0.394,
    "d": 0.0168,
    "confidence": "low",
    "tier": "full",
-   "source": "由同套餐 claude-opus-5 78.5 亿 × 1.9216783216783215",
-   "note": "78.5×1.9217——借20x社区样本隐含权重派生（非独立实测）；标价法152.64亿差1.2%；claude-opus55-round1-2026-09-23.json",
+   "source": "由同套餐 claude-opus-5 78.5 亿 × 1.921656050955414",
+   "note": "由20x采用值301.7亿÷2派生（用户确认20x周池=5x的2倍，同Opus 5行157÷2；20x本身借社区样本隐含权重，非独立实测）；旧值78.5×1/W=150.852亿与20x/2的差仅来自301.7取整，2026-09-27用户裁定合为同一点；标价法152.64亿差1.2%；claude-opus55-round1-2026-09-23.json",
    "unmetered": false,
    "promo_until": null,
    "aa_intelligence_index__selection": "highest_archived_reference",

@@ -3,6 +3,10 @@
 `AGENTS.md` 只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-09-27
+
+- **Claude Max 5x × Claude Opus 5.5 改按 20x 周池比派生（与 Max 20x 精确同价、图上并为一点）**：150.852 → 150.85 亿/月 low 不变（真实单价 $0.0066290139 → $0.0066291018/MTok）。依据：5x 原为 78.5×1/W（借 20x 社区样本隐含权重 1/0.5204），而 20x 采用值 round(157/W,2)=301.7 亿——两档价差 0.0013% 仅来自 301.7 的两位小数取整，AA Intelligence / TB4·AA / TB4 三榜前沿端点在两个实质同价的点之间摆动。2026-09-27 用户裁定按已确认的「20x 周池 = 5x 的 2 倍」关系（同 Opus 5 行 157÷2）由 20x 采用值 ÷2 派生：78.5×301.7/157 = 301.7÷2 = 150.85 亿，Max 5x 与 Max 20x 同为 $0.0066291018/MTok，三端渲染均按 (price, score) 精确分组并为一点「Max 5x / 20x」。仅限这一对：不引入任何容差/模糊分组，Fable 5.1 5x/20x 等其他近似对不合并。标价混合比法 152.64 亿（差 1.2%）仍留作备选口径。证据：`claude-opus55-round1-2026-09-23.json`。
+
 ## 2026-09-26
 
 - **ChatGPT Plus × GPT-6 Luna 本机实测（新增模型点）**：44.05 亿/月 high（workload=measured）。用户本机 Codex 周额度窗 48%→35% 全程增量均为 gpt-6-luna：分两段——48→44 标准档 40,801,412 tok/4pp，44→35 用户开启 Fast 102,356,505 tok/9pp；合计 143,157,917 tok（input 3,185,120/output 954,045 含 reasoning 562,883/cache_read 139,018,752，hit 97.76%）÷13pp×4 周。**Fast 判定未生效**：官方口径『Fast mode 可增加额度消耗』（chatgpt-astra-quota-round8），若生效每 1% 应买到更少 token；实测 raw tok/pp 反升 11.5%，且按 Luna 标价比例（cache 0.1×、output 5~6× input）折算后两段每 pp 加权额度成本比 0.99~1.00——计量无差异，raw 上升全部由命中率 97.19%→97.99% 结构变化解释；API 侧 Fast 2× 加价在整数%取整最差边界（≈1.48×）之外可排除，小幅差异不可排除。故两段同质合并 13pp 窗采用；面板整数读数 Δpp∈[12,14] 对应 40.90~47.72 亿，std-only 敏感性 40.80 亿。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。榜分：`scores-new-models-round1` 中 gpt-6-luna 的 11 条 unmappedOfficialRows 原样移入新 supplement `scores-gpt6luna-round1-2026-09-26.json`（AA int max 37.2560、AA Coding Codex 41.0744、AA TB4 max 12.63）。证据：`chatgpt-gpt6luna-plus-round1-2026-09-26.json`。
