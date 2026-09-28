@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { ArrowRight, MagnifyingGlass, X } from "@phosphor-icons/react";
 import type { Row, State } from "./types";
 import type { ChartHandle } from "./Chart";
 import { BrandMarks } from "./ProviderLogo";
@@ -161,39 +160,6 @@ export default function Ranking({
   });
   return (
     <section className="web-ranking" aria-label={title}>
-      <div className="ranking-toolbar">
-        <p>
-          {isPrice
-            ? zh
-              ? "单价由低到高，越低越便宜。"
-              : "Lowest price first. Lower is less expensive."
-            : zh
-              ? "额度由高到低，越高可用量越多。"
-              : "Largest allowance first. Higher means more tokens."}{" "}
-          {zh ? "条形为对数刻度。" : "Bars use a logarithmic scale."}
-        </p>
-        <label className="ranking-search search">
-          <MagnifyingGlass size={16} />
-          <input
-            type="search"
-            aria-label={zh ? "搜索排名" : "Search ranking"}
-            placeholder={
-              zh ? "搜索模型、套餐或渠道…" : "Search model, plan or channel…"
-            }
-            value={state.query}
-            onChange={(e) => onQuery(e.target.value)}
-          />
-          {state.query && (
-            <button
-              className="icon-button"
-              onClick={() => onQuery("")}
-              aria-label={zh ? "清空搜索" : "Clear search"}
-            >
-              <X size={14} />
-            </button>
-          )}
-        </label>
-      </div>
       <div
         className="ranking-scroll"
         ref={scrollRef}
@@ -204,9 +170,16 @@ export default function Ranking({
         <div className="ranking-columns" aria-hidden={sorted.length === 0}>
           <span>#</span>
           <span>{zh ? "模型 · 套餐与渠道" : "Model · plan & channel"}</span>
-          <span>{zh ? "对比（对数刻度）" : "Comparison (log scale)"}</span>
+          <span>
+            {isPrice
+              ? zh
+                ? "由低到高 · 对数刻度"
+                : "Cheapest first · log scale"
+              : zh
+                ? "由多到少 · 对数刻度"
+                : "Largest first · log scale"}
+          </span>
           <span>{unit}</span>
-          <span />
         </div>
         {sorted.length ? (
           <>
@@ -232,12 +205,7 @@ export default function Ranking({
                     </strong>
                     <small>
                       <i style={{ background: fill }} />
-                      {accessLine(r.point)} ·{" "}
-                      {r.point.billing === "metered"
-                        ? "API"
-                        : zh
-                          ? "订阅"
-                          : "Subscription"}
+                      {accessLine(r.point)}
                     </small>
                   </span>
                   <span className="rank-bar" aria-hidden="true">
@@ -263,7 +231,6 @@ export default function Ranking({
                         : price(r.point.price_usd) + (zh ? " / 月" : " / mo")}
                     </small>
                   </span>
-                  <ArrowRight className="rank-arrow" size={16} />
                 </button>
               );
             })}
@@ -292,12 +259,6 @@ export default function Ranking({
             : "Drag to resize the list · double-click to reset"
         }
       />
-      <div className="ranking-status">
-        <b>{sorted.length}</b>{" "}
-        {zh
-          ? "条结果 · 图片导出包含全部筛选行"
-          : "results · image export includes every filtered row"}
-      </div>
     </section>
   );
 }

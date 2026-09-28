@@ -101,7 +101,8 @@ export function rowsFor(data: SiteData, s: State): Row[] {
     let mappings = byPoint.get(p.id) || [];
     if (s.configuration === "summary" && mappings.length)
       mappings = [mappings.reduce((a, b) => (a.score >= b.score ? a : b))];
-    if (s.view !== "pareto") {
+    // The full table shares the chart's per-configuration score rows.
+    if (s.view !== "pareto" && s.view !== "table") {
       const m = mappings.length
         ? mappings.reduce((a, b) => (a.score >= b.score ? a : b))
         : null;
@@ -506,7 +507,7 @@ export function restore(
   let warning = false;
   const enums: Record<string, [keyof State, string[]]> = {
     lang: ["lang", ["en", "zh"]],
-    view: ["view", ["pareto", "price", "allowance", "method"]],
+    view: ["view", ["pareto", "price", "allowance", "table", "method"]],
     config: ["configuration", ["all", "summary"]],
     labels: ["labels", ["frontier", "all", "none"]],
     fee: ["feeBand", ["all", ...feeBands.map((b) => b.id)]],

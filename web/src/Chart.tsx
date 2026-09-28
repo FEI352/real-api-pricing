@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { flushSync } from "react-dom";
+import { createPortal, flushSync } from "react-dom";
 import { createRoot } from "react-dom/client";
 import {
   ArrowCounterClockwise,
@@ -546,6 +546,7 @@ export default function Chart({
   onSelect,
   onSearch,
   handle,
+  toolsSlot = null,
 }: {
   rows: Row[];
   state: State;
@@ -555,6 +556,8 @@ export default function Chart({
   onSelect: (rows: Row[]) => void;
   onSearch: (find: string, lock: Lock | null) => void;
   handle: React.RefObject<ChartHandle | null>;
+  /** Toolbar element that hosts the navigation controls; inline when absent. */
+  toolsSlot?: HTMLElement | null;
 }) {
   const zh = state.lang === "zh";
   const dark = theme === "dark";
@@ -974,45 +977,54 @@ export default function Chart({
     Math.abs(view.xl - home.xl) + Math.abs(view.xr - home.xr) > 1e-6 ||
     Math.abs(view.yt - home.yt) + Math.abs(view.yb - home.yb) > 1e-6;
 
+  const controls = (
+    <div className="plot-controls" role="toolbar" aria-label={zh ? "图表操作" : "Chart navigation"}>
+      <div className="segmented" role="group" aria-label={zh ? "拖拽模式" : "Drag mode"}>
+        <button
+          aria-pressed={dragMode === "pan"}
+          title={zh ? "拖拽平移 · 滚轮缩放 · 双击复位" : "Drag to pan · scroll to zoom · double-click to reset"}
+          onClick={() => setDragMode("pan")}
+        >
+          <ArrowsOutCardinal size={15} />
+          <span>{zh ? "平移" : "Pan"}</span>
+        </button>
+        <button
+          aria-pressed={dragMode === "zoom"}
+          title={zh ? "拖出矩形放大 · 双击复位" : "Drag a box to zoom in · double-click to reset"}
+          onClick={() => setDragMode("zoom")}
+        >
+          <SelectionPlus size={15} />
+          <span>{zh ? "框选缩放" : "Box zoom"}</span>
+        </button>
+      </div>
+      <div className="segmented" role="group" aria-label={zh ? "缩放" : "Zoom"}>
+        <button aria-label={zh ? "放大" : "Zoom in"} title={zh ? "放大" : "Zoom in"} onClick={() => zoomBy(0.8)}>
+          <MagnifyingGlassPlus size={15} />
+        </button>
+        <button aria-label={zh ? "缩小" : "Zoom out"} title={zh ? "缩小" : "Zoom out"} onClick={() => zoomBy(1.25)}>
+          <MagnifyingGlassMinus size={15} />
+        </button>
+        <button onClick={reset} disabled={!zoomed} title={zh ? "重置视图（双击图表）" : "Reset view (double-click the plot)"}>
+          <ArrowCounterClockwise size={15} />
+          <span>{zh ? "重置" : "Reset"}</span>
+        </button>
+      </div>
+      <div className="chart-search-slot">
+        <ChartSearch
+          query={state.find}
+          lock={state.lock}
+          candidates={candidates}
+          hits={hits}
+          lang={state.lang}
+          onSearch={onSearch}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <>
-      <div className="plot-controls" role="toolbar" aria-label={zh ? "图表操作" : "Chart navigation"}>
-        <div className="segmented" role="group" aria-label={zh ? "拖拽模式" : "Drag mode"}>
-          <button aria-pressed={dragMode === "pan"} onClick={() => setDragMode("pan")}>
-            <ArrowsOutCardinal size={15} />
-            <span>{zh ? "平移" : "Pan"}</span>
-          </button>
-          <button aria-pressed={dragMode === "zoom"} onClick={() => setDragMode("zoom")}>
-            <SelectionPlus size={15} />
-            <span>{zh ? "框选缩放" : "Box zoom"}</span>
-          </button>
-        </div>
-        <div className="segmented" role="group" aria-label={zh ? "缩放" : "Zoom"}>
-          <button aria-label={zh ? "放大" : "Zoom in"} title={zh ? "放大" : "Zoom in"} onClick={() => zoomBy(0.8)}>
-            <MagnifyingGlassPlus size={15} />
-          </button>
-          <button aria-label={zh ? "缩小" : "Zoom out"} title={zh ? "缩小" : "Zoom out"} onClick={() => zoomBy(1.25)}>
-            <MagnifyingGlassMinus size={15} />
-          </button>
-          <button onClick={reset} disabled={!zoomed} title={zh ? "重置视图（双击图表）" : "Reset view (double-click the plot)"}>
-            <ArrowCounterClockwise size={15} />
-            <span>{zh ? "重置" : "Reset"}</span>
-          </button>
-        </div>
-        <span className="plot-hint">
-          {zh ? "滚轮缩放 · 拖拽平移 · 双击复位" : "Scroll to zoom · drag to pan · double-click to reset"}
-        </span>
-        <div className="chart-search-slot">
-          <ChartSearch
-            query={state.find}
-            lock={state.lock}
-            candidates={candidates}
-            hits={hits}
-            lang={state.lang}
-            onSearch={onSearch}
-          />
-        </div>
-      </div>
+      {toolsSlot ? createPortal(controls, toolsSlot) : controls}
       <div className="chart-shell" ref={shell}>
         <div
           ref={svgWrap}
