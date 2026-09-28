@@ -27,6 +27,7 @@ The project's original software is licensed under [MIT](LICENSE). This does not 
 - Command Code uses the complete official avatar (dark plate + rounded frame + ⌘), not a cropped command-only extraction.
 - StepFun five-square mark follows the icon in [stepfun.com](https://www.stepfun.com/assets/logo-B0FsyLQP.svg); the lime–cyan gradient follows the current public avatar.
 - Compact reconstructions (Zhipu Z, OpenCode window) are this project's 22px traces from official rasters, not brand kits.
+- Kimi uses the official Kimi Logomark tile from the Kimi brand kit (Light variant for light theme, Dark variant for dark theme); Devin uses the official Devin mark from the Devin design system (dark-ink and white variants).
 - Brand logos remain trademarks of their owners and are used only to identify the corresponding model developer.
 
 ## Leaderboards and other evidence

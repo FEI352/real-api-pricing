@@ -43,6 +43,7 @@ const slugs: Record<string, string> = {
  * Marks drawn in near-black ink. On a dark surface they would vanish, so the
  * dark variant swaps that ink for a light one (and any white knock-out for the
  * surface). Tile logos (Zhipu, OpenCode, StepFun) keep their own background.
+ * Brands that ship an official dark variant use `<slug>-dark.svg` instead.
  */
 const MONO = new Set([
   "openai",
@@ -50,8 +51,6 @@ const MONO = new Set([
   "xai",
   "cursor",
   "ollama",
-  "kimi",
-  "devin",
   "meituan",
 ]);
 const DARK_INK = /#(?:111111|111|191919|0e0e0e)\b/gi;
@@ -74,10 +73,11 @@ export function providerLogoUrl(
   const key = `${slug}|${tone}`;
   if (cache.has(key)) return cache.get(key);
   let url = rasters[`./assets/provider-logos/${slug}.webp`];
-  const raw = svgSources[`./assets/provider-logos/${slug}.svg`];
+  const dark = tone === "dark" ? svgSources[`./assets/provider-logos/${slug}-dark.svg`] : undefined;
+  const raw = dark ?? svgSources[`./assets/provider-logos/${slug}.svg`];
   if (!url && raw) {
     const text =
-      tone === "dark" && MONO.has(slug)
+      tone === "dark" && !dark && MONO.has(slug)
         ? raw
             .replace(DARK_INK, "#ECEEF1")
             .replace(/currentColor/g, "#ECEEF1")

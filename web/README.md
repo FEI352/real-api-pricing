@@ -64,7 +64,7 @@ The scatterplot is a purpose-built SVG scene, not a charting library.
 - **Legend.** Channel entries show point counts; hovering one isolates that channel in the chart and rankings, clicking toggles the channel filter. On desktop the legend is clamped to one line with a "+N" toggle for the rest; on mobile it scrolls horizontally.
 - **Navigation controls** (pan, box zoom, zoom, reset, point search) render through a portal into the shared toolbar, so they do not take a row of their own or cover the plot.
 
-Channel colours come from `../config/channel-colors.json`, shared with the Python charts (its `channels` array is also the single id-prefix → channel map); `python scripts/checks/verify_palette.py` enforces a minimum CIEDE2000 distance between channels present in the data. Dark mode swaps near-black provider marks for light ink so they stay visible.
+Channel colours come from `../config/channel-colors.json`, shared with the Python charts (its `channels` array is also the single id-prefix → channel map); `python scripts/checks/verify_palette.py` enforces a minimum CIEDE2000 distance between channels present in the data. Dark mode swaps near-black provider marks for light ink — or a bundled `<slug>-dark.svg` official dark variant where one exists (Kimi, Devin) — so they stay visible.
 
 Long tables and rankings render in chunks as they scroll (CSV/PNG exports still include every row), and the dataset request starts from `index.html` in parallel with the JavaScript bundle.
 

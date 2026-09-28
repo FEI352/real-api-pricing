@@ -140,7 +140,7 @@ def marker_half(g):
     for child in g:
         if child.tag == NS + "rect":
             return 3.5 + (0.9 / 2 if child.get("stroke") else 0)
-    return 5.5  # Devin logo（三个六边形），按非前沿菱形半宽计
+    return 5.5  # Devin logo（官方 mark），按非前沿菱形半宽计
 
 
 def rotate_box(box, spec):
