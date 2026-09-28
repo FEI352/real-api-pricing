@@ -3,6 +3,10 @@
 `AGENTS.md` 只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-09-28
+
+- **ChatGPT Plus × GPT-6 Luna 新一周实测取代上周样本（effort=max）**：44.05 → 91.77 亿/月 high（workload=measured）。用户本机 Codex 新一周窗 09-27 22:09 97% → 09-28 20:44 91%（6pp），段内 +137,648,446 tok（input 3,129,683/output 757,355 含 reasoning 471,268/cache_read 133,761,408，hit 97.71%）全为 gpt-6-luna——gpt-5.6-luna 累计 205,934,189、6sol/astra 计数均未动。本周 22.94M tok/pp ≈ round1 合并样本 11.01M 的 2.08×（standard 段 10.20M 的 2.25×），两侧取整区间（78.66~110.12 vs 40.90~47.72 亿）不重叠，判为周池放大或 effort 计权变化而非噪声；本周全程 max effort（reasoning 占 output 62.2%，round1 未记 effort），两条因果链现有证据不可区分。用户裁定新一周分开记：采用本周样本，round1 44.05 亿留作历史对照，不合并不平均。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。证据：`chatgpt-gpt6luna-plus-round2-2026-09-28.json`。
+
 ## 2026-09-27
 
 - **Claude Max 5x × Claude Opus 5.5 改按 20x 周池比派生（与 Max 20x 精确同价、图上并为一点）**：150.852 → 150.85 亿/月 low 不变（真实单价 $0.0066290139 → $0.0066291018/MTok）。依据：5x 原为 78.5×1/W（借 20x 社区样本隐含权重 1/0.5204），而 20x 采用值 round(157/W,2)=301.7 亿——两档价差 0.0013% 仅来自 301.7 的两位小数取整，AA Intelligence / TB4·AA / TB4 三榜前沿端点在两个实质同价的点之间摆动。2026-09-27 用户裁定按已确认的「20x 周池 = 5x 的 2 倍」关系（同 Opus 5 行 157÷2）由 20x 采用值 ÷2 派生：78.5×301.7/157 = 301.7÷2 = 150.85 亿，Max 5x 与 Max 20x 同为 $0.0066291018/MTok，三端渲染均按 (price, score) 精确分组并为一点「Max 5x / 20x」。仅限这一对：不引入任何容差/模糊分组，Fable 5.1 5x/20x 等其他近似对不合并。标价混合比法 152.64 亿（差 1.2%）仍留作备选口径。证据：`claude-opus55-round1-2026-09-23.json`。

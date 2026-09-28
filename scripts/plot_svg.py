@@ -144,7 +144,7 @@ def label_position(p, board, x, y):
     model = p["model"]
     if model == "claude-opus-5":
         if board == "aa_coding_agent_index":
-            return x - 10, y - 62, "end"
+            return x + 45, y - 72, "end"
         return x - 24, y - 49, "end"
     if model == "gpt-6-astra":
         if board == "aa_intelligence_index":
@@ -177,7 +177,7 @@ def label_position(p, board, x, y):
             return x - 1, y + 41, "end"
     if model == "gemini-3.8-flash":
         if board == "aa_coding_agent_index":
-            return x + 131, y + 33, "end"
+            return x - 20, y + 64, "end"
     if model == "glm-5.3":
         if board == "aa_intelligence_index":
             return x + 24, y - 108, "start"
@@ -196,6 +196,12 @@ def label_position(p, board, x, y):
         if model == "deepseek-v4.1-flash" and board == "terminal_bench_4":
             return x - 54, y - 25, "end"
         return x - 24, y + 49, "end"
+    if model == "gpt-6-luna":
+        if board == "aa_terminal_bench_4":
+            return x - 53, y - 30, "end"
+        if board == "aa_coding_agent_index":
+            return x + 90, y + 40, "end"
+        return x - 20, y - 52, "end"
     if model == "gpt-5.6-luna":
         # TB4 全量里 Luna 分数最低（官方 17.27% / AA 0%），标签整体下移会压过图框下缘。
         if board in ("terminal_bench_4", "aa_terminal_bench_4"):
