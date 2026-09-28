@@ -39,9 +39,6 @@ from_fetch("openai.svg", "openai.svg", "#111111")
 from_fetch("anthropic.svg", "anthropic.svg", "#191919")
 from_fetch("xai.svg", "xai.svg", "#111111")
 from_fetch("cursor.svg", "cursor.svg", "#111111")
-from_fetch("kimi.svg", "kimi.svg", "#111111")
-kimi = (HERE / "kimi.svg").read_text(encoding="utf-8")
-write("kimi.svg", kimi.replace('<path d="M21.846', '<path fill="#1783FF" d="M21.846'))
 from_fetch("minimax.svg", "minimax.svg", "#E2167E")
 from_fetch("qwen.svg", "alibaba.svg", "#615CED")
 from_fetch("deepseek.svg", "deepseek.svg", "#4D6BFE")
@@ -65,6 +62,8 @@ meituan = meituan.replace(
 # zhipu.svg / opencode.svg: traced in _trace.py.
 # command-code.svg: official cmdsymbol from commandcode.ai.
 # stepfun.svg: official 5-square mark + current X-avatar gradient.
+# kimi.svg / kimi-dark.svg: official Kimi Logomark tile, light/dark brand-kit variants.
+# devin.svg / devin-dark.svg: official Devin mark, dark-ink and white variants.
 # Muse Spark uses meta.svg. Do not overwrite those files here.
 
 # Keep fetch only as a cache; do not publish it.
