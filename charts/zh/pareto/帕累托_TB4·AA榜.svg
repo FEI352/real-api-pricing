@@ -69,6 +69,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.039588282" data-score="59.6" data-x="648.527" data-y="254.374" transform="translate(648.527 254.374)"><title>Claude Opus 5.5 · Droid Max · $0.03959/MTok · 59.6 · mediumArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.052356021" data-score="59.6" data-x="601.299" data-y="254.374" transform="translate(601.299 254.374)"><title>Claude Opus 5.5 · Droid Pro · $0.05236/MTok · 59.6 · lowArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="true" data-price="0.0066291018" data-score="59.6" data-x="950.452" data-y="254.374" transform="translate(950.452 254.374)"><title>Claude Opus 5.5 · Max 20x · 9/14+ / Claude Opus 5.5 · Max 5x · 9/14+ · $0.00663/MTok · 59.6 · mediumArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
 <circle r="4" fill="#CC5A2E"/>
@@ -191,7 +194,7 @@
 <path d="M991 825l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="1005.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="874.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >27 个订阅位置 / 3 个 API 位置 / 3 个前沿位置</text>
+<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >28 个订阅位置 / 3 个 API 位置 / 3 个前沿位置</text>
 <text x="56.000" y="898.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >最高存档配置参考；标注harness与effort。产品/额度实测配置未对齐，不代表各渠道的实测成绩。</text>
 <text x="56.000" y="919.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="919.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/</text>
