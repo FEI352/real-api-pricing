@@ -96,6 +96,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.039588282" data-score="57.6223698102963" data-x="696.660" data-y="276.047" transform="translate(696.660 276.047)"><title>Claude Opus 5.5 · Droid Max · $0.03959/MTok · 57.6223698102963 · mediumClaude Opus 5.5 (max with fallback) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.052356021" data-score="57.6223698102963" data-x="657.593" data-y="276.047" transform="translate(657.593 276.047)"><title>Claude Opus 5.5 · Droid Pro · $0.05236/MTok · 57.6223698102963 · lowClaude Opus 5.5 (max with fallback) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0089201249" data-score="40.9262" data-x="904.931" data-y="440.226" transform="translate(904.931 440.226)"><title>Gemini 3.8 Flash · Google AI Pro · $0.00892/MTok · 40.9262 · highGemini 3.8 Flash (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
@@ -887,7 +890,7 @@
 <path d="M356.52 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="370.520" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >232 个订阅位置 / 17 个 API 位置 / 6 个前沿位置</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >233 个订阅位置 / 17 个 API 位置 / 6 个前沿位置</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max：9/14 起永久额度估算；Pro：Opus 5 周池面板反推。Y 取同模型存档最高分变体。</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>
