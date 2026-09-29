@@ -1362,11 +1362,24 @@ input[type="search"]::-webkit-search-cancel-button {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
 }
 .rank-bar {
+  position: relative;
   display: block;
   height: 8px;
   border-radius: 4px;
   background: var(--surface-3);
   overflow: hidden;
+}
+.rank-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0 calc(var(--decade) - 1px),
+    var(--line-strong) calc(var(--decade) - 1px) var(--decade)
+  );
+  opacity: 0.7;
+  pointer-events: none;
 }
 .rank-bar > span {
   display: block;
@@ -1403,6 +1416,9 @@ div.sentinel-row {
   text-align: center;
   color: var(--faint);
   font-size: 12px;
+}
+.ranking-scale-note {
+  display: none;
 }
 .resize-handle {
   display: flex;
@@ -2595,6 +2611,19 @@ tbody tr.sentinel-row {
   }
   .ranking-columns {
     display: none;
+  }
+  .web-ranking {
+    position: relative;
+  }
+  .ranking-scale-note {
+    display: block;
+    position: absolute;
+    right: 12px;
+    bottom: 14px;
+    line-height: 18px;
+    color: var(--faint);
+    font-size: 11px;
+    pointer-events: none;
   }
   .ranking-row {
     grid-template-columns: 22px minmax(0, 1fr) minmax(84px, 34%);

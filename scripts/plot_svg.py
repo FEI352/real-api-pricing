@@ -145,12 +145,12 @@ def label_lines(p, language, board=None):
     return name, " / ".join(plans), price
 
 
-def label_position(p, board, x, y):
+def label_position(p, board, x, y, tier="main"):
     # 仅调标签；绝不移动数据点。按这组已核对前沿的邻近关系安排引线和对齐。
     model = p["model"]
     if model == "claude-opus-5":
         if board == "aa_coding_agent_index":
-            return x + 45, y - 72, "end"
+            return x + 24, y - 72, "start"
         return x - 24, y - 49, "end"
     if model == "gpt-6-astra":
         if board == "aa_intelligence_index":
@@ -188,11 +188,15 @@ def label_position(p, board, x, y):
         if board == "aa_intelligence_index":
             return x + 24, y - 108, "start"
         if board == "arena_code":
-            return x + 75, y + 29, "end"
+            if tier == "full":
+                return x - 5, y + 201, "middle"
+            return x + 10, y - 65, "start"
         return x + 24, y - 31, "start"
     if model == "glm-5.3-flash":
         if board == "aa_intelligence_index":
             return x + 23, y - 95, "start"
+        if board == "open_design_arena":
+            return x - 24, y + 45, "end"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
@@ -204,7 +208,9 @@ def label_position(p, board, x, y):
         return x - 24, y + 49, "end"
     if model == "gpt-6-luna":
         if board == "aa_terminal_bench_4":
-            return x - 53, y - 30, "end"
+            return x - 150, y - 30, "end"
+        if board == "aa_intelligence_index":
+            return x + 20, y - 40, "start"
         if board == "aa_coding_agent_index":
             return x + 90, y + 40, "end"
         return x - 20, y - 52, "end"
@@ -213,7 +219,7 @@ def label_position(p, board, x, y):
         if board in ("terminal_bench_4", "aa_terminal_bench_4"):
             return x + 5, y + 25, "end"
         if board == "aa_intelligence_index":
-            return x + 174, y - 6, "end"
+            return x - 24, y + 45, "end"
         return x + 5, y + 57, "end"
     if model == "gpt-5.6-terra":
         if board == "aa_intelligence_index":
@@ -224,7 +230,7 @@ def label_position(p, board, x, y):
             return x - 53, y - 116, "end"
     if model == "step-3.5-flash":
         if board == "aa_intelligence_index":
-            return x - 155, y - 51, "end"
+            return x - 35, y - 51, "end"
     if model == "swe-2":
         # 不计额度点贴右边界，标签只能往左上放，且要避开 TB4 里 Luna 的下方标签。
         if board == "terminal_bench_4":
@@ -349,7 +355,7 @@ def draw(board, meta, points, tier, language="zh"):
         s.append('</g>')
     for p in reversed(frontier):
         x, y = sx(p["real_usd_per_mtok"]), sy(p[key])
-        lx, ly, anchor = label_position(p, board, x, y)
+        lx, ly, anchor = label_position(p, board, x, y, tier)
         name, plan, price = label_lines(p, language, board)
         # 三行标签直接排字，无卡片；短引线从留白侧连接，最高点靠近自身无需长线。
         end_y = ly + 19 if ly < y else ly - 13

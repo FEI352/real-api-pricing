@@ -83,26 +83,30 @@
   "calculation": {
     "adoptedWindow": "1→9（8pp，优先于单段 4pp）",
     "workload": "anthropic（同 devin_max×opus-5.5 / claude_pro×opus-5.5：按标价折 list-worth 再按 anthropicTokenMix 换算）",
-    "prices": "Opus 5.5 cached $0.2 / cache write 5m $5 / input $4 / output $20（thinking 按输出计）",
-    "segmentWorthUsd": 43.27,
-    "formula": "(67,311,924×0.2 + 3,640,056×5 + 793,017×4 + (375,172+46,393)×20)/1e6 = $43.27 ÷ 8% × 4 周 = $2,163.30/月 ÷ $0.419/MTok = 51.63 亿/月",
-    "monthlyYi": 51.63,
-    "roundedPercentRange": "Δpp∈[7,9] → 45.89~59.01 亿/月",
-    "cacheWrite1hSensitivity": "写按 1h $8：54.84 亿/月，不采",
+    "prices": "Opus 5.5 cached $0.2 / cache write 5m $5 / input $4 / output $20；thinking 不计费（2026-09-29 用户裁定，与 factoryCredits 对账一致）",
+    "segmentWorthUsd": 42.34,
+    "formula": "(67,311,924×0.2 + 3,640,056×5 + 793,017×4 + 375,172×20)/1e6 = $42.34 ÷ 8% × 4 周 = $2,116.91/月 ÷ $0.419/MTok = 50.52 亿/月",
+    "monthlyYi": 50.52,
+    "roundedPercentRange": "Δpp∈[7,9] → 44.91~57.74 亿/月",
+    "cacheWrite1hSensitivity": "写按 1h $8：53.91 亿/月，不采",
     "rawTotalComparison": {
       "weeklyTokens": 902082025,
       "monthlyYi": 36.08,
       "formula": "72,166,562 ÷ 8% × 4 周"
+    },
+    "supersededWithThinking": {
+      "segmentWorthUsd": 43.27,
+      "monthlyYi": 51.63,
+      "note": "PR #67 初版把 thinking 46,393 按输出价 $20 计入；用户指出 thinking 不计，改为 50.52"
     }
   },
   "crossChecks": [
     "两段 4pp 每 pp 8.90M（xhigh）vs 9.14M（high），差 2.7%，在整数% 取整误差内——effort 只影响消耗速率，不改变池（沿 claude round8 / devin round1 口径）",
-    "同模型 Devin Max（$200）worth 口径采用 66.90 亿/月（raw 43.78）；本点 worth 口径 51.63 亿（raw 36.08），同价位约为 Devin 的 0.77×（raw 0.82×）；本点 cache 写 5.04% 低于 Devin 7.67%、输入 1.10% 高于 Devin 0.001%",
+    "同模型 Devin Max（$200）worth 口径采用 66.90 亿/月（raw 43.78）；本点 worth 口径 50.52 亿（raw 36.08），同价位约为 Devin 的 0.76×（raw 0.82×）；本点 cache 写 5.04% 低于 Devin 7.67%、输入 1.10% 高于 Devin 0.001%",
     "Factory 另有 5h 与 30 天滚动窗：本样本只约束 7 天窗，30 天窗若小于 4× 周池，实际月可用会低于本值"
   ],
   "openQuestions": [
     "30 天窗与 7 天窗的比例",
-    "Pro/Plus 是否按官方 ~1/10、~1/5 派生",
-    "factoryCredits 与周 % 的换算关系（16,935,482 credits / 8pp ≈ 2.12 亿 credits/周）"
+    "Pro/Plus 是否按官方 ~1/10、~1/5 派生"
   ]
 }
