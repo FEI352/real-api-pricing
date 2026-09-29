@@ -19,7 +19,7 @@
    - **Anthropic 档** `anthropicTokenMix`：Anthropic 单独收缓存写入费、未命中输入几乎全部走缓存写，故标准档的普通输入份额按 5 分钟缓存写入价计；用于 Anthropic 按量 API 行，以及经用户裁定折算的 Anthropic 面板实测。
    - 不为单个渠道或单个用户样本另设专用负载档。某家实测缓存偏低时，先区分是渠道本身的属性还是客户端 harness 的问题。
    - 直接给出 total token 的面板反推、本地日志、受控打满和官方绝对 token 表，**不再重复套负载**。
-     - 例外（用户 2026-09-24 裁定）：Devin Max 面板两行按标价折 list-worth 后换算——Opus 5.5 用 Anthropic 档，GPT-6 Astra 用标准档。
+     - 例外（用户 2026-09-24 裁定）：Devin Max 面板两行按标价折 list-worth 后换算——Opus 5.5 用 Anthropic 档，GPT-6 Astra 用标准档；同口径已扩展到 Claude Pro × Opus 5.5（2026-09-25）与 Droid Max × Opus 5.5（2026-09-29）。
    - 负载比例的修订依据全库带分项的样本审计（见 `standard-token-mix-round*.json`）。修订后要统一重算所有受影响的点，不单独调整某一家。
 5. **缓存写入**不单列：标准档里它算作普通输入；Anthropic 档里普通输入份额即按缓存写入价计。
 6. **官方倍率各家含义不同，不能直接相乘**：Claude 是 5h 窗口倍率，Max 20x 的周池只有 5x 的约 2 倍；Google 是 token worth；Cursor 是 Agent limits。
@@ -59,7 +59,7 @@
 - 免费档不画（对数轴画不了）；Y 轴没分的模型不画，但要在输出里列出来。
 - 每张榜单一张图，标题写清榜单名和快照日期；不同榜单的分数不混合。
 - 公开 README 和 charts 默认使用全量图；精选图只作内部对照，不作为默认公开视图。
-- **配色**：用明亮、干净的高饱和色，不用深灰或脏色。OpenAI 绿、Claude 橙（深陶土橙）、xAI 紫、Cursor 黄、Kimi 天蓝、GLM 黑、MiniMax 粉、Alibaba 红、OpenCode 青、DeepSeek 蓝、小米橙（亮橙，与 Claude 深陶土靠明度区分）、StepFun 电青 #00F4E5；Gemini 若入库用黄绿。前沿线用近黑色。具体色值只在 [`config/channel-colors.json`](config/channel-colors.json) 维护（网站与全部 Python 图共用），同文件 `channels` 数组也是唯一的 id 前缀 → 渠道映射；未指定色相的渠道中 Command Code、Ollama 用浅色调区分，Devin 用中性灰 #A1A1AA（用户指定；中灰，不是深灰）。改色后跑 `scripts/checks/verify_palette.py`：数据中出现的渠道两两 CIEDE2000 色差须 ≥ 15，不为品牌色开例外（确需例外时登记在 `brandPairs`）。
+- **配色**：用明亮、干净的高饱和色，不用深灰或脏色。OpenAI 绿、Claude 橙（深陶土橙）、xAI 紫、Cursor 黄、Kimi 天蓝、GLM 黑、MiniMax 粉、Alibaba 红、OpenCode 青、DeepSeek 蓝、小米橙（亮橙，与 Claude 深陶土靠明度区分）、StepFun 电青 #00F4E5；Gemini 若入库用黄绿。前沿线用近黑色。具体色值只在 [`config/channel-colors.json`](config/channel-colors.json) 维护（网站与全部 Python 图共用），同文件 `channels` 数组也是唯一的 id 前缀 → 渠道映射；未指定色相的渠道中 Command Code、Ollama 用浅色调区分，Devin 用中性灰 #A1A1AA（用户指定；中灰，不是深灰）。Factory（Droid）用群青 #0A0ABF。改色后跑 `scripts/checks/verify_palette.py`：数据中出现的渠道两两 CIEDE2000 色差须 ≥ 15，不为品牌色开例外（确需例外时登记在 `brandPairs`）。
 - **单价精度**：`real_usd_per_mtok` 存 8 位有效数字，排序与前沿判定都用原值；图表、排名、表格按至多 5 位小数的短格式显示，网页详情弹窗显示完整值。不要为了显示好看在数据里截短单价。
 - **额度/单价总览**：双栏对数轴，不分量级面板；中文额度用"亿"，英文用 billion；每行数值旁加渠道缩写，图例置顶。
 - **按榜前沿精简版**：从全量订阅/API（含不计额度的 ≈$0 促销点，与帕累托图一致）中按"单价越低、分数越高"筛选，至少一项严格更好才算支配；同价同分的不同套餐都保留。

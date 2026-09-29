@@ -3,6 +3,10 @@
 `AGENTS.md` 只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-09-29
+
+- **Droid Max × Claude Opus 5.5 本机实测（新增渠道 Factory）**：51.63 亿/月 medium（workload=anthropic，同 devin_max×opus-5.5 口径）。用户本机 Factory Droid 周窗（7-day rolling）已用 1%→9% 两段：1→5 xhigh +35,598,616 tok、5%@08:13→9%@12:40 high（新会话 47f9711d）+36,567,946 tok，合计 72,166,562 tok 全为 claude-opus-5-5（auto 0 增量；glm-5.3-flash +50,317 占 0.14%，Droid Core 免费池不计）。合计分拆：cache 读 67,311,924（93.27%）/ cache 写 3,640,056（5.04%）/ 输入 793,017（1.10%）/ 输出 375,172（0.52%）/ thinking 46,393（0.06%），hit 93.82%。按 Opus 5.5 标价（读 $0.2 / 写 5m $5 / 入 $4 / 出含 thinking $20）折段 worth $43.27 ÷8%×4 周＝月 $2,163.30 ÷ Anthropic 档 $0.419/MTok＝51.63 亿。1%/9% 为整数读数，Δpp∈[7,9] 对应 45.89~59.01 亿；写按 1h $8 为 54.84 亿不采；raw total 口径 36.08 亿（周池 9.02 亿）留作对照。两段每 pp 8.90M/9.14M（差 2.7%），effort 只影响速率。factoryCredits 16,935,482 仅记录。Factory 另有 5h/30 天滚动窗，30 天窗若低于 4× 周池则本值偏高。Pro $20/Plus $100 官方只写约 1/10、1/5 Max 用量，不派生。新渠道 Factory：id 前缀 `droid`、色 #0A0ABF（群青）。证据：`droid-opus55-max-round1-2026-09-29.json`。
+
 ## 2026-09-28
 
 - **ChatGPT Plus × GPT-6 Luna 新一周实测取代上周样本（effort=max）**：44.05 → 91.77 亿/月 high（workload=measured）。用户本机 Codex 新一周窗 09-27 22:09 97% → 09-28 20:44 91%（6pp），段内 +137,648,446 tok（input 3,129,683/output 757,355 含 reasoning 471,268/cache_read 133,761,408，hit 97.71%）全为 gpt-6-luna——gpt-5.6-luna 累计 205,934,189、6sol/astra 计数均未动。本周 22.94M tok/pp ≈ round1 合并样本 11.01M 的 2.08×（standard 段 10.20M 的 2.25×），两侧取整区间（78.66~110.12 vs 40.90~47.72 亿）不重叠，判为周池放大或 effort 计权变化而非噪声；本周全程 max effort（reasoning 占 output 62.2%，round1 未记 effort），两条因果链现有证据不可区分。用户裁定新一周分开记：采用本周样本，round1 44.05 亿留作历史对照，不合并不平均。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。证据：`chatgpt-gpt6luna-plus-round2-2026-09-28.json`。
