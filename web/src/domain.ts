@@ -87,6 +87,38 @@ export function visiblePoints(data: SiteData, s: State): Point[] {
           matchesFeeBand(p.price_usd, s.feeBand))),
   );
 }
+/**
+ * Decade-aligned log axis for the ranking bars, spanning every point that the
+ * unfiltered view could show, so a bar's length depends only on its own value.
+ */
+export function barAxis(
+  data: SiteData,
+  view: State["view"],
+): { low: number; high: number } {
+  const values = data.points
+    .filter(
+      (p) =>
+        view !== "allowance" ||
+        (p.billing !== "metered" && p.monthly_yi !== null),
+    )
+    .map((p) => (view === "allowance" ? p.monthly_yi : p.real_usd_per_mtok))
+    .filter((v): v is number => v !== null && Number.isFinite(v) && v > 0);
+  if (!values.length) return { low: 1, high: 10 };
+  const low = Math.floor(Math.log10(Math.min(...values))),
+    high = Math.ceil(Math.log10(Math.max(...values)));
+  return { low: 10 ** low, high: 10 ** Math.max(high, low + 1) };
+}
+/** Bar length in percent on a log axis; values with no log position get 0. */
+export function barWidth(
+  value: number,
+  axis: { low: number; high: number },
+): number {
+  if (!(value > 0)) return 0;
+  const f =
+    (Math.log10(value) - Math.log10(axis.low)) /
+    (Math.log10(axis.high) - Math.log10(axis.low));
+  return 100 * Math.min(1, Math.max(0, f));
+}
 export function rowsFor(data: SiteData, s: State): Row[] {
   const byPoint = new Map<string, typeof data.mappings>();
   for (const m of data.mappings)

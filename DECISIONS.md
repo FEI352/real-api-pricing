@@ -1,7 +1,17 @@
 # DECISIONS.md · 采用值决策记录
 
-`AGENTS.md` 只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
+本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
+
+## 2026-09-29
+
+- **Droid Pro × Claude Opus 5.5 社区口述点（新增，low）**：3.82 亿/月（workload=anthropic，同 droid_max×opus-5.5 口径）。X @SnowyWar36965（2026-09-28，用户转供截图）：Pro $20 跑 Opus 5.5 小动画用掉 5h 窗约 70%，帖主按等价 API 消耗估 5h≈$15.4 / 周≈$45 / 月≈$160（Max 10x≈$154/$450/$1,600）。取帖主月值 $160 ÷ Anthropic 档 $0.419/MTok＝3.82 亿；周 $45×4＝$180（4.30 亿）不采——帖主月值低于 4× 周，按 30 天窗为绑定约束。帖主 token 列（18 亿/$1,600≈$0.89/MTok）为其自身负载，不采。对照：本机实测 Max 月 worth $2,116.91 ÷10＝Pro 约 $211.7（5.05 亿），帖主值约其 0.76×。弱点：口述、无面板截图与 token 分拆、n=1 → low。仅挂 Opus 5.5，不按倍率派生同池其他模型。证据：`droid-pro-opus55-community-round1-2026-09-29.json`。
+- **Droid Max 同池 26 个模型按 Factory 官方倍率折算（用户裁定，全部 medium）**：月额度 = Opus 5.5 采用值 50.52 亿 × 1.6 ÷ 模型倍率（docs.factory.ai/docs/models，与用户 4 张模型选择器截图一致）。范围：Fable 5.1/5（4×→20.21）、Opus 5/4.8（2×→40.42）、Sonnet 5.5（0.8×→101.04，新模型 id）；GPT-6 Astra/Sol/Luna（4/0.8/0.04×）、GPT-5.6 Sol/Terra/Luna（1.6†/0.8/0.08×）；Gemini 3.8/3.7 Flash（0.3†×→269.44）、Grok 4.7/4.6（0.8×）；Droid Core：Inkling、Mistral Medium 3.5（新模型 id）、GLM-5.3-Flash/5.3/5.2/5.2 Fast、Kimi K3、Qwen3.8 Max、Nemotron 3 Ultra、DeepSeek V4.1 Flash、MiniMax M3。† 促销倍率：GPT-5.6 Sol 到 2026-11-22 后回 2×，Gemini Flash 到 2027-01-01 后回 0.6×，到期须复核。不含 Fast Mode（无模型 id）、更老型号与 Deprecated 型号。旁证：面板 factoryCredits 16,935,482 ≈ Opus 段 list-worth（不含 thinking）÷ $4 × 1.6（差 0.001%），支持按倍率计池。Droid Core 用尽 Standard Usage 后另有免费池（未实测），本值只计 Standard 部分。沿用 Anthropic 档负载、未按各模型自身价差重算。证据：`droid-model-multipliers-2026-09-29.json`。
+- **Droid Max × Claude Opus 5.5 本机实测（新增渠道 Factory）**：50.52 亿/月 medium（workload=anthropic，同 devin_max×opus-5.5 口径）。用户本机 Factory Droid 周窗（7-day rolling）已用 1%→9% 两段：1→5 xhigh +35,598,616 tok、5%@08:13→9%@12:40 high（新会话 47f9711d）+36,567,946 tok，合计 72,166,562 tok 全为 claude-opus-5-5（auto 0 增量；glm-5.3-flash +50,317 占 0.14%，Droid Core 免费池不计）。合计分拆：cache 读 67,311,924（93.27%）/ cache 写 3,640,056（5.04%）/ 输入 793,017（1.10%）/ 输出 375,172（0.52%）/ thinking 46,393（0.06%），hit 93.82%。按 Opus 5.5 标价（读 $0.2 / 写 5m $5 / 入 $4 / 出 $20；thinking 不计费——用户裁定，与 factoryCredits 对账一致）折段 worth $42.34 ÷8%×4 周＝月 $2,116.91 ÷ Anthropic 档 $0.419/MTok＝50.52 亿（初版把 thinking 按输出价计入为 51.63，已更正）。1%/9% 为整数读数，Δpp∈[7,9] 对应 44.91~57.74 亿；写按 1h $8 为 53.91 亿不采；raw total 口径 36.08 亿（周池 9.02 亿）留作对照。两段每 pp 8.90M/9.14M（差 2.7%），effort 只影响速率。factoryCredits 16,935,482 ≈ worth ÷ $4 × 1.6。Factory 另有 5h/30 天滚动窗，30 天窗若低于 4× 周池则本值偏高。Pro $20/Plus $100 官方只写约 1/10、1/5 Max 用量，不派生。新渠道 Factory：id 前缀 `droid`、色 #0A0ABF（群青）。证据：`droid-opus55-max-round1-2026-09-29.json`。
+
+## 2026-09-28
+
+- **ChatGPT Plus × GPT-6 Luna 新一周实测取代上周样本（effort=max）**：44.05 → 91.77 亿/月 high（workload=measured）。用户本机 Codex 新一周窗 09-27 22:09 97% → 09-28 20:44 91%（6pp），段内 +137,648,446 tok（input 3,129,683/output 757,355 含 reasoning 471,268/cache_read 133,761,408，hit 97.71%）全为 gpt-6-luna——gpt-5.6-luna 累计 205,934,189、6sol/astra 计数均未动。本周 22.94M tok/pp ≈ round1 合并样本 11.01M 的 2.08×（standard 段 10.20M 的 2.25×），两侧取整区间（78.66~110.12 vs 40.90~47.72 亿）不重叠，判为周池放大或 effort 计权变化而非噪声；本周全程 max effort（reasoning 占 output 62.2%，round1 未记 effort），两条因果链现有证据不可区分。用户裁定新一周分开记：采用本周样本，round1 44.05 亿留作历史对照，不合并不平均。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。证据：`chatgpt-gpt6luna-plus-round2-2026-09-28.json`。
 
 ## 2026-09-27
 
@@ -53,10 +63,10 @@
 - **Claude Fable 5.1（新增订阅点）**：Max 20x = 30.06 亿/月 medium。用户提供同日同框样本：2443 轮 285.6M raw（cache 读 283M + 输出 2.6M）→ /usage 周额度 0%→19%；次日 3017 轮→24% 线性互验（预测 23.5%）。算式 285.6M÷19%×50% 周帽×4 周；隐含权重 ≈2.61×Opus（远低于 Fable5 的 6.5×，与 cache read $1→$0.25 降价方向一致）。input/cache_write 未入样本，低估约 3~10%。Max 5x = 15.03 亿/月 low（借 20x 隐含权重派生，非独立实测）。混合计价口径（Fable 50% + 余下 50% 跑 Opus：20x ≈108.6 亿/月、5x ≈54.3 亿/月）只作概念存档——非单一服务模型、无榜分，不挂点。证据：`data/research/claude-fable51-round3-2026-09-20.json`。
 - **ChatGPT Astra Pro 20x（round14 并入新批次）**：38.12 亿/月 medium = 周池 9.53 亿×4 周，**八条实测源加权**（round10 经用户确认后入权；用户自测 ≈32 亿/月与 lichengzhe 网关 21~23 亿按用户指示不入权）：Observatory 8.53×3、round10 截图 13.8×3、round13 g5a 同框 7.52×3、round14 用户面板满周 10.0×3、V2EX msg7086 8.07×2、round14 图4（2/3周）8.18×2、图2自述 9.25×1、图3后台 10.3×1 = 171.6/18。纯口述与仅下限源不进均值。round14 新增 worth 口径：周池≈$1200~1500 list-worth（Astra），同池 Sol $2200~2500——内部计权对 Astra 惩罚 ~1.9×，与 w≈3.2× 反推同向。同源真实测量散布 6.8~15.6 亿/周，加权值是中心而非普适常数。Pro 5x = 9.53 亿/月 low（÷4 沿用 Sol 档间比例）。Plus 1.59 亿不变。证据：`chatgpt-astra-round12/13/14`。
 
-## 现行采用决策（自 AGENTS.md 迁入，原始日期见各 research 文件）
+## 早期采用决策（2026-09-20 之前；原始日期见各 research 文件）
 
 - **Cursor**：Ultra 标准 Grok 4.6 采用 77.37 亿/月：用户当前平滑账号标准主行 67.78 亿与社区 8 月 26 日标准主行 86.95 亿取中间值；Fast 采用用户当前账号大样本 863.8M/28.1%=30.74 亿；Pro+ 采用 `77.37×800/3000=20.632` 亿，Composer 两模式随动。两图均在 8 月 25 日永久扩池后；社区图可能因首周半价用量集中而略高。现行决策见 `data/research/cursor-adoption-round8-2026-09-06.json`；round6/7 为历史证据，不覆盖。Cursor 与 SuperGrok 是不同渠道。
 - **Kimi**：¥49 无 K3 调用权限，用户已确认仅排除该档 K3 点；K2.7 Standard 所有会员可用。Kimi 月池是周池的 5 倍，不能套项目通用 4 周。K3 采用：¥199 为 14.51 亿/月（K3-256K 为主的混合样本，不能宣称纯 K3 1M），¥99/¥699 按 4/20 与 60/20 派生。K2.7 Standard 采用：¥199 纯模型面板 15.68 亿/月、medium，可信范围约 15.6~16.7 亿；¥49/¥99/¥699 按官方 1/20、4/20、60/20 派生为 0.78/3.14/47.04 亿。HighSpeed 与 K2.6 暂无当前可采用值。
-- **Claude Max**：按 2026-09-14 起永久口径估算：20x=157 亿/月（参考 110~200 亿，单点 medium），5x=157/用户确认周池比 2=78.5 亿；不要误用 5h 窗口倍数或旧 2.25 比。见 `claude-adoption-round6-2026-09-06.json`。（后续更新：Pro 档 Opus5 已被 round8 shownotover 面板反推 18.78 亿取代，见 adopted decision_note；旧"Pro 约 1.9 亿未获确认"的表述作废。）
+- **Claude Max**：按 2026-09-14 起永久口径估算：20x=157 亿/月（参考 110~200 亿，medium），5x=78.5 亿（按用户确认的周池比 2 由 20x 派生；不用 5h 窗口倍数，也不用旧 2.25 比）。Pro 档 Opus 5 后被 round8 shownotover 面板反推 18.78 亿取代，见 adopted decision_note。见 `claude-adoption-round6-2026-09-06.json`。
 - **GLM Coding Plan**：按官方周积分和三段积分系数套统一标准负载，忙时 1×、中间值 1.5×、闲时 2× 分别作为独立情景点，不互相替代。
-- **Gemini/Google**：暂无可靠采用值，不补点、不再探测账户额度。
+- **Gemini/Google**：已被 2026-09-21「Google AI Pro · Gemini 3.8 Flash」条取代。

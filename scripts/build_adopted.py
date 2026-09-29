@@ -35,12 +35,14 @@ CHATGPT_PLUS_SOL6_SEGMENT = {"input": 693_878, "output": 46_713, "cache_read": 1
 CHATGPT_PLUS_SOL6_USED_TOKENS = 15_716_975
 CHATGPT_PLUS_SOL6_USED_FRACTION = 0.06
 assert sum(CHATGPT_PLUS_SOL6_SEGMENT.values()) == CHATGPT_PLUS_SOL6_USED_TOKENS
-# GPT-6 Luna（9/22 新发）Plus —— 2026-09-26 用户本机 Codex 实测：周额度 48%→35% 全程增量 143,157,917 tok（全 gpt-6-luna）
-#   分两段：48→44 标准档（40,801,412/4pp）与 44→35 用户开 Fast（102,356,505/9pp）；加权额度成本两段一致
-#   （c2/c1≈0.99~1.00，官方『Fast increases usage』未见兑现→判未生效），合并 13pp 窗为采用样本
-CHATGPT_PLUS_LUNA6_SEGMENT = {"input": 3_185_120, "output": 954_045, "cache_read": 139_018_752}
-CHATGPT_PLUS_LUNA6_USED_TOKENS = 143_157_917
-CHATGPT_PLUS_LUNA6_USED_FRACTION = 0.13
+# GPT-6 Luna（9/22 新发）Plus —— round2：2026-09-28 用户本机 Codex 实测（effort=max）：
+#   新一周窗 09-27 22:09 97% → 09-28 20:44 91%（6pp），段内 +137,648,446 tok 全为 gpt-6-luna
+#   （gpt-5.6-luna 累计 205,934,189 未动、6sol/astra 计数未动）。本周 22.94M tok/pp ≈ round1 合并样本
+#   11.01M 的 2.08×（standard 段 10.20M 的 2.25×），两侧取整区间不重叠，判周池放大或 effort 计权变化而非噪声；
+#   用户裁定新一周分开记，采用本周样本，round1（48%→35%，143,157,917 tok/13pp→44.05亿）留作对照不合并不平均
+CHATGPT_PLUS_LUNA6_SEGMENT = {"input": 3_129_683, "output": 757_355, "cache_read": 133_761_408}
+CHATGPT_PLUS_LUNA6_USED_TOKENS = 137_648_446
+CHATGPT_PLUS_LUNA6_USED_FRACTION = 0.06
 assert sum(CHATGPT_PLUS_LUNA6_SEGMENT.values()) == CHATGPT_PLUS_LUNA6_USED_TOKENS
 # Astra Pro20x 周池 —— round14 后按实测源加权（round10 的 10% 与 Pro20x 档位经用户确认真实）：
 #   Observatory 8.53×3 + round10 13.8×3 + g5a 7.52×3 + msg7086 8.07×2 + 图1用户面板 10.0×3
@@ -71,6 +73,23 @@ DEVIN_MAX_OPUS55_USED_FRACTION = 0.48
 OPUS55_LIST = (0.2, 4.0, 20.0)  # cached/input/output 官方标价；5 分钟缓存写价见 ANTHROPIC_CACHE_WRITE_5M
 assert sum(DEVIN_MAX_ASTRA_SEGMENT.values()) == DEVIN_MAX_ASTRA_USED_TOKENS
 assert sum(DEVIN_MAX_OPUS55_SEGMENT.values()) == DEVIN_MAX_OPUS55_USED_TOKENS
+# Droid Max × Opus 5.5 —— 用户 Factory Droid 本机 /limits 周窗（7-day rolling）已用 1%→9% 两段增量直测：
+#   1→5（xhigh）+35,598,616 tok、5→9（high，新会话 47f9711d）+36,567,946 tok，合计 72,166,562 tok ÷ 8pp；
+#   段内 auto 0 增量、glm-5.3-flash +50,317（占 0.14%，Droid Core 免费池不进 Opus 速率）；
+#   1→9 合计分拆 in 793,017/out 375,172/cache_create 3,640,056/cache_read 67,311,924/thinking 46,393
+#   （hit 93.82%，factoryCredits 16,935,482）；同 devin_max×opus-5.5 口径按标价折 worth 再按 Anthropic 档换算，
+#   thinking 不计费（用户 2026-09-29 裁定；factoryCredits 对账亦不含 thinking）。
+DROID_MAX_OPUS55_SEGMENTS = {"1to5_xhigh": 35_598_616, "5to9_high": 36_567_946}
+DROID_MAX_OPUS55_SEGMENT = {"cache_read": 67_311_924, "cache_create": 3_640_056, "input": 793_017,
+                            "output": 375_172, "thinking": 46_393}
+DROID_MAX_OPUS55_USED_TOKENS = 72_166_562
+DROID_MAX_OPUS55_USED_FRACTION = 0.08
+assert sum(DROID_MAX_OPUS55_SEGMENTS.values()) == DROID_MAX_OPUS55_USED_TOKENS
+assert sum(DROID_MAX_OPUS55_SEGMENT.values()) == DROID_MAX_OPUS55_USED_TOKENS
+# Droid Pro × Opus 5.5 —— 社区口述（X @SnowyWar36965，2026-09-28）：Pro $20 跑 Opus 5.5 小动画用掉 5h 窗约 70%，
+#   帖主按等价 API 消耗折算 5h≈$15.4 / 周≈$45 / 月≈$160（Max 10x 对应 $154/$450/$1,600）；
+#   无 token 分拆与面板截图，只取帖主月值 list-worth，按 Anthropic 档换算（同 droid_max 口径）。
+DROID_PRO_OPUS55_COMMUNITY_WORTH_USD = {"5h": 15.4, "week": 45.0, "month": 160.0}
 # Google AI Pro 周帽 —— round7 用户本地实测：B 整段 55.343M raw（cache 45.688M/输入 9.258M/输出 0.398M）= 周条 +9.88%
 #   → raw 周池 5.60 亿。官方按 API worth 合池计权（实证：B1/B2 的 %比 0.405≈worth比 0.407，非 raw比 0.448），
 #   故 raw 额度随负载 mix 变：本样本 cache 82.6%（用户指出 Gemini 实际负载打不到 97% cache）——
@@ -244,6 +263,39 @@ def devin_max_opus55_monthly_yi() -> float:
     return round(
         devin_max_opus55_segment_worth_usd() / DEVIN_MAX_OPUS55_USED_FRACTION
         * MONTH_WEEKS / blended_anthropic(OPUS55_LIST[0], ANTHROPIC_CACHE_WRITE_5M["claude-opus-5.5"], OPUS55_LIST[2]) / 100,
+        2,
+    )
+
+
+def droid_max_opus55_raw_monthly_yi() -> float:
+    return round(
+        DROID_MAX_OPUS55_USED_TOKENS / DROID_MAX_OPUS55_USED_FRACTION
+        * MONTH_WEEKS / YI,
+        2,
+    )
+
+
+def droid_max_opus55_segment_worth_usd() -> float:
+    # 段 list-worth：cache_create 按 Opus 5.5 的 5 分钟缓存写价 $5/MTok，thinking 不计
+    s = DROID_MAX_OPUS55_SEGMENT
+    return (s["cache_read"] * OPUS55_LIST[0] + s["cache_create"] * ANTHROPIC_CACHE_WRITE_5M["claude-opus-5.5"]
+            + s["input"] * OPUS55_LIST[1] + s["output"] * OPUS55_LIST[2]) / 1e6
+
+
+def droid_max_opus55_monthly_yi() -> float:
+    # 段 worth ÷8% ×4周 ÷ Anthropic 档混合价 $0.419/MTok
+    return round(
+        droid_max_opus55_segment_worth_usd() / DROID_MAX_OPUS55_USED_FRACTION
+        * MONTH_WEEKS / blended_anthropic(OPUS55_LIST[0], ANTHROPIC_CACHE_WRITE_5M["claude-opus-5.5"], OPUS55_LIST[2]) / 100,
+        2,
+    )
+
+
+def droid_pro_opus55_monthly_yi() -> float:
+    # 帖主月 list-worth $160 ÷ Anthropic 档混合价 $0.419/MTok
+    return round(
+        DROID_PRO_OPUS55_COMMUNITY_WORTH_USD["month"]
+        / blended_anthropic(OPUS55_LIST[0], ANTHROPIC_CACHE_WRITE_5M["claude-opus-5.5"], OPUS55_LIST[2]) / 100,
         2,
     )
 
@@ -683,14 +735,17 @@ SUBS = [
     ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6-astra", chatgpt_astra_monthly_yi(), "high", "用户Plus面板：10,336,745 tokens(input+cache_read) = 周窗剩余26pt；chatgpt-astra-adoption-round7-2026-09-11.json", "新增1.59亿：10,336,745÷26%×4周；本次抽取未含output（Luna同法占0.33%，影响<1%）；26pt为取整读数差，范围约1.53~1.65亿；Plus定价页写明Astra为limited档（可加credits），直测的是实际消耗速率不受影响；round8发现Observatory现测Astra≈4.1×Sol，round7旧权重2×互证口径存疑，本值不依赖权重模型；round13新增Plus同框32~75M/周散布于1.28~3.0亿/月，与1.59亿同量级不改值；Pro20x已按round13挂点"),
     # GPT-6 Sol（9/22 新发）—— 用户Plus账号2026-09-24本机Codex当日增量直测；只挂Plus，Pro 5x/20x不派生（用户裁定）
     ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6-sol", chatgpt_sol6_monthly_yi(), "high", "用户本机Codex实测：当日增量gpt-6-sol total 15,716,975 tokens（input 693,878/output 46,713含reasoning 14,925/cache_read 14,976,384，hit 95.57%）= 周额度约6%；chatgpt-gpt6sol-plus-round1-2026-09-24.json", f"新增{chatgpt_sol6_monthly_yi():g}亿：15,716,975÷6%×4周；直接采用total不套标准负载（沿Luna round6先例）；6%为口述取整，5.5~6.5%对应9.67~11.43亿；工具估价$4.85＝in$2/cached$0.2/out$10（$2/$10与AA页标价一致，cached 0.1×未见官方页）；昨日77.8M无周%检查点不参与；Pro 5x/20x不派生（用户裁定只挂Plus）；榜分见scores-gpt6sol-round1-2026-09-24.json"),
-    # GPT-6 Luna（9/22 新发）—— 用户Plus账号2026-09-26本机Codex周窗48%→35%直测；只挂Plus，Pro 5x/20x不派生（沿Sol裁定）
-    ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6-luna", chatgpt_luna6_monthly_yi(), "high", "用户本机Codex实测：周额度48%→35%全程增量gpt-6-luna total 143,157,917 tokens（input 3,185,120/output 954,045含reasoning 562,883/cache_read 139,018,752，hit 97.76%）；chatgpt-gpt6luna-plus-round1-2026-09-26.json", f"新增{chatgpt_luna6_monthly_yi():g}亿：143,157,917÷13%×4周；直接采用total不套标准负载（沿Luna round6先例）；面板整数%读数Δpp12~14对应40.90~47.72亿；第二段44→35为用户开Fast的窗口，加权额度成本与Standard段一致（c2/c1≈0.99~1.00）判Fast未在额度侧生效故合并采用，std-only对照40.80亿；Pro 5x/20x不派生（沿Sol裁定）；榜分见scores-gpt6luna-round1-2026-09-26.json"),
+    # GPT-6 Luna（9/22 新发）—— 用户Plus账号本机Codex新一周周窗直测；round2（97%→91%，effort=max）取代 round1；只挂Plus，Pro 5x/20x不派生（沿Sol裁定）
+    ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6-luna", chatgpt_luna6_monthly_yi(), "high", "用户本机Codex实测（effort=max）：新一周窗09-27 22:09 97%→09-28 20:44 91%增量全为gpt-6-luna total 137,648,446 tokens（input 3,129,683/output 757,355含reasoning 471,268/cache_read 133,761,408，hit 97.71%）；chatgpt-gpt6luna-plus-round2-2026-09-28.json", f"44.05→{chatgpt_luna6_monthly_yi():g}亿：137,648,446÷6%×4周；直接采用total不套标准负载（沿Luna round6先例）；面板整数%读数Δpp5~7对应78.66~110.12亿；本周22.94M tok/pp≈round1合并样本11.01M的2.08×（standard段10.20M的2.25×），两侧取整区间不重叠，判为周池放大或effort计权变化（本周max、round1未记effort，两因果链不可区分）而非噪声；用户裁定新一周分开记，round1 44.05亿留作对照不合并不平均；段内gpt-5.6-luna累计205,934,189、6sol/astra均未动，6pp全归6-luna；Pro 5x/20x不派生（沿Sol裁定）；榜分沿用scores-gpt6luna-round1-2026-09-26.json"),
     # Pro20x Astra —— round12 因三源分歧2.7×暂不挂点；round13 用户转供同框批次（g5a/g8）+ sdmat 使 8 亿簇达 5 条独立来源，裁决收敛
     ("chatgpt_pro_20x", "ChatGPT Pro 20x", 200, "USD", "gpt-6-astra", CHATGPT_PRO20X_ASTRA_MONTHLY_YI, "medium", "8条实测源加权：Observatory 8.53、round10截图13.8、round13同框7.52、round14用户面板10.0、msg7086 8.07、round14图4(2/3周)8.18、图2自述9.25、图3后台10.3亿/周；chatgpt-astra-round12/13/14", f"新增{CHATGPT_PRO20X_ASTRA_MONTHLY_YI:g}亿：周池{CHATGPT_PRO20X_ASTRA_WEEK_YI:g}亿×{MONTH_WEEKS:g}周——实测源按验证等级加权（面板同框/用户面板/连续序列×3、自述份额×2、社区口述×1），round10的10%与档位经用户确认由不采改为入权；round14新口径：周池≈$1200~1500 list-worth（Astra），同池Sol $2200~2500，内部计权对Astra惩罚~1.9×；用户自测≈32亿/月与lichengzhe网关21~23亿按用户指示不入权，纯口述与仅下限源不进均值；隐含权重≈{CHATGPT_PRO20X_SOL_MONTHLY_YI/4/CHATGPT_PRO20X_ASTRA_WEEK_YI:.2f}×Sol；同源真实测量仍散布6.8~15.6亿/周，账号间池子可能本就不同，此值为加权中心而非普适常数"),
     # Devin —— 用户Max账号本周87pt近满周段astra单列反推（305M tokens/667 calls）；swe-2-max等免费不占额度，Max官方为周池无日上限
     ("devin_max", "Devin Max", 200, "USD", "gpt-6-astra", devin_max_astra_monthly_yi(), "medium", "用户Devin Max面板cc usage：本周gpt-6-astra-high total 305,025,580 tokens（calls 667，in 1,998/out 369,918/cache_read 300,944,710/cache_create 3,708,954）= 周额度87pt（剩余100%→13%）；devin-usage-round4-2026-09-14.json；anthropic-token-mix-round1-2026-09-24.json；https://devin.ai/pricing Max $200/月", f"{devin_max_astra_raw_monthly_yi():g}→{devin_max_astra_monthly_yi():g}亿（2026-09-24用户裁定按统一负载折算）：段 worth ${devin_max_astra_segment_worth_usd():.2f}（cache读300.945M×$1＋写/输入3.711M×$10＋输出0.370M×$50；OpenAI无缓存写费，cache_create按普通输入计）÷87%×4周＝月${devin_max_astra_segment_worth_usd()/0.87*4:.2f} list-worth ÷ 标准负载混合价${blended(1,10,50):.2f}/MTok；面板%取整区间约11.03~11.28亿；原始total口径305,025,580÷87%×4周＝14.02亿留作对照；87pt近满周样本（round2 20pt段的3.76倍）取代旧反推，raw周池406M→350.6M（-13.7%，round2/3留作历史证据）；命中率按含cache_create口径98.78%（与round2段97.84%同量级，极端缓存型负载）；swe-2-max等免费不占额度；折算假设Devin按标价比例扣额度；Pro $20档无数据不派生"),
     # Opus 5.5 —— 同账号同面板双检查点增量法：云端剩余75%→27%段内 Opus5.5 净增525.3M raw
     ("devin_max", "Devin Max", 200, "USD", "claude-opus-5.5", devin_max_opus55_monthly_yi(), "medium", "用户Devin Max面板cc usage双检查点：云端周额度剩余75%→27%（差48pt）段内 claude-opus-5-5-xhigh +1,142 calls/+512,221,810 tok、claude-opus-5-5-high +118/+13,111,946，合计 +1,260 calls/+525,333,756 tokens；devin-opus55-round1-2026-09-23.json；anthropic-token-mix-round1-2026-09-24.json；https://devin.ai/pricing Max $200/月", f"{devin_max_opus55_raw_monthly_yi():g}→{devin_max_opus55_monthly_yi():g}亿（2026-09-24用户裁定按统一负载折算）：本段实测负载 cache读91.97%/cache写7.67%/输入0.001%/输出0.365% 偏离标准档；按Opus 5.5标价 cached$0.2/写5m $5/in$4/out$20 折段 worth ${devin_max_opus55_segment_worth_usd():.2f} ÷48%×4周＝月${devin_max_opus55_segment_worth_usd()/0.48*4:.2f} list-worth ÷ Anthropic档混合价${blended_anthropic(0.2,5.0,20.0):.3f}/MTok；面板%取整区间约65.53~68.32亿；cache写按1h $8敏感性77.12亿不采；原始total口径525,333,756÷48%×4周＝43.78亿（取整42.88~44.71）留作对照；用户裁定48pp全归Opus 5.5（若段内有其他计费模型消耗，Opus实际所占pp更少、周池更大，本值偏保守）；swe-2等免费不占额度；worth对账：恒定池口径Opus5.5按约0.6×标价计（与Astra周池3.12×张力指向共享池模型加权）；仅本行与同面板Astra行折算；effort仅影响速率；Pro $20档无数据不派生"),
+    # Factory Droid —— 用户Max账号 /limits 周窗 1%→9% 两段增量直测（raw total，无 mix 分拆）；Pro 另挂社区口述点（low），Plus 不派生
+    ("droid_max", "Droid Max", 200, "USD", "claude-opus-5.5", droid_max_opus55_monthly_yi(), "medium", "用户Factory Droid本机实测：周额度（7-day rolling）已用1%→5%段（xhigh）+35,598,616 tok、5%@08:13→9%@12:40段（high，新会话47f9711d）+36,567,946 tok，合计+72,166,562 tok全为claude-opus-5-5（auto 0增量；glm-5.3-flash +50,317 属Droid Core免费池不计）；合计分拆 in 793,017/out 375,172/cache_create 3,640,056/cache_read 67,311,924/thinking 46,393；droid-opus55-max-round1-2026-09-29.json；https://factory.ai/pricing Max $200/月", f"首个Factory Droid点，按devin_max×opus-5.5同口径折算：1→9合计负载 cache读93.27%/cache写5.04%/输入1.10%/输出0.52%/thinking0.06%（hit 93.82%）偏离标准档；按Opus 5.5标价 cached$0.2/写5m $5/in$4/out$20（thinking 46,393不计费，用户裁定；与factoryCredits 16,935,482≈worth÷$4×1.6对账一致）折段 worth ${droid_max_opus55_segment_worth_usd():.2f} ÷8%×{MONTH_WEEKS:g}周＝月${droid_max_opus55_segment_worth_usd()/0.08*4:.2f} list-worth ÷ Anthropic档混合价${blended_anthropic(0.2,5.0,20.0):.3f}/MTok＝{droid_max_opus55_monthly_yi():g}亿；1%/9%为取整读数，Δpp∈[7,9]对应约44.91~57.74亿；cache写按1h $8敏感性53.91亿不采；原始total口径72,166,562÷8%×4周＝{droid_max_opus55_raw_monthly_yi():g}亿（周池902,082,025 raw）留作对照；factoryCredits 16,935,482≈2.12亿credits/周；两段4pp各8.90M/9.14M tok每pp（差2.7%），effort仅影响速率；Factory另有5h与30天滚动窗，30天窗若低于4×周池则本值偏高；Pro $20/Plus $100官方仅写约1/10、1/5 Max用量，不派生"),
+    ("droid_pro", "Droid Pro", 20, "USD", "claude-opus-5.5", droid_pro_opus55_monthly_yi(), "low", "X @SnowyWar36965 社区口述（2026-09-28，用户转供截图）：Droid Pro $20 跑 Claude Opus 5.5 小动画用掉 5h 窗约70%，帖主按等价 API 消耗折算 5h≈$15.4、周≈$45、月≈$160（Max 10x≈$154/$450/$1,600，约合 1.76/5.1/18 亿 token）；droid-pro-opus55-community-round1-2026-09-29.json；https://factory.ai/pricing Pro $20/月", f"新增：帖主月 list-worth ${DROID_PRO_OPUS55_COMMUNITY_WORTH_USD['month']:g} ÷ Anthropic档混合价${blended_anthropic(0.2,5.0,20.0):.3f}/MTok＝{droid_pro_opus55_monthly_yi():g}亿（同 droid_max×opus-5.5 口径；帖主自带 token 列 18亿/$1,600≈$0.89/MTok 为其自身负载，不采）；取帖主月值而非周$45×{MONTH_WEEKS:g}周＝${DROID_PRO_OPUS55_COMMUNITY_WORTH_USD['week']*MONTH_WEEKS:g}（{DROID_PRO_OPUS55_COMMUNITY_WORTH_USD['week']*MONTH_WEEKS/blended_anthropic(0.2,5.0,20.0)/100:.2f}亿）——Factory 另有 30 天滚动窗，帖主月值低于 4×周，按 30 天窗为绑定约束；弱点：口述估算、无面板截图与 token 分拆、n=1、5h/周/月换算过程未公开 → low；对照：本机实测 Droid Max 月 worth $2,116.91 ÷ 官方约10× ＝ Pro 约$211.7（5.05亿），帖主值约为其 0.76×，与 Max 实测未统一"),
     # Google —— Antigravity 合池按 API worth 计权（官方机制）；round7 用户本地实测补上首个周帽同框
     ("google_ai_pro_us", "Google AI Pro", 19.99, "USD", "gemini-3.8-flash", google_ai_pro_monthly_yi(), "high", "用户本地实测：B整段55.343M raw(cache45.69M/in9.26M/out0.40M)=周条+9.88%；gemini-weekly-round7-2026-09-21.json", f"新增{google_ai_pro_monthly_yi():g}亿：55.343M÷9.88%×{MONTH_WEEKS:g}周=周池5.60亿raw；worth计权经B1/B2段内验（%比0.405≈worth比0.407，非raw比0.448），周帽合$120.1 worth；worth池raw额度随负载mix变——本样本cache 82.6%，用户指出Gemini实际负载打不到标准口径的97.5% cache，故采raw实测而非标准负载折算（折算口径46.9亿/月偏高弃用）；LLMDevs Pro~1.0B/周与Ultra~5.0B/周(恰5×)量级吻合；round6的5h锚$20.4→周≈5.9 sprint自洽"),
     ("google_ai_ultra_5x_us", "Google AI Ultra 5x", 99.99, "USD", "gemini-3.8-flash", round(google_ai_pro_monthly_yi() * 5, 2), "low", "官方：Ultra $100 = 5× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{google_ai_pro_monthly_yi()*5:g}亿：Pro采用值×官方worth倍率5；LLMDevs Ultra~5.0B/周同量级旁证；非独立实测"),
@@ -779,6 +834,37 @@ UNMETERED = [
 RATIO_COMPOSER = blended(0.5, 2, 6) / blended(0.2, 0.5, 2.5)   # Grok 4.6 → Composer 2.5 Standard ≈ 2.57110
 RATIO_COMPOSER_FAST = blended(0.5, 2, 6) / blended(0.5, 3, 15)
 RATIO_SONNET = round(blended(0.5, 5, 25) / blended(0.2, 2, 10), 2)       # Opus → Sonnet 5 = 2.5
+# Factory Droid 官方模型倍率（docs.factory.ai/docs/models，2026-09-29）：Standard Usage 按 list-worth × 倍率计，
+#   Opus 5.5 = 1.6×；同池其他模型 = Opus 5.5 采用值 × 1.6 / 倍率。† 为促销倍率，见 DROID_PROMO_MULTIPLIERS。
+DROID_OPUS55_MULTIPLIER = 1.6
+DROID_MULTIPLIERS = {
+    "claude-fable-5.1": 4, "claude-fable-5": 4, "claude-opus-5": 2, "claude-opus-4.8": 2, "claude-sonnet-5.5": 0.8,
+    "gpt-6-astra": 4, "gpt-6-sol": 0.8, "gpt-6-luna": 0.04,
+    "gpt-5.6-sol": 1.6, "gpt-5.6-terra": 0.8, "gpt-5.6-luna": 0.08,
+    "gemini-3.8-flash": 0.3, "gemini-3.7-flash": 0.3, "grok-4.7": 0.8, "grok-4.6": 0.8,
+    "inkling": 0.4, "mistral-medium-3.5": 0.6, "glm-5.3-flash": 0.06, "glm-5.3": 0.56, "glm-5.2": 0.56,
+    "glm-5.2-fast": 0.84, "kimi-k3": 1.2, "qwen3.8-max": 0.8, "nemotron-3-ultra": 0.24,
+    "deepseek-v4.1-flash": 0.12, "minimax-m3": 0.12,
+}
+DROID_PROMO_MULTIPLIERS = {"gpt-5.6-sol": ("2026-11-22", 2), "gemini-3.8-flash": ("2027-01-01", 0.6),
+                           "gemini-3.7-flash": ("2027-01-01", 0.6)}
+DROID_CORE_MODELS = {"inkling", "mistral-medium-3.5", "glm-5.3-flash", "glm-5.3", "glm-5.2", "glm-5.2-fast", "kimi-k3",
+                     "qwen3.8-max", "nemotron-3-ultra", "deepseek-v4.1-flash", "minimax-m3"}
+
+
+def droid_derived_note(model: str) -> str:
+    m = DROID_MULTIPLIERS[model]
+    note = (f"Factory官方倍率 Opus 5.5 {DROID_OPUS55_MULTIPLIER:g}× / {model} {m:g}×：同一 Standard Usage 池按倍率折算，"
+            f"非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；"
+            "droid-model-multipliers-2026-09-29.json")
+    promo = DROID_PROMO_MULTIPLIERS.get(model)
+    if promo:
+        note += f"；{m:g}×为促销倍率，{promo[0]}后恢复{promo[1]:g}×（届时约{DROID_OPUS55_MULTIPLIER / promo[1]:g}×Opus），到期须复核"
+    if model in DROID_CORE_MODELS:
+        note += "；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分"
+    return note
+
+
 DERIVED = [
     # OpenAI：Terra/5.5仍按三段credits与项目统一标准负载从Sol换算；Luna已有独立实测，不再从Sol派生
     *[(pid, "gpt-5.6-sol", model, blended(10, 100, 500) / blended(*rates), "medium",
@@ -812,6 +898,9 @@ DERIVED = [
     # xAI：订阅面板额度与公开API标价不同；4.5暂按同订阅4.6额度，非API同价断言
     ("supergrok_heavy", "grok-4.6", "grok-4.5", 1.0, "medium", "维持同订阅额度假设50.9亿，尚无4.5独立面板实测；xAI API缓存价差不能直接映射订阅周池；与Cursor渠道分开", False),
     ("supergrok", "grok-4.6", "grok-4.5", 1.0, "medium", "维持同订阅额度假设5.09亿，尚无4.5独立面板实测；xAI API缓存价差不能直接映射订阅周池；与Cursor渠道分开", False),
+    # Factory Droid：按官方模型倍率由 Opus 5.5 实测折算（2026-09-29 用户裁定，全部 medium）
+    *[("droid_max", "claude-opus-5.5", model, DROID_OPUS55_MULTIPLIER / m, "medium", droid_derived_note(model), False)
+      for model, m in DROID_MULTIPLIERS.items()],
     # MiniMax：M2.7 与 M3 同价，同一额度
     ("minimax_token_plus_cn", "minimax-m3", "minimax-m2.7", 1.0, "medium", "与 M3 同价", False),
     ("minimax_token_plus_global", "minimax-m3", "minimax-m2.7", 1.0, "medium", "与 M3 同价", False),
@@ -849,7 +938,7 @@ METERED = [
 MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x", "cursor_ultra", "cursor_ultra_fast", "cursor_pro",
               "google_ai_pro_us",
               "supergrok_heavy", "supergrok", "kimi_allegretto_cn", "glm_coding_pro_cn_new_peak", "glm_coding_pro_cn_new_mid", "glm_coding_pro_cn_new_offpeak", "glm_coding_pro_cn_old_peak", "glm_coding_pro_cn_old_mid", "glm_coding_pro_cn_old_offpeak",
-              "minimax_token_plus_cn", "minimax_token_plus_global", "aliyun_coding_pro_cn", "devin_max", "devin_pro",
+              "minimax_token_plus_cn", "minimax_token_plus_global", "aliyun_coding_pro_cn", "devin_max", "devin_pro", "droid_max",
               "mimo_token_lite_day", "mimo_token_standard_day", "mimo_token_pro_day", "mimo_token_max_day",
               "mimo_token_lite_night", "mimo_token_standard_night", "mimo_token_pro_night", "mimo_token_max_night"}
 MAIN_EXTRA = {
@@ -885,11 +974,11 @@ def plan_gen_of(pid: str) -> str:
 def workload_of(pid: str, billing: str, model: str = "") -> str:
     # 额度口径分类（详情面板用）：standard=美元/积分池÷standardTokenMix 混合价；
     # anthropic=÷anthropicTokenMix（Anthropic 按量 API，及经 2026-09-24/09-25 用户裁定按 Anthropic 档折算的
-    # devin_max::claude-opus-5.5、claude_pro::claude-opus-5.5）；lowCache=÷lowCacheTokenMix；measured=面板/ccusage raw token 直测
+    # devin_max/claude_pro::claude-opus-5.5，及由其按倍率折算的 droid_max 全部行、社区口述 droid_pro 行）；lowCache=÷lowCacheTokenMix；measured=面板/ccusage raw token 直测
     # 或同源派生，不经负载折算（devin_max::gpt-6-astra 经裁定按标准档折算为例外）。
     if billing == "metered":
         return "anthropic" if model in ANTHROPIC_CACHE_WRITE_5M else "standard"
-    if (pid, model) in (("devin_max", "claude-opus-5.5"), ("claude_pro", "claude-opus-5.5")):
+    if (pid, model) in (("devin_max", "claude-opus-5.5"), ("claude_pro", "claude-opus-5.5")) or pid.startswith("droid_"):
         return "anthropic"
     if (pid, model) == ("devin_max", "gpt-6-astra"):
         return "standard"
