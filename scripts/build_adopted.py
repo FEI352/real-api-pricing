@@ -820,6 +820,37 @@ UNMETERED = [
 RATIO_COMPOSER = blended(0.5, 2, 6) / blended(0.2, 0.5, 2.5)   # Grok 4.6 → Composer 2.5 Standard ≈ 2.57110
 RATIO_COMPOSER_FAST = blended(0.5, 2, 6) / blended(0.5, 3, 15)
 RATIO_SONNET = round(blended(0.5, 5, 25) / blended(0.2, 2, 10), 2)       # Opus → Sonnet 5 = 2.5
+# Factory Droid 官方模型倍率（docs.factory.ai/docs/models，2026-09-29）：Standard Usage 按 list-worth × 倍率计，
+#   Opus 5.5 = 1.6×；同池其他模型 = Opus 5.5 采用值 × 1.6 / 倍率。† 为促销倍率，见 DROID_PROMO_MULTIPLIERS。
+DROID_OPUS55_MULTIPLIER = 1.6
+DROID_MULTIPLIERS = {
+    "claude-fable-5.1": 4, "claude-fable-5": 4, "claude-opus-5": 2, "claude-opus-4.8": 2, "claude-sonnet-5.5": 0.8,
+    "gpt-6-astra": 4, "gpt-6-sol": 0.8, "gpt-6-luna": 0.04,
+    "gpt-5.6-sol": 1.6, "gpt-5.6-terra": 0.8, "gpt-5.6-luna": 0.08,
+    "gemini-3.8-flash": 0.3, "gemini-3.7-flash": 0.3, "grok-4.7": 0.8, "grok-4.6": 0.8,
+    "inkling": 0.4, "mistral-medium-3.5": 0.6, "glm-5.3-flash": 0.06, "glm-5.3": 0.56, "glm-5.2": 0.56,
+    "glm-5.2-fast": 0.84, "kimi-k3": 1.2, "qwen3.8-max": 0.8, "nemotron-3-ultra": 0.24,
+    "deepseek-v4.1-flash": 0.12, "minimax-m3": 0.12,
+}
+DROID_PROMO_MULTIPLIERS = {"gpt-5.6-sol": ("2026-11-22", 2), "gemini-3.8-flash": ("2027-01-01", 0.6),
+                           "gemini-3.7-flash": ("2027-01-01", 0.6)}
+DROID_CORE_MODELS = {"inkling", "mistral-medium-3.5", "glm-5.3-flash", "glm-5.3", "glm-5.2", "glm-5.2-fast", "kimi-k3",
+                     "qwen3.8-max", "nemotron-3-ultra", "deepseek-v4.1-flash", "minimax-m3"}
+
+
+def droid_derived_note(model: str) -> str:
+    m = DROID_MULTIPLIERS[model]
+    note = (f"Factory官方倍率 Opus 5.5 {DROID_OPUS55_MULTIPLIER:g}× / {model} {m:g}×：同一 Standard Usage 池按倍率折算，"
+            f"非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；"
+            "droid-model-multipliers-2026-09-29.json")
+    promo = DROID_PROMO_MULTIPLIERS.get(model)
+    if promo:
+        note += f"；{m:g}×为促销倍率，{promo[0]}后恢复{promo[1]:g}×（届时约{DROID_OPUS55_MULTIPLIER / promo[1]:g}×Opus），到期须复核"
+    if model in DROID_CORE_MODELS:
+        note += "；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分"
+    return note
+
+
 DERIVED = [
     # OpenAI：Terra/5.5仍按三段credits与项目统一标准负载从Sol换算；Luna已有独立实测，不再从Sol派生
     *[(pid, "gpt-5.6-sol", model, blended(10, 100, 500) / blended(*rates), "medium",
@@ -853,6 +884,9 @@ DERIVED = [
     # xAI：订阅面板额度与公开API标价不同；4.5暂按同订阅4.6额度，非API同价断言
     ("supergrok_heavy", "grok-4.6", "grok-4.5", 1.0, "medium", "维持同订阅额度假设50.9亿，尚无4.5独立面板实测；xAI API缓存价差不能直接映射订阅周池；与Cursor渠道分开", False),
     ("supergrok", "grok-4.6", "grok-4.5", 1.0, "medium", "维持同订阅额度假设5.09亿，尚无4.5独立面板实测；xAI API缓存价差不能直接映射订阅周池；与Cursor渠道分开", False),
+    # Factory Droid：按官方模型倍率由 Opus 5.5 实测折算（2026-09-29 用户裁定，全部 medium）
+    *[("droid_max", "claude-opus-5.5", model, DROID_OPUS55_MULTIPLIER / m, "medium", droid_derived_note(model), False)
+      for model, m in DROID_MULTIPLIERS.items()],
     # MiniMax：M2.7 与 M3 同价，同一额度
     ("minimax_token_plus_cn", "minimax-m3", "minimax-m2.7", 1.0, "medium", "与 M3 同价", False),
     ("minimax_token_plus_global", "minimax-m3", "minimax-m2.7", 1.0, "medium", "与 M3 同价", False),
@@ -926,12 +960,11 @@ def plan_gen_of(pid: str) -> str:
 def workload_of(pid: str, billing: str, model: str = "") -> str:
     # 额度口径分类（详情面板用）：standard=美元/积分池÷standardTokenMix 混合价；
     # anthropic=÷anthropicTokenMix（Anthropic 按量 API，及经 2026-09-24/09-25 用户裁定按 Anthropic 档折算的
-    # devin_max/claude_pro/droid_max::claude-opus-5.5）；lowCache=÷lowCacheTokenMix；measured=面板/ccusage raw token 直测
+    # devin_max/claude_pro::claude-opus-5.5，及由其按倍率折算的 droid_max 全部行）；lowCache=÷lowCacheTokenMix；measured=面板/ccusage raw token 直测
     # 或同源派生，不经负载折算（devin_max::gpt-6-astra 经裁定按标准档折算为例外）。
     if billing == "metered":
         return "anthropic" if model in ANTHROPIC_CACHE_WRITE_5M else "standard"
-    if (pid, model) in (("devin_max", "claude-opus-5.5"), ("claude_pro", "claude-opus-5.5"),
-                        ("droid_max", "claude-opus-5.5")):
+    if (pid, model) in (("devin_max", "claude-opus-5.5"), ("claude_pro", "claude-opus-5.5")) or pid == "droid_max":
         return "anthropic"
     if (pid, model) == ("devin_max", "gpt-6-astra"):
         return "standard"
