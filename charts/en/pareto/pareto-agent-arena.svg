@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="964" viewBox="0 0 1440 964" role="img" aria-labelledby="title desc">
 <title id="title">Agent Arena · Overall (Ranking / Pareto) · Pareto frontier · Full</title>
 <desc id="desc">Real unit price uses a logarithmic scale and gets cheaper to the right. Higher scores are better. Subscriptions and metered APIs both participate in the Pareto frontier.</desc>
 <style>text{font-family:"Microsoft YaHei","Segoe UI",sans-serif} .serif{font-family:"Times New Roman",serif} .number{font-family:"Segoe UI",sans-serif;font-variant-numeric:tabular-nums} .label-name{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round} .point:hover{opacity:1}</style>
-<rect width="1440" height="940" fill="#FAF9F6"/>
+<rect width="1440" height="964" fill="#FAF9F6"/>
 <text x="56.000" y="32.000" font-size="10" fill="#90968D" text-anchor="start" font-weight="400" letter-spacing="2.1">REAL API PRICING</text>
 <text x="54.000" y="85.000" font-size="36" fill="#343A33" text-anchor="start" font-weight="300" letter-spacing=".8">Real price × benchmark reference</text>
 <path d="M61 147 Q197 141 343 147" stroke="#9FDDD0" stroke-width="17" stroke-linecap="round" opacity=".55" fill="none"/>
@@ -52,7 +52,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Net Improvement %</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >Real price · USD per million tokens</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >Cheaper →</text>
-<path id="frontier" d="M120.000,279.628 L957.478,279.628 L1098.561,368.736 L1155.979,418.510 L1277.636,445.400 L1338.000,445.400" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,279.628 L957.478,279.628 L1098.561,368.736 L1260.866,418.510 L1277.636,445.400 L1338.000,445.400" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.032467532" data-score="9.49" data-x="785.842" data-y="340.416" transform="translate(785.842 340.416)"><title>GPT 5.6 Sol · Plus / GPT 5.6 Sol · Pro 5x · $0.03247/MTok · 9.49 · mediumGPT 5.6 Sol (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / GPT 5.6 Sol (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -187,9 +187,8 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0039118376" data-score="4.03" data-x="1111.684" data-y="418.510" transform="translate(1111.684 418.510)"><title>GLM 5.3 Flash (v2) · GLM Pro (v2 ¥149) midpoint · $0.00391/MTok · 4.03 · highGLM 5.3 Flash · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#1E1E1E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0029338782" data-score="4.03" data-x="1155.979" data-y="418.510" transform="translate(1155.979 418.510)"><title>GLM 5.3 Flash (v2) · GLM Pro (v2 ¥149) off-peak · $0.00293/MTok · 4.03 · highGLM 5.3 Flash · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
-<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#1E1E1E" stroke-width="1.35"/>
-<circle r="4" fill="#1E1E1E"/>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0029338782" data-score="4.03" data-x="1155.979" data-y="418.510" transform="translate(1155.979 418.510)"><title>GLM 5.3 Flash (v2) · GLM Pro (v2 ¥149) off-peak · $0.00293/MTok · 4.03 · highGLM 5.3 Flash · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#1E1E1E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.055141311" data-score="3.74" data-x="704.289" data-y="422.658" transform="translate(704.289 422.658)"><title>GLM 5.3 (v3) · GLM Max (v3 ¥1078) peak · $0.05514/MTok · 3.74 · highGLM 5.3 (Max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#1E1E1E" opacity=".68"/>
@@ -441,6 +440,43 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.058939096" data-score="6.17" data-x="694.034" data-y="387.902" transform="translate(694.034 387.902)"><title>Grok 4.5 · SuperGrok Heavy / Grok 4.5 · SuperGrok · $0.05894/MTok · 6.17 · mediumGrok 4.5 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Grok 4.5 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#9333EA" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.098970705" data-score="10.61" data-x="614.227" data-y="324.396" transform="translate(614.227 324.396)"><title>Claude Fable 5 · Droid Max · $0.09897/MTok · 10.61 · mediumClaude Fable 5 (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.049485352" data-score="13.74" data-x="720.952" data-y="279.628" transform="translate(720.952 279.628)"><title>Claude Opus 5 · Droid Max · $0.04949/MTok · 13.74 · mediumClaude Opus 5 (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.049485352" data-score="9.22" data-x="720.952" data-y="344.278" transform="translate(720.952 344.278)"><title>Claude Opus 4.8 · Droid Max · $0.04949/MTok · 9.22 · mediumClaude Opus 4.8 (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.039588282" data-score="9.49" data-x="755.310" data-y="340.416" transform="translate(755.310 340.416)"><title>GPT 5.6 Sol · Droid Max · $0.03959/MTok · 9.49 · mediumGPT 5.6 Sol (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.019794141" data-score="3.01" data-x="862.036" data-y="433.099" transform="translate(862.036 433.099)"><title>GPT 5.6 Terra · Droid Max · $0.01979/MTok · 3.01 · mediumGPT 5.6 Terra (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0019794141" data-score="2.15" data-x="1216.571" data-y="445.400" transform="translate(1216.571 445.400)"><title>GPT 5.6 Luna · Droid Max · $0.00198/MTok · 2.15 · mediumGPT 5.6 Luna (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0074228029" data-score="0.84" data-x="1013.057" data-y="464.137" transform="translate(1013.057 464.137)"><title>Gemini 3.7 Flash · Droid Max · $0.00742/MTok · 0.84 · mediumGemini 3.7 Flash (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.019794141" data-score="5.33" data-x="862.036" data-y="399.916" transform="translate(862.036 399.916)"><title>Grok 4.6 · Droid Max · $0.01979/MTok · 5.33 · mediumGrok 4.6 (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0014845606" data-score="4.03" data-x="1260.866" data-y="418.510" transform="translate(1260.866 418.510)"><title>GLM 5.3 Flash · Droid Max · $0.00148/MTok · 4.03 · mediumGLM 5.3 Flash · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#0A0ABF" stroke-width="1.35"/>
+<circle r="4" fill="#0A0ABF"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.013855885" data-score="3.74" data-x="916.954" data-y="422.658" transform="translate(916.954 422.658)"><title>GLM 5.3 · Droid Max · $0.01386/MTok · 3.74 · mediumGLM 5.3 (Max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.029691211" data-score="8.71" data-x="799.606" data-y="351.572" transform="translate(799.606 351.572)"><title>Kimi K3 · Droid Max · $0.02969/MTok · 8.71 · mediumKimi K3 (Max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0029691211" data-score="-3.57" data-x="1154.141" data-y="527.213" transform="translate(1154.141 527.213)"><title>MiniMax M3 · Droid Max · $0.00297/MTok · -3.57 · mediumMinimax M3 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.012047541" data-score="-10.6" data-x="938.487" data-y="627.764" transform="translate(938.487 627.764)"><title>MiniMax M2.7 · MiniMax Token Plan Plus · $0.01205/MTok · -10.6 · mediumMinimax M2.7 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#E2167E" opacity=".68"/>
 </g>
@@ -493,10 +529,10 @@
 <text x="1120.561" y="354.736" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00426</text>
 </g>
 <g class="front-label" data-model="glm-5.3-flash">
-<path d="M1165.417,406.852Q1165.417,397.510 1172.979,397.510" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="1178.979" y="378.510" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">GLM 5.3 Flash (v2)</text>
-<text x="1178.979" y="398.510" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >GLM Pro (v2 ¥149) off-peak</text>
-<text x="1178.979" y="418.510" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00293</text>
+<path d="M1270.304,406.852Q1270.304,397.510 1277.866,397.510" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="1283.866" y="378.510" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">GLM 5.3 Flash</text>
+<text x="1283.866" y="398.510" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Droid Max</text>
+<text x="1283.866" y="418.510" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00148</text>
 </g>
 <g class="front-label" data-model="gpt-5.6-luna">
 <path d="M1281.274,459.952Q1281.274,489.400 1288.636,489.400" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
@@ -506,37 +542,39 @@
 </g>
 <rect x="57" y="826" width="8" height="8" fill="#16A34A"/>
 <text x="74.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenAI</text>
-<rect x="140" y="826" width="8" height="8" fill="#CC5A2E"/>
-<text x="157.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Claude</text>
-<rect x="223" y="826" width="8" height="8" fill="#9333EA"/>
-<text x="240.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >xAI</text>
-<rect x="306" y="826" width="8" height="8" fill="#FACC15"/>
-<text x="323.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Cursor</text>
-<rect x="389" y="826" width="8" height="8" fill="#0EA5E9"/>
-<text x="406.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Kimi</text>
-<rect x="472" y="826" width="8" height="8" fill="#1E1E1E"/>
-<text x="489.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >GLM</text>
-<rect x="555" y="826" width="8" height="8" fill="#E2167E"/>
-<text x="572.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >MiniMax</text>
-<rect x="642" y="826" width="8" height="8" fill="#C0142F"/>
-<text x="659.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Alibaba</text>
-<rect x="729" y="826" width="8" height="8" fill="#0F766E"/>
-<text x="746.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenCode</text>
-<rect x="823" y="826" width="8" height="8" fill="#DBA6FA"/>
-<text x="840.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Command Code</text>
-<rect x="945" y="826" width="8" height="8" fill="#FC8EA7"/>
-<text x="962.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Ollama</text>
-<rect x="1028" y="826" width="8" height="8" fill="#4D6BFE"/>
-<text x="1045.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >DeepSeek</text>
-<rect x="1122" y="826" width="8" height="8" fill="#FF8A00"/>
-<text x="1139.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Xiaomi</text>
-<path d="M1214 830h22" stroke="#303630" stroke-width="1.65"/>
-<text x="1244.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Pareto frontier</text>
-<path d="M1395 825l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
-<text x="1409.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
-<text x="56.000" y="874.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
-<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >130 subscription positions / 11 API positions / 4 frontier positions</text>
-<text x="56.000" y="898.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max: permanent allowance estimate from Sep 14; Pro: historical Opus 4.8 measurement. Y uses the top archived variant per model.</text>
-<text x="56.000" y="919.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
-<text x="1384.000" y="919.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >arena.ai/leaderboard/agent</text>
+<rect x="141.76" y="826" width="8" height="8" fill="#CC5A2E"/>
+<text x="158.760" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Claude</text>
+<rect x="226.51999999999998" y="826" width="8" height="8" fill="#9333EA"/>
+<text x="243.520" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >xAI</text>
+<rect x="290.4" y="826" width="8" height="8" fill="#FACC15"/>
+<text x="307.400" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Cursor</text>
+<rect x="375.15999999999997" y="826" width="8" height="8" fill="#0EA5E9"/>
+<text x="392.160" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Kimi</text>
+<rect x="446.0" y="826" width="8" height="8" fill="#1E1E1E"/>
+<text x="463.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >GLM</text>
+<rect x="509.88" y="826" width="8" height="8" fill="#E2167E"/>
+<text x="526.880" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >MiniMax</text>
+<rect x="601.6" y="826" width="8" height="8" fill="#C0142F"/>
+<text x="618.600" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Alibaba</text>
+<rect x="693.32" y="826" width="8" height="8" fill="#0F766E"/>
+<text x="710.320" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenCode</text>
+<rect x="792.0" y="826" width="8" height="8" fill="#DBA6FA"/>
+<text x="809.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Command Code</text>
+<rect x="918.52" y="826" width="8" height="8" fill="#FC8EA7"/>
+<text x="935.520" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Ollama</text>
+<rect x="1003.28" y="826" width="8" height="8" fill="#4D6BFE"/>
+<text x="1020.280" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >DeepSeek</text>
+<rect x="1101.96" y="826" width="8" height="8" fill="#FF8A00"/>
+<text x="1118.960" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Xiaomi</text>
+<rect x="1186.72" y="826" width="8" height="8" fill="#0A0ABF"/>
+<text x="1203.720" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Factory</text>
+<path d="M66 854h22" stroke="#303630" stroke-width="1.65"/>
+<text x="96.000" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Pareto frontier</text>
+<path d="M231.39999999999998 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
+<text x="245.400" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
+<text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >142 subscription positions / 11 API positions / 4 frontier positions</text>
+<text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max: permanent allowance estimate from Sep 14; Pro: historical Opus 4.8 measurement. Y uses the top archived variant per model.</text>
+<text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
+<text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >arena.ai/leaderboard/agent</text>
 </svg>

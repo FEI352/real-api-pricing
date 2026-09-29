@@ -50,6 +50,7 @@ const MONO = new Set([
   "anthropic",
   "xai",
   "cursor",
+  "factory",
   "ollama",
   "meituan",
 ]);

@@ -32,6 +32,7 @@ def compute_stats() -> dict[str, str]:
         "plans_ollama": sum(1 for r in adopted if r["plan_id"].startswith("ollama_")),
         "plans_step_plan": sum(1 for r in adopted if r["plan_id"].startswith("stepfun_")),
         "plans_mimo_token": sum(1 for r in adopted if r["plan_id"].startswith("mimo_token_")),
+        "plans_droid_max": sum(1 for r in adopted if r["plan_id"].startswith("droid_max")),
         "configs_total": len(configurations),
         "refs_total": len(references),
     }

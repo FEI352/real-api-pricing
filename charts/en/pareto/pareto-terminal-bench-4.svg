@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="961" viewBox="0 0 1440 961" role="img" aria-labelledby="title desc">
 <title id="title">Terminal-Bench 4.0 · Pareto frontier · Full</title>
 <desc id="desc">Real unit price uses a logarithmic scale and gets cheaper to the right. Higher scores are better. Subscriptions and metered APIs both participate in the Pareto frontier.</desc>
 <style>text{font-family:"Microsoft YaHei","Segoe UI",sans-serif} .serif{font-family:"Times New Roman",serif} .number{font-family:"Segoe UI",sans-serif;font-variant-numeric:tabular-nums} .label-name{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round} .point:hover{opacity:1}</style>
-<rect width="1440" height="940" fill="#FAF9F6"/>
+<rect width="1440" height="961" fill="#FAF9F6"/>
 <text x="56.000" y="32.000" font-size="10" fill="#90968D" text-anchor="start" font-weight="400" letter-spacing="2.1">REAL API PRICING</text>
 <text x="54.000" y="85.000" font-size="36" fill="#343A33" text-anchor="start" font-weight="300" letter-spacing=".8">Real price × benchmark reference</text>
 <path d="M61 147 Q197 141 343 147" stroke="#9FDDD0" stroke-width="17" stroke-linecap="round" opacity=".55" fill="none"/>
@@ -95,6 +95,9 @@
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.029895366" data-score="66.4" data-x="761.230" data-y="274.956" transform="translate(761.230 274.956)"><title>Claude Opus 5.5 · Devin Max · $0.0299/MTok · 66.4 · mediumClaude Code - Claude Opus 5.5 (default) - self-reported [vendor self-report] · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. Vendor self-reported score, not an official leaderboard run.</title>
 <path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.039588282" data-score="66.4" data-x="720.368" data-y="274.956" transform="translate(720.368 274.956)"><title>Claude Opus 5.5 · Droid Max · $0.03959/MTok · 66.4 · mediumClaude Code - Claude Opus 5.5 (default) - self-reported [vendor self-report] · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. Vendor self-reported score, not an official leaderboard run.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0089201249" data-score="19.09" data-x="937.202" data-y="629.405" transform="translate(937.202 629.405)"><title>Gemini 3.8 Flash · Google AI Pro · $0.00892/MTok · 19.09 · highmini-SWE-agent - Gemini 3.8 Flash (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
@@ -296,6 +299,48 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.058939096" data-score="12.42" data-x="662.462" data-y="679.377" transform="translate(662.462 679.377)"><title>Grok 4.5 · SuperGrok Heavy / Grok 4.5 · SuperGrok · $0.05894/MTok · 12.42 · mediumGrok Build - Grok 4.5 (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Grok Build - Grok 4.5 (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#9333EA" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.098970705" data-score="57.88" data-x="587.044" data-y="338.788" transform="translate(587.044 338.788)"><title>Claude Fable 5.1 · Droid Max · $0.09897/MTok · 57.88 · mediumClaude Code - Fable 5.1 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.098970705" data-score="44.55" data-x="587.044" data-y="438.657" transform="translate(587.044 438.657)"><title>Claude Fable 5 · Droid Max · $0.09897/MTok · 44.55 · mediumClaude Code - Fable 5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.049485352" data-score="51.82" data-x="687.900" data-y="384.190" transform="translate(687.900 384.190)"><title>Claude Opus 5 · Droid Max · $0.04949/MTok · 51.82 · mediumClaude Code - Opus 5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.049485352" data-score="23.64" data-x="687.900" data-y="595.316" transform="translate(687.900 595.316)"><title>Claude Opus 4.8 · Droid Max · $0.04949/MTok · 23.64 · mediumClaude Code - Opus 4.8 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.098970705" data-score="58.18" data-x="587.044" data-y="336.540" transform="translate(587.044 336.540)"><title>GPT-6 Astra · Droid Max · $0.09897/MTok · 58.18 · mediumCodex - GPT-6 Astra (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.039588282" data-score="37.27" data-x="720.368" data-y="493.199" transform="translate(720.368 493.199)"><title>GPT 5.6 Sol · Droid Max · $0.03959/MTok · 37.27 · mediumCodex - GPT-5.6 Sol (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.019794141" data-score="21.52" data-x="821.224" data-y="611.199" transform="translate(821.224 611.199)"><title>GPT 5.6 Terra · Droid Max · $0.01979/MTok · 21.52 · mediumCodex - GPT-5.6 Terra (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0019794141" data-score="17.27" data-x="1156.260" data-y="643.041" transform="translate(1156.260 643.041)"><title>GPT 5.6 Luna · Droid Max · $0.00198/MTok · 17.27 · mediumCodex - GPT-5.6 Luna (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0074228029" data-score="19.09" data-x="963.939" data-y="629.405" transform="translate(963.939 629.405)"><title>Gemini 3.8 Flash · Droid Max · $0.00742/MTok · 19.09 · mediummini-SWE-agent - Gemini 3.8 Flash (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0074228029" data-score="11.21" data-x="963.939" data-y="688.443" transform="translate(963.939 688.443)"><title>Gemini 3.7 Flash · Droid Max · $0.00742/MTok · 11.21 · mediummini-SWE-agent - Gemini 3.7 Flash (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.019794141" data-score="37.6" data-x="821.224" data-y="490.727" transform="translate(821.224 490.727)"><title>Grok 4.7 · Droid Max · $0.01979/MTok · 37.6 · mediumGrok Build - Grok 4.7 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.019794141" data-score="20.3" data-x="821.224" data-y="620.340" transform="translate(821.224 620.340)"><title>Grok 4.6 · Droid Max · $0.01979/MTok · 20.3 · mediumGrok Build - Grok 4.6 (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.013855885" data-score="41.82" data-x="873.122" data-y="459.110" transform="translate(873.122 459.110)"><title>GLM 5.3 · Droid Max · $0.01386/MTok · 41.82 · mediumClaude Code - GLM-5.3 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0029691211" data-score="31.2" data-x="1097.263" data-y="538.676" transform="translate(1097.263 538.676)"><title>DeepSeek V4.1 Flash · Droid Max · $0.00297/MTok · 31.2 · mediumDeepSeek Harness Minimal - DeepSeek V4.1 Flash (max) [vendor self-report] · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. Vendor self-reported score, not an official leaderboard run.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="true" data-price="0.0" data-score="27.3" data-x="1316.000" data-y="567.895" transform="translate(1316.000 567.895)"><title>SWE-2 · Devin Pro · promo until Oct 31 · ≈$0/MTok · 27.3 · mediumDevin CLI - SWE-2 (best effort) [vendor self-report] · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. Vendor self-reported score, not an official leaderboard run.</title>
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#A1A1AA" stroke-width="1.35"/>
 <path transform="translate(-6.51 -7.63) scale(0.1327)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="1.0"/>
@@ -356,33 +401,36 @@
 </g>
 <rect x="57" y="826" width="8" height="8" fill="#16A34A"/>
 <text x="74.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenAI</text>
-<rect x="140" y="826" width="8" height="8" fill="#CC5A2E"/>
-<text x="157.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Claude</text>
-<rect x="223" y="826" width="8" height="8" fill="#9333EA"/>
-<text x="240.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >xAI</text>
-<rect x="306" y="826" width="8" height="8" fill="#FACC15"/>
-<text x="323.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Cursor</text>
-<rect x="389" y="826" width="8" height="8" fill="#1E1E1E"/>
-<text x="406.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >GLM</text>
-<rect x="472" y="826" width="8" height="8" fill="#0F766E"/>
-<text x="489.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenCode</text>
-<rect x="566" y="826" width="8" height="8" fill="#DBA6FA"/>
-<text x="583.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Command Code</text>
-<rect x="688" y="826" width="8" height="8" fill="#FC8EA7"/>
-<text x="705.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Ollama</text>
-<rect x="771" y="826" width="8" height="8" fill="#4D6BFE"/>
-<text x="788.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >DeepSeek</text>
-<rect x="865" y="826" width="8" height="8" fill="#84CC16"/>
-<text x="882.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Google</text>
-<path transform="translate(947.54 824.77) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="1.0"/>
-<text x="965.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Devin</text>
-<path d="M1040 830h22" stroke="#303630" stroke-width="1.65"/>
-<text x="1070.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Pareto frontier</text>
-<path d="M1221 825l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
-<text x="1235.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
+<rect x="141.76" y="826" width="8" height="8" fill="#CC5A2E"/>
+<text x="158.760" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Claude</text>
+<rect x="226.51999999999998" y="826" width="8" height="8" fill="#9333EA"/>
+<text x="243.520" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >xAI</text>
+<rect x="290.4" y="826" width="8" height="8" fill="#FACC15"/>
+<text x="307.400" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Cursor</text>
+<rect x="375.15999999999997" y="826" width="8" height="8" fill="#1E1E1E"/>
+<text x="392.160" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >GLM</text>
+<rect x="439.03999999999996" y="826" width="8" height="8" fill="#0F766E"/>
+<text x="456.040" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenCode</text>
+<rect x="537.7199999999999" y="826" width="8" height="8" fill="#DBA6FA"/>
+<text x="554.720" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Command Code</text>
+<rect x="664.2399999999999" y="826" width="8" height="8" fill="#FC8EA7"/>
+<text x="681.240" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Ollama</text>
+<rect x="748.9999999999999" y="826" width="8" height="8" fill="#4D6BFE"/>
+<text x="766.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >DeepSeek</text>
+<rect x="847.6799999999998" y="826" width="8" height="8" fill="#84CC16"/>
+<text x="864.680" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Google</text>
+<path transform="translate(931.98 824.77) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="1.0"/>
+<text x="949.440" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Devin</text>
+<rect x="1010.2399999999998" y="826" width="8" height="8" fill="#0A0ABF"/>
+<text x="1027.240" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Factory</text>
+<path d="M1110.9599999999998 830h22" stroke="#303630" stroke-width="1.65"/>
+<text x="1140.960" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Pareto frontier</text>
+<path d="M1276.3599999999997 825l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
+<text x="1290.360" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
 <text x="56.000" y="874.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
-<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >76 subscription positions / 12 API positions / 3 frontier positions</text>
-<text x="56.000" y="898.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Highest archived configuration reference; harness and effort shown. Product/quota alignment unverified, not channel measurements. ≈$0 = SWE-2 promo: unmetered on Devin Pro/Max/Teams until 2026-10-31, not permanent; TB4 score self-reported by Cognition.</text>
-<text x="56.000" y="919.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
-<text x="1384.000" y="919.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >www.tbench.ai/leaderboard</text>
+<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >91 subscription positions / 12 API positions / 3 frontier positions</text>
+<text x="56.000" y="898.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Highest archived configuration reference; harness and effort shown. Product/quota alignment unverified, not channel measurements.</text>
+<text x="56.000" y="919.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >≈$0 = SWE-2 promo: unmetered on Devin Pro/Max/Teams until 2026-10-31, not permanent; TB4 score self-reported by Cognition.</text>
+<text x="56.000" y="940.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
+<text x="1384.000" y="940.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >www.tbench.ai/leaderboard</text>
 </svg>
