@@ -35,6 +35,8 @@ import {
   priceExact,
   restore,
   rowsFor,
+  barAxis,
+  barWidth,
   type Lock,
   SEARCH_MARK_CAP,
   color,
@@ -958,4 +960,25 @@ test("Real prices keep full precision for ordering; summaries stay short, detail
   const pro5 = data.points.find((p) => p.id === "chatgpt_pro_5x::gpt-5.6-luna")!;
   assert.equal(price(plus.real_usd_per_mtok), price(pro5.real_usd_per_mtok));
   assert.notEqual(plus.real_usd_per_mtok, pro5.real_usd_per_mtok);
+});
+test("Ranking bars sit on a fixed decade-aligned log axis, independent of filters", () => {
+  for (const view of ["allowance", "price"] as const) {
+    const axis = barAxis(data, view);
+    const lo = Math.log10(axis.low),
+      hi = Math.log10(axis.high);
+    assert.ok(Number.isInteger(Math.round(lo * 1e9) / 1e9) && Number.isInteger(Math.round(hi * 1e9) / 1e9));
+    assert.ok(hi > lo);
+    const s = { ...defaultState(), view };
+    for (const r of rowsFor(data, s)) {
+      const v = view === "allowance" ? r.point.monthly_yi! : r.point.real_usd_per_mtok;
+      if (v > 0) assert.ok(v >= axis.low && v <= axis.high, r.point.id);
+    }
+  }
+  const axis = { low: 0.1, high: 10000 };
+  assert.equal(barWidth(0.1, axis), 0);
+  assert.equal(barWidth(10000, axis), 100);
+  assert.ok(Math.abs(barWidth(10, axis) - 40) < 1e-9);
+  assert.equal(barWidth(0, axis), 0);
+  // Equal ratios give equal gaps: 10x apart is always one decade (20% here).
+  assert.ok(Math.abs(barWidth(51.63, axis) - barWidth(5.163, axis) - 20) < 1e-9);
 });

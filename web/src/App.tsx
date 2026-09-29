@@ -45,6 +45,7 @@ import { dotColors, FALLBACK_COLOR } from "./palette";
 import {
   accessLine,
   allowance,
+  barAxis,
   color,
   colors,
   csv,
@@ -383,6 +384,7 @@ function Explorer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, view, selected, vendors, channels, plans, billing, confidence, feeBand],
   );
+  const axis = useMemo(() => barAxis(data, view), [data, view]);
   const gs = useMemo(() => groups(rows), [rows]);
   const front = useMemo(() => pareto(gs), [gs]);
   const frontRows = useMemo(
@@ -994,6 +996,7 @@ function Explorer({
                 <Ranking
                   rows={rows}
                   state={state}
+                  axis={axis}
                   highlight={highlight}
                   onSelect={setDetail}
                   handle={chart}
