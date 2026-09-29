@@ -259,6 +259,9 @@ export default function Ranking({
             : "Drag to resize the list · double-click to reset"
         }
       />
+      <small className="ranking-scale-note" aria-hidden="true">
+        {scaleNote}
+      </small>
     </section>
   );
 }

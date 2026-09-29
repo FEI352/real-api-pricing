@@ -1417,6 +1417,9 @@ div.sentinel-row {
   color: var(--faint);
   font-size: 12px;
 }
+.ranking-scale-note {
+  display: none;
+}
 .resize-handle {
   display: flex;
   justify-content: center;
@@ -2608,6 +2611,19 @@ tbody tr.sentinel-row {
   }
   .ranking-columns {
     display: none;
+  }
+  .web-ranking {
+    position: relative;
+  }
+  .ranking-scale-note {
+    display: block;
+    position: absolute;
+    right: 12px;
+    bottom: 14px;
+    line-height: 18px;
+    color: var(--faint);
+    font-size: 11px;
+    pointer-events: none;
   }
   .ranking-row {
     grid-template-columns: 22px minmax(0, 1fr) minmax(84px, 34%);
