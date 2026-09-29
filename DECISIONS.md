@@ -5,7 +5,7 @@
 
 ## 2026-09-29
 
-- **Droid Max × Claude Opus 5.5 本机实测（新增渠道 Factory）**：36.08 亿/月 medium（workload=measured）。用户本机 Factory Droid 周窗（7-day rolling）已用 1%→9% 两段：1→5 xhigh +35,598,616 tok、5%@08:13→9%@12:40 high（新会话 47f9711d）+36,567,946 tok，合计 72,166,562 tok 全为 claude-opus-5-5（auto 0 增量；glm-5.3-flash +50,317 占 0.14%，Droid Core 免费池不计）÷8pp×4 周；周池 9.02 亿 raw。两段每 pp 8.90M/9.14M（差 2.7%），effort 只影响速率。1%/9% 为整数读数，Δpp∈[7,9] 对应 32.07~41.24 亿。截图只有 raw total、无 cache/input/output 分拆，故按 measured 直用 total，不套 Anthropic 档负载——与 devin_max×opus-5.5（worth 口径 66.90 亿，raw 对照 43.78 亿）口径不同，获得 mix 后可改折算。Factory 另有 5h/30 天滚动窗，30 天窗若低于 4× 周池则本值偏高。Pro $20/Plus $100 官方只写约 1/10、1/5 Max 用量，不派生。新渠道 Factory：id 前缀 `droid`、色 #0A0ABF（群青，与现有渠道 CIEDE2000 最小 18.5）。证据：`droid-opus55-max-round1-2026-09-29.json`。
+- **Droid Max × Claude Opus 5.5 本机实测（新增渠道 Factory）**：51.63 亿/月 medium（workload=anthropic，同 devin_max×opus-5.5 口径）。用户本机 Factory Droid 周窗（7-day rolling）已用 1%→9% 两段：1→5 xhigh +35,598,616 tok、5%@08:13→9%@12:40 high（新会话 47f9711d）+36,567,946 tok，合计 72,166,562 tok 全为 claude-opus-5-5（auto 0 增量；glm-5.3-flash +50,317 占 0.14%，Droid Core 免费池不计）。合计分拆：cache 读 67,311,924（93.27%）/ cache 写 3,640,056（5.04%）/ 输入 793,017（1.10%）/ 输出 375,172（0.52%）/ thinking 46,393（0.06%），hit 93.82%。按 Opus 5.5 标价（读 $0.2 / 写 5m $5 / 入 $4 / 出含 thinking $20）折段 worth $43.27 ÷8%×4 周＝月 $2,163.30 ÷ Anthropic 档 $0.419/MTok＝51.63 亿。1%/9% 为整数读数，Δpp∈[7,9] 对应 45.89~59.01 亿；写按 1h $8 为 54.84 亿不采；raw total 口径 36.08 亿（周池 9.02 亿）留作对照。两段每 pp 8.90M/9.14M（差 2.7%），effort 只影响速率。factoryCredits 16,935,482 仅记录。Factory 另有 5h/30 天滚动窗，30 天窗若低于 4× 周池则本值偏高。Pro $20/Plus $100 官方只写约 1/10、1/5 Max 用量，不派生。新渠道 Factory：id 前缀 `droid`、色 #0A0ABF（群青）。证据：`droid-opus55-max-round1-2026-09-29.json`。
 
 ## 2026-09-28
 
