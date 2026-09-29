@@ -37,10 +37,7 @@ def from_fetch(src_name: str, dest_name: str, fill: str | None = None) -> None:
 # Lobe Icons / Simple Icons copies
 from_fetch("openai.svg", "openai.svg", "#111111")
 from_fetch("anthropic.svg", "anthropic.svg", "#191919")
-from_fetch("xai.svg", "xai.svg", "#111111")
 from_fetch("cursor.svg", "cursor.svg", "#111111")
-from_fetch("minimax.svg", "minimax.svg", "#E2167E")
-from_fetch("qwen.svg", "alibaba.svg", "#615CED")
 from_fetch("deepseek.svg", "deepseek.svg", "#4D6BFE")
 from_fetch("google-color.svg", "google.svg")
 from_fetch("ollama.svg", "ollama.svg", "#111111")
@@ -59,8 +56,15 @@ meituan = meituan.replace(
 )
 (HERE / "meituan.svg").write_text(meituan, encoding="utf-8")
 
-# zhipu.svg / opencode.svg: traced in _trace.py.
-# command-code.svg: official cmdsymbol from commandcode.ai.
+# alibaba.svg: official Qwen blue mark (qwen-icon.svg) copied from the brand library.
+# minimax.svg: official MiniMax gradient mark (minimax-icon.svg) copied from the brand library.
+# opencode.svg / opencode-dark.svg: official OpenCode mark, light/dark variants
+#   (opencode-icon.svg / opencode-icon-dark.svg) copied from the brand library.
+# command-code.svg: official Command Code symbol (commandcode-icon.svg) copied
+#   from the brand library.
+# zhipu.svg: official z.ai mark (zai-icon.svg) copied from the brand library.
+# xai.svg: official SpaceXAI squared symbol (spacexai - symbol - black - squared.svg),
+#   recoloured to #111111 ink, copied from the brand library.
 # stepfun.svg: official 5-square mark + current X-avatar gradient.
 # kimi.svg / kimi-dark.svg: official Kimi Logomark tile, light/dark brand-kit variants.
 # devin.svg / devin-dark.svg: official Devin mark, dark-ink and white variants.

@@ -42,7 +42,7 @@ const slugs: Record<string, string> = {
 /**
  * Marks drawn in near-black ink. On a dark surface they would vanish, so the
  * dark variant swaps that ink for a light one (and any white knock-out for the
- * surface). Tile logos (Zhipu, OpenCode, StepFun) keep their own background.
+ * surface). Tile logos (Zhipu, StepFun) keep their own background.
  * Brands that ship an official dark variant use `<slug>-dark.svg` instead.
  */
 const MONO = new Set([
