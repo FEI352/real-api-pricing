@@ -4,7 +4,7 @@
 
 ## Files
 
-openai, anthropic, xai, cursor, factory, kimi, kimi-dark, zhipu, minimax, alibaba, opencode, deepseek, google, command-code, ollama, xiaomi, tencent, meta, microsoft, meituan, stepfun, devin, devin-dark.
+openai, anthropic, claude, xai, cursor, factory, kimi, kimi-dark, zhipu, minimax, alibaba, opencode, deepseek, google, command-code, ollama, xiaomi, tencent, meta, microsoft, meituan, stepfun, devin, devin-dark.
 
 Alibaba uses the Qwen mark; Tencent uses Hunyuan; Meituan uses LongCat; Google uses the official G. Factory (Droid) uses the official Droid Zed mark. Muse Spark uses the Meta mark. Step models use the StepFun five-square mark. Devin (channel) and Cognition (SWE models) both use the official Devin mark. Third-party rows show the reseller first, then the model manufacturer.
 
