@@ -182,7 +182,7 @@ def label_position(p, board, x, y):
         if board == "aa_intelligence_index":
             return x + 24, y - 108, "start"
         if board == "arena_code":
-            return x + 90, y + 28, "start"
+            return x + 90, y + 34, "start"
         return x + 24, y - 31, "start"
     if model == "glm-5.3-flash":
         if board == "aa_intelligence_index":

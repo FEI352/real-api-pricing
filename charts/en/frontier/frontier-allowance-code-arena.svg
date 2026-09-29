@@ -1228,8 +1228,8 @@ z
    </g>
    <g id="patch_4">
     <path d="M 453.6 253.786909 
-L 1155.600276 253.786909 
-L 1155.600276 307.289455 
+L 1152.758859 253.786909 
+L 1152.758859 307.289455 
 L 453.6 307.289455 
 z
 " clip-path="url(#p6354b7e420)" style="fill: #0a0abf"/>
@@ -1365,15 +1365,15 @@ z
    </g>
    <g id="text_11">
     <g id="patch_10">
-     <path d="M 1158.474747 293.678713 
-L 1230.559122 293.678713 
-L 1230.559122 267.397651 
-L 1158.474747 267.397651 
+     <path d="M 1155.63333 293.678713 
+L 1227.717705 293.678713 
+L 1227.717705 267.397651 
+L 1155.63333 267.397651 
 z
 " style="fill: #ffffff; opacity: 0.72"/>
     </g>
-    <!-- 137.68  FA [M] -->
-    <g style="fill: #20252b" transform="translate(1159.464747 277.142963) scale(0.11 -0.11)">
+    <!-- 134.72  FA [M] -->
+    <g style="fill: #20252b" transform="translate(1156.62333 277.142963) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-37" d="M 1267 0 
 L 1875 0 
@@ -1383,31 +1383,6 @@ L 314 4691
 L 314 4192 
 L 2592 4192 
 C 1670 2912 1350 1779 1267 0 
-z
-" transform="scale(0.015625)"/>
-      <path id="NotoSansCJKsc-Regular-38" d="M 1792 -83 
-C 2669 -83 3258 448 3258 1126 
-C 3258 1773 2880 2125 2470 2362 
-L 2470 2394 
-C 2746 2611 3091 3034 3091 3526 
-C 3091 4250 2605 4762 1805 4762 
-C 1075 4762 518 4282 518 3571 
-C 518 3078 813 2726 1152 2490 
-L 1152 2464 
-C 723 2234 294 1792 294 1165 
-C 294 442 922 -83 1792 -83 
-z
-M 2112 2547 
-C 1555 2765 1050 3014 1050 3571 
-C 1050 4026 1363 4326 1798 4326 
-C 2298 4326 2592 3962 2592 3494 
-C 2592 3149 2426 2829 2112 2547 
-z
-M 1798 352 
-C 1235 352 813 717 813 1216 
-C 813 1664 1082 2035 1459 2278 
-C 2125 2010 2701 1779 2701 1146 
-C 2701 678 2342 352 1798 352 
 z
 " transform="scale(0.015625)"/>
       <path id="NotoSansCJKsc-Regular-46" d="M 646 0 
@@ -1426,10 +1401,10 @@ z
      </defs>
      <use xlink:href="#NotoSansCJKsc-Regular-31"/>
      <use xlink:href="#NotoSansCJKsc-Regular-33" transform="translate(55.499985 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-37" transform="translate(110.999969 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-34" transform="translate(110.999969 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-2e" transform="translate(166.499954 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-36" transform="translate(194.299942 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-38" transform="translate(249.799927 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-37" transform="translate(194.299942 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-32" transform="translate(249.799927 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-20" transform="translate(305.299911 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-20" transform="translate(327.699905 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(350.099899 0)"/>
@@ -1440,7 +1415,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-5d" transform="translate(603.499847 0)"/>
     </g>
     <!-- Score: 1605 -->
-    <g style="fill: #20252b" transform="translate(1159.464747 290.169026) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(1156.62333 290.169026) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-53"/>
      <use xlink:href="#NotoSansCJKsc-Regular-63" transform="translate(59.599991 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-6f" transform="translate(110.599976 0)"/>
@@ -1523,6 +1498,31 @@ z
     <!-- 1.878  AN [H] -->
     <g style="fill: #20252b" transform="translate(597.97916 436.852054) scale(0.11 -0.11)">
      <defs>
+      <path id="NotoSansCJKsc-Regular-38" d="M 1792 -83 
+C 2669 -83 3258 448 3258 1126 
+C 3258 1773 2880 2125 2470 2362 
+L 2470 2394 
+C 2746 2611 3091 3034 3091 3526 
+C 3091 4250 2605 4762 1805 4762 
+C 1075 4762 518 4282 518 3571 
+C 518 3078 813 2726 1152 2490 
+L 1152 2464 
+C 723 2234 294 1792 294 1165 
+C 294 442 922 -83 1792 -83 
+z
+M 2112 2547 
+C 1555 2765 1050 3014 1050 3571 
+C 1050 4026 1363 4326 1798 4326 
+C 2298 4326 2592 3962 2592 3494 
+C 2592 3149 2426 2829 2112 2547 
+z
+M 1798 352 
+C 1235 352 813 717 813 1216 
+C 813 1664 1082 2035 1459 2278 
+C 2125 2010 2701 1779 2701 1146 
+C 2701 678 2342 352 1798 352 
+z
+" transform="scale(0.015625)"/>
       <path id="NotoSansCJKsc-Regular-4e" d="M 646 0 
 L 1203 0 
 L 1203 2464 
