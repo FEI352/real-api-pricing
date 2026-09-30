@@ -56,7 +56,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Resolution Rate %</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >Real price · USD per million tokens</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >Cheaper →</text>
-<path id="frontier" d="M120.000,254.374 L950.452,254.374 L1051.674,488.592 L1271.764,672.672 L1338.000,672.672" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,254.374 L952.511,254.374 L1051.674,488.592 L1271.764,672.672 L1338.000,672.672" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.019083969" data-score="43.94" data-x="771.807" data-y="393.836" transform="translate(771.807 393.836)"><title>GPT-6 Sol · Plus · $0.01908/MTok · 43.94 · highArtificial Analysis - GPT-6 Sol (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -72,12 +72,12 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.052356021" data-score="59.6" data-x="601.299" data-y="254.374" transform="translate(601.299 254.374)"><title>Claude Opus 5.5 · Droid Pro · $0.05236/MTok · 59.6 · lowArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0066291018" data-score="59.6" data-x="950.452" data-y="254.374" transform="translate(950.452 254.374)"><title>Claude Opus 5.5 · Max 20x · from Sep 14 / Claude Opus 5.5 · Max 5x · from Sep 14 · $0.00663/MTok · 59.6 · mediumArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0066291018" data-score="59.6" data-x="950.452" data-y="254.374" transform="translate(950.452 254.374)"><title>Claude Opus 5.5 · Max 20x · from Sep 14 / Claude Opus 5.5 · Max 5x · from Sep 14 · $0.00663/MTok · 59.6 · mediumArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0065487885" data-score="59.6" data-x="952.511" data-y="254.374" transform="translate(952.511 254.374)"><title>Claude Opus 5.5 · Pro · $0.00655/MTok · 59.6 · highArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
 <circle r="4" fill="#CC5A2E"/>
-</g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0068989307" data-score="59.6" data-x="943.711" data-y="254.374" transform="translate(943.711 254.374)"><title>Claude Opus 5.5 · Pro · $0.0069/MTok · 59.6 · lowArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.060362173" data-score="25.76" data-x="577.259" data-y="555.741" transform="translate(577.259 555.741)"><title>Grok 4.7 · SuperGrok / Grok 4.7 · SuperGrok Heavy · $0.06036/MTok · 25.76 · mediumArtificial Analysis - Grok 4.7 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Grok 4.7 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#9333EA" opacity=".68"/>
@@ -154,10 +154,10 @@
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#CC5A2E" stroke-width="1.5" opacity=".68"/>
 </g>
 <g class="front-label" data-model="claude-opus-5.5">
-<path d="M944.594,240.565Q944.594,221.374 936.452,221.374" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="930.452" y="202.374" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Artificial Analysis · Claude Opus 5.5 · max</text>
-<text x="930.452" y="222.374" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Max 5x / 20x · from Sep 14</text>
-<text x="930.452" y="242.374" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00663</text>
+<path d="M946.653,240.565Q946.653,221.374 938.511,221.374" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="932.511" y="202.374" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Artificial Analysis · Claude Opus 5.5 · max</text>
+<text x="932.511" y="222.374" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Pro</text>
+<text x="932.511" y="242.374" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00655</text>
 </g>
 <g class="front-label" data-model="step-5-preview">
 <path d="M1054.311,503.359Q1054.311,516.592 1056.674,516.592" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
