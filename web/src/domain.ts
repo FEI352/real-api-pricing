@@ -709,8 +709,8 @@ export function workloadLine(
       : `Standard workload: ${pct(m.cache)} cache reads / ${pct(m.input)} input / ${pct(m.output)} output`;
   }
   return zh
-    ? "实测口径：面板/日志 raw token 直测或同源派生，不经负载折算"
-    : "Measured real usage: raw tokens, no workload conversion";
+    ? "未折算：样本缺 token 分项（或为官方绝对 token 表），直接采用 raw token"
+    : "Not workload-normalized: sample lacks a token breakdown (or is an official absolute token table); raw tokens used as-is";
 }
 
 /** Official metered API list prices, shown next to the workload basis. */
