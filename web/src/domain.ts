@@ -592,12 +592,15 @@ export function restore(
   const opts = options(data);
   for (const k of filterKeys) {
     if (!params.has(k)) continue;
-    const wanted = params.getAll(k);
+    const wanted = params.getAll(k).map(renameEntity);
     state[k] = wanted.filter((v) => opts[k].includes(v));
     if (state[k].length !== wanted.length) warning = true;
   }
   return { state, warning };
 }
+/** Display names that were renamed after links were shared (xAI → SpaceXAI). */
+const RENAMED: Record<string, string> = { xAI: "SpaceXAI" };
+const renameEntity = (v: string) => RENAMED[v] ?? v;
 /** The original "#s=<json>" share format; kept so old links still resolve. */
 function restoreLegacy(
   s: string,
@@ -638,9 +641,10 @@ function restoreLegacy(
     const opts = options(data);
     for (const k of filterKeys) {
       if (Array.isArray(raw[k])) {
-        state[k] = raw[k].filter(
-          (v: unknown) => typeof v === "string" && opts[k].includes(v),
-        );
+        state[k] = raw[k]
+          .filter((v: unknown) => typeof v === "string")
+          .map(renameEntity)
+          .filter((v: string) => opts[k].includes(v));
         if (state[k].length !== raw[k].length) warning = true;
       } else if (raw[k] !== undefined) warning = true;
     }

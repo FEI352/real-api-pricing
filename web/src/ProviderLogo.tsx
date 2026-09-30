@@ -17,7 +17,7 @@ const rasters = import.meta.glob<string>("./assets/provider-logos/*.webp", {
 const slugs: Record<string, string> = {
   OpenAI: "openai",
   Anthropic: "anthropic",
-  xAI: "xai",
+  SpaceXAI: "xai",
   Cursor: "cursor",
   Kimi: "kimi",
   Zhipu: "zhipu",

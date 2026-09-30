@@ -26,7 +26,7 @@ The project's original software is licensed under [MIT](LICENSE). This does not 
 - [Simple Icons](https://github.com/simple-icons/simple-icons), CC0. Used for the Xiaomi mark.
 - Command Code uses the official commandcode.ai/brand symbol (dark plate + rounded frame + ⌘).
 - StepFun five-square mark follows the icon in [stepfun.com](https://www.stepfun.com/assets/logo-B0FsyLQP.svg); the lime–cyan gradient follows the current public avatar.
-- Alibaba uses the official Qwen blue mark cut from the chat.qwen.ai lockup; MiniMax uses the official Brand VI (2026-09-14) vector with the gradient rebuilt as #E21680 → #FF633A; OpenCode is cut from the opencode.ai/brand ornate logo in light and dark variants; Zhipu uses the official z.ai mark; xAI uses the official SpaceXAI symbol (squared variant; xAI rebranded to SpaceXAI in July 2026).
+- Alibaba uses the official Qwen blue mark cut from the chat.qwen.ai lockup; MiniMax uses the official Brand VI (2026-09-14) vector with the gradient rebuilt as #E21680 → #FF633A; OpenCode is cut from the opencode.ai/brand ornate logo in light and dark variants; Zhipu uses the official z.ai mark; SpaceXAI (formerly xAI, rebranded July 2026) uses the official SpaceXAI symbol (squared variant).
 - Kimi uses the official Kimi Logomark tile from the Kimi brand kit (Light variant for light theme, Dark variant for dark theme); Devin uses the official Devin mark from the Devin design system (dark-ink and white variants).
 - Brand logos remain trademarks of their owners and are used only to identify the corresponding model developer.
 
