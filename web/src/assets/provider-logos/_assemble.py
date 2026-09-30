@@ -63,9 +63,9 @@ meituan = meituan.replace(
 # command-code.svg: official Command Code symbol (commandcode-icon.svg) copied
 #   from the brand library.
 # zhipu.svg: official z.ai mark (zai-icon.svg) copied from the brand library.
-# xai.svg: library 1:1 cut spacexai-icon-black.svg (official SpaceXAI squared
-#   symbol, 84% fill), recoloured to #111111 ink, copied from the brand library.
-# xai-dark.svg: library 1:1 cut spacexai-icon-white.svg, official white variant.
+# xai.svg / xai-dark.svg: official SpaceXAI squared tiles, black tile
+#   ("spacexai - symbol - white - squared.svg") / white tile
+#   ("spacexai - symbol - black - squared.svg"), copied from the brand library.
 # stepfun.svg: official 5-square mark + current X-avatar gradient.
 # kimi.svg / kimi-dark.svg: official Kimi Logomark tile, light/dark brand-kit variants.
 # devin.svg / devin-dark.svg: official Devin mark, dark-ink and white variants.
