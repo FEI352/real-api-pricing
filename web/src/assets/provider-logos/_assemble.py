@@ -60,8 +60,8 @@ meituan = meituan.replace(
 # minimax.svg: official MiniMax gradient mark (minimax-icon.svg) copied from the brand library.
 # opencode.svg / opencode-dark.svg: official OpenCode mark, light/dark variants
 #   (opencode-icon.svg / opencode-icon-dark.svg) copied from the brand library.
-# command-code.svg: official Command Code symbol (commandcode-icon.svg) copied
-#   from the brand library.
+# command-code.svg / command-code-dark.svg: official Command Code symbol, black tile
+#   (commandcode-icon-black.svg) / white-ring (commandcode-icon.svg), copied from the brand library.
 # zhipu.svg: official z.ai mark (zai-icon.svg) copied from the brand library.
 # xai.svg: library 1:1 cut spacexai-icon-black.svg (official SpaceXAI squared
 #   symbol, 84% fill), recoloured to #111111 ink, copied from the brand library.
