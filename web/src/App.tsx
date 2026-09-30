@@ -374,7 +374,8 @@ function Explorer({
     () => rowsFor(data, state),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, board, harness, effort, modes, configuration, view, selected,
-      vendors, channels, plans, billing, confidence, feeBand, state.xMode, state.scoreState],
+      vendors, channels, plans, billing, confidence, feeBand, state.xMode, state.scoreState,
+      state.xMin, state.xMax, state.yMin, state.yMax, state.feeMin, state.feeMax],
   );
   const shown = useMemo(
     () => tableRows(rows, state),
@@ -524,7 +525,7 @@ function Explorer({
       hintCn: "每个套餐、评测配置与来源",
     },
   ];
-  const scored = state.view === "pareto" || state.view === "table";
+  const scored = state.view === "pareto" || state.view === "table" || state.view === "allowance" || state.view === "price";
   const [chartSlot, setChartSlot] = useState<HTMLDivElement | null>(null);
   const sort = (key: string) =>
     patch({
@@ -1425,12 +1426,12 @@ function Explorer({
                   </fieldset>
                 ))}
               </div>
-              {(state.view === "pareto" || state.yMin.trim()) && (
+              {(state.view === "pareto" || state.view === "allowance" || state.view === "price") && (
                 <fieldset className="range-filter">
                   <legend>
                     {state.view === "pareto"
                       ? t("Custom X / Y range", "自定义 X / Y 范围")
-                      : t("Min AA score", "AA 最低分")}{" "}
+                      : t("Min score on current board", "当前榜单最低分")}{" "}
                     {(customRangeActive(state) || state.yMin.trim()) && (
                       <button
                         onClick={() =>
@@ -1449,6 +1450,7 @@ function Explorer({
                     )}
                   </legend>
                   <div className="range-inputs">
+                    {state.view === "pareto" && (
                     <label>
                       <span>{t("X · real price $/MTok", "X · 真实单价 $/MTok")}</span>
                       <input
@@ -1464,6 +1466,7 @@ function Explorer({
                         onChange={(e) => patch({ xMax: e.target.value })}
                       />
                     </label>
+                    )}
                     <label>
                       <span>{state.view === "pareto" ? t("Y · score", "Y · 分数") : t("Min score on current board", "当前榜单最低分")}</span>
                       <input
@@ -1481,6 +1484,7 @@ function Explorer({
                         />
                       )}
                     </label>
+                    {state.view === "pareto" && (
                     <label>
                       <span>{t("Monthly fee · USD/month", "月费 · 美元/月")}</span>
                       <input
@@ -1496,6 +1500,7 @@ function Explorer({
                         onChange={(e) => patch({ feeMax: e.target.value })}
                       />
                     </label>
+                    )}
                   </div>
                 </fieldset>
               )}

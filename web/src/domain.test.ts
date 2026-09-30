@@ -1060,5 +1060,10 @@ test("yMin score floor applies in allowance/table views", () => {
   const open = rowsFor(data, { ...defaultState(), view: "allowance", yMin: "" });
   assert.ok(open.length >= gated.length);
   const gatedT = rowsFor(data, { ...defaultState(), view: "table", yMin: "40" });
+test("yMin score floor also applies in price view", () => {
+  const gated = rowsFor(data, { ...defaultState(), view: "price", yMin: "40" });
+  assert.ok(gated.length > 0);
+  for (const r of gated) assert.ok(r.score === null || r.score >= 40, `row score ${r.score} < 40`);
+});
   for (const r of gatedT) assert.ok(r.score === null || r.score >= 40);
 });
