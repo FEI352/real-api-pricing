@@ -1,0 +1,35 @@
+{
+  "collectedAt": "2026-09-30",
+  "sourceType": "official pricing page + launch coverage",
+  "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "checkedAt": "2026-09-30",
+  "launchAt": "2026-09-28",
+  "scope": "Anthropic Claude Sonnet 5.5（2026-09-28 发布，API id claude-sonnet-5-5）按量三段价与缓存价，供 compute.py 标价混合比。保持 Sonnet 5 的 $2/$10 定价；三档订阅派生行见 build_adopted.py。",
+  "models": [
+    {
+      "model": "claude-sonnet-5.5",
+      "vendor": "Anthropic",
+      "input": 2.0,
+      "cachedInput": 0.2,
+      "output": 10.0,
+      "currency": "USD",
+      "variants": {
+        "batch": {
+          "input": 1.0,
+          "output": 5.0,
+          "note": "Batch API 50% off"
+        },
+        "cacheWrite5m": {
+          "input": 2.5
+        },
+        "cacheWrite1h": {
+          "input": 4.0
+        }
+      },
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "checkedAt": "2026-09-30",
+      "note": "2026-09-28 发布（Claude 5.5 系列第二款），保持 Sonnet 5 定价：$2/$10、cache read $0.2（0.1× base input）、写 $2.5/5m $4/1h、Batch $1/$5。媒体『仅为 Opus 5.5 的一半』系 input/output 口径——cache read 与 Opus 5.5 同为 $0.2。官方称速度 +30%、多数任务成本最高 -30%。"
+    }
+  ],
+  "notFound": []
+}

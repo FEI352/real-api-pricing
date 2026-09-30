@@ -3,6 +3,10 @@
 本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-09-30
+
+- **Claude Sonnet 5.5（9/28 发布，新增三档订阅点 + API 行）**：claude_pro = 38.851 亿、claude_max_20x = 404.319 亿、claude_max_5x = 202.16 亿，全部 low（派生非实测）；anthropic_sonnet55_api = $0.3065/MTok（Anthropic 档，与 sonnet-5 同值）。倍率口径：blended(0.2,4,20)/blended(0.2,2,10) = 0.394/0.294 = 1.340136——Opus 5.5 与 Sonnet 5.5 的 cache read 同为 $0.2（占项目标准负载 97% 权重）、input/output 仅 2×（$4→$2、$20→$10），故既非 Opus 5 代的 2.5（$5/$25 全段 2.5×）、也非简单 input/output 比 2.0；与 Opus 5.5 隐含权重按标价混合比计的实测结论（2026-09-23 条）同机制。基准：claude_pro×opus-5.5 28.99 亿（low）、claude_max_20x×opus-5.5 301.7 亿（medium）；5x 因 opus-5.5 基准行本身是派生行，基准取 claude_max_5x×opus-5 78.5 亿 × 档间比 301.7/157 × 1.340136（数值等价于 20x 派生值 404.319÷2，同用户确认的 20x=5x×2 周池关系）。来源：Anthropic 2026-09-28 发布（API id claude-sonnet-5-5），保持 Sonnet 5 定价 $2/$10、cache read $0.2、写 $2.5/5m $4/1h、Batch $1/$5；媒体「仅为 Opus 5.5 的一半」系 input/output 口径。榜分：AA 智力榜已有 4 档（max 55.978），AA 榜前沿新增 claude_max_5x::claude-sonnet-5.5（$0.004947）；其余七榜无行不挂分。图表/前端待重生成。证据：`list-prices-claude-sonnet55-round1-2026-09-30.json`、`scores-aa-round5-2026-09-30.json`。
+
 ## 2026-09-29
 
 - **Droid Pro × Claude Opus 5.5 社区口述点（新增，low）**：3.82 亿/月（workload=anthropic，同 droid_max×opus-5.5 口径）。X @SnowyWar36965（2026-09-28，用户转供截图）：Pro $20 跑 Opus 5.5 小动画用掉 5h 窗约 70%，帖主按等价 API 消耗估 5h≈$15.4 / 周≈$45 / 月≈$160（Max 10x≈$154/$450/$1,600）。取帖主月值 $160 ÷ Anthropic 档 $0.419/MTok＝3.82 亿；周 $45×4＝$180（4.30 亿）不采——帖主月值低于 4× 周，按 30 天窗为绑定约束。帖主 token 列（18 亿/$1,600≈$0.89/MTok）为其自身负载，不采。对照：本机实测 Max 月 worth $2,116.91 ÷10＝Pro 约 $211.7（5.05 亿），帖主值约其 0.76×。弱点：口述、无面板截图与 token 分拆、n=1 → low。仅挂 Opus 5.5，不按倍率派生同池其他模型。证据：`droid-pro-opus55-community-round1-2026-09-29.json`。

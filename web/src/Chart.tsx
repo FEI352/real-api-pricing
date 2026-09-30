@@ -66,6 +66,7 @@ import {
   makeBox,
   panBy,
   priceTicks,
+  timeTicks,
   scoreTicks,
   toPixel,
   xPixel,
@@ -98,6 +99,7 @@ interface SceneProps {
   hoverKey: string | null;
   showFrontier: boolean;
   zeroX: number | null;
+  isTime?: boolean;
   xTitle: string;
   yTitle: string;
   cheaper: string;
@@ -130,13 +132,16 @@ function ChartScene(p: SceneProps) {
         ? 0.5
         : 1;
   const badgeKeys = new Set(p.badges.map((g) => g.key));
+  // Cost and time modes carry no "$0" slot, so no fence is built and no tick is hidden.
   const fence = p.zeroX !== null ? zeroFence(p.zeroX) : null;
-  const xTicks = priceTicks(
-    view,
-    box,
-    p.mobile ? 54 : 64,
-    fence !== null ? Math.log10(fence) : -Infinity,
-  );
+  const xTicks = p.isTime
+    ? timeTicks(view, box, p.mobile ? 54 : 64)
+    : priceTicks(
+        view,
+        box,
+        p.mobile ? 54 : 64,
+        fence !== null ? Math.log10(fence) : -Infinity,
+      );
   const yTicks = scoreTicks(view, box, p.lang);
   const line = p.showFrontier && p.front.length
     ? (() => {
@@ -560,6 +565,11 @@ export default function Chart({
   toolsSlot?: HTMLElement | null;
 }) {
   const zh = state.lang === "zh";
+  // X-axis mode: "price" is real USD per million tokens, "cost" is the
+  // subscription-adjusted cost per Intelligence Index task. Unknown/legacy
+  // state falls back to the price axis.
+  const cost = state.xMode === "cost";
+  const isTime = state.xMode === "time";
   const dark = theme === "dark";
   const colors = chartColors(dark);
   const clipId = useId().replace(/:/g, "");
@@ -569,11 +579,13 @@ export default function Chart({
   const mobile = width > 0 && width < 600;
   const height = mobile ? 430 : Math.round(Math.min(600, Math.max(470, width * 0.44)));
 
-  const gs = useMemo(() => groups(rows), [rows]);
+  const gs = useMemo(() => groups(rows, state), [rows, state]);
   const front = useMemo(() => pareto(gs), [gs]);
   const frontKeys = useMemo(() => new Set(front.map((g) => g.key)), [front]);
   const signature = useMemo(() => gs.map((g) => g.key).join("|"), [gs]);
-  const home = useMemo(() => homeView(gs), [signature]); // eslint-disable-line react-hooks/exhaustive-deps
+  // xMode swaps the whole X scale, so the home window must be re-solved even
+  // when the same keys stay on screen (cost values sit decades away from prices).
+  const home = useMemo(() => homeView(gs), [signature, state.xMode]); // eslint-disable-line react-hooks/exhaustive-deps
   const [view, setView] = useState<View>(home);
   const [settled, setSettled] = useState<View>(home);
   const [fontEpoch, setFontEpoch] = useState(0);
@@ -647,12 +659,38 @@ export default function Chart({
     () => cardGroups(gs, front, state.labels, hitList),
     [gs, front, state.labels, hitList],
   );
-  const zeroGroup = gs.find((g) => g.price === 0);
+  // The "$0" slot (and its fence) is price-axis furniture only: a cost-per-task
+  // or task-time value is never zero, so nothing may claim that slot in cost/time mode.
+  const zeroGroup = cost || isTime ? undefined : gs.find((g) => g.price === 0);
   const zeroX = zeroGroup ? zeroGroup.plotPrice : null;
 
   const board = data.boards[state.board];
-  const xTitle = zh ? "真实单价 · 美元 / 百万 token（对数）" : "Real price · USD per million tokens (log scale)";
-  const cheaper = zh ? "更便宜 →" : "Cheaper →";
+  const xTitle = isTime
+    ? zh
+      ? "实际任务完成用时 · 秒（对数）"
+      : "Task completion time · seconds (log scale)"
+    : cost
+      ? zh
+        ? "每任务成本 · 美元（对数）"
+        : "Cost per task · USD (log scale)"
+      : zh
+        ? "真实单价 · 美元 / 百万 token（对数）"
+        : "Real price · USD per million tokens (log scale)";
+  // The X value is the same `Group.price` either way — only its unit differs.
+  const xValueLabel = isTime
+    ? zh
+      ? "任务用时"
+      : "Task time"
+    : cost
+      ? zh
+        ? "每任务成本"
+        : "Cost per task"
+      : zh
+        ? "真实单价"
+        : "Real price";
+  const xValueUnit = isTime ? (zh ? " 秒" : "s") : cost ? (zh ? "/ 任务" : "/ task") : "/ MTok";
+  const cheaper = isTime ? (zh ? "更快速 →" : "Faster →") : (zh ? "更便宜 →" : "Cheaper →");
+  const formatXValue = (v: number) => (isTime ? `${number(v, state.lang)}` : price(v));
   const unmetered = zh ? "不计额度" : "unmetered";
   const markable = useMemo(
     () =>
@@ -856,6 +894,7 @@ export default function Chart({
     hits: hits.keys,
     showFrontier: state.frontier,
     zeroX,
+    isTime,
     xTitle,
     yTitle: metricLabel(board.metric, state.lang),
     cheaper,
@@ -877,7 +916,7 @@ export default function Chart({
         const keyRows = cards.map((g, i) => ({
           n: i + 1,
           color: color(g.rows[0].point),
-          text: `${[...new Set(g.rows.map((r) => r.point.model_display))].join(" / ")} · ${price(g.price)} / MTok${g.price === 0 ? " · " + unmeteredNote(g.rows[0].point, state.lang) : ""} · ${number(g.score, state.lang)}${g.rows[0].mapping?.score_is_self_reported ? " · " + selfReportTag(state.lang) : ""}`,
+          text: `${[...new Set(g.rows.map((r) => r.point.model_display))].join(" / ")} · ${formatXValue(g.price)} ${xValueUnit}${g.price === 0 ? " · " + unmeteredNote(g.rows[0].point, state.lang) : ""} · ${number(g.score, state.lang)}${g.rows[0].mapping?.score_is_self_reported ? " · " + selfReportTag(state.lang) : ""}`,
         }));
         const keyH = keyRows.length ? 70 + Math.ceil(keyRows.length / 2) * 24 : 20;
         const m = marginsFor(base.view, plotH, state.lang, false);
@@ -910,7 +949,7 @@ export default function Chart({
               mobile={false}
               clipId="export-clip"
               header={{
-                title: `${b.name} × ${zh ? "真实单价" : "real price"}`,
+                title: `${b.name} × ${xValueLabel.toLowerCase()}`,
                 subtitle: `${metricLabel(b.metric, state.lang)} · ${zh ? "快照" : "Snapshot"} ${b.snapshot} · Real API Pricing · real-api-pricing.vercel.app`,
               }}
               keyRows={keyRows}
@@ -946,7 +985,7 @@ export default function Chart({
     return () => {
       handle.current = null;
     };
-  }, [handle, state.lang, state.board, zh]);
+  }, [handle, state.lang, state.board, state.xMode, zh]);
 
   const hoverGroup = hoverKey ? gs.find((g) => g.key === hoverKey) : undefined;
   const hoverPoint = hoverGroup?.rows[0]?.point;
@@ -1077,8 +1116,8 @@ export default function Chart({
             )}
             <div className="hover-stats">
               <span>
-                <small>{zh ? "真实单价" : "Real price"}</small>
-                {price(hoverGroup.price)} <i>/ MTok</i>
+                <small>{xValueLabel}</small>
+                {formatXValue(hoverGroup.price)} <i>{xValueUnit}</i>
                 {hoverGroup.price === 0 && <i> · {unmeteredNote(hoverPoint, state.lang)}</i>}
               </span>
               <span>
@@ -1126,7 +1165,7 @@ export default function Chart({
                     {[...new Set(g.rows.map((r) => r.point.model_display))].join(" / ")}
                   </strong>
                   <small>
-                    {price(g.price)} / MTok
+                    {formatXValue(g.price)} {xValueUnit}
                     {g.price === 0 ? ` · ${unmeteredNote(g.rows[0].point, state.lang)}` : ""}
                     {" · "}
                     {number(g.score, state.lang)}

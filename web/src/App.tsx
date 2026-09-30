@@ -49,6 +49,7 @@ import {
   color,
   colors,
   csv,
+  customRangeActive,
   defaultState,
   displayPlan,
   filterKeys,
@@ -372,7 +373,7 @@ function Explorer({
     () => rowsFor(data, state),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, board, harness, effort, modes, configuration, view, selected,
-      vendors, channels, plans, billing, confidence, feeBand],
+      vendors, channels, plans, billing, confidence, feeBand, state.xMode],
   );
   const shown = useMemo(
     () => tableRows(rows, state),
@@ -385,7 +386,7 @@ function Explorer({
     [data, view, selected, vendors, channels, plans, billing, confidence, feeBand],
   );
   const axis = useMemo(() => barAxis(data, view), [data, view]);
-  const gs = useMemo(() => groups(rows), [rows]);
+  const gs = useMemo(() => groups(rows, state), [rows, state.xMode]);
   const front = useMemo(() => pareto(gs), [gs]);
   const frontRows = useMemo(
     () => new Set(front.flatMap((g) => g.rows.map((r) => r.key))),
@@ -838,7 +839,7 @@ function Explorer({
                     </select>
                   </label>
                 )}
-                {state.view === "allowance" && (
+                {(state.view === "allowance" || state.view === "pareto") && (
                   <div className="fee-bands" role="group" aria-label={t("Monthly subscription fee", "订阅月费分档")}>
                     <span className="fee-label">{t("Monthly fee", "月费")}</span>
                     <div className="segmented">
@@ -871,6 +872,41 @@ function Explorer({
                     >
                       <Info size={15} />
                     </span>
+                  </div>
+                )}
+                {state.view === "pareto" && (
+                  <div className="x-mode" role="group" aria-label={t("X axis mode", "X 轴模式")}>
+                    <span className="fee-label">{t("Dimension", "维度")}</span>
+                    <div className="segmented">
+                      <button
+                        aria-pressed={state.xMode === "price"}
+                        onClick={() => patch({ xMode: "price", axisSwap: false })}
+                      >
+                        {t("Real price", "真实单价")}
+                      </button>
+                      <button
+                        aria-pressed={state.xMode === "cost"}
+                        onClick={() => patch({ xMode: "cost", axisSwap: false })}
+                      >
+                        {t("Cost per task", "每任务成本")}
+                      </button>
+                      <button
+                        aria-pressed={state.xMode === "time"}
+                        onClick={() => patch({ xMode: "time" })}
+                      >
+                        {t("Task time", "任务用时")}
+                      </button>
+                    </div>
+                    {state.xMode === "time" && (
+                      <button
+                        className="swap-button"
+                        style={{ marginLeft: 8 }}
+                        title={t("Swap X and Y axes", "交换 X/Y 轴（纵轴显示任务用时）")}
+                        onClick={() => patch({ axisSwap: !state.axisSwap })}
+                      >
+                        {state.axisSwap ? t("Y: Time ⇄ Score", "纵轴: 耗时 (点此复原)") : t("⇄ Y: Time", "⇄ 纵轴设为耗时")}
+                      </button>
+                    )}
                   </div>
                 )}
                 <span className="toolbar-space" />
@@ -1032,7 +1068,7 @@ function Explorer({
                         {noScore.map((p) => (
                           <button
                             key={p.id}
-                            onClick={() => setDetail([{ key: p.id, point: p, mapping: null, score: null }])}
+                            onClick={() => setDetail([{ key: p.id, point: p, mapping: null, score: null, x: null }])}
                           >
                             {p.model_display} · {displayPlan(p.plan, state.lang)}
                             <ArrowUpRight size={12} />
@@ -1384,10 +1420,88 @@ function Explorer({
                   </fieldset>
                 ))}
               </div>
+              {state.view === "pareto" && (
+                <fieldset className="range-filter">
+                  <legend>
+                    {t("Custom X / Y range", "自定义 X / Y 范围")}{" "}
+                    {customRangeActive(state) && (
+                      <button
+                        onClick={() =>
+                          patch({
+                            xMin: "",
+                            xMax: "",
+                            yMin: "",
+                            yMax: "",
+                            feeMin: "",
+                            feeMax: "",
+                          })
+                        }
+                      >
+                        {t("Clear", "清除")}
+                      </button>
+                    )}
+                  </legend>
+                  <div className="range-inputs">
+                    <label>
+                      <span>{t("X · real price $/MTok", "X · 真实单价 $/MTok")}</span>
+                      <input
+                        inputMode="decimal"
+                        value={state.xMin}
+                        placeholder={t("min", "最小")}
+                        onChange={(e) => patch({ xMin: e.target.value })}
+                      />
+                      <input
+                        inputMode="decimal"
+                        value={state.xMax}
+                        placeholder={t("max", "最大")}
+                        onChange={(e) => patch({ xMax: e.target.value })}
+                      />
+                    </label>
+                    <label>
+                      <span>{t("Y · score", "Y · 分数")}</span>
+                      <input
+                        inputMode="decimal"
+                        value={state.yMin}
+                        placeholder={t("min", "最小")}
+                        onChange={(e) => patch({ yMin: e.target.value })}
+                      />
+                      <input
+                        inputMode="decimal"
+                        value={state.yMax}
+                        placeholder={t("max", "最大")}
+                        onChange={(e) => patch({ yMax: e.target.value })}
+                      />
+                    </label>
+                    <label>
+                      <span>{t("Monthly fee · USD/month", "月费 · 美元/月")}</span>
+                      <input
+                        inputMode="decimal"
+                        value={state.feeMin}
+                        placeholder={t("min", "最小")}
+                        onChange={(e) => patch({ feeMin: e.target.value })}
+                      />
+                      <input
+                        inputMode="decimal"
+                        value={state.feeMax}
+                        placeholder={t("max", "最大")}
+                        onChange={(e) => patch({ feeMax: e.target.value })}
+                      />
+                    </label>
+                  </div>
+                </fieldset>
+              )}
               <div className="panel-bottom">
                 <button
                   onClick={() =>
-                    patch(Object.fromEntries(filterKeys.map((k) => [k, []])))
+                    patch({
+                      ...Object.fromEntries(filterKeys.map((k) => [k, []])),
+                      xMin: "",
+                      xMax: "",
+                      yMin: "",
+                      yMax: "",
+                      feeMin: "",
+                      feeMax: "",
+                    })
                   }
                 >
                   {t("Clear all filters", "清除全部筛选")}

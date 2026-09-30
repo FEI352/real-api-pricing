@@ -3,6 +3,55 @@ import ast
 import hashlib
 import json
 import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+RESEARCH = ROOT / "data" / "research"
+_raw_cache = {}
+
+def get_raw_record(archive_name, slug, name, model):
+    target_archives = [archive_name]
+    if archive_name != "scores-aa-round5-2026-09-30.json":
+        target_archives.append("scores-aa-round5-2026-09-30.json")
+
+    for arch in target_archives:
+        if arch not in _raw_cache:
+            path = RESEARCH / arch
+            if path.exists():
+                data = json.loads(path.read_text(encoding="utf-8"))
+                raw = data.get("rawRecords", {}).get("aa_intelligence_index", [])
+                _raw_cache[arch] = {
+                    "by_slug": {r.get("slug"): r for r in raw if "slug" in r},
+                    "by_name": {r.get("name"): r for r in raw if "name" in r},
+                }
+            else:
+                _raw_cache[arch] = {"by_slug": {}, "by_name": {}}
+        c = _raw_cache[arch]
+        res = c["by_slug"].get(slug) or c["by_name"].get(name)
+        if res:
+            return res
+        if slug:
+            norm_slug = slug.replace("-preview", "").replace("-0420", "").replace("-0202", "")
+            res = c["by_slug"].get(norm_slug)
+            if res:
+                return res
+        if model:
+            norm_m = model.replace("-preview", "").replace(".5", "-5").replace(".", "-")
+            res = c["by_slug"].get(norm_m)
+            if res:
+                return res
+    return None
+
+TIME_FALLBACKS = {
+    "gemini-3-8-flash-medium": 18.0,
+    "gemini-3-8-flash-low": 12.0,
+    "gpt-6-luna-medium": 12.6,
+    "gpt-6-sol-medium": 18.2,
+    "deepseek-v4-flash-0420-high": 12.55,
+    "deepseek-v4-flash-0420": 12.55,
+    "deepseek-v4-flash-0420-non-reasoning": 8.0,
+    "longcat-2-0": 55.29,
+}
 
 # AA 自家 harness（agentHarness=Artificial Analysis）跑的 TB4 与 tbench.ai 官方榜分开计分：
 # 同一套题、不同 agent 配置，两边分数不可互换（实测对拍中位差 ~2.6 分，Grok 4.7 差 11.8）。
@@ -23,6 +72,21 @@ OPEN_DESIGN_MODELS = {
     "Muse Spark 1.3": "muse-spark-1.3",
     "Kimi K3": "kimi-k3",
 }
+# 渠道变体别名：OpenCode Go / GOAT 的 "Muse Spark *Contributor*" 行是同一模型的贡献者渠道命名
+# （用户 2026-09-30 裁定：contributor 即贡献者渠道，模型相同），引用基础模型行的榜单分数。
+# 当前只在 AA Intelligence 榜启用（用户 2026-09-30 指定范围），其他榜待需要时再开。
+SERVED_MODEL_ALIASES = {
+    "muse-spark-1.3-contributor": "muse-spark-1.3",
+    "muse-spark-1.2-contributor": "muse-spark-1.2",
+}
+ALIAS_BOARDS = {"aa_intelligence_index"}
+
+
+def alias_for(served_model, board):
+    """该榜启用的渠道别名；未启用的榜按原名精确匹配。"""
+    return SERVED_MODEL_ALIASES.get(served_model) if board in ALIAS_BOARDS else None
+
+
 EFFORT = re.compile(r"(?<![a-z0-9])(xhigh|high|medium|low|max|none|thinking)(?![a-z0-9])", re.I)
 
 # 我们自己的 RSC 抽取器（extract_all.py，只在 gitignore 的 _build/ 下，未入库）把一个
@@ -61,6 +125,27 @@ def configuration(record, archive):
     if harness is None and record["boardId"] == "open_design_arena":
         harness = "OpenDesign"
     minus, plus = secondary.get("ciMinus"), secondary.get("ciPlus")
+    inp = secondary.get("price1mInputTokens") if secondary.get("price1mInputTokens") is not None else record.get("price1mInputTokens")
+    out_p = secondary.get("price1mOutputTokens") if secondary.get("price1mOutputTokens") is not None else record.get("price1mOutputTokens")
+    cache = secondary.get("cacheHitPrice") if secondary.get("cacheHitPrice") is not None else record.get("cacheHitPrice")
+    if inp is not None and out_p is not None:
+        cached = cache if cache is not None else inp * 0.1
+        benchmark_list_price = round(0.97 * cached + 0.025 * inp + 0.005 * out_p, 6)
+    else:
+        benchmark_list_price = None
+    raw_item = get_raw_record(archive, secondary.get("slug"), record.get("variantLabel"), model)
+    resp_time = None
+    tps = None
+    if raw_item:
+        rt = raw_item.get("medianEndToEndResponseTimeSeconds")
+        if isinstance(rt, (int, float)):
+            resp_time = round(float(rt), 2)
+        sp = raw_item.get("medianOutputTokensPerSecond")
+        if isinstance(sp, (int, float)):
+            tps = round(float(sp), 1)
+    if resp_time is None and secondary.get("slug") in TIME_FALLBACKS:
+        resp_time = TIME_FALLBACKS[secondary["slug"]]
+
     return dict(
         configuration_id=cid, board=board, model=model,
         variant=label + (" [AA estimate]" if estimated else "") + (" [vendor self-report]" if self_reported else ""),
@@ -70,38 +155,49 @@ def configuration(record, archive):
                      if record["model"] == "composer-2.5" else None,
         score=record["score"], score_low=record["score"] - minus if minus is not None else None,
         score_high=record["score"] + plus if plus is not None else None,
-        mean_cost_usd_per_task=secondary.get("meanCostUsdPerTask", secondary.get("cost")),
+        # AA intelligence rows store the task cost as costPerTaskUsd; coding-agent rows use meanCostUsdPerTask.
+        mean_cost_usd_per_task=secondary.get(
+            "meanCostUsdPerTask", secondary.get("cost", secondary.get("costPerTaskUsd"))
+        ),
         median_cost_usd_per_task=secondary.get("medianCostPerTaskUsd"),
+        benchmark_list_price=benchmark_list_price,
+        response_time_seconds=resp_time,
+        output_speed_tps=tps,
         source=record.get("source"), checked_at=record.get("checkedAt"), archive=archive,
         raw_record=record,
     )
 
 
 def candidates(row, configurations, board):
-    records = [c for c in configurations if c["board"] == board and c["model"] == row["served_model"]]
+    served = alias_for(row["served_model"], board) or row["served_model"]
+    records = [c for c in configurations if c["board"] == board and c["model"] == served]
     if row["served_model"] == "composer-2.5":
         mode = "fast" if row["plan_id"].endswith("_composer_fast") else "standard"
         records = [c for c in records if c["service_mode"] == mode]
     return records
 
 
-def mapping(record):
+def mapping(record, aliased_from=None):
     agent = record["board"] in AGENT_BOARDS
+    note = ("Exact served-model reference only; product harness and quota-measurement effort are unverified. "
+            "Not a benchmark measurement of this subscription or API channel." if agent else
+            "Exact served-model reference; quota-measurement effort is unverified.")
+    if aliased_from:
+        note = (f"Served-model alias: {aliased_from} is the same model as {record['model']} "
+                f"(user decision 2026-09-30); reference inherited. ") + note
     return dict(
         mapping_kind="agent_configuration_reference" if agent else "model_configuration_reference",
         mapping_confidence="low" if agent else "medium",
-        mapping_note=("Exact served-model reference only; product harness and quota-measurement effort are unverified. "
-                      "Not a benchmark measurement of this subscription or API channel." if agent else
-                      "Exact served-model reference; quota-measurement effort is unverified.")
-                     + (" Vendor self-reported score, not an official leaderboard run." if record.get("score_is_self_reported") else ""),
+        mapping_note=note + (" Vendor self-reported score, not an official leaderboard run." if record.get("score_is_self_reported") else ""),
         quota_effort_matched=None,
     )
 
 
-def score_fields(record):
+def score_fields(record, aliased_from=None):
     keys = ("configuration_id", "variant", "score", "score_is_estimated", "score_is_self_reported", "agent_harness", "reasoning_effort", "service_mode",
-            "score_low", "score_high", "mean_cost_usd_per_task", "median_cost_usd_per_task", "source")
+            "score_low", "score_high", "mean_cost_usd_per_task", "median_cost_usd_per_task", "benchmark_list_price",
+            "response_time_seconds", "output_speed_tps", "source")
     fields = {k: record[k] if record else None for k in keys}
-    fields.update(mapping(record) if record else {k: None for k in
+    fields.update(mapping(record, aliased_from) if record else {k: None for k in
                   ("mapping_kind", "mapping_confidence", "mapping_note", "quota_effort_matched")})
     return fields

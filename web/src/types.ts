@@ -58,6 +58,9 @@ export interface Configuration {
   mean_cost_usd_per_task?: number | null;
   median_cost_per_task_usd?: number | null;
   median_cost_usd_per_task?: number | null;
+  benchmark_list_price?: number | null;
+  response_time_seconds?: number | null;
+  output_speed_tps?: number | null;
 }
 export interface Mapping extends Omit<Configuration, "model"> {
   point_id: string;
@@ -124,12 +127,26 @@ export interface State {
   query: string;
   sort: string;
   direction: "asc" | "desc";
+  /** Custom X/Y range filters for the capability chart; blank means no bound. */
+  xMin: string;
+  xMax: string;
+  yMin: string;
+  yMax: string;
+  /** Custom monthly-fee window (USD/month); subscriptions only, blank = off. */
+  feeMin: string;
+  feeMax: string;
+  /** Capability-chart X axis: real price per MTok, subscription-adjusted cost per AA task, or task completion time. */
+  xMode: "price" | "cost" | "time";
+  /** In time mode, swap X and Y axes so Y is task time and X is intelligence score. */
+  axisSwap?: boolean;
 }
 export interface Row {
   key: string;
   point: Point;
   mapping: Mapping | null;
   score: number | null;
+  /** Capability-chart X value for the current xMode (null = not plottable on X). */
+  x: number | null;
 }
 export interface Group {
   key: string;

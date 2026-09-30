@@ -175,7 +175,7 @@ assert (ANTHROPIC_MIX["cache"], ANTHROPIC_MIX["cacheWrite"], ANTHROPIC_MIX["outp
     STANDARD_MIX["cache"], STANDARD_MIX["input"], STANDARD_MIX["output"])
 # Anthropic 5 分钟缓存写入价（platform.claude.com pricing；Fable 5.1 见 claude-fable51-round1-2026-09-13.json）
 ANTHROPIC_CACHE_WRITE_5M = {"claude-opus-5": 6.25, "claude-sonnet-5": 2.5, "claude-fable-5": 12.5,
-                          "claude-fable-5.1": 12.5, "claude-opus-5.5": 5.0}
+                          "claude-fable-5.1": 12.5, "claude-opus-5.5": 5.0, "claude-sonnet-5.5": 2.5}
 
 
 def blended_anthropic(cached: float, write: float, out: float) -> float:
@@ -382,7 +382,7 @@ OPENCODE_GO_MODELS = (
     ("grok-4.6", 15, 0.5, 2.0, 6.0, "≤200K 标价；>200K 价翻倍，保留在 research variants"),
     ("grok-4.7", 15, 0.5, 2.0, 6.0, "≤200K 标价；>200K 价翻倍，保留在 research variants；mimo-v26-grok47-catalogs-round1-2026-09-22.json"),
     ("gpt-5.6-luna", 15, 0.02, 0.2, 1.2, "≤272K 标价；>272K 档保留在 research variants"),
-    ("glm-5.3-flash", 15, 0.03, 0.15, 0.5, "官网单档"),
+    ("glm-5.3-flash", 60, 0.03, 0.15, 0.5, "官网单档；Usage $60"),
     ("glm-5.3", 15, 0.26, 1.4, 4.4, "官网单档"),
     ("glm-5.2", 60, 0.26, 1.4, 4.4, "官网单档"),
     ("glm-5.1", 60, 0.26, 1.4, 4.4, "官网单档"),
@@ -404,7 +404,7 @@ OPENCODE_GO_MODELS = (
     ("qwen3.7-max", 30, 0.5, 2.5, 7.5, "官网单档"),
     ("qwen3.7-plus", 60, 0.04, 0.4, 1.6, "≤256K 标价；>256K 档保留在 research variants"),
     ("qwen3.6-plus", 60, 0.05, 0.5, 3.0, "≤256K 标价；>256K 档保留在 research variants"),
-    ("deepseek-v4.1-flash", 15, 0.003, 0.15, 0.60, "官网新行；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网新行；Off-Peak；Usage $60；Peak=2×保留在 research variants"),
     ("deepseek-v4-pro", 15, 0.022, 0.66, 1.98, "Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改"),
     ("hy4-preview", 30, 0.042, 0.834, 2.501, "官网单档"),
     ("hy3", 60, 0.035, 0.14, 0.58, "官网单档"),
@@ -427,10 +427,10 @@ OPENCODE_GO_DEEPSEEK_SOURCE = (
 )
 OPENCODE_GO_NOTES = {
     "deepseek-v4.1-flash": (
-        "新增18.182亿：min(共享月池$60, 模型Usage $15) ÷ 统一标准负载加权价；"
+        "新增62.112亿：min(共享月池$60, 模型Usage $60) ÷ 统一标准负载加权价；"
         "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。官网 Model ID=deepseek-flash，"
         "项目 served_model=deepseek-v4.1-flash 以对接榜单。"
-        "用户确认 V4 Flash / Vision 已下线，OpenCode 这两点删除（旧Flash 21.637亿、Vision 10.819亿）。"
+        "用户确认 V4 Flash / Vision 已下线，OpenCode 这两点删除。官方Usage已确认为$60/月。"
         "官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
     ),
 }
@@ -834,6 +834,10 @@ UNMETERED = [
 RATIO_COMPOSER = blended(0.5, 2, 6) / blended(0.2, 0.5, 2.5)   # Grok 4.6 → Composer 2.5 Standard ≈ 2.57110
 RATIO_COMPOSER_FAST = blended(0.5, 2, 6) / blended(0.5, 3, 15)
 RATIO_SONNET = round(blended(0.5, 5, 25) / blended(0.2, 2, 10), 2)       # Opus → Sonnet 5 = 2.5
+# Opus 5.5 → Sonnet 5.5（2026-09-28 发布，保持 Sonnet 5 定价 $2/$10、cache read $0.2）：
+#   Opus5.5 $0.2/$4/$20 vs Sonnet5.5 $0.2/$2/$10 —— input/output 2× 但 cache read 1×，
+#   97% cache 权重下混合比压到 1.3401（非简单 in/out 比 2.0，亦非 Opus5 代 2.5）；不再预舍入（沿 RATIO_COMPOSER 先例）
+RATIO_SONNET55 = blended(0.2, 4, 20) / blended(0.2, 2, 10)               # ≈ 1.340136
 # Factory Droid 官方模型倍率（docs.factory.ai/docs/models，2026-09-29）：Standard Usage 按 list-worth × 倍率计，
 #   Opus 5.5 = 1.6×；同池其他模型 = Opus 5.5 采用值 × 1.6 / 倍率。† 为促销倍率，见 DROID_PROMO_MULTIPLIERS。
 DROID_OPUS55_MULTIPLIER = 1.6
@@ -887,6 +891,19 @@ DERIVED = [
     # Opus 5.5：20x 按 round1 社区窗池样本 301.7亿、Pro 按 round10 Reddit 满窗样本 worth 口径 28.99亿（均 SUBS 行）；
     #   5x 按用户确认的 20x=5x×2 周池关系由 20x 采用值 ÷2 派生（同 Opus 5 行 157÷2）——2026-09-27 裁定两档精确同价并为一点 → low（标价混合比法 152.64亿 差1.2% 留作备选口径）
     ("claude_max_5x", "claude-opus-5", "claude-opus-5.5", CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI, "low", f"由20x采用值{CLAUDE_OPUS55_MAX20X_MONTHLY_YI:g}亿÷{CLAUDE_WEEKLY_20X_TO_5X}派生（用户确认20x周池=5x的2倍，同Opus 5行157÷2；20x本身借社区样本隐含权重，非独立实测）；旧值78.5×1/W=150.852亿与20x/2的差仅来自301.7取整，2026-09-27用户裁定合为同一点；标价法152.64亿差1.2%；claude-opus55-round1-2026-09-23.json", False),
+    # Sonnet 5.5（9/28 发布，保持 Sonnet 5 的 $2/$10；cache read 与 Opus 5.5 同为 $0.2）：
+    #   Pro/20x 由 Opus 5.5 采用值 × 标价混合比 RATIO_SONNET55≈1.340136 派生（机制见常量处注释）；
+    #   5x 因 opus-5.5 基准行本身是派生行、基准取 claude_max_5x×opus-5，复合倍率见该行注释；
+    #   基准链本身 low/medium 且派生非实测 → 全部 low；若官方订阅内权重偏离混合价需重推
+    ("claude_pro", "claude-opus-5.5", "claude-sonnet-5.5", RATIO_SONNET55, "low",
+     f"新增{claude_pro_opus55_monthly_yi() * RATIO_SONNET55:.3f}亿：基准 claude_pro×opus-5.5 采用值{claude_pro_opus55_monthly_yi():g}亿（low）×Opus5.5/Sonnet5.5 标价混合比{RATIO_SONNET55:.6f}（blended(0.2,4,20)/blended(0.2,2,10)＝0.394/0.294：cache read 同为$0.2、占标准负载97%权重，input/output 仅2×，故非简单 in/out 比2.0、亦非 Opus5 代2.5）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json", True),
+    ("claude_max_20x", "claude-opus-5.5", "claude-sonnet-5.5", RATIO_SONNET55, "low",
+     f"新增{CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_SONNET55:.3f}亿：基准 claude_max_20x×opus-5.5 采用值{CLAUDE_OPUS55_MAX20X_MONTHLY_YI:g}亿（medium）×标价混合比{RATIO_SONNET55:.6f}；倍率口径同 claude_pro 行（非2.0/2.5 说明见该行）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json", True),
+    # Sonnet 5.5 × Max 5x：基准须取 SUBS 内的 claude_max_5x×opus-5（78.5亿，opus-5.5 基准行本身是派生行），
+    #   复合倍率 = 档间比 301.7/157（同 5x×opus-5.5 行）× 标价混合比 1.340136；数值等价于 20x 派生值÷2
+    ("claude_max_5x", "claude-opus-5", "claude-sonnet-5.5",
+     CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI * RATIO_SONNET55, "low",
+     f"新增{CLAUDE_MAX_20X_YI / CLAUDE_WEEKLY_20X_TO_5X * CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI * RATIO_SONNET55:.3f}亿：基准 claude_max_5x×opus-5 采用值{CLAUDE_MAX_20X_YI / CLAUDE_WEEKLY_20X_TO_5X:g}亿×档间比{CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI:.6f}（同5x×opus-5.5行301.7÷157）×Opus5.5/Sonnet5.5标价混合比{RATIO_SONNET55:.6f}；等价于20x Sonnet5.5派生值{CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_SONNET55:.3f}÷{CLAUDE_WEEKLY_20X_TO_5X}（用户确认20x周池=5x的2倍，同Opus 5.5行301.7÷2）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json", False),
     # Astra Pro5x：沿用 Sol 档间 4× 关系由 20x 采用值派生；prolite 同框 2.31亿/周≈9.2亿/月量级接近（多代理高负载偏大，不直接采）
     ("chatgpt_pro_5x", "gpt-5.6-sol", "gpt-6-astra", CHATGPT_PRO20X_ASTRA_MONTHLY_YI / CHATGPT_PRO20X_SOL_MONTHLY_YI, "low", f"{CHATGPT_PRO20X_ASTRA_MONTHLY_YI/4:g}→{30.8*CHATGPT_PRO20X_ASTRA_MONTHLY_YI/CHATGPT_PRO20X_SOL_MONTHLY_YI:g}亿：{CHATGPT_PRO20X_ASTRA_MONTHLY_YI:g}×30.8/{CHATGPT_PRO20X_SOL_MONTHLY_YI:g}（沿用Sol 20x→5x档间比例，基准随Sol 20x加权值联动{CHATGPT_PRO20X_SOL_MONTHLY_YI/30.8:.2f}×）；round12 codex#45085 prolite同框2.31亿/周≈9.2亿/月量级接近但为多代理Astra High放大样本，不直接采；chatgpt-astra-sameframe-round13-2026-09-20.json", False),
     # Pro 档 Fable 5/5.1 套餐内不可用（走 usage credits，官方 high），不挂点
@@ -930,6 +947,7 @@ METERED = [
     ("anthropic_fable5_api", "Claude Fable 5 API", "claude-fable-5", 1.0, 10.0, 50.0, "platform.claude.com/docs/en/about-claude/pricing"),
     ("anthropic_fable51_api", "Claude Fable 5.1 API", "claude-fable-5.1", 0.25, 10.0, 50.0, "platform.claude.com/docs/en/about-claude/pricing；cache read $0.25=base input×0.025（其他模型0.1×），in/out 与 Fable 5 同价；claude-fable51-round1-2026-09-13.json"),
     ("anthropic_opus55_api", "Claude Opus 5.5 API", "claude-opus-5.5", 0.2, 4.0, 20.0, "platform.claude.com/docs/en/about-claude/pricing；cache read $0.20=base input×0.05（其他模型0.1×）、写 $5/5m $8/1h、Fast $8/$40；claude-opus55-round1-2026-09-23.json"),
+    ("anthropic_sonnet55_api", "Claude Sonnet 5.5 API", "claude-sonnet-5.5", 0.2, 2.0, 10.0, "platform.claude.com/docs/en/about-claude/pricing；2026-09-28发布保持Sonnet 5定价$2/$10（cache read 0.1×）、写 $2.5/5m $4/1h、Batch $1/$5；list-prices-claude-sonnet55-round1-2026-09-30.json"),
     ("openai_terra_api", "GPT-5.6 Terra API", "gpt-5.6-terra", 0.2, 2.0, 12.0, "developers.openai.com"),
     ("openai_luna_api", "GPT-5.6 Luna API", "gpt-5.6-luna", 0.02, 0.2, 1.2, "developers.openai.com"),
 ]

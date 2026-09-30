@@ -41,7 +41,9 @@ for c, (file, record) in zip(configs, expected):
     assert c["archive"] == file and c["raw_record"] == record
     sec = record.get("secondary", {})
     assert c["score_is_estimated"] == sec.get("intelligenceIndexIsEstimated", record.get("scoreIsEstimated"))
-    assert c["mean_cost_usd_per_task"] == sec.get("meanCostUsdPerTask", sec.get("cost"))
+    assert c["mean_cost_usd_per_task"] == sec.get(
+        "meanCostUsdPerTask", sec.get("cost", sec.get("costPerTaskUsd"))
+    )
     assert c["median_cost_usd_per_task"] == sec.get("medianCostPerTaskUsd")
     assert c["score_low"] == (record["score"] - sec["ciMinus"] if "ciMinus" in sec else None)
     assert c["score_high"] == (record["score"] + sec["ciPlus"] if "ciPlus" in sec else None)
@@ -94,11 +96,11 @@ assert all(c["mean_cost_usd_per_task"] is not None for c in open_design)
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.00966
 assert indexed["deepseek_v41_flash_peak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.01932
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["open_design_arena__score"] == 81.2
-# AA round4 (2026-09-22) superseded round3, so the round3-pinned intelligence
-# supplement retired and these two scores now come from round4 itself.
-assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 39.4562
+# AA round5 (2026-09-30) superseded round4, so the round3-pinned intelligence
+# supplement retired and these two scores now come from round5 itself.
+assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 39.456167472527
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 31.2
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score_is_self_reported"] is True
-assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 52.6737
+assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 52.673669395513
 assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__configuration_count"] == 5
 print(f"PASS: {len(configs)} configurations preserved, {len(links)} explicit mappings, exact modes, source CIs/costs and price inputs verified")

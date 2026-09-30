@@ -1,4 +1,4 @@
-import type { State, SiteData, Row, Point, Group, FilterKey } from "./types";
+import type { State, SiteData, Row, Point, Group, FilterKey, Mapping, Configuration } from "./types";
 import feeBandDefinitions from "../../config/allowance-fee-bands.json";
 import { channelColors, FALLBACK_COLOR } from "./palette";
 export const feeBands = feeBandDefinitions;
@@ -45,6 +45,14 @@ export const defaultState = (): State => ({
   query: "",
   sort: "price",
   direction: "asc",
+  xMin: "",
+  xMax: "",
+  yMin: "",
+  yMax: "",
+  feeMin: "",
+  feeMax: "",
+  xMode: "price",
+  axisSwap: false,
 });
 export const color = (p: Point) => colors[p.channel] || FALLBACK_COLOR;
 /** Channel colour at a given alpha, for search-hit rings. */
@@ -81,10 +89,10 @@ export function visiblePoints(data: SiteData, s: State): Point[] {
       matches(s.plans, p.plan) &&
       matches(s.billing, p.billing) &&
       matches(s.confidence, p.confidence) &&
-      (s.view !== "allowance" ||
-        (p.billing !== "metered" &&
-          p.monthly_yi !== null &&
-          matchesFeeBand(p.price_usd, s.feeBand))),
+      (s.view !== "allowance" && s.view !== "pareto" ||
+        (s.view === "allowance"
+          ? p.billing !== "metered" && p.monthly_yi !== null && matchesFeeBand(p.price_usd, s.feeBand)
+          : p.billing === "metered" || matchesFeeBand(p.price_usd, s.feeBand))),
   );
 }
 /**
@@ -119,6 +127,90 @@ export function barWidth(
     (Math.log10(axis.high) - Math.log10(axis.low));
   return 100 * Math.min(1, Math.max(0, f));
 }
+/** Blank or non-numeric bound = open end. */
+function rangeBound(raw: string, fallback: number): number {
+  const t = raw.trim();
+  if (t === "") return fallback;
+  const v = Number(t);
+  return Number.isFinite(v) ? v : fallback;
+}
+/** True when any custom X/Y bound is set on the capability chart. */
+export function customRangeActive(s: State): boolean {
+  return Boolean(
+    s.xMin.trim() || s.xMax.trim() || s.yMin.trim() || s.yMax.trim() ||
+    s.feeMin.trim() || s.feeMax.trim(),
+  );
+}
+/** Custom X (real price) / Y (score) / fee window; only the capability chart uses it. */
+function rangeRows(rows: Row[], s: State): Row[] {
+  if (s.view !== "pareto" || !customRangeActive(s)) return rows;
+  const xlo = rangeBound(s.xMin, -Infinity),
+    xhi = rangeBound(s.xMax, Infinity),
+    ylo = rangeBound(s.yMin, -Infinity),
+    yhi = rangeBound(s.yMax, Infinity),
+    flo = rangeBound(s.feeMin, -Infinity),
+    fhi = rangeBound(s.feeMax, Infinity);
+  return rows.filter(
+    (r) =>
+      r.point.real_usd_per_mtok >= xlo &&
+      r.point.real_usd_per_mtok <= xhi &&
+      (r.score === null || (r.score >= ylo && r.score <= yhi)) &&
+      (r.point.billing === "metered" ||
+        (r.point.price_usd !== null &&
+          r.point.price_usd >= flo &&
+          r.point.price_usd <= fhi)),
+  );
+}
+/** Configuration lookup per SiteData (mapping rows may elide fields shared with the config). */
+const configIndexCache = new WeakMap<SiteData, Map<string, Configuration>>();
+function configIndex(data: SiteData): Map<string, Configuration> {
+  let idx = configIndexCache.get(data);
+  if (!idx) {
+    idx = new Map(data.configurations.map((c) => [c.configuration_id, c]));
+    configIndexCache.set(data, idx);
+  }
+  return idx;
+}
+/** AA mean cost per intelligence task for a row's configuration. */
+function mappingCost(m: Mapping | null, data: SiteData): number | null {
+  if (!m) return null;
+  if (m.mean_cost_usd_per_task !== undefined && m.mean_cost_usd_per_task !== null)
+    return m.mean_cost_usd_per_task;
+  return configIndex(data).get(m.configuration_id)?.mean_cost_usd_per_task ?? null;
+}
+/**
+ * Subscription-adjusted cost per AA task: the AA task cost is API-priced, so the
+ * subscription's own price per MTok replaces the API list price
+ * (cost × real / list_blended).
+ */
+const MEDIAN_AA_TASK_MTOK = 3.51759;
+
+function costPerTaskX(p: Point, m: Mapping | null, data: SiteData): number | null {
+  const cost = mappingCost(m, data);
+  const cfg = m ? configIndex(data).get(m.configuration_id) : null;
+  const list = m?.benchmark_list_price ?? cfg?.benchmark_list_price ?? p.list_blended_usd_per_mtok;
+  if (typeof cost === "number" && list !== null && list > 0) {
+    return cost * (p.real_usd_per_mtok / list);
+  }
+  if (m && m.score !== null && p.real_usd_per_mtok > 0) {
+    return MEDIAN_AA_TASK_MTOK * p.real_usd_per_mtok;
+  }
+  return null;
+}
+function mappingTime(m: Mapping | null, data: SiteData): number | null {
+  if (!m) return null;
+  if (typeof m.response_time_seconds === "number") return m.response_time_seconds;
+  const cfg = configIndex(data).get(m.configuration_id);
+  if (typeof cfg?.response_time_seconds === "number") return cfg.response_time_seconds;
+  return null;
+}
+
+/** Capability-chart X value for a row under the current xMode. */
+export function rowX(r: Row, s: State, data: SiteData): number | null {
+  if (s.xMode === "cost") return costPerTaskX(r.point, r.mapping, data);
+  if (s.xMode === "time") return mappingTime(r.mapping, data);
+  return r.point.real_usd_per_mtok;
+}
 export function rowsFor(data: SiteData, s: State): Row[] {
   const byPoint = new Map<string, typeof data.mappings>();
   for (const m of data.mappings)
@@ -129,26 +221,45 @@ export function rowsFor(data: SiteData, s: State): Row[] {
       matches(s.modes, m.service_mode)
     )
       byPoint.set(m.point_id, [...(byPoint.get(m.point_id) || []), m]);
-  return visiblePoints(data, s).flatMap((p) => {
+  const rows = visiblePoints(data, s).flatMap((p) => {
     let mappings = byPoint.get(p.id) || [];
     if (s.configuration === "summary" && mappings.length)
       mappings = [mappings.reduce((a, b) => (a.score >= b.score ? a : b))];
     // The full table shares the chart's per-configuration score rows.
-    if (s.view !== "pareto" && s.view !== "table") {
-      const m = mappings.length
-        ? mappings.reduce((a, b) => (a.score >= b.score ? a : b))
-        : null;
-      return [{ key: p.id, point: p, mapping: m, score: m?.score ?? null }];
-    }
-    return mappings.length
-      ? mappings.map((m) => ({
-          key: `${p.id}|${m.configuration_id}`,
-          point: p,
-          mapping: m,
-          score: m.score,
-        }))
-      : [{ key: p.id, point: p, mapping: null, score: null }];
+    const built =
+      s.view !== "pareto" && s.view !== "table"
+        ? [
+            (() => {
+              const m = mappings.length
+                ? mappings.reduce((a, b) => (a.score >= b.score ? a : b))
+                : null;
+              return { key: p.id, point: p, mapping: m, score: m?.score ?? null };
+            })(),
+          ]
+        : mappings.length
+          ? mappings.map((m) => ({
+              key: `${p.id}|${m.configuration_id}`,
+              point: p,
+              mapping: m,
+              score: m.score,
+            }))
+          : [{ key: p.id, point: p, mapping: null, score: null }];
+    return built.map((r) => ({
+      ...r,
+      x:
+        s.xMode === "cost"
+          ? costPerTaskX(p, r.mapping, data)
+          : s.xMode === "time"
+            ? mappingTime(r.mapping, data)
+            : p.real_usd_per_mtok,
+    }));
   });
+  // Cost or time mode plots only rows whose X value is defined.
+  const plotRows =
+    s.view === "pareto" && (s.xMode === "cost" || s.xMode === "time")
+      ? rows.filter((r) => r.x !== null)
+      : rows;
+  return rangeRows(plotRows, s);
 }
 export function tableRows(rows: Row[], s: State): Row[] {
   const q = s.query.toLocaleLowerCase().trim();
@@ -194,29 +305,36 @@ export function zeroSlot(prices: number[]): number {
   const priced = prices.filter((v) => v > 0);
   return (priced.length ? Math.min(...priced) : 0.001) / ZERO_SLOT_RATIO;
 }
-export function groups(rows: Row[]): Group[] {
+export function groups(rows: Row[], s?: State): Group[] {
   const map = new Map<string, Group>();
-  for (const r of rows)
+  const costMode = s?.xMode === "cost";
+  for (const r of rows) {
+    // Rows built before xMode existed (tests, legacy fixtures) fall back to price.
+    const x = r.x === undefined ? r.point.real_usd_per_mtok : r.x;
     if (
       r.score !== null &&
       Number.isFinite(r.score) &&
-      (r.point.real_usd_per_mtok > 0 || isUnmetered(r.point))
+      x !== null &&
+      (x > 0 || (!costMode && isUnmetered(r.point)))
     ) {
-      const key = `${r.point.real_usd_per_mtok}|${r.score}`;
+      const key = `${x}|${r.score}`;
       const g = map.get(key);
       if (g) g.rows.push(r);
       else
         map.set(key, {
           key,
-          price: r.point.real_usd_per_mtok,
-          plotPrice: r.point.real_usd_per_mtok,
+          price: x,
+          plotPrice: x,
           score: r.score,
           rows: [r],
         });
     }
+  }
   const out = [...map.values()];
-  const slot = zeroSlot(out.map((g) => g.price));
-  for (const g of out) if (g.price === 0) g.plotPrice = slot;
+  if (!costMode) {
+    const slot = zeroSlot(out.map((g) => g.price));
+    for (const g of out) if (g.price === 0) g.plotPrice = slot;
+  }
   return out;
 }
 export function pareto(gs: Group[]): Group[] {
@@ -509,6 +627,15 @@ export function serialize(s: State): string {
   if (s.configuration !== d.configuration) p.set("config", s.configuration);
   if (s.labels !== d.labels) p.set("labels", s.labels);
   if (s.feeBand !== d.feeBand) p.set("fee", s.feeBand);
+  if (s.xMode !== d.xMode) p.set("xmode", s.xMode);
+  if (s.axisSwap) p.set("swap", "1");
+  if (s.xMin || s.xMax || s.yMin || s.yMax || s.feeMin || s.feeMax)
+    p.set(
+      "range",
+      [s.xMin, s.xMax, s.yMin, s.yMax, s.feeMin, s.feeMax]
+        .map((v) => v.trim())
+        .join("~"),
+    );
   if (s.query) p.set("q", s.query);
   if (s.find) p.set("find", s.find);
   if (s.lock) p.set("lock", serializeLock(s.lock));
@@ -543,6 +670,7 @@ export function restore(
     config: ["configuration", ["all", "summary"]],
     labels: ["labels", ["frontier", "all", "none"]],
     fee: ["feeBand", ["all", ...feeBands.map((b) => b.id)]],
+    xmode: ["xMode", ["price", "cost", "time"]],
     sort: ["sort", ["price", "model", "plan", "score", "allowance", "fee"]],
     dir: ["direction", ["asc", "desc"]],
   };
@@ -562,6 +690,24 @@ export function restore(
     if (frontier === "0") state.frontier = false;
     else if (frontier === "1") state.frontier = true;
     else warning = true;
+  }
+  const swap = params.get("swap");
+  if (swap === "1" || swap === "true") state.axisSwap = true;
+  const range = params.get("range");
+  if (range !== null) {
+    const parts = range.split("~");
+    const clean = (v: string | undefined) => {
+      const t = (v ?? "").trim();
+      return t === "" || Number.isFinite(Number(t)) ? t : "";
+    };
+    Object.assign(state, {
+      xMin: clean(parts[0]),
+      xMax: clean(parts[1]),
+      yMin: clean(parts[2]),
+      yMax: clean(parts[3]),
+      feeMin: clean(parts[4]),
+      feeMax: clean(parts[5]),
+    });
   }
   const query = params.get("q");
   if (query !== null) state.query = query;

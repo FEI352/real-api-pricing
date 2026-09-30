@@ -130,19 +130,72 @@ export function boxToView(
   };
 }
 
-/** "$0.0005", "$0.01", "$2": plain decimals, never exponent notation. */
+/**
+ * X-axis tick label for both modes: plain dollar decimals, never exponent
+ * notation — "$0.0005", "$0.02", "$0.1", "$1", "$5". Price ticks read USD per
+ * million tokens, cost ticks USD per task; the dollar formatting is shared so
+ * switching mode never changes how a number reads.
+ */
 export function formatTickPrice(value: number): string {
   if (value >= 1) return "$" + Number(value.toPrecision(3)).toLocaleString("en-US");
   const digits = Math.min(12, Math.max(0, -Math.floor(Math.log10(value)) + 2));
   return "$" + value.toFixed(digits).replace(/\.?0+$/, "");
 }
 
+export function formatTickTime(value: number): string {
+  if (value < 1) return `${value.toFixed(1)}s`;
+  if (value < 60) return `${Math.round(value)}s`;
+  const m = Math.floor(value / 60);
+  const s = Math.round(value % 60);
+  return s > 0 ? `${m}m${s}s` : `${m}m`;
+}
+
 const MANTISSAS = [[1], [1, 3], [1, 2, 5], [1, 2, 3, 5], [1, 2, 3, 4, 5, 6, 7, 8, 9]];
+
+export function timeTicks(
+  v: View,
+  b: Box,
+  minGap = 62,
+): Tick[] {
+  const lo = Math.min(v.xl, v.xr);
+  const hi = Math.max(v.xl, v.xr);
+  const perDecade = b.width / Math.max(hi - lo, 1e-9);
+  const build = (m: number[], step = 1) => {
+    const out: Tick[] = [];
+    for (let d = Math.floor(lo) - 1; d <= Math.ceil(hi); d++) {
+      if (m.length === 1 && d % step !== 0) continue;
+      for (const k of m) {
+        const value = k * 10 ** d;
+        const lv = Math.log10(value);
+        if (lv < lo || lv > hi) continue;
+        out.push({
+          pos: xPixel(v, b, value),
+          label: formatTickTime(value),
+          major: k === 1,
+        });
+      }
+    }
+    return out.sort((a, c) => a.pos - c.pos);
+  };
+  let best = build([1]);
+  for (const m of MANTISSAS) {
+    const tight = Math.min(
+      ...m.map((k, i) => Math.log10((m[i + 1] ?? 10) / k)),
+    );
+    if (tight * perDecade >= minGap) best = build(m);
+  }
+  if (perDecade < minGap) {
+    const step = Math.ceil(minGap / perDecade);
+    best = build([1], step);
+  }
+  return best;
+}
 
 /**
  * Log ticks for the visible window: the densest 1/2/5-style set that keeps
  * about `minGap` pixels between labels. When even whole decades are too
- * dense, every second (third…) decade is kept.
+ * dense, every second (third…) decade is kept. Used for both X modes; in price
+ * mode `cheapestShown` hides ticks beyond the "$0" slot fence.
  */
 export function priceTicks(
   v: View,

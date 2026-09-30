@@ -35,6 +35,7 @@ import {
   priceExact,
   restore,
   rowsFor,
+  rowX,
   barAxis,
   barWidth,
   type Lock,
@@ -311,6 +312,7 @@ const row = (id: string, price: number, score: number | null): Row => ({
   point: point(id, price),
   score,
   mapping: null,
+  x: price,
 });
 test("Strict dominance retains both identical plans and drops equal-price lower scores/equal-score dearer plans", () => {
   const rows = [
@@ -981,4 +983,49 @@ test("Ranking bars sit on a fixed decade-aligned log axis, independent of filter
   assert.equal(barWidth(0, axis), 0);
   // Equal ratios give equal gaps: 10x apart is always one decade (20% here).
   assert.ok(Math.abs(barWidth(51.63, axis) - barWidth(5.163, axis) - 20) < 1e-9);
+});
+
+test("xMode serializes as xmode=cost, restores it, and falls back to price for junk", () => {
+  const hash = serialize({ ...defaultState(), xMode: "cost" as const });
+  assert.match(hash, /xmode=cost/);
+  assert.equal(restore(hash, data).state.xMode, "cost");
+  assert.equal(restore("#xmode=junk", data).state.xMode, "price");
+});
+
+test("rowX in cost mode scales the AA task cost by the subscription discount ratio", () => {
+  const p = { ...data.points[0], real_usd_per_mtok: 0.001, list_blended_usd_per_mtok: 0.01 };
+  const m = { ...data.mappings[0], mean_cost_usd_per_task: 2, configuration_id: "test-cfg", benchmark_list_price: 0.01 };
+  const r: Row = { key: "k", point: p, mapping: m, score: 10, x: null };
+  assert.equal(rowX(r, defaultState(), data), 0.001);
+  assert.ok(Math.abs(rowX(r, { ...defaultState(), xMode: "cost" }, data)! - 0.2) < 1e-12);
+});
+
+test("cost mode falls back to median task workload when cost or list price is missing, and returns null when unscored", () => {
+  const base = { ...data.points[0], real_usd_per_mtok: 0.001 };
+  const m = { ...data.mappings[0], mean_cost_usd_per_task: 2, configuration_id: "nonexistent", benchmark_list_price: null };
+  const noList: Row = {
+    key: "a",
+    point: { ...base, list_blended_usd_per_mtok: null },
+    mapping: m,
+    score: 10,
+    x: null,
+  };
+  const noCost: Row = {
+    key: "b",
+    point: { ...base, list_blended_usd_per_mtok: 0.01 },
+    mapping: { ...m, mean_cost_usd_per_task: null, configuration_id: "nonexistent", benchmark_list_price: null },
+    score: 10,
+    x: null,
+  };
+  const unscored: Row = {
+    key: "c",
+    point: base,
+    mapping: null,
+    score: null,
+    x: null,
+  };
+  const s = { ...defaultState(), xMode: "cost" as const };
+  assert.ok(Math.abs(rowX(noList, s, data)! - 0.00351759) < 1e-6);
+  assert.ok(Math.abs(rowX(noCost, s, data)! - 0.00351759) < 1e-6);
+  assert.equal(rowX(unscored, s, data), null);
 });

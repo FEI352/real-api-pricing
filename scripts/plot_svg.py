@@ -176,6 +176,11 @@ def label_position(p, board, x, y, tier="main"):
     if model == "mimo-v2.5":
         if board == "aa_intelligence_index":
             return x + 22, y - 25, "start"
+    if model == "muse-spark-1.3-contributor":
+        # 该点是最右端的新前沿端点（$0.00091），折线从其左上方穿过；
+        # 标签上移让出折线走廊，同时避开 Opus 5.5 与 Step 3.5 Flash 的标签。
+        if board == "aa_intelligence_index":
+            return x + 20, y - 150, "end"
     if model == "step-5-preview":
         if board == "aa_intelligence_index":
             return x + 45, y - 140, "start"

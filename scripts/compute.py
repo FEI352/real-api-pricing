@@ -9,7 +9,8 @@ from __future__ import annotations
 import csv
 import json
 from pathlib import Path
-from benchmark_configs import configuration, candidates, score_fields
+from benchmark_configs import configuration, candidates, score_fields, alias_for
+from build_adopted import OPENCODE_GO_MODELS, COMMAND_CODE_GOAT_MODELS
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA, RESEARCH, OUT = ROOT / "data", ROOT / "data" / "research", ROOT / "derived"
@@ -38,6 +39,7 @@ SCORE_FILES = (
     "scores-new-models-round1-2026-09-23.json",
     "scores-gpt6sol-round1-2026-09-24.json",
     "scores-gpt6luna-round1-2026-09-26.json",
+    "scores-aa-round5-2026-09-30.json",
 )
 LIST_PRICE_FILES = (
     "list-prices-2026-09.json",
@@ -46,6 +48,7 @@ LIST_PRICE_FILES = (
     "list-prices-stepfun-round1-2026-09-10.json",
     "list-prices-stepfun-round2-2026-09-21.json",
     "list-prices-mimo-v26-grok47-round1-2026-09-22.json",
+    "list-prices-claude-sonnet55-round1-2026-09-30.json",
 )
 
 
@@ -110,7 +113,7 @@ def current_score_records(archives):
             )]
 
 
-def load_list_prices() -> dict[str, dict]:
+def load_list_prices(scores: list[dict] | None = None) -> dict[str, dict]:
     out = {}
     for name in LIST_PRICE_FILES:
         for m in json.loads((RESEARCH / name).read_text(encoding="utf-8"))["models"]:
@@ -120,11 +123,40 @@ def load_list_prices() -> dict[str, dict]:
                 cached=cached, input=m["input"], output=m["output"], currency=m["currency"],
                 blended_usd=(STANDARD_MIX["cache"] * cached + STANDARD_MIX["input"] * m["input"] + STANDARD_MIX["output"] * m["output"]) / rate,
             )
+    if scores:
+        for s in scores:
+            if s.get("board") == "aa_intelligence_index":
+                m = s["model"]
+                raw = s.get("raw_record", {})
+                sec = raw.get("secondary", {})
+                inp = sec.get("price1mInputTokens") or raw.get("price1mInputTokens")
+                out_p = sec.get("price1mOutputTokens") or raw.get("price1mOutputTokens")
+                cache = sec.get("cacheHitPrice") or raw.get("cacheHitPrice")
+                if inp is not None and out_p is not None and m not in out:
+                    cached = cache if cache is not None else inp * 0.1
+                    blended = STANDARD_MIX["cache"] * cached + STANDARD_MIX["input"] * inp + STANDARD_MIX["output"] * out_p
+                    out[m] = dict(cached=cached, input=inp, output=out_p, currency="USD", blended_usd=blended)
+
+    for m, usage, c_read, inp, out_p, *rest in OPENCODE_GO_MODELS:
+        if m not in out:
+            blended = STANDARD_MIX["cache"] * c_read + STANDARD_MIX["input"] * inp + STANDARD_MIX["output"] * out_p
+            out[m] = dict(cached=c_read, input=inp, output=out_p, currency="USD", blended_usd=blended)
+
+    for m, allowance, c_read, inp, out_p, *rest in COMMAND_CODE_GOAT_MODELS:
+        if m not in out:
+            blended = STANDARD_MIX["cache"] * c_read + STANDARD_MIX["input"] * inp + STANDARD_MIX["output"] * out_p
+            out[m] = dict(cached=c_read, input=inp, output=out_p, currency="USD", blended_usd=blended)
+
+    for alias, target in [("muse-spark-1.3-contributor", "muse-spark-1.3"), ("muse-spark-1.2-contributor", "muse-spark-1.2")]:
+        if target in out and alias not in out:
+            out[alias] = out[target]
+
     return out
 
 
 def main() -> None:
-    scores, list_prices = load_scores(), load_list_prices()
+    scores = load_scores()
+    list_prices = load_list_prices(scores)
     boards_meta = {b["boardId"]: b for archive in score_archives() if not archive.get("supplement") for b in archive["boards"]}
     # supplement 档案可以声明新榜（如 aa_terminal_bench_4）的元数据；已存在榜仍以快照档为准。
     for archive in score_archives():
@@ -156,15 +188,17 @@ def main() -> None:
                 unmetered=r.get("unmetered") == "true", promo_until=r.get("promo_until") or None,
             )
             for b in BOARDS:
+                # 渠道别名按榜启用（见 benchmark_configs.ALIAS_BOARDS）；未启用榜 alias 为 None。
+                alias = alias_for(model, b)
                 options = candidates(r, scores, b)
                 # Explicit optional summary projection; full configuration rows are also published.
                 selected = max(options, key=lambda s: s["score"], default=None)
                 p[f"{b}__selection"] = "highest_archived_reference" if selected else None
                 p[f"{b}__configuration_count"] = len(options)
-                for field, value in score_fields(selected).items():
+                for field, value in score_fields(selected, alias).items():
                     p[f"{b}__{field}"] = value
                 for option in options:
-                    configuration_points.append(dict(point_id=p["id"], board=b, **score_fields(option)))
+                    configuration_points.append(dict(point_id=p["id"], board=b, **score_fields(option, alias)))
             points.append(p)
 
     OUT.mkdir(exist_ok=True)
