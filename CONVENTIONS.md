@@ -15,11 +15,11 @@
 3. **每个点 = (订阅套餐, 实际服务模型)**，Y 轴按实际服务模型查分。
 4. **负载折算**：凡是美元额度、credits 额度、三段价、模型间价格比换算成 token 的，统一按 `conventions.json` 的负载档折算，这是比较基准，不代表任何平台的实测负载。
    - **标准档** `standardTokenMix`：默认。
-   - **低缓存档** `lowCacheTokenMix`：只用于经用户裁定、实测确实打不到标准缓存的渠道（当前 Step 全系）。缓存固定，输出占比跟随标准档，余量归输入。
+   - **低缓存档** `lowCacheTokenMix`：只用于经用户裁定、实测确实打不到标准缓存的渠道（当前 Step 全系、Google）。缓存固定，输出占比跟随标准档，余量归输入。
    - **Anthropic 档** `anthropicTokenMix`：Anthropic 单独收缓存写入费、未命中输入几乎全部走缓存写，故标准档的普通输入份额按 5 分钟缓存写入价计；用于 Anthropic 按量 API 行，以及经用户裁定折算的 Anthropic 面板实测。
    - 不为单个渠道或单个用户样本另设专用负载档。某家实测缓存偏低时，先区分是渠道本身的属性还是客户端 harness 的问题。
-   - 直接给出 total token 的面板反推、本地日志、受控打满和官方绝对 token 表，**不再重复套负载**。
-     - 例外（用户 2026-09-24 裁定）：Devin Max 面板两行按标价折 list-worth 后换算——Opus 5.5 用 Anthropic 档，GPT-6 Astra 用标准档；同口径已扩展到 Claude Pro × Opus 5.5（2026-09-25）与 Droid Max × Opus 5.5（2026-09-29）。
+   - **带 token 分项的实测样本**（面板反推、本地日志、ccusage）：按该模型标价把段内 token 折成 list-worth，÷ 段占额度 → 周 worth × 4 周，再 ÷ 该渠道负载档的混合价得到月 token（2026-09-30 用户裁定统一；此前只有 Devin Max、Claude Pro × Opus 5.5、Droid Max 这样做）。Anthropic 样本的缓存写按实际档位（1h / 5m）计价。
+   - **缺分项的样本**（只有合计、只有部分分项、多源加权）和**官方绝对 token 表**：保留 raw total，`workload` 标 `measured`，网页和 README 注明「未折算」。有了分项再补算。
    - 负载比例的修订依据全库带分项的样本审计（见 `standard-token-mix-round*.json`）。修订后要统一重算所有受影响的点，不单独调整某一家。
 5. **缓存写入**不单列：标准档里它算作普通输入；Anthropic 档里普通输入份额即按缓存写入价计。
 6. **官方倍率各家含义不同，不能直接相乘**：Claude 是 5h 窗口倍率，Max 20x 的周池只有 5x 的约 2 倍；Google 是 token worth；Cursor 是 Agent limits。
@@ -47,7 +47,7 @@
 - **Kimi**：月池 = 周池 × 5，不套通用的 4 周。¥49 档无 K3 调用权限，只排除该档的 K3 点；K2.7 Standard 所有会员可用。
 - **GLM Coding Plan**：按官方周积分和三段积分系数套标准负载。忙时 1×、中间值 1.5×、闲时 2× 是三个独立情景点，不互相替代。
 - **Step Plan**：按阶跃国内站官方月度 Credit 池（1M Credit = ¥1）经人民币三段价折算，用低缓存档 `lowCacheTokenMix`；国际站美元牌价不同，不采用；旧 Coding Plan 的 Prompt/5h 口径仅留作证据。
-- **Google**：Google AI Pro × Gemini 3.8 Flash 按本地实测 raw total 采用，不套标准负载（实测缓存率打不到标准档）；Ultra 5x/20x 按官方 worth 倍率派生，置信度 low。见 DECISIONS 2026-09-21。
+- **Google**：Antigravity 额度按 API worth 合池扣减（官方机制，段内已实证）。实测样本按 Gemini 标价折 worth 后用低缓存档换算（实测缓存 82~84%，打不到标准档；2026-09-30 用户裁定，取代 2026-09-21 的 raw 口径）；Ultra 5x/20x 按官方 worth 倍率派生，置信度 low。
 - **汇率**：取 `conventions.json` 的 `usdPerCny`（历史字段名，实际方向为 CNY/USD），来源日期在 `exchangeRate`。不改历史 research 文件里的旧汇率。
 - **促销**：促销口径必须标截止日，到期后复核。订阅内明确不计额度的模型，真实单价记为 ≈$0，用专用刻度位表示。
 - **数据快照日期**：`data/conventions.json` 的 `updatedAt` 是网页与 README 显示的快照日期（经 compute.py 写入 `derived/points.json` 的 generatedAt）；改采用值或口径时同步改为当天；CI 会在 adopted.csv 变化而 updatedAt 未推进过 base 分支时报错；base 已是当天时，updatedAt 与 base 相同且为今天（UTC 或 UTC+8 任一）也算通过（`scripts/checks/verify_snapshot_date.py`）。

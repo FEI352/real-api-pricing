@@ -1787,8 +1787,8 @@ function Method({
           </h2>
           <p>
             {t(
-              "Dollar/credit pools priced at public rates and metered APIs are converted using the same three-part workload; for Anthropic models the input share is priced at the 5-minute cache-write rate. Direct total-token measurements are not normalized again, except ruled panel segments converted via list-worth (Devin Max Opus 5.5 / GPT-6 Astra). Vendor dashboard dollars are calibrated from measured usage, not treated as public-price dollars.",
-              "按公开标价记账的美元/credits 池与按量 API，使用统一三段负载折算（Anthropic 档的普通输入份额按 5 分钟缓存写价计）。直接 total-token 实测不重复归一，经裁定折算的面板段除外（Devin Max Opus 5.5 / GPT-6 Astra 按 list-worth 换算）。厂商面板额度美元使用实测标定，不当成公开标价美元。",
+              "Dollar/credit pools priced at public rates and metered APIs are converted using the same three-part workload; for Anthropic models the input share is priced at the 5-minute cache-write rate. Measured samples that include a token breakdown are converted to list-worth at public prices and then to the channel's workload (low-cache for Google and StepFun, Anthropic for Claude); samples without a breakdown and official token tables keep raw totals and are flagged as not workload-normalized. Vendor dashboard dollars are calibrated from measured usage, not treated as public-price dollars.",
+              "按公开标价记账的美元/credits 池与按量 API，使用统一三段负载折算（Anthropic 档的普通输入份额按 5 分钟缓存写价计）。带 token 分项的实测样本先按公开标价折成美元价值，再按渠道负载档换算（Google 与 StepFun 用低缓存档、Claude 用 Anthropic 档）；缺分项的实测样本与官方绝对 token 表直接采用 raw 合计，网页标注「未折算」。厂商面板额度美元使用实测标定，不当成公开标价美元。",
             )}
           </p>
           <div className="mix-values">
