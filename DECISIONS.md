@@ -5,9 +5,9 @@
 
 ## 2026-09-30
 
+- **ChatGPT Plus × GPT-6.1 Sol 本机实测（新增模型点）**：7.75 亿/月 high（workload=measured）。用户本机 Codex 周窗剩余 81%→60%（21pp）整段 40,672,476 tok（input 2,035,108 / cache_read 38,430,592 / cache_write 0 / output 206,776 含 reasoning 54,508，hit 94.97%）全为 gpt-6.1-sol；整段由两段在 65% 边界拼合（81%→65% 段 30,109,568 tok/16pp + 65%→60% 续段 10,562,908 tok/5pp），续段分量与整段逐项吻合可互验；两截图标题行起始读数均写 82%（round1 17pp、round2 整段 22pp），经用户更正为 81% → 真实 Δpp=21。直接采用 total 不套负载（沿 Luna round6 先例）；面板整数读数 Δpp∈[20,22] 对应 7.39~8.13 亿。分段密度：续段 2.11M tok/pp vs 首段 1.88M/pp（整段 1.94M/pp）。反推周池 193,678,457 ≈ gpt-6-sol round1 反推周池 261,949,583 的 0.74×——同面板口径下单账号单窗不区分周池变小还是每 token 占池更快，记为观察不解释。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。暂无榜分：不入任何 scores 档，点进额度总览、不上帕累托图，有分后补 supplement。证据：`chatgpt-gpt61sol-plus-round1/round2-2026-09-30.json`。
 - **Claude Pro × Opus 5 改用 issue #53（用户裁定，high）**：18.78→27.62 亿。#53 两个 Pro 账号 9/14~9/22（全部在永久 +25% 之后）1,022.02M raw = 周 +148 个百分点，两个整周 24.60/28.96 亿；沿用 raw total 口径。旧 @shownotover 单读数 7%（每 1% $3.67，比 #53 的 $4.96 低 35%，接近 +25% 调整幅度）疑为 9/14 前口径，不合并（合并为 27.22 不采）；Anthropic 档 worth 口径 25.89 不采。派生随动：Pro × Sonnet 5 46.95→69.05（×2.5）、Pro × Opus 4.8 18.78→27.62。张力：Max 20x ÷ Pro 从 8.35× 变为 5.68×，与 Opus 5.5 的约 9.9× 不一致，待 Opus 5.5/5 池权重与 #65 一并裁定。证据：`community-issues-round1-2026-09-29.json`。
 - **Claude Pro × Opus 5.5 ccusage 两周样本仅作记录（PR #77 关闭）**：X @kanzakichiya 478.15M raw＝周 22%+47%（口述）。缓存写全为 1h，按实际写价 $208.25 → $3.018/pp → 28.81 亿，与 #52（$3.210/pp）、Reddit 段（$3.036/pp）差 <7%，作 30.54 的互证。不入权：周% 为口述整数、ccusage 自然周与重置周不对齐（分周每 1% 美元差 1.7 倍）；三源合并 30.09、写按 5m 24.52 均不采。证据：`claude-adoption-round11-2026-09-30.json`。
-
 ## 2026-09-29
 
 - **社区 issue 实测合并（#52 #54 #56，用户裁定升/保持 high）**：Claude Pro × Opus 5.5 28.99→30.54 亿（low→high；#52 两账号 +183 个百分点 worth $587.52 与 Reddit 段 $40.48/13.333% 按百分点合并，Anthropic 档 $0.419）；Google AI Pro × Gemini 3.8 Flash 22.41→20.70 亿（#54 三周 853.43M/+165.77 与用户样本 55.343M/+9.88 合并，raw 口径，Ultra 5×/20× 随动）；SuperGrok × Grok 4.6 5.09→4.78 亿（#56 两平常周 223.1M/+193 与 V2EX 整周 127.27M 合并）。证据：`community-issues-round1-2026-09-29.json`。
