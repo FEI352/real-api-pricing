@@ -42,14 +42,14 @@ const slugs: Record<string, string> = {
 /**
  * Marks drawn in near-black ink. On a dark surface they would vanish, so the
  * dark variant swaps that ink for a light one (and any white knock-out for the
- * surface). Tile logos (Zhipu, StepFun) keep their own background.
- * Brands that ship an official dark variant use `<slug>-dark.svg` instead.
+ * surface). Tile logos (Zhipu, StepFun, Cursor, Factory) keep their own
+ * background.
+ * Brands that ship an official dark variant use `<slug>-dark.svg` or
+ * `<slug>-dark.webp` instead.
  */
 const MONO = new Set([
   "openai",
   "anthropic",
-  "cursor",
-  "factory",
   "ollama",
   "meituan",
 ]);
@@ -72,19 +72,24 @@ export function providerLogoUrl(
   const slug = slugOf(provider);
   const key = `${slug}|${tone}`;
   if (cache.has(key)) return cache.get(key);
-  let url = rasters[`./assets/provider-logos/${slug}.webp`];
-  const dark = tone === "dark" ? svgSources[`./assets/provider-logos/${slug}-dark.svg`] : undefined;
-  const raw = dark ?? svgSources[`./assets/provider-logos/${slug}.svg`];
-  if (!url && raw) {
-    const text =
-      tone === "dark" && !dark && MONO.has(slug)
+  const base = `./assets/provider-logos/${slug}`;
+  const toUrl = (raw: string, dark: boolean) =>
+    svgUrl(
+      dark
         ? raw
             .replace(DARK_INK, "#ECEEF1")
             .replace(/currentColor/g, "#ECEEF1")
             .replace(/fill="#fff(?:fff)?"/gi, 'fill="#171A1E"')
-        : raw.replace(/currentColor/g, "#111111");
-    url = svgUrl(text);
+        : raw.replace(/currentColor/g, "#111111"),
+    );
+  let url: string | undefined;
+  if (tone === "dark") {
+    const darkSvg = svgSources[`${base}-dark.svg`];
+    url = rasters[`${base}-dark.webp`] ?? (darkSvg && toUrl(darkSvg, false));
   }
+  url ??= rasters[`${base}.webp`];
+  const svg = svgSources[`${base}.svg`];
+  url ??= svg && toUrl(svg, tone === "dark" && MONO.has(slug));
   cache.set(key, url);
   return url;
 }
