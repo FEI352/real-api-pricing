@@ -197,6 +197,10 @@ def label_position(p, board, x, y, tier="main"):
             return x + 23, y - 95, "start"
         if board == "open_design_arena":
             return x - 24, y + 45, "end"
+        if board == "arena_agent_mode":
+            return x - 52, y + 20, "end"
+        if board == "arena_code":
+            return x - 23, y + 30, "end"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
