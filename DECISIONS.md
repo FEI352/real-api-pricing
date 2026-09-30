@@ -5,7 +5,7 @@
 
 ## 2026-09-30
 
-- **ChatGPT Plus × GPT-6.1 Sol 本机实测（新增模型点）**：7.53 亿/月 high（workload=measured）。用户本机 Codex 周窗剩余 81%→65%（16pp），段内 30,109,568 tok（input 1,624,231 / cache_read 28,331,904 / cache_write 0 / output 153,433 含 reasoning 36,519，hit 94.58%）全为 gpt-6.1-sol；截图标题行 82%/17pp 起始读数经用户更正为 81%。直接采用 total 不套负载（沿 Luna round6 先例）；面板整数读数 Δpp∈[15,17] 对应 7.08~8.03 亿。反推周池 188,184,800 ≈ gpt-6-sol round1 反推周池 261,949,583 的 0.72×——同面板口径下单账号单窗不区分周池变小还是每 token 占池更快，记为观察不解释。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。暂无榜分：不入任何 scores 档，点进额度总览、不上帕累托图，有分后补 supplement。证据：`chatgpt-gpt61sol-plus-round1-2026-09-30.json`。
+- **ChatGPT Plus × GPT-6.1 Sol 本机实测（新增模型点）**：7.75 亿/月 high（workload=measured）。用户本机 Codex 周窗剩余 81%→60%（21pp）整段 40,672,476 tok（input 2,035,108 / cache_read 38,430,592 / cache_write 0 / output 206,776 含 reasoning 54,508，hit 94.97%）全为 gpt-6.1-sol；整段由两段在 65% 边界拼合（81%→65% 段 30,109,568 tok/16pp + 65%→60% 续段 10,562,908 tok/5pp），续段分量与整段逐项吻合可互验；两截图标题行起始读数均写 82%（round1 17pp、round2 整段 22pp），经用户更正为 81% → 真实 Δpp=21。直接采用 total 不套负载（沿 Luna round6 先例）；面板整数读数 Δpp∈[20,22] 对应 7.39~8.13 亿。分段密度：续段 2.11M tok/pp vs 首段 1.88M/pp（整段 1.94M/pp）。反推周池 193,678,457 ≈ gpt-6-sol round1 反推周池 261,949,583 的 0.74×——同面板口径下单账号单窗不区分周池变小还是每 token 占池更快，记为观察不解释。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。暂无榜分：不入任何 scores 档，点进额度总览、不上帕累托图，有分后补 supplement。证据：`chatgpt-gpt61sol-plus-round1/round2-2026-09-30.json`。
 
 ## 2026-09-29
 
