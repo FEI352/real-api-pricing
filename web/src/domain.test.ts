@@ -30,6 +30,7 @@ import {
   manufacturer,
   frontierPath,
   groups,
+  options,
   pareto,
   price,
   priceExact,
@@ -38,6 +39,7 @@ import {
   rowX,
   barAxis,
   barWidth,
+  scorePresence,
   type Lock,
   SEARCH_MARK_CAP,
   color,
@@ -1028,4 +1030,26 @@ test("cost mode falls back to median task workload when cost or list price is mi
   assert.ok(Math.abs(rowX(noList, s, data)! - 0.00351759) < 1e-6);
   assert.ok(Math.abs(rowX(noCost, s, data)! - 0.00351759) < 1e-6);
   assert.equal(rowX(unscored, s, data), null);
+});
+
+test("scorePresence labels rows and scoreState filter narrows rowsFor", () => {
+  assert.equal(scorePresence({ score: null }), "unscored");
+  assert.equal(scorePresence({ score: 10 }), "scored");
+  assert.deepEqual(options(data).scoreState, ["scored", "unscored"]);
+  const all = rowsFor(data, defaultState());
+  assert.ok(all.some((r) => r.score === null));
+  assert.ok(all.some((r) => r.score !== null));
+  const scored = rowsFor(data, { ...defaultState(), scoreState: ["scored"] });
+  assert.ok(scored.length && scored.length < all.length);
+  assert.ok(scored.every((r) => r.score !== null));
+  const unscored = rowsFor(data, { ...defaultState(), scoreState: ["unscored"] });
+  assert.ok(unscored.length && unscored.length < all.length);
+  assert.ok(unscored.every((r) => r.score === null));
+  assert.equal(
+    rowsFor(data, { ...defaultState(), scoreState: ["scored", "unscored"] }).length,
+    all.length,
+  );
+  const restored = restore(serialize({ ...defaultState(), scoreState: ["scored"] }), data);
+  assert.deepEqual(restored.state.scoreState, ["scored"]);
+  assert.equal(restored.warning, false);
 });

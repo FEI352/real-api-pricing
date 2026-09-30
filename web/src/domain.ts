@@ -21,6 +21,7 @@ export const filterKeys: FilterKey[] = [
   "harness",
   "effort",
   "modes",
+  "scoreState",
 ];
 export const colors = channelColors;
 export const defaultState = (): State => ({
@@ -37,6 +38,7 @@ export const defaultState = (): State => ({
   harness: [],
   effort: [],
   modes: [],
+  scoreState: [],
   configuration: "summary",
   frontier: true,
   labels: "frontier",
@@ -77,7 +79,12 @@ export function options(data: SiteData): Record<FilterKey, string[]> {
     harness: unique(data.mappings.map((m) => m.agent_harness)),
     effort: unique(data.mappings.map((m) => m.reasoning_effort)),
     modes: unique(data.mappings.map((m) => m.service_mode)),
+    scoreState: ["scored", "unscored"],
   };
+}
+/** Row-level score presence on the current board: "scored" / "unscored". */
+export function scorePresence(r: { score: number | null }): string {
+  return r.score === null ? "unscored" : "scored";
 }
 export function visiblePoints(data: SiteData, s: State): Point[] {
   const chosen = s.selected === null ? null : new Set(s.selected);
@@ -259,7 +266,12 @@ export function rowsFor(data: SiteData, s: State): Row[] {
     s.view === "pareto" && (s.xMode === "cost" || s.xMode === "time")
       ? rows.filter((r) => r.x !== null)
       : rows;
-  return rangeRows(plotRows, s);
+  // Score-presence filter: "scored" keeps only rows with a score on the
+  // current board (kills unscored hitchhikers in every view incl. allowance).
+  const scoredRows = s.scoreState.length
+    ? plotRows.filter((r) => s.scoreState.includes(scorePresence(r)))
+    : plotRows;
+  return rangeRows(scoredRows, s);
 }
 export function tableRows(rows: Row[], s: State): Row[] {
   const q = s.query.toLocaleLowerCase().trim();

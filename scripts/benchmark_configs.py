@@ -74,12 +74,12 @@ OPEN_DESIGN_MODELS = {
 }
 # 渠道变体别名：OpenCode Go / GOAT 的 "Muse Spark *Contributor*" 行是同一模型的贡献者渠道命名
 # （用户 2026-09-30 裁定：contributor 即贡献者渠道，模型相同），引用基础模型行的榜单分数。
-# 当前只在 AA Intelligence 榜启用（用户 2026-09-30 指定范围），其他榜待需要时再开。
+# 用户 2026-09-30 拍板：全榜启用（con 就是本体，同分理直气壮；单榜限制等于帮小厂商藏分）。
 SERVED_MODEL_ALIASES = {
     "muse-spark-1.3-contributor": "muse-spark-1.3",
     "muse-spark-1.2-contributor": "muse-spark-1.2",
 }
-ALIAS_BOARDS = {"aa_intelligence_index"}
+ALIAS_BOARDS = {"aa_intelligence_index", "terminal_bench_4", "aa_terminal_bench_4", "arena_code", "arena_agent_mode", "aa_coding_agent_index", "open_design_arena", "deepswe_1_1"}
 
 
 def alias_for(served_model, board):

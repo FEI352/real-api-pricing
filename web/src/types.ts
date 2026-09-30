@@ -101,7 +101,8 @@ export type FilterKey =
   | "confidence"
   | "harness"
   | "effort"
-  | "modes";
+  | "modes"
+  | "scoreState";
 export interface State {
   feeBand: string;
   lang: Lang;
@@ -116,6 +117,8 @@ export interface State {
   harness: string[];
   effort: string[];
   modes: string[];
+  /** Score presence filter: "scored" = only rows with a score on the current board. Empty = show all. */
+  scoreState: string[];
   configuration: "all" | "summary";
   frontier: boolean;
   labels: "frontier" | "all" | "none";

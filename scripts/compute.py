@@ -195,10 +195,10 @@ def main() -> None:
                 selected = max(options, key=lambda s: s["score"], default=None)
                 p[f"{b}__selection"] = "highest_archived_reference" if selected else None
                 p[f"{b}__configuration_count"] = len(options)
-                for field, value in score_fields(selected, alias).items():
+                for field, value in score_fields(selected, model).items():
                     p[f"{b}__{field}"] = value
                 for option in options:
-                    configuration_points.append(dict(point_id=p["id"], board=b, **score_fields(option, alias)))
+                    configuration_points.append(dict(point_id=p["id"], board=b, **score_fields(option, model)))
             points.append(p)
 
     OUT.mkdir(exist_ok=True)

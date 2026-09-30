@@ -105,6 +105,7 @@ const filterLabels: Record<FilterKey, [string, string]> = {
   harness: ["Agent harness", "Agent 框架"],
   effort: ["Reasoning effort", "推理强度"],
   modes: ["Service mode", "服务模式"],
+  scoreState: ["Score presence", "有无分数"],
 };
 function localLanguage() {
   try {
@@ -373,7 +374,7 @@ function Explorer({
     () => rowsFor(data, state),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, board, harness, effort, modes, configuration, view, selected,
-      vendors, channels, plans, billing, confidence, feeBand, state.xMode],
+      vendors, channels, plans, billing, confidence, feeBand, state.xMode, state.scoreState],
   );
   const shown = useMemo(
     () => tableRows(rows, state),
@@ -457,7 +458,11 @@ function Explorer({
               ? t("Medium", "中")
               : v === "low"
                 ? t("Low", "低")
-                : displayPlan(v, state.lang);
+                : v === "scored"
+                  ? t("Has score", "有分")
+                  : v === "unscored"
+                    ? t("No score", "无分")
+                    : displayPlan(v, state.lang);
   // Built from state, not location.href: the hash is written on a debounce.
   const shareUrl = location.origin + location.pathname + location.search + serialize(state);
   const copy = async () => {
