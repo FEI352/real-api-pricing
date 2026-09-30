@@ -6,7 +6,7 @@ AI coding subscriptions sell a monthly fee, not a per-token price. This project 
 
 **Real price = monthly fee ÷ tokens you can actually use in a month.**
 
-**[Open the interactive site →](https://real-api-pricing.vercel.app)** Pick models, filter channels, compare prices and allowances. English / 中文.
+**[Open the interactive site →](https://realapipricing.com)** Pick models, filter channels, compare prices and allowances. English / 中文.
 
 ![Real price vs. AA Intelligence Index, Pareto frontier](charts/en/pareto/pareto-aa-intelligence.svg)
 

@@ -85,3 +85,22 @@ The project deploys to Vercel through Git integration.
 - **Root Directory is the repository root**, so the active configuration is the root `../vercel.json` (`web/vercel.json` was removed as unused). It sets the build command `npm --prefix web ci && npm --prefix web run build`, output directory `web/dist`, skips the default install step, and sets cache headers: `/data/*` revalidates every request (`public, max-age=0, must-revalidate`) while hashed `/assets/*` are immutable (`public, max-age=31536000, immutable`).
 - Pushes to `main` deploy to production at <https://real-api-pricing.vercel.app>. Pull-request previews are built automatically but sit behind Vercel authentication.
 - No environment secrets or server functions are required. Run the Python data pipeline before committing dataset updates; the frontend deploy consumes those committed outputs. The website does not modify research archives or replace the chart publisher.
+
+## Cloudflare deployment and primary domain
+
+The primary site is <https://realapipricing.com>. Vercel remains available at <https://real-api-pricing.vercel.app>; both projects build the same `main` branch. Canonical and Open Graph URLs, README links and exported chart captions use the primary domain. Share links retain the origin on which the user opened the site.
+
+Cloudflare Workers Static Assets serves `web/dist` using the root `wrangler.jsonc`. No Worker script or framework adapter is needed: navigation state lives in the URL hash, and missing files return 404 rather than the application HTML.
+
+Workers Builds settings:
+
+- Git repository: `FeiZhuLulu/real-api-pricing`; production branch: `main`.
+- Root directory: repository root (`/`).
+- Build command: `npm ci && npm --prefix web ci && npm --prefix web run build`.
+- Deploy command: `npx wrangler deploy` (Wrangler is pinned in the root lockfile).
+- Node.js: 22.12+ (use `NODE_VERSION=22` in build variables).
+- Build from the full Git checkout: the data adapter reads `data/`, `derived/` and `config/` outside `web/`. Upload only `web/dist`, never the local working directory.
+
+Configure `realapipricing.com` as the Worker's Custom Domain in Cloudflare, and a redirect from `www.realapipricing.com` to the root domain preserving path and query. DNS and domain routing are managed in Cloudflare, separately from Wrangler's static-asset configuration.
+
+`web/public/_headers` preserves the Vercel cache policy on Cloudflare and marks the production `workers.dev` URL as `noindex`. The Vite build enables Vercel Web Analytics only when the platform sets `VERCEL=1`; Cloudflare and local builds omit it. `robots.txt` and `sitemap.xml` reference the primary domain.
