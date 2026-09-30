@@ -49,7 +49,6 @@ import {
   cardGroups,
   clearLabelSizeCache,
   fitLabel,
-  labelProvider,
   leaderSegment,
   orderLabelGroups,
   placeTextLabels,
@@ -314,7 +313,7 @@ function ChartScene(p: SceneProps) {
         {p.badges.map((g) => {
           const { x, y } = toPixel(view, box, g.plotPrice, g.score);
           if (!inBox(box, x, y, -LOGO_SIZE / 2)) return null;
-          const provider = labelProvider(g);
+          const provider = g.rows[0].point.channel;
           const logo = providerLogoUrl(provider, "light");
           const hit = p.hits.has(g.key);
           const hitColor = color(g.rows[0].point);
@@ -359,6 +358,10 @@ function ChartScene(p: SceneProps) {
           const front = p.frontKeys.has(pl.key);
           const faded = g && p.highlight !== null && g.rows[0].point.channel !== p.highlight;
           const hitColor = g ? color(g.rows[0].point) : c.frontier;
+          const makerLogo = pl.maker ? providerLogoUrl(pl.maker, p.dark ? "dark" : "light") : undefined;
+          const padX = p.mobile ? 6 : 7;
+          const logoSize = p.mobile ? 11 : 12;
+          const logoGap = p.mobile ? 3 : 4;
           return (
             <g key={`name-${pl.key}`} opacity={faded ? 0.3 : 1}>
               {hit && g && (
@@ -380,15 +383,25 @@ function ChartScene(p: SceneProps) {
                 fill={c.labelBg}
                 stroke={hit ? hitColor : front ? c.frontierLabel : p.hoverKey === pl.key ? c.labelHover : c.labelBorder}
               />
+              {makerLogo && (
+                <image
+                  href={makerLogo}
+                  x={rect.left + padX}
+                  y={(rect.top + rect.bottom) / 2 - logoSize / 2}
+                  width={logoSize}
+                  height={logoSize}
+                  preserveAspectRatio="xMidYMid meet"
+                />
+              )}
               <text
-                x={(rect.left + rect.right) / 2}
+                x={makerLogo ? rect.left + padX + logoSize + logoGap : (rect.left + rect.right) / 2}
                 y={(rect.top + rect.bottom) / 2}
-                textAnchor="middle"
+                textAnchor={makerLogo ? "start" : "middle"}
                 dominantBaseline="central"
                 fontSize={font}
                 fill={c.ink}
               >
-                {fitLabel(pl.label, p.mobile)}
+                {fitLabel(pl.label, p.mobile, makerLogo !== undefined)}
               </text>
             </g>
           );
