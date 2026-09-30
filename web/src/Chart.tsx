@@ -924,7 +924,7 @@ export default function Chart({
               clipId="export-clip"
               header={{
                 title: `${b.name} × ${zh ? "真实单价" : "real price"}`,
-                subtitle: `${metricLabel(b.metric, state.lang)} · ${zh ? "快照" : "Snapshot"} ${b.snapshot} · Real API Pricing · real-api-pricing.vercel.app`,
+                subtitle: `${metricLabel(b.metric, state.lang)} · ${zh ? "快照" : "Snapshot"} ${b.snapshot} · Real API Pricing · realapipricing.com`,
               }}
               keyRows={keyRows}
               fontCss={fontCss}
