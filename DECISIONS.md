@@ -3,6 +3,10 @@
 本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-09-30
+
+- **ChatGPT Plus × GPT-6.1 Sol 本机实测（新增模型点）**：7.53 亿/月 high（workload=measured）。用户本机 Codex 周窗剩余 81%→65%（16pp），段内 30,109,568 tok（input 1,624,231 / cache_read 28,331,904 / cache_write 0 / output 153,433 含 reasoning 36,519，hit 94.58%）全为 gpt-6.1-sol；截图标题行 82%/17pp 起始读数经用户更正为 81%。直接采用 total 不套负载（沿 Luna round6 先例）；面板整数读数 Δpp∈[15,17] 对应 7.08~8.03 亿。反推周池 188,184,800 ≈ gpt-6-sol round1 反推周池 261,949,583 的 0.72×——同面板口径下单账号单窗不区分周池变小还是每 token 占池更快，记为观察不解释。只挂 Plus，Pro 5x/20x 不派生（沿 Sol 裁定）。暂无榜分：不入任何 scores 档，点进额度总览、不上帕累托图，有分后补 supplement。证据：`chatgpt-gpt61sol-plus-round1-2026-09-30.json`。
+
 ## 2026-09-29
 
 - **Droid Pro × Claude Opus 5.5 社区口述点（新增，low）**：3.82 亿/月（workload=anthropic，同 droid_max×opus-5.5 口径）。X @SnowyWar36965（2026-09-28，用户转供截图）：Pro $20 跑 Opus 5.5 小动画用掉 5h 窗约 70%，帖主按等价 API 消耗估 5h≈$15.4 / 周≈$45 / 月≈$160（Max 10x≈$154/$450/$1,600）。取帖主月值 $160 ÷ Anthropic 档 $0.419/MTok＝3.82 亿；周 $45×4＝$180（4.30 亿）不采——帖主月值低于 4× 周，按 30 天窗为绑定约束。帖主 token 列（18 亿/$1,600≈$0.89/MTok）为其自身负载，不采。对照：本机实测 Max 月 worth $2,116.91 ÷10＝Pro 约 $211.7（5.05 亿），帖主值约其 0.76×。弱点：口述、无面板截图与 token 分拆、n=1 → low。仅挂 Opus 5.5，不按倍率派生同池其他模型。证据：`droid-pro-opus55-community-round1-2026-09-29.json`。
