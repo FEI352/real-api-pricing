@@ -50,7 +50,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Coding Agent Index</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >真实单价 · 美元 / 百万 token</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >越右越便宜 →</text>
-<path id="frontier" d="M120.000,301.333 L533.238,301.333 L635.445,309.593 L892.249,337.035 L921.300,425.307 L1019.559,592.532 L1274.865,603.815 L1338.000,603.815" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,301.333 L533.238,301.333 L635.445,309.593 L954.371,337.035 L1019.559,592.532 L1274.865,603.815 L1338.000,603.815" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.032467532" data-score="54.5591" data-x="712.733" data-y="410.943" transform="translate(712.733 410.943)"><title>GPT 5.6 Sol · Plus / GPT 5.6 Sol · Pro 5x · $0.03247/MTok · 54.5591 · mediumCodex - GPT-5.6 Sol (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Codex - GPT-5.6 Sol (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -83,7 +83,7 @@
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#84CC16" stroke-width="1.35"/>
 <circle r="4" fill="#84CC16"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.010649627" data-score="59.7264" data-x="892.249" data-y="337.035" transform="translate(892.249 337.035)"><title>Claude Opus 5 · Pro · $0.01065/MTok · 59.7264 · highClaude Code - Opus 5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0072411296" data-score="59.7264" data-x="954.371" data-y="337.035" transform="translate(954.371 337.035)"><title>Claude Opus 5 · Pro · $0.00724/MTok · 59.7264 · highClaude Code - Opus 5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
 <circle r="4" fill="#CC5A2E"/>
 </g>
@@ -162,9 +162,8 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.01185578" data-score="53.5548" data-x="874.971" data-y="425.307" transform="translate(874.971 425.307)"><title>GLM 5.3 (v2) · GLM Pro (v2 ¥149) 中间值 · $0.01186/MTok · 53.5548 · highOpencode - GLM-5.3 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#1E1E1E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0088918349" data-score="53.5548" data-x="921.300" data-y="425.307" transform="translate(921.300 425.307)"><title>GLM 5.3 (v2) · GLM Pro (v2 ¥149) 闲时 · $0.00889/MTok · 53.5548 · highOpencode - GLM-5.3 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
-<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#1E1E1E" stroke-width="1.35"/>
-<circle r="4" fill="#1E1E1E"/>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0088918349" data-score="53.5548" data-x="921.300" data-y="425.307" transform="translate(921.300 425.307)"><title>GLM 5.3 (v2) · GLM Pro (v2 ¥149) 闲时 · $0.00889/MTok · 53.5548 · highOpencode - GLM-5.3 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#1E1E1E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.055141311" data-score="53.5548" data-x="627.435" data-y="425.307" transform="translate(627.435 425.307)"><title>GLM 5.3 (v3) · GLM Max (v3 ¥1078) 忙时 · $0.05514/MTok · 53.5548 · highOpencode - GLM-5.3 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#1E1E1E" opacity=".68"/>
@@ -334,16 +333,10 @@
 <text x="659.445" y="241.593" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.05247</text>
 </g>
 <g class="front-label" data-model="claude-opus-5">
-<path d="M897.073,322.831Q897.073,284.035 910.249,284.035" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="916.249" y="265.035" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Claude Code · Claude Opus 5 · max</text>
-<text x="916.249" y="285.035" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Pro</text>
-<text x="916.249" y="305.035" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.01065</text>
-</g>
-<g class="front-label" data-model="glm-5.3">
-<path d="M933.781,416.987Q933.781,413.307 939.300,413.307" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="945.300" y="394.307" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Opencode · GLM 5.3 (v2) · max</text>
-<text x="945.300" y="414.307" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >GLM Pro (v2 ¥149) 闲时</text>
-<text x="945.300" y="434.307" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00889</text>
+<path d="M959.195,322.831Q959.195,284.035 972.371,284.035" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="978.371" y="265.035" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Claude Code · Claude Opus 5 · max</text>
+<text x="978.371" y="285.035" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Pro</text>
+<text x="978.371" y="305.035" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00724</text>
 </g>
 <g class="front-label" data-model="gemini-3.8-flash">
 <path d="M1015.588,606.997Q1015.588,643.532 1005.559,643.532" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
@@ -388,7 +381,7 @@
 <path d="M1302.8 825l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="1316.800" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="874.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >79 个订阅位置 / 9 个 API 位置 / 6 个前沿位置</text>
+<text x="1384.000" y="874.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >79 个订阅位置 / 9 个 API 位置 / 5 个前沿位置</text>
 <text x="56.000" y="898.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >最高存档配置参考；标注harness与effort。产品/额度实测配置未对齐，不代表各渠道的实测成绩。</text>
 <text x="56.000" y="919.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="919.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/agents/coding-agents</text>

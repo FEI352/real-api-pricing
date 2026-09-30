@@ -3,11 +3,15 @@
 本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-09-30
+
+- **Claude Pro × Opus 5 改用 issue #53（用户裁定，high）**：18.78→27.62 亿。#53 两个 Pro 账号 9/14~9/22（全部在永久 +25% 之后）1,022.02M raw = 周 +148 个百分点，两个整周 24.60/28.96 亿；沿用 raw total 口径。旧 @shownotover 单读数 7%（每 1% $3.67，比 #53 的 $4.96 低 35%，接近 +25% 调整幅度）疑为 9/14 前口径，不合并（合并为 27.22 不采）；Anthropic 档 worth 口径 25.89 不采。派生随动：Pro × Sonnet 5 46.95→69.05（×2.5）、Pro × Opus 4.8 18.78→27.62。张力：Max 20x ÷ Pro 从 8.35× 变为 5.68×，与 Opus 5.5 的约 9.9× 不一致，待 Opus 5.5/5 池权重与 #65 一并裁定。证据：`community-issues-round1-2026-09-29.json`。
+
 ## 2026-09-29
 
 - **社区 issue 实测合并（#52 #54 #56，用户裁定升/保持 high）**：Claude Pro × Opus 5.5 28.99→30.54 亿（low→high；#52 两账号 +183 个百分点 worth $587.52 与 Reddit 段 $40.48/13.333% 按百分点合并，Anthropic 档 $0.419）；Google AI Pro × Gemini 3.8 Flash 22.41→20.70 亿（#54 三周 853.43M/+165.77 与用户样本 55.343M/+9.88 合并，raw 口径，Ultra 5×/20× 随动）；SuperGrok × Grok 4.6 5.09→4.78 亿（#56 两平常周 223.1M/+193 与 V2EX 整周 127.27M 合并）。证据：`community-issues-round1-2026-09-29.json`。
 - **新增 Google AI Pro × Gemini 3.6 Flash 17.62 亿（medium）**：#55 95.60M raw = 周 +21.70 个百分点；每 1% 标价美元与 3.8 Flash 相同。
-- **记录未采用**：#53 Pro × Opus 5 实测 27.62 亿（现 18.78，高 47%，待裁定）；#52/#53 同账号推得 Opus 5.5 对 Opus 5 池权重约 0.843（现按 0.5204，Max 20x × Opus 5.5 若改为约 186 亿，待裁定）；#65 Max 20x 混合样本（全模型周 $1,410.5，Fable 周帽 $540.8）；#57 Grok 4.7 估算 4.40~4.80 亿与现值同量级，不入权。
+- **记录未采用**：#53 Pro × Opus 5 实测 27.62 亿（现 18.78，高 47%，待裁定；2026-09-30 已采用，见上）；#52/#53 同账号推得 Opus 5.5 对 Opus 5 池权重约 0.843（现按 0.5204，Max 20x × Opus 5.5 若改为约 186 亿，待裁定）；#65 Max 20x 混合样本（全模型周 $1,410.5，Fable 周帽 $540.8）；#57 Grok 4.7 估算 4.40~4.80 亿与现值同量级，不入权。
 
 - **Droid Pro × Claude Opus 5.5 社区口述点（新增，low）**：3.82 亿/月（workload=anthropic，同 droid_max×opus-5.5 口径）。X @SnowyWar36965（2026-09-28，用户转供截图）：Pro $20 跑 Opus 5.5 小动画用掉 5h 窗约 70%，帖主按等价 API 消耗估 5h≈$15.4 / 周≈$45 / 月≈$160（Max 10x≈$154/$450/$1,600）。取帖主月值 $160 ÷ Anthropic 档 $0.419/MTok＝3.82 亿；周 $45×4＝$180（4.30 亿）不采——帖主月值低于 4× 周，按 30 天窗为绑定约束。帖主 token 列（18 亿/$1,600≈$0.89/MTok）为其自身负载，不采。对照：本机实测 Max 月 worth $2,116.91 ÷10＝Pro 约 $211.7（5.05 亿），帖主值约其 0.76×。弱点：口述、无面板截图与 token 分拆、n=1 → low。仅挂 Opus 5.5，不按倍率派生同池其他模型。证据：`droid-pro-opus55-community-round1-2026-09-29.json`。
 - **Droid Max 同池 26 个模型按 Factory 官方倍率折算（用户裁定，全部 medium）**：月额度 = Opus 5.5 采用值 50.52 亿 × 1.6 ÷ 模型倍率（docs.factory.ai/docs/models，与用户 4 张模型选择器截图一致）。范围：Fable 5.1/5（4×→20.21）、Opus 5/4.8（2×→40.42）、Sonnet 5.5（0.8×→101.04，新模型 id）；GPT-6 Astra/Sol/Luna（4/0.8/0.04×）、GPT-5.6 Sol/Terra/Luna（1.6†/0.8/0.08×）；Gemini 3.8/3.7 Flash（0.3†×→269.44）、Grok 4.7/4.6（0.8×）；Droid Core：Inkling、Mistral Medium 3.5（新模型 id）、GLM-5.3-Flash/5.3/5.2/5.2 Fast、Kimi K3、Qwen3.8 Max、Nemotron 3 Ultra、DeepSeek V4.1 Flash、MiniMax M3。† 促销倍率：GPT-5.6 Sol 到 2026-11-22 后回 2×，Gemini Flash 到 2027-01-01 后回 0.6×，到期须复核。不含 Fast Mode（无模型 id）、更老型号与 Deprecated 型号。旁证：面板 factoryCredits 16,935,482 ≈ Opus 段 list-worth（不含 thinking）÷ $4 × 1.6（差 0.001%），支持按倍率计池。Droid Core 用尽 Standard Usage 后另有免费池（未实测），本值只计 Standard 部分。沿用 Anthropic 档负载、未按各模型自身价差重算。证据：`droid-model-multipliers-2026-09-29.json`。
