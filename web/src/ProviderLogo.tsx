@@ -48,7 +48,6 @@ const slugs: Record<string, string> = {
 const MONO = new Set([
   "openai",
   "anthropic",
-  "xai",
   "cursor",
   "factory",
   "ollama",

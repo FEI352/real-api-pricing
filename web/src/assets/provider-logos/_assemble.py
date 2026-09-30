@@ -65,6 +65,7 @@ meituan = meituan.replace(
 # zhipu.svg: official z.ai mark (zai-icon.svg) copied from the brand library.
 # xai.svg: library 1:1 cut spacexai-icon-black.svg (official SpaceXAI squared
 #   symbol, 84% fill), recoloured to #111111 ink, copied from the brand library.
+# xai-dark.svg: library 1:1 cut spacexai-icon-white.svg, official white variant.
 # stepfun.svg: official 5-square mark + current X-avatar gradient.
 # kimi.svg / kimi-dark.svg: official Kimi Logomark tile, light/dark brand-kit variants.
 # devin.svg / devin-dark.svg: official Devin mark, dark-ink and white variants.
