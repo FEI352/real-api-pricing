@@ -52,6 +52,7 @@ import {
 } from "./domain";
 import {
   FRONTIER_RADIUS,
+  fitLabel,
   placeTextLabels,
   placementRect,
 } from "./chartLabels";
@@ -581,6 +582,27 @@ test("Labels yield to ordinary points when every candidate slot is occupied", ()
       dots.push({ key: `dot-${x}-${y}`, x, y, r: 6 });
   assert.deepEqual(placeTextLabels([g], new Map([[g.key, anchor]]), dots,
     { left: 0, top: 0, right: 240, bottom: 200, width: 240, height: 200 }, false), []);
+});
+test("Third-party labels reserve room for the maker mini-logo", () => {
+  const box = { left: 0, top: 0, right: 400, bottom: 240, width: 400, height: 240 };
+  const make = (channel: string, vendor: string, name: string): Group => {
+    const r = row(`${channel}-${vendor}-${name}`, 0.01, 1500);
+    r.point = { ...r.point, channel, vendor, model_display: name };
+    return { key: r.key, price: 0.01, plotPrice: 0.01, score: 1500, rows: [r] };
+  };
+  const place = (g: Group) => {
+    const anchor = { key: g.key, x: 200, y: 120, r: FRONTIER_RADIUS };
+    return placeTextLabels([g], new Map([[g.key, anchor]]), [anchor], box, false)[0];
+  };
+  const first = place(make("Zhipu", "Zhipu", "GLM 5.3 Flash"));
+  const third = place(make("Factory", "Zhipu", "GLM 5.3 Flash"));
+  assert.equal(first.maker, null);
+  assert.equal(third.maker, "Zhipu");
+  // Desktop label: 12px logo + 4px gap on top of the first-party width.
+  assert.equal(third.width, first.width + 16);
+  // The same long name truncates earlier once logo room is reserved.
+  const long = "GLM 5.3 Flash Ultra Max Pro Turbo Extended Edition";
+  assert.ok(fitLabel(long, false, true).length < fitLabel(long, false).length);
 });
 test("Chart search AND-matches plan, channel and model fields and dedupes points", () => {
   const gs = groups(
