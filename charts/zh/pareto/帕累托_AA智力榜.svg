@@ -367,7 +367,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.012666244" data-score="27.0099" data-x="855.927" data-y="577.069" transform="translate(855.927 577.069)"><title>Qwen3.6 Plus · OpenCode Go · $0.01267/MTok · 27.0099 · mediumQwen3.6 Plus [AA estimate] · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0064399794" data-score="39.4562" data-x="950.462" data-y="454.681" transform="translate(950.462 454.681)"><title>DeepSeek V4.1 Flash · OpenCode Go · $0.00644/MTok · 39.4562 · mediumDeepSeek V4.1 Flash (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0016099948" data-score="39.4562" data-x="1144.208" data-y="454.681" transform="translate(1144.208 454.681)"><title>DeepSeek V4.1 Flash · OpenCode Go / DeepSeek V4.1 Flash · Command Code GOAT · $0.00161/MTok · 39.4562 · mediumDeepSeek V4.1 Flash (max) · Exact served-model reference; quota-measurement effort is unverified. / DeepSeek V4.1 Flash (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.031826862" data-score="35.9968" data-x="727.158" data-y="488.698" transform="translate(727.158 488.698)"><title>DeepSeek V4 Pro · OpenCode Go · $0.03183/MTok · 35.9968 · mediumDeepSeek V4 Pro 0813 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -386,9 +386,6 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0091141086" data-score="33.6963" data-x="901.924" data-y="511.320" transform="translate(901.924 511.320)"><title>Qwen3.8 27B · Command Code GOAT · $0.00911/MTok · 33.6963 · mediumQwen3.8 27B (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
-</g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0024149923" data-score="39.4562" data-x="1087.541" data-y="454.681" transform="translate(1087.541 454.681)"><title>DeepSeek V4.1 Flash · Command Code GOAT · $0.00241/MTok · 39.4562 · mediumDeepSeek V4.1 Flash (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.01525553" data-score="29.2203" data-x="829.932" data-y="555.334" transform="translate(829.932 555.334)"><title>MiniMax M3 · Command Code GOAT · $0.01526/MTok · 29.2203 · mediumMiniMax-M3 · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -890,7 +887,7 @@
 <path d="M356.52 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="370.520" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >233 个订阅位置 / 17 个 API 位置 / 6 个前沿位置</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >232 个订阅位置 / 17 个 API 位置 / 6 个前沿位置</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max：9/14 起永久额度估算；Pro：Opus 5 周池面板反推。Y 取同模型存档最高分变体。</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>
