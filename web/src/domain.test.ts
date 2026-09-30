@@ -1053,3 +1053,12 @@ test("scorePresence labels rows and scoreState filter narrows rowsFor", () => {
   assert.deepEqual(restored.state.scoreState, ["scored"]);
   assert.equal(restored.warning, false);
 });
+test("yMin score floor applies in allowance/table views", () => {
+  const gated = rowsFor(data, { ...defaultState(), view: "allowance", yMin: "40" });
+  assert.ok(gated.length > 0);
+  for (const r of gated) assert.ok(r.score === null || r.score >= 40, `row score ${r.score} < 40`);
+  const open = rowsFor(data, { ...defaultState(), view: "allowance", yMin: "" });
+  assert.ok(open.length >= gated.length);
+  const gatedT = rowsFor(data, { ...defaultState(), view: "table", yMin: "40" });
+  for (const r of gatedT) assert.ok(r.score === null || r.score >= 40);
+});

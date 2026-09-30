@@ -150,7 +150,14 @@ export function customRangeActive(s: State): boolean {
 }
 /** Custom X (real price) / Y (score) / fee window; only the capability chart uses it. */
 function rangeRows(rows: Row[], s: State): Row[] {
-  if (s.view !== "pareto" || !customRangeActive(s)) return rows;
+  // Score floor (yMin) applies in EVERY view incl. allowance/table: it is the
+  // "minimum AA score" gate, not a chart-zoom helper. Other bounds stay pareto-only.
+  if (s.view !== "pareto" && !s.yMin.trim()) return rows;
+  if (s.view !== "pareto") {
+    const ylo = rangeBound(s.yMin, -Infinity);
+    return rows.filter((r) => r.score === null || r.score >= ylo);
+  }
+  if (!customRangeActive(s)) return rows;
   const xlo = rangeBound(s.xMin, -Infinity),
     xhi = rangeBound(s.xMax, Infinity),
     ylo = rangeBound(s.yMin, -Infinity),

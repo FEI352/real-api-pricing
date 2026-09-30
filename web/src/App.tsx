@@ -1425,11 +1425,13 @@ function Explorer({
                   </fieldset>
                 ))}
               </div>
-              {state.view === "pareto" && (
+              {(state.view === "pareto" || state.yMin.trim()) && (
                 <fieldset className="range-filter">
                   <legend>
-                    {t("Custom X / Y range", "自定义 X / Y 范围")}{" "}
-                    {customRangeActive(state) && (
+                    {state.view === "pareto"
+                      ? t("Custom X / Y range", "自定义 X / Y 范围")
+                      : t("Min AA score", "AA 最低分")}{" "}
+                    {(customRangeActive(state) || state.yMin.trim()) && (
                       <button
                         onClick={() =>
                           patch({
@@ -1463,19 +1465,21 @@ function Explorer({
                       />
                     </label>
                     <label>
-                      <span>{t("Y · score", "Y · 分数")}</span>
+                      <span>{state.view === "pareto" ? t("Y · score", "Y · 分数") : t("Min score on current board", "当前榜单最低分")}</span>
                       <input
                         inputMode="decimal"
                         value={state.yMin}
-                        placeholder={t("min", "最小")}
+                        placeholder={state.view === "pareto" ? t("min", "最小") : t("e.g. 40", "如 40")}
                         onChange={(e) => patch({ yMin: e.target.value })}
                       />
-                      <input
-                        inputMode="decimal"
-                        value={state.yMax}
-                        placeholder={t("max", "最大")}
-                        onChange={(e) => patch({ yMax: e.target.value })}
-                      />
+                      {state.view === "pareto" && (
+                        <input
+                          inputMode="decimal"
+                          value={state.yMax}
+                          placeholder={t("max", "最大")}
+                          onChange={(e) => patch({ yMax: e.target.value })}
+                        />
+                      )}
                     </label>
                     <label>
                       <span>{t("Monthly fee · USD/month", "月费 · 美元/月")}</span>
