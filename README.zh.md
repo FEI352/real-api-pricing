@@ -6,7 +6,7 @@ AI 编程订阅只标月费，不标每 token 多少钱。本项目把每个套�
 
 **真实单价 = 订阅月费 ÷ 每月实际能用掉的 token。**
 
-**[打开交互网站 →](https://real-api-pricing.vercel.app)** 自选模型、筛选渠道，对比单价和额度，支持中英文。
+**[打开交互网站 →](https://realapipricing.com)** 自选模型、筛选渠道，对比单价和额度，支持中英文。
 
 ![真实单价 × AA 智力榜 帕累托前沿](charts/zh/pareto/帕累托_AA智力榜.svg)
 

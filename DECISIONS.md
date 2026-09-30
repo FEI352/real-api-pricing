@@ -5,6 +5,7 @@
 
 ## 2026-09-30
 
+- **Claude Max 20x × Opus 5.5 改为 5h 窗/周结构推算与 Pro×10 加权（用户裁定，Anthropic 档）**：301.7→315.38 亿（medium；Max 5x 150.85→157.69 随动）。① MiaAI 窗 worth $471.10（=75% 窗）÷ Max 20x 5.5 窗/周（round10 条目#15）= 周 13.636pp → 单独 329.81 亿；② Pro × Opus 5.5 合并 $628.00 / 196.333pp，Max 20x 周额度 = Pro×10 → 周 19.633pp → 单独 305.36 亿；两路差 8%，按周百分点合并。旧 301.7 为窗池 raw × 5.49 窗/周，未折算。不采：Pro 7.5 窗/周直接套用 449.7、官方倍率推 3.75 窗/周 224.9（MiaAI 窗仅为 Pro 的 15.5× 而非 20×）、等权 317.58、Opus 5 池权重 0.843 推 186。#65 仍不处理。证据：`claude-opus55-max20x-round2-2026-09-30.json`。
 - **带分项的实测样本统一折算负载（用户裁定）**：此前只有 Devin Max、Claude Pro × Opus 5.5、Droid Max 按标价折 list-worth 再换算，其余实测直接用 raw total。改为凡有 token 分项的样本都折算，Google 用低缓存档，缺分项的保留 raw 并标「未折算」。旧 → 新（亿/月）：
   - 标准档：ChatGPT Plus × GPT-6 Sol 10.48→11.00、× GPT-6 Luna 91.77→92.03、× GPT-6.1 Sol 7.75→8.96（标价假设同 GPT-6 Sol）、× GPT-5.6 Luna 75.11→70.58（Pro 5x 375.56→352.91、Pro 20x 1502.22→1411.63）；SuperGrok × Grok 4.7 4.97→5.72（Plus 19.9→22.9、Heavy 49.7→57.2）、× Grok 4.6 4.78→5.16（V2EX 无分项按已是标准档计入；Plus 19.1→20.6、Heavy 47.8→51.6，Grok 4.5 随动）。
   - Anthropic 档：Claude Pro × Opus 5 27.62→25.89（Sonnet 5 69.05→64.725、Opus 4.8 27.62→25.89）。

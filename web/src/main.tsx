@@ -14,6 +14,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
-    <Analytics />
+    {import.meta.env.VITE_VERCEL_ANALYTICS === "true" && <Analytics />}
   </React.StrictMode>,
 );
