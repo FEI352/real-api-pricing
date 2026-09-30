@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { NotePencil, Star } from "@phosphor-icons/react";
 import type { Lang } from "./types";
 
-const REPO = "https://github.com/FeiZhuLulu/real-api-pricing";
-const REPO_API = "https://api.github.com/repos/FeiZhuLulu/real-api-pricing";
+const REPO = "https://github.com/FEI352/real-api-pricing";
+const REPO_API = "https://api.github.com/repos/FEI352/real-api-pricing";
 const STARS_KEY = "pricing-stars";
 const STARS_TTL = 6 * 60 * 60 * 1000;
 /** After a failed request (typically the anonymous rate limit), wait before retrying. */

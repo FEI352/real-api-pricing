@@ -75,7 +75,7 @@ import {
   effortLabel,
 } from "./domain";
 
-const REPO = "https://github.com/FeiZhuLulu/real-api-pricing";
+const REPO = "https://github.com/FEI352/real-api-pricing";
 const boardLabels: Record<string, string> = {
   arena_code: "Code Arena",
   arena_agent_mode: "Agent Arena",

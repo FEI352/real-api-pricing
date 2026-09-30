@@ -950,7 +950,7 @@ export default function Chart({
               clipId="export-clip"
               header={{
                 title: `${b.name} × ${xValueLabel.toLowerCase()}`,
-                subtitle: `${metricLabel(b.metric, state.lang)} · ${zh ? "快照" : "Snapshot"} ${b.snapshot} · Real API Pricing · real-api-pricing.vercel.app`,
+                subtitle: `${metricLabel(b.metric, state.lang)} · ${zh ? "快照" : "Snapshot"} ${b.snapshot} · Real API Pricing · real-plan.fja.su`,
               }}
               keyRows={keyRows}
               fontCss={fontCss}
@@ -1107,7 +1107,9 @@ export default function Chart({
               <b>{[...new Set(hoverGroup.rows.map((r) => r.point.model_display))].join(" / ")}</b>
             </div>
             <div className="hover-plan">
-              {displayPlan(hoverPoint.plan, state.lang)} · {accessLine(hoverPoint)}
+              {hoverGroup.rows.length === 1
+                ? `${displayPlan(hoverPoint.plan, state.lang)} · ${accessLine(hoverPoint)}`
+                : `${[...new Set(hoverGroup.rows.map((r) => displayPlan(r.point.plan, state.lang)))].join(" / ")} · ${accessLine(hoverPoint)}`}
             </div>
             {hoverGroup.rows[0]?.mapping?.variant && (
               <div className="hover-variant">
