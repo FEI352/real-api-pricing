@@ -1,0 +1,65 @@
+{
+  "collectedAt": "2026-10-01",
+  "supplement": true,
+  "supplementNote": "补充档：追加 Gemini 4 Argon（发布首日官方标价与 AA 独立实测数据），纳入 aa_intelligence_index 评测集。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/models/gemini-4-argon",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-10-01",
+      "note": "2026-10-01 Google 官方首发及 Artificial Analysis 独立实测数据。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "gemini-4-argon",
+      "variantLabel": "Gemini 4 Argon (high)",
+      "score": 53.0,
+      "secondary": {
+        "scoreRoundedDisplay": 53,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "gemini-4-argon-high",
+        "shortName": "Gemini 4 Argon (high)",
+        "releaseDate": "2026-09-30",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Google",
+        "effort": "high",
+        "contextWindowTokens": 1000000,
+        "costPerTaskUsd": 1.99,
+        "price1mInputTokens": 2.0,
+        "price1mOutputTokens": 10.0,
+        "cacheHitPrice": 0.1
+      },
+      "source": "https://artificialanalysis.ai/models/gemini-4-argon",
+      "checkedAt": "2026-10-01",
+      "note": "Artificial Analysis 2026-09-30 首测数据：智力得分 53 追平 GPT-6 Astra，首发 50% 折扣下每任务成本 $1.99。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "name": "Gemini 4 Argon (high)",
+        "shortName": "Gemini 4 Argon (high)",
+        "slug": "gemini-4-argon-high",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Google",
+        "intelligenceIndex": 53.0,
+        "intelligenceIndexIsEstimated": false,
+        "intelligenceIndexCostPerTask": 1.99,
+        "price1mInputTokens": 2.0,
+        "price1mOutputTokens": 10.0,
+        "cacheHitPrice": 0.1,
+        "contextWindowTokens": 1000000,
+        "medianOutputTokensPerSecond": 105.0,
+        "medianTimeToFirstTokenSeconds": 4.5,
+        "medianEndToEndResponseTimeSeconds": 48.0,
+        "isOpenWeights": false
+      }
+    ]
+  }
+}

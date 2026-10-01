@@ -1,0 +1,26 @@
+{
+  "collectedAt": "2026-10-01",
+  "sourceType": "official pricing page + launch coverage",
+  "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+  "checkedAt": "2026-10-01",
+  "launchAt": "2026-09-30",
+  "scope": "Google Gemini 4 Argon（2026-09-30 发布，首发50%优惠与标准价）按量三段价与缓存价，供 compute.py 标价混合比。",
+  "models": [
+    {
+      "model": "gemini-4-argon",
+      "vendor": "Google",
+      "input": 2.0,
+      "cachedInput": 0.10,
+      "output": 10.0,
+      "currency": "USD",
+      "variants": {
+        "standard": {
+          "input": 4.0,
+          "cachedInput": 0.20,
+          "output": 20.0,
+          "note": "Standard list price after promo"
+        }
+      }
+    }
+  ]
+}

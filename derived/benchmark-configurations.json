@@ -18253,5 +18253,52 @@
       "checkedAt": "2026-09-30",
       "note": "2026-09-30 全量重抓（v4.3 原始精度）；替换 round4 成为 AA Intelligence 当前快照。"
     }
+  },
+  {
+    "configuration_id": "aa_intelligence_index:7066603a6f0c33f4",
+    "board": "aa_intelligence_index",
+    "model": "gemini-4-argon",
+    "variant": "Gemini 4 Argon (high)",
+    "score_is_estimated": false,
+    "score_is_self_reported": false,
+    "agent_harness": null,
+    "reasoning_effort": "high",
+    "service_mode": null,
+    "score": 53.0,
+    "score_low": null,
+    "score_high": null,
+    "mean_cost_usd_per_task": 1.99,
+    "median_cost_usd_per_task": null,
+    "benchmark_list_price": 0.197,
+    "response_time_seconds": 48.0,
+    "output_speed_tps": 105.0,
+    "source": "https://artificialanalysis.ai/models/gemini-4-argon",
+    "checked_at": "2026-10-01",
+    "archive": "scores-gemini-4-argon-round1-2026-10-01.json",
+    "raw_record": {
+      "boardId": "aa_intelligence_index",
+      "model": "gemini-4-argon",
+      "variantLabel": "Gemini 4 Argon (high)",
+      "score": 53.0,
+      "secondary": {
+        "scoreRoundedDisplay": 53,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "gemini-4-argon-high",
+        "shortName": "Gemini 4 Argon (high)",
+        "releaseDate": "2026-09-30",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Google",
+        "effort": "high",
+        "contextWindowTokens": 1000000,
+        "costPerTaskUsd": 1.99,
+        "price1mInputTokens": 2.0,
+        "price1mOutputTokens": 10.0,
+        "cacheHitPrice": 0.1
+      },
+      "source": "https://artificialanalysis.ai/models/gemini-4-argon",
+      "checkedAt": "2026-10-01",
+      "note": "Artificial Analysis 2026-09-30 首测数据：智力得分 53 追平 GPT-6 Astra，首发 50% 折扣下每任务成本 $1.99。"
+    }
   }
 ]

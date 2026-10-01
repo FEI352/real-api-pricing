@@ -40,6 +40,7 @@ SCORE_FILES = (
     "scores-gpt6sol-round1-2026-09-24.json",
     "scores-gpt6luna-round1-2026-09-26.json",
     "scores-aa-round5-2026-09-30.json",
+    "scores-gemini-4-argon-round1-2026-10-01.json",
 )
 LIST_PRICE_FILES = (
     "list-prices-2026-09.json",
@@ -49,6 +50,7 @@ LIST_PRICE_FILES = (
     "list-prices-stepfun-round2-2026-09-21.json",
     "list-prices-mimo-v26-grok47-round1-2026-09-22.json",
     "list-prices-claude-sonnet55-round1-2026-09-30.json",
+    "list-prices-gemini-4-argon-round1-2026-10-01.json",
 )
 
 
