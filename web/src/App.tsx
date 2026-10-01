@@ -1679,6 +1679,12 @@ function Details({
             .filter((r) => r.point.id === p.id && r.mapping)
             .map((r) => {
               const m = r.mapping!;
+              const srcText = zh ? m.source : (m.source_en ?? m.source);
+              const srcUrl = firstUrl(srcText ?? "");
+              const srcAnnotation = srcUrl
+                ? (srcText ?? "").split(srcUrl).slice(1).join("").trim()
+                : srcText;
+              const recordNote = zh ? m.record_note_zh : m.record_note_en;
               return (
                 <section className="configuration-detail" key={r.key}>
                   <strong>{variantLabel(m.variant, lang)}</strong>
@@ -1730,6 +1736,40 @@ function Details({
                     {data.boards[m.board]?.name ?? m.board}
                     <ArrowUpRight size={14} />
                   </a>
+                  <details className="evidence-fold">
+                    <summary>
+                      {t("Score source · original record", "分数来源 · 原始记录")}
+                    </summary>
+                    <dl>
+                      <dt>{t("Source page", "来源页面")}</dt>
+                      <dd>
+                        {srcUrl ? (
+                          <a href={safeUrl(srcUrl)} target="_blank" rel="noreferrer">
+                            {srcUrl}
+                            <ArrowUpRight size={12} />
+                          </a>
+                        ) : null}
+                        {srcAnnotation ? ` ${srcAnnotation}` : null}
+                      </dd>
+                      <dt>{t("Checked", "核对日期")}</dt>
+                      <dd>{m.checked_at}</dd>
+                      <dt>{t("Board label", "榜单原名")}</dt>
+                      <dd>{m.board_label}</dd>
+                      <dt>{t("Archived snapshot", "存档快照")}</dt>
+                      <dd>
+                        <a href={m.archive_url} target="_blank" rel="noreferrer">
+                          {m.archive}
+                          <ArrowUpRight size={12} />
+                        </a>
+                      </dd>
+                      {recordNote ? (
+                        <>
+                          <dt>{t("Record note", "原始记录备注")}</dt>
+                          <dd className="original-text">{recordNote}</dd>
+                        </>
+                      ) : null}
+                    </dl>
+                  </details>
                 </section>
               );
             })}

@@ -51,6 +51,7 @@ for (const m of mappings)
 // English translations of adoption source/decision text; a Chinese string
 // without a non-empty translation is a hard error (verify_i18n.py mirrors it).
 const enMap = new Map(i18n.entries.map((e) => [e.zh, e.en]));
+const zhMap = new Map(i18n.entries.map((e) => [e.en, e.zh]));
 const CJK = /[㐀-鿿]/;
 const enOf = (zh) => {
   if (zh == null || zh === "") return zh;
@@ -65,6 +66,14 @@ const enOf = (zh) => {
   const en = enMap.get(zh);
   if (!en) throw new Error(`No English translation for: ${zh.slice(0, 60)}`);
   return en;
+};
+// English-only raw_record notes carry their Chinese translation on the zh side
+// of the same {zh, en} entries (verify_i18n.py enforces both directions).
+const zhOf = (en) => {
+  const zh = zhMap.get(en);
+  if (!zh || !CJK.test(zh))
+    throw new Error(`No Chinese translation for: ${en.slice(0, 60)}`);
+  return zh;
 };
 const evidenceToCopy = new Set();
 // id 前缀 → 渠道与 Python 侧共用 config/channel-colors.json 的 channels 数组。
@@ -116,9 +125,28 @@ const data = {
       evidence: [...urls, ...evidence],
     };
   }),
-  configurations: configurations.map(({ raw_record, ...c }) =>
-    "source" in c ? { ...c, source_en: enOf(c.source) } : c,
-  ),
+  configurations: configurations.map(({ raw_record, ...c }) => {
+    const out = { ...c };
+    if ("source" in c) out.source_en = enOf(c.source);
+    if (raw_record?.variantLabel) out.board_label = raw_record.variantLabel;
+    const note = raw_record?.note;
+    if (note) {
+      if (CJK.test(note)) {
+        out.record_note_zh = note;
+        out.record_note_en = enOf(note);
+      } else {
+        out.record_note_en = note;
+        out.record_note_zh = zhOf(note);
+      }
+    }
+    if (c.archive) {
+      if (!evidenceFiles.includes(c.archive))
+        throw new Error(`Archive file missing from data/research: ${c.archive}`);
+      evidenceToCopy.add(c.archive);
+      out.archive_url = `/data/evidence/${c.archive}`;
+    }
+    return out;
+  }),
   mappings: mappings.map((m) => {
     const config = configById.get(m.configuration_id);
     const rec = Object.fromEntries(Object.entries(m).filter(([key, value]) =>

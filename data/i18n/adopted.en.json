@@ -1,5 +1,5 @@
 {
-  "_doc": "",
+  "_doc": "Bidirectional translations for website text. zh->en: Chinese adoption source/decision text and benchmark raw_record notes; en->zh: English-only raw_record notes. Maintained by scripts/checks/verify_i18n.py (--sync adds/removes entries).",
   "keepCJK": [],
   "entries": [
     {
@@ -1501,6 +1501,146 @@
     {
       "zh": "https://artificialanalysis.ai/models/claude-opus-5-5（AA 模型页 evals 载荷，页面注明 Independently benchmarked by Artificial Analysis）",
       "en": "https://artificialanalysis.ai/models/claude-opus-5-5 (AA model-page evals payload; page notes Independently benchmarked by Artificial Analysis)"
+    },
+    {
+      "zh": "Primary metric is Avg. score / 平均分 (requirement fulfillment 30 + design quality 70), higher better. model left null: mapping to adopted served_model not decided in this research round. See mappingReview.",
+      "en": "Primary metric is Avg. score (requirement fulfillment 30 + design quality 70), higher is better. model left null: the mapping to an adopted served_model was not decided in this research round. See mappingReview."
+    },
+    {
+      "zh": "厂商自报，非 tbench.ai 官方榜运行。Cognition 博客 Coding benchmark results 表 Terminal-Bench 4 列 27.3%。同表 Astra/Sol/Grok 4.6 与官方榜一致，Fable 5.1 55.8 与官方榜 57.88 不一致。无 CI、无成本/token 数据。见 devin-swe2-round1-2026-09-12.json。",
+      "en": "Vendor self-report, not an official tbench.ai leaderboard run. The Cognition blog's Coding benchmark results table lists Terminal-Bench 4 at 27.3%. The same table's Astra/Sol/Grok 4.6 agree with the official leaderboard; Fable 5.1's 55.8 does not match the official 57.88. No CI, no cost/token data. See devin-swe2-round1-2026-09-12.json."
+    },
+    {
+      "zh": "用户提供的 AA 对比图：Step 5 Preview 整数读数 44（无 effort 后缀）。同图 Grok 4.6 high=44、Kimi K3 max=44、Gemini 3.8 Flash high=41、DeepSeek V4 Pro max=36 与项目 9/9 快照吻合；但 Sol max=52（快照47.1）、Astra xhigh=53、Fable 5.1 max=53、Opus 5 max=50（快照50.7→51）——截图疑为 9/9 后更新的 index 版本（顶部列 Last Exam/GDPval/CritPt/AA-Omniscience/AA-LCR v1.1），44 属新版本读数，与 v4.3 快照混用有版本风险，待整榜重拉时复核。",
+      "en": "Maintainer-provided AA comparison figure: Step 5 Preview integer reading 44 (no effort suffix). The same figure's Grok 4.6 high=44, Kimi K3 max=44, Gemini 3.8 Flash high=41 and DeepSeek V4 Pro max=36 match the project's 9/9 snapshot; but Sol max=52 (snapshot 47.1), Astra xhigh=53, Fable 5.1 max=53 and Opus 5 max=50 (snapshot 50.7→51) — the screenshot is suspected to be an index version updated after 9/9 (its top columns are Last Exam/GDPval/CritPt/AA-Omniscience/AA-LCR v1.1), so 44 is a new-version reading and mixing it with the v4.3 snapshot carries a version risk; re-verify on the next full-board pull."
+    },
+    {
+      "zh": "AA 独立实测 33.3%，非厂商自报；与阶跃发布图 33.3% 完全一致——厂商图引用的即 AA 数（其 Kimi K3 max 12.6% 异常低值也一致）。AA 版 TB4 与 tbench.ai 官方快照是不同 harness 的不同运行（同图 Astra max 59.1 / Opus5 max 49.0 / GLM-5.3 max 41.9 对官方 58.18 / 51.82 / 41.82，量级吻合）。effort 未在 AA 页面标注，厂商图标 (High)。",
+      "en": "AA independent measurement 33.3%, not a vendor self-report; identical to the 33.3% on the StepFun release figure — the vendor figure cites the AA number (its anomalously low Kimi K3 max 12.6% matches too). The AA TB4 run and the official tbench.ai snapshot are different runs on different harnesses (same figure: Astra max 59.1 / Opus 5 max 49.0 / GLM-5.3 max 41.9 vs official 58.18 / 51.82 / 41.82 — consistent magnitudes). effort is not labeled on the AA page; the vendor figure marks it (High)."
+    },
+    {
+      "zh": "round4 unmappedPublicRows/intelligenceNewLeadersUnmapped 提升；reason=new_or_unlisted_version 因 SuperGrok 4.7 入库而解除。",
+      "en": "Promoted from round4 unmappedPublicRows/intelligenceNewLeadersUnmapped; reason=new_or_unlisted_version was cleared when SuperGrok 4.7 entered the catalog."
+    },
+    {
+      "zh": "同上。",
+      "en": "Same as above."
+    },
+    {
+      "zh": "round4 unmappedPublicRows 提升（indexScore 0.5626764360706693×100）。Score 属 Grok Build × 4.7 xhigh 该命名配置，非 harness 无关的模型测量；TB4 子项 33.3 与 tbench.ai 独立榜分开，不互灌。",
+      "en": "Promoted from round4 unmappedPublicRows (indexScore 0.5626764360706693×100). The score belongs to the named Grok Build × 4.7 xhigh configuration, not a harness-independent model measurement; the TB4 sub-item 33.3 stays separate from the independent tbench.ai leaderboard — no cross-pollination."
+    },
+    {
+      "zh": "AA 榜整数读数 46、无 effort 后缀；OpenRouter 模型页的 AA 表显示 46.3（同一榜单不同取整）。v4.3.2 版本读数。Flash 未上榜。",
+      "en": "Integer reading 46 on the AA leaderboard, no effort suffix; the AA table on the OpenRouter model page shows 46.3 (same leaderboard, different rounding). A v4.3.2-version reading. Flash is not listed."
+    },
+    {
+      "zh": "官方 TB4 榜 2026-09-21 新行：37.6% ±3.5%、5.5B tokens、$3.7k、第6名（页面缩写 5.5B/$3.7k，登记为 5.5e9/$3700）。xAI 厂商自报 38.0% 与官方 37.6% 同源口径差0.4pt，采用官方板面读数。",
+      "en": "New row on the official TB4 board dated 2026-09-21: 37.6% ±3.5%, 5.5B tokens, $3.7k, rank 6 (page abbreviations 5.5B/$3.7k, recorded as 5.5e9/$3700). The xAI vendor self-report 38.0% differs from the official 37.6% by 0.4pt on the same basis; the official board reading is adopted."
+    },
+    {
+      "zh": "官方模型卡（MIT）第 3 节 Evaluation Results 表 DeepSWE v1.1 行：Pro 71.9 / Flash 67.9 / V2.5 Pro 19.0。同一模型的 DeepSWE 数字有三个互相矛盾的口径，按只记录不择一的规矩全部登记：①模型卡 71.9（本档采用，与 DeepSeek V4.1 Flash 自报同为模型卡口径）；②官方发布页 mimo.mi.com/docs/en-US/news/latest/v2-6 记 RL 曲线 58.4→72.6；③第三方 orcarouter 读小米 Live 面板终点 72.57（面板图注 mini-swe-agent, avg@3）。差异来自 checkpoint 选取、取整与 avg@k，②③未采用。官方榜无 MiMo 行。",
+      "en": "The official model card (MIT), section 3 Evaluation Results table, DeepSWE v1.1 row: Pro 71.9 / Flash 67.9 / V2.5 Pro 19.0. The same model has three mutually contradictory DeepSWE figures; per the record-all-choose-none rule all three are registered: ①the model card 71.9 (adopted for this tier — the same model-card basis as DeepSeek V4.1 Flash's self-report); ②the official release page mimo.mi.com/docs/en-US/news/latest/v2-6 records an RL curve 58.4→72.6; ③the third-party orcarouter read the Xiaomi Live panel endpoint 72.57 (panel captioned mini-swe-agent, avg@3). The differences come from checkpoint selection, rounding and avg@k; ② and ③ were not adopted. The official board has no MiMo row."
+    },
+    {
+      "zh": "官方模型卡同表 Flash 行 67.9。同型矛盾口径：官方发布页记 RL 曲线 48.8→65.7、第三方读面板终点 65.68，均未采用（理由见 Pro 条）。这是 mimo-v2.6-flash 在本项目七张榜上的第一个分数——此前它 11 个采用点因无分数不进任何能力图。官方榜无 MiMo 行。",
+      "en": "The official model card's table lists the Flash row at 67.9. Conflicting same-model figures: the official release page records an RL curve 48.8→65.7 and a third party read the panel endpoint 65.68 — neither adopted (reasons in the Pro entry). This is mimo-v2.6-flash's first score on any of the project's seven boards — its previous 11 adopted points had no score and never entered a capability chart. The official board has no MiMo row."
+    },
+    {
+      "zh": "同表 MiMo-V2.5 Pro 列 19.0。注意这是厂商在展示新版提升时给出的上一代基准值，方向性偏低的动机存在，读者应按厂商自报折价；与该模型已有的官方榜读数（AA 智力 25.9869、Code Arena 1475、Agent Arena -3.57）量级不矛盾。小米未给 mimo-v2.5（非 Pro）的 DeepSWE 数字，故不补。",
+      "en": "The same table lists MiMo-V2.5 Pro at 19.0. Note that this is a previous-generation baseline the vendor quoted while showcasing the new version's improvement — a downward-bias incentive exists, so readers should discount it as a vendor self-report; it is not inconsistent in magnitude with the model's existing official-board readings (AA intelligence 25.9869, Code Arena 1475, Agent Arena -3.57). Xiaomi gave no DeepSWE number for mimo-v2.5 (non-Pro), so none is filled in."
+    },
+    {
+      "zh": "xAI 发布页（2026-09-21）基准表 DeepSWE v1.1 行 71.0%*，星注 high effort。同表 Grok 4.6 High 65.2 与官方榜 mini-swe-agent - grok-4-6 (high) 65.188 差 0.012，据此判定同 harness 同口径。官方榜无 grok-4.7 行，该模型此前在 DeepSWE 榜缺位。同表 Terminal-Bench 4.0 自报 38.0% 不采用——该榜已有官方行 Grok Build - Grok 4.7 (xhigh) 37.6%，官方读数优先于厂商自报；同表 Grok 4.6 TB4 20.3 与官方榜 Grok Build - Grok 4.6 (high) 20.3 完全一致，进一步佐证两表同源。",
+      "en": "The xAI release page (2026-09-21) benchmark table's DeepSWE v1.1 row shows 71.0%*, footnoted as high effort. The same table's Grok 4.6 High 65.2 differs from the official board's mini-swe-agent - grok-4-6 (high) 65.188 by 0.012 — judged same harness, same basis. The official board has no grok-4.7 row; the model was previously absent from the DeepSWE board. The same table's self-reported Terminal-Bench 4.0 38.0% is not adopted — the board already has the official row Grok Build - Grok 4.7 (xhigh) 37.6%, and official readings take precedence over vendor self-reports; the same table's Grok 4.6 TB4 20.3 matches the official board's Grok Build - Grok 4.6 (high) 20.3 exactly, further corroborating that the two tables share a source."
+    },
+    {
+      "zh": "厂商自报，非 tbench.ai 官方榜运行。Anthropic 2026-09-22 Opus 5.5 发布页评测表 Terminal-Bench 4 行 66.4%（default effort）；同表 FrontierCode 54.4%、CursorBench 52.5%、GDPval-AA 1846 非本仓库榜单仅留证据；AA/arena/OpenDesign 暂无第三方快照分不补造。见 claude-opus55-round1-2026-09-23.json。",
+      "en": "Vendor self-report, not an official tbench.ai leaderboard run. The Anthropic 2026-09-22 Opus 5.5 release page's eval table shows Terminal-Bench 4 at 66.4% (default effort); the same table's FrontierCode 54.4%, CursorBench 52.5% and GDPval-AA 1846 are not this repository's boards — kept as evidence only; AA/arena/OpenDesign have no third-party snapshot score, so none is fabricated. See claude-opus55-round1-2026-09-23.json."
+    },
+    {
+      "zh": "v4.3.2 原始精度（页面整数位 58）。9/22 发布，同日全部五档上榜并登顶（次高 Fable 5.1 max 53.35）。slug 无 -max 后缀即 max 档。AA 页面注明 releaseDate 2026-09-22，其余四档标 9-17（分档实测日期）。",
+      "en": "v4.3.2 original precision (page shows integer 58). Released 9/22, all five tiers listed the same day and topped the board (next-highest Fable 5.1 max 53.35). A slug without a -max suffix is the max tier. The AA page notes releaseDate 2026-09-22; the other four tiers are marked 9-17 (per-tier measurement dates)."
+    },
+    {
+      "zh": "同上（整数位 56）。",
+      "en": "Same as above (integer 56)."
+    },
+    {
+      "zh": "同上（整数位 54）。",
+      "en": "Same as above (integer 54)."
+    },
+    {
+      "zh": "同上（整数位 51）。",
+      "en": "Same as above (integer 51)."
+    },
+    {
+      "zh": "同上（整数位 42）。",
+      "en": "Same as above (integer 42)."
+    },
+    {
+      "zh": "v4.3.2 原始精度，升级 scores-mimo-v26-grok47-round1 的整数读数 46（同榜同模型，46.3242）。无 effort 后缀；Flash 仍未上榜。",
+      "en": "v4.3.2 original precision, upgrading the integer reading 46 from scores-mimo-v26-grok47-round1 (same board, same model: 46.3242). No effort suffix; Flash still not listed."
+    },
+    {
+      "zh": "AA 独立实测（非 tbench.ai 官方榜运行，harness 不同，两边不互灌）。tbench.ai 官方榜 2026-09-23 复核仍无 Opus 5.5 行；Anthropic 自报 66.4%(xhigh,±2.6) 与 AA 实测 59.6% 口径不同——AA 值为 adoptable 的第三方读数。",
+      "en": "AA independent measurement (not a run on the official tbench.ai leaderboard — different harness, the two sides are not cross-pollinated). A 2026-09-23 recheck of the official tbench.ai board still shows no Opus 5.5 row; Anthropic's self-reported 66.4% (xhigh, ±2.6) and the AA-measured 59.6% use different bases — the AA value is the adoptable third-party reading."
+    },
+    {
+      "zh": "AA 独立实测；小米自跑自报 34.9% 未获采用（对比机型对不齐，harness 未署名）。此为该模型首个第三方 TB4 读数。",
+      "en": "AA independent measurement; Xiaomi's self-run self-reported 34.9% was not adopted (the comparison models do not align and the harness is unnamed). This is the model's first third-party TB4 reading."
+    },
+    {
+      "zh": "AA 独立实测 25.76%，显著低于 tbench.ai 官方行 Grok Build 37.58%——不同 harness 不同运行，两侧均留档；per-model max 仍取官方 37.6。",
+      "en": "AA independent measurement 25.76%, well below the official tbench.ai row's Grok Build 37.58% — different harness, different runs; both sides are kept on record; the per-model max still takes the official 37.6."
+    },
+    {
+      "zh": "同上（24.75%）。",
+      "en": "Same as above (24.75%)."
+    },
+    {
+      "zh": "Code Arena 线上板面 2026-09-23 读数（rating 1625.64，round 为整数位 1626；rank 13、95% 名次区间 10–19）。9/21 发布后新上榜。",
+      "en": "Code Arena live-board reading on 2026-09-23 (rating 1625.64, shown rounded to the integer 1626; rank 13, 95% rank interval 10–19). Newly listed after the 9/21 release."
+    },
+    {
+      "zh": "rating 1628.15（整数位 1628）。rank=0 为 Day-1 未正式排位（isDay1，λ=0.21），95% 名次区间 10–20、790 票。",
+      "en": "rating 1628.15 (shown as integer 1628). rank=0 is the unranked Day-1 status (isDay1, λ=0.21); 95% rank interval 10–20, 790 votes."
+    },
+    {
+      "zh": "自 scores-new-models-round1-2026-09-23.json unmappedOfficialRows 原样移入（分数/secondary/source/checkedAt 不改）；chatgpt_plus × gpt-6-sol 入库后启用。原注：9/22 新发，无 adopted 套餐行——存档待采纳；AA v4.3.2 原始精度。",
+      "en": "Moved verbatim from scores-new-models-round1-2026-09-23.json unmappedOfficialRows (score/secondary/source/checkedAt unchanged); activated once chatgpt_plus × gpt-6-sol entered the catalog. Original note: released 9/22, no adopted plan row — archived pending adoption; AA v4.3.2 original precision."
+    },
+    {
+      "zh": "自 scores-new-models-round1-2026-09-23.json unmappedOfficialRows 原样移入（分数/secondary/source/checkedAt 不改）；chatgpt_plus × gpt-6-sol 入库后启用。原注：AA 独立实测 TB4；无 adopted 套餐行，存档待采纳。",
+      "en": "Moved verbatim from scores-new-models-round1-2026-09-23.json unmappedOfficialRows (score/secondary/source/checkedAt unchanged); activated once chatgpt_plus × gpt-6-sol entered the catalog. Original note: AA independent TB4 measurement; no adopted plan row — archived pending adoption."
+    },
+    {
+      "zh": "自 scores-new-models-round1-2026-09-23.json unmappedOfficialRows 原样移入（分数/secondary/source/checkedAt 不改）；chatgpt_plus × gpt-6-sol 入库后启用。原注：AA Coding Agent Index v1.5（19 配置板面）原始精度 indexScore×100。无 adopted 套餐行，存档待采纳；TB4 子项为 Codex harness 运行，与 tbench.ai 独立榜不互灌。",
+      "en": "Moved verbatim from scores-new-models-round1-2026-09-23.json unmappedOfficialRows (score/secondary/source/checkedAt unchanged); activated once chatgpt_plus × gpt-6-sol entered the catalog. Original note: AA Coding Agent Index v1.5 (19-configuration board) at original precision, indexScore×100. No adopted plan row — archived pending adoption; the TB4 sub-item is a Codex-harness run and is not cross-pollinated with the independent tbench.ai leaderboard."
+    },
+    {
+      "zh": "9/22 新发，无 adopted 套餐行——存档待采纳；AA v4.3.2 原始精度。",
+      "en": "Released 9/22, no adopted plan row — archived pending adoption; AA v4.3.2 original precision."
+    },
+    {
+      "zh": "AA 独立实测 TB4；无 adopted 套餐行，存档待采纳。",
+      "en": "AA independent TB4 measurement; no adopted plan row — archived pending adoption."
+    },
+    {
+      "zh": "AA Coding Agent Index v1.5（19 配置板面）原始精度 indexScore×100。无 adopted 套餐行，存档待采纳；TB4 子项为 Codex harness 运行，与 tbench.ai 独立榜不互灌。",
+      "en": "AA Coding Agent Index v1.5 (19-configuration board) at original precision, indexScore×100. No adopted plan row — archived pending adoption; the TB4 sub-item is a Codex-harness run and is not cross-pollinated with the independent tbench.ai leaderboard."
+    },
+    {
+      "zh": "分数属于该命名 agent/harness × 模型配置，并非与 harness 无关的模型测量。indexScore 以百分数存储（原始小数 ×100），与既有存档口径一致。",
+      "en": "Score belongs to this named agent/harness × model configuration; it is not a harness-independent model measurement. indexScore stored as percent (raw fraction × 100) to match prior archive scale."
+    },
+    {
+      "zh": "AA 内嵌载荷标记 intelligenceIndexIsEstimated=true；按估计值保留，不作完整实测处理。",
+      "en": "Marked intelligenceIndexIsEstimated=true in AA embedded payload; retained as estimate, not treated as fully measured."
+    },
+    {
+      "zh": "官方 Terminal-Bench 4.0 榜单行（66 题、每题 5 次共 330 次；正确率 = 成功数/330）。分数属于该 harness × 模型 × effort 的具体配置；effort 是 harness 自身设置，不是榜单参数。成本/token 总量覆盖完整 330 次运行。",
+      "en": "Official Terminal-Bench 4.0 leaderboard row (66 tasks, 5 trials each = 330 trials; accuracy = successes/330). Score belongs to this harness x model x effort configuration; effort is the harness's own setting, not a benchmark parameter. Cost/token totals cover the full 330-trial run."
     }
   ]
 }

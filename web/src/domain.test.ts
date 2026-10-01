@@ -15,7 +15,7 @@ test("Wheel zoom preserves cursor anchor and reversed logarithmic axis direction
     restored.forEach((n, i) => assert.ok(Math.abs(n - range[i]) < 1e-9));
   }
 });
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { parse } from "csv-parse/sync";
 import {
   matchesFeeBand,
@@ -81,8 +81,23 @@ const data: SiteData = unpackData(JSON.parse(
 
 test("Packed website mappings restore every original field without data loss", () => {
   const raw = JSON.parse(readFileSync(new URL("../../derived/benchmark-points.json", import.meta.url), "utf8"));
-  // source_en is a website-only display field added on top of the shared record.
-  assert.deepEqual(data.mappings.map(({ source_en: _en, ...m }) => m), raw);
+  // Website-only display fields (translations, provenance inherited from the
+  // shared configuration) are added on top of the original mapping records.
+  assert.deepEqual(
+    data.mappings.map(
+      ({
+        source_en: _se,
+        archive: _a,
+        archive_url: _au,
+        checked_at: _c,
+        board_label: _b,
+        record_note_zh: _rz,
+        record_note_en: _re,
+        ...m
+      }) => m,
+    ),
+    raw,
+  );
 });
 test("Anthropic workload line prices the input share as cache writes", () => {
   const p = { workload: "anthropic" } as Point;
@@ -1115,4 +1130,33 @@ test("English CSV export has no Chinese in the Plan or source columns", () => {
         !CJK_CHAR.test(stripKeep(r[col] ?? "")),
         `${r["Point ID"]} ${col}: ${(r[col] ?? "").slice(0, 80)}`,
       );
+});
+
+test("Every mapping exposes score provenance: checked date, archive file, board label, localized record note", () => {
+  const evidenceDir = new Set(
+    readdirSync(new URL("../public/data/evidence", import.meta.url)),
+  );
+  const researchDir = new Set(
+    readdirSync(new URL("../../data/research", import.meta.url)),
+  );
+  for (const m of data.mappings) {
+    assert.ok(m.checked_at, `${m.point_id}/${m.board}`);
+    assert.ok(m.board_label, `${m.point_id}/${m.board}`);
+    assert.ok(m.archive, `${m.point_id}/${m.board}`);
+    assert.equal(m.archive_url, `/data/evidence/${m.archive}`);
+    assert.ok(
+      evidenceDir.has(m.archive!) || researchDir.has(m.archive!),
+      `archive not shipped: ${m.archive}`,
+    );
+    if (m.record_note_en != null || m.record_note_zh != null) {
+      assert.ok(
+        m.record_note_en && !CJK_CHAR.test(m.record_note_en),
+        `record_note_en: ${m.record_note_en}`,
+      );
+      assert.ok(
+        m.record_note_zh && CJK_CHAR.test(m.record_note_zh),
+        `record_note_zh: ${m.record_note_zh}`,
+      );
+    }
+  }
 });

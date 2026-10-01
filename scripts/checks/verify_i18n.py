@@ -1,7 +1,9 @@
-"""Verify data/i18n/adopted.en.json: every Chinese adoption string shown on the
-website has exactly one English entry; entries carry identical URLs, filenames
-and numbers; English text is CJK-free. --sync rewrites the file (adds missing
-entries with empty en, drops orphans) then still runs the checks.
+"""Verify data/i18n/adopted.en.json: every Chinese adoption/source string shown
+on the website has exactly one English entry, and every English-only benchmark
+raw_record.note has exactly one Chinese entry; entries carry identical URLs,
+filenames and numbers; translations respect the 亿/万 unit-scale tags.
+--sync rewrites the file (adds missing entries with the missing side empty,
+drops orphans) then still runs the checks.
 """
 from __future__ import annotations
 
@@ -25,24 +27,38 @@ NUM_RE = re.compile(r'[0-9]+(?:,[0-9]{3})*(?:\.[0-9]+)?')
 NUM_UNIT = re.compile(r'\s*([BKM])\b')
 
 
-def required_strings() -> list[str]:
-    """Ordered, de-duplicated: adopted.csv (row order, source then decision_note),
-    then benchmark-configurations source, then benchmark-points source."""
-    out, seen = [], set()
+def required_strings() -> tuple[list[str], list[str]]:
+    """Ordered, de-duplicated, in two directions. zh-required (need a non-empty
+    CJK-free en): adopted.csv (row order, source then decision_note), then
+    benchmark-configurations source, then benchmark-points source, then CJK
+    raw_record.note values in configuration order. en-required (need a
+    non-empty zh containing CJK): English-only raw_record.note values, in
+    configuration order."""
+    zh_req, en_req, seen = [], [], set()
 
     def add(s: str | None) -> None:
         if s and CJK.search(s) and s not in seen:
             seen.add(s)
-            out.append(s)
+            zh_req.append(s)
 
     with (ROOT / 'data' / 'adopted.csv').open(encoding='utf-8-sig', newline='') as f:
         for r in csv.DictReader(f):
             add(r['source'])
             add(r['decision_note'])
-    for name in ('benchmark-configurations.json', 'benchmark-points.json'):
-        for r in json.loads((ROOT / 'derived' / name).read_text(encoding='utf-8')):
-            add(r.get('source'))
-    return out
+    configurations = json.loads(
+        (ROOT / 'derived' / 'benchmark-configurations.json')
+        .read_text(encoding='utf-8'))
+    for r in configurations:
+        add(r.get('source'))
+    for r in json.loads(
+            (ROOT / 'derived' / 'benchmark-points.json').read_text(encoding='utf-8')):
+        add(r.get('source'))
+    for r in configurations:
+        note = (r.get('raw_record') or {}).get('note')
+        if note and note not in seen:
+            seen.add(note)
+            (zh_req if CJK.search(note) else en_req).append(note)
+    return zh_req, en_req
 
 
 def urls(text: str) -> list[str]:
@@ -153,29 +169,39 @@ def main() -> None:
             print(' ', f)
         sys.exit(1)
     sync = '--sync' in sys.argv
-    req = required_strings()
+    req_zh, req_en = required_strings()
     doc = load_file() if I18N.is_file() else {'_doc': '', 'keepCJK': [], 'entries': []}
     keep = doc.get('keepCJK', [])
 
     if sync:
-        have = {e['zh'] for e in doc['entries']}
-        entries = [{'zh': z, 'en': next((e['en'] for e in doc['entries'] if e['zh'] == z), '')}
-                   for z in req]
-        # keep any orphan-free original order preserved by req order; write back
+        entries = [
+            {'zh': z,
+             'en': next((e.get('en', '') for e in doc['entries'] if e['zh'] == z), '')}
+            for z in req_zh
+        ] + [
+            {'zh': next((e['zh'] for e in doc['entries']
+                        if e.get('en') == n and CJK.search(e.get('zh', ''))), ''),
+             'en': n}
+            for n in req_en
+        ]
         doc['entries'] = entries
         doc.setdefault('_doc', '')
         doc.setdefault('keepCJK', [])
         I18N.parent.mkdir(parents=True, exist_ok=True)
         I18N.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-        print(f'sync: {len(entries)} entries written ({sum(1 for e in entries if not e["en"])} empty)')
+        print(f'sync: {len(entries)} entries written '
+              f'({sum(1 for e in entries if not e["en"] or not e["zh"])} with an empty side)')
 
     doc = load_file()
     failures = []
+    req_zh_set, req_en_set = set(req_zh), set(req_en)
     by_zh: dict[str, list[dict]] = {}
+    by_en: dict[str, list[dict]] = {}
     for e in doc['entries']:
         by_zh.setdefault(e['zh'], []).append(e)
+        by_en.setdefault(e.get('en', ''), []).append(e)
 
-    for z in req:
+    for z in req_zh:
         es = by_zh.get(z, [])
         if not es:
             failures.append(f'missing entry: {z[:80]}')
@@ -183,23 +209,39 @@ def main() -> None:
             failures.append(f'duplicate entry ({len(es)}x): {z[:80]}')
         elif not es[0].get('en'):
             failures.append(f'empty en: {z[:80]}')
-    for z, es in by_zh.items():
-        if z not in req:
-            failures.append(f'orphan entry: {z[:80]}')
+    for n in req_en:
+        es = by_en.get(n, [])
+        if not es:
+            failures.append(f'missing en->zh entry: {n[:80]}')
+        elif len(es) > 1:
+            failures.append(f'duplicate en entry ({len(es)}x): {n[:80]}')
+        elif not es[0].get('zh'):
+            failures.append(f'empty zh: {n[:80]}')
+        elif not CJK.search(es[0]['zh']):
+            failures.append(f'zh has no CJK (en->zh entry): {n[:80]}')
+    for e in doc['entries']:
+        if e['zh'] not in req_zh_set and e.get('en') not in req_en_set:
+            failures.append(f'orphan entry: {e["zh"][:80]}')
 
     for e in doc['entries']:
         z, en = e['zh'], e.get('en', '')
-        if not en:
-            continue
-        en_stripped = en
-        for k in keep:
-            if k in en_stripped:
-                if k not in z:
-                    failures.append(f'keepCJK {k!r} used in en but absent from zh: {z[:60]}')
-                en_stripped = en_stripped.replace(k, '')
-        bad = EN_BAD.search(en_stripped)
-        if bad:
-            failures.append(f'CJK/fullwidth {bad.group(0)!r} in en: {z[:60]}')
+        zh_dir = z in req_zh_set  # zh is the source; en is the translation
+        if not zh_dir and en not in req_en_set:
+            continue  # orphan, already reported
+        if zh_dir:
+            if not en:
+                continue
+            en_stripped = en
+            for k in keep:
+                if k in en_stripped:
+                    if k not in z:
+                        failures.append(f'keepCJK {k!r} used in en but absent from zh: {z[:60]}')
+                    en_stripped = en_stripped.replace(k, '')
+            bad = EN_BAD.search(en_stripped)
+            if bad:
+                failures.append(f'CJK/fullwidth {bad.group(0)!r} in en: {z[:60]}')
+        elif not z:
+            continue  # empty zh on an en-source entry, already reported
         if urls(z) != urls(en):
             failures.append(f'URL mismatch: {z[:60]}\n    zh={urls(z)}\n    en={urls(en)}')
         if files(z) != files(en):
@@ -214,8 +256,8 @@ def main() -> None:
         if len(failures) > 80:
             print(f'  ... and {len(failures) - 80} more')
         sys.exit(1)
-    print(f'PASS: {len(req)} required strings; {len(doc["entries"])} entries; '
-          f'{len(keep)} keepCJK exceptions')
+    print(f'PASS: {len(req_zh)} zh->en + {len(req_en)} en->zh required strings; '
+          f'{len(doc["entries"])} entries; {len(keep)} keepCJK exceptions')
 
 
 if __name__ == '__main__':
