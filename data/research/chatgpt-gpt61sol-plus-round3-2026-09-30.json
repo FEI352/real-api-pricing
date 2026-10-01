@@ -1,6 +1,6 @@
 {
   "collectedAt": "2026-09-30",
-  "scopeNote": "GPT-6.1 Sol ChatGPT Plus 周窗第三段实测：60%→50%（10pp）段内 14,860,374 tok，与前两段在 60% 边界拼接为整段 81%→50%（31pp）/ 55,532,850 tok。整段分量与三段之和逐项吻合（截图整段标题仍写 82%/32pp，沿用用户更正起始值 81%→真实 31pp）。同时按 2026-09-30 统一折算裁定，把 GPT61_SOL_LIST 从「假设同 GPT-6 Sol」改为 GPT-6.1 Sol 官方价（cached $0.10/input $2/output $10）：段 list-worth $13.2824 ÷31% ×4周 ÷标准档混合价 $0.197/MTok = 8.70 亿/月，替代按 6-Sol 价折算的 8.96 亿；raw total 口径 7.17 亿留作对照。",
+  "scopeNote": "GPT-6.1 Sol ChatGPT Plus 周窗第三段实测：60%→50%（10pp）段内 14,860,374 tok，与前两段在 60% 边界拼接为整段 81%→50%（31pp）/ 55,532,850 tok。整段分量与三段之和逐项吻合（截图整段标题仍写 82%/32pp，沿用更正后起始值 81%→真实 31pp）。同时按 2026-09-30 统一折算裁定，把 GPT61_SOL_LIST 从「假设同 GPT-6 Sol」改为 GPT-6.1 Sol 官方价（cached $0.10/input $2/output $10）：段 list-worth $13.2824 ÷31% ×4周 ÷标准档混合价 $0.197/MTok = 8.70 亿/月，替代按 6-Sol 价折算的 8.96 亿；raw total 口径 7.17 亿留作对照。",
   "items": [
     {
       "planId": "chatgpt_plus",
@@ -8,9 +8,9 @@
       "model": "gpt-6.1-sol",
       "client": "Codex CLI",
       "evidenceType": "user_local_log_x_panel_percent",
-      "source": "用户本机 Codex 实测截图（2026-09-30 会话内提供，续 round1/round2 同窗口）",
+      "source": "维护者本机 Codex 实测截图（2026-09-30 会话内提供，续 round1/round2 同窗口）",
       "sourceDate": "2026-09-30",
-      "userConfirmation": "用户原话：『又补了点数据』",
+      "userConfirmation": "维护者原话：『又补了点数据』",
       "observed": {
         "windowSegment3": "周额度剩余 60% → 50%，差 10pp，全部增量为 gpt-6.1-sol",
         "segment3": {
@@ -24,7 +24,7 @@
           "tokensPerPoint": 1486037.4,
           "listWorthUsd": 3.3013192
         },
-        "windowCumulative": "周额度剩余 81% → 50%，差 31pp（截图标题写 82%→50% · 32pp，起始读数沿用用户更正 81%）",
+        "windowCumulative": "周额度剩余 81% → 50%，差 31pp（截图标题写 82%→50% · 32pp，起始读数沿用更正后读数 81%）",
         "cumulative": {
           "inputTokens": 2742389,
           "cacheReadTokens": 52536064,
@@ -71,9 +71,9 @@
   "doubts": [
     "第三段 60%→50% 每 1% $0.330，比前两段 $0.476/$0.473 低约 30%，10pp 整数读数取整（约 ±10%）不足以解释，原因未明"
   ],
-  "userConfirmation20261001": "用户原话：『6.1sol缓存就是更便宜，0.1，6还是0.2』",
+  "userConfirmation20261001": "维护者原话：『6.1sol缓存就是更便宜，0.1，6还是0.2』",
   "doubtsRecordedAt": "2026-10-01",
-  "adoptionDecision": "2026-10-01 用户裁定：先记录疑点，按整段 81%→50%（31pp）采用 8.70 亿/月",
+  "adoptionDecision": "2026-10-01 裁定：先记录疑点，按整段 81%→50%（31pp）采用 8.70 亿/月",
   "relatedFiles": [
     "chatgpt-gpt61sol-plus-round1-2026-09-30.json",
     "chatgpt-gpt61sol-plus-round2-2026-09-30.json",
