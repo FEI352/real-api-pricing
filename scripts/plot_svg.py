@@ -198,9 +198,9 @@ def label_position(p, board, x, y, tier="main"):
         if board == "open_design_arena":
             return x - 24, y + 45, "end"
         if board == "arena_agent_mode":
-            return x - 52, y + 20, "end"
+            return x + 14, y - 68, "start"
         if board == "arena_code":
-            return x - 23, y + 30, "end"
+            return x + 16, y + 15, "start"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
@@ -216,14 +216,14 @@ def label_position(p, board, x, y, tier="main"):
         if board == "aa_intelligence_index":
             return x + 20, y - 40, "start"
         if board == "aa_coding_agent_index":
-            return x + 90, y + 40, "end"
+            return x + 10, y - 78, "end"
         return x - 20, y - 52, "end"
     if model == "gpt-5.6-luna":
         # TB4 全量里 Luna 分数最低（官方 17.27% / AA 0%），标签整体下移会压过图框下缘。
         if board in ("terminal_bench_4", "aa_terminal_bench_4"):
             return x + 5, y + 25, "end"
         if board == "aa_intelligence_index":
-            return x - 24, y + 45, "end"
+            return x - 24, y + 58, "end"
         return x + 5, y + 57, "end"
     if model == "gpt-5.6-terra":
         if board == "aa_intelligence_index":
