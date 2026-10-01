@@ -98,6 +98,7 @@ Workers Builds settings:
 - Root directory: repository root (`/`).
 - Build command: `npm ci && npm --prefix web ci && npm --prefix web run build`.
 - Deploy command: `npx wrangler deploy` (Wrangler is pinned in the root lockfile).
+- Preview command: `npx wrangler preview`. The root `wrangler.jsonc` must include `"previews": {}`; preview builds inherit the top-level assets and compatibility settings. Existing PR branches need this configuration before their Cloudflare check can pass.
 - Node.js: 22.12+ (use `NODE_VERSION=22` in build variables).
 - Build from the full Git checkout: the data adapter reads `data/`, `derived/` and `config/` outside `web/`. Upload only `web/dist`, never the local working directory.
 
