@@ -62,7 +62,7 @@ plt.rcParams["axes.unicode_minus"] = False
 plt.rcParams["svg.hashsalt"] = "real-api-pricing"
 
 # 色值与 id 前缀统一来自 config/channel-colors.json；此处只定图例顺序。
-VENDOR_COLORS = palette(["OpenAI", "Anthropic", "xAI", "Cursor", "Kimi", "Zhipu", "MiniMax", "Alibaba",
+VENDOR_COLORS = palette(["OpenAI", "Anthropic", "SpaceXAI", "Cursor", "Kimi", "Zhipu", "MiniMax", "Alibaba",
                          "OpenCode", "Command Code", "Ollama", "DeepSeek", "Google", "StepFun",
                          "Xiaomi", "Devin", "Factory"])
 # 图例沿用旧显示名（GLM/Gemini），内部键均为 canonical 渠道名。
@@ -93,7 +93,7 @@ def output_stem(view: str, board: dict | None, language: str, table: bool = Fals
 
 
 VENDOR_CODES = {
-    "OpenAI": "OA", "Anthropic": "AN", "xAI": "XA", "Cursor": "CU",
+    "OpenAI": "OA", "Anthropic": "AN", "SpaceXAI": "XA", "Cursor": "CU",
     "Kimi": "KI", "Zhipu": "GL", "MiniMax": "MM", "Alibaba": "AL",
     "OpenCode": "OC", "Command Code": "CC", "Ollama": "OL",
     "DeepSeek": "DS", "Google": "GE", "StepFun": "SF", "Devin": "DV",

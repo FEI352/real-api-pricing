@@ -49,6 +49,7 @@ import {
   color,
   colors,
   csv,
+  dataDateLine,
   defaultState,
   displayPlan,
   filterKeys,
@@ -1561,6 +1562,11 @@ function Details({
             <i className="vendor-dot" style={{ background: color(p) }} />
             {displayPlan(p.plan, lang)} · {accessLine(p)}
           </p>
+          {dataDateLine(p, lang) !== "" && (
+            <p className="detail-date">
+              <small>{t("Data date", "数据日期")}</small> {dataDateLine(p, lang)}
+            </p>
+          )}
           <div className="detail-metrics">
             <div>
               <small>{t("Real price / MTok", "真实单价 / MTok")}</small>

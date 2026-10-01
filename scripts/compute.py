@@ -54,6 +54,7 @@ def score_archives():
             for name in SCORE_FILES if (RESEARCH / name).exists()]
 
 DISPLAY = {
+    "minimax-m3.1-flash-preview": "MiniMax M3.1 Flash Preview",
     "gpt-5.6-sol": "GPT 5.6 Sol", "gpt-5.6-terra": "GPT 5.6 Terra", "gpt-5.6-luna": "GPT 5.6 Luna", "gpt-5.5": "GPT 5.5", "gpt-6-astra": "GPT-6 Astra", "gpt-6-sol": "GPT-6 Sol", "gpt-6-luna": "GPT-6 Luna", "gpt-6.1-sol": "GPT-6.1 Sol",
     "claude-opus-5": "Claude Opus 5", "claude-opus-5.5": "Claude Opus 5.5", "claude-fable-5": "Claude Fable 5", "claude-fable-5.1": "Claude Fable 5.1", "claude-sonnet-5": "Claude Sonnet 5", "claude-opus-4.8": "Claude Opus 4.8", "claude-sonnet-5.5": "Claude Sonnet 5.5",
     "grok-4.6": "Grok 4.6", "grok-4.7": "Grok 4.7", "grok-4.5": "Grok 4.5", "kimi-k3": "Kimi K3", "kimi-k2.7-code": "Kimi K2.7 Code", "kimi-k2.6": "Kimi K2.6", "kimi-k2.5": "Kimi K2.5",
@@ -76,7 +77,7 @@ DISPLAY = {
     "swe-2": "SWE-2",
 }
 VENDOR = {
-    "gpt": "OpenAI", "claude": "Anthropic", "grok": "xAI", "kimi": "Kimi", "glm": "Zhipu", "minimax": "MiniMax",
+    "gpt": "OpenAI", "claude": "Anthropic", "grok": "SpaceXAI", "kimi": "Kimi", "glm": "Zhipu", "minimax": "MiniMax",
     "qwen": "Alibaba", "deepseek": "DeepSeek", "gemini": "Google", "mimo": "Xiaomi", "hy": "Tencent", "composer": "Cursor",
     "longcat": "Meituan", "muse": "Muse", "omen": "OpenCode", "step": "StepFun", "swe": "Cognition",
     "mistral": "Mistral",
@@ -154,6 +155,8 @@ def main() -> None:
                 real_usd_per_mtok=real, list_blended_usd_per_mtok=round(lb, 4) if lb else None,
                 d=round(real / lb, 4) if lb else None, confidence=r["confidence"], tier=r["chart_tier"], source=r["source"], note=r["decision_note"],
                 unmetered=r.get("unmetered") == "true", promo_until=r.get("promo_until") or None,
+                data_date=r.get("data_date") or None, data_date_kind=r.get("data_date_kind") or None,
+                data_date_from=r.get("data_date_from") or None,
             )
             for b in BOARDS:
                 options = candidates(r, scores, b)

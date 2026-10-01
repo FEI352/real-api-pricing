@@ -1,4 +1,4 @@
-import type { State, SiteData, Row, Point, Group, FilterKey } from "./types";
+import type { State, SiteData, Row, Point, Group, FilterKey, Lang } from "./types";
 import feeBandDefinitions from "../../config/allowance-fee-bands.json";
 import { channelColors, FALLBACK_COLOR } from "./palette";
 export const feeBands = feeBandDefinitions;
@@ -592,12 +592,15 @@ export function restore(
   const opts = options(data);
   for (const k of filterKeys) {
     if (!params.has(k)) continue;
-    const wanted = params.getAll(k);
+    const wanted = params.getAll(k).map(renameEntity);
     state[k] = wanted.filter((v) => opts[k].includes(v));
     if (state[k].length !== wanted.length) warning = true;
   }
   return { state, warning };
 }
+/** Display names that were renamed after links were shared (xAI → SpaceXAI). */
+const RENAMED: Record<string, string> = { xAI: "SpaceXAI" };
+const renameEntity = (v: string) => RENAMED[v] ?? v;
 /** The original "#s=<json>" share format; kept so old links still resolve. */
 function restoreLegacy(
   s: string,
@@ -638,9 +641,10 @@ function restoreLegacy(
     const opts = options(data);
     for (const k of filterKeys) {
       if (Array.isArray(raw[k])) {
-        state[k] = raw[k].filter(
-          (v: unknown) => typeof v === "string" && opts[k].includes(v),
-        );
+        state[k] = raw[k]
+          .filter((v: unknown) => typeof v === "string")
+          .map(renameEntity)
+          .filter((v: string) => opts[k].includes(v));
         if (state[k].length !== raw[k].length) warning = true;
       } else if (raw[k] !== undefined) warning = true;
     }
@@ -711,6 +715,28 @@ export function workloadLine(
   return zh
     ? "未折算：样本缺 token 分项（或为官方绝对 token 表），直接采用 raw token"
     : "Not workload-normalized: sample lacks a token breakdown (or is an official absolute token table); raw tokens used as-is";
+}
+
+/** Data-date line for the detail panel: when this quota data was sampled or published. */
+export function dataDateLine(p: Point, lang: Lang): string {
+  if (!p.data_date) return "";
+  const zh = lang === "zh";
+  const date = p.data_date.replace("~", zh ? " ~ " : " – ");
+  const kind =
+    p.data_date_kind === "sample"
+      ? zh
+        ? "实测采样"
+        : "sampled"
+      : p.data_date_kind === "official"
+        ? zh
+          ? "官方来源日期"
+          : "official source date"
+        : p.data_date_kind === "derived"
+          ? zh
+            ? `派生，沿用 ${p.data_date_from} 的数据日期`
+            : `derived; uses the data date of ${p.data_date_from}`
+          : null;
+  return kind ? `${date} · ${kind}` : date;
 }
 
 /** Official metered API list prices, shown next to the workload basis. */

@@ -24,7 +24,7 @@ BOARDS = {
     "deepswe_1_1": ("DeepSWE榜", "DeepSWE v1.1"),
 }
 # 色值与 id 前缀统一来自 config/channel-colors.json；此处只定图例顺序。
-COLORS = palette(["OpenAI", "Anthropic", "xAI", "Cursor", "Kimi", "Zhipu", "MiniMax", "Alibaba",
+COLORS = palette(["OpenAI", "Anthropic", "SpaceXAI", "Cursor", "Kimi", "Zhipu", "MiniMax", "Alibaba",
                   "OpenCode", "Command Code", "Ollama", "DeepSeek", "Google", "Xiaomi",
                   "Tencent", "StepFun", "Devin", "Factory"])
 # 图例沿用旧显示名（Claude/GLM），内部键均为 canonical 渠道名。
@@ -198,17 +198,17 @@ def label_position(p, board, x, y, tier="main"):
         if board == "open_design_arena":
             return x - 24, y + 45, "end"
         if board == "arena_agent_mode":
-            return x - 52, y + 20, "end"
+            return x + 14, y - 68, "start"
         if board == "arena_code":
-            return x - 23, y + 30, "end"
+            return x + 16, y + 15, "start"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
             return x + 10, y - 50, "start"
         if model == "deepseek-v4.1-flash" and board == "deepswe_1_1":
-            return x - 180, y + 182, "end"
+            return x - 24, y - 52, "end"
         if model == "deepseek-v4.1-flash" and board == "terminal_bench_4":
-            return x - 54, y - 25, "end"
+            return x - 141, y + 21, "end"
         return x - 24, y + 49, "end"
     if model == "gpt-6-luna":
         if board == "aa_terminal_bench_4":
@@ -216,14 +216,14 @@ def label_position(p, board, x, y, tier="main"):
         if board == "aa_intelligence_index":
             return x + 20, y - 40, "start"
         if board == "aa_coding_agent_index":
-            return x + 90, y + 40, "end"
+            return x + 10, y - 78, "end"
         return x - 20, y - 52, "end"
     if model == "gpt-5.6-luna":
         # TB4 全量里 Luna 分数最低（官方 17.27% / AA 0%），标签整体下移会压过图框下缘。
         if board in ("terminal_bench_4", "aa_terminal_bench_4"):
             return x + 5, y + 25, "end"
         if board == "aa_intelligence_index":
-            return x - 24, y + 45, "end"
+            return x - 24, y + 58, "end"
         return x + 5, y + 57, "end"
     if model == "gpt-5.6-terra":
         if board == "aa_intelligence_index":

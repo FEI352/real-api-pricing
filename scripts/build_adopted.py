@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "adopted.csv"
@@ -54,13 +55,13 @@ CHATGPT_PLUS_LUNA6_SEGMENT = {"input": 3_129_683, "output": 757_355, "cache_read
 CHATGPT_PLUS_LUNA6_USED_TOKENS = 137_648_446
 CHATGPT_PLUS_LUNA6_USED_FRACTION = 0.06
 assert sum(CHATGPT_PLUS_LUNA6_SEGMENT.values()) == CHATGPT_PLUS_LUNA6_USED_TOKENS
-# GPT-6.1 Sol（GPT-6 Sol 后继）Plus —— 2026-09-30 用户本机 Codex 实测：周窗剩余 81%→60%（21pp），
-#   整段 40,672,476 tok 全为 gpt-6.1-sol（=81%→65% 段 + 65%→60% 续段拼合；截图标题 82%/22pp，
+# GPT-6.1 Sol（GPT-6 Sol 后继）Plus —— 2026-09-30 用户本机 Codex 实测：周窗剩余 81%→50%（31pp），
+#   整段 55,532,850 tok 全为 gpt-6.1-sol（=81%→65% + 65%→60% + 60%→50% 三段边界拼合；截图标题 82%/32pp，
 #   用户更正起始读数为 81%）
-CHATGPT_PLUS_SOL61_SEGMENT = {"input": 2_035_108, "output": 206_776, "cache_read": 38_430_592,
+CHATGPT_PLUS_SOL61_SEGMENT = {"input": 2_742_389, "output": 254_397, "cache_read": 52_536_064,
                               "cache_write": 0}
-CHATGPT_PLUS_SOL61_USED_TOKENS = 40_672_476
-CHATGPT_PLUS_SOL61_USED_FRACTION = 0.21
+CHATGPT_PLUS_SOL61_USED_TOKENS = 55_532_850
+CHATGPT_PLUS_SOL61_USED_FRACTION = 0.31
 assert sum(CHATGPT_PLUS_SOL61_SEGMENT.values()) == CHATGPT_PLUS_SOL61_USED_TOKENS
 # GPT-5.6 Luna Plus —— chatgpt-luna-adoption-round6 样本分项（cache_read 109,356,416 / input 2,941,040 / output 369,313）
 CHATGPT_PLUS_LUNA_SEGMENT = {"input": 2_941_040, "output": 369_313, "cache_read": 109_356_416}
@@ -69,7 +70,7 @@ assert sum(CHATGPT_PLUS_LUNA_SEGMENT.values()) == CHATGPT_PLUS_LUNA_USED_TOKENS
 #   带 token 分项的实测样本按该模型标价折 list-worth 再按负载档混合价换算
 GPT6_SOL_LIST = (0.2, 2.0, 10.0)       # $2/$10 为 AA 页标价；cached 按 0.1× 推定
 GPT6_LUNA_LIST = (0.01, 0.1, 0.5)      # scores-gpt6luna-round1 存档 AA 标价；cached 按 0.1× 推定
-GPT61_SOL_LIST = GPT6_SOL_LIST         # 库内无 6.1 Sol 标价，假设同 GPT-6 Sol（折算只依赖三段价比）
+GPT61_SOL_LIST = (0.1, 2.0, 10.0)      # GPT-6.1 Sol 官方价：learn.chatgpt.com token rates credits 2.5/50/250 ÷25；developers.openai.com $2/$0.10/$10（cached=输入5%，写$2.5段内为0）
 GPT56_LUNA_LIST = (0.02, 0.2, 1.2)     # METERED openai_luna_api（1:10:60）
 GROK_LIST = (0.5, 2.0, 6.0)            # Grok 4.6/4.7 <200K 官方 API 价（docs.x.ai）
 GEMINI_FLASH_LIST = (0.075, 0.75, 3.75)  # Gemini Flash 引入价至 2026-12-31（gemini-weekly-round7）
@@ -320,7 +321,8 @@ def chatgpt_luna6_raw_monthly_yi() -> float:
 
 
 def chatgpt_sol61_monthly_yi() -> float:
-    # 段 worth $13.8241 ÷21% ×4周 = 月 $263.32 ÷ 标准档 $0.294/MTok（价假设同 GPT-6 Sol）
+    # 段 worth $13.2824 ÷31% ×4周 = 月 $171.39 ÷ 标准档 $0.197/MTok（GPT-6.1 Sol 官方价）
+    # 若按 GPT-6 Sol 价 (0.2,2,10) 折算：worth $18.5360 → 8.14 亿，留作对照
     return round(
         worth_usd(CHATGPT_PLUS_SOL61_SEGMENT, GPT61_SOL_LIST) / CHATGPT_PLUS_SOL61_USED_FRACTION
         * MONTH_WEEKS / blended(*GPT61_SOL_LIST) * 1e6 / YI,
@@ -329,7 +331,7 @@ def chatgpt_sol61_monthly_yi() -> float:
 
 
 def chatgpt_sol61_raw_monthly_yi() -> float:
-    # raw total 口径 7.75 亿，留作对照
+    # raw total 口径 7.17 亿（整段 55,532,850÷31%×4周），留作对照
     return round(
         CHATGPT_PLUS_SOL61_USED_TOKENS / CHATGPT_PLUS_SOL61_USED_FRACTION
         * MONTH_WEEKS / YI,
@@ -601,7 +603,7 @@ OPENCODE_GO_MODELS = (
     ("qwen3.8-max", 15, 0.25, 2.0, 6.0, "官网单档"),
     ("qwen3.8-flash", 30, 0.016, 0.15, 0.47, "官网单档"),
     ("qwen3.7-plus", 60, 0.04, 0.4, 1.6, "≤256K 标价；>256K 档保留在 research variants"),
-    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "official Usage $15->$60, no expiry marker (reverified 2026-09-30); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
+    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网 Monthly limit 永久 $60；Off-Peak；Peak=2×保留在 research variants"),
     ("deepseek-v4-pro", 15, 0.022, 0.66, 1.98, "Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改"),
     ("deepseek-v4-flash", 30, 0.003, 0.15, 0.60, "back in official catalog, Usage $30 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("deepseek-v4-flash-vision-exp", 15, 0.003, 0.15, 0.60, "back in official catalog, Usage $15 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
@@ -621,16 +623,16 @@ OPENCODE_GO_DEFAULT_SOURCE = (
     "goat-opencode-catalogs-round3-2026-09-30.json"
 )
 OPENCODE_GO_DEEPSEEK_SOURCE = (
-    "https://opencode.ai/docs/go/ official per-model Usage and three-part pricing; "
-    "opencode-go-deepseek-round6-2026-09-10.json; goat-opencode-catalogs-round3-2026-09-30.json"
+    "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；"
+    "opencode-go-deepseek-round7-2026-09-30.json"
 )
 OPENCODE_GO_NOTES = {
     "deepseek-v4.1-flash": (
-        "15.528->62.112 yi: official monthly Usage $15->$60, permanent, no expiry marker (reverified 2026-09-30); "
-        "min(shared monthly pool $60, model Usage $60) / standard-workload blended price; "
-        "off-peak cached/input/output=$0.003/$0.15/$0.60, peak 2x. Official Model ID=deepseek-v4.1-flash. "
-        "Official estimate 130,000 requests/mo = exactly 4x the old $15 tier's 32,500, cross-checks. "
-        "Official request counts are a cross-check only, not the allowance value; per-model allowances within the plan do not add"
+        "15.528→62.112亿：min(共享月池$60, 模型Usage $60) ÷ 统一标准负载加权价；"
+        "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。"
+        "模型月Usage由$15升为永久$60（官网曾标4x限时至9/27，9/30页面撤标按$60常态列示，用户确认永久；"
+        "估算请求130,000/月为旧$15档32,500的4倍，交叉一致）。官网 Model ID 现为 deepseek-v4.1-flash。"
+        "官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
     ),
     "deepseek-v4-flash": (
         "restored: official Usage $30 (reverified 2026-09-30; removed 09-10 as confirmed offline); "
@@ -678,7 +680,7 @@ COMMAND_CODE_GOAT_MODELS = (
     ("glm-5.2", 70, 0.26, 1.4, 4.4, "官网三段价"),
     ("hy3", 70, 0.035, 0.14, 0.58, "官网三段价"),
     ("qwen3.8-27b", 70, 0.04, 0.4, 3.0, "官网三段价"),
-    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "official allowance $40->$60, no expiry marker (reverified 2026-09-30); Off-Peak; Peak=2x kept in research variants"),
+    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网 allowance 永久 $60；Off-Peak；Peak=2×保留在 research variants"),
     ("kimi-k2.7-code", 60, 0.19, 0.95, 4.0, "官网三段价"),
     ("deepseek-v4-flash", 60, 0.003, 0.15, 0.60, "back in official catalog as 'V4 Flash (latest)' at $60 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("deepseek-v4.1-flash-fast", 60, 0.016, 0.16, 0.58, "new official row 'V4.1 Flash Fast' at $60 (off-peak $0.016/$0.16/$0.58, 57,500 requests/mo); goat-opencode-catalogs-round3-2026-09-30.json"),
@@ -745,16 +747,15 @@ COMMAND_CODE_GOAT_DEFAULT_SOURCE = (
     "goat-opencode-catalogs-round3-2026-09-30.json"
 )
 COMMAND_CODE_GOAT_DEEPSEEK_SOURCE = (
-    "https://commandcode.ai/docs/plans/goat official per-model allowance and three-part pricing; "
-    "https://commandcode.ai/pricing; $10->$70 credits; command-code-goat-deepseek-round1-2026-09-10.json; "
-    "goat-opencode-catalogs-round3-2026-09-30.json"
+    "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；"
+    "https://commandcode.ai/pricing；$10→$70 credits；command-code-goat-deepseek-round2-2026-09-30.json"
 )
 COMMAND_CODE_GOAT_NOTES = {
     "deepseek-v4.1-flash": (
-        "41.408->62.112 yi: official allowance $40->$60, permanent, no expiry marker (reverified 2026-09-30); "
-        "min(shared monthly pool $70, model allowance $60) / standard-workload blended price; "
-        "off-peak cached/input/output=$0.003/$0.15/$0.60, peak 2x; official estimate 154,000 requests/mo, same tier as $60 V4 Flash (latest). "
-        "Processing fee ignored; per-model allowances within the plan do not add"
+        "41.408→62.112亿：min(共享月池$70, 模型allowance $60) ÷ 统一标准负载加权价；"
+        "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。"
+        "模型月allowance由$40升为永久$60（官网估算请求154,000/月与$60档 V4 Flash latest 完全同档，用户确认永久）。"
+        "官方请求数仅作交叉检查，不再作为额度主值；忽略 processing fee；同套餐各模型额度不可相加"
     ),
     "deepseek-v4-flash": (
         "restored: official 'V4 Flash (latest)' allowance $60 (reverified 2026-09-30; removed 09-10 as confirmed offline); "
@@ -982,8 +983,8 @@ SUBS = [
     ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6-sol", chatgpt_sol6_monthly_yi(), "high", "用户本机Codex实测：当日增量gpt-6-sol total 15,716,975 tokens（input 693,878/output 46,713含reasoning 14,925/cache_read 14,976,384，hit 95.57%）= 周额度约6%；chatgpt-gpt6sol-plus-round1-2026-09-24.json；workload-conversion-round1-2026-09-30.json", f"10.48→{chatgpt_sol6_monthly_yi():g}亿（2026-09-30 用户裁定带分项实测统一折算）：段 worth ${worth_usd(CHATGPT_PLUS_SOL6_SEGMENT, GPT6_SOL_LIST):.4f}（cache 14.98M×$0.2＋入0.69M×$2＋出0.05M×$10）÷6%×4周＝${worth_usd(CHATGPT_PLUS_SOL6_SEGMENT, GPT6_SOL_LIST)/0.06*4:.2f} ÷标准档混合价${blended(*GPT6_SOL_LIST):.3f}/MTok；raw 口径 {chatgpt_sol6_raw_monthly_yi():g} 留作对照。以下为原采用决策——新增{chatgpt_sol6_raw_monthly_yi():g}亿：15,716,975÷6%×4周（原 raw 口径）；6%为口述取整，5.5~6.5%折算口径对应10.15~12.00亿（raw 口径9.67~11.43）；$2/$10与AA页标价一致，cached 0.1×推定未见官方页；昨日77.8M无周%检查点不参与；Pro 5x/20x不派生（用户裁定只挂Plus）；榜分见scores-gpt6sol-round1-2026-09-24.json"),
     # GPT-6 Luna（9/22 新发）—— 用户Plus账号本机Codex新一周周窗直测；round2（97%→91%，effort=max）取代 round1；只挂Plus，Pro 5x/20x不派生（沿Sol裁定）
     ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6-luna", chatgpt_luna6_monthly_yi(), "high", "用户本机Codex实测（effort=max）：新一周窗09-27 22:09 97%→09-28 20:44 91%增量全为gpt-6-luna total 137,648,446 tokens（input 3,129,683/output 757,355含reasoning 471,268/cache_read 133,761,408，hit 97.71%）；chatgpt-gpt6luna-plus-round2-2026-09-28.json", f"91.77→{chatgpt_luna6_monthly_yi():g}亿（2026-09-30 用户裁定带分项实测统一折算）：段 worth ${worth_usd(CHATGPT_PLUS_LUNA6_SEGMENT, GPT6_LUNA_LIST):.4f}（cache 133.76M×$0.01＋入3.13M×$0.1＋出0.76M×$0.5）÷6%×4周＝${worth_usd(CHATGPT_PLUS_LUNA6_SEGMENT, GPT6_LUNA_LIST)/0.06*4:.2f} ÷标准档混合价${blended(*GPT6_LUNA_LIST):.4f}/MTok；raw 口径 {chatgpt_luna6_raw_monthly_yi():g} 留作对照。以下为原采用决策——44.05→{chatgpt_luna6_raw_monthly_yi():g}亿：137,648,446÷6%×4周（原 raw 口径）；面板整数%读数Δpp5~7折算口径对应78.88~110.44亿（raw 口径78.66~110.12）；本周22.94M tok/pp≈round1合并样本11.01M的2.08×（standard段10.20M的2.25×），两侧取整区间不重叠，判为周池放大或effort计权变化（本周max、round1未记effort，两因果链不可区分）而非噪声；用户裁定新一周分开记，round1 44.05亿留作对照不合并不平均；段内gpt-5.6-luna累计205,934,189、6sol/astra均未动，6pp全归6-luna；Pro 5x/20x不派生（沿Sol裁定）；榜分沿用scores-gpt6luna-round1-2026-09-26.json"),
-    # GPT-6.1 Sol —— 用户Plus账号本机Codex周窗直测（剩余81%→60%，21pp，round1+round2两段拼合）；只挂Plus，Pro 5x/20x不派生（沿Sol裁定）；暂无榜分
-    ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6.1-sol", chatgpt_sol61_monthly_yi(), "high", "用户本机Codex实测：周窗剩余81%→60%（21pp）整段 gpt-6.1-sol total 40,672,476 tokens（input 2,035,108/cache_read 38,430,592/cache_write 0/output 206,776含reasoning 54,508，hit 94.97%）；chatgpt-gpt61sol-plus-round1/round2-2026-09-30.json；workload-conversion-round1-2026-09-30.json", f"7.75→{chatgpt_sol61_monthly_yi():g}亿（2026-09-30 用户裁定带分项实测统一折算）：段 worth ${worth_usd(CHATGPT_PLUS_SOL61_SEGMENT, GPT61_SOL_LIST):.4f}（cache 38.43M×$0.2＋入2.04M×$2＋出0.21M×$10）÷21%×4周＝${worth_usd(CHATGPT_PLUS_SOL61_SEGMENT, GPT61_SOL_LIST)/0.21*4:.2f} ÷标准档混合价${blended(*GPT61_SOL_LIST):.3f}/MTok；标价假设同 GPT-6 Sol（库内无 6.1 Sol 标价，折算只依赖三段价比）；raw 口径 {chatgpt_sol61_raw_monthly_yi():g} 留作对照。以下为原采用决策——新增{chatgpt_sol61_raw_monthly_yi():g}亿：整段40,672,476÷21%×4周（=81%→65%段30,109,568÷16pp + 65%→60%续段10,562,908÷5pp，两段在65%边界拼合且分量逐项吻合；原 raw 口径）；面板整数%读数Δpp20~22折算口径对应8.54~9.40亿（raw 口径7.39~8.13）；截图标题82%/22pp起始读数经用户更正为81%；反推周池193,678,457≈gpt-6-sol round1反推周池261,949,583的0.74×（同面板口径下单账号单窗不区分周池变小还是每token占池更快）；分段密度：续段2.11M tok/pp vs 首段1.88M/pp；Pro 5x/20x不派生（沿Sol裁定）；暂无榜分，有分后补supplement"),
+    # GPT-6.1 Sol —— 用户Plus账号本机Codex周窗直测（剩余81%→50%，31pp，round1~round3三段拼合）；只挂Plus，Pro 5x/20x不派生（沿Sol裁定）；暂无榜分
+    ("chatgpt_plus", "ChatGPT Plus", 20, "USD", "gpt-6.1-sol", chatgpt_sol61_monthly_yi(), "high", "用户本机Codex实测：周窗剩余81%→50%（31pp）整段 gpt-6.1-sol total 55,532,850 tokens（input 2,742,389/cache_read 52,536,064/cache_write 0/output 254,397含reasoning 72,105，hit 95.04%）；chatgpt-gpt61sol-plus-round1/round2/round3-2026-09-30.json；workload-conversion-round1-2026-09-30.json", f"7.75→{chatgpt_sol61_monthly_yi():g}亿（2026-09-30 用户裁定带分项实测统一折算，并入第三段60%→50%后整体重算）：段 worth ${worth_usd(CHATGPT_PLUS_SOL61_SEGMENT, GPT61_SOL_LIST):.4f}（cache 52.54M×$0.10＋入2.74M×$2＋出0.25M×$10）÷31%×4周＝${worth_usd(CHATGPT_PLUS_SOL61_SEGMENT, GPT61_SOL_LIST)/0.31*4:.2f} ÷标准档混合价${blended(*GPT61_SOL_LIST):.3f}/MTok；GPT-6.1 Sol 官方价 $0.10/$2/$10（learn.chatgpt.com credits 2.5/50/250 ÷25，cached=输入5%，取代先按 6-Sol $0.2 假设的 8.96亿；若仍按 6-Sol 价为 8.14亿留作对照）；raw 口径 {chatgpt_sol61_raw_monthly_yi():g} 留作对照。；疑点（2026-10-01 用户裁定先记录、按整段 81%→50% 采用）：第三段 60%→50% 每 1% $0.330，比前两段 $0.476/$0.473 低约 30%，10pp 整数读数取整（约 ±10%）不足以解释，原因未明。缓存读价经用户 2026-10-01 确认：GPT-6.1 Sol $0.10、GPT-6 Sol $0.20。原采用决策——新增{chatgpt_sol61_raw_monthly_yi():g}亿：整段55,532,850÷31%×4周（=81%→65%段30,109,568÷16pp + 65%→60%段10,562,908÷5pp + 60%→50%段14,860,374÷10pp，三段边界拼合且分量逐项吻合）；面板整数%读数Δpp30~32折算口径对应8.43~8.99亿；截图标题82%/32pp起始读数经用户更正为81%；按6.1官方credits档反推周池1,071cr（$42.85），linux.do观察Plus约3,426cr/周与Pro20x同池Sol-worth÷20更接近5.6等价费率下的$119.6/周——订阅内计费率或池口径差异记入不确定性；分段密度（6.1价）：seg1 $0.476/pp、seg2 $0.473/pp、seg3 $0.330/pp；Pro 5x/20x不派生（沿Sol裁定）；暂无榜分，有分后补supplement"),
     # Pro20x Astra —— round12 因三源分歧2.7×暂不挂点；round13 用户转供同框批次（g5a/g8）+ sdmat 使 8 亿簇达 5 条独立来源，裁决收敛
     ("chatgpt_pro_20x", "ChatGPT Pro 20x", 200, "USD", "gpt-6-astra", CHATGPT_PRO20X_ASTRA_MONTHLY_YI, "medium", "8条实测源加权：Observatory 8.53、round10截图13.8、round13同框7.52、round14用户面板10.0、msg7086 8.07、round14图4(2/3周)8.18、图2自述9.25、图3后台10.3亿/周；chatgpt-astra-round12/13/14", f"新增{CHATGPT_PRO20X_ASTRA_MONTHLY_YI:g}亿：周池{CHATGPT_PRO20X_ASTRA_WEEK_YI:g}亿×{MONTH_WEEKS:g}周——实测源按验证等级加权（面板同框/用户面板/连续序列×3、自述份额×2、社区口述×1），round10的10%与档位经用户确认由不采改为入权；round14新口径：周池≈$1200~1500 list-worth（Astra），同池Sol $2200~2500，内部计权对Astra惩罚~1.9×；用户自测≈32亿/月与lichengzhe网关21~23亿按用户指示不入权，纯口述与仅下限源不进均值；隐含权重≈{CHATGPT_PRO20X_SOL_MONTHLY_YI/4/CHATGPT_PRO20X_ASTRA_WEEK_YI:.2f}×Sol；同源真实测量仍散布6.8~15.6亿/周，账号间池子可能本就不同，此值为加权中心而非普适常数；未折算：八源加权、多数来源无 token 分项"),
     # Devin —— 用户Max账号本周87pt近满周段astra单列反推（305M tokens/667 calls）；swe-2-max等免费不占额度，Max官方为周池无日上限
@@ -1201,12 +1202,125 @@ def is_main(pid: str, model: str) -> bool:
 
 
 EXCLUDED_SUBSCRIPTIONS = {
-    ("kimi_andante_cn", "kimi-k3"): "旧0.58亿为199档按4周×1/20推算；即使按Kimi周池×5修正为0.73亿，也因2026-09-05用户确认‘就是不能调用’而继续排除；官方https://www.kimi.com/code/docs/kimi-code/models限定Moderato及以上可调用K3；同档可用的K2.7 Standard已作为独立点纳入"
+    ("kimi_andante_cn", "kimi-k3"): "旧0.58亿为199档按4周×1/20推算；即使按Kimi周池×5修正为0.73亿，也因2026-09-05用户确认‘就是不能调用’而继续排除；官方https://www.kimi.com/code/docs/kimi-code/models限定Moderato及以上可调用K3；同档可用的K2.7 Standard已作为独立点纳入",
+    ("command_code_goat", "jev"): "Jev 为 Command Code 决策模型（官网：Decision model · headless (cmd -p) and Provider API only, not in /model），32K 上下文，非编码 agent 可选模型；仅输入计费 $0.042、输出与缓存读免费，按标准负载会得 190.476 亿/月并扭曲额度总览，2026-10-01 用户裁定不收录"
 }
+
+# ---- 数据日期（网页详情面板显示）：该额度数据是哪一天的。格式 YYYY-MM-DD / YYYY-MM，区间用 "~"。
+# sample=实测/社区样本的采样日期（多源加权取全部入权样本的起止）；
+# official=官方页面/公告：有发布日的博文或公告取发布日，否则取项目核对该页的日期；
+# derived=由锚点按倍率/档间比例派生，沿用锚点日期，data_date_from 记锚点。
+DATA_DATES = {
+    ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"): ("2026-10-01", "sample"),
+    ("chatgpt_plus", "gpt-5.6-sol"): ("2026-07-30", "sample"),
+    ("chatgpt_pro_20x", "gpt-5.6-sol"): ("2026-06-10~2026-09-06", "sample"),
+    ("chatgpt_plus", "gpt-5.6-luna"): ("2026-09-08", "sample"),
+    ("chatgpt_plus", "gpt-6-astra"): ("2026-09-11", "sample"),
+    ("chatgpt_plus", "gpt-6-sol"): ("2026-09-24", "sample"),
+    ("chatgpt_plus", "gpt-6-luna"): ("2026-09-27~2026-09-28", "sample"),
+    ("chatgpt_plus", "gpt-6.1-sol"): ("2026-09-30", "sample"),
+    ("chatgpt_pro_20x", "gpt-6-astra"): ("2026-09-07~2026-09-21", "sample"),
+    ("devin_max", "gpt-6-astra"): ("2026-09-14", "sample"),
+    ("devin_max", "claude-opus-5.5"): ("2026-09-23", "sample"),
+    ("droid_max", "claude-opus-5.5"): ("2026-09-29", "sample"),
+    ("droid_pro", "claude-opus-5.5"): ("2026-09-28", "sample"),
+    ("google_ai_pro_us", "gemini-3.8-flash"): ("2026-09-12~2026-09-27", "sample"),
+    ("google_ai_pro_us", "gemini-3.6-flash"): ("2026-09-13~2026-09-27", "sample"),
+    ("claude_pro", "claude-opus-5"): ("2026-09-14~2026-09-22", "sample"),
+    ("claude_max_20x", "claude-opus-5"): ("2026-08", "sample"),
+    ("claude_max_20x", "claude-fable-5.1"): ("2026-09-04~2026-09-05", "sample"),
+    ("claude_max_20x", "claude-opus-5.5"): ("2026-09-22~2026-09-27", "sample"),
+    ("claude_pro", "claude-opus-5.5"): ("2026-09-22~2026-09-27", "sample"),
+    ("supergrok", "grok-4.6"): ("2026-08-23~2026-09-20", "sample"),
+    ("supergrok_lite", "grok-4.6"): ("2026-07", "sample"),
+    ("supergrok", "grok-4.7"): ("2026-09-22", "sample"),
+    ("cursor_ultra", "grok-4.6"): ("2026-08-26~2026-09-05", "sample"),
+    ("cursor_ultra_fast", "grok-4.6"): ("2026-09-05", "sample"),
+    ("cursor_pro", "grok-4.6"): ("2026-08-27", "sample"),
+    ("kimi_allegretto_cn", "kimi-k3"): ("2026-07-25~2026-07-26", "sample"),
+    ("kimi_allegretto_cn", "kimi-k2.7-code"): ("2026-08-20", "sample"),
+    ("aliyun_coding_pro_cn", "qwen3.7-plus"): ("2026-07~2026-08", "sample"),
+    ("minimax_token_plus_cn", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_max_cn", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_ultra_cn", "minimax-m3"): ("2026-08-19", "official"),
+    ("minimax_token_plus_global", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_max_global", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_ultra_global", "minimax-m3"): ("2026-06-01", "official"),
+    ("devin_pro", "swe-2"): ("2026-09-10", "official"),
+    # 按量 API 标价
+    ("deepseek_v41_flash_offpeak", "deepseek-v4.1-flash"): ("2026-09-10", "official"),
+    ("deepseek_v41_flash_peak", "deepseek-v4.1-flash"): ("2026-09-10", "official"),
+    ("deepseek_v4_flash_offpeak", "deepseek-v4-flash"): ("2026-09-05", "official"),
+    ("deepseek_v4_flash_peak", "deepseek-v4-flash"): ("2026-09-05", "official"),
+    ("deepseek_v4_pro_offpeak", "deepseek-v4-pro"): ("2026-09-05", "official"),
+    ("deepseek_v4_pro_peak", "deepseek-v4-pro"): ("2026-09-05", "official"),
+    ("openai_sol_api", "gpt-5.6-sol"): ("2026-09-05", "official"),
+    ("openai_terra_api", "gpt-5.6-terra"): ("2026-09-05", "official"),
+    ("openai_luna_api", "gpt-5.6-luna"): ("2026-09-05", "official"),
+    ("xai_grok46_api", "grok-4.6"): ("2026-09-05", "official"),
+    ("xai_grok47_api", "grok-4.7"): ("2026-09-22", "official"),
+    ("mimo_v26_pro_api", "mimo-v2.6-pro"): ("2026-09-22", "official"),
+    ("mimo_v26_flash_api", "mimo-v2.6-flash"): ("2026-09-22", "official"),
+    ("mimo_v26_pro_ultraspeed_api", "mimo-v2.6-pro-ultraspeed"): ("2026-09-22", "official"),
+    ("anthropic_opus5_api", "claude-opus-5"): ("2026-09-05", "official"),
+    ("anthropic_sonnet5_api", "claude-sonnet-5"): ("2026-09-05", "official"),
+    ("anthropic_fable5_api", "claude-fable-5"): ("2026-09-05", "official"),
+    ("anthropic_fable51_api", "claude-fable-5.1"): ("2026-09-13", "official"),
+    ("anthropic_opus55_api", "claude-opus-5.5"): ("2026-09-23", "official"),
+    # 派生行里锚点不止一个、不能简单沿用 DERIVED 基准行的，显式给日期与锚点
+    ("chatgpt_pro_5x", "gpt-6-astra"): ("2026-07-30~2026-09-21", "derived",
+                                        "ChatGPT Plus · gpt-5.6-sol；ChatGPT Pro 20x · gpt-6-astra、gpt-5.6-sol"),
+    ("claude_max_5x", "claude-opus-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),
+    ("claude_max_5x", "claude-fable-5.1"): ("2026-08~2026-09-05", "derived",
+                                           "Claude Max 20x (9/14+) · claude-opus-5、claude-fable-5.1"),
+}
+# SUBS 里按官方倍率/档间比例派生的行：沿用锚点日期
+DATA_DATE_INHERIT = {
+    ("minimax_m_plan_go_cn_annual", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_explore_cn", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_explore_cn_annual", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_build_cn", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_build_cn_annual", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("chatgpt_pro_5x", "gpt-5.6-sol"): ("chatgpt_plus", "gpt-5.6-sol"),
+    ("chatgpt_pro_5x", "gpt-5.6-luna"): ("chatgpt_plus", "gpt-5.6-luna"),
+    ("chatgpt_pro_20x", "gpt-5.6-luna"): ("chatgpt_plus", "gpt-5.6-luna"),
+    ("supergrok_plus", "grok-4.6"): ("supergrok", "grok-4.6"),
+    ("supergrok_heavy", "grok-4.6"): ("supergrok", "grok-4.6"),
+    ("supergrok_plus", "grok-4.7"): ("supergrok", "grok-4.7"),
+    ("supergrok_heavy", "grok-4.7"): ("supergrok", "grok-4.7"),
+    ("google_ai_ultra_5x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_20x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("claude_max_5x", "claude-opus-5"): ("claude_max_20x", "claude-opus-5"),
+    ("cursor_pro_plus", "grok-4.6"): ("cursor_ultra", "grok-4.6"),
+    ("kimi_moderato_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_allegro_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_moderato_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("kimi_andante_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("kimi_allegro_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("aliyun_coding_pro_global", "qwen3.7-plus"): ("aliyun_coding_pro_cn", "qwen3.7-plus"),
+}
+
+
+def family_data_date(pid: str, model: str) -> str | None:
+    """官方价表族（每模型行共用一次核对）：返回核对日期；不属于这些族返回 None。"""
+    if pid.startswith("glm_coding_"):
+        return "2026-09-03"
+    if pid.startswith("mimo_token_"):
+        return "2026-09-22"
+    if pid.startswith("stepfun_"):
+        return "2026-09-21" if model == "step-5-preview" else "2026-09-10"
+    if pid in ("ollama_pro", "ollama_max"):
+        return "2026-09-11" if model == "deepseek-v4.1-flash" else "2026-09-06"
+    if pid == "opencode_go":
+        return "2026-09-30"
+    if pid == "command_code_goat":
+        return "2026-09-30"
+    return None
+
 
 FIELDS = ["plan_id", "plan_name", "plan_name_en", "billing", "price", "currency", "price_usd", "served_model",
           "monthly_tokens", "monthly_yi", "real_usd_per_mtok", "unmetered", "promo_until", "confidence", "chart_tier", "source", "decision_note",
-          "plan_gen", "workload"]
+          "plan_gen", "workload", "data_date", "data_date_kind", "data_date_from"]
 
 
 def plan_gen_of(pid: str) -> str:
@@ -1283,12 +1397,16 @@ def unmetered_row(pid, name, price, cur, model, conf, src, note) -> dict:
 
 
 def main() -> None:
+    from minimax_m31_rows import subscription_specs as minimax_m31_specs
     rows = [sub_row(*s) for s in SUBS if (s[0], s[4]) not in EXCLUDED_SUBSCRIPTIONS]
+    rows.extend(sub_row(*s) for s in minimax_m31_specs(CONVENTIONS))
     base = {(r["plan_id"], r["served_model"]): r for r in rows}
+    derived_base = {}  # (派生行 plan_id, served_model) -> (锚点 plan_id, served_model)，数据日期沿用锚点
     for pid, bmodel, model, ratio, conf, how, main_ in DERIVED:
         b = base[(pid, bmodel)]
         rows.append(sub_row(pid, b["plan_name"], b["price"], b["currency"], model, b["monthly_yi"] * ratio, conf,
                             f"由同套餐 {bmodel} {b['monthly_yi']} 亿 × {ratio}", how, "main" if main_ and is_main(pid, bmodel) else "full"))
+        derived_base[(pid, model)] = (pid, bmodel)
     for pid in ("cursor_ultra", "cursor_pro", "cursor_pro_plus"):
         b = base[(pid, "grok-4.6")]
         rows.append(sub_row(
@@ -1302,6 +1420,7 @@ def main() -> None:
                if pid in ("cursor_ultra", "cursor_pro_plus") else ""),
             b["chart_tier"],
         ))
+        derived_base[(pid + "_composer_fast", "composer-2.5")] = (pid, "grok-4.6")
     rows += [unmetered_row(*u) for u in UNMETERED]
     for pid, name, model, cached, inp, out, src in METERED:
         write5m = ANTHROPIC_CACHE_WRITE_5M.get(model)
@@ -1318,6 +1437,48 @@ def main() -> None:
                          unmetered="", promo_until="", confidence="high", chart_tier="main", source=src,
                          decision_note=METERED_NOTES.get(pid, default_note),
                          plan_gen=plan_gen_of(pid), workload=workload_of(pid, "metered", model)))
+
+    # ---- 数据日期解析：DATA_DATES 直给 → family_data_date 官方族 → DATA_DATE_INHERIT → DERIVED/composer_fast 沿用锚点
+    row_by_key = {(r["plan_id"], r["served_model"]): r for r in rows}
+    for k in DATA_DATES:
+        assert k in row_by_key, f"DATA_DATES 键无对应行: {k}"
+    for k, b in DATA_DATE_INHERIT.items():
+        assert k in row_by_key, f"DATA_DATE_INHERIT 键无对应行: {k}"
+        assert b in row_by_key, f"DATA_DATE_INHERIT 锚点无对应行: {k} -> {b}"
+    resolved = {}  # (plan_id, served_model) -> (data_date, kind, from)
+    for r in rows:
+        key = (r["plan_id"], r["served_model"])
+        if key in DATA_DATES:
+            entry = DATA_DATES[key]
+            resolved[key] = (entry[0], entry[1], entry[2] if len(entry) > 2 else "")
+        else:
+            fam = family_data_date(*key)
+            if fam is not None:
+                resolved[key] = (fam, "official", "")
+
+    def inherit_date(key: tuple, base_key: tuple) -> None:
+        # 锚点本身也是派生行时，沿用其锚点记录而不是另起一层
+        bdate, bkind, bfrom = resolved[base_key]
+        resolved[key] = (bdate, "derived",
+                         bfrom if bkind == "derived"
+                         else f"{row_by_key[base_key]['plan_name']} · {row_by_key[base_key]['served_model']}")
+
+    for key, bkey in DATA_DATE_INHERIT.items():
+        if key not in resolved:
+            inherit_date(key, bkey)
+    for key, bkey in derived_base.items():
+        if key not in resolved:
+            inherit_date(key, bkey)
+    date_re = re.compile(r"^\d{4}-\d{2}(-\d{2})?(~\d{4}-\d{2}(-\d{2})?)?$")
+    for r in rows:
+        key = (r["plan_id"], r["served_model"])
+        if key not in resolved:
+            raise ValueError(f"无数据日期: {key}")
+        date, kind, frm = resolved[key]
+        assert date_re.fullmatch(date), f"data_date 格式错误 {key}: {date!r}"
+        assert kind in {"sample", "official", "derived"}, f"data_date_kind 非法 {key}: {kind!r}"
+        assert bool(frm) == (kind == "derived"), f"data_date_from 仅 derived 可非空 {key}: {frm!r}"
+        r["data_date"], r["data_date_kind"], r["data_date_from"] = date, kind, frm
 
     with OUT.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)

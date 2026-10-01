@@ -22,6 +22,7 @@ import {
   feeBands,
   allowance,
   csv,
+  dataDateLine,
   defaultState,
   accessLine,
   displayPlan,
@@ -410,6 +411,17 @@ test("Legacy #s=<json> share links still restore with the same validation", () =
   assert.equal(restored.warning, false);
   assert.equal(restored.state.view, "price");
   assert.deepEqual(restored.state.channels, ["Cursor"]);
+});
+test("Share links using the old xAI name map to SpaceXAI without a warning", () => {
+  const restored = restore("#channels=xAI&vendors=xAI", data);
+  assert.equal(restored.warning, false);
+  assert.deepEqual(restored.state.channels, ["SpaceXAI"]);
+  assert.deepEqual(restored.state.vendors, ["SpaceXAI"]);
+  const legacy =
+    "#s=" + encodeURIComponent(JSON.stringify({ v: 1, channels: ["xAI"] }));
+  const restoredLegacy = restore(legacy, data);
+  assert.equal(restoredLegacy.warning, false);
+  assert.deepEqual(restoredLegacy.state.channels, ["SpaceXAI"]);
 });
 test("The full-table view round-trips and keeps the chart's per-configuration rows", () => {
   const restored = restore("#lang=en&view=table", data);
@@ -851,7 +863,7 @@ test("CSV escapes formula-like text and embedded quotes without changing numeric
   assert.equal(parsed[0]["Real price USD/MTok"], "0.002");
 });
 test("colorAlpha renders a channel colour at the requested alpha", () => {
-  const p = { ...data.points[0], channel: "xAI" };
+  const p = { ...data.points[0], channel: "SpaceXAI" };
   assert.equal(color(p), "#9333EA");
   assert.equal(colorAlpha(p, 0.3), "rgba(147, 51, 234, 0.3)");
   assert.equal(colorAlpha(p, 0.45), "rgba(147, 51, 234, 0.45)");
@@ -1003,4 +1015,49 @@ test("Ranking bars sit on a fixed decade-aligned log axis, independent of filter
   assert.equal(barWidth(0, axis), 0);
   // Equal ratios give equal gaps: 10x apart is always one decade (20% here).
   assert.ok(Math.abs(barWidth(51.63, axis) - barWidth(5.163, axis) - 20) < 1e-9);
+});
+test("Data date line renders the sample/official/derived kinds and stays empty without a date", () => {
+  const p = data.points[0];
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-27~2026-09-28", data_date_kind: "sample" }, "zh"),
+    "2026-09-27 ~ 2026-09-28 · 实测采样",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-27~2026-09-28", data_date_kind: "sample" }, "en"),
+    "2026-09-27 – 2026-09-28 · sampled",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-05", data_date_kind: "official" }, "zh"),
+    "2026-09-05 · 官方来源日期",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-05", data_date_kind: "official" }, "en"),
+    "2026-09-05 · official source date",
+  );
+  const derived = {
+    ...p,
+    data_date: "2026-07-30",
+    data_date_kind: "derived",
+    data_date_from: "ChatGPT Plus · gpt-5.6-sol",
+  };
+  assert.equal(
+    dataDateLine(derived, "zh"),
+    "2026-07-30 · 派生，沿用 ChatGPT Plus · gpt-5.6-sol 的数据日期",
+  );
+  assert.equal(
+    dataDateLine(derived, "en"),
+    "2026-07-30 · derived; uses the data date of ChatGPT Plus · gpt-5.6-sol",
+  );
+  assert.equal(dataDateLine({ ...p, data_date: null }, "zh"), "");
+  assert.equal(dataDateLine({ ...p, data_date: null }, "en"), "");
+});
+test("Every published point carries a data date of a known kind", () => {
+  const kinds = new Set(["sample", "official", "derived"]);
+  const re = /^\d{4}-\d{2}(-\d{2})?(~\d{4}-\d{2}(-\d{2})?)?$/;
+  for (const p of data.points) {
+    assert.ok(p.data_date && re.test(p.data_date), p.id);
+    assert.ok(p.data_date_kind && kinds.has(p.data_date_kind), p.id);
+    assert.equal(p.data_date_kind === "derived", Boolean(p.data_date_from), p.id);
+    assert.ok(dataDateLine(p, "zh") !== "" && dataDateLine(p, "en") !== "", p.id);
+  }
 });
