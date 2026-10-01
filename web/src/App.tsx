@@ -73,6 +73,8 @@ import {
   listPriceLine,
   metricLabel,
   effortLabel,
+  firstUrl,
+  mappingNoteLabel,
 } from "./domain";
 
 const REPO = "https://github.com/FeiZhuLulu/real-api-pricing";
@@ -1638,16 +1640,22 @@ function Details({
           <details className="evidence-fold">
             <summary>
               {t(
-                "Adoption evidence · original source text",
+                "Adoption evidence · source and rationale (translated from the Chinese record)",
                 "采用依据 · 原始来源文字",
               )}
             </summary>
-            <p className="original-text">{p.source}</p>
+            <p className="original-text">
+              {zh ? p.source : (p.source_en ?? p.source)}
+            </p>
             {p.decision_note && (
-              <p className="original-text">{p.decision_note}</p>
+              <p className="original-text">
+                {zh ? p.decision_note : (p.decision_note_en ?? p.decision_note)}
+              </p>
             )}
             {p.note && p.note !== p.decision_note && (
-              <p className="original-text">{p.note}</p>
+              <p className="original-text">
+                {zh ? p.note : (p.note_en ?? p.note)}
+              </p>
             )}
             <div className="source-links">
               {p.evidence.map((e, i) => (
@@ -1717,8 +1725,8 @@ function Details({
                       "这是参考映射，并非该订阅/API 渠道的评测。产品框架和额度实测推理强度的对应关系未经验证。来源任务成本不等于订阅任务成本。",
                     )}
                   </p>
-                  <p className="original-text">{m.mapping_note}</p>
-                  <a href={safeUrl(m.source)} target="_blank" rel="noreferrer">
+                  <p className="original-text">{mappingNoteLabel(m.mapping_note, lang)}</p>
+                  <a href={safeUrl(firstUrl(m.source) ?? m.source)} target="_blank" rel="noreferrer">
                     {data.boards[m.board]?.name ?? m.board}
                     <ArrowUpRight size={14} />
                   </a>

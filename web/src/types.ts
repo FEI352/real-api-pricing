@@ -43,6 +43,10 @@ export interface Point {
   source: string;
   note: string;
   decision_note: string;
+  /** English translations of the Chinese source/note fields (data/i18n). */
+  source_en?: string;
+  note_en?: string;
+  decision_note_en?: string;
   evidence: { label: string; url: string }[];
 }
 export interface Configuration {
@@ -59,6 +63,7 @@ export interface Configuration {
   score_low: number | null;
   score_high: number | null;
   source: string;
+  source_en?: string;
   archive?: string;
   checked_at?: string;
   mean_cost_usd_per_task?: number | null;

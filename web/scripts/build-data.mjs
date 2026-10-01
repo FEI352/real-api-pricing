@@ -22,6 +22,7 @@ const [
   adoptedText,
   evidenceFiles,
   channelColors,
+  i18n,
 ] = await Promise.all([
   read("derived/points.json"),
   read("derived/benchmark-configurations.json"),
@@ -30,6 +31,7 @@ const [
   readFile(path.join(repo, "data/adopted.csv"), "utf8"),
   readdir(path.join(repo, "data/research")),
   read("config/channel-colors.json"),
+  read("data/i18n/adopted.en.json"),
 ]);
 const adopted = new Map(
   parse(adoptedText, { columns: true, skip_empty_lines: true, bom: true }).map(
@@ -46,6 +48,24 @@ if (
 for (const m of mappings)
   if (!pointIds.has(m.point_id) || !configById.has(m.configuration_id))
     throw new Error("Orphan benchmark mapping");
+// English translations of adoption source/decision text; a Chinese string
+// without a non-empty translation is a hard error (verify_i18n.py mirrors it).
+const enMap = new Map(i18n.entries.map((e) => [e.zh, e.en]));
+const CJK = /[㐀-鿿]/;
+const enOf = (zh) => {
+  if (zh == null || zh === "") return zh;
+  // Strings without CJK pass through, with fullwidth punctuation normalized
+  // to ASCII for the English UI.
+  if (!CJK.test(zh))
+    return zh
+      .replaceAll("；", "; ")
+      .replaceAll("，", ", ")
+      .replaceAll("（", "(")
+      .replaceAll("）", ")");
+  const en = enMap.get(zh);
+  if (!en) throw new Error(`No English translation for: ${zh.slice(0, 60)}`);
+  return en;
+};
 const evidenceToCopy = new Set();
 // id 前缀 → 渠道与 Python 侧共用 config/channel-colors.json 的 channels 数组。
 const channelPrefixes = channelColors.channels;
@@ -73,7 +93,9 @@ const data = {
         return { label: f, url: `/data/evidence/${f}` };
       });
     const urls = [
-      ...new Set(text.match(/https?:\/\/[^\s<>"'\u3000-\u9fff；，）]+/g) || []),
+      ...new Set(
+        text.match(/https?:\/\/[^\s<>"'\u3000-\u9fff\uff00-\uffef]+/g) || [],
+      ),
     ].map((url) => ({ label: url, url: url.replace(/[;,.]+$/, "") }));
     // Score summaries are already represented losslessly by configurations + mappings.
     // Keep the web point record lean instead of repeating four boards of metadata per point.
@@ -88,15 +110,24 @@ const data = {
       currency: a.currency,
       monthly_tokens: a.monthly_tokens === "" ? null : Number(a.monthly_tokens),
       decision_note: a.decision_note,
+      source_en: enOf(p.source),
+      decision_note_en: enOf(a.decision_note),
+      note_en: enOf(p.note),
       evidence: [...urls, ...evidence],
     };
   }),
-  configurations: configurations.map(({ raw_record, ...c }) => c),
+  configurations: configurations.map(({ raw_record, ...c }) =>
+    "source" in c ? { ...c, source_en: enOf(c.source) } : c,
+  ),
   mappings: mappings.map((m) => {
     const config = configById.get(m.configuration_id);
-    return Object.fromEntries(Object.entries(m).filter(([key, value]) =>
+    const rec = Object.fromEntries(Object.entries(m).filter(([key, value]) =>
       key === "configuration_id" || !(key in config) || config[key] !== value,
     ));
+    // Fields dropped by the de-dup filter are inherited from the configuration;
+    // only the record that actually carries `source` gets a translation.
+    if ("source" in rec) rec.source_en = enOf(rec.source);
+    return rec;
   }),
 };
 await mkdir(path.join(out, "evidence"), { recursive: true });

@@ -27,6 +27,7 @@ These files are the public redacted edition. Original local evidence is backed u
 - [points.csv](../derived/points.csv) / [points.json](../derived/points.json): computed prices plus separate leaderboard scores. 绘图使用的完整计算结果。
 - [conventions.json](conventions.json): shared conventions and exchange rate. 部分说明为历史记录，以采用脚本的明确取舍为准。
 - [research/](research/): dated evidence. Historical claims can contradict current decisions; they are not all adopted. 历史证据不等于当前采用结论。
+- [i18n/](i18n/): English translations of the adoption source/decision text shown on the website. When a `source`/`decision_note` changes, run `python scripts/checks/verify_i18n.py --sync` and fill the English. 网站英文界面显示的来源/取舍译文；改动中文原文后运行 `verify_i18n.py --sync` 并补译文。
 - [raw/](raw/), subscription-quotas*.json, subscriptions.json and claim summaries: historical inputs retained for traceability. 历史原料保留用于溯源，不是当前主表。
 - [SOURCES.md](../SOURCES.md): attribution and third-party license boundaries. 来源署名与许可边界。
 
