@@ -412,6 +412,17 @@ test("Legacy #s=<json> share links still restore with the same validation", () =
   assert.equal(restored.state.view, "price");
   assert.deepEqual(restored.state.channels, ["Cursor"]);
 });
+test("Share links using the old xAI name map to SpaceXAI without a warning", () => {
+  const restored = restore("#channels=xAI&vendors=xAI", data);
+  assert.equal(restored.warning, false);
+  assert.deepEqual(restored.state.channels, ["SpaceXAI"]);
+  assert.deepEqual(restored.state.vendors, ["SpaceXAI"]);
+  const legacy =
+    "#s=" + encodeURIComponent(JSON.stringify({ v: 1, channels: ["xAI"] }));
+  const restoredLegacy = restore(legacy, data);
+  assert.equal(restoredLegacy.warning, false);
+  assert.deepEqual(restoredLegacy.state.channels, ["SpaceXAI"]);
+});
 test("The full-table view round-trips and keeps the chart's per-configuration rows", () => {
   const restored = restore("#lang=en&view=table", data);
   assert.equal(restored.warning, false);
@@ -852,7 +863,7 @@ test("CSV escapes formula-like text and embedded quotes without changing numeric
   assert.equal(parsed[0]["Real price USD/MTok"], "0.002");
 });
 test("colorAlpha renders a channel colour at the requested alpha", () => {
-  const p = { ...data.points[0], channel: "xAI" };
+  const p = { ...data.points[0], channel: "SpaceXAI" };
   assert.equal(color(p), "#9333EA");
   assert.equal(colorAlpha(p, 0.3), "rgba(147, 51, 234, 0.3)");
   assert.equal(colorAlpha(p, 0.45), "rgba(147, 51, 234, 0.45)");

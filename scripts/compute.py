@@ -76,7 +76,7 @@ DISPLAY = {
     "swe-2": "SWE-2",
 }
 VENDOR = {
-    "gpt": "OpenAI", "claude": "Anthropic", "grok": "xAI", "kimi": "Kimi", "glm": "Zhipu", "minimax": "MiniMax",
+    "gpt": "OpenAI", "claude": "Anthropic", "grok": "SpaceXAI", "kimi": "Kimi", "glm": "Zhipu", "minimax": "MiniMax",
     "qwen": "Alibaba", "deepseek": "DeepSeek", "gemini": "Google", "mimo": "Xiaomi", "hy": "Tencent", "composer": "Cursor",
     "longcat": "Meituan", "muse": "Muse", "omen": "OpenCode", "step": "StepFun", "swe": "Cognition",
     "mistral": "Mistral",
