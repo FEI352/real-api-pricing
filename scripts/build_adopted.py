@@ -108,10 +108,15 @@ DROID_PRO_OPUS55_COMMUNITY_WORTH_USD = {"5h": 15.4, "week": 45.0, "month": 160.0
 #   与 Step 的 conventions.lowCacheTokenMix 同属"打不到标准97% cache 采实测"口径族（2026-09-22 用户裁定统一）
 GOOGLE_PRO_B_TOTAL_TOKENS = 55_343_000
 GOOGLE_PRO_B_WEEKLY_FRACTION = 0.0988
+GOOGLE_PRO_B_SEGMENT = {"cache_read": 45_688_000, "input": 9_258_000, "output": 398_000}
 # issue #54（NTRYourWaifu，agy /quota 每 5 分钟轮询周额度 %）：三个周窗、只计 3.8 Flash ≥95% 区段
 #   853.43M raw = +165.77 个百分点，与用户本机样本按百分点合并（2026-09-29 用户裁定）
 GOOGLE_PRO_ISSUE54_TOKENS = 853_430_000
 GOOGLE_PRO_ISSUE54_WEEKLY_PP = 165.77
+GOOGLE_PRO_ISSUE54_SEGMENT = {"cache_read": 695_700_000, "input": 146_250_000, "output": 11_480_000}
+GEMINI_FLASH_LIST = (0.075, 0.75, 3.75)  # Gemini Flash 标价（读$0.075/入$0.75/出$3.75）
+GEMINI_ARGON_INTRO_LIST = (0.10, 2.00, 10.00)  # Gemini 4 Argon 首发优惠标价
+GEMINI_ARGON_STD_LIST = (0.20, 4.00, 20.00)    # Gemini 4 Argon 长期标准标价
 KIMI_199_USED_TOKENS = 243_739_068
 KIMI_199_USED_FRACTION = 0.84
 KIMI_MONTHLY_TO_WEEKLY = 5
@@ -336,6 +341,18 @@ def google_ai_pro_monthly_yi() -> float:
         * 100 * MONTH_WEEKS / YI,
         2,
     )
+
+
+def google_ai_argon_monthly_yi() -> float:
+    # 按照上游统一按标价折 worth 机制：
+    # B段 worth: (45.688M*0.075 + 9.258M*0.75 + 0.398M*3.75) / 1e6 = $11.8626
+    # #54段 worth: (695.70M*0.075 + 146.25M*0.75 + 11.48M*3.75) / 1e6 = $204.915
+    # 合并 worth = $216.7776 ÷ 175.65pp = $1.23415 / 1%
+    # 周池 worth = $123.415，月池 (4周) worth = $493.66
+    # 换算 Gemini 4 Argon 首发优惠低缓存混合价（85% cache读$0.10 + 14.5%入$2.00 + 0.5%出$10.00 = $0.425/MTok）
+    # 月额度 = $493.66 ÷ $0.425 / 100 = 11.62 亿 tokens
+    monthly_worth = 493.66
+    return round(monthly_worth / blended_low(*GEMINI_ARGON_INTRO_LIST) / 100, 2)
 
 
 def kimi_199_monthly_yi() -> float:
@@ -799,9 +816,9 @@ SUBS = [
     # Google —— Antigravity 合池按 API worth 计权（官方机制）；round7 用户本地实测补上首个周帽同框
     ("google_ai_pro_us", "Google AI Pro", 19.99, "USD", "gemini-3.8-flash", google_ai_pro_monthly_yi(), "high", "issue #54（NTRYourWaifu）：agy /quota 每 5 分钟轮询周额度 %，三个周窗、只计 3.8 Flash ≥95% 区段，853.43M raw = +165.77pp；community-issues-round1-2026-09-29.json；用户本地实测：B整段55.343M raw(cache45.69M/in9.26M/out0.40M)=周条+9.88%；gemini-weekly-round7-2026-09-21.json", "22.41→20.70亿，2026-09-29 用户裁定：issue #54（agy /quota 每 5 分钟周额度 %，三个周窗，只计 3.8 Flash 占 95% 以上区段）853.43M raw = 周 +165.77 个百分点（单看 20.59），与用户本机样本 55.343M = +9.88% 按百分点合并：(55.343+853.43)÷(9.88+165.77)＝5.1738M/pp ×100×4周＝20.70亿 raw。两样本 cache 命中均约 82.6%，沿用 raw 实测口径不按标准负载折算。worth 每 1% 约 $1.19~1.25，与 effort 无关。证据：community-issues-round1-2026-09-29.json；原样本见 gemini-weekly-round 证据。"),
     ("google_ai_pro_us", "Google AI Pro", 19.99, "USD", "gemini-3.6-flash", 17.62, "medium", "issue #55（NTRYourWaifu）：agy CLI 每 5 分钟轮询周额度 %，只计 3.6 Flash ≥95% 区段，95.60M raw = 周 +21.70pp；community-issues-round1-2026-09-29.json", "新增17.62亿，2026-09-29 用户裁定：issue #55（agy CLI，方法同 #54，只计 3.6 Flash 占 95% 以上区段）95.60M raw = 周 +21.70 个百分点 ×100×4周，cache 命中 84.0%，raw 实测口径。每 1% 标价美元约 $1.19，与 3.8 Flash 相同，支持 Google AI Pro 各模型共用按价额度池。样本仅 21.7 个百分点、单一投稿人 → medium。不派生 Ultra。证据：community-issues-round1-2026-09-29.json。"),
-    ("google_ai_pro_us", "Google AI Pro", 19.99, "USD", "gemini-4-argon", 8.80, "medium", "Google 2026-09-30 官方首发发布会与目录价；首发50%折扣（读$0.10/入$2.00/出$10.00）；按 Google AI Pro 额度池 $1.19/1% 标价换算；list-prices-gemini-4-argon-round1-2026-10-01.json", "新增8.80亿：根据 Antigravity/Google AI Pro 2.2B 3.8 Flash 实测（约合$624/月购买力），按 Gemini 4 Argon 首发优惠三段标价（读$0.10/入$2.00/出$10.00，85% cache hit 混合单价约$0.6735/MTok）换算得出 8.80 亿/月；标准目录价恢复后约 4.40 亿/月。"),
-    ("google_ai_ultra_5x_us", "Google AI Ultra 5x", 99.99, "USD", "gemini-4-argon", round(8.80 * 5, 2), "low", "官方：Ultra $100 = 5× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{8.80*5:g}亿：Pro采用值8.80亿×官方worth倍率5；单价约$0.0227/MTok；非独立实测"),
-    ("google_ai_ultra_20x_us", "Google AI Ultra 20x", 199.99, "USD", "gemini-4-argon", round(8.80 * 20, 2), "low", "官方：Ultra $200 = 20× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{8.80*20:g}亿：Pro采用值8.80亿×官方worth倍率20；单价约$0.01136/MTok；非独立实测"),
+    ("google_ai_pro_us", "Google AI Pro", 19.99, "USD", "gemini-4-argon", google_ai_argon_monthly_yi(), "medium", "Google 2026-09-30 官方首发发布会与目录价；首发50%折扣（读$0.10/入$2.00/出$10.00）；按 Google AI Pro 额度池 $1.19/1% 标价与低缓存档($0.19125/MTok)换算；list-prices-gemini-4-argon-round1-2026-10-01.json", f"新增{google_ai_argon_monthly_yi():g}亿：按 Antigravity/Google AI Pro 官方周池合池机制（两实测样本 worth 约$123.42/周×4周=$493.66/月），结合 Gemini 4 Argon 首发优惠低缓存混合价（85% cache读$0.10 + 14.5%入$2.00 + 0.5%出$10.00 = $0.425/MTok）换算得出 {google_ai_argon_monthly_yi():g} 亿/月；标准目录价恢复后约 {google_ai_argon_monthly_yi()/2:.2f} 亿/月。"),
+    ("google_ai_ultra_5x_us", "Google AI Ultra 5x", 99.99, "USD", "gemini-4-argon", round(google_ai_argon_monthly_yi() * 5, 2), "low", "官方：Ultra $100 = 5× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{google_ai_argon_monthly_yi()*5:g}亿：Pro采用值{google_ai_argon_monthly_yi():g}亿×官方worth倍率5；单价约$0.01721/MTok；非独立实测"),
+    ("google_ai_ultra_20x_us", "Google AI Ultra 20x", 199.99, "USD", "gemini-4-argon", round(google_ai_argon_monthly_yi() * 20, 2), "low", "官方：Ultra $200 = 20× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{google_ai_argon_monthly_yi()*20:g}亿：Pro采用值{google_ai_argon_monthly_yi():g}亿×官方worth倍率20；单价约$0.008605/MTok；非独立实测"),
     ("google_ai_ultra_5x_us", "Google AI Ultra 5x", 99.99, "USD", "gemini-3.8-flash", round(google_ai_pro_monthly_yi() * 5, 2), "low", "官方：Ultra $100 = 5× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{google_ai_pro_monthly_yi()*5:g}亿：Pro采用值×官方worth倍率5；LLMDevs Ultra~5.0B/周同量级旁证；非独立实测"),
     ("google_ai_ultra_20x_us", "Google AI Ultra 20x", 199.99, "USD", "gemini-3.8-flash", round(google_ai_pro_monthly_yi() * 20, 2), "low", "官方：Ultra $200 = 20× Pro token worth（antigravity.google/blog 2026-05-19）", f"新增{google_ai_pro_monthly_yi()*20:g}亿：Pro采用值×官方worth倍率20；非独立实测"),
     # Anthropic —— Pro采用shownotover面板截图反推Opus5周池；Max采用9/14永久口径估算157亿，非当期boost或纯Opus5硬上限
