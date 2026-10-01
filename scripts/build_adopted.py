@@ -1163,6 +1163,7 @@ EXCLUDED_SUBSCRIPTIONS = {
 # official=官方页面/公告：有发布日的博文或公告取发布日，否则取项目核对该页的日期；
 # derived=由锚点按倍率/档间比例派生，沿用锚点日期，data_date_from 记锚点。
 DATA_DATES = {
+    ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"): ("2026-10-01", "sample"),
     ("chatgpt_plus", "gpt-5.6-sol"): ("2026-07-30", "sample"),
     ("chatgpt_pro_20x", "gpt-5.6-sol"): ("2026-06-10~2026-09-06", "sample"),
     ("chatgpt_plus", "gpt-5.6-luna"): ("2026-09-08", "sample"),
@@ -1227,6 +1228,11 @@ DATA_DATES = {
 }
 # SUBS 里按官方倍率/档间比例派生的行：沿用锚点日期
 DATA_DATE_INHERIT = {
+    ("minimax_m_plan_go_cn_annual", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_explore_cn", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_explore_cn_annual", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_build_cn", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
+    ("minimax_m_plan_build_cn_annual", "minimax-m3.1-flash-preview"): ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"),
     ("chatgpt_pro_5x", "gpt-5.6-sol"): ("chatgpt_plus", "gpt-5.6-sol"),
     ("chatgpt_pro_5x", "gpt-5.6-luna"): ("chatgpt_plus", "gpt-5.6-luna"),
     ("chatgpt_pro_20x", "gpt-5.6-luna"): ("chatgpt_plus", "gpt-5.6-luna"),
@@ -1347,7 +1353,9 @@ def unmetered_row(pid, name, price, cur, model, conf, src, note) -> dict:
 
 
 def main() -> None:
+    from minimax_m31_rows import subscription_specs as minimax_m31_specs
     rows = [sub_row(*s) for s in SUBS if (s[0], s[4]) not in EXCLUDED_SUBSCRIPTIONS]
+    rows.extend(sub_row(*s) for s in minimax_m31_specs(CONVENTIONS))
     base = {(r["plan_id"], r["served_model"]): r for r in rows}
     derived_base = {}  # (派生行 plan_id, served_model) -> (锚点 plan_id, served_model)，数据日期沿用锚点
     for pid, bmodel, model, ratio, conf, how, main_ in DERIVED:
