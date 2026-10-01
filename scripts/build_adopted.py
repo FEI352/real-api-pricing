@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "adopted.csv"
@@ -1157,9 +1158,119 @@ EXCLUDED_SUBSCRIPTIONS = {
     ("kimi_andante_cn", "kimi-k3"): "旧0.58亿为199档按4周×1/20推算；即使按Kimi周池×5修正为0.73亿，也因2026-09-05用户确认‘就是不能调用’而继续排除；官方https://www.kimi.com/code/docs/kimi-code/models限定Moderato及以上可调用K3；同档可用的K2.7 Standard已作为独立点纳入"
 }
 
+# ---- 数据日期（网页详情面板显示）：该额度数据是哪一天的。格式 YYYY-MM-DD / YYYY-MM，区间用 "~"。
+# sample=实测/社区样本的采样日期（多源加权取全部入权样本的起止）；
+# official=官方页面/公告：有发布日的博文或公告取发布日，否则取项目核对该页的日期；
+# derived=由锚点按倍率/档间比例派生，沿用锚点日期，data_date_from 记锚点。
+DATA_DATES = {
+    ("chatgpt_plus", "gpt-5.6-sol"): ("2026-07-30", "sample"),
+    ("chatgpt_pro_20x", "gpt-5.6-sol"): ("2026-06-10~2026-09-06", "sample"),
+    ("chatgpt_plus", "gpt-5.6-luna"): ("2026-09-08", "sample"),
+    ("chatgpt_plus", "gpt-6-astra"): ("2026-09-11", "sample"),
+    ("chatgpt_plus", "gpt-6-sol"): ("2026-09-24", "sample"),
+    ("chatgpt_plus", "gpt-6-luna"): ("2026-09-27~2026-09-28", "sample"),
+    ("chatgpt_plus", "gpt-6.1-sol"): ("2026-09-30", "sample"),
+    ("chatgpt_pro_20x", "gpt-6-astra"): ("2026-09-07~2026-09-21", "sample"),
+    ("devin_max", "gpt-6-astra"): ("2026-09-14", "sample"),
+    ("devin_max", "claude-opus-5.5"): ("2026-09-23", "sample"),
+    ("droid_max", "claude-opus-5.5"): ("2026-09-29", "sample"),
+    ("droid_pro", "claude-opus-5.5"): ("2026-09-28", "sample"),
+    ("google_ai_pro_us", "gemini-3.8-flash"): ("2026-09-12~2026-09-27", "sample"),
+    ("google_ai_pro_us", "gemini-3.6-flash"): ("2026-09-13~2026-09-27", "sample"),
+    ("claude_pro", "claude-opus-5"): ("2026-09-14~2026-09-22", "sample"),
+    ("claude_max_20x", "claude-opus-5"): ("2026-08", "sample"),
+    ("claude_max_20x", "claude-fable-5.1"): ("2026-09-04~2026-09-05", "sample"),
+    ("claude_max_20x", "claude-opus-5.5"): ("2026-09-22~2026-09-27", "sample"),
+    ("claude_pro", "claude-opus-5.5"): ("2026-09-22~2026-09-27", "sample"),
+    ("supergrok", "grok-4.6"): ("2026-08-23~2026-09-20", "sample"),
+    ("supergrok_lite", "grok-4.6"): ("2026-07", "sample"),
+    ("supergrok", "grok-4.7"): ("2026-09-22", "sample"),
+    ("cursor_ultra", "grok-4.6"): ("2026-08-26~2026-09-05", "sample"),
+    ("cursor_ultra_fast", "grok-4.6"): ("2026-09-05", "sample"),
+    ("cursor_pro", "grok-4.6"): ("2026-08-27", "sample"),
+    ("kimi_allegretto_cn", "kimi-k3"): ("2026-07-25~2026-07-26", "sample"),
+    ("kimi_allegretto_cn", "kimi-k2.7-code"): ("2026-08-20", "sample"),
+    ("aliyun_coding_pro_cn", "qwen3.7-plus"): ("2026-07~2026-08", "sample"),
+    ("minimax_token_plus_cn", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_max_cn", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_ultra_cn", "minimax-m3"): ("2026-08-19", "official"),
+    ("minimax_token_plus_global", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_max_global", "minimax-m3"): ("2026-06-01", "official"),
+    ("minimax_token_ultra_global", "minimax-m3"): ("2026-06-01", "official"),
+    ("devin_pro", "swe-2"): ("2026-09-10", "official"),
+    # 按量 API 标价
+    ("deepseek_v41_flash_offpeak", "deepseek-v4.1-flash"): ("2026-09-10", "official"),
+    ("deepseek_v41_flash_peak", "deepseek-v4.1-flash"): ("2026-09-10", "official"),
+    ("deepseek_v4_flash_offpeak", "deepseek-v4-flash"): ("2026-09-05", "official"),
+    ("deepseek_v4_flash_peak", "deepseek-v4-flash"): ("2026-09-05", "official"),
+    ("deepseek_v4_pro_offpeak", "deepseek-v4-pro"): ("2026-09-05", "official"),
+    ("deepseek_v4_pro_peak", "deepseek-v4-pro"): ("2026-09-05", "official"),
+    ("openai_sol_api", "gpt-5.6-sol"): ("2026-09-05", "official"),
+    ("openai_terra_api", "gpt-5.6-terra"): ("2026-09-05", "official"),
+    ("openai_luna_api", "gpt-5.6-luna"): ("2026-09-05", "official"),
+    ("xai_grok46_api", "grok-4.6"): ("2026-09-05", "official"),
+    ("xai_grok47_api", "grok-4.7"): ("2026-09-22", "official"),
+    ("mimo_v26_pro_api", "mimo-v2.6-pro"): ("2026-09-22", "official"),
+    ("mimo_v26_flash_api", "mimo-v2.6-flash"): ("2026-09-22", "official"),
+    ("mimo_v26_pro_ultraspeed_api", "mimo-v2.6-pro-ultraspeed"): ("2026-09-22", "official"),
+    ("anthropic_opus5_api", "claude-opus-5"): ("2026-09-05", "official"),
+    ("anthropic_sonnet5_api", "claude-sonnet-5"): ("2026-09-05", "official"),
+    ("anthropic_fable5_api", "claude-fable-5"): ("2026-09-05", "official"),
+    ("anthropic_fable51_api", "claude-fable-5.1"): ("2026-09-13", "official"),
+    ("anthropic_opus55_api", "claude-opus-5.5"): ("2026-09-23", "official"),
+    # 派生行里锚点不止一个、不能简单沿用 DERIVED 基准行的，显式给日期与锚点
+    ("chatgpt_pro_5x", "gpt-6-astra"): ("2026-07-30~2026-09-21", "derived",
+                                        "ChatGPT Plus · gpt-5.6-sol；ChatGPT Pro 20x · gpt-6-astra、gpt-5.6-sol"),
+    ("claude_max_5x", "claude-opus-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),
+    ("claude_max_5x", "claude-fable-5.1"): ("2026-08~2026-09-05", "derived",
+                                           "Claude Max 20x (9/14+) · claude-opus-5、claude-fable-5.1"),
+}
+# SUBS 里按官方倍率/档间比例派生的行：沿用锚点日期
+DATA_DATE_INHERIT = {
+    ("chatgpt_pro_5x", "gpt-5.6-sol"): ("chatgpt_plus", "gpt-5.6-sol"),
+    ("chatgpt_pro_5x", "gpt-5.6-luna"): ("chatgpt_plus", "gpt-5.6-luna"),
+    ("chatgpt_pro_20x", "gpt-5.6-luna"): ("chatgpt_plus", "gpt-5.6-luna"),
+    ("supergrok_plus", "grok-4.6"): ("supergrok", "grok-4.6"),
+    ("supergrok_heavy", "grok-4.6"): ("supergrok", "grok-4.6"),
+    ("supergrok_plus", "grok-4.7"): ("supergrok", "grok-4.7"),
+    ("supergrok_heavy", "grok-4.7"): ("supergrok", "grok-4.7"),
+    ("google_ai_ultra_5x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_20x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("claude_max_5x", "claude-opus-5"): ("claude_max_20x", "claude-opus-5"),
+    ("cursor_pro_plus", "grok-4.6"): ("cursor_ultra", "grok-4.6"),
+    ("kimi_moderato_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_allegro_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_moderato_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("kimi_andante_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("kimi_allegro_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("aliyun_coding_pro_global", "qwen3.7-plus"): ("aliyun_coding_pro_cn", "qwen3.7-plus"),
+}
+
+
+def family_data_date(pid: str, model: str) -> str | None:
+    """官方价表族（每模型行共用一次核对）：返回核对日期；不属于这些族返回 None。"""
+    if pid.startswith("glm_coding_"):
+        return "2026-09-03"
+    if pid.startswith("mimo_token_"):
+        return "2026-09-22"
+    if pid.startswith("stepfun_"):
+        return "2026-09-21" if model == "step-5-preview" else "2026-09-10"
+    if pid in ("ollama_pro", "ollama_max"):
+        return "2026-09-11" if model == "deepseek-v4.1-flash" else "2026-09-06"
+    if pid == "opencode_go":
+        if model.startswith("deepseek-"):
+            return "2026-09-30"
+        return "2026-09-22" if model in ("grok-4.7", "mimo-v2.6-flash", "mimo-v2.6-pro") else "2026-09-06"
+    if pid == "command_code_goat":
+        if model.startswith("deepseek-"):
+            return "2026-09-30"
+        return "2026-09-22" if model in ("grok-4.7", "mimo-v2.6-flash", "mimo-v2.6-pro", "mimo-v2.6-pro-ultraspeed") else "2026-09-06"
+    return None
+
+
 FIELDS = ["plan_id", "plan_name", "plan_name_en", "billing", "price", "currency", "price_usd", "served_model",
           "monthly_tokens", "monthly_yi", "real_usd_per_mtok", "unmetered", "promo_until", "confidence", "chart_tier", "source", "decision_note",
-          "plan_gen", "workload"]
+          "plan_gen", "workload", "data_date", "data_date_kind", "data_date_from"]
 
 
 def plan_gen_of(pid: str) -> str:
@@ -1238,10 +1349,12 @@ def unmetered_row(pid, name, price, cur, model, conf, src, note) -> dict:
 def main() -> None:
     rows = [sub_row(*s) for s in SUBS if (s[0], s[4]) not in EXCLUDED_SUBSCRIPTIONS]
     base = {(r["plan_id"], r["served_model"]): r for r in rows}
+    derived_base = {}  # (派生行 plan_id, served_model) -> (锚点 plan_id, served_model)，数据日期沿用锚点
     for pid, bmodel, model, ratio, conf, how, main_ in DERIVED:
         b = base[(pid, bmodel)]
         rows.append(sub_row(pid, b["plan_name"], b["price"], b["currency"], model, b["monthly_yi"] * ratio, conf,
                             f"由同套餐 {bmodel} {b['monthly_yi']} 亿 × {ratio}", how, "main" if main_ and is_main(pid, bmodel) else "full"))
+        derived_base[(pid, model)] = (pid, bmodel)
     for pid in ("cursor_ultra", "cursor_pro", "cursor_pro_plus"):
         b = base[(pid, "grok-4.6")]
         rows.append(sub_row(
@@ -1255,6 +1368,7 @@ def main() -> None:
                if pid in ("cursor_ultra", "cursor_pro_plus") else ""),
             b["chart_tier"],
         ))
+        derived_base[(pid + "_composer_fast", "composer-2.5")] = (pid, "grok-4.6")
     rows += [unmetered_row(*u) for u in UNMETERED]
     for pid, name, model, cached, inp, out, src in METERED:
         write5m = ANTHROPIC_CACHE_WRITE_5M.get(model)
@@ -1271,6 +1385,48 @@ def main() -> None:
                          unmetered="", promo_until="", confidence="high", chart_tier="main", source=src,
                          decision_note=METERED_NOTES.get(pid, default_note),
                          plan_gen=plan_gen_of(pid), workload=workload_of(pid, "metered", model)))
+
+    # ---- 数据日期解析：DATA_DATES 直给 → family_data_date 官方族 → DATA_DATE_INHERIT → DERIVED/composer_fast 沿用锚点
+    row_by_key = {(r["plan_id"], r["served_model"]): r for r in rows}
+    for k in DATA_DATES:
+        assert k in row_by_key, f"DATA_DATES 键无对应行: {k}"
+    for k, b in DATA_DATE_INHERIT.items():
+        assert k in row_by_key, f"DATA_DATE_INHERIT 键无对应行: {k}"
+        assert b in row_by_key, f"DATA_DATE_INHERIT 锚点无对应行: {k} -> {b}"
+    resolved = {}  # (plan_id, served_model) -> (data_date, kind, from)
+    for r in rows:
+        key = (r["plan_id"], r["served_model"])
+        if key in DATA_DATES:
+            entry = DATA_DATES[key]
+            resolved[key] = (entry[0], entry[1], entry[2] if len(entry) > 2 else "")
+        else:
+            fam = family_data_date(*key)
+            if fam is not None:
+                resolved[key] = (fam, "official", "")
+
+    def inherit_date(key: tuple, base_key: tuple) -> None:
+        # 锚点本身也是派生行时，沿用其锚点记录而不是另起一层
+        bdate, bkind, bfrom = resolved[base_key]
+        resolved[key] = (bdate, "derived",
+                         bfrom if bkind == "derived"
+                         else f"{row_by_key[base_key]['plan_name']} · {row_by_key[base_key]['served_model']}")
+
+    for key, bkey in DATA_DATE_INHERIT.items():
+        if key not in resolved:
+            inherit_date(key, bkey)
+    for key, bkey in derived_base.items():
+        if key not in resolved:
+            inherit_date(key, bkey)
+    date_re = re.compile(r"^\d{4}-\d{2}(-\d{2})?(~\d{4}-\d{2}(-\d{2})?)?$")
+    for r in rows:
+        key = (r["plan_id"], r["served_model"])
+        if key not in resolved:
+            raise ValueError(f"无数据日期: {key}")
+        date, kind, frm = resolved[key]
+        assert date_re.fullmatch(date), f"data_date 格式错误 {key}: {date!r}"
+        assert kind in {"sample", "official", "derived"}, f"data_date_kind 非法 {key}: {kind!r}"
+        assert bool(frm) == (kind == "derived"), f"data_date_from 仅 derived 可非空 {key}: {frm!r}"
+        r["data_date"], r["data_date_kind"], r["data_date_from"] = date, kind, frm
 
     with OUT.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)

@@ -154,6 +154,8 @@ def main() -> None:
                 real_usd_per_mtok=real, list_blended_usd_per_mtok=round(lb, 4) if lb else None,
                 d=round(real / lb, 4) if lb else None, confidence=r["confidence"], tier=r["chart_tier"], source=r["source"], note=r["decision_note"],
                 unmetered=r.get("unmetered") == "true", promo_until=r.get("promo_until") or None,
+                data_date=r.get("data_date") or None, data_date_kind=r.get("data_date_kind") or None,
+                data_date_from=r.get("data_date_from") or None,
             )
             for b in BOARDS:
                 options = candidates(r, scores, b)
