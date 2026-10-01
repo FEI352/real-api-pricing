@@ -197,14 +197,18 @@ def label_position(p, board, x, y, tier="main"):
             return x + 23, y - 95, "start"
         if board == "open_design_arena":
             return x - 24, y + 45, "end"
+        if board == "arena_agent_mode":
+            return x - 52, y + 20, "end"
+        if board == "arena_code":
+            return x - 23, y + 30, "end"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
             return x + 10, y - 50, "start"
         if model == "deepseek-v4.1-flash" and board == "deepswe_1_1":
-            return x - 180, y + 182, "end"
+            return x - 24, y - 52, "end"
         if model == "deepseek-v4.1-flash" and board == "terminal_bench_4":
-            return x - 54, y - 25, "end"
+            return x - 141, y + 21, "end"
         return x - 24, y + 49, "end"
     if model == "gpt-6-luna":
         if board == "aa_terminal_bench_4":

@@ -37,7 +37,6 @@ def from_fetch(src_name: str, dest_name: str, fill: str | None = None) -> None:
 # Lobe Icons / Simple Icons copies
 from_fetch("openai.svg", "openai.svg", "#111111")
 from_fetch("anthropic.svg", "anthropic.svg", "#191919")
-from_fetch("cursor.svg", "cursor.svg", "#111111")
 from_fetch("deepseek.svg", "deepseek.svg", "#4D6BFE")
 from_fetch("google-color.svg", "google.svg")
 from_fetch("ollama.svg", "ollama.svg", "#111111")
@@ -69,6 +68,11 @@ meituan = meituan.replace(
 # stepfun.svg: official 5-square mark + current X-avatar gradient.
 # kimi.svg / kimi-dark.svg: official Kimi Logomark tile, light/dark brand-kit variants.
 # devin.svg / devin-dark.svg: official Devin mark, dark-ink and white variants.
+# factory.svg: official factory.ai favicon (realfavicongenerator wrapper
+#   unwrapped to the inner SVG; #020202 tile with #FAFAFA mark, both themes).
+# cursor.webp / cursor-dark.webp: official Cursor square avatars
+#   (AVATAR_SQUARE_2D_DARK.png / AVATAR_SQUARE_2D_LIGHT.png), resized to 128px.
+# ollama-dark.webp: official ollama.com apple-touch-icon (180px), dark theme only.
 # Muse Spark uses meta.svg. Do not overwrite those files here.
 
 # Keep fetch only as a cache; do not publish it.

@@ -22,6 +22,7 @@ import {
   feeBands,
   allowance,
   csv,
+  dataDateLine,
   defaultState,
   accessLine,
   displayPlan,
@@ -52,6 +53,7 @@ import {
 } from "./domain";
 import {
   FRONTIER_RADIUS,
+  fitLabel,
   placeTextLabels,
   placementRect,
 } from "./chartLabels";
@@ -208,12 +210,12 @@ test("DeepSWE keeps effort levels and vendor provenance through the adapter", ()
   assert.equal(deepseek.mapping?.score_is_self_reported, true);
   assert.equal(deepseek.mapping?.agent_harness, "mini-SWE");
 });
-test("Command Code GOAT DeepSeek V4.1 Flash uses $40 monthly credits", () => {
+test("Command Code GOAT DeepSeek V4.1 Flash uses $60 monthly credits", () => {
   const p = data.points.find((p) => p.id === "command_code_goat::deepseek-v4.1-flash")!;
-  // $40 allowance ÷ off-peak (97/2.5/0.5 × $0.003/$0.15/$0.60 = $0.00966/MTok).
-  assert.equal(p.monthly_yi, 41.408);
-  assert.equal(p.real_usd_per_mtok, 0.0024149923);
-  assert.equal(price(p.real_usd_per_mtok), "$0.00241");
+  // $60 allowance ÷ off-peak (97/2.5/0.5 × $0.003/$0.15/$0.60 = $0.00966/MTok).
+  assert.equal(p.monthly_yi, 62.112);
+  assert.equal(p.real_usd_per_mtok, 0.0016099948);
+  assert.equal(price(p.real_usd_per_mtok), "$0.00161");
 });
 test("Default selection includes every adopted point, including unscored models", () => {
   const rows = rowsFor(data, defaultState());
@@ -592,6 +594,27 @@ test("Labels yield to ordinary points when every candidate slot is occupied", ()
       dots.push({ key: `dot-${x}-${y}`, x, y, r: 6 });
   assert.deepEqual(placeTextLabels([g], new Map([[g.key, anchor]]), dots,
     { left: 0, top: 0, right: 240, bottom: 200, width: 240, height: 200 }, false), []);
+});
+test("Third-party labels reserve room for the maker mini-logo", () => {
+  const box = { left: 0, top: 0, right: 400, bottom: 240, width: 400, height: 240 };
+  const make = (channel: string, vendor: string, name: string): Group => {
+    const r = row(`${channel}-${vendor}-${name}`, 0.01, 1500);
+    r.point = { ...r.point, channel, vendor, model_display: name };
+    return { key: r.key, price: 0.01, plotPrice: 0.01, score: 1500, rows: [r] };
+  };
+  const place = (g: Group) => {
+    const anchor = { key: g.key, x: 200, y: 120, r: FRONTIER_RADIUS };
+    return placeTextLabels([g], new Map([[g.key, anchor]]), [anchor], box, false)[0];
+  };
+  const first = place(make("Zhipu", "Zhipu", "GLM 5.3 Flash"));
+  const third = place(make("Factory", "Zhipu", "GLM 5.3 Flash"));
+  assert.equal(first.maker, null);
+  assert.equal(third.maker, "Zhipu");
+  // Desktop label: 12px logo + 4px gap on top of the first-party width.
+  assert.equal(third.width, first.width + 16);
+  // The same long name truncates earlier once logo room is reserved.
+  const long = "GLM 5.3 Flash Ultra Max Pro Turbo Extended Edition";
+  assert.ok(fitLabel(long, false, true).length < fitLabel(long, false).length);
 });
 test("Chart search AND-matches plan, channel and model fields and dedupes points", () => {
   const gs = groups(
@@ -992,4 +1015,49 @@ test("Ranking bars sit on a fixed decade-aligned log axis, independent of filter
   assert.equal(barWidth(0, axis), 0);
   // Equal ratios give equal gaps: 10x apart is always one decade (20% here).
   assert.ok(Math.abs(barWidth(51.63, axis) - barWidth(5.163, axis) - 20) < 1e-9);
+});
+test("Data date line renders the sample/official/derived kinds and stays empty without a date", () => {
+  const p = data.points[0];
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-27~2026-09-28", data_date_kind: "sample" }, "zh"),
+    "2026-09-27 ~ 2026-09-28 · 实测采样",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-27~2026-09-28", data_date_kind: "sample" }, "en"),
+    "2026-09-27 – 2026-09-28 · sampled",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-05", data_date_kind: "official" }, "zh"),
+    "2026-09-05 · 官方来源日期",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-05", data_date_kind: "official" }, "en"),
+    "2026-09-05 · official source date",
+  );
+  const derived = {
+    ...p,
+    data_date: "2026-07-30",
+    data_date_kind: "derived",
+    data_date_from: "ChatGPT Plus · gpt-5.6-sol",
+  };
+  assert.equal(
+    dataDateLine(derived, "zh"),
+    "2026-07-30 · 派生，沿用 ChatGPT Plus · gpt-5.6-sol 的数据日期",
+  );
+  assert.equal(
+    dataDateLine(derived, "en"),
+    "2026-07-30 · derived; uses the data date of ChatGPT Plus · gpt-5.6-sol",
+  );
+  assert.equal(dataDateLine({ ...p, data_date: null }, "zh"), "");
+  assert.equal(dataDateLine({ ...p, data_date: null }, "en"), "");
+});
+test("Every published point carries a data date of a known kind", () => {
+  const kinds = new Set(["sample", "official", "derived"]);
+  const re = /^\d{4}-\d{2}(-\d{2})?(~\d{4}-\d{2}(-\d{2})?)?$/;
+  for (const p of data.points) {
+    assert.ok(p.data_date && re.test(p.data_date), p.id);
+    assert.ok(p.data_date_kind && kinds.has(p.data_date_kind), p.id);
+    assert.equal(p.data_date_kind === "derived", Boolean(p.data_date_from), p.id);
+    assert.ok(dataDateLine(p, "zh") !== "" && dataDateLine(p, "en") !== "", p.id);
+  }
 });

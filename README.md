@@ -6,7 +6,7 @@ AI coding subscriptions sell a monthly fee, not a per-token price. This project 
 
 **Real price = monthly fee ÷ tokens you can actually use in a month.**
 
-**[Open the interactive site →](https://real-api-pricing.vercel.app)** Pick models, filter channels, compare prices and allowances. English / 中文.
+**[Open the interactive site →](https://realapipricing.com)** Pick models, filter channels, compare prices and allowances. English / 中文.
 
 ![Real price vs. AA Intelligence Index, Pareto frontier](charts/en/pareto/pareto-aa-intelligence.svg)
 
@@ -17,13 +17,13 @@ AI coding subscriptions sell a monthly fee, not a per-token price. This project 
 - The black line is the Pareto frontier: for every point on it, no other point is both cheaper and higher-scoring.
 - Subscription prices assume you use the whole allowance. Use half of it and your real price doubles.
 
-Snapshot: <!-- stat:snapshot -->2026-09-30<!-- /stat --> · <!-- stat:points_total -->297<!-- /stat --> plan × model points · [all charts, SVG / PNG, both languages](charts/README.md)
+Snapshot: <!-- stat:snapshot -->2026-10-01<!-- /stat --> · <!-- stat:points_total -->297<!-- /stat --> plan × model points · [all charts, SVG / PNG, both languages](charts/README.md)
 
 ## How the numbers are made
 
 - **Monthly allowance.** Tokens per month at saturated use. A month is four weeks unless the vendor defines its own monthly pool (Kimi's is 5× the weekly pool). Input, output and cache tokens all count.
-- **Measured when possible.** The best evidence is a direct measurement: tokens used against the change in the dashboard's quota percentage, local usage logs, controlled saturation runs, or an official absolute-token table. These totals are used as they are.
-- **Converted when necessary.** Dollar or credit pools, and API list prices, are turned into tokens with one standard workload: 97% cache reads, 2.5% fresh input, 0.5% output. This is a comparison convention, not a claim about anyone's real usage. Anthropic models price the fresh-input share at the cache-write rate, and StepFun uses a low-cache variant. See [CONVENTIONS.md](CONVENTIONS.md).
+- **Measured when possible.** The best evidence is a direct measurement: tokens used against the change in the dashboard's quota percentage, local usage logs, controlled saturation runs, or an official absolute-token table. Samples that include a token breakdown are converted to dollar worth at public list prices and then to the channel's workload tier; samples without a breakdown and official token tables use raw totals as-is and are flagged "not workload-normalized" on the site.
+- **Converted when necessary.** Dollar or credit pools, and API list prices, are turned into tokens with one standard workload: 97% cache reads, 2.5% fresh input, 0.5% output. This is a comparison convention, not a claim about anyone's real usage. Anthropic models price the fresh-input share at the cache-write rate, and StepFun and Google use a low-cache variant. See [CONVENTIONS.md](CONVENTIONS.md).
 - **Off-peak pricing** (GLM, DeepSeek, MiMo) is shown as separate scenario points, not averaged.
 - **Confidence.** Every row is rated high, medium or low. High means a dashboard back-calculation, a controlled test or an official table. Medium means an official multiplier applied to a high-confidence anchor, or several consistent independent sources. Low means a single report or a cross-plan assumption. Derived values are never presented as measurements.
 - **One plan, several models.** Each model on a plan gets its own point. Those allowances are alternatives and do not add up.

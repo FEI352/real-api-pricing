@@ -1,6 +1,6 @@
 # Reproducing the charts
 
-Use Python 3.10+ and Node.js 20.19+ or 22.12+ (CI uses 22). Install dependencies with `python -m pip install -r requirements.txt`, `npm ci` (repository root) and `npm --prefix web ci` (website).
+Use Python 3.10+ and Node.js 22.12+ (CI uses 22; the root deployment dependency requires Node.js 22). Install dependencies with `python -m pip install -r requirements.txt`, `npm ci` (repository root) and `npm --prefix web ci` (website).
 For Chinese chart text, install Microsoft YaHei or Noto Sans CJK SC. Font substitution can change the layout on other systems. Interactive HTML loads Plotly from its CDN.
 
 Run from the repository root, in order:
