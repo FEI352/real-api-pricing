@@ -602,7 +602,7 @@ OPENCODE_GO_MODELS = (
     ("qwen3.7-max", 30, 0.5, 2.5, 7.5, "官网单档"),
     ("qwen3.7-plus", 60, 0.04, 0.4, 1.6, "≤256K 标价；>256K 档保留在 research variants"),
     ("qwen3.6-plus", 60, 0.05, 0.5, 3.0, "≤256K 标价；>256K 档保留在 research variants"),
-    ("deepseek-v4.1-flash", 15, 0.003, 0.15, 0.60, "官网新行；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网 Monthly limit 永久 $60；Off-Peak；Peak=2×保留在 research variants"),
     ("deepseek-v4-pro", 15, 0.022, 0.66, 1.98, "Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改"),
     ("hy4-preview", 30, 0.042, 0.834, 2.501, "官网单档"),
     ("hy3", 60, 0.035, 0.14, 0.58, "官网单档"),
@@ -621,14 +621,14 @@ OPENCODE_GO_DEFAULT_SOURCE = (
 )
 OPENCODE_GO_DEEPSEEK_SOURCE = (
     "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；"
-    "opencode-go-deepseek-round6-2026-09-10.json"
+    "opencode-go-deepseek-round7-2026-09-30.json"
 )
 OPENCODE_GO_NOTES = {
     "deepseek-v4.1-flash": (
-        "新增18.182亿：min(共享月池$60, 模型Usage $15) ÷ 统一标准负载加权价；"
-        "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。官网 Model ID=deepseek-flash，"
-        "项目 served_model=deepseek-v4.1-flash 以对接榜单。"
-        "用户确认 V4 Flash / Vision 已下线，OpenCode 这两点删除（旧Flash 21.637亿、Vision 10.819亿）。"
+        "15.528→62.112亿：min(共享月池$60, 模型Usage $60) ÷ 统一标准负载加权价；"
+        "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。"
+        "模型月Usage由$15升为永久$60（官网曾标4x限时至9/27，9/30页面撤标按$60常态列示，用户确认永久；"
+        "估算请求130,000/月为旧$15档32,500的4倍，交叉一致）。官网 Model ID 现为 deepseek-v4.1-flash。"
         "官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
     ),
 }
@@ -665,7 +665,7 @@ COMMAND_CODE_GOAT_MODELS = (
     ("glm-5.2", 70, 0.26, 1.4, 4.4, "官网三段价"),
     ("hy3", 70, 0.035, 0.14, 0.58, "官网三段价"),
     ("qwen3.8-27b", 70, 0.04, 0.4, 3.0, "官网三段价"),
-    ("deepseek-v4.1-flash", 40, 0.003, 0.15, 0.60, "官网新行；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网 allowance 永久 $60；Off-Peak；Peak=2×保留在 research variants"),
     ("kimi-k2.7-code", 60, 0.19, 0.95, 4.0, "官网三段价"),
     ("minimax-m3", 47, 0.06, 0.3, 1.2, "官网页成交/折扣三段价（-50%类）"),
     ("glm-5.3-flash", 40, 0.03, 0.15, 0.5, "官网三段价"),
@@ -712,13 +712,13 @@ COMMAND_CODE_GOAT_DEFAULT_SOURCE = (
 )
 COMMAND_CODE_GOAT_DEEPSEEK_SOURCE = (
     "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；"
-    "https://commandcode.ai/pricing；$10→$70 credits；command-code-goat-deepseek-round1-2026-09-10.json"
+    "https://commandcode.ai/pricing；$10→$70 credits；command-code-goat-deepseek-round2-2026-09-30.json"
 )
 COMMAND_CODE_GOAT_NOTES = {
     "deepseek-v4.1-flash": (
-        "新增48.485亿：min(共享月池$70, 模型allowance $40) ÷ 统一标准负载加权价；"
+        "41.408→62.112亿：min(共享月池$70, 模型allowance $60) ÷ 统一标准负载加权价；"
         "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。"
-        "用户确认 V4 Flash / Vision 已下线，Command Code 这两点删除（旧Flash 43.274亿、Vision 14.425亿）。"
+        "模型月allowance由$40升为永久$60（官网估算请求154,000/月与$60档 V4 Flash latest 完全同档，用户确认永久）。"
         "官方请求数仅作交叉检查，不再作为额度主值；忽略 processing fee；同套餐各模型额度不可相加"
     ),
 }
