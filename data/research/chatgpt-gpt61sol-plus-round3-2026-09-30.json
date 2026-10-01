@@ -68,6 +68,12 @@
       "pendingAdoption": "chatgpt_plus × gpt-6.1-sol 更新为整段 8.70 亿/月（high, standard）；分段密度（6.1 价）：seg1 $0.476/pp、seg2 $0.473/pp、seg3 $0.330/pp、整段 $0.428/pp；raw 口径 7.17 亿留作对照；Pro 5x/20x 不派生（沿 Sol 裁定）；暂无榜分，有分后再补 scores supplement。"
     }
   ],
+  "doubts": [
+    "第三段 60%→50% 每 1% $0.330，比前两段 $0.476/$0.473 低约 30%，10pp 整数读数取整（约 ±10%）不足以解释，原因未明"
+  ],
+  "userConfirmation20261001": "用户原话：『6.1sol缓存就是更便宜，0.1，6还是0.2』",
+  "doubtsRecordedAt": "2026-10-01",
+  "adoptionDecision": "2026-10-01 用户裁定：先记录疑点，按整段 81%→50%（31pp）采用 8.70 亿/月",
   "relatedFiles": [
     "chatgpt-gpt61sol-plus-round1-2026-09-30.json",
     "chatgpt-gpt61sol-plus-round2-2026-09-30.json",
