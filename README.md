@@ -36,9 +36,9 @@ JSON/CSV exports, filtering, evidence and comparisons are available. See the
 [command reference](docs/cli-command-reference.md) for output examples.
 Version 0.1.0 has not been published to npm.
 
-For coding agents, the [Model Pricing skill](.agents/skills/model-pricing/SKILL.md)
+For coding agents, the [Real Model Price skill](.agents/skills/real-model-price/SKILL.md)
 guides price, allowance and plan comparisons with this CLI. In Codex, invoke
-`$model-pricing` from a session that loads the repository's skills.
+`$real-model-price` from a session that loads the repository's skills.
 
 ## How the numbers are made
 

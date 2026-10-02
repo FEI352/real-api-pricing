@@ -1,9 +1,9 @@
 ---
-name: model-pricing
+name: real-model-price
 description: Query and compare AI model prices, subscription plans, monthly token allowances, and metered APIs using the Real API Pricing CLI (rap). Use for cheapest-model questions, token budgets, company/channel/plan comparisons, and pricing evidence; for example, comparing Claude subscriptions with Factory or finding the largest allowance under $30 per month.
 ---
 
-# Model Pricing
+# Real Model Price
 
 Use `rap` to answer pricing and allowance questions from the project's adopted
 data. Query the existing dataset; use its prices, units, confidence and evidence.

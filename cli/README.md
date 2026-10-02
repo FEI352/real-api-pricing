@@ -128,13 +128,13 @@ measurements of every subscription channel.
 
 ## Agent skill
 
-The repository includes [Model Pricing](../.agents/skills/model-pricing/SKILL.md),
-a Codex skill named `model-pricing` for querying prices, allowances and plans
-with this CLI. Its repository location is `.agents/skills/model-pricing/`.
+The repository includes [Real Model Price](../.agents/skills/real-model-price/SKILL.md),
+a Codex skill named `real-model-price` for querying prices, allowances and plans
+with this CLI. Its repository location is `.agents/skills/real-model-price/`.
 In a Codex session that loads this checkout's skills, invoke it with, for example:
 
 ```text
-Use $model-pricing to compare Anthropic and Factory prices under $30/month.
+Use $real-model-price to compare Anthropic and Factory prices under $30/month.
 ```
 
 The skill checks the snapshot, discovers IDs and reads JSON before presenting
