@@ -43,6 +43,10 @@ export interface Point {
   source: string;
   note: string;
   decision_note: string;
+  /** English translations of the Chinese source/note fields (data/i18n). */
+  source_en?: string;
+  note_en?: string;
+  decision_note_en?: string;
   evidence: { label: string; url: string }[];
 }
 export interface Configuration {
@@ -59,8 +63,16 @@ export interface Configuration {
   score_low: number | null;
   score_high: number | null;
   source: string;
+  source_en?: string;
   archive?: string;
   checked_at?: string;
+  /** The board's own label for this configuration (raw_record.variantLabel). */
+  board_label?: string;
+  /** The archived record's note in zh and en (i18n-resolved, website-only). */
+  record_note_zh?: string;
+  record_note_en?: string;
+  /** Local URL of the copied score archive under /data/evidence/. */
+  archive_url?: string;
   mean_cost_usd_per_task?: number | null;
   median_cost_per_task_usd?: number | null;
   median_cost_usd_per_task?: number | null;

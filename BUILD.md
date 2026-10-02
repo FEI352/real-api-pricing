@@ -8,6 +8,7 @@ Run from the repository root, in order:
 ```sh
 python scripts/build_adopted.py
 python scripts/compute.py
+python scripts/checks/verify_i18n.py
 python scripts/readme_stats.py
 python scripts/checks/verify_benchmark_configs.py
 python scripts/checks/verify_aa_snapshot.py
@@ -75,6 +76,7 @@ The package has not been published to npm. Usage and output contracts are in
 - `config/allowance-fee-bands.json`: monthly-fee band boundaries shared by the website and the Python overview charts.
 - `scripts/build_adopted.py`: adopted values, confidence and rationale; generates `data/adopted.csv`.
 - `derived/`: price/score summary pairs, lossless benchmark configurations and explicit plan/configuration reference mappings. Run `compute.py` to regenerate all derived JSON/CSV files.
+- `data/i18n/`: English translations of the Chinese adoption `source`/`decision_note` text shown on the website. Whenever a `source` or `decision_note` changes, run `python scripts/checks/verify_i18n.py --sync` and fill in the English.
 - `charts/`: public bilingual charts and tables; start with `charts/README.md`. English and Chinese filenames live in `en/` and `zh/`, grouped into `pareto/`, `overview/` and `frontier/`.
 - `_build/`: ignored intermediate renders, interactive HTML and audit reports. `publish_charts.py` exports full-data Pareto charts and all overview/frontier figures to `charts/`. Selected-data renders are never published.
 - `scripts/checks/`: coordinate, frontier and language checks.

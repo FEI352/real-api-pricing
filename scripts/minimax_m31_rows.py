@@ -34,11 +34,11 @@ def subscription_specs(conventions: dict[str, Any]) -> list[tuple]:
     source = (
         'https://platform.minimax.cn/docs/m-plan/faq；'
         'https://platform.minimax.cn/docs/m-plan/intro；'
-        f'{EVIDENCE}；用户截图及2026-10-01确认Go'
+        f'{EVIDENCE}；维护者截图及2026-10-01确认Go'
     )
     common = (
         '未折算、暂估：缺M3.1独立公开计价比例，不借用M3价格；'
-        '有分项样本的临时raw例外，2026-10-01 维护者裁定接受（MiniMax 官方未公布 M3.1 价格，暂不折算）。'
+        '有分项样本的临时raw例外，2026-10-01 裁定接受（MiniMax 官方未公布 M3.1 价格，暂不折算）。'
         'Go小时累计23,970,451 tok对应周已用4%→10%，5h已用41%→100%；'
         '并非0%→100%完整5h窗口。12:00至12:01起点累计未截图，'
         '全段以起始小时计数为0、期间无其他共享池消耗为假设，两项未单独确认。'

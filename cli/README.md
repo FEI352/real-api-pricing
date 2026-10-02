@@ -110,11 +110,17 @@ rap info --data /absolute/path/to/site.json
 rap price --data ./site.json --company Anthropic
 ```
 
-The bundled 2026-10-01 snapshot was verified against the live website file.
+Website parity was verified using the 2026-10-01 snapshot and live website file.
 Chromium DOM comparisons covered 61 scenarios and 5,176 rows across all
 18 companies, fee bands, channels, searches and benchmark configurations.
 Records, ordering and shared display fields had no differences; page,
 console and resource errors were all zero.
+
+After integrating the latest upstream data, the rebuilt 2026-10-02 CLI and
+website snapshots match the upstream builder byte for byte. The shared adapter
+preserves translated source metadata and benchmark archive/record details;
+JSON retains these fields alongside the original source text. Use `rap info`
+for the date of the dataset actually being queried.
 
 `--data` resolves relative paths against the calling directory. Invalid data
 versions, missing fields, nonfinite numbers, duplicate IDs and orphaned

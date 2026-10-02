@@ -17,7 +17,7 @@
       "note": "Standard Usage 先扣；Droid Core = 免费开源模型池，在 Standard Usage 用尽后另有独立 Rate Limits；5h/7d/30d 三个滚动窗"
     }
   ],
-  "userDecision": "2026-09-29 用户：按倍率折算、都标 medium；Sonnet 取 5.5，Opus 取到 4.8，GPT 取到 5.6，其他太老的不算",
+  "userDecision": "2026-09-29 裁定：按倍率折算、都标 medium；Sonnet 取 5.5，Opus 取到 4.8，GPT 取到 5.6，其他太老的不算",
   "base": {
     "planId": "droid_max",
     "model": "claude-opus-5.5",
@@ -162,7 +162,7 @@
     "deprecated": "DeepSeek V4 Flash 0731、DeepSeek V4 Pro、MiniMax M2.7、Kimi K2.5、GLM-5.1"
   },
   "caveats": [
-    "非各模型实测，全部 medium（用户裁定）",
+    "非各模型实测，全部 medium（裁定）",
     "沿用 Opus 5.5 行的 Anthropic 档负载，未按各模型自身价差重算",
     "Droid Core 模型只计 Standard Usage 部分；用尽后的免费开源池独立限额未实测",
     "30 天窗若低于 4× 周池，全部行偏高"

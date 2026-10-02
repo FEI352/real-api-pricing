@@ -1,6 +1,6 @@
 # CLI 指令与输出参考
 
-状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包尚未发布。下列命令已使用 `node cli/dist/main.js` 在仓库根目录执行，数据来自构建时打包的 **2026-10-01** 快照。该快照与线上文件内容一致；已用 Chromium 读取原 HTTPS 网站 DOM，61 个场景、累计 5,176 行的记录、排序和共享显示字段均无差异，浏览器错误为 0。表格按字段整理，较长的详情只列节选；帮助和 stderr 采用实际输出。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。CLI 仍从本地快照离线查询，不自动联网刷新。
+状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包尚未发布。下列输出示例使用 `node cli/dist/main.js` 在仓库根目录执行，基于当时打包的 **2026-10-01** 快照。该快照当时与线上文件一致；Chromium 读取原 HTTPS 网站 DOM 的 61 个场景、累计 5,176 行对比均通过，浏览器错误为 0。合并主仓库后，构建数据已更新为 **2026-10-02**，保留英文来源译文和评测档案元数据；示例日期保留其验证时点，实际日期以 `rap info` 为准。表格按字段整理，较长的详情只列节选；帮助和 stderr 采用实际输出。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。CLI 仍从本地快照离线查询，不自动联网刷新。
 
 命令名为 `rap`。默认表格、默认返回全部匹配记录；表头、套餐显示、帮助及错误信息固定使用英文。`Model`、`Company`、`Channel`、`Plan` 在每张价格记录表中独立成列，即使筛选后值相同也保留。`Company` 是模型开发公司，对应网站 `vendors`；`Channel` 是提供套餐的访问渠道。例如 Claude 由 Anthropic 开发，Droid Max 的渠道是 Factory。
 
