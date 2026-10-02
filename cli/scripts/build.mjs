@@ -22,6 +22,7 @@ await build({
   sourcemap: true,
 });
 await chmod(path.join(root, "dist/main.js"), 0o755);
-console.log(
+// npm pack --json reserves stdout for its machine-readable package manifest.
+console.error(
   `CLI built: ${data.points.length} points, ${data.configurations.length} configurations, ${data.mappings.length} references. Values verified against adopted.csv.`,
 );

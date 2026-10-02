@@ -223,7 +223,7 @@ test("info counts local dataset dimensions without merging company display alias
 });
 
 const live: DatasetContext = {
-  data: unpackData(JSON.parse(readFileSync(new URL("../../web/public/data/site.json", import.meta.url), "utf8"))),
+  data: unpackData(JSON.parse(readFileSync(new URL("../data/site.json", import.meta.url), "utf8"))),
   source: "bundled", sourcePath: null,
 };
 

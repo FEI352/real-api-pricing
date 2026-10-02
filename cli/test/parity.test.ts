@@ -12,7 +12,7 @@ import type { QueryRow, Result } from "../src/types.ts";
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const main = join(root, "cli/dist/main.js");
-const packed = JSON.parse(readFileSync(join(root, "web/public/data/site.json"), "utf8"));
+const packed = JSON.parse(readFileSync(join(root, "cli/data/site.json"), "utf8"));
 const data: SiteData = unpackData(packed);
 const board = "aa_intelligence_index";
 
