@@ -19,6 +19,23 @@ AI coding subscriptions sell a monthly fee, not a per-token price. This project 
 
 Snapshot: <!-- stat:snapshot -->2026-10-01<!-- /stat --> · <!-- stat:points_total -->318<!-- /stat --> plan × model points · [all charts, SVG / PNG, both languages](charts/README.md)
 
+## Query from the terminal
+
+The TypeScript CLI reads an offline snapshot and separates model, company,
+channel and plan. Requires Node.js 22.12+. Build from this repository:
+
+```sh
+npm --prefix cli ci
+npm --prefix cli run build
+node cli/dist/main.js price --company Anthropic
+node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
+```
+
+JSON/CSV exports, filtering, evidence and comparisons are available. See the
+[CLI README](cli/README.md) for local package installation and the
+[command reference](docs/cli-command-reference.md) for output examples.
+Version 0.1.0 has not been published to npm.
+
 ## How the numbers are made
 
 - **Monthly allowance.** Tokens per month at saturated use. A month is four weeks unless the vendor defines its own monthly pool (Kimi's is 5× the weekly pool). Input, output and cache tokens all count.

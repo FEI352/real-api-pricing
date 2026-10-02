@@ -19,6 +19,19 @@ AI 编程订阅只标月费，不标每 token 多少钱。本项目把每个套�
 
 快照日期 <!-- stat:snapshot -->2026-10-01<!-- /stat --> · 共 <!-- stat:points_total -->318<!-- /stat --> 个「套餐 × 模型」点 · [全部图表（中英文、SVG / PNG）](charts/README.md)
 
+## 命令行查询
+
+TypeScript CLI 从本地快照查询，模型、开发公司、访问渠道、套餐分别列出。需要 Node.js 22.12+，在仓库根目录构建：
+
+```sh
+npm --prefix cli ci
+npm --prefix cli run build
+node cli/dist/main.js price --company Anthropic
+node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
+```
+
+支持筛选、详情、比较以及 JSON/CSV 导出，查询可离线运行。安装本地包见 [CLI README](cli/README.md)，各命令输出见 [命令参考](docs/cli-command-reference.md)。当前版本为 0.1.0，尚未发布到 npm。
+
 ## 数字怎么来的
 
 - **月额度**：饱和使用下每月能用的 token。默认一个月按四周算；厂商另设月池的按厂商口径（Kimi 月池是周池的 5 倍）。输入、输出、缓存 token 全部计入。
