@@ -1,10 +1,10 @@
 {
   "recordedAt": "2026-09-30",
   "sourceType": "re-derivation of existing evidence (no new sample)",
-  "trigger": "用户裁定：Max 20x × Opus 5.5 不再借 Opus 5 周池隐含权重，改用 5h 窗/周结构推周额度，并与 Pro×10 对照；两路按百分点加权合并",
+  "trigger": "裁定：Max 20x × Opus 5.5 不再借 Opus 5 周池隐含权重，改用 5h 窗/周结构推周额度，并与 Pro×10 对照；两路按百分点加权合并",
   "inputs": {
     "miaaiSession": {
-      "source": "claude-opus55-round1-2026-09-23.json（X @MiaAI_lab，档位用户裁定挂 Max 20x）",
+      "source": "claude-opus55-round1-2026-09-23.json（X @MiaAI_lab，档位裁定挂 Max 20x）",
       "tokens": { "input": 1400000, "output": 8000000, "cacheRead": 1000000000, "cacheWrite": 21100000 },
       "listWorthUsd": 471.10,
       "listWorthFormula": "1000M×$0.2 + 21.1M×$5(5m) + 1.4M×$4 + 8.0M×$20 = $471.10（推文自报 $482.63，+2.4% 闭合）",
@@ -25,7 +25,7 @@
     },
     "max20xToProWeekly": {
       "value": 10,
-      "basis": "用户口径：Max 20x 为 Pro 的 20 倍 5h 窗、10 倍周额度（20x 周池 = 5x 的 2 倍，见 build_adopted.py Claude Max 5x 行）"
+      "basis": "维护者口径：Max 20x 为 Pro 的 20 倍 5h 窗、10 倍周额度（20x 周池 = 5x 的 2 倍，见 build_adopted.py Claude Max 5x 行）"
     },
     "anthropicBlendedUsdPerMtok": 0.419
   },
@@ -54,8 +54,8 @@
     "proRatioApplied": "Pro 13.333%（7.5 窗/周）直接套 Max 20x：$628.13×7.5×4÷$0.419 = 449.7 亿——Max 20x 窗为 Pro 的 20×、周为 10×，窗/周比不同于 Pro",
     "officialMultipliers3_75": "7.5×10/20 = 3.75 窗/周：$628.13×3.75×4÷$0.419 = 224.9 亿——MiaAI 窗仅为 Pro 窗（$40.48）的 15.5×，与 20×/10× 两倍率同时精确不自洽（若为 20× 需 ~58% 读数）",
     "equalWeight": "(305.36 + 329.81) ÷ 2 = 317.58 亿",
-    "opus5WeightRoute": "#52/#53 推 Opus 5.5/Opus 5 池权重 0.843 → 186 亿：用户否决（不从 Opus 5 推 Opus 5.5 Max）",
+    "opus5WeightRoute": "#52/#53 推 Opus 5.5/Opus 5 池权重 0.843 → 186 亿：裁定否决（不从 Opus 5 推 Opus 5.5 Max）",
     "previousAdopted": "301.7 亿 = 13.74 亿 raw 窗池 × 5.49 窗/周 ×4（raw，未按负载折算）"
   },
-  "notUsed": "#65 Max 20x 混合样本（全模型周 $1,410.5）：用户裁定暂不处理"
+  "notUsed": "#65 Max 20x 混合样本（全模型周 $1,410.5）：裁定暂不处理"
 }

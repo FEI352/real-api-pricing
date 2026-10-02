@@ -1,6 +1,6 @@
 {
   "collectedAt": "2026-09-30",
-  "scopeNote": "GPT-6.1 Sol ChatGPT Plus 周窗续段实测：65%→60%（5pp）段内 10,562,908 tok，与 round1 的 81%→65% 段在 65% 边界拼接为整段 81%→60%（21pp）/ 40,672,476 tok。整段分量与两段之和逐项吻合（截图整段标题仍写 82%/22pp，沿用用户更正起始值 81%→真实 21pp）。采用值更新为整段口径 7.75 亿/月，round1 段值 7.53 亿留作历史对照。",
+  "scopeNote": "GPT-6.1 Sol ChatGPT Plus 周窗续段实测：65%→60%（5pp）段内 10,562,908 tok，与 round1 的 81%→65% 段在 65% 边界拼接为整段 81%→60%（21pp）/ 40,672,476 tok。整段分量与两段之和逐项吻合（截图整段标题仍写 82%/22pp，沿用更正后起始值 81%→真实 21pp）。采用值更新为整段口径 7.75 亿/月，round1 段值 7.53 亿留作历史对照。",
   "items": [
     {
       "planId": "chatgpt_plus",
@@ -8,9 +8,9 @@
       "model": "gpt-6.1-sol",
       "client": "Codex CLI",
       "evidenceType": "user_local_log_x_panel_percent",
-      "source": "用户本机 Codex 实测截图（2026-09-30 会话内提供，续 round1 同窗口）",
+      "source": "维护者本机 Codex 实测截图（2026-09-30 会话内提供，续 round1 同窗口）",
       "sourceDate": "2026-09-30",
-      "userConfirmation": "用户原话：『还有一组补充，续借刚刚那一段』",
+      "userConfirmation": "维护者原话：『还有一组补充，续借刚刚那一段』",
       "observed": {
         "windowSegment2": "周额度剩余 65% → 60%，差 5pp，全部增量为 gpt-6.1-sol",
         "segment2": {
@@ -24,7 +24,7 @@
           "tokensPerPoint": 2112581.6,
           "weeklyTokensImplied": 211258160
         },
-        "windowCumulative": "周额度剩余 81% → 60%，差 21pp（截图标题写 82%→60% · 22pp，起始读数沿用用户更正 81%）",
+        "windowCumulative": "周额度剩余 81% → 60%，差 21pp（截图标题写 82%→60% · 22pp，起始读数沿用更正后读数 81%）",
         "cumulative": {
           "inputTokens": 2035108,
           "cacheReadTokens": 38430592,

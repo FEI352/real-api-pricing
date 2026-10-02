@@ -2,7 +2,7 @@
   "recordedAt": "2026-09-30",
   "sourceType": "methodology_recalculation",
   "trigger": "2026-09-30 全库审计：adopted 297 行中 workload=measured 73 行（22 个独立实测样本 + 17 行官方档位倍率放大 + 27 行模型比价派生 + 7 行官方绝对 token 表/占位）。Claude Pro × Opus 5.5、Devin Max、Droid Max 已按标价折 list-worth 再按负载档换算，其余带 token 分项的实测样本仍直接用 raw total，同类样本口径不一致。",
-  "userDecision": "2026-09-30 用户裁定：(1) 带 token 分项的实测样本统一折算（用户原话「要折算」）；(2) Google 用低缓存档（用户原话「谷歌我记得有个单独的低负载」——即 conventions.lowCacheTokenMix，2026-09-22 裁定时已写明 Gemini 实测 82.6% 属同族）；(3) 缺分项的样本保留 raw，workload 仍标 measured，并在网页与 README 注明未折算（用户原话「3.可以」）。",
+  "userDecision": "2026-09-30 裁定：(1) 带 token 分项的实测样本统一折算（维护者原话「要折算」）；(2) Google 用低缓存档（维护者原话「谷歌我记得有个单独的低负载」——即 conventions.lowCacheTokenMix，2026-09-22 裁定时已写明 Gemini 实测 82.6% 属同族）；(3) 缺分项的样本保留 raw，workload 仍标 measured，并在网页与 README 注明未折算（维护者原话「3.可以」）。",
   "method": {
     "formula": "段 list-worth ÷ 段占周额度 → 周 worth ×4 周 → 月 worth ÷ 该模型在负载档下的混合价 = 月 token",
     "rawVsConverted": "等价于 raw 月值 × (样本每 token 平均价 ÷ 负载档混合价)",
@@ -74,7 +74,7 @@
     },
     {
       "row": "google_ai_pro_us × gemini-3.8-flash（Ultra 5x/20x ×5/×20 随动）",
-      "sample": "用户 B 段（gemini-weekly-round7）cache 45.688M / input 9.258M / output 0.398M = 周 +9.88%，worth $11.8626；issue #54 cache 695.70M / input 146.25M / output 11.48M = +165.77pp，worth $204.915；按百分点合并",
+      "sample": "维护者 B 段（gemini-weekly-round7）cache 45.688M / input 9.258M / output 0.398M = 周 +9.88%，worth $11.8626；issue #54 cache 695.70M / input 146.25M / output 11.48M = +165.77pp，worth $204.915；按百分点合并",
       "prices": "Gemini 3.8 Flash 引入价 cached $0.075 / input $0.75 / output $3.75（至 2026-12-31，gemini-weekly-round7）",
       "worthPerPctUsd": 1.23415,
       "lowCacheBlendUsdPerMTok": 0.19125,
@@ -82,7 +82,7 @@
       "convertedMonthlyYi": 25.81,
       "factor": 1.2469,
       "derived": {"google_ai_ultra_5x_us": 129.05, "google_ai_ultra_20x_us": 516.2},
-      "reference": "按标准档为 44.78 亿（用户裁定用低缓存档，不采）",
+      "reference": "按标准档为 44.78 亿（裁定用低缓存档，不采）",
       "workload": "lowCache"
     },
     {

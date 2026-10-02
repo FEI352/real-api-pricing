@@ -45,7 +45,7 @@
         "xhigh": {"pctDelta": 21, "tokensM": 148.73, "weeklyPoolM": 708},
         "note": "两档每 1% 标价美元均约 $3.2；effort 只影响速率"
       },
-      "adoption": "与 Reddit 5h 段（worth $40.48 / 周 13.333%）按百分点合并：($40.48 + $587.52) ÷ (13.333 + 183) = $3.19865/pp → 月 $1,279.46 ÷ $0.419 = 30.54 亿；用户裁定升 high"
+      "adoption": "与 Reddit 5h 段（worth $40.48 / 周 13.333%）按百分点合并：($40.48 + $587.52) ÷ (13.333 + 183) = $3.19865/pp → 月 $1,279.46 ÷ $0.419 = 30.54 亿；裁定升 high"
     },
     {
       "id": "issue53-claude-pro-opus5",
@@ -71,14 +71,14 @@
         "anthropicMonthlyYi": 25.89
       },
       "conflict": "现采用 18.78 亿（@shownotover 单样本 7% 整数读数，$25.68 ÷ 7% = $3.67/pp，区间 17.53~20.23）；本样本 $4.96/pp 高 35%，raw 高 47%。旧样本测于 9/14 前则 ×1.25 = 23.48",
-      "adoption": "2026-09-30 用户裁定改用本样本：18.78 → 27.62 亿（raw total 口径，high），不与旧面板样本合并（合并为 27.22）；派生 Pro × Sonnet 5 → 69.05、Pro × Opus 4.8 → 27.62"
+      "adoption": "2026-09-30 裁定改用本样本：18.78 → 27.62 亿（raw total 口径，high），不与旧面板样本合并（合并为 27.22）；派生 Pro × Sonnet 5 → 69.05、Pro × Opus 4.8 → 27.62"
     },
     {
       "id": "issue52-53-opus55-vs-opus5-weight",
       "source": "https://github.com/FeiZhuLulu/real-api-pricing/issues/52",
       "finding": "同账号 Opus 5 每 1% $4.959，Opus 5.5 的 token 按 Opus 5 标价折算每 1% $5.880 → 5.5 对 Opus 5 的池权重约 0.843，而非标价比 0.5143 / MiaAI 5h 口径 0.5204",
       "implication": "claude_max_20x × claude-opus-5.5 若按 0.843 计为 157 ÷ 0.843 ≈ 186 亿（现 301.7）；claude_max_5x × claude-opus-5.5 同受影响",
-      "adoption": "未采用，待用户裁定"
+      "adoption": "未采用，待裁定"
     },
     {
       "id": "issue54-google-ai-pro-gemini38flash",
@@ -103,7 +103,7 @@
       ],
       "worthPerPctUsd": {"medium": 1.25, "low": 1.19},
       "derived": {"rawMonthlyYi": 20.59},
-      "adoption": "与用户本机样本（55.343M / +9.88%）按百分点合并：(55.343 + 853.43) ÷ (9.88 + 165.77) = 5.1738M/pp → 20.70 亿；high"
+      "adoption": "与维护者本机样本（55.343M / +9.88%）按百分点合并：(55.343 + 853.43) ÷ (9.88 + 165.77) = 5.1738M/pp → 20.70 亿；high"
     },
     {
       "id": "issue55-google-ai-pro-gemini36flash",
@@ -193,7 +193,7 @@
         "max20xToProWorthRatio": 4.39
       },
       "caveat": "混合模型样本；#52/#53 显示额度不按标价跨模型扣减，按标价拆分不可靠；26%/24% 为整数读数",
-      "adoption": "未采用，待用户裁定（现 Max 20x × Opus 5.5 301.7、Fable 5.1 17.28、Fable 5 12.08）"
+      "adoption": "未采用，待裁定（现 Max 20x × Opus 5.5 301.7、Fable 5.1 17.28、Fable 5 12.08）"
     }
   ]
 }

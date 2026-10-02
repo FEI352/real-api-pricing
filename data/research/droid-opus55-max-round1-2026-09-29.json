@@ -11,9 +11,9 @@
   "source": {
     "type": "user_panel_screenshot",
     "panel": "Droid 本机按模型累计 token 表 × 周额度已用百分比（周已用 9% / 剩 91%）",
-    "userFiles": "droid-checkpoint-opus55-91pct.md / .json（用户本机，未随截图提供）",
+    "userFiles": "droid-checkpoint-opus55-91pct.md / .json（维护者本机，未随截图提供）",
     "note": "第一场 opus 会话（xhigh）已归档冻结在 5% 检查点；5→9 段几乎全是新会话 47f9711d（high）",
-    "composition": "用户第二张截图：周 1%→9% · 两场合计 · 8pp 的 token 分拆表"
+    "composition": "维护者第二张截图：周 1%→9% · 两场合计 · 8pp 的 token 分拆表"
   },
   "rawObservations": {
     "checkpoint5pct_0813": {
@@ -83,7 +83,7 @@
   "calculation": {
     "adoptedWindow": "1→9（8pp，优先于单段 4pp）",
     "workload": "anthropic（同 devin_max×opus-5.5 / claude_pro×opus-5.5：按标价折 list-worth 再按 anthropicTokenMix 换算）",
-    "prices": "Opus 5.5 cached $0.2 / cache write 5m $5 / input $4 / output $20；thinking 不计费（2026-09-29 用户裁定，与 factoryCredits 对账一致）",
+    "prices": "Opus 5.5 cached $0.2 / cache write 5m $5 / input $4 / output $20；thinking 不计费（2026-09-29 裁定，与 factoryCredits 对账一致）",
     "segmentWorthUsd": 42.34,
     "formula": "(67,311,924×0.2 + 3,640,056×5 + 793,017×4 + 375,172×20)/1e6 = $42.34 ÷ 8% × 4 周 = $2,116.91/月 ÷ $0.419/MTok = 50.52 亿/月",
     "monthlyYi": 50.52,
@@ -97,7 +97,7 @@
     "supersededWithThinking": {
       "segmentWorthUsd": 43.27,
       "monthlyYi": 51.63,
-      "note": "PR #67 初版把 thinking 46,393 按输出价 $20 计入；用户指出 thinking 不计，改为 50.52"
+      "note": "PR #67 初版把 thinking 46,393 按输出价 $20 计入；thinking 不计，改为 50.52"
     }
   },
   "crossChecks": [
