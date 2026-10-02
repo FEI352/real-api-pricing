@@ -2,7 +2,7 @@
 
 状态：0.1.0 已实现，命令名为 `rap`，输出 schemaVersion 为 1。TypeScript CLI 使用 Commander 处理命令和参数；npm 包尚未发布。
 
-本文件定义命令和输出契约；逐条命令的参数、调用及输出见 [命令参考](cli-command-reference.md)。示例已使用本地构建的 CLI 与仓库 2026-10-01 快照核对；没有据此验证线上最新数据。安装与构建步骤见 [CLI README](../cli/README.md)。
+本文件定义命令和输出契约；逐条命令的参数、调用及输出见 [命令参考](cli-command-reference.md)。示例已使用 CLI 核对，并以 Chromium 读取原 HTTPS 网站的实际 DOM，完成 61 个场景、累计 5,176 行的对比，记录、排序和共享显示字段均无差异。线上与内置快照均为 2026-10-01，文件内容一致。安装与构建步骤见 [CLI README](../cli/README.md)。
 
 ## 1. 目标与网站对齐
 
@@ -126,9 +126,11 @@ list 支持 --search 和 --limit；search 在资源标识和显示名上整段�
 
 ## 5. 表格与详情输出
 
-价格记录的默认表格固定包含：Model、Company、Channel、Plan、USD/MTok、Monthly tokens、Monthly fee USD、Billing、Confidence、Point ID。price/allowance 另有 Rank，两者统一列序，通过 View 和排序说明明确主要排名指标。表格由 cli-table3 按终端宽度换行；重定向时使用固定宽度。表格太宽时将完整 Point ID 放到同一记录的续行，其他独立列仍保留，不截断 ID。
+价格记录的默认表格固定包含：Model、Company、Channel、Plan、USD/MTok、Monthly tokens、Monthly fee USD、Billing、Confidence、Point ID。price/allowance 另有 Rank，两者统一列序，通过 View 和排序说明明确主要排名指标。cli-table3 配合 string-width 和 wrap-ansi 按字符显示宽度计算列宽与换行，保留中文等文本的完整内容；重定向时使用固定宽度。表格太宽时将完整 Point ID 放到同一记录的续行，其他独立列仍保留，不截断 ID。
 
-价格复用网站 price 格式，额度固定复用英文 allowance 的 B（十亿 token）；显示舍入不改变排序。API 的月费/月额度显示 N/A；订阅的未知额度显示 Unknown；不计额度点显示英文促销截止说明和真实订阅月费。
+表格显示复用网站英文格式：price、allowance、query 的真实单价和月费使用 price；show、compare 核心表的真实单价使用 priceExact（最多 6 位有效数字）。月费保留美元符号，例如 $200、$0.7376；CNY 套餐在同一格换行附加原币价，例如 $39 与下一行 ¥199。额度使用 allowance 的 B（十亿 token）。API、不计额度点或未知值没有月额度分母时统一显示 —，无数值月费也显示 —；不将空值替换为 N/A 或 Unknown。不计额度促销说明放在该记录的续行，月费仍按采用值显示。
+
+Billing 使用 Subscription / Metered API，Confidence 和 Mapping confidence 使用 High / Medium / Low。query 的评测分数按网站表格显示最多 2 位小数，show、compare 的配置详情分数最多 4 位小数；Effort 使用英文 effortLabel，例如 Max、High、xhigh。排序和前沿使用未舍入的原始数值。
 
 show 在核心价格表后给出来源、采用理由、负载、采样日期、促销信息及配置表；compare 在核心表后逐项比较这些依据。同套餐不同模型的额度为替代关系，不能相加。
 
@@ -167,7 +169,7 @@ point 独立提供 id、model/model_display、company/company_display、vendor�
 
 benchmark=null 或完整解包的配置/映射对象，含 configuration_id、board、score、variant、agent_harness、reasoning_effort、service_mode、score_is_estimated、score_is_self_reported、mapping_confidence、quota_effort_matched、mapping_note、来源与其他原始配置字段。best 行在 benchmark 对象内附加 best_tie_count。未显式指定榜单的排名和 query 输出 benchmark=null；show 默认展示所有榜单不受此限制。
 
-数值保持原始精度，null、布尔值保留类型。字段名、标识和显示字段保持稳定，CLI 显示文本固定英文；原始来源证据不自动翻译。支持同 schemaVersion 内增加字段，删除字段或改变已有字段含义需提高版本。
+JSON/CSV 数值保持原始精度，JSON 的 null、布尔值保留类型；表格的美元符号、标题大小写、—、分数舍入和 effort 显示不改写这些机器可读字段。例如 billing 仍为 subscription / metered，confidence 仍为 high / medium / low，reasoning_effort 保留原始标识。字段名、标识和显示字段保持稳定，CLI 显示文本固定英文；原始来源证据不自动翻译。支持同 schemaVersion 内增加字段，删除字段或改变已有字段含义需提高版本。
 
 ### 6.2 JSON 输出示例
 
@@ -235,6 +237,8 @@ rank,point_id,model,model_display,company,company_display,channel,plan_id,plan,p
 ```
 
 price/allowance/query/compare 每条结果一行；show 按 benchmarks 展开，缺配置时仍有一行价格信息。benchmark_json 保留完整配置/映射，其余榜单列是便利索引，无关联配置时为空；show 默认展示全部榜单时仍按每个配置填充 board、configuration_id 和 score。show JSON 的 meta.total/returned 仍表示 1 条详情，CSV 可能展开多个配置；CSV 的 stderr 另报 `exported_rows: N`。
+
+CLI CSV 保持对应 CLI 命令的排序。网站排名视图的“Table · CSV”下载使用网站明细表排序，因此 allowance 下载也按真实单价排序；两者的固定列 schema 也不同。CSV 对齐验证按 Point ID 比较共享原始字段，并显式选择同一榜单（例如 aa_intelligence_index）对账配置引用字段；展开多个配置时以 configuration_id 进一步区分。验证的是字段数据，不是两个 CSV 文件逐字相同。
 
 其他命令的列集：
 
@@ -332,9 +336,15 @@ exit: 2
 
 口径：订阅真实单价是用满额度的价格下限；同套餐多模型额度为替代使用。保留负载档、原币价格、数据采样日期、confidence、来源与采用说明；促销过期只提示需复核，不编造新价。榜单互相独立，分数是公开配置映射，不是套餐实测结论。
 
-要求 Node.js 22.12+。cli/ 为独立 TypeScript 包，Commander 提供子命令、参数解析及帮助；cli-table3 输出表格、csv-stringify 输出 CSV、Zod 校验快照，esbuild 生成可运行的 ESM，tsx + node:test 执行测试。运行时不依赖 React/Vite/Python。数据路径相对安装模块定位，--data 相对调用目录。npm 发布是独立操作；当前只提供仓库构建与本地 tarball 安装。
+要求 Node.js 22.12+。cli/ 为独立 TypeScript 包，Commander 提供子命令、参数解析及帮助；cli-table3 输出表格，string-width 与 wrap-ansi 处理显示宽度和完整文本换行，csv-stringify 输出 CSV，Zod 校验快照；esbuild 生成可运行的 ESM，tsx + node:test 执行测试。运行时不依赖 React/Vite/Python。数据路径相对安装模块定位，--data 相对调用目录。npm 发布是独立操作；当前只提供仓库构建与本地 tarball 安装。
 
 ## 9. 验收与回归检查
+
+已使用 Playwright Chromium 加载原 HTTPS 网站的 HTML、JavaScript、CSS 和数据，完成 61 个场景、累计 5,176 行的 DOM 对比；记录、排序及 model、plan、access、price、allowance、fee、confidence、score、config 共享显示字段均无差异，浏览器 page、console、resource errors 均为 0。范围覆盖全部 18 个公司的 price/allowance、月费档位、Factory 渠道、整段子串搜索、8 个榜单的 table、全部配置展开（694 行）、effort、API 与空结果。
+
+另核对了 6 条详情中的 18 个评测配置、4 份网页下载 CSV 的 484 行共享原始字段，以及 390×844 移动视口下两个排名页面的搜索交互，均通过。详情按配置身份匹配，CSV 对账遵循上文的字段与排序契约；这些检查不要求终端布局或导出文件字节与网页相同。
+
+线上与内置 site.json 的 SHA-256 均为 `1b383316d85039460ba9862a04253b53ef1ac933bb17d1469bdc1ecd45c92c18`。这项验证对应 2026-10-01 快照；CLI 查询仍从本地文件读取，不会自动刷新线上数据。
 
 1. 同快照、同筛选条件下，price/allowance 的有序 Point ID 列表与网页一致，不只比较数量。
 2. Model、Company、Channel、Plan 在所有价格输出中独立，JSON/CSV 标识稳定。

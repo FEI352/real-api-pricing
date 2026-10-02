@@ -3,8 +3,9 @@
 `rap` queries model prices, monthly allowances, plans and independent benchmark
 boards from a local snapshot. Model, company, access channel and plan appear in
 separate columns. This TypeScript CLI uses Commander, cli-table3, csv-stringify
-and Zod. Version 0.1.0 is available from this repository; it has **not been
-published to npm**.
+and Zod, with string-width and wrap-ansi for display-width-aware wrapping that
+preserves CJK text. Version 0.1.0 is available from this repository; it has
+**not been published to npm**.
 
 ## Build and run
 
@@ -83,6 +84,21 @@ available for piping. JSON includes metadata, warnings and typed values in a
 `schemaVersion: 1` envelope. Empty queries succeed with exit 0, argument errors
 use exit 2, and unreadable or invalid snapshots use exit 1.
 
+Tables use the website's English display conventions: dollar amounts such as
+`$200`, original CNY fees in the same cell, `Subscription` / `Metered API`,
+`High` / `Medium` / `Low`, and `—` for missing monthly fees or allowances.
+Rankings and table queries use compact prices; details and comparisons use up
+to six significant digits. Query scores use up to two decimal places, while
+detail scores use up to four. Effort labels display as `Max`, `High`, etc.
+Promotional unmetered notes appear below their record. JSON and CSV retain the
+original numeric precision, enum IDs and null handling.
+
+CLI CSV keeps the selected command's ordering. The website's ranking-view
+“Table · CSV” download uses detail-table ordering, so its allowance download
+also sorts by price, and its fixed column schema differs. CSV validation
+matches shared raw fields by Point ID, with the same board selected when
+comparing benchmark references; it does not require byte-identical files.
+
 ## Local data
 
 The package includes `data/site.json`, generated from the same shared adapter
@@ -93,6 +109,12 @@ updates. `rap info` reports its snapshot date. To use another local snapshot:
 rap info --data /absolute/path/to/site.json
 rap price --data ./site.json --company Anthropic
 ```
+
+The bundled 2026-10-01 snapshot was verified against the live website file.
+Chromium DOM comparisons covered 61 scenarios and 5,176 rows across all
+18 companies, fee bands, channels, searches and benchmark configurations.
+Records, ordering and shared display fields had no differences; page,
+console and resource errors were all zero.
 
 `--data` resolves relative paths against the calling directory. Invalid data
 versions, missing fields, nonfinite numbers, duplicate IDs and orphaned

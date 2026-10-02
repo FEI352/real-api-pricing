@@ -1,10 +1,15 @@
 import Table from "cli-table3";
 import { stringify } from "csv-stringify/sync";
+import stringWidth from "string-width";
+import wrapAnsi from "wrap-ansi";
 import {
   allowance,
+  dataDateLine,
+  effortLabel,
   listPriceLine,
   number,
   price,
+  priceExact,
   unmeteredNote,
   workloadLine,
 } from "../../web/src/domain.js";
@@ -21,6 +26,7 @@ import type {
 
 type RecordRow = Record<string, unknown>;
 type Cell = string | number | boolean | null | undefined;
+type DisplayCell = Cell | { content: Cell; colSpan: number };
 
 const POINT_COLUMNS = [
   "rank", "point_id", "model", "model_display", "company", "company_display",
@@ -50,10 +56,10 @@ const HEADERS: Record<string, string> = {
   configurations: "Configurations",
 };
 
-const text = (value: Cell, fallback = "N/A"): string =>
+const text = (value: Cell, fallback = "—"): string =>
   value === null || value === undefined ? fallback : String(value);
 const raw = (value: number | null | undefined): string =>
-  value === null || value === undefined ? "N/A" : String(value);
+  value === null || value === undefined ? "—" : String(value);
 const nullableBoolean = (value: boolean | null | undefined): string =>
   value === null || value === undefined ? "unverified" : String(value);
 const jsonCell = (value: unknown): string | null =>
@@ -71,11 +77,17 @@ function width(): number {
     : 180;
 }
 
+const lineWidth = (value: string): number =>
+  Math.max(...value.split("\n").map((line) => stringWidth(line)));
+
+const wrapCell = (value: Cell, available: number): string =>
+  wrapAnsi(text(value), Math.max(1, available), { hard: true, wordWrap: false, trim: false });
+
 function cellWidths(headers: string[], rows: Cell[][], available = width()): number[] {
   const natural = headers.map((header, column) => Math.min(48, Math.max(
     6,
-    header.length + 2,
-    rows.reduce((longest, row) => Math.max(longest, text(row[column], "").split("\n").reduce((n, line) => Math.max(n, line.length + 2), 0)), 0),
+    lineWidth(header) + 2,
+    rows.reduce((longest, row) => Math.max(longest, lineWidth(text(row[column], "")) + 2), 0),
   )));
   const budget = Math.max(headers.length * 6, available - headers.length - 1);
   while (natural.reduce((sum, n) => sum + n, 0) > budget) {
@@ -86,49 +98,65 @@ function cellWidths(headers: string[], rows: Cell[][], available = width()): num
   return natural;
 }
 
+function appendRow(table: Table.Table, cells: DisplayCell[]): void {
+  let column = 0;
+  table.push(cells.map((value) => {
+    const cell = typeof value === "object" && value !== null ? value : { content: value, colSpan: 1 };
+    const span = cell.colSpan;
+    const innerWidth = table.options.colWidths.slice(column, column + span)
+      .reduce<number>((sum, size) => sum + (size ?? 0), span - 1) - 2;
+    column += span;
+    return { ...cell, content: wrapCell(cell.content, innerWidth) };
+  }));
+}
+
 function createTable(headers: string[], rows: Cell[][], widths?: number[]): Table.Table {
+  const colWidths = widths ?? cellWidths(headers, rows);
   const table = new Table({
-    head: headers,
-    colWidths: widths ?? cellWidths(headers, rows),
-    wordWrap: true,
-    wrapOnWordBoundary: false,
-    style: { head: [], border: [] },
+    head: headers.map((header, column) => wrapCell(header, colWidths[column]! - 2)),
+    colWidths,
+    // cli-table3's character slicing can truncate wide Unicode characters.
+    // Wrap every cell by display width before passing it to the table renderer.
+    wordWrap: false,
+    style: { head: [], border: [], "padding-left": 1, "padding-right": 1 },
   });
-  for (const row of rows) table.push(row.map((cell) => text(cell)));
+  for (const row of rows) appendRow(table, row);
   return table;
 }
 function table(headers: string[], rows: Cell[][]): string {
   return createTable(headers, rows).toString();
 }
 
-function coreCells(row: QueryRow, ranking: boolean): Cell[] {
+const confidenceLabel = (value: string) => ({ high: "High", medium: "Medium", low: "Low" })[value] ?? value;
+
+function coreCells(row: QueryRow, ranking: boolean, exactPrice = false): Cell[] {
   const p = row.point;
-  const promo = unmeteredNote(p, "en");
-  const tokens = p.billing === "metered" ? "N/A"
-    : promo || (p.monthly_yi === null ? "Unknown" : allowance(p, "en"));
+  const monthlyFee = p.billing === "metered" ? "—" : price(p.price_usd);
   const cells: Cell[] = [
     p.model_display, p.company_display, p.channel, p.plan_display,
-    price(p.real_usd_per_mtok), tokens,
-    p.billing === "metered" ? "N/A" : raw(p.price_usd),
-    p.billing, p.confidence, p.id,
+    (exactPrice ? priceExact : price)(p.real_usd_per_mtok), allowance(p, "en"),
+    monthlyFee + (p.currency === "CNY" && p.original_price !== null ? `\n¥${p.original_price}` : ""),
+    p.billing === "metered" ? "Metered API" : "Subscription", confidenceLabel(p.confidence), p.id,
   ];
   return ranking ? [row.rank, ...cells] : cells;
 }
 
-function coreTable(rows: QueryRow[], ranking = false): string {
+function coreTable(rows: QueryRow[], ranking = false, exactPrice = false): string {
   const headers = ranking ? ["Rank", ...CORE_HEADERS] : CORE_HEADERS;
-  const cells = rows.map((row) => coreCells(row, ranking));
+  const cells = rows.map((row) => coreCells(row, ranking, exactPrice));
   const naturalWidth = headers.reduce((sum, header, i) =>
-    sum + cells.reduce((longest, row) => Math.max(longest, text(row[i], "").length), header.length) + 3,
+    sum + cells.reduce((longest, row) => Math.max(longest, lineWidth(text(row[i], ""))), lineWidth(header)) + 3,
   1);
-  if (naturalWidth <= width() && rows.every((row) => row.point.id.length <= 46)) return table(headers, cells);
+  if (naturalWidth <= width() && rows.every((row) => lineWidth(row.point.id) <= 46 && !row.point.unmetered)) return table(headers, cells);
 
   // Keep the same columns and the complete ID in a continuation of its record.
   const continuationCells = cells.map((row) => [...row.slice(0, -1), "↓"]);
   const result = createTable(headers, [], cellWidths(headers, continuationCells));
   for (let i = 0; i < rows.length; i++) {
-    result.push(continuationCells[i]!.map((cell) => text(cell)));
-    result.push([{ colSpan: headers.length, content: `Point ID: ${rows[i]!.point.id}` }]);
+    appendRow(result, continuationCells[i]!);
+    appendRow(result, [{ colSpan: headers.length, content: `Point ID: ${rows[i]!.point.id}` }]);
+    const promo = unmeteredNote(rows[i]!.point, "en");
+    if (promo) appendRow(result, [{ colSpan: headers.length, content: `Promotion: ${promo} · ${price(rows[i]!.point.price_usd)} / mo` }]);
   }
   return result.toString();
 }
@@ -138,15 +166,15 @@ function workload(p: PublicPoint, context?: DatasetContext): string {
   return text(p.workload, "measured");
 }
 function fee(p: PublicPoint): string {
-  return p.original_price === null ? "N/A" : `${p.original_price} ${p.currency}`;
+  return p.original_price === null ? "—" : `${p.original_price} ${p.currency}`;
 }
 function details(p: PublicPoint, context?: DatasetContext): [string, Cell][] {
   return [
     ["Model ID", p.model], ["Company ID", p.company], ["Plan ID", p.plan_id],
     ["Original monthly fee", fee(p)], ["Local price", p.local_price],
-    ["Monthly tokens, raw", p.monthly_tokens === null ? "N/A" : number(p.monthly_tokens, "en", 0)],
+    ["Monthly tokens, raw", number(p.monthly_tokens, "en", 0)],
     ["USD/MTok, raw", raw(p.real_usd_per_mtok)], ["Workload", workload(p, context)],
-    ["Data date", p.data_date], ["Date kind", p.data_date_kind],
+    ["Data date", dataDateLine(p, "en") || "—"], ["Date kind", p.data_date_kind],
     ["Date inherited from", p.data_date_from], ["Unmetered", p.unmetered ?? false],
     ["Promotion until", p.promo_until], ["Promotion", unmeteredNote(p, "en") || "N/A"],
     ["Plan generation", p.plan_gen],
@@ -166,20 +194,20 @@ function evidence(p: PublicPoint): string {
 }
 function benchmarkCells(b: Benchmark): [string, Cell][] {
   return [
-    ["Board", b.board], ["Score", b.score], ["Variant", b.variant],
-    ["Configuration ID", b.configuration_id], ["Harness", b.agent_harness],
-    ["Effort", b.reasoning_effort], ["Mode", b.service_mode],
-    ["Score low", b.score_low], ["Score high", b.score_high],
+    ["Board", b.board], ["Score", number(b.score ?? null, "en", 4)], ["Variant", b.variant],
+    ["Configuration ID", b.configuration_id], ["Harness", b.agent_harness ?? "—"],
+    ["Effort", effortLabel(b.reasoning_effort ?? null, "en") ?? "—"], ["Mode", b.service_mode ?? "—"],
+    ["Score low", number(b.score_low ?? null, "en")], ["Score high", number(b.score_high ?? null, "en")],
     ["Estimated", b.score_is_estimated ?? false],
     ["Self-reported", b.score_is_self_reported ?? false],
-    ["Mapping confidence", b.mapping_confidence],
+    ["Mapping confidence", b.mapping_confidence ? confidenceLabel(b.mapping_confidence) : "—"],
     ["Quota effort matched", nullableBoolean(b.quota_effort_matched)],
     ["Best tie count", b.best_tie_count],
     ["Benchmark source", b.source], ["Mapping kind", b.mapping_kind],
     ["Mapping note", b.mapping_note], ["Benchmark archive", b.archive],
     ["Benchmark checked at", b.checked_at],
-    ["Mean cost USD/task", b.mean_cost_usd_per_task],
-    ["Median cost USD/task", b.median_cost_per_task_usd ?? b.median_cost_usd_per_task],
+    ["Mean cost USD/task", price(b.mean_cost_usd_per_task ?? null)],
+    ["Median cost USD/task", price(b.median_cost_usd_per_task ?? b.median_cost_per_task_usd ?? null)],
   ];
 }
 function boardSnapshot(b: Benchmark, result: Result, context?: DatasetContext): string {
@@ -192,15 +220,15 @@ function queryBenchmarks(rows: QueryRow[]): string {
     "Point ID", "Score", "Effort", "Harness", "Mode", "Variant", "Configuration ID",
     "Estimated", "Self-reported", "Mapping confidence", "Quota effort matched", "Best ties",
   ], rows.map(({ point, benchmark: b }) => [
-    point.id, b?.score, b?.reasoning_effort, b?.agent_harness, b?.service_mode,
+    point.id, number(b?.score ?? null, "en", 2), effortLabel(b?.reasoning_effort ?? null, "en") ?? "—", b?.agent_harness ?? "—", b?.service_mode ?? "—",
     b?.variant, b?.configuration_id, b ? (b.score_is_estimated ?? false) : null,
-    b ? (b.score_is_self_reported ?? false) : null, b?.mapping_confidence,
+    b ? (b.score_is_self_reported ?? false) : null, b?.mapping_confidence ? confidenceLabel(b.mapping_confidence) : "—",
     b ? nullableBoolean(b.quota_effort_matched) : "N/A", b?.best_tie_count,
   ]));
 }
 function showTable(result: Result, context?: DatasetContext): string {
   const row = result.rows[0] as ShowRow;
-  const blocks = [coreTable([{ point: row.point, benchmark: null }]), table(["Field", "Value"], details(row.point, context)), evidence(row.point)];
+  const blocks = [coreTable([{ point: row.point, benchmark: null }], false, true), table(["Field", "Value"], details(row.point, context)), evidence(row.point)];
   if (!row.benchmarks.length) {
     blocks.push("No mapped benchmark configurations.");
     return blocks.join("\n\n");
@@ -214,9 +242,9 @@ function showTable(result: Result, context?: DatasetContext): string {
     "Board ID", "Configuration ID", "Variant", "Score", "Harness", "Effort", "Mode",
     "Estimated", "Self-reported", "Mapping confidence", "Quota effort matched",
   ], row.benchmarks.map((b) => [
-    b.board, b.configuration_id, b.variant, b.score, b.agent_harness, b.reasoning_effort,
-    b.service_mode, b.score_is_estimated ?? false, b.score_is_self_reported ?? false,
-    b.mapping_confidence, nullableBoolean(b.quota_effort_matched),
+    b.board, b.configuration_id, b.variant, number(b.score, "en", 4), b.agent_harness ?? "—", effortLabel(b.reasoning_effort, "en") ?? "—",
+    b.service_mode ?? "—", b.score_is_estimated ?? false, b.score_is_self_reported ?? false,
+    confidenceLabel(b.mapping_confidence), nullableBoolean(b.quota_effort_matched),
   ])));
   for (const b of row.benchmarks) {
     blocks.push(`Configuration ID: ${b.configuration_id}\n` + table(["Field", "Value"], benchmarkCells(b)));
@@ -241,7 +269,7 @@ function compareTable(result: Result, context?: DatasetContext): string {
       for (const [field, value] of benchmarkCells(row.benchmark)) pointDetails[i]!.set(field, value);
     });
   }
-  const blocks = [coreTable(rows), table(
+  const blocks = [coreTable(rows, false, true), table(
     ["Field", ...rows.map((row) => row.point.plan_display)],
     fields.map((field) => [field, ...pointDetails.map((entry) => entry.get(field))]),
   )];

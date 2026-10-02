@@ -1,10 +1,10 @@
 # CLI 指令与输出参考
 
-状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包尚未发布。下列命令已使用 `node cli/dist/main.js` 在仓库根目录执行，数据来自构建时打包的 **2026-10-01** 本地快照。表格按字段整理，较长的详情只列节选；帮助和 stderr 采用实际输出。语义见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。这里没有验证线上最新数据。
+状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包尚未发布。下列命令已使用 `node cli/dist/main.js` 在仓库根目录执行，数据来自构建时打包的 **2026-10-01** 快照。该快照与线上文件内容一致；已用 Chromium 读取原 HTTPS 网站 DOM，61 个场景、累计 5,176 行的记录、排序和共享显示字段均无差异，浏览器错误为 0。表格按字段整理，较长的详情只列节选；帮助和 stderr 采用实际输出。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。CLI 仍从本地快照离线查询，不自动联网刷新。
 
 命令名为 `rap`。默认表格、默认返回全部匹配记录；表头、套餐显示、帮助及错误信息固定使用英文。`Model`、`Company`、`Channel`、`Plan` 在每张价格记录表中独立成列，即使筛选后值相同也保留。`Company` 是模型开发公司，对应网站 `vendors`；`Channel` 是提供套餐的访问渠道。例如 Claude 由 Anthropic 开发，Droid Max 的渠道是 Factory。
 
-下文标为 **stdout** 的 Markdown 表格是对应终端表格的字段示意，省略边框及换行；标为 **stderr** 的代码块是独立的结果说明，不混入表格、JSON 或 CSV。完整 Point ID 可以在窄终端换行，但不得截断。月额度的 B 表示十亿 token，真实单价单位为 USD/MTok。排序使用原始精度，表格舍入只用于显示。
+下文标为 **stdout** 的 Markdown 表格是对应终端表格的字段示意，省略边框及换行；标为 **stderr** 的代码块是独立的结果说明，不混入表格、JSON 或 CSV。完整 Point ID 可以在窄终端换行，但不得截断。月额度的 B 表示十亿 token，真实单价单位为 USD/MTok；月费保留美元符号，原币 CNY 价格附在同一格。没有月额度或月费的值显示 —。Billing、Confidence 与网站使用相同英文显示名；JSON/CSV 保留原始标识和数值。排名与查询价格使用紧凑格式，show/compare 主价最多 6 位有效数字；query 分数最多 2 位小数，详情分数最多 4 位小数。排序使用原始精度。
 
 ## 1. 指令总览
 
@@ -40,9 +40,9 @@ rap price --company Anthropic --limit 3
 
 | Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Pro | $0.00309 | 6.472 B | 20 | subscription | medium | claude_pro::claude-sonnet-5 |
-| 2 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.0051 | 39.25 B | 200 | subscription | medium | claude_max_20x::claude-sonnet-5 |
-| 3 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 5x (9/14+) | $0.0051 | 19.625 B | 100 | subscription | low | claude_max_5x::claude-sonnet-5 |
+| 1 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Pro | $0.00309 | 6.472 B | $20 | Subscription | Medium | claude_pro::claude-sonnet-5 |
+| 2 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.0051 | 39.25 B | $200 | Subscription | Medium | claude_max_20x::claude-sonnet-5 |
+| 3 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 5x (9/14+) | $0.0051 | 19.625 B | $100 | Subscription | Low | claude_max_5x::claude-sonnet-5 |
 
 **stderr**：
 
@@ -62,9 +62,9 @@ rap price --company Anthropic --channel Factory --limit 3
 
 | Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | Claude Sonnet 5.5 | Anthropic | Factory | Droid Max | $0.01979 | 10.104 B | 200 | subscription | medium | droid_max::claude-sonnet-5.5 |
-| 2 | Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
-| 3 | Claude Opus 4.8 | Anthropic | Factory | Droid Max | $0.04949 | 4.042 B | 200 | subscription | medium | droid_max::claude-opus-4.8 |
+| 1 | Claude Sonnet 5.5 | Anthropic | Factory | Droid Max | $0.01979 | 10.104 B | $200 | Subscription | Medium | droid_max::claude-sonnet-5.5 |
+| 2 | Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
+| 3 | Claude Opus 4.8 | Anthropic | Factory | Droid Max | $0.04949 | 4.042 B | $200 | Subscription | Medium | droid_max::claude-opus-4.8 |
 
 **stderr**：
 
@@ -86,7 +86,54 @@ rap price --company Anthropic --model claude-opus-5.5 --billing metered
 
 | Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | Claude Opus 5.5 | Anthropic | Anthropic | Claude Opus 5.5 API | $0.419 | N/A | N/A | metered | high | anthropic_opus55_api::claude-opus-5.5 |
+| 1 | Claude Opus 5.5 | Anthropic | Anthropic | Claude Opus 5.5 API | $0.419 | — | — | Metered API | High | anthropic_opus55_api::claude-opus-5.5 |
+
+**stderr**：
+
+```text
+Snapshot: 2026-10-01 | Source: bundled | View: price
+Total: 1 | Returned: 1 | Truncated: false
+Order: USD/MTok ascending; ties by Point ID.
+```
+
+原币为 CNY 的套餐同时保留采用美元月费与原币价，不重新按汇率覆盖采用值：
+
+```sh
+rap price --plan kimi_allegretto_cn --model kimi-k3
+```
+
+**stdout**，`<br>` 表示同一单元格内换行：
+
+| Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
+| ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
+| 1 | Kimi K3 (v1) | Kimi | Kimi | Kimi Allegretto | $0.02688 | 1.451 B | $39<br>¥199 | Subscription | Medium | kimi_allegretto_cn::kimi-k3 |
+
+**stderr**：
+
+```text
+Snapshot: 2026-10-01 | Source: bundled | View: price
+Total: 1 | Returned: 1 | Truncated: false
+Order: USD/MTok ascending; ties by Point ID.
+```
+
+不计额度促销点没有月 token 分母，额度列显示 —；促销说明在该记录的续行：
+
+```sh
+rap price --plan devin_pro --model swe-2
+```
+
+**stdout**：
+
+| Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
+| ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
+| 1 | SWE-2 | Devin | Devin | Devin Pro (promo until 10/31) | ≈$0 | — | $20 | Subscription | Medium | devin_pro::swe-2 |
+
+该行之后的续行字段：
+
+```text
+Point ID: devin_pro::swe-2
+Promotion: promo until 2026-10-31, unmetered · $20 / mo
+```
 
 **stderr**：
 
@@ -108,9 +155,9 @@ rap allowance --company Anthropic --limit 3
 
 | Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.0051 | 39.25 B | 200 | subscription | medium | claude_max_20x::claude-sonnet-5 |
-| 2 | Claude Opus 5.5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.00634 | 31.538 B | 200 | subscription | medium | claude_max_20x::claude-opus-5.5 |
-| 3 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 5x (9/14+) | $0.0051 | 19.625 B | 100 | subscription | low | claude_max_5x::claude-sonnet-5 |
+| 1 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.0051 | 39.25 B | $200 | Subscription | Medium | claude_max_20x::claude-sonnet-5 |
+| 2 | Claude Opus 5.5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.00634 | 31.538 B | $200 | Subscription | Medium | claude_max_20x::claude-opus-5.5 |
+| 3 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Max 5x (9/14+) | $0.0051 | 19.625 B | $100 | Subscription | Low | claude_max_5x::claude-sonnet-5 |
 
 **stderr**：
 
@@ -131,9 +178,9 @@ rap allowance --company Anthropic --fee-band 0-30 --limit 3
 
 | Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Pro | $0.00309 | 6.472 B | 20 | subscription | medium | claude_pro::claude-sonnet-5 |
-| 2 | Claude Opus 5.5 | Anthropic | Anthropic | Claude Pro | $0.00655 | 3.054 B | 20 | subscription | high | claude_pro::claude-opus-5.5 |
-| 3 | Claude Opus 4.8 | Anthropic | Anthropic | Claude Pro | $0.00772 | 2.589 B | 20 | subscription | low | claude_pro::claude-opus-4.8 |
+| 1 | Claude Sonnet 5 | Anthropic | Anthropic | Claude Pro | $0.00309 | 6.472 B | $20 | Subscription | Medium | claude_pro::claude-sonnet-5 |
+| 2 | Claude Opus 5.5 | Anthropic | Anthropic | Claude Pro | $0.00655 | 3.054 B | $20 | Subscription | High | claude_pro::claude-opus-5.5 |
+| 3 | Claude Opus 4.8 | Anthropic | Anthropic | Claude Pro | $0.00772 | 2.589 B | $20 | Subscription | Low | claude_pro::claude-opus-4.8 |
 
 **stderr**：
 
@@ -273,8 +320,8 @@ rap query --model claude-opus-5.5 --channel Factory
 
 | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Pro | $0.05236 | 0.382 B | 20 | subscription | low | droid_pro::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Pro | $0.05236 | 0.382 B | $20 | Subscription | Low | droid_pro::claude-opus-5.5 |
 
 **stderr**：
 
@@ -306,17 +353,17 @@ rap query --plan droid_max --model claude-opus-5.5 \
 
 | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
 
 **stdout**，核心表下方的评测区域节选，按相同行序展示；完整输出另含 Point ID、Harness、Mode、Estimated、Self-reported、Best ties：
 
 | Score | Effort | Variant | Configuration ID | Mapping confidence | Quota effort matched |
 | ---: | --- | --- | --- | --- | --- |
-| 57.6223698102963 | max | Claude Opus 5.5 (max with fallback) | aa_intelligence_index:6df46e4e9119d1e1 | medium | unverified |
-| 55.9873505840139 | xhigh | Claude Opus 5.5 (xhigh with fallback) | aa_intelligence_index:4c3fe13d36952d4f | medium | unverified |
-| 53.5831959822067 | high | Claude Opus 5.5 (high with fallback) | aa_intelligence_index:c4632b7e15588786 | medium | unverified |
+| 57.62 | Max | Claude Opus 5.5 (max with fallback) | aa_intelligence_index:6df46e4e9119d1e1 | Medium | unverified |
+| 55.99 | xhigh | Claude Opus 5.5 (xhigh with fallback) | aa_intelligence_index:4c3fe13d36952d4f | Medium | unverified |
+| 53.58 | High | Claude Opus 5.5 (high with fallback) | aa_intelligence_index:c4632b7e15588786 | Medium | unverified |
 
 **stderr**：
 
@@ -341,7 +388,7 @@ rap show 'droid_max::claude-opus-5.5' --board aa_intelligence_index
 
 | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.0395883 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
 
 **stdout**，原始数值与采用依据字段节选；完整表还包括 Promotion、List blended USD/MTok：
 
@@ -351,15 +398,15 @@ rap show 'droid_max::claude-opus-5.5' --board aa_intelligence_index
 | Company ID | Anthropic |
 | Plan ID | droid_max |
 | Original monthly fee | 200 USD |
-| Local price | N/A |
+| Local price | — |
 | Monthly tokens, raw | 5,052,000,000 |
 | USD/MTok, raw | 0.039588282 |
 | Workload | Anthropic workload: 97% cache reads / 2.5% cache writes / 0.5% output |
 | Data date | 2026-09-29 |
 | Date kind | sample |
-| Date inherited from | N/A |
+| Date inherited from | — |
 | Unmetered | false |
-| Promotion until | N/A |
+| Promotion until | — |
 | Plan generation |  |
 | Official model prices | Official API list (cached / in / out, per MTok): $0.2 / $4 / $20 |
 | Subscription price assumption | Full use of the adopted allowance |
@@ -381,7 +428,7 @@ Decision note:
 | https://factory.ai/pricing | https://factory.ai/pricing |
 | droid-opus55-max-round1-2026-09-29.json | /data/evidence/droid-opus55-max-round1-2026-09-29.json |
 
-证据的 `/data/...` 是快照保存的相对网站路径，离线查询会保留该路径，不假装已经联网核验。
+证据的 `/data/...` 是快照保存的相对网站路径，CLI 原样保留该路径。
 
 **stdout**，榜单与配置字段节选；完整输出另含 Board ID、Harness、Mode，以及每条配置的完整字段表：
 
@@ -391,11 +438,11 @@ Decision note:
 
 | Configuration ID | Variant | Score | Effort | Estimated | Self-reported | Mapping confidence | Quota effort matched |
 | --- | --- | ---: | --- | --- | --- | --- | --- |
-| aa_intelligence_index:6df46e4e9119d1e1 | Claude Opus 5.5 (max with fallback) | 57.6223698102963 | max | false | false | medium | unverified |
-| aa_intelligence_index:4c3fe13d36952d4f | Claude Opus 5.5 (xhigh with fallback) | 55.9873505840139 | xhigh | false | false | medium | unverified |
-| aa_intelligence_index:c4632b7e15588786 | Claude Opus 5.5 (high with fallback) | 53.5831959822067 | high | false | false | medium | unverified |
-| aa_intelligence_index:b44090b237d31264 | Claude Opus 5.5 (medium with fallback) | 51.2434931792768 | medium | false | false | medium | unverified |
-| aa_intelligence_index:4dae1243cd80cd14 | Claude Opus 5.5 (low with fallback) | 42.3077781466168 | low | false | false | medium | unverified |
+| aa_intelligence_index:6df46e4e9119d1e1 | Claude Opus 5.5 (max with fallback) | 57.6224 | Max | false | false | Medium | unverified |
+| aa_intelligence_index:4c3fe13d36952d4f | Claude Opus 5.5 (xhigh with fallback) | 55.9874 | xhigh | false | false | Medium | unverified |
+| aa_intelligence_index:c4632b7e15588786 | Claude Opus 5.5 (high with fallback) | 53.5832 | High | false | false | Medium | unverified |
+| aa_intelligence_index:b44090b237d31264 | Claude Opus 5.5 (medium with fallback) | 51.2435 | Medium | false | false | Medium | unverified |
+| aa_intelligence_index:4dae1243cd80cd14 | Claude Opus 5.5 (low with fallback) | 42.3078 | Low | false | false | Medium | unverified |
 
 ```text
 Benchmark source: https://artificialanalysis.ai/leaderboards/models
@@ -424,8 +471,8 @@ rap compare 'claude_max_20x::claude-opus-5.5' \
 
 | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| Claude Opus 5.5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.00634 | 31.538 B | 200 | subscription | medium | claude_max_20x::claude-opus-5.5 |
-| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.03959 | 5.052 B | 200 | subscription | medium | droid_max::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Anthropic | Claude Max 20x (9/14+) | $0.00634156 | 31.538 B | $200 | Subscription | Medium | claude_max_20x::claude-opus-5.5 |
+| Claude Opus 5.5 | Anthropic | Factory | Droid Max | $0.0395883 | 5.052 B | $200 | Subscription | Medium | droid_max::claude-opus-5.5 |
 
 **stdout**，比较字段节选：
 
@@ -438,18 +485,19 @@ rap compare 'claude_max_20x::claude-opus-5.5' \
 | Workload | Anthropic workload: 97% cache reads / 2.5% cache writes / 0.5% output | Anthropic workload: 97% cache reads / 2.5% cache writes / 0.5% output |
 | Data date | 2026-09-22~2026-09-27 | 2026-09-29 |
 | Date kind | sample | sample |
-| Date inherited from | N/A | N/A |
-| Promotion until | N/A | N/A |
+| Date inherited from | — | — |
+| Promotion until | — | — |
 | Unmetered | false | false |
-| Plan generation |  | N/A |
+| Plan generation |  |  |
 | Board | aa_intelligence_index | aa_intelligence_index |
 | Board snapshot | 2026-09-22 | 2026-09-22 |
-| Score | 57.6223698102963 | 57.6223698102963 |
+| Score | 57.6224 | 57.6224 |
+| Effort | Max | Max |
 | Variant | Claude Opus 5.5 (max with fallback) | Claude Opus 5.5 (max with fallback) |
 | Configuration ID | aa_intelligence_index:6df46e4e9119d1e1 | aa_intelligence_index:6df46e4e9119d1e1 |
 | Estimated | false | false |
 | Self-reported | false | false |
-| Mapping confidence | medium | medium |
+| Mapping confidence | Medium | Medium |
 | Quota effort matched | unverified | unverified |
 
 **stdout**，Claude Max 的原始证据区域：
@@ -511,7 +559,7 @@ rap info
 | Measured workload | Raw sample tokens; not workload-normalized |
 | Adopted exchange rate | 1 USD = 6.7787 CNY |
 | Exchange rate date | 2026-09-04 |
-| Exchange rate source | https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html |
+| Exchange rate source | CFETS central parity, via Xinhua |
 
 **stderr**：
 
@@ -704,4 +752,4 @@ error: unknown option '--company'
 
 Commander 随后附加 list boards 的帮助。
 
-数据文件读取或格式错误退出码为 1，不能输出半份成功结果。JSON 和 CSV 使用与表格相同的记录集合，空 JSON 返回 `rows: []`，空 CSV 保留表头；诊断仍写 stderr。完整导出契约见 [CLI 设计规范](cli-design.md)。
+数据文件读取或格式错误退出码为 1，不能输出半份成功结果。JSON 和 CSV 使用与表格相同的记录集合，空 JSON 返回 `rows: []`，空 CSV 保留表头；诊断仍写 stderr。CLI CSV 保持对应命令排序；网站排名视图的“Table · CSV”采用明细表排序（allowance 下载也按价格），固定列 schema 也不同，因此按 Point ID 对账共享原始字段，不要求文件逐字一致。比较榜单引用字段时显式选择同一榜单。完整导出契约见 [CLI 设计规范](cli-design.md)。

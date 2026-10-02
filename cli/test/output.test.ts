@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parse } from "csv-parse/sync";
+import stringWidth from "string-width";
 import { renderResult } from "../src/output.js";
 import type { Benchmark, DatasetContext, Metadata, PublicPoint, Result } from "../src/types.js";
 
@@ -54,6 +55,27 @@ const context: DatasetContext = {
 function csvRecords(output: string): Record<string, string>[] {
   return parse(output, { columns: true });
 }
+
+/** Reassemble physical table lines into cells without assuming a wrap position. */
+function renderedCells(output: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  for (const line of output.split("\n")) {
+    if (/^[├└]/.test(line)) {
+      if (row.length) rows.push(row);
+      row = [];
+    } else if (line.startsWith("│")) {
+      const cells = line.split("│").slice(1, -1);
+      cells.forEach((cell, column) => {
+        row[column] = (row[column] ?? "") + cell.trim();
+      });
+    }
+  }
+  return rows;
+}
+
+// wrap-ansi normalizes canonically equivalent Unicode while adding line breaks.
+const withoutWhitespace = (value: string) => value.normalize().replace(/\s/g, "");
 
 test("JSON is an unmodified parseable schema object, with all warnings in metadata", () => {
   const r = result([{ rank: 1, point, benchmark }], {
@@ -144,17 +166,57 @@ test("show without mappings exports one price row; empty queries preserve format
   assert.match(csv.stderr, /exported_rows: 0/);
 });
 
-test("API and unknown subscription allowances have distinct table displays; promos retain actual monthly fees", () => {
+test("API and unknown allowances use the website's dash; promos retain their qualifier and monthly fee", () => {
   const api = { ...point, billing: "metered", price_usd: null, monthly_tokens: null, monthly_yi: null };
   const unknown = { ...point, monthly_tokens: null, monthly_yi: null };
-  assert.match(renderResult(result([{ point: api, benchmark: null }]), "table").stdout, /N\/A/);
-  assert.match(renderResult(result([{ point: unknown, benchmark: null }]), "table").stdout, /Unknown/);
+  const apiOutput = renderResult(result([{ point: api, benchmark: null }]), "table").stdout;
+  assert.match(apiOutput, /—/);
+  assert.match(apiOutput, /Metered API/);
+  assert.ok(!apiOutput.includes("N/A"));
+  const unknownOutput = renderResult(result([{ point: unknown, benchmark: null }]), "table").stdout;
+  assert.match(unknownOutput, /—/);
+  assert.ok(!unknownOutput.includes("Unknown"));
   const promo = { ...unknown, unmetered: true, promo_until: "2026-12-31", real_usd_per_mtok: 0, price_usd: 10 };
   const promoOutput = renderResult(result([{ point: promo, benchmark: null }]), "table").stdout;
   // Narrow columns may wrap, but every part of the qualification remains present.
   assert.ok(promoOutput.includes("2026-12-31"));
   assert.ok(promoOutput.includes("unmetered"));
   assert.ok(promoOutput.includes("10"));
+});
+
+test("displayed fees, billing and confidence match the rendered website labels and rounding", () => {
+  const rounded = { ...point, price_usd: 199.99, confidence: "high" };
+  const out = renderResult(result([{ point: rounded, benchmark: null }]), "table").stdout;
+  assert.ok(out.includes("$200"));
+  assert.ok(!out.includes("199.99"));
+  assert.ok(out.includes("Subscription"));
+  assert.ok(out.includes("High"));
+  const cny = { ...point, price_usd: 39, original_price: 199, currency: "CNY" };
+  const cnyOut = renderResult(result([{ point: cny, benchmark: null }]), "table").stdout;
+  assert.ok(cnyOut.includes("$39"));
+  assert.ok(cnyOut.includes("¥199"));
+  const unknownOriginal = { ...cny, original_price: null };
+  const unknownOut = renderResult(result([{ point: unknownOriginal, benchmark: null }]), "table").stdout;
+  assert.ok(unknownOut.includes("$39"));
+  assert.ok(!unknownOut.includes("¥null"));
+  assert.equal(JSON.parse(renderResult(result([{ point: unknownOriginal, benchmark: null }]), "json").stdout).rows[0].point.original_price, null);
+  assert.equal(JSON.parse(renderResult(result([{ point: rounded, benchmark: null }]), "json").stdout).rows[0].point.price_usd, 199.99);
+});
+
+test("table scores and effort labels follow website table precision while details use detail precision", () => {
+  const b = { ...benchmark, score: 57.6223698102963 };
+  const query = result([{ point, benchmark: b }], { command: "query", view: "table", board: b.board });
+  const out = renderResult(query, "table").stdout;
+  assert.ok(out.includes("57.62"));
+  assert.ok(!out.includes("57.622"));
+  assert.ok(out.includes("Max"));
+  assert.ok(out.includes("Medium"));
+  const show = result([{ point, benchmarks: [b] }], { command: "show", view: null });
+  const detail = renderResult(show, "table", context).stdout;
+  assert.ok(detail.includes("$0.0395883"));
+  assert.ok(detail.includes("57.6224"));
+  assert.equal(JSON.parse(renderResult(show, "json").stdout).rows[0].benchmarks[0].score, b.score);
+  assert.equal(csvRecords(renderResult(query, "csv").stdout)[0]!.score, String(b.score));
 });
 
 test("custom dataset source path remains visible in diagnostics and info CSV has stable columns", () => {
@@ -206,5 +268,71 @@ test("narrow terminals retain each complete price-point identifier on a continua
   } finally {
     if (tty) Object.defineProperty(process.stdout, "isTTY", tty); else delete (process.stdout as unknown as Record<string, unknown>).isTTY;
     if (columns) Object.defineProperty(process.stdout, "columns", columns); else delete (process.stdout as unknown as Record<string, unknown>).columns;
+  }
+});
+
+test("CJK plan names survive ranking, query and list cell wrapping without truncation", () => {
+  const plan = "MiMo Token Plan 夜间0.8× · 第二行套餐优惠";
+  const unicodePoint = { ...point, plan, plan_display: plan, model_display: "MiMo 🚀 e\u0301" };
+  for (const [r, column] of [
+    [result([{ rank: 1, point: unicodePoint, benchmark: null }]), 4],
+    [result([{ point: unicodePoint, benchmark: null }], { command: "query", view: "table" }), 3],
+    [result([{ plan_id: point.plan_id, plan_display: plan, channel: "Factory", companies: ["Anthropic"], models: 1, points: 1 }],
+      { command: "list", resource: "plans", view: null }), 1],
+  ] as const) {
+    const out = renderResult(r, "table").stdout;
+    assert.ok(!out.includes("…"), out);
+    assert.equal(withoutWhitespace(renderedCells(out)[1]![column]!), withoutWhitespace(plan));
+    assert.ok(out.split("\n").every((line) => stringWidth(line) <= 180));
+  }
+});
+
+test("narrow terminals preserve wide Unicode columns and spanning identifier and promotion rows", () => {
+  const tty = Object.getOwnPropertyDescriptor(process.stdout, "isTTY");
+  const columns = Object.getOwnPropertyDescriptor(process.stdout, "columns");
+  try {
+    Object.defineProperty(process.stdout, "isTTY", { configurable: true, value: true });
+    Object.defineProperty(process.stdout, "columns", { configurable: true, value: 80 });
+    const unicodePoint = {
+      ...point, id: `夜间套餐${"完整标识符".repeat(12)}::模型🚀`,
+      model_display: "模型🚀 e\u0301", company_display: "公司甲", channel: "渠道乙",
+      plan_display: "MiMo Token Plan 夜间0.8×", unmetered: true,
+      monthly_tokens: null, monthly_yi: null, real_usd_per_mtok: 0,
+      promo_until: "2026-12-31", price_usd: 20,
+    };
+    const out = renderResult(result([{ rank: 1, point: unicodePoint, benchmark: null }]), "table").stdout;
+    const cells = renderedCells(out);
+    for (const [column, expected] of [
+      [1, unicodePoint.model_display], [2, unicodePoint.company_display],
+      [3, unicodePoint.channel], [4, unicodePoint.plan_display],
+    ] as const) assert.equal(withoutWhitespace(cells[1]![column]!), withoutWhitespace(expected));
+    assert.equal(withoutWhitespace(cells[2]![0]!), withoutWhitespace(`Point ID: ${unicodePoint.id}`));
+    assert.equal(cells[3]![0], "Promotion: promo until 2026-12-31, unmetered · $20 / mo");
+    assert.ok(!out.includes("…"), out);
+    assert.ok(!out.includes("\ufffd"), out);
+    assert.ok(out.split("\n").every((line) => stringWidth(line) <= 80));
+  } finally {
+    if (tty) Object.defineProperty(process.stdout, "isTTY", tty); else delete (process.stdout as unknown as Record<string, unknown>).isTTY;
+    if (columns) Object.defineProperty(process.stdout, "columns", columns); else delete (process.stdout as unknown as Record<string, unknown>).columns;
+  }
+});
+
+test("Unicode comparison headers and detail benchmark cells retain every character", () => {
+  const plan = `MiMo 夜间优惠套餐${"说明".repeat(16)} 0.8×`;
+  const variant = `评测配置${"推理强度与服务模式".repeat(8)} e\u0301 🚀`;
+  const unicodePoint = { ...point, plan_display: plan };
+  const b = { ...benchmark, variant };
+  const compare = result([
+    { point: unicodePoint, benchmark: b },
+    { point: { ...unicodePoint, id: "other::model", plan_display: plan + "（第二套餐）" }, benchmark: b },
+  ], { command: "compare", view: null, board: benchmark.board });
+  const show = result([{ point: unicodePoint, benchmarks: [b] }], { command: "show", view: null });
+  for (const r of [compare, show]) {
+    const out = renderResult(r, "table", context).stdout;
+    const values = renderedCells(out).flat().map(withoutWhitespace);
+    assert.ok(values.includes(withoutWhitespace(plan)), out);
+    assert.ok(values.includes(withoutWhitespace(variant)), out);
+    assert.ok(!out.includes("…"), out);
+    assert.ok(out.split("\n").every((line) => stringWidth(line) <= 180));
   }
 });
