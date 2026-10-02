@@ -32,6 +32,8 @@ node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
 
 支持筛选、详情、比较以及 JSON/CSV 导出，查询可离线运行。安装本地包见 [CLI README](cli/README.md)，各命令输出见 [命令参考](docs/cli-command-reference.md)。当前版本为 0.1.0，尚未发布到 npm。
 
+仓库提供 [Model Pricing skill](.agents/skills/model-pricing/SKILL.md)，指导 agent 查询价格、月额度和套餐。在加载仓库 skills 的 Codex 会话中，可用 `$model-pricing` 调用，例如：`使用 $model-pricing 比较月费 30 美元以内的 Anthropic 和 Factory 套餐`。
+
 ## 数字怎么来的
 
 - **月额度**：饱和使用下每月能用的 token。默认一个月按四周算；厂商另设月池的按厂商口径（Kimi 月池是周池的 5 倍）。输入、输出、缓存 token 全部计入。

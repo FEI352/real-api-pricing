@@ -126,6 +126,21 @@ models in one plan are alternatives, and their allowances do not add up.
 Benchmark scores belong to independent public configurations; they are not
 measurements of every subscription channel.
 
+## Agent skill
+
+The repository includes [Model Pricing](../.agents/skills/model-pricing/SKILL.md),
+a Codex skill named `model-pricing` for querying prices, allowances and plans
+with this CLI. Its repository location is `.agents/skills/model-pricing/`.
+In a Codex session that loads this checkout's skills, invoke it with, for example:
+
+```text
+Use $model-pricing to compare Anthropic and Factory prices under $30/month.
+```
+
+The skill checks the snapshot, discovers IDs and reads JSON before presenting
+comparisons. It preserves the distinction between developer, channel and plan,
+and includes the dataset's quota assumptions and evidence.
+
 ## Development
 
 From the repository root:

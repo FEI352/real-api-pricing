@@ -36,6 +36,10 @@ JSON/CSV exports, filtering, evidence and comparisons are available. See the
 [command reference](docs/cli-command-reference.md) for output examples.
 Version 0.1.0 has not been published to npm.
 
+For coding agents, the [Model Pricing skill](.agents/skills/model-pricing/SKILL.md)
+guides price, allowance and plan comparisons with this CLI. In Codex, invoke
+`$model-pricing` from a session that loads the repository's skills.
+
 ## How the numbers are made
 
 - **Monthly allowance.** Tokens per month at saturated use. A month is four weeks unless the vendor defines its own monthly pool (Kimi's is 5× the weekly pool). Input, output and cache tokens all count.
