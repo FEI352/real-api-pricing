@@ -18,7 +18,7 @@
    - **低缓存档** `lowCacheTokenMix`：只用于经裁定、实测确实打不到标准缓存的渠道（当前 Step 全系、Google）。缓存固定，输出占比跟随标准档，余量归输入。
    - **Anthropic 档** `anthropicTokenMix`：Anthropic 单独收缓存写入费、未命中输入几乎全部走缓存写，故标准档的普通输入份额按 5 分钟缓存写入价计；用于 Anthropic 按量 API 行，以及经裁定折算的 Anthropic 面板实测。
    - 不为单个渠道或单个用户样本另设专用负载档。某家实测缓存偏低时，先区分是渠道本身的属性还是客户端 harness 的问题。
-   - **带 token 分项的实测样本**（面板反推、本地日志、ccusage）：按该模型标价把段内 token 折成 list-worth，÷ 段占额度 → 周 worth × 4 周，再 ÷ 该渠道负载档的混合价得到月 token（2026-09-30 裁定统一；此前只有 Devin Max、Claude Pro × Opus 5.5、Droid Max 这样做）。Anthropic 样本的缓存写按实际档位（1h / 5m）计价。
+   - **带 token 分项的实测样本**（面板反推、本地日志、ccusage）：按该模型标价把段内 token 折成 list-worth，÷ 段占额度 → 周 worth × 4 周，再 ÷ 该渠道负载档的混合价得到月 token（2026-09-30 裁定统一；此前只有 Devin Max、Claude Pro × Opus 5.5、Droid Max 这样做）。例外：Factory Droid 的 30 天窗 = 2× 7 天窗，月 = 周 worth × 2（2026-10-03 裁定）。Anthropic 样本的缓存写按实际档位（1h / 5m）计价。
    - **缺分项的样本**（只有合计、只有部分分项、多源加权）和**官方绝对 token 表**：保留 raw total，`workload` 标 `measured`，网页和 README 注明「未折算」。有了分项再补算。
    - 负载比例的修订依据全库带分项的样本审计（见 `standard-token-mix-round*.json`）。修订后要统一重算所有受影响的点，不单独调整某一家。
 5. **缓存写入**不单列：标准档里它算作普通输入；Anthropic 档里普通输入份额即按缓存写入价计。
