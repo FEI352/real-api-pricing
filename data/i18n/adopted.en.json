@@ -111,16 +111,16 @@
       "en": "Maintainer's local Factory Droid measurement: weekly quota (7-day rolling) used 1%→5% segment (xhigh) +35,598,616 tok and 5%@08:13→9%@12:40 segment (high, new session 47f9711d) +36,567,946 tok, total +72,166,562 tok all claude-opus-5-5 (auto 0 delta; glm-5.3-flash +50,317 belongs to the free Droid Core pool and is not counted); total breakdown in 793,017 / out 375,172 / cache_create 3,640,056 / cache_read 67,311,924 / thinking 46,393; droid-opus55-max-round1-2026-09-29.json; https://factory.ai/pricing Max $200/month"
     },
     {
-      "zh": "首个Factory Droid点，按devin_max×opus-5.5同口径折算：1→9合计负载 cache读93.27%/cache写5.04%/输入1.10%/输出0.52%/thinking0.06%（hit 93.82%）偏离标准档；按Opus 5.5标价 cached$0.2/写5m $5/in$4/out$20（thinking 46,393不计费，裁定；与factoryCredits 16,935,482≈worth÷$4×1.6对账一致）折段 worth $42.34 ÷8%×4周＝月$2116.91 list-worth ÷ Anthropic档混合价$0.419/MTok＝50.52亿；1%/9%为取整读数，Δpp∈[7,9]对应约44.91~57.74亿；cache写按1h $8敏感性53.91亿不采；原始total口径72,166,562÷8%×4周＝36.08亿（周池902,082,025 raw）留作对照；factoryCredits 16,935,482≈2.12亿credits/周；两段4pp各8.90M/9.14M tok每pp（差2.7%），effort仅影响速率；Factory另有5h与30天滚动窗，30天窗若低于4×周池则本值偏高；Pro $20/Plus $100官方仅写约1/10、1/5 Max用量，不派生",
-      "en": "First Factory Droid point, normalized on the same basis as devin_max×opus-5.5: the combined 1→9 segment mix — cache read 93.27% / cache write 5.04% / input 1.10% / output 0.52% / thinking 0.06% (hit 93.82%) — deviates from the standard tier; at Opus 5.5 list prices cached $0.2 / 5m write $5 / in $4 / out $20 (thinking 46,393 unbilled per ruling; consistent with factoryCredits 16,935,482 ≈ worth÷$4×1.6), segment worth $42.34 ÷8%×4 weeks = $2,116.91/month list-worth ÷ Anthropic-tier blended price $0.419/MTok = 5.052B; 1%/9% are rounded readings — Δpp∈[7,9] maps to about 4.491B~5.774B; the cache-write-at-1h-$8 sensitivity 5.391B not adopted; the raw-total basis 72,166,562÷8%×4 weeks = 3.608B (weekly pool 902,082,025 raw) kept for comparison; factoryCredits 16,935,482 ≈ 212M credits/week; the two 4pp segments each carry 8.90M/9.14M tok per pp (2.7% apart) — effort only affects rate; Factory also has 5h and 30-day rolling windows — if the 30-day window is below 4× the weekly pool this value skews high; the Pro $20 / Plus $100 official pages state only about 1/10 and 1/5 of Max usage, not derived"
+      "zh": "首个Factory Droid点，按devin_max×opus-5.5同口径折算：1→9合计负载 cache读93.27%/cache写5.04%/输入1.10%/输出0.52%/thinking0.06%（hit 93.82%）偏离标准档；按Opus 5.5标价 cached$0.2/写5m $5/in$4/out$20（thinking 46,393不计费，裁定；与factoryCredits 16,935,482≈worth÷$4×1.6对账一致）折段 worth $42.34 ÷8%×2（Factory 30天窗＝2×7天窗，2026-10-03裁定；原按×4周为50.52亿）＝月$1058.45 list-worth ÷ Anthropic档混合价$0.419/MTok＝25.26亿；1%/9%为取整读数，Δpp∈[7,9]对应约22.46~28.87亿；cache写按1h $8敏感性26.96亿不采；原始total口径72,166,562÷8%×2＝18.04亿（周池902,082,025 raw）留作对照；factoryCredits 16,935,482≈2.12亿credits/周；两段4pp各8.90M/9.14M tok每pp（差2.7%），effort仅影响速率；Factory另有5h与30天滚动窗，月额度以30天窗（＝2×周池）为绑定约束；Pro $20/Plus $100官方仅写约1/10、1/5 Max用量，不派生",
+      "en": "First Factory Droid point, normalized on the same basis as devin_max×opus-5.5: the combined 1→9 segment mix — cache read 93.27% / cache write 5.04% / input 1.10% / output 0.52% / thinking 0.06% (hit 93.82%) — deviates from the standard tier; at Opus 5.5 list prices cached $0.2 / 5m write $5 / in $4 / out $20 (thinking 46,393 unbilled per ruling; consistent with factoryCredits 16,935,482 ≈ worth÷$4×1.6), segment worth $42.34 ÷8%×2 (Factory's 30-day window = 2× the 7-day window, ruling 2026-10-03; previously ×4 weeks = 5.052B) = $1058.45/month list-worth ÷ Anthropic-tier blended price $0.419/MTok = 2.526B; 1%/9% are rounded readings — Δpp∈[7,9] maps to about 2.246B~2.887B; the cache-write-at-1h-$8 sensitivity 2.696B not adopted; the raw-total basis 72,166,562÷8%×2 = 1.804B (weekly pool 902,082,025 raw) kept for comparison; factoryCredits 16,935,482 ≈ 212M credits/week; the two 4pp segments each carry 8.90M/9.14M tok per pp (2.7% apart) — effort only affects rate; Factory also has 5h and 30-day rolling windows — the monthly quota is bound by the 30-day window (= 2× the weekly pool); the Pro $20 / Plus $100 official pages state only about 1/10 and 1/5 of Max usage, not derived"
     },
     {
       "zh": "X @SnowyWar36965 社区口述（2026-09-28，维护者转交截图）：Droid Pro $20 跑 Claude Opus 5.5 小动画用掉 5h 窗约70%，帖主按等价 API 消耗折算 5h≈$15.4、周≈$45、月≈$160（Max 10x≈$154/$450/$1,600，约合 1.76/5.1/18 亿 token）；droid-pro-opus55-community-round1-2026-09-29.json；https://factory.ai/pricing Pro $20/月",
       "en": "X @SnowyWar36965 community report (2026-09-28, screenshot relayed by the maintainer): Droid Pro $20 running a Claude Opus 5.5 animation used about 70% of the 5h window; the poster converted equivalent API consumption to 5h≈$15.4, week≈$45, month≈$160 (Max 10x≈$154/$450/$1,600, roughly 176M/510M/1.8B tokens); droid-pro-opus55-community-round1-2026-09-29.json; https://factory.ai/pricing Pro $20/month"
     },
     {
-      "zh": "新增：帖主月 list-worth $160 ÷ Anthropic档混合价$0.419/MTok＝3.82亿（同 droid_max×opus-5.5 口径；帖主自带 token 列 18亿/$1,600≈$0.89/MTok 为其自身负载，不采）；取帖主月值而非周$45×4周＝$180（4.30亿）——Factory 另有 30 天滚动窗，帖主月值低于 4×周，按 30 天窗为绑定约束；弱点：口述估算、无面板截图与 token 分拆、n=1、5h/周/月换算过程未公开 → low；对照：本机实测 Droid Max 月 worth $2,116.91 ÷ 官方约10× ＝ Pro 约$211.7（5.05亿），帖主值约为其 0.76×，与 Max 实测未统一",
-      "en": "Added: the poster's monthly list-worth $160 ÷ Anthropic-tier blended price $0.419/MTok = 382M (same basis as droid_max×opus-5.5; the poster's own token column 1.8B/$1,600≈$0.89/MTok reflects their own workload — not adopted); the poster's monthly value was adopted rather than week $45×4 weeks = $180 (430M) — Factory has a separate 30-day rolling window and the poster's monthly value is below 4× the week, so the 30-day window is taken as the binding constraint; weaknesses: verbal estimate, no panel screenshot or token breakdown, n=1, the 5h/week/month conversion undisclosed → low; comparison: the locally measured Droid Max monthly worth $2,116.91 ÷ official ≈10× gives Pro about $211.7 (505M); the poster's value is about 0.76× of that — not reconciled with the Max measurement"
+      "zh": "帖主周 list-worth $45×2（Factory 30天窗＝2×7天窗，2026-10-03裁定）＝$90 ÷ Anthropic档混合价$0.419/MTok＝2.15亿（同 droid_max×opus-5.5 口径；帖主自带 token 列 18亿/$1,600≈$0.89/MTok 为其自身负载，不采）；帖主月值 $160（3.82亿，原采用值）约为其周值3.56×，与30天窗＝2×周不符，不采；弱点：口述估算、无面板截图与 token 分拆、n=1、5h/周/月换算过程未公开 → low；对照：本机实测 Droid Max 月 worth $1,058.45 ÷ 官方约10× ＝ Pro 约$105.85（2.53亿），帖主值约为其 0.85×",
+      "en": "The poster's weekly list-worth $45×2 (Factory's 30-day window = 2× the 7-day window, ruling 2026-10-03) = $90 ÷ Anthropic-tier blended price $0.419/MTok = 215M (same basis as droid_max×opus-5.5; the poster's own token column 1.8B/$1,600≈$0.89/MTok reflects their own workload — not adopted); the poster's monthly value $160 (382M, the previously adopted value) is about 3.56× their weekly value, inconsistent with the 30-day window = 2× week — not adopted; weaknesses: verbal estimate, no panel screenshot or token breakdown, n=1, the 5h/week/month conversion undisclosed → low; comparison: the locally measured Droid Max monthly worth $1,058.45 ÷ official ≈10× gives Pro about $105.85 (253M); the poster's value is about 0.85× of that"
     },
     {
       "zh": "issue #54（NTRYourWaifu）：agy /quota 每 5 分钟轮询周额度 %，三个周窗、只计 3.8 Flash ≥95% 区段，853.43M raw = +165.77pp；community-issues-round1-2026-09-29.json；维护者本地实测：B整段55.343M raw(cache45.69M/in9.26M/out0.40M)=周条+9.88%；gemini-weekly-round7-2026-09-21.json；workload-conversion-round1-2026-09-30.json",
@@ -1195,8 +1195,8 @@
       "en": "Kept the same-subscription-allowance assumption 516M (the normalized baseline follows 4.6); no independent 4.5 panel measurement yet; the xAI API cache price gap cannot map directly to the subscription weekly pool; kept separate from the Cursor channel"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 0.4",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 0.4"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 0.4",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 0.4"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / claude-fable-5.1 4×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json",
@@ -1207,8 +1207,8 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / claude-fable-5 4×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 0.8",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 0.8"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 0.8",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 0.8"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / claude-opus-5 2×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json",
@@ -1219,8 +1219,8 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / claude-opus-4.8 2×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 2.0",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 2.0"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 2.0",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 2.0"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / claude-sonnet-5.5 0.8×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json",
@@ -1235,16 +1235,16 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / gpt-6-sol 0.8×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 40.0",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 40.0"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 40.0",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 40.0"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / gpt-6-luna 0.04×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json",
       "en": "Factory official multipliers Opus 5.5 1.6× / gpt-6-luna 0.04×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 1.0",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 1.0"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 1.0",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 1.0"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / gpt-5.6-sol 1.6×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；1.6×为促销倍率，2026-11-22后恢复2×（届时约0.8×Opus），到期须复核",
@@ -1255,16 +1255,16 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / gpt-5.6-terra 0.8×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 20.0",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 20.0"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 20.0",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 20.0"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / gpt-5.6-luna 0.08×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json",
       "en": "Factory official multipliers Opus 5.5 1.6× / gpt-5.6-luna 0.08×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 5.333333333333334",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 5.333333333333334"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 5.333333333333334",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 5.333333333333334"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / gemini-3.8-flash 0.3×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；0.3×为促销倍率，2027-01-01后恢复0.6×（届时约2.66667×Opus），到期须复核",
@@ -1283,32 +1283,32 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / grok-4.6 0.8×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 4.0",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 4.0"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 4.0",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 4.0"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / inkling 0.4×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
       "en": "Factory official multipliers Opus 5.5 1.6× / inkling 0.4×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 2.666666666666667",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 2.666666666666667"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 2.666666666666667",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 2.666666666666667"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / mistral-medium-3.5 0.6×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
       "en": "Factory official multipliers Opus 5.5 1.6× / mistral-medium-3.5 0.6×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 26.666666666666668",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 26.666666666666668"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 26.666666666666668",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 26.666666666666668"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / glm-5.3-flash 0.06×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
       "en": "Factory official multipliers Opus 5.5 1.6× / glm-5.3-flash 0.06×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 2.857142857142857",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 2.857142857142857"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 2.857142857142857",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 2.857142857142857"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / glm-5.3 0.56×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
@@ -1319,16 +1319,16 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / glm-5.2 0.56×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 1.9047619047619049",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 1.9047619047619049"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 1.9047619047619049",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 1.9047619047619049"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / glm-5.2-fast 0.84×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
       "en": "Factory official multipliers Opus 5.5 1.6× / glm-5.2-fast 0.84×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 1.3333333333333335",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 1.3333333333333335"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 1.3333333333333335",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 1.3333333333333335"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / kimi-k3 1.2×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
@@ -1339,16 +1339,16 @@
       "en": "Factory official multipliers Opus 5.5 1.6× / qwen3.8-max 0.8×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 6.666666666666667",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 6.666666666666667"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 6.666666666666667",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 6.666666666666667"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / nemotron-3-ultra 0.24×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
       "en": "Factory official multipliers Opus 5.5 1.6× / nemotron-3-ultra 0.24×: the same Standard Usage pool scaled by multiplier — not a measurement of this model; inherits the Opus 5.5 row's Anthropic-tier workload, not recomputed for each model's own price gap; docs.factory.ai/docs/models; droid-model-multipliers-2026-09-29.json; Droid Core models draw Standard Usage first, then a separate free open-source pool applies (independent cap unmeasured); this value counts only the Standard Usage part"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 50.52 亿 × 13.333333333333334",
-      "en": "Derived from same-plan claude-opus-5.5 5.052B × 13.333333333333334"
+      "zh": "由同套餐 claude-opus-5.5 25.26 亿 × 13.333333333333334",
+      "en": "Derived from same-plan claude-opus-5.5 2.526B × 13.333333333333334"
     },
     {
       "zh": "Factory官方倍率 Opus 5.5 1.6× / deepseek-v4.1-flash 0.12×：同一 Standard Usage 池按倍率折算，非该模型实测；沿用 Opus 5.5 行 Anthropic 档负载，未按各模型自身价差重算；docs.factory.ai/docs/models；droid-model-multipliers-2026-09-29.json；Droid Core 模型先扣 Standard Usage，用尽后另有免费开源池（独立限额未实测），本值只计 Standard Usage 部分",
