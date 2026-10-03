@@ -27813,8 +27813,8 @@ z
    </g>
   </g>
   <g id="text_610">
-   <!-- 默认月 = 4 周，Kimi独立月池 = 周池×5；饱和使用；全口径 token；按量 API 无月额度 -->
-   <g style="fill: #505a64" transform="translate(648.479922 170.69184) scale(0.11 -0.11)">
+   <!-- 默认月 = 4 周，Kimi独立月池 = 周池×5，Droid 月 = 周×2；饱和使用；全口径 token；按量 API 无月额度 -->
+   <g style="fill: #505a64" transform="translate(601.022656 170.69184) scale(0.11 -0.11)">
     <defs>
      <path id="MicrosoftYaHei-bf3" d="M 2794 2516 
 L 2794 2678 
@@ -28632,33 +28632,47 @@ z
     <use xlink:href="#MicrosoftYaHei-850" transform="translate(1565.359375 0)"/>
     <use xlink:href="#MicrosoftYaHei-98" transform="translate(1665.359375 0)"/>
     <use xlink:href="#MicrosoftYaHei-1b" transform="translate(1739.53125 0)"/>
-    <use xlink:href="#MicrosoftYaHei-37a" transform="translate(1798.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-bd5" transform="translate(1898.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-579" transform="translate(1998.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-485" transform="translate(2098.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-900" transform="translate(2198.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-37a" transform="translate(2298.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-4b6" transform="translate(2398.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-54d" transform="translate(2498.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-6ac" transform="translate(2598.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-3" transform="translate(2698.171875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-5a" transform="translate(2727.765625 0)"/>
-    <use xlink:href="#MicrosoftYaHei-55" transform="translate(2764.1875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-51" transform="translate(2827.765625 0)"/>
-    <use xlink:href="#MicrosoftYaHei-4b" transform="translate(2880.0625 0)"/>
-    <use xlink:href="#MicrosoftYaHei-54" transform="translate(2936.796875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-37a" transform="translate(2998.421875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-737" transform="translate(3098.421875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-b4f" transform="translate(3198.421875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-3" transform="translate(3298.421875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-27" transform="translate(3328.015625 0)"/>
-    <use xlink:href="#MicrosoftYaHei-36" transform="translate(3398.375 0)"/>
-    <use xlink:href="#MicrosoftYaHei-2f" transform="translate(3459.5625 0)"/>
-    <use xlink:href="#MicrosoftYaHei-3" transform="translate(3488.953125 0)"/>
-    <use xlink:href="#MicrosoftYaHei-797" transform="translate(3518.546875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-7c3" transform="translate(3618.546875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-bcc" transform="translate(3718.546875 0)"/>
-    <use xlink:href="#MicrosoftYaHei-686" transform="translate(3818.546875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-36b" transform="translate(1798.171875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-2a" transform="translate(1898.171875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-58" transform="translate(1974.34375 0)"/>
+    <use xlink:href="#MicrosoftYaHei-55" transform="translate(2011.109375 0)"/>
+    <use xlink:href="#MicrosoftYaHei-4f" transform="translate(2074.6875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-4a" transform="translate(2101.296875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-3" transform="translate(2165.265625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-7c3" transform="translate(2194.859375 0)"/>
+    <use xlink:href="#MicrosoftYaHei-3" transform="translate(2294.859375 0)"/>
+    <use xlink:href="#MicrosoftYaHei-23" transform="translate(2324.453125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-3" transform="translate(2398.625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-575" transform="translate(2428.21875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-98" transform="translate(2528.21875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-18" transform="translate(2602.390625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-37a" transform="translate(2661.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-bd5" transform="translate(2761.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-579" transform="translate(2861.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-485" transform="translate(2961.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-900" transform="translate(3061.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-37a" transform="translate(3161.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-4b6" transform="translate(3261.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-54d" transform="translate(3361.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-6ac" transform="translate(3461.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-3" transform="translate(3561.03125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-5a" transform="translate(3590.625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-55" transform="translate(3627.046875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-51" transform="translate(3690.625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-4b" transform="translate(3742.921875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-54" transform="translate(3799.65625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-37a" transform="translate(3861.28125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-737" transform="translate(3961.28125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-b4f" transform="translate(4061.28125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-3" transform="translate(4161.28125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-27" transform="translate(4190.875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-36" transform="translate(4261.234375 0)"/>
+    <use xlink:href="#MicrosoftYaHei-2f" transform="translate(4322.421875 0)"/>
+    <use xlink:href="#MicrosoftYaHei-3" transform="translate(4351.8125 0)"/>
+    <use xlink:href="#MicrosoftYaHei-797" transform="translate(4381.40625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-7c3" transform="translate(4481.40625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-bcc" transform="translate(4581.40625 0)"/>
+    <use xlink:href="#MicrosoftYaHei-686" transform="translate(4681.40625 0)"/>
    </g>
   </g>
   <g id="text_611">
