@@ -2,7 +2,9 @@
 
 状态：0.1.0 已实现，npm 包名为 `real-api-pricing`，命令名为 `rap`，输出 schemaVersion 为 1。TypeScript CLI 使用 Commander 处理命令和参数；维护者发布 npm 包后可用 `npm install -g real-api-pricing` 安装，目前可从仓库构建或安装本地 tarball。
 
-本文件定义命令和输出契约；逐条命令的参数、调用及输出见 [命令参考](cli-command-reference.md)。数值示例使用 2026-10-01 快照核对；当时以 Chromium 读取原 HTTPS 网站的实际 DOM，完成 61 个场景、累计 5,176 行的对比，记录、排序和共享显示字段均无差异，线上与当时内置快照内容一致。合并主仓库后，构建数据已更新为 2026-10-02。当前默认查询会联网检查更新；示例的 `source=bundled` 是历史输出，实际日期和来源以每次查询的元信息为准。安装与构建步骤见 [CLI README](../cli/README.md)。
+本文件定义命令和输出契约；逐条命令的参数、调用及输出见 [命令参考](cli-command-reference.md)，安装与构建步骤见 [CLI README](../cli/README.md)。默认查询会联网检查更新，实际日期和来源以每次查询的元信息为准。
+
+数值示例与 `source=bundled` 来自 2026-10-01 的历史验证，英文证据节选使用 2026-10-02 快照已有的译文。同步主仓库 main 的 `9be0bb9` 后，当前内置快照已更新为 2026-10-03，重新完成该线上快照的浏览器对齐检查；结果见第 9 节。
 
 ## 1. 目标与网站对齐
 
@@ -347,11 +349,13 @@ exit: 2
 
 ## 9. 验收与回归检查
 
-已使用 Playwright Chromium 加载原 HTTPS 网站的 HTML、JavaScript、CSS 和数据，完成 61 个场景、累计 5,176 行的 DOM 对比；记录、排序及 model、plan、access、price、allowance、fee、confidence、score、config 共享显示字段均无差异，浏览器 page、console、resource errors 均为 0。范围覆盖全部 18 个公司的 price/allowance、月费档位、Factory 渠道、整段子串搜索、8 个榜单的 table、全部配置展开（694 行）、effort、API 与空结果。
+当前验证使用线上 2026-10-03 快照。Playwright Chromium 加载实际线上 HTML、JavaScript、CSS 和数据，完成 61 个场景、累计 5,176 行的 DOM 对比；记录、排序及 model、plan、access、price、allowance、fee、confidence、score、config 共享显示字段均无差异，浏览器 page、console、resource errors 均为 0。范围覆盖全部 18 个公司的 price/allowance、月费档位、Factory 渠道、整段子串搜索、8 个榜单的 table、全部配置展开、effort、API 与空结果。
 
-另核对了 6 条详情中的 18 个评测配置、4 份网页下载 CSV 的 484 行共享原始字段，以及 390×844 移动视口下两个排名页面的搜索交互，均通过。详情按配置身份匹配，CSV 对账遵循上文的字段与排序契约；这些检查不要求终端布局或导出文件字节与网页相同。
+另核对了 6 条 show 详情中的 18 个评测配置，包括英文来源、采用理由、记录说明和 Decision note/Note 去重；两条记录的 compare 也已直接验证。4 份网页下载 CSV 的 484 行共享字段，以及 390×844 移动视口下两个排名页面的搜索交互均通过。详情按配置身份匹配；CLI CSV 保留原始来源，网站英文 CSV 使用译文，两者按已定义契约检查，不要求终端布局或导出文件字节相同。
 
-此前线上与内置 site.json 的 SHA-256 均为 `1b383316d85039460ba9862a04253b53ef1ac933bb17d1469bdc1ecd45c92c18`，上述线上验证对应 2026-10-01 快照。合并主仓库后，2026-10-02 的 CLI、网站及主仓库原版构建脚本所生成快照逐字节一致，SHA-256 为 `19f2115699786d596d32bd08c1f8f0da45517a176700047415bf6275b7f67e70`；英文来源译文、评测记录说明与档案元数据完整保留。原始 source/note/decision_note 不变，JSON 同时保留上游的 source_en/note_en/decision_note_en 等译文字段；网页英文导出的来源列使用译文，CLI CSV 的 source 列仍按原始文本契约导出。当前 table 详情与比较优先使用现有英文译文，默认数据命令会联网检查更新并自动离线回退。
+同步主仓库 main 的 `9be0bb9` 后，CLI、网站构建快照与验证使用的线上文件逐字节一致，日期为 2026-10-03，SHA-256 为 `5287bbee30445ed8449931d6c76de7487727520baf1406942e907fd07898ecb4`。其中 Droid 的月池采用值按上游改为两倍周池；命令参考的历史数值示例保持原验证日期，不代表当前查询结果。
+
+原始 source/note/decision_note 不变，JSON 同时保留上游的 source_en/note_en/decision_note_en 等译文字段和评测档案元数据。当前 table 详情与比较优先使用现有英文译文，默认数据命令会联网检查更新并自动离线回退。
 
 1. 同快照、同筛选条件下，price/allowance 的有序 Point ID 列表与网页一致，不只比较数量。
 2. Model、Company、Channel、Plan 在所有价格输出中独立，JSON/CSV 标识稳定。

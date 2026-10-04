@@ -2,7 +2,9 @@
 
 状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包名为 `real-api-pricing`，维护者发布后可用 `npm install -g real-api-pricing` 安装，当前可从仓库构建或安装本地 tarball。默认自动联网，失败时依次使用有效缓存、内置快照，正常回退不增加选项或网络警告。
 
-下列数值与 `Source: bundled` 示例来自 **2026-10-01** 的历史验证：Chromium 读取原 HTTPS 网站 DOM 的 61 个场景、累计 5,176 行对比均通过，浏览器错误为 0。show/compare 的英文证据节选使用合并主仓库后 **2026-10-02** 快照已有的译文。当前默认会联网检查更新，实际日期与来源以每次查询的元信息为准。表格按字段整理，较长的详情只列节选；帮助采用当前英文输出。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。
+下列数值与 `Source: bundled` 示例来自 **2026-10-01** 的历史验证；show/compare 的英文证据节选使用 **2026-10-02** 快照已有的译文。表格按字段整理，较长的详情只列节选；帮助采用当前英文输出。
+
+同步主仓库 main 的 `9be0bb9` 后，当前内置快照为 **2026-10-03**，与本次验证的线上文件一致。该快照重新完成 Chromium 61 个场景、累计 5,176 行，以及英文详情、compare、CSV 和移动端检查，均通过。Droid 月额度已按上游调整，历史示例不代表当前价格或额度；实际日期与来源以每次查询的元信息为准。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。
 
 命令名为 `rap`。默认表格、默认返回全部匹配记录；表头、套餐显示、帮助及错误信息固定使用英文。`Model`、`Company`、`Channel`、`Plan` 在每张价格记录表中独立成列，即使筛选后值相同也保留。`Company` 是模型开发公司，对应网站 `vendors`；`Channel` 是提供套餐的访问渠道。例如 Claude 由 Anthropic 开发，Droid Max 的渠道是 Factory。
 

@@ -218,7 +218,7 @@ async function loadFile(filename: string): Promise<DatasetContext["data"]> {
 async function readCache(filename: string) {
   try {
     const cached = cacheSchema.parse(JSON.parse(await readFile(filename, "utf8")));
-    return { ...cached, data: parseSnapshot(cached.snapshot, filename) };
+    return { etag: cached.etag, data: parseSnapshot(cached.snapshot, filename) };
   } catch {
     return null;
   }
@@ -261,9 +261,12 @@ export async function loadDataset(file?: string, options: LoadOptions = {}): Pro
     }
     const request = options.fetch ?? globalThis.fetch;
     const signal = AbortSignal.timeout(options.timeoutMs ?? 3_000);
-    const get = (etag?: string | null) => request(DATASET_URL, {
-      headers: etag ? { "If-None-Match": etag } : {}, signal, dispatcher,
-    } as RequestInit);
+    const get = (etag?: string | null) => {
+      const init: RequestInit & { dispatcher?: EnvHttpProxyAgent } = {
+        headers: etag ? { "If-None-Match": etag } : {}, signal, dispatcher,
+      };
+      return request(DATASET_URL, init);
+    };
     let response = await get(cached?.etag);
     if (response.status === 304 && !cached) response = await get();
     if (response.status === 304 && cached) {

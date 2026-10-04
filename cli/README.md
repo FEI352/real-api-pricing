@@ -149,17 +149,23 @@ rap price --data ./site.json --company Anthropic
 
 Help and version commands do not load data, access the cache or make requests.
 
-Historical website parity was verified using the 2026-10-01 snapshot and live
-website file. Chromium DOM comparisons covered 61 scenarios and 5,176 rows across all
-18 companies, fee bands, channels, searches and benchmark configurations.
-Records, ordering and shared display fields had no differences; page,
-console and resource errors were all zero.
+After syncing upstream main at `9be0bb9`, the rebuilt bundled snapshot is
+2026-10-03. The website and CLI snapshots match the verified live dataset;
+SHA-256 is `5287bbee30445ed8449931d6c76de7487727520baf1406942e907fd07898ecb4`.
+Use `rap info` for the date of the dataset actually being queried.
 
-After integrating the latest upstream data, the rebuilt 2026-10-02 CLI and
-website snapshots match the upstream builder byte for byte. The shared adapter
-preserves translated source metadata and benchmark archive/record details;
-JSON retains these fields alongside the original source text. Use `rap info`
-for the date of the dataset actually being queried.
+Fresh Chromium checks against that live dataset covered 61 scenarios and
+5,176 rows across all 18 companies, fee bands, channels, searches and benchmark
+configurations. Records, ordering and shared display fields had no differences;
+page, console and resource errors were all zero. Additional checks covered six
+point details with 18 configurations, English evidence and record notes,
+decision/note deduplication, a direct two-point comparison, four website CSV
+exports with 484 shared rows, and searches in both mobile ranking views.
+
+JSON and CSV preserve original source text; English website CSV exports use
+translated source text. This documented difference is intentional. The command
+reference keeps its 2026-10-01 numerical examples and 2026-10-02 English evidence
+excerpts as historical fixtures, rather than current price claims.
 
 `--data` resolves relative paths against the calling directory. Invalid data
 versions, missing fields, nonfinite numbers, duplicate IDs and orphaned
