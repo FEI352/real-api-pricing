@@ -1164,8 +1164,8 @@ function Explorer({
               <Info size={16} />
               <p>
                 {t(
-                  "A price floor at saturated use. All tokens count; a month is 4 weeks, except Kimi’s independent 5-week pool. Model allowances within a plan are alternatives, not additive.",
-                  "这是饱和使用时的价格下限。所有 token 均计入；默认月为 4 周，Kimi 独立月池为周池的 5 倍。同套餐不同模型额度不能相加。",
+                  "A price floor at saturated use. All tokens count; a month is 4 weeks, except Kimi’s independent 5-week pool and Droid’s 2× weekly month. Model allowances within a plan are alternatives, not additive.",
+                  "这是饱和使用时的价格下限。所有 token 均计入；默认月为 4 周，Kimi 独立月池为周池的 5 倍，Droid 月额度为周额度的 2 倍。同套餐不同模型额度不能相加。",
                 )}{" "}
                 <button onClick={() => patch({ view: "method" })}>
                   {t("Read the methodology", "查看完整口径")}
@@ -1830,8 +1830,8 @@ function Method({
           </p>
           <p>
             {t(
-              `A month defaults to ${data.conventions.monthWeeks} weeks. Kimi has an independent monthly pool equal to five weekly pools. Model allowances within the same plan are alternatives and must not be summed.`,
-              `默认月为 ${data.conventions.monthWeeks} 周；Kimi 独立月池等于周池的 5 倍。同套餐不同模型额度为替代关系，不可相加。`,
+              `A month defaults to ${data.conventions.monthWeeks} weeks. Kimi has an independent monthly pool equal to five weekly pools; Droid's month is 2× its weekly allowance. Model allowances within the same plan are alternatives and must not be summed.`,
+              `默认月为 ${data.conventions.monthWeeks} 周；Kimi 独立月池等于周池的 5 倍；Droid 月额度为周额度的 2 倍。同套餐不同模型额度为替代关系，不可相加。`,
             )}
           </p>
         </article>

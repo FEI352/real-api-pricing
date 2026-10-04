@@ -3,6 +3,14 @@
 本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-10-03 · Droid 月额度 = 2× 周（裁定）
+
+- **Factory Droid 30 天窗 = 2× 7 天窗（维护者裁定，Droid 专用例外，不改通用 ×4 周）**：月额度一律按周 worth × 2。
+- **Droid Max × Opus 5.5**：50.52 → **25.26 亿/月**（段 worth $42.34 ÷8% ×2 = 月 $1,058.45 list-worth ÷ Anthropic 档 $0.419/MTok）；Δpp∈[7,9] 敏感性 22.46~28.87 亿；其余 Droid Max 派生行按同倍率随动（全部减半）。
+- **Droid Pro × Opus 5.5**：3.82 → **2.15 亿/月**（帖主周 $45 ×2 = $90 ÷ $0.419/MTok）；帖主口述月值 $160 约为周值 3.56×，与 2× 周不符，不采。
+- 前沿影响（全量层）：aa_intelligence_index、aa_terminal_bench_4、arena_code、arena_agent_mode、aa_coding_agent_index、open_design_arena 六榜前沿点变化——Droid Max 的 GPT-6 Luna / GLM-5.3 Flash / Claude Fable 5.1 单价翻倍后部分被 OpenCode Go、Command Code GOAT、GLM Coding Pro 国区旧版闲时、Claude Max 20x 等点取代。
+- 证据不变：`data/research/droid-opus55-max-round1-2026-09-29.json`、`data/research/droid-pro-opus55-community-round1-2026-09-29.json`。
+
 ## 2026-10-01 · MiniMax M Plan 国区 M3.1 Flash Preview 暂估投稿
 
 - **#41 OpenCode Go / Command Code GOAT 全目录复核采用（2026-10-01 对照官网逐项核实）**：DeepSeek V4 Flash（OpenCode $30、GOAT latest $60）与 V4 Flash Vision Exp（OpenCode $15、GOAT $20）恢复——DeepSeek 官方已下架旧模型，但两家第三方渠道仍在提供，裁定恢复，取代 2026-09-10「已下线」删除；OpenCode 删去 omen-alpha / glm-5.1 / minimax-m2.5 / qwen3.7-max / qwen3.6-plus（官网模型列表已无）；Command Code Jev 不收录（决策模型，仅 headless 与 Provider API，不在 /model，按标准负载会得 190.476 亿/月）；OpenCode 新增常设 Go Plus $40 档本次不收录，另行处理；Kimi K3 GOAT $60 为 10/7 前限时促销不采。两家全部行数据日期取 2026-09-30。证据：`goat-opencode-catalogs-round3-2026-09-30.json`。
