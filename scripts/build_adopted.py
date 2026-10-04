@@ -1020,6 +1020,9 @@ METERED = [
     ("anthropic_opus55_api", "Claude Opus 5.5 API", "claude-opus-5.5", 0.2, 4.0, 20.0, "platform.claude.com/docs/en/about-claude/pricing；cache read $0.20=base input×0.05（其他模型0.1×）、写 $5/5m $8/1h、Fast $8/$40；claude-opus55-round1-2026-09-23.json"),
     ("anthropic_sonnet55_api", "Claude Sonnet 5.5 API", "claude-sonnet-5.5", 0.2, 2.0, 10.0, "platform.claude.com/docs/en/about-claude/pricing；2026-09-28发布保持Sonnet 5定价$2/$10（cache read 0.1×）、写 $2.5/5m $4/1h、Batch $1/$5；list-prices-claude-sonnet55-round1-2026-09-30.json"),
     ("google_gemini4_argon_api", "Gemini 4 Argon API (Intro)", "gemini-4-argon", 0.10, 2.0, 10.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json"),
+    ("hyperqwen_local_qwen38_27b", "Qwen3.8 27B · 单卡 RTX 5090 (SGLang + DFlash2)", "qwen3.8-27b-dflash-5090", 0.001, 0.01, 0.05, "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s"),
+    ("hyperqwen_local_qwen38_27b_3090", "Qwen3.8 27B · 单卡 RTX 3080/3090/4090 (HyperQwen 24GB)", "qwen3.8-27b-hyperqwen-3090", 0.001, 0.01, 0.05, "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s"),
+    ("hyperqwen_local_qwen38_27b_pro6000", "Qwen3.8 27B · 单卡 RTX PRO 6000 96GB (SGLang + DFlash2)", "qwen3.8-27b-rtx-pro-6000", 0.001, 0.01, 0.05, "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark；经 web_deep_read 全文校验原厂 README：单卡 RTX PRO 6000 (Blackwell 96GB) 运行 RadixArk NVFP4-BF16-LMHead 与纯注意力 DFlash 2 投机草稿头。草稿 greedy head 折叠进 CUDA 图，单步验证 8 个 tokens，单流解码实测突破 240+ tok/s，AA 基准 Task Time 压降至 11.9s！55GB FP8 KV 池容纳约 1.7M tokens，原生支持 256K~512K 上下文且支持 8 路并发"),
     ("openai_terra_api", "GPT-5.6 Terra API", "gpt-5.6-terra", 0.2, 2.0, 12.0, "developers.openai.com"),
     ("openai_luna_api", "GPT-5.6 Luna API", "gpt-5.6-luna", 0.02, 0.2, 1.2, "developers.openai.com"),
 ]
@@ -1030,7 +1033,10 @@ MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x",
               "supergrok_heavy", "supergrok", "kimi_allegretto_cn", "glm_coding_pro_cn_new_peak", "glm_coding_pro_cn_new_mid", "glm_coding_pro_cn_new_offpeak", "glm_coding_pro_cn_old_peak", "glm_coding_pro_cn_old_mid", "glm_coding_pro_cn_old_offpeak",
               "minimax_token_plus_cn", "minimax_token_plus_global", "aliyun_coding_pro_cn", "devin_max", "devin_pro", "droid_max",
               "mimo_token_lite_day", "mimo_token_standard_day", "mimo_token_pro_day", "mimo_token_max_day",
-              "mimo_token_lite_night", "mimo_token_standard_night", "mimo_token_pro_night", "mimo_token_max_night"}
+              "mimo_token_lite_night", "mimo_token_standard_night", "mimo_token_pro_night", "mimo_token_max_night"    "hyperqwen_local_qwen38_27b",
+    "hyperqwen_local_qwen38_27b_3090",
+    "hyperqwen_local_qwen38_27b_pro6000",
+}
 MAIN_EXTRA = {
     ("opencode_go", "deepseek-v4.1-flash"),
     ("opencode_go", "glm-5.3-flash"),
