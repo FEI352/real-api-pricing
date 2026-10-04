@@ -181,7 +181,7 @@ def label_position(p, board, x, y, tier="main"):
                 return x + 12, y - 34, "start"
     if model == "gpt-6.1-sol":
         if board == "open_design_arena" and tier == "full":
-            return x - 8, y + 19, "end"
+            return x + 0, y - 50, "end"
     if model == "gpt-6-sol":
         if board == "open_design_arena" and tier == "full":
             return x - 20, y + 80, "end"
@@ -194,20 +194,22 @@ def label_position(p, board, x, y, tier="main"):
         if board == "deepswe_1_1":
             return x + 112, y + 159, "end"
         if board == "aa_intelligence_index" and tier == "full":
-            return x - 8, y + 25, "end"
+            return x + 10, y + 0, "start"
         if board == "aa_terminal_bench_4" and tier == "full":
-            return x - 200, y - 47, "end"
+            return x - 20, y - 164, "middle"
         if board == "open_design_arena" and tier == "full":
             return x - 40, y + 52, "end"
     if model == "mimo-v2.5":
         if board == "aa_intelligence_index":
             return x + 20, y - 8, "start"
+        if board == "arena_code" and tier == "full":
+            return x + 0, y + 20, "start"
     if model == "step-5-preview":
         if board == "aa_intelligence_index":
             return x + 45, y - 140, "start"
         if board == "aa_terminal_bench_4":
             if tier == "full":
-                return x - 48, y - 86, "end"
+                return x - 4, y - 156, "start"
             return x - 1, y + 41, "end"
     if model == "gemini-3.8-flash":
         if board == "aa_coding_agent_index":
@@ -232,7 +234,7 @@ def label_position(p, board, x, y, tier="main"):
                 return x - 120, y - 23, "end"
             return x + 16, y + 15, "start"
         if board == "aa_terminal_bench_4" and tier == "full":
-            return x - 20, y - 95, "middle"
+            return x - 292, y + 20, "end"
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
@@ -242,9 +244,11 @@ def label_position(p, board, x, y, tier="main"):
         if model == "deepseek-v4.1-flash" and board == "terminal_bench_4":
             return x - 141, y + 21, "end"
         if model == "deepseek-v4.1-flash" and board == "arena_agent_mode" and tier == "full":
-            return x - 44, y + 91, "start"
+            return x + 0, y - 100, "middle"
         if model == "deepseek-v4.1-flash" and board == "arena_code" and tier == "full":
-            return x - 44, y + 94, "start"
+            return x + 0, y - 110, "middle"
+        if model == "deepseek-v4.1-flash" and board == "aa_terminal_bench_4" and tier == "full":
+            return x - 4, y + 124, "end"
         return x - 24, y + 49, "end"
     if model == "gpt-6-luna":
         if board == "aa_terminal_bench_4":
@@ -271,7 +275,9 @@ def label_position(p, board, x, y, tier="main"):
         if board == "aa_intelligence_index":
             return x - 24, y + 58, "end"
         if board == "aa_coding_agent_index" and tier == "full":
-            return x - 32, y - 23, "end"
+            return x - 30, y - 20, "end"
+        if board == "arena_code" and tier == "full":
+            return x - 10, y + 110, "end"
         return x + 5, y + 57, "end"
     if model == "gpt-5.6-terra":
         if board == "aa_intelligence_index":
@@ -279,10 +285,10 @@ def label_position(p, board, x, y, tier="main"):
         return x + 24, y - 55, "start"
     if model == "step-3.7-flash":
         if board == "aa_intelligence_index":
-            return x - 60, y - 120, "end"
+            return x + 0, y - 70, "start"
     if model == "step-3.5-flash":
         if board == "aa_intelligence_index":
-            return x - 160, y - 56, "end"
+            return x + 0, y + 20, "end"
     if model == "swe-2":
         # 不计额度点贴右边界，标签只能往左上放，且要避开 TB4 里 Luna 的下方标签。
         if board == "terminal_bench_4":
