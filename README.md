@@ -21,8 +21,9 @@ Snapshot: <!-- stat:snapshot -->2026-10-02<!-- /stat --> · <!-- stat:points_tot
 
 ## Query from the terminal
 
-The TypeScript CLI reads an offline snapshot and separates model, company,
-channel and plan. Requires Node.js 22.12+. Build from this repository:
+The TypeScript CLI queries the website's current dataset and separates model,
+company, channel and plan. It automatically falls back to cached or bundled
+data when offline. Requires Node.js 22.12+. Build from this repository:
 
 ```sh
 npm --prefix cli ci
@@ -32,9 +33,10 @@ node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
 ```
 
 JSON/CSV exports, filtering, evidence and comparisons are available. See the
-[CLI README](cli/README.md) for local package installation and the
+[CLI README](cli/README.md) for installation and the
 [command reference](docs/cli-command-reference.md) for output examples.
-Version 0.1.0 has not been published to npm.
+Version 0.1.0 is available from this checkout. After the maintainer publishes
+the npm package, install it with `npm install -g real-api-pricing`.
 
 For coding agents, the [Real Model Price skill](.agents/skills/real-model-price/SKILL.md)
 guides price, allowance and plan comparisons with this CLI. In Codex, invoke

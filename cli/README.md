@@ -1,11 +1,23 @@
 # Real API Pricing CLI
 
 `rap` queries model prices, monthly allowances, plans and independent benchmark
-boards from a local snapshot. Model, company, access channel and plan appear in
+boards from the website dataset, with automatic cached or bundled fallback
+when offline. Model, company, access channel and plan appear in
 separate columns. This TypeScript CLI uses Commander, cli-table3, csv-stringify
 and Zod, with string-width and wrap-ansi for display-width-aware wrapping that
-preserves CJK text. Version 0.1.0 is available from this repository; it has
-**not been published to npm**.
+preserves CJK text. The npm package is named `real-api-pricing`; the executable
+is `rap`. Version 0.1.0 is available from this repository.
+
+## Install
+
+After the maintainer publishes the package to npm:
+
+```sh
+npm install -g real-api-pricing
+rap info
+```
+
+Before publication, build from the checkout or install a local package below.
 
 ## Build and run
 
@@ -27,7 +39,7 @@ To create and install a local package:
 ```sh
 cd cli
 npm pack
-npm install -g /absolute/path/to/fullstop000-real-api-pricing-cli-0.1.0.tgz
+npm install -g /absolute/path/to/real-api-pricing-0.1.0.tgz
 rap --version
 rap info
 ```
@@ -78,8 +90,12 @@ displays as `Devin`; use the original ID to filter. A third-party channel such
 as Factory is selected with `--channel Factory`. Exact model and plan IDs are
 separate filters. A price point ID is `plan_id::model`.
 
-Output text is English; source evidence retains its original language. There
-is no language flag. Table and CSV metadata goes to stderr, keeping stdout
+Output text is English. Details and comparisons prefer the website's English
+source, decision, note and benchmark record translations, falling back to the
+original text when a translation is absent. Identical decision and note text
+appears once. JSON and CSV retain the original fields and numeric values;
+JSON also preserves available translations. There is no language flag.
+Table and CSV metadata goes to stderr, keeping stdout
 available for piping. JSON includes metadata, warnings and typed values in a
 `schemaVersion: 1` envelope. Empty queries succeed with exit 0, argument errors
 use exit 2, and unreadable or invalid snapshots use exit 1.
@@ -99,19 +115,42 @@ also sorts by price, and its fixed column schema differs. CSV validation
 matches shared raw fields by Point ID, with the same board selected when
 comparing benchmark references; it does not require byte-identical files.
 
-## Local data
+## Data and freshness
 
-The package includes `data/site.json`, generated from the same shared adapter
-as the website. Queries read this file offline and do not automatically fetch
-updates. `rap info` reports its snapshot date. To use another local snapshot:
+By default, every data command checks
+`https://realapipricing.com/data/site.json`. A valid response is saved in the
+operating system's user cache directory. Subsequent requests send the saved
+ETag; a `304 Not Modified` response reuses the validated cached dataset. The
+request, including its response body, has a three-second timeout.
+
+Cache locations:
+
+- Linux: `$XDG_CACHE_HOME/real-api-pricing/site.json`, or
+  `~/.cache/real-api-pricing/site.json` when `XDG_CACHE_HOME` is unset.
+- macOS: `~/Library/Caches/real-api-pricing/site.json`.
+- Windows: `%LOCALAPPDATA%/real-api-pricing/Cache/site.json`.
+
+If the request fails, times out or returns invalid data, the CLI automatically
+uses its last valid cache, then the bundled `data/site.json` if no valid cache
+is available. Cache write failures do not prevent a valid online query.
+This fallback needs no extra options and emits no network warning. `rap info`
+and result metadata report the actual dataset date and source: `remote`,
+`cache`, `bundled` or `file`. Cached and bundled data can be older than the
+website; the reported snapshot date is the freshness reference.
+
+The bundled snapshot is generated from the same shared adapter as the website
+and remains available without a network connection. To select another local
+snapshot and skip network access entirely:
 
 ```sh
 rap info --data /absolute/path/to/site.json
 rap price --data ./site.json --company Anthropic
 ```
 
-Website parity was verified using the 2026-10-01 snapshot and live website file.
-Chromium DOM comparisons covered 61 scenarios and 5,176 rows across all
+Help and version commands do not load data, access the cache or make requests.
+
+Historical website parity was verified using the 2026-10-01 snapshot and live
+website file. Chromium DOM comparisons covered 61 scenarios and 5,176 rows across all
 18 companies, fee bands, channels, searches and benchmark configurations.
 Records, ordering and shared display fields had no differences; page,
 console and resource errors were all zero.

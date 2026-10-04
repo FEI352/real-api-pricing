@@ -4,10 +4,11 @@ export type { Mapping, Point, SiteData };
 export type View = "price" | "allowance" | "table";
 export type Format = "table" | "json" | "csv";
 export type Resource = "models" | "companies" | "channels" | "plans" | "boards";
+export type DatasetSource = "remote" | "cache" | "bundled" | "file";
 
 export interface DatasetContext {
   data: SiteData;
-  source: "bundled" | "file";
+  source: DatasetSource;
   sourcePath: string | null;
 }
 
@@ -36,7 +37,7 @@ export interface Metadata {
   command: "price" | "allowance" | "query" | "list" | "show" | "compare" | "info";
   resource: Resource | null;
   snapshot: string;
-  source: "bundled" | "file";
+  source: DatasetSource;
   sourcePath: string | null;
   view: View | null;
   board: string | null;

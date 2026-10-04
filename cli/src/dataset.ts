@@ -1,6 +1,9 @@
-import { readFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import envPaths from "env-paths";
+import { EnvHttpProxyAgent } from "undici";
 import { z } from "zod";
 import { unpackData } from "../../web/src/loadData.js";
 import { CliError, type DatasetContext } from "./types.js";
@@ -48,8 +51,11 @@ const pointSchema = z.object({
   d: nullableNumber.optional(),
   tier: z.string().optional(),
   source: z.string(),
+  source_en: z.string().optional(),
   note: z.string(),
+  note_en: z.string().optional(),
   decision_note: z.string(),
+  decision_note_en: z.string().optional(),
   evidence: z.array(z.object({ label: nonempty, url: nonempty })),
 }).passthrough();
 
@@ -67,6 +73,9 @@ const configurationSchema = z.object({
   score_low: finite.nullable(),
   score_high: finite.nullable(),
   source: z.string(),
+  source_en: z.string().optional(),
+  record_note_en: z.string().optional(),
+  record_note_zh: z.string().optional(),
   archive: z.string().optional(),
   checked_at: date.optional(),
   mean_cost_usd_per_task: nullableNumber.optional(),
@@ -177,11 +186,25 @@ const snapshotSchema = z.object({
   });
 });
 
-/** Load and validate a local snapshot without requiring network access. */
-export async function loadDataset(file?: string): Promise<DatasetContext> {
-  const filename = file === undefined
-    ? fileURLToPath(new URL("../data/site.json", import.meta.url))
-    : path.resolve(file);
+export const DATASET_URL = "https://realapipricing.com/data/site.json";
+const bundledPath = fileURLToPath(new URL("../data/site.json", import.meta.url));
+const cacheSchema = z.object({
+  etag: z.string().regex(/^[^\r\n]*$/).nullable(),
+  snapshot: z.unknown(),
+});
+
+function parseSnapshot(raw: unknown, location: string): DatasetContext["data"] {
+  const parsed = snapshotSchema.safeParse(raw);
+  if (!parsed.success) {
+    const details = parsed.error.issues.slice(0, 5).map((issue) =>
+      `${issue.path.join(".") || "dataset"}: ${issue.message}`,
+    ).join("; ");
+    throw new CliError(`Invalid dataset: ${location}. ${details}`, 1);
+  }
+  return unpackData(parsed.data);
+}
+
+async function loadFile(filename: string): Promise<DatasetContext["data"]> {
   let raw: unknown;
   try {
     raw = JSON.parse(await readFile(filename, "utf8"));
@@ -189,16 +212,72 @@ export async function loadDataset(file?: string): Promise<DatasetContext> {
     const message = error instanceof SyntaxError ? "Invalid JSON" : "Cannot read dataset";
     throw new CliError(`${message}: ${filename}. ${error instanceof Error ? error.message : String(error)}`, 1);
   }
-  const parsed = snapshotSchema.safeParse(raw);
-  if (!parsed.success) {
-    const details = parsed.error.issues.slice(0, 5).map((issue) =>
-      `${issue.path.join(".") || "dataset"}: ${issue.message}`,
-    ).join("; ");
-    throw new CliError(`Invalid dataset: ${filename}. ${details}`, 1);
+  return parseSnapshot(raw, filename);
+}
+
+async function readCache(filename: string) {
+  try {
+    const cached = cacheSchema.parse(JSON.parse(await readFile(filename, "utf8")));
+    return { ...cached, data: parseSnapshot(cached.snapshot, filename) };
+  } catch {
+    return null;
   }
-  return {
-    data: unpackData(parsed.data),
-    source: file === undefined ? "bundled" : "file",
-    sourcePath: file === undefined ? null : filename,
-  };
+}
+
+async function saveCache(filename: string, snapshot: unknown, etag: string | null) {
+  // Keep the validator and snapshot in one atomic write so concurrent commands
+  // cannot pair a new ETag with an older dataset.
+  const temporary = `${filename}.${randomUUID()}.tmp`;
+  try {
+    await mkdir(path.dirname(filename), { recursive: true });
+    await writeFile(temporary, JSON.stringify({ etag, snapshot }));
+    await rename(temporary, filename);
+  } catch {
+    // A read-only cache must not prevent queries from using valid remote data.
+  } finally {
+    await rm(temporary, { force: true }).catch(() => {});
+  }
+}
+
+// Dependency injection is internal to the loader; it adds no CLI options.
+interface LoadOptions {
+  cachePath?: string;
+  fetch?: typeof globalThis.fetch;
+  timeoutMs?: number;
+}
+
+/** Revalidate online, then transparently fall back to last-good or bundled data. */
+export async function loadDataset(file?: string, options: LoadOptions = {}): Promise<DatasetContext> {
+  if (file !== undefined) {
+    const filename = path.resolve(file);
+    return { data: await loadFile(filename), source: "file", sourcePath: filename };
+  }
+  const cachePath = options.cachePath ?? path.join(envPaths("real-api-pricing", { suffix: "" }).cache, "site.json");
+  const cached = await readCache(cachePath);
+  let dispatcher: EnvHttpProxyAgent | undefined;
+  try {
+    if (process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy) {
+      dispatcher = new EnvHttpProxyAgent();
+    }
+    const request = options.fetch ?? globalThis.fetch;
+    const signal = AbortSignal.timeout(options.timeoutMs ?? 3_000);
+    const get = (etag?: string | null) => request(DATASET_URL, {
+      headers: etag ? { "If-None-Match": etag } : {}, signal, dispatcher,
+    } as RequestInit);
+    let response = await get(cached?.etag);
+    if (response.status === 304 && !cached) response = await get();
+    if (response.status === 304 && cached) {
+      return { data: cached.data, source: "cache", sourcePath: cachePath };
+    }
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const snapshot: unknown = await response.json();
+    const data = parseSnapshot(snapshot, DATASET_URL);
+    await saveCache(cachePath, snapshot, response.headers.get("etag"));
+    return { data, source: "remote", sourcePath: null };
+  } catch {
+    if (cached) return { data: cached.data, source: "cache", sourcePath: cachePath };
+    return { data: await loadFile(bundledPath), source: "bundled", sourcePath: null };
+  } finally {
+    await dispatcher?.destroy();
+  }
 }

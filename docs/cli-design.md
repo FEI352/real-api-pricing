@@ -1,8 +1,8 @@
 # Real API Pricing 数据查询 CLI 设计
 
-状态：0.1.0 已实现，命令名为 `rap`，输出 schemaVersion 为 1。TypeScript CLI 使用 Commander 处理命令和参数；npm 包尚未发布。
+状态：0.1.0 已实现，npm 包名为 `real-api-pricing`，命令名为 `rap`，输出 schemaVersion 为 1。TypeScript CLI 使用 Commander 处理命令和参数；维护者发布 npm 包后可用 `npm install -g real-api-pricing` 安装，目前可从仓库构建或安装本地 tarball。
 
-本文件定义命令和输出契约；逐条命令的参数、调用及输出见 [命令参考](cli-command-reference.md)。示例使用 2026-10-01 快照核对；当时以 Chromium 读取原 HTTPS 网站的实际 DOM，完成 61 个场景、累计 5,176 行的对比，记录、排序和共享显示字段均无差异，线上与当时内置快照内容一致。合并主仓库后，构建数据已更新为 2026-10-02；实际查询日期以 `rap info` 为准。安装与构建步骤见 [CLI README](../cli/README.md)。
+本文件定义命令和输出契约；逐条命令的参数、调用及输出见 [命令参考](cli-command-reference.md)。数值示例使用 2026-10-01 快照核对；当时以 Chromium 读取原 HTTPS 网站的实际 DOM，完成 61 个场景、累计 5,176 行的对比，记录、排序和共享显示字段均无差异，线上与当时内置快照内容一致。合并主仓库后，构建数据已更新为 2026-10-02。当前默认查询会联网检查更新；示例的 `source=bundled` 是历史输出，实际日期和来源以每次查询的元信息为准。安装与构建步骤见 [CLI README](../cli/README.md)。
 
 ## 1. 目标与网站对齐
 
@@ -57,7 +57,7 @@ CLI 提供采用数据的发现、排名、详情、比较及导出。基本记�
 
 `rap price` 与 `rap query --view price` 完全等价；`rap allowance` 与 `rap query --view allowance` 完全等价，包括 JSON 元信息中的规范 command 名称。query 默认 table，排名视图禁止 --sort、--min-score、--scored-only、--frontier 和显式 --config；内部配置始终取 best，--config 参数仅用于 table。
 
-全局参数：`--data <site.json>`、`--format table|json|csv`、`--help`、`--version`。默认内置快照和 table。CLI 的表头、套餐显示、帮助、摘要和错误提示固定为英文，原始来源与采用依据保持原文。全局参数可置于子命令前或后。直接运行 rap 输出帮助并退出 0。
+全局参数：`--data <site.json>`、`--format table|json|csv`、`--help`、`--version`。默认联网读取网站数据，失败时自动回退到缓存或内置快照；默认输出 table，不增加联网、离线或刷新选项。CLI 的表头、套餐显示、帮助、摘要和错误提示固定为英文；show/compare 优先显示现有英文来源与采用依据译文，缺译文时使用原文，JSON/CSV 保留原始字段。全局参数可置于子命令前或后。直接运行 rap 输出帮助并退出 0。
 
 ## 4. 参数范围
 
@@ -134,6 +134,8 @@ Billing 使用 Subscription / Metered API，Confidence 和 Mapping confidence �
 
 show 在核心价格表后给出来源、采用理由、负载、采样日期、促销信息及配置表；compare 在核心表后逐项比较这些依据。同套餐不同模型的额度为替代关系，不能相加。
 
+show/compare 的来源、采用理由与备注依次优先使用 `source_en`、`decision_note_en`、`note_en`，缺失时回退到对应原始字段；评测来源优先使用配置的 `source_en`，记录说明优先使用 `record_note_en`，缺失时使用原始记录说明。显示文本相同的 Decision note 和 Note 只输出一次。JSON/CSV 不因显示选择或去重而改写原始字段。
+
 数据快照和 total/returned/truncated 说明对 table/CSV 写 stderr；info 的快照本身是查询字段，写 stdout。JSON 提示进入 meta.warnings。
 
 ## 6. JSON 与 CSV 契约
@@ -147,7 +149,8 @@ show 在核心价格表后给出来源、采用理由、负载、采样日期、
 | command | 规范命令名 price/allowance/query/list/show/compare/info；排名别名归一为 price/allowance |
 | resource | 仅 list 为 models/companies/channels/plans/boards，其他 null |
 | snapshot | 采用数据快照日期 |
-| source | bundled 或 file；file 另有 sourcePath，bundled 时 sourcePath=null |
+| source | remote、cache、bundled 或 file；分别表示本次联网响应、已校验缓存、内置快照或 --data 文件 |
+| sourcePath | cache/file 时为读取文件的绝对路径，remote/bundled 时为 null |
 | view | price/allowance/table；list/show/compare/info 为 null |
 | board / boardSnapshot | 显式选择榜单的 ID/日期；否则均为 null，内部搜索用板不改变这两个值 |
 | total / returned | limit 前与 limit 后的行数；show/info 为 1；compare 为输入记录数 |
@@ -165,7 +168,7 @@ show 在核心价格表后给出来源、采用理由、负载、采样日期、
 | list | 对应资源对象，字段与命令参考中的表格一致，计数为数字，集合为数组 |
 | info | 一个包含 snapshot、source、counts、conventions 的对象 |
 
-point 独立提供 id、model/model_display、company/company_display、vendor、channel、plan_id/plan/plan_display、billing、price_usd、original_price/currency、monthly_tokens、real_usd_per_mtok、confidence、workload、data_date/data_date_kind/data_date_from、unmetered/promo_until、source、decision_note、evidence。保留需要的原始列表价与采用字段，不在格式化时改写数值。
+point 独立提供 id、model/model_display、company/company_display、vendor、channel、plan_id/plan/plan_display、billing、price_usd、original_price/currency、monthly_tokens、real_usd_per_mtok、confidence、workload、data_date/data_date_kind/data_date_from、unmetered/promo_until、source、decision_note、evidence，以及快照中已有的 source_en、decision_note_en、note_en 等译文字段。保留需要的原始列表价与采用字段，不在格式化时改写数值。
 
 benchmark=null 或完整解包的配置/映射对象，含 configuration_id、board、score、variant、agent_harness、reasoning_effort、service_mode、score_is_estimated、score_is_self_reported、mapping_confidence、quota_effort_matched、mapping_note、来源与其他原始配置字段。best 行在 benchmark 对象内附加 best_tie_count。未显式指定榜单的排名和 query 输出 benchmark=null；show 默认展示所有榜单不受此限制。
 
@@ -251,7 +254,7 @@ list boards:    board,name,metric,snapshot,configurations
 info:           snapshot,source,source_path,counts_json,conventions_json
 ```
 
-使用 source=file 时，--data 路径相对调用者目录解析，meta.sourcePath 保存其绝对路径。CSV 只输出列头和数据；表格摘要、提示和错误不混入文件。每个命令的 table 例子见命令参考；JSON/CSV 均遵循这里的同一数据契约。
+使用 source=file 时，--data 路径相对调用者目录解析，meta.sourcePath 保存其绝对路径；source=cache 时保存缓存文件的绝对路径。CSV 只输出列头和数据；表格摘要、提示和错误不混入文件。每个命令的 table 例子见命令参考；JSON/CSV 均遵循这里的同一数据契约。
 
 ### 6.4 CSV 输出示例
 
@@ -326,9 +329,13 @@ exit: 2
 | web/public/data/site.json | 网站适配后的单文件查询快照 | 当前环境已生成，Git 忽略 |
 | cli/data/site.json | CLI 包携带的查询快照 | 构建时生成，Git 忽略；npm pack 随包携带 |
 
-首版打包时把经校验的 site.json 放入 cli/data/site.json，随 CLI 包分发，默认直接读取这个本地文件。--data 可选择另一份本地同格式快照；例如在仓库根目录用 `rap price --data ./web/public/data/site.json --company Anthropic`。查询不自动联网、不重算采用值、不修改数据，也不自动下载缺失文件；无法读取快照按 I/O 错误退出。
+默认数据命令请求 `https://realapipricing.com/data/site.json`，请求与响应体读取总共最多等待 3 秒。存在已校验缓存时发送其 ETag；收到 304 时直接使用缓存。新的有效快照连同 ETag 保存到用户缓存目录，写入失败不影响当前联网查询。请求失败、超时、非成功响应或无效快照自动回退到有效缓存；缓存缺失或损坏时再使用随包携带的 cli/data/site.json。正常回退不额外输出网络警告，不要求用户选择选项。数据日期始终取实际快照的 generatedAt，source 与 sourcePath 如实反映当前来源。
 
-快照更新随重新生成数据及打包完成，内置数据随 CLI 包版本更新；用户也可用 --data 使用更新的本地快照。程序、数据集和输出 schema 的版本分别管理。
+缓存由 env-paths 定位：Linux 为 `$XDG_CACHE_HOME/real-api-pricing/site.json`（未设置 XDG_CACHE_HOME 时为 `~/.cache/real-api-pricing/site.json`），macOS 为 `~/Library/Caches/real-api-pricing/site.json`，Windows 为 `%LOCALAPPDATA%/real-api-pricing/Cache/site.json`。缓存文件同时保存快照及对应 ETag，以临时文件写入后替换，避免读取半份文件或不匹配的 ETag。
+
+`--data` 选择另一份本地同格式快照并完全跳过联网和缓存；例如在仓库根目录用 `rap price --data ./web/public/data/site.json --company Anthropic`。显式文件缺失或无效时按数据错误退出。帮助与版本不加载数据、不读写缓存、不联网。查询不重算采用值、不修改仓库数据。
+
+网站快照可独立于 CLI 更新；内置兜底数据随重新构建和打包更新。程序、数据集和输出 schema 的版本分别管理。
 
 网站与 CLI 共用 scripts/lib/build-site-data.mjs 的采用值校验与数据适配；各自注入 csv-parse，不要求安装另一端的依赖。site.json 的 mappings 是压缩格式，加载时按 web/src/loadData.ts 的 unpackData 规则恢复。检查版本、必需字段、数字有限性、ID 唯一性与引用完整性。配置 ID 只保证当前快照内可引用。
 
@@ -336,7 +343,7 @@ exit: 2
 
 口径：订阅真实单价是用满额度的价格下限；同套餐多模型额度为替代使用。保留负载档、原币价格、数据采样日期、confidence、来源与采用说明；促销过期只提示需复核，不编造新价。榜单互相独立，分数是公开配置映射，不是套餐实测结论。
 
-要求 Node.js 22.12+。cli/ 为独立 TypeScript 包，Commander 提供子命令、参数解析及帮助；cli-table3 输出表格，string-width 与 wrap-ansi 处理显示宽度和完整文本换行，csv-stringify 输出 CSV，Zod 校验快照；esbuild 生成可运行的 ESM，tsx + node:test 执行测试。运行时不依赖 React/Vite/Python。数据路径相对安装模块定位，--data 相对调用目录。npm 发布是独立操作；当前只提供仓库构建与本地 tarball 安装。
+要求 Node.js 22.12+。cli/ 为独立 TypeScript 包，Commander 提供子命令、参数解析及帮助；cli-table3 输出表格，string-width 与 wrap-ansi 处理显示宽度和完整文本换行，csv-stringify 输出 CSV，Zod 校验快照，env-paths 定位跨平台缓存；esbuild 生成可运行的 ESM，tsx + node:test 执行测试。运行时不依赖 React/Vite/Python。内置数据路径相对安装模块定位，--data 相对调用目录。npm 发布由维护者执行；当前提供仓库构建与本地 tarball 安装，发布后 npm 安装名为 real-api-pricing。
 
 ## 9. 验收与回归检查
 
@@ -344,7 +351,7 @@ exit: 2
 
 另核对了 6 条详情中的 18 个评测配置、4 份网页下载 CSV 的 484 行共享原始字段，以及 390×844 移动视口下两个排名页面的搜索交互，均通过。详情按配置身份匹配，CSV 对账遵循上文的字段与排序契约；这些检查不要求终端布局或导出文件字节与网页相同。
 
-此前线上与内置 site.json 的 SHA-256 均为 `1b383316d85039460ba9862a04253b53ef1ac933bb17d1469bdc1ecd45c92c18`，上述线上验证对应 2026-10-01 快照。合并主仓库后，2026-10-02 的 CLI、网站及主仓库原版构建脚本所生成快照逐字节一致，SHA-256 为 `19f2115699786d596d32bd08c1f8f0da45517a176700047415bf6275b7f67e70`；英文来源译文、评测记录说明与档案元数据完整保留。原始 source/note/decision_note 不变，JSON 同时保留上游的 source_en/note_en/decision_note_en 等译文字段；网页英文导出的来源列使用译文，CLI CSV 的 source 列仍按原始文本契约导出。CLI 查询仍从本地文件读取，不会自动刷新线上数据。
+此前线上与内置 site.json 的 SHA-256 均为 `1b383316d85039460ba9862a04253b53ef1ac933bb17d1469bdc1ecd45c92c18`，上述线上验证对应 2026-10-01 快照。合并主仓库后，2026-10-02 的 CLI、网站及主仓库原版构建脚本所生成快照逐字节一致，SHA-256 为 `19f2115699786d596d32bd08c1f8f0da45517a176700047415bf6275b7f67e70`；英文来源译文、评测记录说明与档案元数据完整保留。原始 source/note/decision_note 不变，JSON 同时保留上游的 source_en/note_en/decision_note_en 等译文字段；网页英文导出的来源列使用译文，CLI CSV 的 source 列仍按原始文本契约导出。当前 table 详情与比较优先使用现有英文译文，默认数据命令会联网检查更新并自动离线回退。
 
 1. 同快照、同筛选条件下，price/allowance 的有序 Point ID 列表与网页一致，不只比较数量。
 2. Model、Company、Channel、Plan 在所有价格输出中独立，JSON/CSV 标识稳定。
@@ -352,6 +359,7 @@ exit: 2
 4. 整段搜索、无分点、API/null、促销、同价并列及 limit 顺序正确。
 5. table 的配置展开、前沿、空结果与缺分规则明确，排名别名结果完全一致。
 6. JSON 可解析，CSV 正确转义，stdout/stderr 分离，退出码和 EPIPE 正确。
-7. 打包后任意目录离线使用，现有网站测试与构建仍通过。
+7. 默认联网、ETag/304、网络或无效数据回退、缓存损坏与写入失败均可自动处理；--data 与帮助/版本不联网。
+8. 打包后任意目录可自动离线兜底，现有网站测试与构建仍通过。
 
-示例数量是当前快照事实：318 points、74 models、18 companies、95 plans、17 channels、8 boards、330 configurations、1854 mappings。Anthropic price=29、allowance=24；月费档位 all=24、0-30=6、30-100=5、100-300=13。实现与测试不把这些数量作为永久常量。
+示例数量是 2026-10-01/02 快照事实：318 points、74 models、18 companies、95 plans、17 channels、8 boards、330 configurations、1854 mappings。Anthropic price=29、allowance=24；月费档位 all=24、0-30=6、30-100=5、100-300=13。实现与测试不把这些数量作为永久常量。

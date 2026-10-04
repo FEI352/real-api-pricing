@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
-import { loadDataset } from "../src/dataset.js";
+import { DATASET_URL, loadDataset } from "../src/dataset.js";
 import { CliError } from "../src/types.js";
 
 const bundled = fileURLToPath(new URL("../data/site.json", import.meta.url));
@@ -35,7 +35,10 @@ function datasetError(message: RegExp) {
 
 test("bundled data expands compressed mappings and preserves complete metadata", async () => {
   const original = JSON.parse(snapshotText);
-  const context = await loadDataset();
+  const context = await loadDataset(undefined, {
+    cachePath: path.join(os.tmpdir(), `rap-missing-cache-${process.pid}`, "site.json"),
+    fetch: async () => { throw new TypeError("Offline"); },
+  });
   assert.equal(context.source, "bundled");
   assert.equal(context.sourcePath, null);
   assert.equal(context.data.version, 1);
@@ -65,6 +68,8 @@ test("I/O and JSON errors are actionable exit-1 errors", async () => {
 });
 
 const invalidCases: [string, (data: ReturnType<typeof JSON.parse>) => void, RegExp][] = [
+  ["invalid English source", (d) => { d.points[0].source_en = 7; }, /source_en/],
+  ["invalid English benchmark note", (d) => { d.configurations[0].record_note_en = []; }, /record_note_en/],
   ["unsupported version", (d) => { d.version = 2; }, /version/],
   ["missing snapshot date", (d) => { delete d.generatedAt; }, /generatedAt/],
   ["invalid board snapshot date", (d) => { Object.values<{ snapshot: string }>(d.boards)[0].snapshot = "yesterday"; }, /snapshot/],
@@ -115,4 +120,136 @@ test("accepts complete mapping fields when they agree with the shared configurat
   await withSnapshot(JSON.stringify(data), async (filename) => {
     assert.equal((await loadDataset(filename)).data.mappings[0].score, config.score);
   });
+});
+
+async function withCache(callback: (cachePath: string) => Promise<void>) {
+  const directory = await mkdtemp(path.join(os.tmpdir(), "rap-cache-"));
+  try {
+    await callback(path.join(directory, "site.json"));
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+}
+
+const offline: typeof fetch = async () => { throw new TypeError("Offline"); };
+
+test("valid remote data replaces cache and revalidates with its ETag", async () => {
+  await withCache(async (cachePath) => {
+    const snapshot = { ...JSON.parse(snapshotText), generatedAt: "2027-01-02" };
+    const fresh = await loadDataset(undefined, { cachePath, fetch: async (url, init) => {
+      assert.equal(url, DATASET_URL);
+      assert.equal(new Headers(init?.headers).get("if-none-match"), null);
+      return Response.json(snapshot, { headers: { etag: '"snapshot-2"' } });
+    } });
+    assert.equal(fresh.source, "remote");
+    assert.equal(fresh.sourcePath, null);
+    assert.equal(fresh.data.generatedAt, snapshot.generatedAt);
+    assert.deepEqual(JSON.parse(await readFile(cachePath, "utf8")), { etag: '"snapshot-2"', snapshot });
+    const unchanged = await loadDataset(undefined, { cachePath, fetch: async (_url, init) => {
+      assert.equal(new Headers(init?.headers).get("if-none-match"), '"snapshot-2"');
+      return new Response(null, { status: 304 });
+    } });
+    assert.equal(unchanged.source, "cache");
+    assert.equal(unchanged.sourcePath, cachePath);
+    assert.deepEqual(unchanged.data, fresh.data);
+    assert.equal((await loadDataset(undefined, { cachePath, fetch: offline })).data.generatedAt, snapshot.generatedAt);
+  });
+});
+
+test("invalid remote responses preserve the last-good cache", async () => {
+  await withCache(async (cachePath) => {
+    const snapshot = { ...JSON.parse(snapshotText), generatedAt: "2027-01-03" };
+    const envelope = JSON.stringify({ etag: '"last-good"', snapshot });
+    await writeFile(cachePath, envelope);
+    for (const request of [offline,
+      async () => new Response("Unavailable", { status: 503 }),
+      async () => new Response("invalid JSON"),
+      async () => Response.json({ ...snapshot, version: 2 }),
+    ]) {
+      const context = await loadDataset(undefined, { cachePath, fetch: request });
+      assert.equal(context.source, "cache");
+      assert.equal(context.data.generatedAt, snapshot.generatedAt);
+      assert.equal(await readFile(cachePath, "utf8"), envelope);
+    }
+  });
+});
+
+test("missing or invalid caches fall back to bundled data without poisoning requests", async () => {
+  await withCache(async (cachePath) => {
+    for (const content of [null, "{broken", JSON.stringify({ etag: '"bad"', snapshot: { version: 2 } }),
+      JSON.stringify({ etag: "invalid\r\nheader", snapshot: JSON.parse(snapshotText) }),
+    ]) {
+      if (content !== null) await writeFile(cachePath, content);
+      const context = await loadDataset(undefined, { cachePath, fetch: async (_url, init) => {
+        assert.equal(new Headers(init?.headers).get("if-none-match"), null);
+        throw new TypeError("Offline");
+      } });
+      assert.equal(context.source, "bundled");
+      assert.equal(context.sourcePath, null);
+      assert.equal(context.data.generatedAt, JSON.parse(snapshotText).generatedAt);
+    }
+  });
+});
+
+test("304 without a usable cache retries once without a conditional header", async () => {
+  await withCache(async (cachePath) => {
+    let requests = 0;
+    const context = await loadDataset(undefined, { cachePath, fetch: async (_url, init) => {
+      assert.equal(new Headers(init?.headers).get("if-none-match"), null);
+      return ++requests === 1 ? new Response(null, { status: 304 }) : new Response(snapshotText);
+    } });
+    assert.equal(context.source, "remote");
+    assert.equal(requests, 2);
+  });
+});
+
+test("responses without an ETag remain usable offline and refresh unconditionally", async () => {
+  await withCache(async (cachePath) => {
+    await loadDataset(undefined, { cachePath, fetch: async () => new Response(snapshotText) });
+    assert.equal(JSON.parse(await readFile(cachePath, "utf8")).etag, null);
+    assert.equal((await loadDataset(undefined, { cachePath, fetch: offline })).source, "cache");
+    await loadDataset(undefined, { cachePath, fetch: async (_url, init) => {
+      assert.equal(new Headers(init?.headers).get("if-none-match"), null);
+      return new Response(snapshotText);
+    } });
+  });
+});
+
+test("an unwritable cache still permits remote data and leaves no temporary files", async () => {
+  await withCache(async (cachePath) => {
+    await writeFile(cachePath, "parent is a file");
+    const context = await loadDataset(undefined, { cachePath: path.join(cachePath, "site.json"),
+      fetch: async () => new Response(snapshotText),
+    });
+    assert.equal(context.source, "remote");
+    assert.equal(await readFile(cachePath, "utf8"), "parent is a file");
+  });
+});
+
+test("request and body timeouts fall back to cached data", async () => {
+  await withCache(async (cachePath) => {
+    await writeFile(cachePath, JSON.stringify({ etag: null, snapshot: JSON.parse(snapshotText) }));
+    const abort = (signal: AbortSignal) => new Promise<never>((_resolve, reject) => {
+      // The timer keeps this mock alive while native AbortSignal.timeout is unref'ed.
+      const timer = setTimeout(() => reject(new Error("Abort was not delivered")), 1_000);
+      signal.addEventListener("abort", () => { clearTimeout(timer); reject(signal.reason); }, { once: true });
+    });
+    for (const waitForBody of [false, true]) {
+      const context = await loadDataset(undefined, { cachePath, timeoutMs: 10, fetch: async (_url, init) => {
+        const signal = init!.signal!;
+        if (!waitForBody) return await abort(signal);
+        const response = new Response(snapshotText);
+        response.json = () => abort(signal);
+        return response;
+      } });
+      assert.equal(context.source, "cache");
+    }
+  });
+});
+
+test("explicit local data bypasses the transport and cache", async () => {
+  const context = await loadDataset(bundled, { cachePath: "/does/not/exist", fetch: async () => {
+    assert.fail("explicit file must not fetch");
+  } });
+  assert.equal(context.source, "file");
 });

@@ -55,7 +55,8 @@ node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
 ```
 
 `npm test` builds the executable and `cli/data/site.json` before testing data
-validation, website query parity and CLI behavior. `npm --prefix cli run build`
+validation, online loading and cache fallback, website query parity and CLI
+behavior. `npm --prefix cli run build`
 is sufficient when only the executable and snapshot are needed. The website
 and CLI share `scripts/lib/build-site-data.mjs`; both verify adopted values
 against `data/adopted.csv` without changing their numeric precision.
@@ -63,8 +64,11 @@ against `data/adopted.csv` without changing their numeric precision.
 To prepare a local installation package, run `npm pack` from `cli/`; this
 typechecks and rebuilds before including the executable, snapshot, README
 and LICENSE. Install the resulting tarball with
-`npm install -g /absolute/path/to/fullstop000-real-api-pricing-cli-0.1.0.tgz`.
-The package has not been published to npm. Usage and output contracts are in
+`npm install -g /absolute/path/to/real-api-pricing-0.1.0.tgz`.
+After the maintainer publishes the package, install it with
+`npm install -g real-api-pricing`. Queries check the website dataset by default
+and automatically fall back to validated cache or the bundled snapshot.
+`--data <site.json>` reads only that local file. Usage and output contracts are in
 [cli/README.md](cli/README.md) and [docs/cli-design.md](docs/cli-design.md).
 
 ## Layout
@@ -81,7 +85,7 @@ The package has not been published to npm. Usage and output contracts are in
 - `_build/`: ignored intermediate renders, interactive HTML and audit reports. `publish_charts.py` exports full-data Pareto charts and all overview/frontier figures to `charts/`. Selected-data renders are never published.
 - `scripts/checks/`: coordinate, frontier and language checks.
 - `web/`: the interactive site (Vite/React); see [web/README.md](web/README.md).
-- `cli/`: the offline TypeScript query CLI; see [cli/README.md](cli/README.md).
+- `cli/`: the TypeScript query CLI with automatic offline fallback; see [cli/README.md](cli/README.md).
 - `scripts/lib/build-site-data.mjs`: snapshot adapter shared by the website and CLI.
 
 Older `data/subscription-quotas*.json`, `data/subscriptions.json` and claim archives are historical evidence, not current build inputs. The build uses the adoption script and dated research scores. Local `_backup/` and caches are ignored by Git and are not publication assets.

@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { test } from "node:test";
+import { after, test } from "node:test";
 import { parse } from "csv-parse/sync";
 import { unpackData } from "../../web/src/loadData.ts";
 import { displayPlan, manufacturer } from "../../web/src/domain.ts";
@@ -18,14 +18,29 @@ const version = JSON.parse(readFileSync(join(root, "cli/package.json"), "utf8"))
 const board = "aa_intelligence_index";
 const first = data.points[0]!;
 const second = data.points[1]!;
+const cacheHome = mkdtempSync(join(tmpdir(), "rap-cli-cache-"));
+const fetchPreload = new URL("./fixtures/fetch.mjs", import.meta.url).href;
+after(() => rmSync(cacheHome, { recursive: true, force: true }));
 
-function run(args: string[], cwd = root) {
+function environment(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
+  return {
+    ...process.env,
+    NO_COLOR: "1",
+    FORCE_COLOR: "0",
+    XDG_CACHE_HOME: cacheHome,
+    RAP_TEST_FETCH_MODE: "offline",
+    NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ""} --import=${fetchPreload}`,
+    ...overrides,
+  };
+}
+
+function run(args: string[], cwd = root, overrides: NodeJS.ProcessEnv = {}) {
   const result = spawnSync(process.execPath, [main, ...args], {
     cwd,
     encoding: "utf8",
     timeout: 20_000,
     maxBuffer: 32 * 1024 * 1024,
-    env: { ...process.env, NO_COLOR: "1", FORCE_COLOR: "0" },
+    env: environment(overrides),
   });
   assert.ifError(result.error);
   assert.equal(result.signal, null, result.stderr);
@@ -66,6 +81,75 @@ test("compiled CLI uses its bundled snapshot offline from an unrelated cwd", () 
     assert.equal(body.meta.total, data.points.filter((p) => p.vendor === "Anthropic").length);
     assert.ok(body.rows.every((r) => r.point.company === "Anthropic"));
     assert.equal(result.stderr, "");
+  });
+});
+
+test("compiled CLI fetches by default, revalidates its cache, and falls back silently", {
+  skip: process.platform !== "linux" && "XDG_CACHE_HOME controls the Linux cache directory",
+}, () => {
+  const remote = { ...packed, generatedAt: "2027-04-02" };
+  fixture(remote, (dir, path) => {
+    const calls = join(dir, "fetch-calls.jsonl");
+    const env = { XDG_CACHE_HOME: dir, RAP_TEST_FETCH_CALLS: calls, RAP_TEST_SNAPSHOT: path };
+    const cachePath = join(dir, "real-api-pricing", "site.json");
+    for (const [mode, source] of [
+      ["fresh", "remote"], ["not-modified", "cache"], ["offline", "cache"], ["http-error", "cache"],
+    ]) {
+      const result = run(["info", "--format", "json"], root, { ...env, RAP_TEST_FETCH_MODE: mode });
+      assert.equal(result.status, 0, result.stderr);
+      assert.equal(result.stderr, "", "automatic cache fallback has no extra diagnostics");
+      const body = JSON.parse(result.stdout) as Result<Record<string, unknown>>;
+      assert.equal(body.meta.source, source, mode);
+      assert.equal(body.meta.sourcePath, source === "cache" ? cachePath : null, mode);
+      assert.equal(body.meta.snapshot, remote.generatedAt, mode);
+      assert.equal(body.rows[0]!.source, source, mode);
+      assert.equal(body.rows[0]!.snapshot, remote.generatedAt, mode);
+    }
+    const cached = JSON.parse(readFileSync(cachePath, "utf8"));
+    assert.equal(cached.etag, '"cli-test-snapshot"');
+    assert.deepEqual(cached.snapshot, remote);
+    const requests = readFileSync(calls, "utf8").trim().split("\n").map((line) => JSON.parse(line));
+    assert.deepEqual(requests, [
+      { url: "https://realapipricing.com/data/site.json", etag: null },
+      ...Array.from({ length: 3 }, () => ({
+        url: "https://realapipricing.com/data/site.json", etag: '"cli-test-snapshot"',
+      })),
+    ]);
+  });
+});
+
+test("compiled CLI ignores a corrupt cache and uses bundled data when the network fails", {
+  skip: process.platform !== "linux" && "XDG_CACHE_HOME controls the Linux cache directory",
+}, () => {
+  fixture(packed, (dir) => {
+    const cachePath = join(dir, "real-api-pricing", "site.json");
+    mkdirSync(join(dir, "real-api-pricing"));
+    writeFileSync(cachePath, "{ invalid JSON");
+    const result = run(["price", "--company", "Anthropic", "--format", "json"], root, {
+      XDG_CACHE_HOME: dir,
+    });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stderr, "");
+    const body = JSON.parse(result.stdout) as Result<QueryRow>;
+    assert.equal(body.meta.source, "bundled");
+    assert.equal(body.meta.sourcePath, null);
+    assert.equal(body.meta.snapshot, data.generatedAt);
+    assert.ok(body.rows.every((row) => row.point.company === "Anthropic"));
+  });
+});
+
+test("help, version, and explicit data files never fetch", () => {
+  fixture(packed, (dir, path) => {
+    const calls = join(dir, "fetch-calls.jsonl");
+    writeFileSync(calls, "");
+    const env = { RAP_TEST_FETCH_CALLS: calls, RAP_TEST_FETCH_MODE: "fresh", RAP_TEST_SNAPSHOT: path };
+    for (const args of [[], ["--help"], ["--version"], ["price", "--help"],
+      ["info", "--data", path, "--format", "json"]]) {
+      const result = run(args, root, env);
+      assert.equal(result.status, 0, result.stderr);
+      assert.equal(result.stderr, "");
+    }
+    assert.equal(readFileSync(calls, "utf8"), "");
   });
 });
 
@@ -362,7 +446,9 @@ for (const format of ["table", "csv", "json"]) {
   test(`closing a large ${format} output pipe early emits neither a stack trace nor success metadata`, () => {
     const result = spawnSync("bash", ["-o", "pipefail", "-c",
       '"$1" "$2" query --board aa_intelligence_index --config all --format "$3" | head -c 1 >/dev/null',
-      "rap-pipe-test", process.execPath, main, format], { encoding: "utf8", cwd: root, timeout: 20_000 });
+      "rap-pipe-test", process.execPath, main, format], {
+      encoding: "utf8", cwd: root, timeout: 20_000, env: environment(),
+    });
     assert.ifError(result.error);
     assert.equal(result.status, 0, result.stderr);
     assert.equal(result.stderr, "");

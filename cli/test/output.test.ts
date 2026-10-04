@@ -153,6 +153,74 @@ test("show CSV expands configurations without changing detail metadata and retai
   assert.ok(tableOutput.includes("Intelligence Board"));
 });
 
+function detailResult(p: PublicPoint, b: Benchmark, command: "show" | "compare"): Result {
+  return result(command === "show"
+    ? [{ point: p, benchmarks: [b] }]
+    : [{ point: p, benchmark: b }, { point: { ...p, id: "other::model" }, benchmark: b }],
+  { command, view: null, board: b.board });
+}
+
+for (const command of ["show", "compare"] as const) {
+  test(`${command} tables prefer English evidence and record notes, and display duplicate notes once`, () => {
+    const translatedPoint: PublicPoint = {
+      ...point, source: "中文来源", source_en: "English source",
+      decision_note: "中文采用说明", decision_note_en: "English adopted allowance",
+      note: "不同的中文备注", note_en: "English adopted allowance",
+    };
+    const translatedBenchmark: Benchmark = {
+      ...benchmark, source: "中文评测来源", source_en: "English benchmark source",
+      record_note_zh: "中文原始备注", record_note_en: "English record note",
+    };
+    const output = renderResult(detailResult(translatedPoint, translatedBenchmark, command), "table", context).stdout;
+    assert.ok(output.includes("Source:\nEnglish source"));
+    assert.ok(output.includes("Decision note:\nEnglish adopted allowance"));
+    assert.equal(output.match(/English adopted allowance/g)?.length, command === "show" ? 1 : 2);
+    assert.ok(!output.includes("\nNote:\n"));
+    assert.ok(!output.includes("中文"));
+    const cells = renderedCells(output).flat();
+    assert.ok(cells.includes("English benchmark source"));
+    assert.ok(cells.includes("English record note"));
+    const distinctPoint = { ...translatedPoint, note_en: "English separate note" };
+    const distinctOutput = renderResult(detailResult(distinctPoint, translatedBenchmark, command), "table", context).stdout;
+    assert.ok(distinctOutput.includes("Note:\nEnglish separate note"));
+    assert.ok(!distinctOutput.includes("中文"));
+  });
+
+  test(`${command} tables preserve old snapshot text and separate distinct notes when translations are absent or blank`, () => {
+    const legacyPoint: PublicPoint = {
+      ...point, source_en: "", decision_note_en: " \n", note: "Separate legacy note",
+    };
+    const legacyBenchmark: Benchmark = {
+      ...benchmark, source_en: " ", record_note_en: "", record_note_zh: "原始记录备注",
+    };
+    const output = renderResult(detailResult(legacyPoint, legacyBenchmark, command), "table", context).stdout;
+    assert.ok(output.includes(`Source:\n${point.source}`));
+    assert.ok(output.includes(`Decision note:\n${point.decision_note}`));
+    assert.ok(output.includes("Note:\nSeparate legacy note"));
+    const cells = renderedCells(output).flat();
+    assert.ok(cells.includes(benchmark.source));
+    assert.ok(cells.includes("原始记录备注"));
+    const duplicated = { ...legacyPoint, note: legacyPoint.decision_note };
+    assert.ok(!renderResult(detailResult(duplicated, legacyBenchmark, command), "table", context).stdout.includes("\nNote:\n"));
+  });
+
+  test(`${command} JSON and CSV retain raw evidence and all translation fields`, () => {
+    const translatedPoint: PublicPoint = {
+      ...point, source_en: "English source", decision_note_en: "English decision", note_en: "English note",
+    };
+    const translatedBenchmark: Benchmark = {
+      ...benchmark, source_en: "English benchmark source", record_note_en: "English record note", record_note_zh: "原始备注",
+    };
+    const r = detailResult(translatedPoint, translatedBenchmark, command);
+    assert.deepEqual(JSON.parse(renderResult(r, "json", context).stdout), r);
+    for (const row of csvRecords(renderResult(r, "csv", context).stdout)) {
+      assert.equal(row.source, point.source);
+      assert.equal(row.decision_note, point.decision_note);
+      assert.deepEqual(JSON.parse(row.benchmark_json!), translatedBenchmark);
+    }
+  });
+}
+
 test("show without mappings exports one price row; empty queries preserve format contracts", () => {
   const show = result([{ point, benchmarks: [] }], { command: "show", view: null });
   assert.equal(csvRecords(renderResult(show, "csv").stdout).length, 1);
@@ -231,8 +299,26 @@ test("custom dataset source path remains visible in diagnostics and info CSV has
   assert.deepEqual(Object.keys(row!), ["snapshot", "source", "source_path", "counts_json", "conventions_json"]);
   assert.equal(row!.source_path, "/tmp/custom data.json");
   assert.equal(JSON.parse(row!.counts_json!).points, 1);
+  assert.ok(renderResult(info, "table").stdout.includes("file: /tmp/custom data.json"));
   assert.ok(renderResult(info, "table").stdout.includes("1 USD = 6.7787 CNY"));
   assert.ok(!renderResult(info, "table").stdout.includes("1 USD = 0.1475"));
+});
+
+test("remote and cached datasets keep their actual source visible without network warnings", () => {
+  for (const [source, sourcePath] of [["remote", null], ["cache", "/tmp/rap-cache/site.json"]] as const) {
+    const sourceLabel = sourcePath ? `${source}: ${sourcePath}` : source;
+    const query = result([{ point, benchmark: null }], { source, sourcePath });
+    assert.ok(renderResult(query, "table").stderr.includes(`Source: ${sourceLabel}`));
+    assert.deepEqual(JSON.parse(renderResult(query, "json").stdout).meta.warnings, []);
+    const info = result([{
+      snapshot: meta.snapshot, source, source_path: sourcePath, datasetVersion: 1,
+      counts: { points: 1 }, conventions: context.data.conventions,
+    }], { command: "info", view: null, source, sourcePath });
+    assert.ok(renderedCells(renderResult(info, "table").stdout).some(([field, value]) => field === "Data source" && value === sourceLabel));
+    const [row] = csvRecords(renderResult(info, "csv").stdout);
+    assert.equal(row!.source, source);
+    assert.equal(row!.source_path, sourcePath ?? "");
+  }
 });
 
 test("ranking and query summaries explain the active order, fee band and configuration selection", () => {

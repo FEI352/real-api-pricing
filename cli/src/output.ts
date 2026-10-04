@@ -64,6 +64,10 @@ const nullableBoolean = (value: boolean | null | undefined): string =>
   value === null || value === undefined ? "unverified" : String(value);
 const jsonCell = (value: unknown): string | null =>
   value === null || value === undefined ? null : JSON.stringify(value);
+const englishText = (translation: string | undefined, original: string | undefined): string | undefined =>
+  translation?.trim() ? translation : original;
+const dataSource = (source: string, sourcePath: string | null): string =>
+  (source === "file" || source === "cache") && sourcePath ? `${source}: ${sourcePath}` : source;
 
 /** Protect spreadsheet text while preserving numeric values and identifiers. */
 function spreadsheetText(value: string | null | undefined): string | null | undefined {
@@ -184,11 +188,13 @@ function details(p: PublicPoint, context?: DatasetContext): [string, Cell][] {
   ];
 }
 function evidence(p: PublicPoint): string {
+  const decisionNote = englishText(p.decision_note_en, p.decision_note);
+  const note = englishText(p.note_en, p.note);
   const blocks = [
-    `Source:\n${p.source || "N/A"}`,
-    `Decision note:\n${p.decision_note || "N/A"}`,
+    `Source:\n${englishText(p.source_en, p.source) || "N/A"}`,
+    `Decision note:\n${decisionNote || "N/A"}`,
   ];
-  if (p.note) blocks.push(`Note:\n${p.note}`);
+  if (note && note !== decisionNote) blocks.push(`Note:\n${note}`);
   if (p.evidence.length) blocks.push(table(["Evidence", "URL"], p.evidence.map((item) => [item.label, item.url])));
   return blocks.join("\n\n");
 }
@@ -203,7 +209,8 @@ function benchmarkCells(b: Benchmark): [string, Cell][] {
     ["Mapping confidence", b.mapping_confidence ? confidenceLabel(b.mapping_confidence) : "—"],
     ["Quota effort matched", nullableBoolean(b.quota_effort_matched)],
     ["Best tie count", b.best_tie_count],
-    ["Benchmark source", b.source], ["Mapping kind", b.mapping_kind],
+    ["Benchmark source", englishText(b.source_en, b.source)],
+    ["Record note", englishText(b.record_note_en, b.record_note_zh)], ["Mapping kind", b.mapping_kind],
     ["Mapping note", b.mapping_note], ["Benchmark archive", b.archive],
     ["Benchmark checked at", b.checked_at],
     ["Mean cost USD/task", price(b.mean_cost_usd_per_task ?? null)],
@@ -290,7 +297,7 @@ function infoTable(result: Result): string {
   const exchange = conventions.exchangeRate as RecordRow | undefined;
   const usdPerCny = conventions.usdPerCny as number | undefined;
   const fields: [string, Cell][] = [
-    ["Data source", info.source === "file" ? `file: ${text(info.source_path as Cell)}` : "bundled"],
+    ["Data source", dataSource(info.source as string, info.source_path as string | null)],
     ["Data snapshot", info.snapshot as Cell], ["Dataset version", info.datasetVersion as Cell],
     ["Price points", counts.points], ["Models", counts.models], ["Companies", counts.companies],
     ["Channels", counts.channels], ["Plans", counts.plans], ["Boards", counts.boards],
@@ -360,7 +367,7 @@ function summary(result: Result, exportedRows?: number, options?: DisplayOptions
   const meta = result.meta;
   const lines: string[] = [];
   if (meta.command !== "info") {
-    const source = meta.source === "file" ? `file: ${meta.sourcePath}` : "bundled";
+    const source = dataSource(meta.source, meta.sourcePath);
     let line = `Snapshot: ${meta.snapshot} | Source: ${source}`;
     if (meta.view) line += ` | View: ${meta.view}`;
     if (meta.resource) line += ` | Resource: ${meta.resource}`;

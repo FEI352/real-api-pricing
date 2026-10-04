@@ -1,6 +1,8 @@
 # CLI 指令与输出参考
 
-状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包尚未发布。下列输出示例使用 `node cli/dist/main.js` 在仓库根目录执行，基于当时打包的 **2026-10-01** 快照。该快照当时与线上文件一致；Chromium 读取原 HTTPS 网站 DOM 的 61 个场景、累计 5,176 行对比均通过，浏览器错误为 0。合并主仓库后，构建数据已更新为 **2026-10-02**，保留英文来源译文和评测档案元数据；示例日期保留其验证时点，实际日期以 `rap info` 为准。表格按字段整理，较长的详情只列节选；帮助和 stderr 采用实际输出。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。CLI 仍从本地快照离线查询，不自动联网刷新。
+状态：0.1.0 已实现，基于 TypeScript 与 Commander；npm 包名为 `real-api-pricing`，维护者发布后可用 `npm install -g real-api-pricing` 安装，当前可从仓库构建或安装本地 tarball。默认自动联网，失败时依次使用有效缓存、内置快照，正常回退不增加选项或网络警告。
+
+下列数值与 `Source: bundled` 示例来自 **2026-10-01** 的历史验证：Chromium 读取原 HTTPS 网站 DOM 的 61 个场景、累计 5,176 行对比均通过，浏览器错误为 0。show/compare 的英文证据节选使用合并主仓库后 **2026-10-02** 快照已有的译文。当前默认会联网检查更新，实际日期与来源以每次查询的元信息为准。表格按字段整理，较长的详情只列节选；帮助采用当前英文输出。验证范围与 CSV 对账规则见 [CLI 设计规范](cli-design.md)，安装见 [CLI README](../cli/README.md)。
 
 命令名为 `rap`。默认表格、默认返回全部匹配记录；表头、套餐显示、帮助及错误信息固定使用英文。`Model`、`Company`、`Channel`、`Plan` 在每张价格记录表中独立成列，即使筛选后值相同也保留。`Company` 是模型开发公司，对应网站 `vendors`；`Channel` 是提供套餐的访问渠道。例如 Claude 由 Anthropic 开发，Droid Max 的渠道是 Factory。
 
@@ -24,9 +26,9 @@
 | `rap --help` / `rap <command> --help` | 全局或子命令帮助 | — |
 | `rap --version` | CLI 软件版本 | — |
 
-全局数据选项为 `--data <site.json>`、`--format table|json|csv`。软件版本与数据快照日期分开；内置快照离线可用，查询不自动联网更新。
+全局数据选项为 `--data <site.json>`、`--format table|json|csv`，没有额外联网、离线或刷新选项。软件版本与数据快照日期分开；数据命令默认请求 `https://realapipricing.com/data/site.json`，利用 ETag/304 复用已校验缓存，失败时自动回退到缓存或内置快照。请求及响应体读取总超时为 3 秒。
 
-数据保存在本地：仓库的 `data/adopted.csv` 与 `derived/*.json` 通过共享适配器分别生成网站的 `web/public/data/site.json` 和 CLI 的 `cli/data/site.json`；两者的快照内容相同。`npm pack` 将 CLI 快照随本地安装包携带，数据路径相对安装位置定位，在任意工作目录均可读取。`--data <site.json>` 可指定其他本地快照；数据查询不联网。
+数据保存在本地：仓库的 `data/adopted.csv` 与 `derived/*.json` 通过共享适配器分别生成网站的 `web/public/data/site.json` 和 CLI 的 `cli/data/site.json`；两者的快照内容相同。`npm pack` 将 CLI 快照随本地安装包携带，数据路径相对安装位置定位，在任意工作目录均可读取。`--data <site.json>` 可指定其他本地快照，显式文件覆盖会完全跳过联网和缓存。默认缓存位置及读取规则见 [CLI README](../cli/README.md#data-and-freshness)。
 
 ## 2. `rap price`：真实单价排名
 
@@ -411,14 +413,14 @@ rap show 'droid_max::claude-opus-5.5' --board aa_intelligence_index
 | Official model prices | Official API list (cached / in / out, per MTok): $0.2 / $4 / $20 |
 | Subscription price assumption | Full use of the adopted allowance |
 
-**stdout**，原始 `Source` 和 `Decision note` 保持原文，允许按终端宽度换行：
+**stdout**，`Source` 和 `Decision note` 优先显示网站的现有英文译文，缺译文时使用原文，允许按终端宽度换行。此处 `note_en` 与 `decision_note_en` 相同，因此不重复输出 `Note`：
 
 ```text
 Source:
-用户Factory Droid本机实测：周额度（7-day rolling）已用1%→5%段（xhigh）+35,598,616 tok、5%@08:13→9%@12:40段（high，新会话47f9711d）+36,567,946 tok，合计+72,166,562 tok全为claude-opus-5-5（auto 0增量；glm-5.3-flash +50,317 属Droid Core免费池不计）；合计分拆 in 793,017/out 375,172/cache_create 3,640,056/cache_read 67,311,924/thinking 46,393；droid-opus55-max-round1-2026-09-29.json；https://factory.ai/pricing Max $200/月
+Maintainer's local Factory Droid measurement: weekly quota (7-day rolling) used 1%→5% segment (xhigh) +35,598,616 tok and 5%@08:13→9%@12:40 segment (high, new session 47f9711d) +36,567,946 tok, total +72,166,562 tok all claude-opus-5-5 (auto 0 delta; glm-5.3-flash +50,317 belongs to the free Droid Core pool and is not counted); total breakdown in 793,017 / out 375,172 / cache_create 3,640,056 / cache_read 67,311,924 / thinking 46,393; droid-opus55-max-round1-2026-09-29.json; https://factory.ai/pricing Max $200/month
 
 Decision note:
-首个Factory Droid点，按devin_max×opus-5.5同口径折算：1→9合计负载 cache读93.27%/cache写5.04%/输入1.10%/输出0.52%/thinking0.06%（hit 93.82%）偏离标准档；按Opus 5.5标价 cached$0.2/写5m $5/in$4/out$20（thinking 46,393不计费，用户裁定；与factoryCredits 16,935,482≈worth÷$4×1.6对账一致）折段 worth $42.34 ÷8%×4周＝月$2116.91 list-worth ÷ Anthropic档混合价$0.419/MTok＝50.52亿；1%/9%为取整读数，Δpp∈[7,9]对应约44.91~57.74亿；cache写按1h $8敏感性53.91亿不采；原始total口径72,166,562÷8%×4周＝36.08亿（周池902,082,025 raw）留作对照；factoryCredits 16,935,482≈2.12亿credits/周；两段4pp各8.90M/9.14M tok每pp（差2.7%），effort仅影响速率；Factory另有5h与30天滚动窗，30天窗若低于4×周池则本值偏高；Pro $20/Plus $100官方仅写约1/10、1/5 Max用量，不派生
+First Factory Droid point, normalized on the same basis as devin_max×opus-5.5: the combined 1→9 segment mix — cache read 93.27% / cache write 5.04% / input 1.10% / output 0.52% / thinking 0.06% (hit 93.82%) — deviates from the standard tier; at Opus 5.5 list prices cached $0.2 / 5m write $5 / in $4 / out $20 (thinking 46,393 unbilled per ruling; consistent with factoryCredits 16,935,482 ≈ worth÷$4×1.6), segment worth $42.34 ÷8%×4 weeks = $2,116.91/month list-worth ÷ Anthropic-tier blended price $0.419/MTok = 5.052B; 1%/9% are rounded readings — Δpp∈[7,9] maps to about 4.491B~5.774B; the cache-write-at-1h-$8 sensitivity 5.391B not adopted; the raw-total basis 72,166,562÷8%×4 weeks = 3.608B (weekly pool 902,082,025 raw) kept for comparison; factoryCredits 16,935,482 ≈ 212M credits/week; the two 4pp segments each carry 8.90M/9.14M tok per pp (2.7% apart) — effort only affects rate; Factory also has 5h and 30-day rolling windows — if the 30-day window is below 4× the weekly pool this value skews high; the Pro $20 / Plus $100 official pages state only about 1/10 and 1/5 of Max usage, not derived
 ```
 
 **stdout**，证据链接：
@@ -430,7 +432,7 @@ Decision note:
 
 证据的 `/data/...` 是快照保存的相对网站路径，CLI 原样保留该路径。
 
-**stdout**，榜单与配置字段节选；完整输出另含 Board ID、Harness、Mode，以及每条配置的完整字段表：
+**stdout**，榜单与配置字段节选；完整输出另含 Board ID、Harness、Mode，以及每条配置的完整字段表。Benchmark source 与 Record note 优先使用配置中的 source_en 与 record_note_en：
 
 | Board ID | Board | Board snapshot |
 | --- | --- | --- |
@@ -446,6 +448,7 @@ Decision note:
 
 ```text
 Benchmark source: https://artificialanalysis.ai/leaderboards/models
+Record note: v4.3.2 original precision (page shows integer 58). Released 9/22, all five tiers listed the same day and topped the board (next-highest Fable 5.1 max 53.35). A slug without a -max suffix is the max tier. The AA page notes releaseDate 2026-09-22; the other four tiers are marked 9-17 (per-tier measurement dates).
 Mapping kind: model_configuration_reference
 Mapping note: Exact served-model reference; quota-measurement effort is unverified.
 ```
@@ -500,15 +503,15 @@ rap compare 'claude_max_20x::claude-opus-5.5' \
 | Mapping confidence | Medium | Medium |
 | Quota effort matched | unverified | unverified |
 
-**stdout**，Claude Max 的原始证据区域：
+**stdout**，Claude Max 的英文证据区域；与 Decision note 相同的 Note 不重复输出：
 
 ```text
 Point ID: claude_max_20x::claude-opus-5.5
 Source:
-X @MiaAI_lab 推文（用户提供截图）：xHigh 1h2m 烧 10.305亿 raw = ~75% of 5h limit；claude-opus55-round1-2026-09-23.json；round10 条目#15 Max 20x ≈5.5 满窗/周（claude-adoption-round10-2026-09-25.json）；Claude Pro × Opus 5.5 采用样本（issue #52 + Reddit 段）×10；claude-opus55-max20x-round2-2026-09-30.json
+X @MiaAI_lab tweet (screenshot provided by the maintainer): xHigh burned 1.0305B raw in 1h2m = ~75% of the 5h limit; claude-opus55-round1-2026-09-23.json; round10 item #15 Max 20x ≈5.5 full windows/week (claude-adoption-round10-2026-09-25.json); Claude Pro × Opus 5.5 adopted sample (issue #52 + Reddit segment) ×10; claude-opus55-max20x-round2-2026-09-30.json
 
 Decision note:
-301.7→315.38亿（2026-09-30 用户裁定，Anthropic 档）：两路各折成 Max 20x 周额度百分点后按百分点合并——① MiaAI 窗 worth $471.10（写按 5m，与推文 $482.63 闭合）= 75% 窗 ÷ 5.5 窗/周 = 周 13.636pp，单独 329.81亿；② Pro × Opus 5.5 合并 worth $628.00 / 196.333 Pro pp ÷ Max 20x 周额度 = Pro×10 → 周 19.633pp，单独 305.36亿；两路差 8%。不采：Pro 5h/周 13.333%（7.5 窗）直接套 Max 20x 得 449.7 亿（Max 20x 窗 20×、周 10×，窗/周比与 Pro 不同）；官方倍率推 3.75 窗/周得 224.9 亿（MiaAI 窗仅为 Pro 窗 15.5× 而非 20×，与两倍率同时精确不自洽）；等权平均 317.58 亿；#65 混合样本暂不处理。以下为旧 301.7 决策原文——新增301.7亿：5h池 10.305亿÷~75%=13.74亿 raw（9/22发布已上调 Pro/Max/Team 5h 上限，窗池系发布期口径）；隐含权重 7.15/13.74=0.5204×Opus5 → 月池157÷0.5204；标价混合比0.5143独立互证（备选305.28亿差1.2%）；样本按新价$471.1≈推文$482.63闭合(+2.4%)；n=1推文无面板、~75%取整读数（月额区间约283~322亿）、effort仅影响速率；若官方权重偏离价格比（Fable 6.5×前车之鉴）需重推；周池面板直测/reset后受控打满可升high
+30.17B→31.538B (2026-09-30 decision, Anthropic tier): each path converted to Max 20x weekly-quota percentage points, then merged per pp — (i) the MiaAI window worth $471.10 (write at 5m; closes against the tweet's $482.63) = 75% of a window ÷ 5.5 windows/week = 13.636 weekly pp, 32.981B alone; (ii) the Pro × Opus 5.5 merged worth $628.00 / 196.333 Pro pp ÷ Max 20x weekly quota = Pro×10 → 19.633 weekly pp, 30.536B alone; the two paths differ by 8%. Not adopted: Pro 5h/week 13.333% (7.5 windows) applied directly to Max 20x gives 44.97B (Max 20x windows 20×, week 10× — the window/week ratio differs from Pro's); the official-multiplier derivation with 3.75 windows/week gives 22.49B (the MiaAI window is only 15.5× a Pro window, not 20× — inconsistent with both multipliers at once); equal-weight mean 31.758B; the #65 mixed sample not yet handled. Original 301.7 decision text — new 30.17B: 5h pool 1.0305B÷~75% = 1.374B raw (the 9/22 release had already raised Pro/Max/Team 5h caps, so the window pool reflects release-period basis); implied weight 7.15/13.74 = 0.5204×Opus5 → monthly pool 157÷0.5204; the list-price blend ratio 0.5143 independently corroborates (alternative 30.528B differs by 1.2%); the sample closes at the new price $471.1≈tweet $482.63 (+2.4%); n=1 tweet with no panel, ~75% rounded reading (monthly interval about 28.3B~32.2B), effort only affects rate; if official weights deviate from the price ratio (Fable 6.5× precedent) it must be re-derived; direct weekly-pool panel measurement or post-reset controlled saturation could raise it to high
 ```
 
 | Evidence | URL |
@@ -567,7 +570,14 @@ rap info
 Total: 1 | Returned: 1 | Truncated: false
 ```
 
-带 `--data` 的读取方式相同，source 则显示文件来源与解析后的路径；数据快照取文件中的 `generatedAt`，不取文件修改时间：
+当前默认联网成功时，Data source 为 `remote`；ETag/304 复用或网络失败时读取有效缓存则为 `cache: <绝对路径>`，没有有效缓存时为 `bundled`。以下来源示意不代表固定快照日期：
+
+| Field | Value |
+| --- | --- |
+| Data source | remote |
+| Data snapshot | 2026-10-03 |
+
+带 `--data` 时完全跳过联网和缓存，source 显示文件来源与解析后的路径；数据快照取文件中的 `generatedAt`，不取文件修改时间：
 
 ```sh
 rap info --data ./web/public/data/site.json
@@ -584,7 +594,7 @@ rap info --data ./web/public/data/site.json
 
 ### `rap --help`
 
-用途：发现入口及全局选项。帮助由 Commander 自动生成，无需加载快照。以下为实际英文帮助文本：
+用途：发现入口及全局选项。帮助由 Commander 自动生成，不加载快照、不读写缓存、不联网。以下为当前英文帮助文本：
 
 ```sh
 rap --help
@@ -595,7 +605,7 @@ rap --help
 ```text
 Usage: rap [options] [command]
 
-Read model prices and monthly allowances from a local snapshot.
+Read model prices and monthly allowances with automatic offline fallback.
 
 Options:
   -V, --version                     output the version number
@@ -752,4 +762,4 @@ error: unknown option '--company'
 
 Commander 随后附加 list boards 的帮助。
 
-数据文件读取或格式错误退出码为 1，不能输出半份成功结果。JSON 和 CSV 使用与表格相同的记录集合，空 JSON 返回 `rows: []`，空 CSV 保留表头；诊断仍写 stderr。CLI CSV 保持对应命令排序；网站排名视图的“Table · CSV”采用明细表排序（allowance 下载也按价格），固定列 schema 也不同，因此按 Point ID 对账共享原始字段，不要求文件逐字一致。比较榜单引用字段时显式选择同一榜单。完整导出契约见 [CLI 设计规范](cli-design.md)。
+显式 --data 文件或最终内置兜底数据读取、格式错误退出码为 1，不能输出半份成功结果；默认网络失败、超时或线上数据无效会自动回退，不作为查询错误输出。JSON 和 CSV 使用与表格相同的记录集合，空 JSON 返回 `rows: []`，空 CSV 保留表头；诊断仍写 stderr。CLI CSV 保持对应命令排序；网站排名视图的“Table · CSV”采用明细表排序（allowance 下载也按价格），固定列 schema 也不同，因此按 Point ID 对账共享原始字段，不要求文件逐字一致。比较榜单引用字段时显式选择同一榜单。完整导出契约见 [CLI 设计规范](cli-design.md)。

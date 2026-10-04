@@ -12,12 +12,15 @@ import type { QueryRow, Result } from "../src/types.ts";
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const main = join(root, "cli/dist/main.js");
-const packed = JSON.parse(readFileSync(join(root, "cli/data/site.json"), "utf8"));
+const snapshot = join(root, "cli/data/site.json");
+const packed = JSON.parse(readFileSync(snapshot, "utf8"));
 const data: SiteData = unpackData(packed);
 const board = "aa_intelligence_index";
 
 function query(args: string[], cwd = root): Result<QueryRow> {
-  const run = spawnSync(process.execPath, [main, ...args, "--format", "json"], {
+  // Both implementations must read the same snapshot; HTTP freshness is tested separately.
+  const source = args.includes("--data") ? [] : ["--data", snapshot];
+  const run = spawnSync(process.execPath, [main, ...source, ...args, "--format", "json"], {
     cwd, encoding: "utf8", timeout: 20_000, maxBuffer: 32 * 1024 * 1024,
   });
   assert.ifError(run.error);
@@ -105,7 +108,7 @@ for (const view of ["price", "allowance"] as const) {
 }
 
 for (const band of ["all", "0-30", "30-100", "100-300"]) {
-  test(`allowance fee band ${band} agrees with the live website domain`, () => {
+  test(`allowance fee band ${band} agrees with the website domain`, () => {
     const expected = website("allowance", { feeBand: band, vendors: ["Anthropic"] });
     const result = query(["allowance", "--company", "Anthropic", "--fee-band", band]);
     assert.deepEqual(pointIds(result), expected.map((r) => r.point.id));

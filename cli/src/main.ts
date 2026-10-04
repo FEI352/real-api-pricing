@@ -19,7 +19,7 @@ const numeric = (integer = false, positive = false) => (input: string): number =
 
 const program = new Command()
   .name("rap")
-  .description("Read model prices and monthly allowances from a local snapshot.")
+  .description("Read model prices and monthly allowances with automatic offline fallback.")
   .version(`rap ${packageInfo.version}`)
   .option("--data <site.json>", "Read a specified local snapshot")
   .option("--format <format>", "Output format: table | json | csv", "table")

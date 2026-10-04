@@ -22,16 +22,21 @@ npm --prefix cli run build
 node cli/dist/main.js --help
 ```
 
-The npm package has not been published. Follow the repository's
+After the maintainer publishes the package, install it with
+`npm install -g real-api-pricing`. Before publication, follow the repository's
 [CLI README](../../../cli/README.md) for building or installing a local tarball.
-Querying needs no website server, API key or network connection.
+Querying needs no website server or API key. It checks the website dataset by
+default and automatically uses cached or bundled data if the request fails.
 
 ## Query workflow
 
 1. Run `rap info --format json`. Record the actual snapshot date, source and
-   conventions. The default dataset is bundled locally and does not refresh
-   automatically. If the user supplies a local snapshot, pass
-   `--data /absolute/path/to/site.json` to every command, including `info`.
+   conventions. Each data command checks the website dataset, with automatic
+   fallback to a validated cache, then the bundled snapshot. The source is
+   `remote`, `cache`, `bundled` or `file`; use the snapshot date actually
+   returned by the command you report. If the user supplies a local snapshot,
+   pass `--data /absolute/path/to/site.json` to every command, including `info`.
+   This explicit file override skips network access.
 2. Discover exact identifiers with `list`. Keep model, company, channel and
    plan separate. A price point identifies a plan serving one model:
    `plan_id::model`. Use point IDs returned by queries for `show` and `compare`.
@@ -43,8 +48,9 @@ Querying needs no website server, API key or network connection.
    `rows` envelope; inspect `meta.warnings`, `meta.total` and `meta.truncated`.
    `--limit` returns only the first matching rows, not the full dataset.
 5. Inspect promising points with `show`, then use `compare` for at least two
-   distinct point IDs. Check quota confidence, workload, data date, adoption
-   notes and promotion qualifiers before recommending a plan.
+   distinct point IDs; one comparison uses one dataset for all points. Check
+   quota confidence, workload, data date, adoption notes and promotion
+   qualifiers before recommending a plan.
 6. Reply in the user's language. Include the snapshot date and scope, and
    report Model, Company, Channel, Plan, USD/MTok, monthly tokens, monthly fee
    and confidence as separate fields. Cite point IDs and relevant evidence;
@@ -114,16 +120,19 @@ and [CLI contract](../../../docs/cli-design.md).
   values rather than reverse-parsing rounded terminal tables. CLI CSV retains
   the command's ordering and documented columns; the website's CSV uses its
   table ordering and a different schema.
-- CLI display text is English and there is no `--lang` flag. Original evidence
-  text retains its language. Evidence paths such as `/data/evidence/...` are
-  website-relative and their archives are not bundled with the CLI. Resolve
+- CLI display text is English and there is no `--lang` flag. Details and
+  comparisons prefer available English source, decision and record notes;
+  original text is the fallback. Identical decision and note text appears once.
+  JSON/CSV preserve original evidence fields. Evidence paths such as
+  `/data/evidence/...` are website-relative and their archives are not bundled with the CLI. Resolve
   those links against `https://realapipricing.com` if source inspection is needed.
 - Empty queries succeed with exit 0 and empty `rows`; report no match rather
   than inventing a result. Exit 2 indicates invalid arguments; inspect help
   and correct the query. Exit 1 indicates an unreadable/invalid dataset;
   report that error instead of substituting prices.
 
-Describe bundled results as prices in the reported snapshot. For requests
-about today's prices, make the snapshot date explicit and obtain current
-evidence before claiming live verification; do not silently replace adopted
-values or edit the project's data during a query.
+Describe results as prices in the reported snapshot. Automatic network access
+does not guarantee a current response: `cache` and `bundled` indicate local
+fallback or reuse. For requests about today's prices, make the actual snapshot
+date explicit and obtain current evidence before claiming live verification;
+do not replace adopted values or edit the project's data during a query.
