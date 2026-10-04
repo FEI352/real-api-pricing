@@ -17,7 +17,30 @@ AI coding subscriptions sell a monthly fee, not a per-token price. This project 
 - The black line is the Pareto frontier: for every point on it, no other point is both cheaper and higher-scoring.
 - Subscription prices assume you use the whole allowance. Use half of it and your real price doubles.
 
-Snapshot: <!-- stat:snapshot -->2026-10-01<!-- /stat --> · <!-- stat:points_total -->318<!-- /stat --> plan × model points · [all charts, SVG / PNG, both languages](charts/README.md)
+Snapshot: <!-- stat:snapshot -->2026-10-03<!-- /stat --> · <!-- stat:points_total -->318<!-- /stat --> plan × model points · [all charts, SVG / PNG, both languages](charts/README.md)
+
+## Query from the terminal
+
+The TypeScript CLI queries the website's current dataset and separates model,
+company, channel and plan. It automatically falls back to cached or bundled
+data when offline. Requires Node.js 22.12+. Build from this repository:
+
+```sh
+npm --prefix cli ci
+npm --prefix cli run build
+node cli/dist/main.js price --company Anthropic
+node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
+```
+
+JSON/CSV exports, filtering, evidence and comparisons are available. See the
+[CLI README](cli/README.md) for installation and the
+[command reference](docs/cli-command-reference.md) for output examples.
+Version 0.1.0 is available from this checkout. After the maintainer publishes
+the npm package, install it with `npm install -g real-api-pricing`.
+
+For coding agents, the [Real Model Price skill](.agents/skills/real-model-price/SKILL.md)
+guides price, allowance and plan comparisons with this CLI. In Codex, invoke
+`$real-model-price` from a session that loads the repository's skills.
 
 ## How the numbers are made
 

@@ -1,6 +1,6 @@
 # Data / 数据
 
-Current snapshot: <!-- stat:snapshot -->2026-10-01<!-- /stat -->. The adopted dataset contains <!-- stat:points_total -->318<!-- /stat --> plan × model rows: <!-- stat:points_subscription -->299<!-- /stat --> subscription rows (<!-- stat:points_allowance -->298<!-- /stat --> with a monthly allowance plus one unmetered promotional row, Devin Pro × SWE-2 at ≈$0/MTok until 2026-10-31) and <!-- stat:points_metered -->19<!-- /stat --> metered API rows. This covers the project's adopted sample, not every plan or model on the market.
+Current snapshot: <!-- stat:snapshot -->2026-10-03<!-- /stat -->. The adopted dataset contains <!-- stat:points_total -->318<!-- /stat --> plan × model rows: <!-- stat:points_subscription -->299<!-- /stat --> subscription rows (<!-- stat:points_allowance -->298<!-- /stat --> with a monthly allowance plus one unmetered promotional row, Devin Pro × SWE-2 at ≈$0/MTok until 2026-10-31) and <!-- stat:points_metered -->19<!-- /stat --> metered API rows. This covers the project's adopted sample, not every plan or model on the market.
 
 These files are the public redacted edition. Original local evidence is backed up outside Git; see [PUBLICATION.md](../PUBLICATION.md). 本目录为公开脱敏版，保留数值、来源与取舍记录，原件仅存于 Git 忽略的本地备份。
 
@@ -27,6 +27,7 @@ These files are the public redacted edition. Original local evidence is backed u
 - [points.csv](../derived/points.csv) / [points.json](../derived/points.json): computed prices plus separate leaderboard scores. 绘图使用的完整计算结果。
 - [conventions.json](conventions.json): shared conventions and exchange rate. 部分说明为历史记录，以采用脚本的明确取舍为准。
 - [research/](research/): dated evidence. Historical claims can contradict current decisions; they are not all adopted. 历史证据不等于当前采用结论。
+- [i18n/](i18n/): English translations of the adoption source/decision text shown on the website. When a `source`/`decision_note` changes, run `python scripts/checks/verify_i18n.py --sync` and fill the English. 网站英文界面显示的来源/取舍译文；改动中文原文后运行 `verify_i18n.py --sync` 并补译文。
 - [raw/](raw/), subscription-quotas*.json, subscriptions.json and claim summaries: historical inputs retained for traceability. 历史原料保留用于溯源，不是当前主表。
 - [SOURCES.md](../SOURCES.md): attribution and third-party license boundaries. 来源署名与许可边界。
 

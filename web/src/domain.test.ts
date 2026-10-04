@@ -15,7 +15,7 @@ test("Wheel zoom preserves cursor anchor and reversed logarithmic axis direction
     restored.forEach((n, i) => assert.ok(Math.abs(n - range[i]) < 1e-9));
   }
 });
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { parse } from "csv-parse/sync";
 import {
   matchesFeeBand,
@@ -27,8 +27,10 @@ import {
   accessLine,
   displayPlan,
   effortLabel,
+  firstUrl,
   isThirdParty,
   manufacturer,
+  mappingNoteLabel,
   frontierPath,
   groups,
   pareto,
@@ -79,7 +81,23 @@ const data: SiteData = unpackData(JSON.parse(
 
 test("Packed website mappings restore every original field without data loss", () => {
   const raw = JSON.parse(readFileSync(new URL("../../derived/benchmark-points.json", import.meta.url), "utf8"));
-  assert.deepEqual(data.mappings, raw);
+  // Website-only display fields (translations, provenance inherited from the
+  // shared configuration) are added on top of the original mapping records.
+  assert.deepEqual(
+    data.mappings.map(
+      ({
+        source_en: _se,
+        archive: _a,
+        archive_url: _au,
+        checked_at: _c,
+        board_label: _b,
+        record_note_zh: _rz,
+        record_note_en: _re,
+        ...m
+      }) => m,
+    ),
+    raw,
+  );
 });
 test("Anthropic workload line prices the input share as cache writes", () => {
   const p = { workload: "anthropic" } as Point;
@@ -1059,5 +1077,86 @@ test("Every published point carries a data date of a known kind", () => {
     assert.ok(p.data_date_kind && kinds.has(p.data_date_kind), p.id);
     assert.equal(p.data_date_kind === "derived", Boolean(p.data_date_from), p.id);
     assert.ok(dataDateLine(p, "zh") !== "" && dataDateLine(p, "en") !== "", p.id);
+  }
+});
+const i18n = JSON.parse(
+  readFileSync(new URL("../../data/i18n/adopted.en.json", import.meta.url), "utf8"),
+) as { keepCJK: string[] };
+const stripKeep = (s: string) =>
+  (i18n.keepCJK ?? []).reduce((t, k) => t.replaceAll(k, ""), s);
+const CJK_CHAR = /[㐀-鿿]/;
+const FULLWIDTH = /[　-︰＀-￯]/;
+test("Every point's English plan/adoption fields contain no untranslated Chinese", () => {
+  for (const p of data.points)
+    for (const v of [
+      displayPlan(p.plan, "en"),
+      p.source_en,
+      p.decision_note_en,
+      p.note_en,
+    ])
+      if (v)
+        assert.ok(
+          !CJK_CHAR.test(stripKeep(v)) && !FULLWIDTH.test(stripKeep(v)),
+          `${p.id}: ${v.slice(0, 80)}`,
+        );
+});
+test("Every mapping note has a Chinese label and every mapping source yields a clean URL", () => {
+  for (const m of data.mappings) {
+    if (m.mapping_note)
+      assert.notEqual(
+        mappingNoteLabel(m.mapping_note, "zh"),
+        m.mapping_note,
+        m.mapping_note,
+      );
+    const url = firstUrl(m.source);
+    assert.ok(url, `no URL in: ${m.source}`);
+    assert.ok(!CJK_CHAR.test(url) && !FULLWIDTH.test(url), url);
+  }
+});
+test("English CSV export has no Chinese in the Plan or source columns", () => {
+  const rs: Row[] = data.points.map((p) => ({
+    key: p.id,
+    point: p,
+    mapping: data.mappings.find((m) => m.point_id === p.id) ?? null,
+    score: null,
+  }));
+  const out = parse(csv(rs, "en"), { bom: true, columns: true }) as Record<
+    string,
+    string
+  >[];
+  for (const r of out)
+    for (const col of ["Plan", "Adoption source", "Score source"])
+      assert.ok(
+        !CJK_CHAR.test(stripKeep(r[col] ?? "")),
+        `${r["Point ID"]} ${col}: ${(r[col] ?? "").slice(0, 80)}`,
+      );
+});
+
+test("Every mapping exposes score provenance: checked date, archive file, board label, localized record note", () => {
+  const evidenceDir = new Set(
+    readdirSync(new URL("../public/data/evidence", import.meta.url)),
+  );
+  const researchDir = new Set(
+    readdirSync(new URL("../../data/research", import.meta.url)),
+  );
+  for (const m of data.mappings) {
+    assert.ok(m.checked_at, `${m.point_id}/${m.board}`);
+    assert.ok(m.board_label, `${m.point_id}/${m.board}`);
+    assert.ok(m.archive, `${m.point_id}/${m.board}`);
+    assert.equal(m.archive_url, `/data/evidence/${m.archive}`);
+    assert.ok(
+      evidenceDir.has(m.archive!) || researchDir.has(m.archive!),
+      `archive not shipped: ${m.archive}`,
+    );
+    if (m.record_note_en != null || m.record_note_zh != null) {
+      assert.ok(
+        m.record_note_en && !CJK_CHAR.test(m.record_note_en),
+        `record_note_en: ${m.record_note_en}`,
+      );
+      assert.ok(
+        m.record_note_zh && CJK_CHAR.test(m.record_note_zh),
+        `record_note_zh: ${m.record_note_zh}`,
+      );
+    }
   }
 });

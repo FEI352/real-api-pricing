@@ -73,6 +73,8 @@ import {
   listPriceLine,
   metricLabel,
   effortLabel,
+  firstUrl,
+  mappingNoteLabel,
 } from "./domain";
 
 const REPO = "https://github.com/FeiZhuLulu/real-api-pricing";
@@ -1162,8 +1164,8 @@ function Explorer({
               <Info size={16} />
               <p>
                 {t(
-                  "A price floor at saturated use. All tokens count; a month is 4 weeks, except Kimi’s independent 5-week pool. Model allowances within a plan are alternatives, not additive.",
-                  "这是饱和使用时的价格下限。所有 token 均计入；默认月为 4 周，Kimi 独立月池为周池的 5 倍。同套餐不同模型额度不能相加。",
+                  "A price floor at saturated use. All tokens count; a month is 4 weeks, except Kimi’s independent 5-week pool and Droid’s 2× weekly month. Model allowances within a plan are alternatives, not additive.",
+                  "这是饱和使用时的价格下限。所有 token 均计入；默认月为 4 周，Kimi 独立月池为周池的 5 倍，Droid 月额度为周额度的 2 倍。同套餐不同模型额度不能相加。",
                 )}{" "}
                 <button onClick={() => patch({ view: "method" })}>
                   {t("Read the methodology", "查看完整口径")}
@@ -1638,16 +1640,22 @@ function Details({
           <details className="evidence-fold">
             <summary>
               {t(
-                "Adoption evidence · original source text",
+                "Adoption evidence · source and rationale (translated from the Chinese record)",
                 "采用依据 · 原始来源文字",
               )}
             </summary>
-            <p className="original-text">{p.source}</p>
+            <p className="original-text">
+              {zh ? p.source : (p.source_en ?? p.source)}
+            </p>
             {p.decision_note && (
-              <p className="original-text">{p.decision_note}</p>
+              <p className="original-text">
+                {zh ? p.decision_note : (p.decision_note_en ?? p.decision_note)}
+              </p>
             )}
             {p.note && p.note !== p.decision_note && (
-              <p className="original-text">{p.note}</p>
+              <p className="original-text">
+                {zh ? p.note : (p.note_en ?? p.note)}
+              </p>
             )}
             <div className="source-links">
               {p.evidence.map((e, i) => (
@@ -1671,6 +1679,12 @@ function Details({
             .filter((r) => r.point.id === p.id && r.mapping)
             .map((r) => {
               const m = r.mapping!;
+              const srcText = zh ? m.source : (m.source_en ?? m.source);
+              const srcUrl = firstUrl(srcText ?? "");
+              const srcAnnotation = srcUrl
+                ? (srcText ?? "").split(srcUrl).slice(1).join("").trim()
+                : srcText;
+              const recordNote = zh ? m.record_note_zh : m.record_note_en;
               return (
                 <section className="configuration-detail" key={r.key}>
                   <strong>{variantLabel(m.variant, lang)}</strong>
@@ -1717,11 +1731,45 @@ function Details({
                       "这是参考映射，并非该订阅/API 渠道的评测。产品框架和额度实测推理强度的对应关系未经验证。来源任务成本不等于订阅任务成本。",
                     )}
                   </p>
-                  <p className="original-text">{m.mapping_note}</p>
-                  <a href={safeUrl(m.source)} target="_blank" rel="noreferrer">
+                  <p className="original-text">{mappingNoteLabel(m.mapping_note, lang)}</p>
+                  <a href={safeUrl(firstUrl(m.source) ?? m.source)} target="_blank" rel="noreferrer">
                     {data.boards[m.board]?.name ?? m.board}
                     <ArrowUpRight size={14} />
                   </a>
+                  <details className="evidence-fold">
+                    <summary>
+                      {t("Score source · original record", "分数来源 · 原始记录")}
+                    </summary>
+                    <dl>
+                      <dt>{t("Source page", "来源页面")}</dt>
+                      <dd>
+                        {srcUrl ? (
+                          <a href={safeUrl(srcUrl)} target="_blank" rel="noreferrer">
+                            {srcUrl}
+                            <ArrowUpRight size={12} />
+                          </a>
+                        ) : null}
+                        {srcAnnotation ? ` ${srcAnnotation}` : null}
+                      </dd>
+                      <dt>{t("Checked", "核对日期")}</dt>
+                      <dd>{m.checked_at}</dd>
+                      <dt>{t("Board label", "榜单原名")}</dt>
+                      <dd>{m.board_label}</dd>
+                      <dt>{t("Archived snapshot", "存档快照")}</dt>
+                      <dd>
+                        <a href={m.archive_url} target="_blank" rel="noreferrer">
+                          {m.archive}
+                          <ArrowUpRight size={12} />
+                        </a>
+                      </dd>
+                      {recordNote ? (
+                        <>
+                          <dt>{t("Record note", "原始记录备注")}</dt>
+                          <dd className="original-text">{recordNote}</dd>
+                        </>
+                      ) : null}
+                    </dl>
+                  </details>
                 </section>
               );
             })}
@@ -1782,8 +1830,8 @@ function Method({
           </p>
           <p>
             {t(
-              `A month defaults to ${data.conventions.monthWeeks} weeks. Kimi has an independent monthly pool equal to five weekly pools. Model allowances within the same plan are alternatives and must not be summed.`,
-              `默认月为 ${data.conventions.monthWeeks} 周；Kimi 独立月池等于周池的 5 倍。同套餐不同模型额度为替代关系，不可相加。`,
+              `A month defaults to ${data.conventions.monthWeeks} weeks. Kimi has an independent monthly pool equal to five weekly pools; Droid's month is 2× its weekly allowance. Model allowances within the same plan are alternatives and must not be summed.`,
+              `默认月为 ${data.conventions.monthWeeks} 周；Kimi 独立月池等于周池的 5 倍；Droid 月额度为周额度的 2 倍。同套餐不同模型额度为替代关系，不可相加。`,
             )}
           </p>
         </article>
