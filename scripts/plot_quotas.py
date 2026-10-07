@@ -64,7 +64,7 @@ plt.rcParams["svg.hashsalt"] = "real-api-pricing"
 # 色值与 id 前缀统一来自 config/channel-colors.json；此处只定图例顺序。
 VENDOR_COLORS = palette(["OpenAI", "Anthropic", "SpaceXAI", "Cursor", "Kimi", "Zhipu", "MiniMax", "Alibaba",
                          "OpenCode", "Command Code", "Ollama", "DeepSeek", "Google", "StepFun",
-                         "Xiaomi", "Devin", "Factory"])
+                         "Xiaomi", "Devin", "Factory", "Local"])
 # 图例沿用旧显示名（GLM/Gemini），内部键均为 canonical 渠道名。
 LABEL = {"Zhipu": "GLM", "Google": "Gemini"}
 VIEW_CN = {"quotas": "额度", "prices": "单价"}
@@ -97,7 +97,7 @@ VENDOR_CODES = {
     "Kimi": "KI", "Zhipu": "GL", "MiniMax": "MM", "Alibaba": "AL",
     "OpenCode": "OC", "Command Code": "CC", "Ollama": "OL",
     "DeepSeek": "DS", "Google": "GE", "StepFun": "SF", "Devin": "DV",
-    "Xiaomi": "MI", "Factory": "FA",
+    "Xiaomi": "MI", "Factory": "FA", "Local": "LO",
 }
 TEXT = {
     "zh": {

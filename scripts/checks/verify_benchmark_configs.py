@@ -109,7 +109,7 @@ assert indexed["deepseek_v41_flash_peak::deepseek-v4.1-flash"]["real_usd_per_mto
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["open_design_arena__score"] == 81.2
 # AA round5 (2026-09-30) superseded round4, so the round3-pinned intelligence
 # supplement retired and these two scores now come from round5 itself.
-assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 39.456167472527
+assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 39.4562
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 31.2
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score_is_self_reported"] is True
 assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 52.673669395513
