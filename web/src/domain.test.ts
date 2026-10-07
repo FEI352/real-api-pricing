@@ -55,6 +55,7 @@ import {
   tableRows,
   visiblePoints,
   workloadLine,
+  isLocalHardware,
 } from "./domain";
 import {
   FRONTIER_RADIUS,
@@ -1247,4 +1248,17 @@ test("Every mapping exposes score provenance: checked date, archive file, board 
       );
     }
   }
+});
+
+test("local-hardware points stay off the cost-per-task axis and keep their task time", () => {
+  const p = {
+    ...data.points[0],
+    id: "hyperqwen_local_qwen38_27b::qwen3.8-27b-dflash-5090",
+    plan_id: "hyperqwen_local_qwen38_27b",
+    real_usd_per_mtok: 0.00147,
+  };
+  const r: Row = { key: p.id, point: p, mapping: data.mappings[0], score: 10, x: null };
+  assert.equal(isLocalHardware(p), true);
+  assert.equal(rowX(r, { ...defaultState(), xMode: "cost" }, data), null);
+  assert.equal(isLocalHardware({ ...p, plan_id: "opencode_go" }), false);
 });

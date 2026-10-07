@@ -199,7 +199,16 @@ function mappingCost(m: Mapping | null, data: SiteData): number | null {
  */
 const MEDIAN_AA_TASK_MTOK = 3.51759;
 
+/**
+ * Self-hosted single-GPU points (Qwen3.8-27B on RTX 5090 / RTX PRO 6000 / 24GB
+ * cards) price amortised capex plus power, not a vendor API list price. Their
+ * $/MTok is therefore not comparable with subscription pricing, so they are
+ * excluded from the cost-per-task axis instead of being plotted on it.
+ */
+export const isLocalHardware = (p: Point) => p.plan_id.startsWith("hyperqwen_local_");
+
 function costPerTaskX(p: Point, m: Mapping | null, data: SiteData): number | null {
+  if (isLocalHardware(p)) return null;
   const cost = mappingCost(m, data);
   const cfg = m ? configIndex(data).get(m.configuration_id) : null;
   const list = m?.benchmark_list_price ?? cfg?.benchmark_list_price ?? p.list_blended_usd_per_mtok;
