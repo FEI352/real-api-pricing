@@ -44,9 +44,9 @@ $$\text{Cost per Task}_{\text{sub}} = \text{Cost per Task}_{\text{AA}} \times \f
 
 ## 3. 定时任务 (Cron Agent) 配置
 
-### 3.1 DSH 任务调度器
-在 `/root/.dsh/custom-settings/cron-jobs.json` 中配置了常驻定时任务：
-* **任务 ID**：`real-api-pricing-weekly-report`
+### 3.1 DSH 任务调度器 (Schedule / Automation Tasks)
+定时任务已从旧 `cron-jobs.json` 机制迁移到 **schedule 系统**（存储于 `/root/.dsh/storages/schedule.json`，管理入口：DSH Web UI → Settings → Cron Jobs）：
+* **任务名**：`Real API Pricing 每周性价比周报`（status: active）
 * **执行时间**：每周三 09:00 (SGT / UTC+8)
 * **执行命令**：`/usr/local/bin/real-api-pricing-cli cron-run`
 * **首期执行**：已于 2026-09-30 成功触发并验证发信。
