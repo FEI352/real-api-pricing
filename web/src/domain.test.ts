@@ -15,19 +15,22 @@ test("Wheel zoom preserves cursor anchor and reversed logarithmic axis direction
     restored.forEach((n, i) => assert.ok(Math.abs(n - range[i]) < 1e-9));
   }
 });
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { parse } from "csv-parse/sync";
 import {
   matchesFeeBand,
   feeBands,
   allowance,
   csv,
+  dataDateLine,
   defaultState,
   accessLine,
   displayPlan,
   effortLabel,
+  firstUrl,
   isThirdParty,
   manufacturer,
+  mappingNoteLabel,
   frontierPath,
   groups,
   options,
@@ -55,6 +58,7 @@ import {
 } from "./domain";
 import {
   FRONTIER_RADIUS,
+  fitLabel,
   placeTextLabels,
   placementRect,
 } from "./chartLabels";
@@ -80,7 +84,23 @@ const data: SiteData = unpackData(JSON.parse(
 
 test("Packed website mappings restore every original field without data loss", () => {
   const raw = JSON.parse(readFileSync(new URL("../../derived/benchmark-points.json", import.meta.url), "utf8"));
-  assert.deepEqual(data.mappings, raw);
+  // Website-only display fields (translations, provenance inherited from the
+  // shared configuration) are added on top of the original mapping records.
+  assert.deepEqual(
+    data.mappings.map(
+      ({
+        source_en: _se,
+        archive: _a,
+        archive_url: _au,
+        checked_at: _c,
+        board_label: _b,
+        record_note_zh: _rz,
+        record_note_en: _re,
+        ...m
+      }) => m,
+    ),
+    raw,
+  );
 });
 test("Anthropic workload line prices the input share as cache writes", () => {
   const p = { workload: "anthropic" } as Point;
@@ -211,12 +231,12 @@ test("DeepSWE keeps effort levels and vendor provenance through the adapter", ()
   assert.equal(deepseek.mapping?.score_is_self_reported, true);
   assert.equal(deepseek.mapping?.agent_harness, "mini-SWE");
 });
-test("Command Code GOAT DeepSeek V4.1 Flash uses $40 monthly credits", () => {
+test("Command Code GOAT DeepSeek V4.1 Flash uses $60 monthly credits", () => {
   const p = data.points.find((p) => p.id === "command_code_goat::deepseek-v4.1-flash")!;
-  // $40 allowance ÷ off-peak (97/2.5/0.5 × $0.003/$0.15/$0.60 = $0.00966/MTok).
-  assert.equal(p.monthly_yi, 41.408);
-  assert.equal(p.real_usd_per_mtok, 0.0024149923);
-  assert.equal(price(p.real_usd_per_mtok), "$0.00241");
+  // $60 allowance ÷ off-peak (97/2.5/0.5 × $0.003/$0.15/$0.60 = $0.00966/MTok).
+  assert.equal(p.monthly_yi, 62.112);
+  assert.equal(p.real_usd_per_mtok, 0.0016099948);
+  assert.equal(price(p.real_usd_per_mtok), "$0.00161");
 });
 test("Default selection includes every adopted point, including unscored models", () => {
   const rows = rowsFor(data, defaultState());
@@ -414,6 +434,17 @@ test("Legacy #s=<json> share links still restore with the same validation", () =
   assert.equal(restored.state.view, "price");
   assert.deepEqual(restored.state.channels, ["Cursor"]);
 });
+test("Share links using the old xAI name map to SpaceXAI without a warning", () => {
+  const restored = restore("#channels=xAI&vendors=xAI", data);
+  assert.equal(restored.warning, false);
+  assert.deepEqual(restored.state.channels, ["SpaceXAI"]);
+  assert.deepEqual(restored.state.vendors, ["SpaceXAI"]);
+  const legacy =
+    "#s=" + encodeURIComponent(JSON.stringify({ v: 1, channels: ["xAI"] }));
+  const restoredLegacy = restore(legacy, data);
+  assert.equal(restoredLegacy.warning, false);
+  assert.deepEqual(restoredLegacy.state.channels, ["SpaceXAI"]);
+});
 test("The full-table view round-trips and keeps the chart's per-configuration rows", () => {
   const restored = restore("#lang=en&view=table", data);
   assert.equal(restored.warning, false);
@@ -585,6 +616,27 @@ test("Labels yield to ordinary points when every candidate slot is occupied", ()
       dots.push({ key: `dot-${x}-${y}`, x, y, r: 6 });
   assert.deepEqual(placeTextLabels([g], new Map([[g.key, anchor]]), dots,
     { left: 0, top: 0, right: 240, bottom: 200, width: 240, height: 200 }, false), []);
+});
+test("Third-party labels reserve room for the maker mini-logo", () => {
+  const box = { left: 0, top: 0, right: 400, bottom: 240, width: 400, height: 240 };
+  const make = (channel: string, vendor: string, name: string): Group => {
+    const r = row(`${channel}-${vendor}-${name}`, 0.01, 1500);
+    r.point = { ...r.point, channel, vendor, model_display: name };
+    return { key: r.key, price: 0.01, plotPrice: 0.01, score: 1500, rows: [r] };
+  };
+  const place = (g: Group) => {
+    const anchor = { key: g.key, x: 200, y: 120, r: FRONTIER_RADIUS };
+    return placeTextLabels([g], new Map([[g.key, anchor]]), [anchor], box, false)[0];
+  };
+  const first = place(make("Zhipu", "Zhipu", "GLM 5.3 Flash"));
+  const third = place(make("Factory", "Zhipu", "GLM 5.3 Flash"));
+  assert.equal(first.maker, null);
+  assert.equal(third.maker, "Zhipu");
+  // Desktop label: 12px logo + 4px gap on top of the first-party width.
+  assert.equal(third.width, first.width + 16);
+  // The same long name truncates earlier once logo room is reserved.
+  const long = "GLM 5.3 Flash Ultra Max Pro Turbo Extended Edition";
+  assert.ok(fitLabel(long, false, true).length < fitLabel(long, false).length);
 });
 test("Chart search AND-matches plan, channel and model fields and dedupes points", () => {
   const gs = groups(
@@ -833,7 +885,7 @@ test("CSV escapes formula-like text and embedded quotes without changing numeric
   assert.equal(parsed[0]["Real price USD/MTok"], "0.002");
 });
 test("colorAlpha renders a channel colour at the requested alpha", () => {
-  const p = { ...data.points[0], channel: "xAI" };
+  const p = { ...data.points[0], channel: "SpaceXAI" };
   assert.equal(color(p), "#9333EA");
   assert.equal(colorAlpha(p, 0.3), "rgba(147, 51, 234, 0.3)");
   assert.equal(colorAlpha(p, 0.45), "rgba(147, 51, 234, 0.45)");
@@ -1060,10 +1112,139 @@ test("yMin score floor applies in allowance/table views", () => {
   const open = rowsFor(data, { ...defaultState(), view: "allowance", yMin: "" });
   assert.ok(open.length >= gated.length);
   const gatedT = rowsFor(data, { ...defaultState(), view: "table", yMin: "40" });
+  for (const r of gatedT) assert.ok(r.score === null || r.score >= 40, `row score ${r.score} < 40`);
+});
+
 test("yMin score floor also applies in price view", () => {
   const gated = rowsFor(data, { ...defaultState(), view: "price", yMin: "40" });
   assert.ok(gated.length > 0);
   for (const r of gated) assert.ok(r.score === null || r.score >= 40, `row score ${r.score} < 40`);
 });
-  for (const r of gatedT) assert.ok(r.score === null || r.score >= 40);
+
+test("Data date line renders the sample/official/derived kinds and stays empty without a date", () => {
+  const p = data.points[0];
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-27~2026-09-28", data_date_kind: "sample" }, "zh"),
+    "2026-09-27 ~ 2026-09-28 · 实测采样",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-27~2026-09-28", data_date_kind: "sample" }, "en"),
+    "2026-09-27 – 2026-09-28 · sampled",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-05", data_date_kind: "official" }, "zh"),
+    "2026-09-05 · 官方来源日期",
+  );
+  assert.equal(
+    dataDateLine({ ...p, data_date: "2026-09-05", data_date_kind: "official" }, "en"),
+    "2026-09-05 · official source date",
+  );
+  const derived = {
+    ...p,
+    data_date: "2026-07-30",
+    data_date_kind: "derived",
+    data_date_from: "ChatGPT Plus · gpt-5.6-sol",
+  };
+  assert.equal(
+    dataDateLine(derived, "zh"),
+    "2026-07-30 · 派生，沿用 ChatGPT Plus · gpt-5.6-sol 的数据日期",
+  );
+  assert.equal(
+    dataDateLine(derived, "en"),
+    "2026-07-30 · derived; uses the data date of ChatGPT Plus · gpt-5.6-sol",
+  );
+  assert.equal(dataDateLine({ ...p, data_date: null }, "zh"), "");
+  assert.equal(dataDateLine({ ...p, data_date: null }, "en"), "");
+});
+test("Every published point carries a data date of a known kind", () => {
+  const kinds = new Set(["sample", "official", "derived"]);
+  const re = /^\d{4}-\d{2}(-\d{2})?(~\d{4}-\d{2}(-\d{2})?)?$/;
+  for (const p of data.points) {
+    assert.ok(p.data_date && re.test(p.data_date), p.id);
+    assert.ok(p.data_date_kind && kinds.has(p.data_date_kind), p.id);
+    assert.equal(p.data_date_kind === "derived", Boolean(p.data_date_from), p.id);
+    assert.ok(dataDateLine(p, "zh") !== "" && dataDateLine(p, "en") !== "", p.id);
+  }
+});
+const i18n = JSON.parse(
+  readFileSync(new URL("../../data/i18n/adopted.en.json", import.meta.url), "utf8"),
+) as { keepCJK: string[] };
+const stripKeep = (s: string) =>
+  (i18n.keepCJK ?? []).reduce((t, k) => t.replaceAll(k, ""), s);
+const CJK_CHAR = /[㐀-鿿]/;
+const FULLWIDTH = /[　-︰＀-￯]/;
+test("Every point's English plan/adoption fields contain no untranslated Chinese", () => {
+  for (const p of data.points)
+    for (const v of [
+      displayPlan(p.plan, "en"),
+      p.source_en,
+      p.decision_note_en,
+      p.note_en,
+    ])
+      if (v)
+        assert.ok(
+          !CJK_CHAR.test(stripKeep(v)) && !FULLWIDTH.test(stripKeep(v)),
+          `${p.id}: ${v.slice(0, 80)}`,
+        );
+});
+test("Every mapping note has a Chinese label and every mapping source yields a clean URL", () => {
+  for (const m of data.mappings) {
+    if (m.mapping_note)
+      assert.notEqual(
+        mappingNoteLabel(m.mapping_note, "zh"),
+        m.mapping_note,
+        m.mapping_note,
+      );
+    const url = firstUrl(m.source);
+    assert.ok(url, `no URL in: ${m.source}`);
+    assert.ok(!CJK_CHAR.test(url) && !FULLWIDTH.test(url), url);
+  }
+});
+test("English CSV export has no Chinese in the Plan or source columns", () => {
+  const rs: Row[] = data.points.map((p) => ({
+    key: p.id,
+    point: p,
+    mapping: data.mappings.find((m) => m.point_id === p.id) ?? null,
+    score: null,
+    x: null,
+  }));
+  const out = parse(csv(rs, "en"), { bom: true, columns: true }) as Record<
+    string,
+    string
+  >[];
+  for (const r of out)
+    for (const col of ["Plan", "Adoption source", "Score source"])
+      assert.ok(
+        !CJK_CHAR.test(stripKeep(r[col] ?? "")),
+        `${r["Point ID"]} ${col}: ${(r[col] ?? "").slice(0, 80)}`,
+      );
+});
+
+test("Every mapping exposes score provenance: checked date, archive file, board label, localized record note", () => {
+  const evidenceDir = new Set(
+    readdirSync(new URL("../public/data/evidence", import.meta.url)),
+  );
+  const researchDir = new Set(
+    readdirSync(new URL("../../data/research", import.meta.url)),
+  );
+  for (const m of data.mappings) {
+    assert.ok(m.checked_at, `${m.point_id}/${m.board}`);
+    assert.ok(m.board_label, `${m.point_id}/${m.board}`);
+    assert.ok(m.archive, `${m.point_id}/${m.board}`);
+    assert.equal(m.archive_url, `/data/evidence/${m.archive}`);
+    assert.ok(
+      evidenceDir.has(m.archive!) || researchDir.has(m.archive!),
+      `archive not shipped: ${m.archive}`,
+    );
+    if (m.record_note_en != null || m.record_note_zh != null) {
+      assert.ok(
+        m.record_note_en && !CJK_CHAR.test(m.record_note_en),
+        `record_note_en: ${m.record_note_en}`,
+      );
+      assert.ok(
+        m.record_note_zh && CJK_CHAR.test(m.record_note_zh),
+        `record_note_zh: ${m.record_note_zh}`,
+      );
+    }
+  }
 });

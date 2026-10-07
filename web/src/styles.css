@@ -2158,6 +2158,14 @@ tbody tr.sentinel-row {
   color: var(--muted);
   font-size: 13.5px;
 }
+.detail-date {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.detail-date small {
+  margin-right: 6px;
+}
 .detail-metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

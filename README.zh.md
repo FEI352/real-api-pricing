@@ -17,13 +17,28 @@ AI 编程订阅只标月费，不标每 token 多少钱。本项目把每个套�
 - 黑线是帕累托前沿：线上的每个点，都找不到另一个点比它更便宜、分数又更高。
 - 订阅单价按用满额度计算。只用掉一半，实际单价就翻倍。
 
-快照日期 <!-- stat:snapshot -->2026-10-01<!-- /stat --> · 共 <!-- stat:points_total -->305<!-- /stat --> 个「套餐 × 模型」点 · [全部图表（中英文、SVG / PNG）](charts/README.md)
+快照日期 <!-- stat:snapshot -->2026-10-03<!-- /stat --> · 共 <!-- stat:points_total -->329<!-- /stat --> 个「套餐 × 模型」点 · [全部图表（中英文、SVG / PNG）](charts/README.md)
+
+## 命令行查询
+
+TypeScript CLI 默认查询网站最新数据，离线时自动回退到缓存或内置快照；模型、开发公司、访问渠道、套餐分别列出。需要 Node.js 22.12+，在仓库根目录构建：
+
+```sh
+npm --prefix cli ci
+npm --prefix cli run build
+node cli/dist/main.js price --company Anthropic
+node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
+```
+
+支持筛选、详情、比较以及 JSON/CSV 导出。安装见 [CLI README](cli/README.md)，各命令输出见 [命令参考](docs/cli-command-reference.md)。当前版本 0.1.0 可从仓库构建；维护者发布 npm 包后，可用 `npm install -g real-api-pricing` 安装。
+
+仓库提供 [Real Model Price skill](.agents/skills/real-model-price/SKILL.md)，指导 agent 查询价格、月额度和套餐。在加载仓库 skills 的 Codex 会话中，可用 `$real-model-price` 调用，例如：`使用 $real-model-price 比较月费 30 美元以内的 Anthropic 和 Factory 套餐`。
 
 ## 数字怎么来的
 
 - **月额度**：饱和使用下每月能用的 token。默认一个月按四周算；厂商另设月池的按厂商口径（Kimi 月池是周池的 5 倍）。输入、输出、缓存 token 全部计入。
-- **能实测就用实测**：最好的证据是直接测量，包括面板额度百分比变化对应用掉的 token、本地用量日志、受控跑满，以及官方给出的绝对 token 表。这类 total 直接采用，不再折算。
-- **只能换算时统一口径**：美元额度、credits 额度和 API 标价，统一按一个标准负载折成 token：缓存读取 97%、普通输入 2.5%、输出 0.5%。这是为了横向可比，不代表任何人的真实用法。Anthropic 模型的普通输入份额按缓存写入价计，阶跃用低缓存档。详见 [CONVENTIONS.md](CONVENTIONS.md)。
+- **能实测就用实测**：最好的证据是直接测量，包括面板额度百分比变化对应用掉的 token、本地用量日志、受控跑满，以及官方给出的绝对 token 表。带 token 分项的实测样本先按公开标价折成美元价值、再按渠道负载档换算；缺分项的实测样本和官方 token 表直接用 raw 合计，网页标「未折算」。
+- **只能换算时统一口径**：美元额度、credits 额度和 API 标价，统一按一个标准负载折成 token：缓存读取 97%、普通输入 2.5%、输出 0.5%。这是为了横向可比，不代表任何人的真实用法。Anthropic 模型的普通输入份额按缓存写入价计，阶跃和 Google 用低缓存档。详见 [CONVENTIONS.md](CONVENTIONS.md)。
 - **闲时优惠**（GLM、DeepSeek、MiMo）单独画成情景点，不取平均。
 - **置信度**：每行标 high / medium / low。high 是面板反推、受控实测或官方表；medium 是官方倍率乘一个 high 基准，或多个独立来源量级一致；low 是单一口述或跨档位假设。推算值不会当成实测来写。
 - **一个套餐多个模型**：同一套餐下每个模型各占一个点，这些额度是「选一个用」，不能相加。
@@ -70,7 +85,7 @@ Coding Agent Index v1.5。每个分数对应一组测过的 harness × 模型 ×
 
 ![OpenDesign 设计榜](charts/zh/pareto/帕累托_OpenDesign设计榜.svg)
 
-取 0–100 的任务平均分（需求完成度 30 + 设计质量 70），不用它混入成本和速度的推荐分。存档的 <!-- stat:configs_mapped_open_design_arena -->13<!-- /stat --> 个模型全部对上了采用点。
+取 0–100 的任务平均分（需求完成度 30 + 设计质量 70），不用它混入成本和速度的推荐分。存档的 <!-- stat:configs_mapped_open_design_arena -->16<!-- /stat --> 个模型全部对上了采用点。
 
 ### Terminal-Bench 4.0
 
@@ -78,7 +93,7 @@ Coding Agent Index v1.5。每个分数对应一组测过的 harness × 模型 ×
 
 ![Terminal-Bench 4.0](charts/zh/pareto/帕累托_TB4终端榜.svg)
 
-Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09-03），<!-- stat:configs_terminal_bench_4 -->22<!-- /stat --> 个公开配置全部收录。官方榜还没收的模型，补上厂商自报分并标 [self-reported]，例如 Cognition 发布博客里 SWE-2 · Devin Pro 的 27.3%。
+Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09-03），<!-- stat:configs_terminal_bench_4 -->30<!-- /stat --> 个公开配置全部收录。官方榜还没收的模型，补上厂商自报分并标 [self-reported]，例如 Cognition 发布博客里 SWE-2 · Devin Pro 的 27.3%。
 
 ### Terminal-Bench 4.0（AA）
 
@@ -100,7 +115,7 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 
 ### 真实单价
 
-全部 <!-- stat:points_priced -->304<!-- /stat --> 个有价格的订阅和 API 点，放在同一把 $/MTok 尺子上。
+全部 <!-- stat:points_priced -->328<!-- /stat --> 个有价格的订阅和 API 点，放在同一把 $/MTok 尺子上。
 
 [SVG](charts/zh/overview/单价总览.svg) · [PNG](charts/zh/overview/单价总览.png) · [数据表](charts/zh/overview/单价总览表.txt) · [English SVG](charts/en/overview/real-price-overview.svg) · [English PNG](charts/en/overview/real-price-overview.png) · [English table](charts/en/overview/real-price-overview-table.txt)
 
@@ -108,7 +123,7 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 
 ### 月额度
 
-<!-- stat:points_allowance -->283<!-- /stat --> 个有月额度的订阅点，按美元月费分三档，各档单独排序。不分档的全量图和混合比例图见[图表目录](charts/README.md)。
+<!-- stat:points_allowance -->304<!-- /stat --> 个有月额度的订阅点，按美元月费分三档，各档单独排序。不分档的全量图和混合比例图见[图表目录](charts/README.md)。
 
 **$0–30** · [SVG](charts/zh/overview/额度总览_月费0-30美元.svg) · [PNG](charts/zh/overview/额度总览_月费0-30美元.png) · [数据表](charts/zh/overview/额度总览表_月费0-30美元.txt) · [English SVG](charts/en/overview/monthly-allowance-overview-fee-0-30-usd.svg) · [English PNG](charts/en/overview/monthly-allowance-overview-fee-0-30-usd.png) · [English table](charts/en/overview/monthly-allowance-overview-fee-0-30-usd-table.txt)
 
@@ -128,27 +143,27 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 
 | 点 | 数量 |
 |---|---:|
-| 全部「套餐 × 模型」点 | <!-- stat:points_total -->305<!-- /stat --> |
-| 有月额度的订阅 | <!-- stat:points_allowance -->283<!-- /stat --> |
+| 全部「套餐 × 模型」点 | <!-- stat:points_total -->329<!-- /stat --> |
+| 有月额度的订阅 | <!-- stat:points_allowance -->304<!-- /stat --> |
 | 促销期不计额度（≈$0） | <!-- stat:points_unmetered -->1<!-- /stat --> |
-| 按量 API（标价） | <!-- stat:points_metered -->21<!-- /stat --> |
+| 按量 API（标价） | <!-- stat:points_metered -->24<!-- /stat --> |
 
 | 榜单 | 有分点 |
 |---|---:|
-| AA 智力榜 | <!-- stat:scored_aa_intelligence_index -->285<!-- /stat --> |
-| AA 编程 Agent 榜 | <!-- stat:scored_aa_coding_agent_index -->95<!-- /stat --> |
-| Code Arena | <!-- stat:scored_arena_code -->175<!-- /stat --> |
-| Agent Arena | <!-- stat:scored_arena_agent_mode -->161<!-- /stat --> |
-| OpenDesign 设计榜 | <!-- stat:scored_open_design_arena -->88<!-- /stat --> |
+| AA 智力榜 | <!-- stat:scored_aa_intelligence_index -->302<!-- /stat --> |
+| AA 编程 Agent 榜 | <!-- stat:scored_aa_coding_agent_index -->120<!-- /stat --> |
+| Code Arena | <!-- stat:scored_arena_code -->266<!-- /stat --> |
+| Agent Arena | <!-- stat:scored_arena_agent_mode -->206<!-- /stat --> |
+| OpenDesign 设计榜 | <!-- stat:scored_open_design_arena -->75<!-- /stat --> |
 | Terminal-Bench 4.0 | <!-- stat:scored_terminal_bench_4 -->111<!-- /stat --> |
-| Terminal-Bench 4.0（AA） | <!-- stat:scored_aa_terminal_bench_4 -->33<!-- /stat --> |
-| DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->195<!-- /stat --> |
+| Terminal-Bench 4.0（AA） | <!-- stat:scored_aa_terminal_bench_4 -->280<!-- /stat --> |
+| DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->197<!-- /stat --> |
 
-点数最多的几个套餐家族：Command Code GOAT <!-- stat:plans_command_code_goat -->41<!-- /stat --> 个、MiMo Token Plan <!-- stat:plans_mimo_token -->32<!-- /stat --> 个、OpenCode Go <!-- stat:plans_opencode_go -->30<!-- /stat --> 个、Droid Max <!-- stat:plans_droid_max -->27<!-- /stat --> 个、Ollama <!-- stat:plans_ollama -->22<!-- /stat --> 个、Step Plan <!-- stat:plans_step_plan -->12<!-- /stat --> 个。
+点数最多的几个套餐家族：Command Code GOAT <!-- stat:plans_command_code_goat -->58<!-- /stat --> 个、MiMo Token Plan <!-- stat:plans_mimo_token -->32<!-- /stat --> 个、OpenCode Go <!-- stat:plans_opencode_go -->28<!-- /stat --> 个、Droid Max <!-- stat:plans_droid_max -->27<!-- /stat --> 个、Ollama <!-- stat:plans_ollama -->22<!-- /stat --> 个、Step Plan <!-- stat:plans_step_plan -->12<!-- /stat --> 个。
 
 **下载：** [采用值 CSV](data/adopted.csv) · [计算结果 CSV](derived/points.csv) / [JSON](derived/points.json) · [数据说明](data/README.md) · [分日期原始证据](data/research/)
 
-**全部评测配置**（不只每个模型的最高分）：[评测配置存档](derived/benchmark-configurations.json)（[CSV](derived/benchmark-configurations.csv)）完整保留 <!-- stat:configs_total -->357<!-- /stat --> 条记录，含原始标签、harness、effort、分数区间和任务成本。[套餐与配置的映射](derived/benchmark-points.json)（[CSV](derived/benchmark-points.csv)）有 <!-- stat:refs_total -->1937<!-- /stat --> 条明确对应。不知道的 harness、effort 和区间一律留空，不猜。[全配置交互图](charts/zh/pareto/帕累托交互图.html)可以切换配置和思考强度；需下载后本地打开，Plotly 要联网。
+**全部评测配置**（不只每个模型的最高分）：[评测配置存档](derived/benchmark-configurations.json)（[CSV](derived/benchmark-configurations.csv)）完整保留 <!-- stat:configs_total -->529<!-- /stat --> 条记录，含原始标签、harness、effort、分数区间和任务成本。[套餐与配置的映射](derived/benchmark-points.json)（[CSV](derived/benchmark-points.csv)）有 <!-- stat:refs_total -->2709<!-- /stat --> 条明确对应。不知道的 harness、effort 和区间一律留空，不猜。[全配置交互图](charts/zh/pareto/帕累托交互图.html)可以切换配置和思考强度；需下载后本地打开，Plotly 要联网。
 
 ## 已知局限
 

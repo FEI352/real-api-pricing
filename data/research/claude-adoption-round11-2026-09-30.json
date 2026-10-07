@@ -1,12 +1,12 @@
 {
   "recordedAt": "2026-09-30",
   "sourceType": "user_provided_community_screenshot",
-  "trigger": "用户转供 X @kanzakichiya（chiyarlathotep）回复用户 @Fei2411 的推文与 ccusage 周表截图：Claude Pro 基本只用 Opus 5.5 Medium，两周合计用掉周额度 22%+47%；用户追问『总共是69%的周额度？』，帖主回复『对的』",
+  "trigger": "维护者转交 X @kanzakichiya（chiyarlathotep）回复维护者 @Fei2411 的推文与 ccusage 周表截图：Claude Pro 基本只用 Opus 5.5 Medium，两周合计用掉周额度 22%+47%；维护者追问『总共是69%的周额度？』，帖主回复『对的』",
   "reading": {
-    "source": "X @kanzakichiya 推文正文 + ccusage weekly 表截图（2 张，用户提供）",
+    "source": "X @kanzakichiya 推文正文 + ccusage weekly 表截图（2 张，维护者提供）",
     "plan": "claude_pro $20",
     "model": "opus-5-5（ccusage 表仅此一个模型；帖主自述『基本上是用的 Opus 5.5 Medium』）",
-    "weeklyPctUsed": "22% + 47% = 69%（帖主口述，经用户追问确认）",
+    "weeklyPctUsed": "22% + 47% = 69%（帖主口述，经维护者追问确认）",
     "ccusageWeeks": [
       {"week": "2026-09-20", "input": 1814, "output": 821467, "cacheCreate": 4552079, "cacheRead": 196439531, "totalTokens": 201814891, "costUsd": 92.14},
       {"week": "2026-09-27", "input": 2304, "output": 790686, "cacheCreate": 5792192, "cacheRead": 269754113, "totalTokens": 276339295, "costUsd": 116.11}
@@ -34,7 +34,7 @@
     "round10RedditFull5h": "28.99亿/月（low，单窗 151.19M raw = 周13.333%，token 为评论区估值）；本样本低 15.5%，同量级",
     "pooledWorth": "两样本 worth 合池 ($177.22+$40.48)÷(69%+13.333%)×4÷$0.419 ≈ 25.24亿，不采"
   },
-  "adopted": "未入权，仅作记录（2026-09-30 用户裁定关闭 PR #77；原提案 24.52 亿 medium 替换 round10 未采用）。按实际 1h 写价 $208.25 ÷ 69 = $3.018/pp → 28.81 亿，与 issue #52 的 $3.210/pp、round10 Reddit 段 $3.036/pp 差 <7%，作 claude_pro::claude-opus-5.5 = 30.54 亿（community-issues-round1-2026-09-29.json）的互证；三源按百分点合并 ($40.48+$587.52+$208.25)÷(13.333+183+69) = $3.152/pp → 30.09 亿，未采",
+  "adopted": "未入权，仅作记录（2026-09-30 裁定关闭 PR #77；原提案 24.52 亿 medium 替换 round10 未采用）。按实际 1h 写价 $208.25 ÷ 69 = $3.018/pp → 28.81 亿，与 issue #52 的 $3.210/pp、round10 Reddit 段 $3.036/pp 差 <7%，作 claude_pro::claude-opus-5.5 = 30.54 亿（community-issues-round1-2026-09-29.json）的互证；三源按百分点合并 ($40.48+$587.52+$208.25)÷(13.333+183+69) = $3.152/pp → 30.09 亿，未采",
   "confidenceRationale": "ccusage 日志四项分拆 + 帖主口述周%（CONVENTIONS §3 medium）；样本 4.78亿 raw、跨两周，远大于 round10 单窗；弱点：周%为口述整数、无 /usage 截图、ccusage 周与重置周对齐不可考、『基本上』Opus 5.5 暗示可能有少量其他模型占额度（若有则本值偏保守）",
   "relatedFiles": ["claude-adoption-round10-2026-09-25.json", "anthropic-token-mix-round1-2026-09-24.json"]
 }

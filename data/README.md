@@ -1,23 +1,23 @@
 # Data / 数据
 
-Current snapshot: <!-- stat:snapshot -->2026-10-01<!-- /stat -->. The adopted dataset contains <!-- stat:points_total -->305<!-- /stat --> plan × model rows: <!-- stat:points_subscription -->284<!-- /stat --> subscription rows (<!-- stat:points_allowance -->283<!-- /stat --> with a monthly allowance plus one unmetered promotional row, Devin Pro × SWE-2 at ≈$0/MTok until 2026-10-31) and <!-- stat:points_metered -->21<!-- /stat --> metered API rows. This covers the project's adopted sample, not every plan or model on the market.
+Current snapshot: <!-- stat:snapshot -->2026-10-03<!-- /stat -->. The adopted dataset contains <!-- stat:points_total -->329<!-- /stat --> plan × model rows: <!-- stat:points_subscription -->305<!-- /stat --> subscription rows (<!-- stat:points_allowance -->304<!-- /stat --> with a monthly allowance plus one unmetered promotional row, Devin Pro × SWE-2 at ≈$0/MTok until 2026-10-31) and <!-- stat:points_metered -->24<!-- /stat --> metered API rows. This covers the project's adopted sample, not every plan or model on the market.
 
 These files are the public redacted edition. Original local evidence is backed up outside Git; see [PUBLICATION.md](../PUBLICATION.md). 本目录为公开脱敏版，保留数值、来源与取舍记录，原件仅存于 Git 忽略的本地备份。
 
-当前采用数据共<!-- stat:points_total -->305<!-- /stat -->条“套餐 × 模型”：<!-- stat:points_subscription -->284<!-- /stat -->条订阅（<!-- stat:points_allowance -->283<!-- /stat -->条有月额度，另1条不计额度促销点 Devin Pro × SWE-2，≈$0/MTok，促销至2026-10-31）、<!-- stat:points_metered -->21<!-- /stat -->条按量API，包括OpenCode Go <!-- stat:plans_opencode_go -->30<!-- /stat -->个模型、Command Code GOAT <!-- stat:plans_command_code_goat -->41<!-- /stat -->个模型、Ollama <!-- stat:plans_ollama -->22<!-- /stat -->个点、Step Plan 国内站<!-- stat:plans_step_plan -->12<!-- /stat -->个点、MiMo Token Plan <!-- stat:plans_mimo_token -->32<!-- /stat -->个点。所有采用数据都参与对应的全量输出；缺榜单分数的模型不进入该榜帕累托图，但仍保留在额度和单价数据中。
+当前采用数据共<!-- stat:points_total -->329<!-- /stat -->条“套餐 × 模型”：<!-- stat:points_subscription -->305<!-- /stat -->条订阅（<!-- stat:points_allowance -->304<!-- /stat -->条有月额度，另1条不计额度促销点 Devin Pro × SWE-2，≈$0/MTok，促销至2026-10-31）、<!-- stat:points_metered -->24<!-- /stat -->条按量API，包括OpenCode Go <!-- stat:plans_opencode_go -->28<!-- /stat -->个模型、Command Code GOAT <!-- stat:plans_command_code_goat -->58<!-- /stat -->个模型、Ollama <!-- stat:plans_ollama -->22<!-- /stat -->个点、Step Plan 国内站<!-- stat:plans_step_plan -->12<!-- /stat -->个点、MiMo Token Plan <!-- stat:plans_mimo_token -->32<!-- /stat -->个点。所有采用数据都参与对应的全量输出；缺榜单分数的模型不进入该榜帕累托图，但仍保留在额度和单价数据中。
 
 美元/credits 额度与三段价换算统一按 `conventions.json` 的标准负载（缓存读取 97%、普通输入 2.5%、输出 0.5%）折算；直接给出 total tokens 的面板、日志与跑满实测不重复归一。Anthropic 档与低缓存档等其余负载口径见 [CONVENTIONS.md](../CONVENTIONS.md) 第 2 节；逐样本负载审计见 [`token-mix-audit-round2-2026-09-07.json`](research/token-mix-audit-round2-2026-09-07.json)。
 
 | Board / 榜单 | Scored rows / 有分行 | Unscored rows / 缺分行 |
 |---|---:|---:|
-| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->285<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_aa_intelligence_index -->20<!-- /stat --> |
-| AA Coding Agent | <!-- stat:scored_aa_coding_agent_index -->95<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_aa_coding_agent_index -->210<!-- /stat --> |
-| Code Arena | <!-- stat:scored_arena_code -->175<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_arena_code -->130<!-- /stat --> |
-| Agent Arena | <!-- stat:scored_arena_agent_mode -->161<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_arena_agent_mode -->144<!-- /stat --> |
-| OpenDesign Arena | <!-- stat:scored_open_design_arena -->88<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_open_design_arena -->217<!-- /stat --> |
-| Terminal-Bench 4.0 | <!-- stat:scored_terminal_bench_4 -->111<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_terminal_bench_4 -->194<!-- /stat --> |
-| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->33<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_aa_terminal_bench_4 -->272<!-- /stat --> |
-| DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->195<!-- /stat --> / <!-- stat:points_total -->305<!-- /stat --> | <!-- stat:unscored_deepswe_1_1 -->110<!-- /stat --> |
+| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->302<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_aa_intelligence_index -->27<!-- /stat --> |
+| AA Coding Agent | <!-- stat:scored_aa_coding_agent_index -->120<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_aa_coding_agent_index -->209<!-- /stat --> |
+| Code Arena | <!-- stat:scored_arena_code -->266<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_arena_code -->63<!-- /stat --> |
+| Agent Arena | <!-- stat:scored_arena_agent_mode -->206<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_arena_agent_mode -->123<!-- /stat --> |
+| OpenDesign Arena | <!-- stat:scored_open_design_arena -->75<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_open_design_arena -->254<!-- /stat --> |
+| Terminal-Bench 4.0 | <!-- stat:scored_terminal_bench_4 -->111<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_terminal_bench_4 -->218<!-- /stat --> |
+| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->280<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_aa_terminal_bench_4 -->49<!-- /stat --> |
+| DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->197<!-- /stat --> / <!-- stat:points_total -->329<!-- /stat --> | <!-- stat:unscored_deepswe_1_1 -->132<!-- /stat --> |
 
 具体缺分模型以 [`points.csv`](../derived/points.csv) / [`points.json`](../derived/points.json) 的空分数字段为准；不为缺失模型补造分数。
 
@@ -27,6 +27,7 @@ These files are the public redacted edition. Original local evidence is backed u
 - [points.csv](../derived/points.csv) / [points.json](../derived/points.json): computed prices plus separate leaderboard scores. 绘图使用的完整计算结果。
 - [conventions.json](conventions.json): shared conventions and exchange rate. 部分说明为历史记录，以采用脚本的明确取舍为准。
 - [research/](research/): dated evidence. Historical claims can contradict current decisions; they are not all adopted. 历史证据不等于当前采用结论。
+- [i18n/](i18n/): English translations of the adoption source/decision text shown on the website. When a `source`/`decision_note` changes, run `python scripts/checks/verify_i18n.py --sync` and fill the English. 网站英文界面显示的来源/取舍译文；改动中文原文后运行 `verify_i18n.py --sync` 并补译文。
 - [raw/](raw/), subscription-quotas*.json, subscriptions.json and claim summaries: historical inputs retained for traceability. 历史原料保留用于溯源，不是当前主表。
 - [SOURCES.md](../SOURCES.md): attribution and third-party license boundaries. 来源署名与许可边界。
 
