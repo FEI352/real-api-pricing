@@ -106,7 +106,11 @@ def plan_name(plan, language):
                 .replace("Kimi 会员", "Kimi Membership")
                 .replace("闲时", "off-peak")
                 .replace("中间值", "midpoint")
-                .replace("忙时", "peak"))
+                .replace("忙时", "peak")
+                # Haiku 5.5 输入长度分档（2026-10-08）：本表用 " · " 分隔风格，
+                # 与 domain.ts / plot_quotas.py 的 " (>100k tier)" 写法不同，改名时四处都要同步
+                .replace("（Haiku >100k 档）", " · >100k tier")
+                .replace("（Haiku 50/50 混合档）", " · 50/50 mixed tier"))
     return plan.replace(" (9/14+)", " · 9/14+").replace(" (老客 ¥149)", " · 老客 ¥149").replace(" (促销至 10/31)", " · 促销至 10/31")
 
 

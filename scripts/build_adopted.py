@@ -242,6 +242,17 @@ def blended_anthropic(cached: float, write: float, out: float) -> float:
     return ANTHROPIC_MIX["cache"] * cached + ANTHROPIC_MIX["cacheWrite"] * write + ANTHROPIC_MIX["output"] * out
 
 
+# Haiku 5.5 输入长度分档（2026-10-08 补）：≤100k 档 $0.01/$0.10/$0.50；>100k 档三段价统一 5×。
+#   同一模型的三种负载情景，照 GLM 忙/中/闲 先例用 plan_id 后缀表达、互不替代；
+#   ≤100k 是主行（claude_pro / claude_max_20x），>100k 与 50/50 混合各为独立情景点。
+#   常量必须定义在 SUBS 之前——SUBS 元组在 import 时求值。
+HAIKU55_BLEND_UNDER100K = blended(0.01, 0.10, 0.50)                      # $0.0147
+HAIKU55_BLEND_OVER100K = blended(0.05, 0.50, 2.50)                       # $0.0735
+HAIKU55_BLEND_MIX5050 = (HAIKU55_BLEND_UNDER100K + HAIKU55_BLEND_OVER100K) / 2   # $0.0441
+RATIO_HAIKU55_OVER100K = blended(0.2, 4, 20) / HAIKU55_BLEND_OVER100K    # ≈ 5.360544
+RATIO_HAIKU55_MIX5050 = blended(0.2, 4, 20) / HAIKU55_BLEND_MIX5050      # ≈ 8.934240
+
+
 def worth_usd(seg: dict, price: tuple) -> float:
     # 段 list-worth（USD）：(cached, input, output) 价目
     return (seg["cache_read"] * price[0] + seg["input"] * price[1] + seg["output"] * price[2]) / 1e6
@@ -1020,6 +1031,27 @@ SUBS = [
     ("claude_pro", "Claude Pro", 20, "USD", "claude-opus-5", claude_pro_opus5_monthly_yi(), "high", "issue #53（NTRYourWaifu）：两个 Pro 账号 9/14~9/22 轮询 /api/oauth/usage seven_day %、按 message.id 去重，Opus 5 共 1,022.02M raw = 周 +148pp；community-issues-round1-2026-09-29.json；旧源 X @shownotover Pro /usage 面板 32.87M = 周池7%（claude-adoption-round8-2026-09-20.json）不再入权；workload-conversion-round1-2026-09-30.json", f"27.62→{claude_pro_opus5_monthly_yi():g}亿（2026-09-30 裁定带分项实测统一折算，Anthropic 档）：段 worth ${CLAUDE_PRO_OPUS5_ISSUE53_WORTH_USD:g}（读1,004.96M×$0.5＋1h写12.99M×$10＋入0.01M×$5＋出4.06M×$25）＝每1% $4.96 → 周$495.9×4周 ÷ Anthropic 档混合价${blended_anthropic(0.5, ANTHROPIC_CACHE_WRITE_5M['claude-opus-5'], 25.0):.5f}/MTok；raw 口径 {claude_pro_opus5_raw_monthly_yi():g} 留作对照。以下为 issue #53 采用决策——{claude_pro_opus5_panel_monthly_yi():g}→{claude_pro_opus5_raw_monthly_yi():g}亿，2026-09-30 裁定改用 issue #53：两个 Pro 账号、全部在 9/14 永久 +25% 之后，1,022.02M raw（读1,004.96M/1h写12.99M/入0.01M/出4.06M）＝周 +148 个百分点 → 6.906M/pp ×100 ×{MONTH_WEEKS:g}周；两个整周分别 24.60/28.96 亿；按标价每 1% worth $4.96。旧面板样本每 1% $3.67（7% 整数读数，区间 17.53~20.23 亿），高出 35%/47% 与 +25% 调整幅度相近，疑为 9/14 前测得，故不与之合并（合并为 27.22 亿不采）；Anthropic 档 worth 口径 25.89 亿（2026-09-30 起改判为采用，见首行）。张力：与 Max 20x 采用值 157 的比从 8.35× 变为 5.68×，与 Opus 5.5 的 301.7/30.54≈9.9× 不一致，指向 Max 20x 侧口径或 5.5/5 池权重（#52/#53 推约 0.843），待裁定。以下为旧 18.78 决策原文——Opus4.8历史15.88亿→Opus5面板反推{claude_pro_opus5_panel_monthly_yi():g}亿：32,868,513 total（opus5 32.85M + haiku 23k）÷7%×{MONTH_WEEKS:g}周；周池4.70亿、5h池56.7M，周池为绑定约束；周%取整区间约17.5~20.2亿；单会话n=1初定medium；round5候选Opus5约1.9亿（假定周消息数）被面板直测推翻作废；标价闭合校验$25.68吻合；2026-09-21裁定Opus4.8旧测不入权——round8曾按基准期读法×1.25=19.85亿作互证，但round6记录该值含+50%活动期boost，忠实映射为÷1.5×1.25=13.23亿且与面板矛盾，故仅面板单源；round9同作者第二条40M=周13%记为张力：新周读法12.3亿/续周读法26.7亿/下限读法不约束，基线不可考不入权；2026-09-21裁定升high：面板级形式+价格闭合校验+下调后口径+与Max20x周池比8.35×自洽；#3新周读法12.3亿与Max池比将失衡（$20得$100档的相对池份额异常），反证18.78侧。注：曾引'8.28窗/周与Max同构'为旁证，round9检查点反推Max档5h池~7.1亿（非4.74亿满窗读法）后该互证撤回——Max周满窗数~5.5非8.3"),
     ("claude_max_20x", "Claude Max 20x (9/14+)", 200, "USD", "claude-opus-5", CLAUDE_MAX_20X_YI, "medium", "Zenn skipbit实测+维护者永久口径；claude-adoption-round6-2026-09-06.json", f"旧80亿→{CLAUDE_MAX_20X_YI:g}亿，9/14起永久口径：47.2亿/周×{MONTH_WEEKS:g}周÷1.5×1.25后取整；参考区间110~200亿。混合模型及非完全同窗样本，非纯Opus5实测硬上限；不取活动期189或裸基准126；round9 alldonesites纯Opus5满窗中位4.74亿（簇4.15~4.74亿三源）为窗容量读数——5h池口径存分歧：chudi检查点反推~7.1亿、官方20×Pro暗示11.34亿，Max周满窗数~5.5而非早记8.3，窗结构不作采用依据；round9时间线校正后Reddit审计转正：「本周」单号21亿cache读=周52%系9/17重置后下调后读数→周池≈40亿→161亿/月与采用值差3%，为纯Opus负载最优周池corroboration；「上周」237亿raw=230%系活动期大池口径不再矛盾；低端张力仅余其5窗假设95亿；未折算：Zenn 混合模型样本无 token 分项，保留 raw"),
     ("claude_max_5x", "Claude Max 5x (9/14+)", 100, "USD", "claude-opus-5", CLAUDE_MAX_20X_YI / CLAUDE_WEEKLY_20X_TO_5X, "medium", "已确认20x周池仅为5x的2倍；claude-adoption-round6-2026-09-06.json", "旧35.6亿→78.5亿，9/14起永久口径157÷2；low→medium按裁定周池关系推算，非独立实测；不采用36亿消息数候选或70亿/旧2.25倍率；5h窗口4倍关系不套周池"),
+    # —— Haiku 5.5 输入长度分档情景（2026-10-08 补，照 GLM 忙/中/闲 先例）——
+    # 主行（claude_pro / claude_max_20x × claude-haiku-5.5）是 ≤100k 档；以下为 >100k 与 50/50 混合两档，
+    # 同一套餐同一模型、只是负载情景不同，互不替代。第三方面板（X @1kartikkabbadi1 2026-10-08）用
+    # Anthropic 档（含 cache write）给出 83.5B / 27.8B / 16.7B 三档；本项目按标准负载混合价口径给出
+    # 818.6 / 272.9 / 163.7 亿，差异仅来自混合价约定（0.015325 vs 0.0147），比例关系一致（5.00×）。
+    ("claude_pro_over100k", "Claude Pro（Haiku >100k 档）", 20, "USD", "claude-haiku-5.5",
+     claude_pro_opus55_monthly_yi() * RATIO_HAIKU55_OVER100K, "medium",
+     "https://www.anthropic.com/claude-haiku-5-5；分档价目见 list-prices-claude-haiku55-round1-2026-10-08.json",
+     f"新增{claude_pro_opus55_monthly_yi() * RATIO_HAIKU55_OVER100K:.3f}亿：基准 claude_pro×opus-5.5 采用值{claude_pro_opus55_monthly_yi():g}亿 × Opus5.5/Haiku5.5(>100k 档) 标价混合比{RATIO_HAIKU55_OVER100K:.6f}（blended(0.2,4,20)/blended(0.05,0.50,2.50)＝$0.394/$0.0735）；>100k 档三段价均为 ≤100k 档 5×，故本档额度恰为主行 1/5；情景点与主行并列展示、不可相加；2026-10-08 套算，无订阅实测样本"),
+    ("claude_pro_mix5050", "Claude Pro（Haiku 50/50 混合档）", 20, "USD", "claude-haiku-5.5",
+     claude_pro_opus55_monthly_yi() * RATIO_HAIKU55_MIX5050, "low",
+     "https://www.anthropic.com/claude-haiku-5-5；分档价目见 list-prices-claude-haiku55-round1-2026-10-08.json",
+     f"新增{claude_pro_opus55_monthly_yi() * RATIO_HAIKU55_MIX5050:.3f}亿：基准同上 × 混合档比{RATIO_HAIKU55_MIX5050:.6f}（两档混合价取算术平均 $0.0441 再取比，非两个比值的平均）；假定一半用量落在 >100k 档，是情景假设而非实测分布（官方称约 90% 请求落在 ≤100k 档）→ low；情景点不可与主行相加"),
+    ("claude_max_20x_over100k", "Claude Max 20x (9/14+)（Haiku >100k 档）", 200, "USD", "claude-haiku-5.5",
+     CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_HAIKU55_OVER100K, "medium",
+     "https://www.anthropic.com/claude-haiku-5-5；分档价目见 list-prices-claude-haiku55-round1-2026-10-08.json",
+     f"新增{CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_HAIKU55_OVER100K:.3f}亿：基准 claude_max_20x×opus-5.5 采用值{CLAUDE_OPUS55_MAX20X_MONTHLY_YI:g}亿 × 同 >100k 档比{RATIO_HAIKU55_OVER100K:.6f}；口径与 claude_pro >100k 行一致；2026-10-08 套算，无订阅实测样本"),
+    ("claude_max_20x_mix5050", "Claude Max 20x (9/14+)（Haiku 50/50 混合档）", 200, "USD", "claude-haiku-5.5",
+     CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_HAIKU55_MIX5050, "low",
+     "https://www.anthropic.com/claude-haiku-5-5；分档价目见 list-prices-claude-haiku55-round1-2026-10-08.json",
+     f"新增{CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_HAIKU55_MIX5050:.3f}亿：基准同上 × 混合档比{RATIO_HAIKU55_MIX5050:.6f}；50/50 为情景假设（官方称约 90% 请求落在 ≤100k 档）→ low；口径与 claude_pro 混合行一致"),
     # Fable 5.1 —— round3 首个同框样本（同日 token 日志 × /usage 周%），覆盖 round7"无实测不推"；
     #   档位按裁定挂 20x，但月额度绝对值与档位无关（19%直接定池）；若实为5x则隐含权重1.31×而非2.61×
     ("claude_max_20x", "Claude Max 20x (9/14+)", 200, "USD", "claude-fable-5.1", claude_fable51_max_monthly_yi(), "medium", "维护者提供样本：Max账号同日 /usage 周额度0%→19% 对应 2443 轮 285.6M raw tokens（cache读283M+输出2.6M）；claude-fable51-round3-2026-09-20.json；round9 时间线校正", f"30.06→{claude_fable51_max_monthly_yi():g}亿：样本实测于9/4~5促销期，19%分母是活动期池47.2亿/周非永久池39.25亿——旧算法把混合当量池错挂永久口径且未拆Opus份额；重分解：消耗0.19×47.2=8.97亿当量，Opus份额1.13亿raw权重1，Fable份额1.725亿raw→隐含权重≈{CLAUDE_FABLE51_W:.2f}×Opus（落进Fable5实测4.25~6.5区间自洽）；月额度=157×50%÷{CLAUDE_FABLE51_W:.2f}；美元计权法独立验证得17.0亿；次日3017轮→24%互验（同期口径一致）；单账号n=1定medium；未折算：样本只有 cache 读＋输出，缺写入/输入分项，且经活动期池分解"),
@@ -1103,6 +1135,7 @@ RATIO_SONNET = round(blended(0.5, 5, 25) / blended(0.2, 2, 10), 2)       # Opus 
 #   Opus5.5 $0.2/$4/$20 vs Sonnet5.5 $0.2/$2/$10 —— input/output 2× 但 cache read 1×，
 #   97% cache 权重下混合比压到 1.3401（非简单 in/out 比 2.0，亦非 Opus5 代 2.5）；不再预舍入（沿 RATIO_COMPOSER 先例）
 RATIO_SONNET55 = blended(0.2, 4, 20) / blended(0.2, 2, 10)               # ≈ 1.340136
+RATIO_HAIKU55 = blended(0.2, 4, 20) / blended(0.01, 0.10, 0.50)          # Opus 5.5 → Haiku 5.5 ≤100k ≈ 26.802721
 # Factory Droid 官方模型倍率（docs.factory.ai/docs/models，2026-09-29）：Standard Usage 按 list-worth × 倍率计，
 #   Opus 5.5 = 1.6×；同池其他模型 = Opus 5.5 采用值 × 1.6 / 倍率。† 为促销倍率，见 DROID_PROMO_MULTIPLIERS。
 DROID_OPUS55_MULTIPLIER = 1.6
@@ -1160,6 +1193,16 @@ DERIVED = [
     ("claude_max_5x", "claude-opus-5", "claude-sonnet-5.5",
      CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI * RATIO_SONNET55, "low",
      f"新增{CLAUDE_MAX_20X_YI / CLAUDE_WEEKLY_20X_TO_5X * CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI * RATIO_SONNET55:.3f}亿：基准 claude_max_5x×opus-5 采用值{CLAUDE_MAX_20X_YI / CLAUDE_WEEKLY_20X_TO_5X:g}亿×档间比{CLAUDE_OPUS55_MAX20X_MONTHLY_YI / CLAUDE_MAX_20X_YI:.6f}（同5x×opus-5.5行301.7÷157）×Opus5.5/Sonnet5.5标价混合比{RATIO_SONNET55:.6f}；等价于20x Sonnet5.5派生值{CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_SONNET55:.3f}÷{CLAUDE_WEEKLY_20X_TO_5X}（维护者确认20x周池=5x的2倍，同Opus 5.5行301.7÷2）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json", False),
+    # Haiku 5.5（2026-10-07 发布；≤100k 档 $0.10/$0.50、cache read $0.01＝输入0.1×、cache write $0.125＝1.25×，官方称 90% 请求落在该档）：
+    #   混合标价 0.97×0.01＋0.025×0.10＋0.005×0.50＝$0.0147/MTok；Opus 5.5 标准负载混合价 $0.394 → 比值 26.802721；
+    #   Pro/20x 由 Opus 5.5 采用值 × RATIO_HAIKU55≈26.802721 派生（机制同 Sonnet 5.5 行）；
+    #   灵敏度：套餐额度若改按 Anthropic 含 cache write 档 $0.419 计价再 ÷ Haiku $0.0147 → 比值 28.503401，
+    #     Pro 870.49 亿 / 20x 8989.40 亿（高 6.3%）；为与 Sonnet 5.5 行同口径（标准负载混合价比值）采用 26.802721；
+    #   无订阅内实测样本、AA cost-per-task 亦为 N/A → 纯标价套算，置信度 medium（不再降到 low：混合价法在同族 Sonnet 5.5 行已闭合）
+    ("claude_pro", "claude-opus-5.5", "claude-haiku-5.5", RATIO_HAIKU55, "medium",
+     f"新增{claude_pro_opus55_monthly_yi() * RATIO_HAIKU55:.3f}亿：基准 claude_pro×opus-5.5 采用值{claude_pro_opus55_monthly_yi():g}亿（high）×Opus5.5/Haiku5.5 标价混合比{RATIO_HAIKU55:.6f}（blended(0.2,4,20)/blended(0.01,0.10,0.50)＝$0.394/$0.0147）；即 Claude Pro 额度改按 Haiku 5.5 结算时的理论可套量；灵敏度：套餐 worth 若按含 cache write 的 $0.419 计价（≈$1,279.6/月）÷$0.0147 = 870.49 亿，高 6.3%；2026-10-08 套算，无订阅实测样本；https://www.anthropic.com/claude-haiku-5-5", True),
+    ("claude_max_20x", "claude-opus-5.5", "claude-haiku-5.5", RATIO_HAIKU55, "medium",
+     f"新增{CLAUDE_OPUS55_MAX20X_MONTHLY_YI * RATIO_HAIKU55:.3f}亿：基准 claude_max_20x×opus-5.5 采用值{CLAUDE_OPUS55_MAX20X_MONTHLY_YI:g}亿（medium）×标价混合比{RATIO_HAIKU55:.6f}；倍率口径同 claude_pro 行（含 cache write 灵敏度 8989.40 亿）；2026-10-08 套算，无订阅实测样本；https://www.anthropic.com/claude-haiku-5-5", True),
     ("claude_max_5x", "claude-opus-5", "claude-fable-5", 0.5 / 4.25, "low", "维持9.235亿：x5档唯一实测权重4.25×（Reddit 1vx0k69，原帖自标typed meter偏软）；注意与确认2×池比矛盾——若20x=12.077亿成立则5x按池比应约6.04亿，但那需要无实测的统一权重假设，裁定按实测数据来；claude-adoption-round7-2026-09-14.json", False),
     # Fable 5.1：20x 已按 round3 同框样本挂 30.06亿（SUBS 直测行）；5x 借其隐含权重 2.61 派生，
     #   注意 Fable5 权重两档本就不同（6.5/4.25），跨档同权重只是假设 → low
@@ -1211,6 +1254,7 @@ METERED = [
     ("anthropic_fable51_api", "Claude Fable 5.1 API", "claude-fable-5.1", 0.25, 10.0, 50.0, "platform.claude.com/docs/en/about-claude/pricing；cache read $0.25=base input×0.025（其他模型0.1×），in/out 与 Fable 5 同价；claude-fable51-round1-2026-09-13.json"),
     ("anthropic_opus55_api", "Claude Opus 5.5 API", "claude-opus-5.5", 0.2, 4.0, 20.0, "platform.claude.com/docs/en/about-claude/pricing；cache read $0.20=base input×0.05（其他模型0.1×）、写 $5/5m $8/1h、Fast $8/$40；claude-opus55-round1-2026-09-23.json"),
     ("anthropic_sonnet55_api", "Claude Sonnet 5.5 API", "claude-sonnet-5.5", 0.2, 2.0, 10.0, "platform.claude.com/docs/en/about-claude/pricing；2026-09-28发布保持Sonnet 5定价$2/$10（cache read 0.1×）、写 $2.5/5m $4/1h、Batch $1/$5；list-prices-claude-sonnet55-round1-2026-09-30.json"),
+    ("anthropic_haiku55_api", "Claude Haiku 5.5 API", "claude-haiku-5.5", 0.01, 0.10, 0.50, "https://www.anthropic.com/claude-haiku-5-5；2026-10-07发布，≤100k 档 cache read $0.01(输入0.1×)/cache write $0.125(输入1.25×)/输入 $0.10/输出 $0.50；官方称 90% 请求落在 ≤100k 档，>100k 档为 5×($0.05/$0.50/$2.50、写$0.625)；较 Haiku 4.5 降 90%"),
     ("google_gemini4_argon_api", "Gemini 4 Argon API (Intro)", "gemini-4-argon", 0.10, 2.0, 10.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json"),
     ("hyperqwen_local_qwen38_27b", "Qwen3.8 27B · Single RTX 5090 (SGLang + DFlash2)", "qwen3.8-27b-dflash-5090", 0.001, 0.01, 0.05, "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s"),
     ("hyperqwen_local_qwen38_27b_3090", "Qwen3.8 27B · Single RTX 3080/3090/4090 (HyperQwen 24GB)", "qwen3.8-27b-hyperqwen-3090", 0.001, 0.01, 0.05, "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s"),
@@ -1221,6 +1265,7 @@ METERED = [
 
 # 精选图只画主流套餐 + 前沿相关点，避免 60 个点挤在一起；全量图画全部
 MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x", "cursor_ultra", "cursor_ultra_fast", "cursor_pro",
+              "claude_pro_over100k", "claude_pro_mix5050", "claude_max_20x_over100k", "claude_max_20x_mix5050",
               "google_ai_pro_us",
               "supergrok_heavy", "supergrok", "kimi_allegretto_cn", "glm_coding_pro_cn_new_peak", "glm_coding_pro_cn_new_mid", "glm_coding_pro_cn_new_offpeak", "glm_coding_pro_cn_old_peak", "glm_coding_pro_cn_old_mid", "glm_coding_pro_cn_old_offpeak",
               "minimax_token_plus_cn", "minimax_token_plus_global", "aliyun_coding_pro_cn", "devin_max", "devin_pro", "droid_max",
@@ -1251,6 +1296,11 @@ DATA_DATES = {
     ("google_ai_pro_us", "gemini-4-argon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro · gemini-3.8-flash"),
     ("google_gemini4_argon_api", "gemini-4-argon"): ("2026-09-30", "official"),
     ("anthropic_sonnet55_api", "claude-sonnet-5.5"): ("2026-09-28", "official"),
+    ("anthropic_haiku55_api", "claude-haiku-5.5"): ("2026-10-07", "official"),
+    ("claude_pro_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
+    ("claude_pro_mix5050", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
+    ("claude_max_20x_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),
+    ("claude_max_20x_mix5050", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),
     ("hyperqwen_local_qwen38_27b", "qwen3.8-27b-dflash-5090"): ("2026-10-02", "sample"),
     ("hyperqwen_local_qwen38_27b_3090", "qwen3.8-27b-hyperqwen-3090"): ("2026-10-02", "sample"),
     ("hyperqwen_local_qwen38_27b_pro6000", "qwen3.8-27b-rtx-pro-6000"): ("2026-10-02", "sample"),
@@ -1387,7 +1437,9 @@ def workload_of(pid: str, billing: str, model: str = "") -> str:
     if billing == "metered":
         return "anthropic" if model in ANTHROPIC_CACHE_WRITE_5M else "standard"
     if pid == "claude_pro" or (pid, model) == ("devin_max", "claude-opus-5.5") or pid.startswith("droid_") \
-            or (pid in ("claude_max_20x", "claude_max_5x") and model == "claude-opus-5.5"):
+            or (pid in ("claude_max_20x", "claude_max_5x") and model == "claude-opus-5.5") \
+            or pid in ("claude_pro_over100k", "claude_pro_mix5050",
+                       "claude_max_20x_over100k", "claude_max_20x_mix5050"):
         return "anthropic"
     if pid.startswith(("google_", "stepfun_")):
         return "lowCache"

@@ -112,6 +112,8 @@ assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["open_design_a
 assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 39.4562
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 31.2
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score_is_self_reported"] is True
-assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 52.673669395513
+# AA 快照自 round5 起把 intelligenceIndex 四舍五入到 4 位小数（round6 沿用），
+# 故派生分也是 4 位小数；此前的 12 位原值断言已过期。
+assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 52.6737
 assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__configuration_count"] == 5
 print(f"PASS: {len(configs)} configurations preserved, {len(links)} explicit mappings, exact modes, source CIs/costs and price inputs verified")

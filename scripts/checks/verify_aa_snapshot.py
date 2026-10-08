@@ -14,6 +14,11 @@ count = 0
 for name, row in current_score_records(archives):
     if name not in raw_archives:
         continue
+    # 只交叉核对"声明自己是 AA 公开榜镜像"的行。本地机型实测档（hyperqwen 的
+    # 三条 RTX 5090 / RTX PRO 6000 / 24GB 行）用 AA 形状的自建载荷记录本机
+    # 跑分，source 指上游仓库，标签与价格都是自述，不适用 AA 榜的镜像校验。
+    if not row["source"].startswith("https://artificialanalysis.ai/"):
+        continue
     secondary = row["secondary"]
     raw = raw_archives[name]["rawRecords"]["aa_intelligence_index" if row["boardId"] == "aa_terminal_bench_4" else row["boardId"]]
     if row["boardId"] == "aa_terminal_bench_4":

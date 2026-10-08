@@ -40,6 +40,7 @@ SCORE_FILES = (
     "scores-gpt6sol-round1-2026-09-24.json",
     "scores-gpt6luna-round1-2026-09-26.json",
     "scores-aa-round5-2026-10-01.json",
+    "scores-aa-round6-2026-10-08.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
     "scores-code-arena-round2-2026-10-01.json",
@@ -56,7 +57,9 @@ LIST_PRICE_FILES = (
     "list-prices-stepfun-round2-2026-09-21.json",
     "list-prices-mimo-v26-grok47-round1-2026-09-22.json",
     "list-prices-claude-sonnet55-round1-2026-09-30.json",
+    "list-prices-claude-haiku55-round1-2026-10-08.json",
     "list-prices-gemini-4-argon-round1-2026-10-01.json",
+    "list-prices-subscription-gaps-round1-2026-10-08.json",
 )
 
 
@@ -67,7 +70,7 @@ def score_archives():
 DISPLAY = {
     "minimax-m3.1-flash-preview": "MiniMax M3.1 Flash Preview",
     "gpt-5.6-sol": "GPT 5.6 Sol", "gpt-5.6-terra": "GPT 5.6 Terra", "gpt-5.6-luna": "GPT 5.6 Luna", "gpt-5.5": "GPT 5.5", "gpt-6-astra": "GPT-6 Astra", "gpt-6-sol": "GPT-6 Sol", "gpt-6-luna": "GPT-6 Luna", "gpt-6.1-sol": "GPT-6.1 Sol",
-    "claude-opus-5": "Claude Opus 5", "claude-opus-5.5": "Claude Opus 5.5", "claude-fable-5": "Claude Fable 5", "claude-fable-5.1": "Claude Fable 5.1", "claude-sonnet-5": "Claude Sonnet 5", "claude-opus-4.8": "Claude Opus 4.8", "claude-sonnet-5.5": "Claude Sonnet 5.5",
+    "claude-opus-5": "Claude Opus 5", "claude-opus-5.5": "Claude Opus 5.5", "claude-fable-5": "Claude Fable 5", "claude-fable-5.1": "Claude Fable 5.1", "claude-sonnet-5": "Claude Sonnet 5", "claude-opus-4.8": "Claude Opus 4.8", "claude-sonnet-5.5": "Claude Sonnet 5.5", "claude-haiku-5.5": "Claude Haiku 5.5",
     "grok-4.6": "Grok 4.6", "grok-4.7": "Grok 4.7", "grok-4.5": "Grok 4.5", "kimi-k3": "Kimi K3", "kimi-k2.7-code": "Kimi K2.7 Code", "kimi-k2.6": "Kimi K2.6", "kimi-k2.5": "Kimi K2.5",
     "glm-5.3": "GLM 5.3", "glm-5.3-flash": "GLM 5.3 Flash", "glm-5.3-flashx": "GLM 5.3 FlashX", "glm-5.2": "GLM 5.2", "glm-5.1": "GLM 5.1", "glm-5": "GLM 5",
     "minimax-m3": "MiniMax M3", "minimax-m2.7": "MiniMax M2.7", "minimax-m2.5": "MiniMax M2.5",
@@ -143,7 +146,9 @@ def load_list_prices(scores: list[dict] | None = None) -> dict[str, dict]:
             )
     if scores:
         for s in scores:
-            if s.get("board") == "aa_intelligence_index":
+            # curated AA 行的键是 boardId（个别历史 supplement 行写 board）；两者兼容。
+            # 兜底只在模型尚无 list-prices 档时生效（m not in out）：建档优先，兜底补缺。
+            if (s.get("boardId") or s.get("board")) == "aa_intelligence_index":
                 m = s["model"]
                 raw = s.get("raw_record", {})
                 sec = raw.get("secondary", {})
@@ -172,9 +177,51 @@ def load_list_prices(scores: list[dict] | None = None) -> dict[str, dict]:
     return out
 
 
+# 配置级 AA 标价 vs 项目档价的分歧阈值（2026-10-08 裁定）：比值在 [0.5, 2.0] 内视为同一档，
+# 保留 AA 价（它与该配置的 cost 测量基准同源，公式最自洽）；超出则说明 AA 那行价很可能不是
+# 本项目套餐实际服务的那档，回退到项目档价。实测分歧：muse-spark-1.3/1.2-contributor 36.7x、
+# hy3 3.4x、mimo-v2.5-pro 0.08x → 回退；gemini-3.6-flash 1.66x → 在区间内，保留 AA 价。
+PRICE_DIVERGENCE_MIN = 0.5
+PRICE_DIVERGENCE_MAX = 2.0
+
+
+def apply_price_divergence(scores: list[dict], curated: dict[str, dict]) -> list[dict]:
+    """配置级 AA 标价与项目档价分歧过大时置 None，并返回可审计明细。
+
+    回退后 `benchmark_list_price` 为 None，前端与 cli 的 `?? p.list_blended` 兜底随即生效。
+    没有项目档的模型保留 AA 价（比 3.51759 常数回退更贴近真实），标 no_curated_baseline。
+    """
+    audit = []
+    for s in scores:
+        price = s.get("benchmark_list_price")
+        if price is None:
+            continue
+        model = s.get("model")
+        baseline = curated.get(model)
+        base = baseline["blended_usd"] if baseline else None
+        entry = dict(
+            configuration_id=s["configuration_id"], board=s["board"], model=model,
+            variant=s["variant"], benchmark_list_price=price,
+            curated_list_blended=round(base, 6) if base else None,
+            ratio=None, status="kept",
+        )
+        if not base or base <= 0:
+            entry["status"] = "no_curated_baseline"
+        else:
+            entry["ratio"] = round(price / base, 4)
+            if not (PRICE_DIVERGENCE_MIN <= price / base <= PRICE_DIVERGENCE_MAX):
+                entry["status"] = "reverted"
+                s["benchmark_list_price"] = None
+        audit.append(entry)
+    return audit
+
+
 def main() -> None:
     scores = load_scores()
     list_prices = load_list_prices(scores)
+    # 项目维护的档价（不含 AA 兜底），只用于配置级 AA 价的分歧判定。
+    curated_prices = load_list_prices()
+    price_audit = apply_price_divergence(scores, curated_prices)
     boards_meta = {b["boardId"]: b for archive in score_archives() if not archive.get("supplement") for b in archive["boards"]}
     # supplement 档案可以声明新榜（如 aa_terminal_bench_4）的元数据；已存在榜仍以快照档为准。
     for archive in score_archives():
@@ -183,6 +230,7 @@ def main() -> None:
                 boards_meta.setdefault(b["boardId"], b)
 
     points, configuration_points = [], []
+    cross_model: list[dict] = []
     with (DATA / "adopted.csv").open(encoding="utf-8-sig") as f:
         for r in csv.DictReader(f):
             model = r["served_model"]
@@ -217,6 +265,25 @@ def main() -> None:
                 p[f"{b}__configuration_count"] = len(options)
                 for field, value in score_fields(selected, model).items():
                     p[f"{b}__{field}"] = value
+                # 跨模型价差守卫（a′）：与配置层 apply_price_divergence 同构，但基准不同——
+                # 配置层比 curated 档价，点层比「点自己的 list_blended」。当点的 model 与选中
+                # 配置的 model 不同时，配置的 AA 价属于另一个模型（如 muse-spark-1.3 的
+                # $1.25/$4.25 vs *-contributor 的 $0.10/$0.20，实测 36.7×）；分母偏大 36.7×
+                # 会把每任务成本低估同样倍数（假便宜 → 假前沿）。比值超界才回退到点自己的档；
+                # 界内不触发（保护合法同价别名），点无 list_blended 不触发（保留 AA 价）。
+                if selected is not None and selected.get("model") != model:
+                    bench = p.get(f"{b}__benchmark_list_price")
+                    if isinstance(bench, (int, float)) and bench > 0 and lb and lb > 0:
+                        ratio = bench / lb
+                        reverted = not (PRICE_DIVERGENCE_MIN <= ratio <= PRICE_DIVERGENCE_MAX)
+                        cross_model.append(dict(
+                            point=p["id"], board=b, point_model=model,
+                            configuration_model=selected.get("model"),
+                            benchmark_list_price=bench, point_list_blended=round(lb, 6),
+                            ratio=round(ratio, 4), status="reverted" if reverted else "kept",
+                        ))
+                        if reverted:
+                            p[f"{b}__benchmark_list_price"] = None
                 for option in options:
                     configuration_points.append(dict(point_id=p["id"], board=b, **score_fields(option, model)))
             points.append(p)
@@ -240,8 +307,38 @@ def main() -> None:
         points=points,
     ), ensure_ascii=False, indent=1), encoding="utf-8")
 
+    reverted_ids = {a["configuration_id"] for a in price_audit if a["status"] == "reverted"}
+    affected: dict[str, list[str]] = {}
+    for p in points:
+        for b in BOARDS:
+            cid = p.get(f"{b}__configuration_id")
+            if cid in reverted_ids:
+                affected.setdefault(cid, []).append(f"{p['id']} [{b}]")
+    for entry in price_audit:
+        entry["affected_point_board_cells"] = len(affected.get(entry["configuration_id"], []))
+    divergence_counts = {status: sum(1 for a in price_audit if a["status"] == status)
+                         for status in ("kept", "reverted", "no_curated_baseline")}
+    divergence_counts["cross_model_reverted"] = sum(1 for c in cross_model if c["status"] == "reverted")
+    (OUT / "list-price-divergence.json").write_text(json.dumps(dict(
+        generatedAt=CONVENTIONS["updatedAt"],
+        rule=dict(
+            min=PRICE_DIVERGENCE_MIN, max=PRICE_DIVERGENCE_MAX,
+            description=("AA 配置价 / 项目档价 在区间内 → 用 AA 价（与该配置的 cost 测量基准同源）；"
+                         "区间外 → 回退项目档价（benchmark_list_price=None，前端与 cli 用 "
+                         "list_blended 兜底）；无项目档价 → 保留 AA 价并标 no_curated_baseline。"),
+        ),
+        counts=divergence_counts,
+        reverted_models=sorted({a["model"] for a in price_audit if a["status"] == "reverted"}),
+        cross_model_cells=cross_model,
+        configurations=price_audit,
+    ), ensure_ascii=False, indent=1), encoding="utf-8")
+
     unscored = {b: sorted({p["label"] for p in points if p[f"{b}__score"] is None}) for b in BOARDS}
     print(f"{len(points)} points -> {OUT}")
+    print(f"  price divergence: {divergence_counts}, reverted models: "
+          f"{sorted({a['model'] for a in price_audit if a['status'] == 'reverted'})}")
+    print(f"  cross-model cells: {len(cross_model)} checked, "
+          f"{divergence_counts['cross_model_reverted']} reverted to the point's own tier")
     for b in BOARDS:
         print(f"  {b}: {sum(p[f'{b}__score'] is not None for p in points)} scored, unscored: {unscored[b]}")
 

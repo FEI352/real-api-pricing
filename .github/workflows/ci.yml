@@ -62,7 +62,17 @@ jobs:
           python scripts/checks/verify_benchmark_configs.py
           python scripts/checks/verify_aa_snapshot.py
           python scripts/checks/verify_deepswe.py
+          # scripts/checks/run_all.py derives its check list from BUILD.md, which already
+          # lists these five guards; this workflow calls each check directly, so they are
+          # spelled out here. If this step switches to run_all.py, drop them to avoid
+          # running each guard twice. (run_all.py warns on any drift between BUILD.md and
+          # its FALLBACK_CHECKS, so keep the three lists in sync.)
+          python scripts/checks/verify_aa_payload_fields.py
+          python scripts/checks/verify_haiku55_tiers.py
+          python scripts/checks/verify_list_blended.py
+          python scripts/checks/verify_scenario_points.py
           python scripts/checks/verify_palette.py
+          python scripts/checks/verify_docs_refs.py
 
       - name: Rebuild charts, tables and interactive HTML
         run: |

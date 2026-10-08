@@ -155,6 +155,10 @@ def plan_name(row: dict, language: str) -> str:
             "闲时": "Off-peak",
             "中间值": "Midpoint",
             "忙时": "Peak",
+            # Haiku 5.5 输入长度分档情景（2026-10-08）：整段替换，含全角括号；
+            # 措辞必须与 web/src/domain.ts displayPlan() 保持一致，改名两处同步
+            "（Haiku >100k 档）": " (>100k tier)",
+            "（Haiku 50/50 混合档）": " (50/50 mixed tier)",
         }.items():
             name = name.replace(original, translated)
         if row["plan_id"].startswith("kimi_"):
