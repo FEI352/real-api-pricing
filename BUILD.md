@@ -13,6 +13,10 @@ python scripts/readme_stats.py
 python scripts/checks/verify_benchmark_configs.py
 python scripts/checks/verify_aa_snapshot.py
 python scripts/checks/verify_deepswe.py
+python scripts/checks/verify_aa_payload_fields.py
+python scripts/checks/verify_haiku55_tiers.py
+python scripts/checks/verify_list_blended.py
+python scripts/checks/verify_scenario_points.py
 python scripts/plot_svg.py
 node scripts/render_svg.cjs
 python scripts/build_html.py
@@ -26,14 +30,22 @@ python scripts/checks/verify_label_overlap.py
 python scripts/checks/verify_four_boards.py
 python scripts/checks/verify_publication.py
 python scripts/checks/verify_palette.py
+python scripts/checks/verify_docs_refs.py
 ```
+
+To run the whole chain in one pass, use `python scripts/checks/run_all.py` (the repository `.venv` interpreter). It executes the checks above in the same order, prints `OK / KNOWN-NOISE / FAIL` for each of them and exits non-zero only on a real failure. The single tolerated noise is `verify_label_overlap.py` on a machine without Microsoft YaHei, where glyph metrics are not comparable; it is reported as `KNOWN-NOISE` with the reason (and the run stays green), while every other check keeps failing the run. Running the checks one by one is still the reference when diagnosing a single step.
 
 CI (`.github/workflows/ci.yml`) checks the committed outputs against a fresh run:
 
 - It runs the pipeline above on Ubuntu for every PR and every push to `main`, then fails if the committed `data/`, `derived/` or text-comparable `charts/` outputs (tables, interactive HTML, hand-written Pareto SVGs) differ from a fresh run.
 - `python scripts/readme_stats.py --check` fails on stale README statistics; it now also covers `data/README.md`.
 - On pull requests the data job runs `python scripts/checks/verify_snapshot_date.py --base FETCH_HEAD`, which fails when `data/adopted.csv` changed without `conventions.json` `updatedAt` advancing past the base branch — or being equal to today's date when the base is already today.
+- `verify_aa_payload_fields.py` fails when the newest AA snapshot (per `compute.py` `SCORE_FILES` order and `supplement` semantics) has a trimmed `rawRecords` payload — a shrunken row count or a collapsed `medianEndToEndResponseTimeSeconds` coverage silently flattens the task-time axis, as in the 2026-10-01 round-5 snapshot — or when a score stops being its raw row's own 4-decimal value/label, or the `claude-haiku-5-5` `configurationRank` moves.
+- `verify_haiku55_tiers.py` fails when the Claude Haiku 5.5 scenario rows in `data/adopted.csv` drift from the `list-prices` tier ratios (≤100k : >100k : 50/50 mix = 1 : 5 : 3) or when `real_usd_per_mtok` no longer equals `price_usd / (monthly_yi * 100)` to 8 significant digits; it is the guard against subscription rows whose tier price never got a `list-prices` entry.
+- `verify_list_blended.py` fails when a subscription row in `derived/points.json` has no positive `list_blended_usd_per_mtok` and its model is not on the explicit no-API-tier whitelist — that `None` is exactly what makes the front end fall back to `MEDIAN_AA_TASK_MTOK (3.51759) × real_usd_per_mtok`, collapsing effort tiers onto one x (the 2026-10-08 GPT-6 Luna false frontier). Whitelist entries marked `pending` (an AA raw price exists but no `list-prices` tier was built yet) print a WARN and should be deleted once the tier lands.
+- `verify_scenario_points.py` fails when a scenario point — a row that shares its model, board score and configuration with a main row and only differs by price tier, such as the four Claude Haiku 5.5 `>100k` / `50/50` rows added on 2026-10-08 — lands on any of the 8 board cost frontiers, or when it stops being dominated on a scored board by a same-model, same-score, cheaper point. The frontier math follows `scripts/cli.py` (`cost × real ÷ (benchmark_list_price or list_blended)`, falling back to `3.51759 × real`) with `hyperqwen_local_*` excluded, and is evaluated both over all points and over `tier=main`. Failures name the scenario point, the board, the tier scope and the dominator (or its absence: a tier price registered backwards), and the guard cross-checks the explicit `SCENARIO_PLAN_IDS` list against `data/adopted.csv` and `derived/points.json` — **a new scenario point must be registered there**, otherwise only the scenario-shaped WARN fallback would catch it.
 - PNGs and matplotlib SVGs depend on the rendering machine's fonts, so CI rebuilds them only to feed the checks; render and commit them locally.
+- To judge "stale artifact vs real change" after a rebuild, run `.venv/bin/python scripts/chart_fingerprint.py --compare data/research/chart-fingerprint-2026-10-08.json` (exit 0 = byte-identical, exit 1 = added/removed/changed listed) instead of diffing files by eye; PNGs are byte-stable across re-renders on one machine, so add `--ignore '*.png'` only when comparing across machines with different fonts.
 - `verify_label_overlap.py` measures real glyph boxes and therefore needs the chart fonts (Microsoft YaHei / Noto Sans CJK SC); it prints a SKIP line and passes under `CHART_FONT_FALLBACK=1`.
 - A second job runs the website's `npm test` and `npm run build`.
 
