@@ -177,19 +177,28 @@ def load_list_prices(scores: list[dict] | None = None) -> dict[str, dict]:
     return out
 
 
-# 配置级 AA 标价 vs 项目档价的分歧阈值（2026-10-08 裁定）：比值在 [0.5, 2.0] 内视为同一档，
-# 保留 AA 价（它与该配置的 cost 测量基准同源，公式最自洽）；超出则说明 AA 那行价很可能不是
-# 本项目套餐实际服务的那档，回退到项目档价。实测分歧：muse-spark-1.3/1.2-contributor 36.7x、
-# hy3 3.4x、mimo-v2.5-pro 0.08x → 回退；gemini-3.6-flash 1.66x → 在区间内，保留 AA 价。
+# 配置级 AA 标价 vs 项目档价的**分歧报告**阈值（2026-10-08 修正为 informational）：
+# 比值在 [0.5, 2.0] 内视为一致（consistent）；超出只标 data_quality_suspect，提示人工
+# 核实项目档价，**绝不改分母**——换分母会篡改 token 数（见 audit_price_divergence）。
+# 实测分歧：muse-spark-1.3/1.2-contributor 36.7x、hy3 3.4x、mimo-v2.5-pro 0.08x、
+# gemini-3.6-flash 1.66x（后者落在区间内）。
 PRICE_DIVERGENCE_MIN = 0.5
 PRICE_DIVERGENCE_MAX = 2.0
 
 
-def apply_price_divergence(scores: list[dict], curated: dict[str, dict]) -> list[dict]:
-    """配置级 AA 标价与项目档价分歧过大时置 None，并返回可审计明细。
+def audit_price_divergence(scores: list[dict], curated: dict[str, dict]) -> list[dict]:
+    """配置级 AA 标价 vs 项目档价的**分歧报告**（informational，不改任何数据）。
 
-    回退后 `benchmark_list_price` 为 None，前端与 cli 的 `?? p.list_blended` 兜底随即生效。
-    没有项目档的模型保留 AA 价（比 3.51759 常数回退更贴近真实），标 no_curated_baseline。
+    2026-10-08 裁定修正（推翻 task-20 的「超阈值回退」）：前端的每任务成本是
+    `cost × real ÷ list`（web/src/domain.ts:212-217），其中 `cost ÷ list` 是「该 AA
+    任务消耗的 token 数」——AA 的 cost 是用它自己那行的三段价算出来的，所以 `list`
+    必须是 `benchmark_list_price`（AA 价）。把分母换成项目档价等于篡改 token 数：
+    MiMo V2.5 Pro 实测被低估 12.5×（0.0361 → 0.00289），并因此挤进成本前沿。
+
+    因此本函数只做报告：比值超 [PRICE_DIVERGENCE_MIN, PRICE_DIVERGENCE_MAX] 的配置标
+    `data_quality_suspect`——那说明**项目档价可能是错的**（来源/版本/时效问题，例如
+    mimo-v2.5-pro 的 0.234 反推约 $5.4/$10.9 每 M，像是别的变体或陈旧价），走人工核实，
+    绝不改分母。没有项目档价的标 `no_curated_baseline`（保留 AA 价）。
     """
     audit = []
     for s in scores:
@@ -203,15 +212,15 @@ def apply_price_divergence(scores: list[dict], curated: dict[str, dict]) -> list
             configuration_id=s["configuration_id"], board=s["board"], model=model,
             variant=s["variant"], benchmark_list_price=price,
             curated_list_blended=round(base, 6) if base else None,
-            ratio=None, status="kept",
+            ratio=None, status="consistent",
         )
         if not base or base <= 0:
             entry["status"] = "no_curated_baseline"
         else:
-            entry["ratio"] = round(price / base, 4)
-            if not (PRICE_DIVERGENCE_MIN <= price / base <= PRICE_DIVERGENCE_MAX):
-                entry["status"] = "reverted"
-                s["benchmark_list_price"] = None
+            ratio = price / base
+            entry["ratio"] = round(ratio, 4)
+            if not (PRICE_DIVERGENCE_MIN <= ratio <= PRICE_DIVERGENCE_MAX):
+                entry["status"] = "data_quality_suspect"
         audit.append(entry)
     return audit
 
@@ -221,7 +230,7 @@ def main() -> None:
     list_prices = load_list_prices(scores)
     # 项目维护的档价（不含 AA 兜底），只用于配置级 AA 价的分歧判定。
     curated_prices = load_list_prices()
-    price_audit = apply_price_divergence(scores, curated_prices)
+    price_audit = audit_price_divergence(scores, curated_prices)
     boards_meta = {b["boardId"]: b for archive in score_archives() if not archive.get("supplement") for b in archive["boards"]}
     # supplement 档案可以声明新榜（如 aa_terminal_bench_4）的元数据；已存在榜仍以快照档为准。
     for archive in score_archives():
@@ -265,25 +274,24 @@ def main() -> None:
                 p[f"{b}__configuration_count"] = len(options)
                 for field, value in score_fields(selected, model).items():
                     p[f"{b}__{field}"] = value
-                # 跨模型价差守卫（a′）：与配置层 apply_price_divergence 同构，但基准不同——
-                # 配置层比 curated 档价，点层比「点自己的 list_blended」。当点的 model 与选中
-                # 配置的 model 不同时，配置的 AA 价属于另一个模型（如 muse-spark-1.3 的
-                # $1.25/$4.25 vs *-contributor 的 $0.10/$0.20，实测 36.7×）；分母偏大 36.7×
-                # 会把每任务成本低估同样倍数（假便宜 → 假前沿）。比值超界才回退到点自己的档；
-                # 界内不触发（保护合法同价别名），点无 list_blended 不触发（保留 AA 价）。
+                # 跨模型价差报告（informational）：点的 model 与选中配置的 model 不同时，
+                # 配置的 AA 价来自另一个模型的价目（如 muse-spark-1.3 的 $1.25/$4.25 vs
+                # *-contributor 的 $0.10/$0.20）。**不改分母**——前端的 `cost ÷ list` 是
+                # AA 任务的 token 数，换分母即篡改（见 audit_price_divergence 的修正说明）。
+                # 比值超界只标 data_quality_suspect，提示人工核实两侧价目。
                 if selected is not None and selected.get("model") != model:
                     bench = p.get(f"{b}__benchmark_list_price")
                     if isinstance(bench, (int, float)) and bench > 0 and lb and lb > 0:
                         ratio = bench / lb
-                        reverted = not (PRICE_DIVERGENCE_MIN <= ratio <= PRICE_DIVERGENCE_MAX)
                         cross_model.append(dict(
                             point=p["id"], board=b, point_model=model,
                             configuration_model=selected.get("model"),
                             benchmark_list_price=bench, point_list_blended=round(lb, 6),
-                            ratio=round(ratio, 4), status="reverted" if reverted else "kept",
+                            ratio=round(ratio, 4),
+                            status=("data_quality_suspect"
+                                    if not (PRICE_DIVERGENCE_MIN <= ratio <= PRICE_DIVERGENCE_MAX)
+                                    else "consistent"),
                         ))
-                        if reverted:
-                            p[f"{b}__benchmark_list_price"] = None
                 for option in options:
                     configuration_points.append(dict(point_id=p["id"], board=b, **score_fields(option, model)))
             points.append(p)
@@ -317,28 +325,31 @@ def main() -> None:
     for entry in price_audit:
         entry["affected_point_board_cells"] = len(affected.get(entry["configuration_id"], []))
     divergence_counts = {status: sum(1 for a in price_audit if a["status"] == status)
-                         for status in ("kept", "reverted", "no_curated_baseline")}
-    divergence_counts["cross_model_reverted"] = sum(1 for c in cross_model if c["status"] == "reverted")
+                         for status in ("consistent", "data_quality_suspect", "no_curated_baseline")}
+    divergence_counts["cross_model_suspect"] = sum(
+        1 for c in cross_model if c["status"] == "data_quality_suspect")
     (OUT / "list-price-divergence.json").write_text(json.dumps(dict(
         generatedAt=CONVENTIONS["updatedAt"],
         rule=dict(
             min=PRICE_DIVERGENCE_MIN, max=PRICE_DIVERGENCE_MAX,
-            description=("AA 配置价 / 项目档价 在区间内 → 用 AA 价（与该配置的 cost 测量基准同源）；"
-                         "区间外 → 回退项目档价（benchmark_list_price=None，前端与 cli 用 "
-                         "list_blended 兜底）；无项目档价 → 保留 AA 价并标 no_curated_baseline。"),
+            description=("informational（2026-10-08 修正）：前端每任务成本 = cost × real ÷ list，"
+                         "cost ÷ list 是 AA 任务的 token 数，list 必须是 AA 价（benchmark_list_price），"
+                         "换分母即篡改 token 数。比值在 [min, max] 内标 consistent；超界标 "
+                         "data_quality_suspect（提示**项目档价可能错**，人工核实，不改数据）；"
+                         "无项目档价标 no_curated_baseline（保留 AA 价）。"),
         ),
         counts=divergence_counts,
-        reverted_models=sorted({a["model"] for a in price_audit if a["status"] == "reverted"}),
+        suspect_models=sorted({a["model"] for a in price_audit if a["status"] == "data_quality_suspect"}),
         cross_model_cells=cross_model,
         configurations=price_audit,
     ), ensure_ascii=False, indent=1), encoding="utf-8")
 
     unscored = {b: sorted({p["label"] for p in points if p[f"{b}__score"] is None}) for b in BOARDS}
     print(f"{len(points)} points -> {OUT}")
-    print(f"  price divergence: {divergence_counts}, reverted models: "
-          f"{sorted({a['model'] for a in price_audit if a['status'] == 'reverted'})}")
+    print(f"  price divergence (informational): {divergence_counts}, suspect models: "
+          f"{sorted({a['model'] for a in price_audit if a['status'] == 'data_quality_suspect'})}")
     print(f"  cross-model cells: {len(cross_model)} checked, "
-          f"{divergence_counts['cross_model_reverted']} reverted to the point's own tier")
+          f"{divergence_counts['cross_model_suspect']} flagged data_quality_suspect (report only)")
     for b in BOARDS:
         print(f"  {b}: {sum(p[f'{b}__score'] is not None for p in points)} scored, unscored: {unscored[b]}")
 
