@@ -1027,6 +1027,9 @@ export function displayPlan(plan: string, lang: string): string {
     " 日间": " (Day)",
     " 夜间0.8×": " (Night 0.8x)",
     "促销至 ": "promo until ",
+    // Haiku 5.5 输入长度分档情景（2026-10-08）：整段替换，避免全角括号与「档/混合」漏到英文界面
+    "（Haiku >100k 档）": " (>100k tier)",
+    "（Haiku 50/50 混合档）": " (50/50 mixed tier)",
   };
   return Object.entries(words).reduce(
     (s, [from, to]) => s.replaceAll(from, to),

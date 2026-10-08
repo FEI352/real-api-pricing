@@ -1,0 +1,146 @@
+{
+  "checkedDate": "2026-10-08",
+  "collector": "Worker-Search",
+  "searchScope": [
+    "Artificial Analysis (AA) Leaderboard & Indices (Intelligence Index v4.3.2, Coding Agent Index v1.5)",
+    "Anthropic Official Pricing & Plans (Claude Haiku 5.5, Claude Sonnet 5.5 cache read price cut, Max/Team API credits)",
+    "OpenAI Official Pricing & ChatGPT Plans (GPT-6 series, GPT-6.1 Sol, ChatGPT Pro 100/200/500 tier restructuring, o3 deprecation)",
+    "Google Official Pricing & AI Plans (Gemini 4 Argon, Google AI Pro / Ultra rebranding, Gemini Nano Banana 2.1)",
+    "Mistral AI Official Releases (Mistral Large 4 Preview 'le Chonk')",
+    "Upstage Official Releases (Solar Mini 4)",
+    "Chinese Frontier Model Providers (DeepSeek, Zhipu GLM, StepFun, Moonshot Kimi, MiniMax)",
+    "Community Signals (Reddit r/LocalLLaMA, r/ClaudeAI, Linux Do, OpenRouter)"
+  ],
+  "summary": "2026-10-08 调研发现重大变动：1) Claude Haiku 5.5 于 10-07 正式发布并在 AA 获 43.4 分（本项目今日已入库）；2) Claude Sonnet 5.5 缓存读取单价同日腰斩（$0.20 -> $0.10/MTok），现存 round1 标价档亟需更新；3) Mistral Large 4 Preview ('le Chonk') 于 10-06 发布，AA 获 38 分，具备公测优惠标价；4) OpenAI ChatGPT Pro 方案重组为 100/200/500 三档，其中 Pro 200 额度将由 20x 砍至 10x（10-29 宽限期终了），构成项目 20x 预警；5) Upstage Solar Mini 4 获 AA 24 分，老版 Mini 将于 10-30 下线。",
+  "benchmarkUpdates": {
+    "aaIntelligenceIndex": {
+      "version": "v4.3.2",
+      "evaluationsCount": 10,
+      "recentChanges": "采用 AutomationBench-AA（私有测试集占比提升至 40%），全面切换至 Terminal-Bench 4.0；GPQA Diamond 正式饱和退役。",
+      "notableNewScores": [
+        { "model": "claude-haiku-5.5", "score": 43.4, "releaseDate": "2026-10-07", "status": "In Repo (scores-aa-round6-2026-10-08.json)" },
+        { "model": "mistral-large-4", "score": 38.0, "releaseDate": "2026-10-06", "status": "New Candidate (Not yet in repo scores)" },
+        { "model": "solar-mini-4", "score": 24.0, "releaseDate": "2026-09-23", "status": "Low score, monitor only" },
+        { "model": "gemini-4-argon", "score": 52.6, "releaseDate": "2026-09-30", "status": "In Repo (scores-aa-round6: 53.0)" }
+      ]
+    },
+    "aaCodingAgentIndex": {
+      "version": "v1.5",
+      "composition": "DeepSWE v1.1 + Terminal-Bench 4.0 + SWE-Atlas-QnA",
+      "trend": "强化模型与 Agent Harness 绑定测试（如 Claude Code + Fable 5.1，Codex + GPT-6 Astra）。"
+    }
+  },
+  "candidates": [
+    {
+      "modelOrPlan": "claude-sonnet-5.5 (Cache-Read Price Cut)",
+      "vendor": "Anthropic",
+      "category": "price_change",
+      "sourceUrl": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "factSummary": "Anthropic 于 2026-10-07 宣布 Claude Sonnet 5.5 缓存读取单价从 $0.20/MTok 下调 50% 至 $0.10/MTok（输入 $2.00、输出 $10.00 不变）。因 Agent 任务高频命中缓存，实际任务成本降低约 20%。",
+      "currentRepoState": "repo 中现存 data/research/list-prices-claude-sonnet55-round1-2026-09-30.json 的 cachedInput 为 0.2。",
+      "recommendation": "adopt",
+      "priority": "P0 (立即采纳)",
+      "rationale": "直接影响 Sonnet 5.5 混合标价（list_blended_usd_per_mtok）及每任务成本折算基准。建议由 Worker-Pricing 新建 list-prices-claude-sonnet55-round2-2026-10-08.json 并加入 compute.py LIST_PRICE_FILES。"
+    },
+    {
+      "modelOrPlan": "Mistral Large 4 Preview ('le Chonk')",
+      "vendor": "Mistral AI",
+      "category": "new_model",
+      "sourceUrl": "https://mistral.ai/news/mistral-large-4/",
+      "factSummary": "2026-10-06 发布 1T 稠密/MoE 旗舰模型（活跃参数 49-52B），1M 上下文，AA Intelligence Index 实测得分 38（与 GPT-6 Luna、DeepSeek V4.1 Flash 相当），AA Cyber Index 位居全球前五。当前 API 公测优惠价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok（原标价 $1.36/$0.14/$4.18）。预计 10 月底开源权重。",
+      "currentRepoState": "repo 当前 adopted.csv 仅有 mistral-medium-3.5，无 Mistral Large 4。",
+      "recommendation": "adopt",
+      "priority": "P1 (建议建立标价档与候选套餐)",
+      "rationale": "AA 智力得分 38 且性价比极高（促销输入 $0.68），具备直接冲击 mid-tier 成本前沿的潜力。建议建立 list-prices 档并密切关注其是否进入 OpenCode Go 等聚合订阅。"
+    },
+    {
+      "modelOrPlan": "ChatGPT Pro 体系重构 (Pro 100 / Pro 200 / Pro 500) 及 Pro 200 额度收紧",
+      "vendor": "OpenAI",
+      "category": "quota_change",
+      "sourceUrl": "https://help.openai.com/en/articles/chatgpt-pro-tiers",
+      "factSummary": "OpenAI 细分 Pro 方案：Pro 100（$100/月，5x Plus）、Pro 200（$200/月，10x Plus）、Pro 500（$500/月，25x Plus 且独占 Astra Ultrafast 极速推理模式）。原有 Pro 200 的 20x 额度在新订阅中已下调为 10x；存量用户宽限保留至 2026-10-29，之后强制降至 10x。",
+      "currentRepoState": "repo 中采用行均为 chatgpt_pro_20x（按历史 20x 及实测 129.02 亿计算）。",
+      "recommendation": "prep_action",
+      "priority": "P1 (额度架构预警与方案储备)",
+      "rationale": "若 Pro 200 额度永久腰斩为 10x，其实际每 MTok 单价将翻倍，导致 chatgpt_pro_20x 在前沿上的支配地位剧烈变动。建议提前在 build_adopted.py 中规划 chatgpt_pro_10x 分档情景，并跟踪 10-29 存量宽限期结束节点。"
+    },
+    {
+      "modelOrPlan": "claude-haiku-5.5",
+      "vendor": "Anthropic",
+      "category": "new_model",
+      "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+      "factSummary": "2026-10-07 正式发布，标价 $0.10 input / $0.01 cached / $0.50 output，AA Intelligence Index 得分 43.4，速度 243 tok/s，支持多档 effort（xhigh/high/medium/low）。",
+      "currentRepoState": "本项目 2026-10-08 round6 已完成 scores 映射、建立 list-prices 档并派生 4 档订阅点入库部署。",
+      "recommendation": "adopt",
+      "priority": "P0 (已闭环)",
+      "rationale": "已成功入库并位列当前前沿（真实单价 $0.000236/MTok，任务成本 $0.003425）。"
+    },
+    {
+      "modelOrPlan": "Anthropic Max / Team 套餐月度 API 赠额",
+      "vendor": "Anthropic",
+      "category": "quota_change",
+      "sourceUrl": "https://www.anthropic.com/pricing",
+      "factSummary": "Anthropic 为 Claude Max 订阅（$100~$200/月）增加每月 $100~$200 API 额度，为 Team 订阅增加最高 $500/月池化 API 额度，支持 Agentic 任务混合开销。",
+      "currentRepoState": "repo 当前 claude_max_20x / claude_pro 仅按 Web/Claude Code 独立实测/派生额度折算，未计入赠送 API 额度。",
+      "recommendation": "monitor",
+      "priority": "P2 (保持观察)",
+      "rationale": "API 赠额与原生会话额度属于不同计费管道，目前缺乏社区混合使用样本，暂不建议混入 monthly_tokens 避免破坏可比性。"
+    },
+    {
+      "modelOrPlan": "Solar Mini 4",
+      "vendor": "Upstage",
+      "category": "new_model",
+      "sourceUrl": "https://www.upstage.ai/news/solar-mini-4",
+      "factSummary": "2026-09-22 推出，标价 $0.10 input / $0.01 cached / $0.40 output（促销期 50% 折扣至 10-22），AA Intelligence Index 得分 24。初代 Solar Mini 宣布将于 2026-10-30 彻底废弃。",
+      "currentRepoState": "repo 未收录该模型。",
+      "recommendation": "reject",
+      "priority": "P3 (不采纳)",
+      "rationale": "AA 分数 24 显著低于当前前沿基线（34.0+），且缺乏代表性订阅套餐载体，暂不具备入库价值。"
+    },
+    {
+      "modelOrPlan": "Gemini Nano Banana 2.1 (Image Model)",
+      "vendor": "Google",
+      "category": "new_model",
+      "sourceUrl": "https://blog.google/technology/ai/gemini-nano-banana-2-1",
+      "factSummary": "2026-10-06 发布的图像生成与编辑专用模型（基于 Gemini 3.6 Flash），输出图像单价减半，Nano Banana 2 将于 10-29 停服。",
+      "currentRepoState": "无收录。",
+      "recommendation": "reject",
+      "priority": "P3 (不采纳)",
+      "rationale": "专用文生图/图像编辑模型，不属于本项目覆盖的通用语言/代码推理与 Agent 任务基准。"
+    },
+    {
+      "modelOrPlan": "OpenAI o3 家族彻底下线与退役",
+      "vendor": "OpenAI",
+      "category": "deprecated",
+      "sourceUrl": "https://platform.openai.com/docs/deprecations",
+      "factSummary": "OpenAI o3 已于 2026-08-26 从 ChatGPT 移除，API snapshot 计划于 2026-12-11 永久下线，流量完全由 GPT-5.6 / GPT-6 系列承接。",
+      "currentRepoState": "repo 已无 o3 主力订阅行。",
+      "recommendation": "monitor",
+      "priority": "P2 (留存归档记录)",
+      "rationale": "确认退役事实，确保无陈旧点遗留即可。"
+    }
+  ],
+  "communitySignals": [
+    {
+      "channel": "Reddit r/ClaudeAI",
+      "sentiment": "负面（配额收紧抱怨）",
+      "summary": "10 月初大量用户反馈 Claude Pro 5 小时窗口额度消耗速度异常加快（疑似后台隐性重平衡），社区称之为 'Quota Burn'，推升用户对 API / 第三方中转的需求。"
+    },
+    {
+      "channel": "Reddit r/LocalLLaMA",
+      "sentiment": "中立至积极（私有化部署推手）",
+      "summary": "讨论认为虽然云端 API 标价不断下探（如 Haiku 5.5 $0.10、Mistral 4 $0.68），但固定包月套餐的等效价值缩水，促使更多团队将轻量任务下沉至 Qwen 3.8 / 本地量化加速方案。"
+    },
+    {
+      "channel": "Linux Do (L站)",
+      "sentiment": "活跃",
+      "summary": "高度关注 Claude Haiku 5.5 的 1M 长文本极速表现与 Sonnet 5.5 缓存半价；密集讨论 OpenCode Go 与中转网关的价格变动同步。"
+    }
+  ],
+  "coreConclusionsForLead": [
+    "【核心发现 1：Sonnet 5.5 标价档需建 round2】Anthropic 官方于 10-07 将 Claude Sonnet 5.5 缓存读取单价从 $0.20 斩半至 $0.10/MTok。repo 现有 round1 标价档仍为 0.20，建议派发 Worker-Pricing 补充 list-prices-claude-sonnet55-round2-2026-10-08.json。",
+    "【核心发现 2：Mistral Large 4 Preview 成为高价值候选】AA 得分 38，公测优惠标价 $0.68 / $0.07 / $2.09，性能逼近 GPT-6 Luna 与 DeepSeek V4.1 Flash，是值得建档追踪的新旗舰候选。",
+    "【核心发现 3：ChatGPT Pro 20x 面临官方 10x 降额窗口期】OpenAI 正式发布 Pro 100/200/500，Pro 200 新购已降为 10x（老用户宽限至 10-29）。当前 repo 的 chatgpt_pro_20x 在 10-29 之后需防范实际额度减半带来的前沿突变。",
+    "【核心发现 4：Claude Haiku 5.5 基准与入库完全吻合】AA 官方实测得分 43.4 与 repo round6 完全一致，标价 $0.10/$0.50 与今日新建的 list-prices 档完全吻合，门禁通过事实过硬。"
+  ]
+}

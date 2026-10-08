@@ -139,16 +139,32 @@
       "en": "1.762B→2.489B (2026-09-30 decision: uniform workload-normalization for measured samples with token breakdown, low-cache tier): #55 segment worth $25.824 (cache 78.32M×$0.075 + in 14.95M×$0.75 + out 2.33M×$3.75) ÷21.70pp = $1.19005/pp → $119.0/week ×4 weeks ÷ low-cache $0.19125/MTok; the raw-basis 17.62 is kept for comparison. Original 2026-09-29 adoption decision (raw basis) — new 1.762B, 2026-09-29 decision: issue #55 (agy CLI, same method as #54, only segments where 3.6 Flash exceeds 95%) 95.60M raw = +21.70 weekly percentage points ×100×4 weeks, 84.0% cache hit. About $1.19 list dollars per 1%, the same as 3.8 Flash — supporting a shared value-priced quota pool across Google AI Pro models. A single sample of only 21.7 percentage points from one contributor → medium. Ultra not derived. Evidence: community-issues-round1-2026-09-29.json."
     },
     {
+      "zh": "Google 2026-09-30 官方首发发布会与目录价；首发50%折扣（读$0.10/入$2.00/出$10.00）；按 Google AI Pro 额度池 $1.19/1% 标价与低缓存档($0.19125/MTok)换算；list-prices-gemini-4-argon-round1-2026-10-01.json",
+      "en": "Google launch event and list price 2026-09-30; 50% launch discount (read $0.10 / input $2.00 / output $10.00); converted via the Google AI Pro allowance pool at $1.19 per 1% list-worth and the low-cache band ($0.19125/MTok); list-prices-gemini-4-argon-round1-2026-10-01.json"
+    },
+    {
+      "zh": "新增11.62亿：按 Antigravity/Google AI Pro 官方周池合池机制（两实测样本 worth 约$123.42/周×4周=$493.66/月），结合 Gemini 4 Argon 首发优惠低缓存混合价（85% cache读$0.10 + 14.5%入$2.00 + 0.5%出$10.00 = $0.425/MTok）换算得出 11.62 亿/月；标准目录价恢复后约 5.81 亿/月。",
+      "en": "New 1.162B: converted from the Antigravity / Google AI Pro official shared weekly pool (two measured samples worth about $123.42/week x 4 weeks = $493.66/month) at the Gemini 4 Argon launch-discount low-cache blended price (85% cache read $0.10 + 14.5% input $2.00 + 0.5% output $10.00 = $0.425/MTok), giving 1.162B/month; about 0.581B/month once standard list pricing returns."
+    },
+    {
       "zh": "官方：Ultra $100 = 5× Pro token worth（antigravity.google/blog 2026-05-19）",
       "en": "Official: Ultra $100 = 5× Pro token worth (antigravity.google/blog 2026-05-19)"
     },
     {
-      "zh": "新增129.05亿：Pro采用值×官方worth倍率5；LLMDevs Ultra~5.0B/周同量级旁证；非独立实测",
-      "en": "Added 12.905B: Pro adopted value × official worth multiplier 5; LLMDevs' Ultra ~5.0B/week is same-magnitude corroboration; not an independent measurement"
+      "zh": "新增58.1亿：Pro采用值11.62亿×官方worth倍率5；单价约$0.01721/MTok；非独立实测",
+      "en": "New 5.81B: Pro adopted value 1.162B x official worth multiplier 5; about $0.01721/MTok; not independently measured"
     },
     {
       "zh": "官方：Ultra $200 = 20× Pro token worth（antigravity.google/blog 2026-05-19）",
       "en": "Official: Ultra $200 = 20× Pro token worth (antigravity.google/blog 2026-05-19)"
+    },
+    {
+      "zh": "新增232.4亿：Pro采用值11.62亿×官方worth倍率20；单价约$0.008605/MTok；非独立实测",
+      "en": "New 23.24B: Pro adopted value 1.162B x official worth multiplier 20; about $0.008605/MTok; not independently measured"
+    },
+    {
+      "zh": "新增129.05亿：Pro采用值×官方worth倍率5；LLMDevs Ultra~5.0B/周同量级旁证；非独立实测",
+      "en": "Added 12.905B: Pro adopted value × official worth multiplier 5; LLMDevs' Ultra ~5.0B/week is same-magnitude corroboration; not an independent measurement"
     },
     {
       "zh": "新增516.2亿：Pro采用值×官方worth倍率20；非独立实测",
@@ -177,6 +193,26 @@
     {
       "zh": "旧35.6亿→78.5亿，9/14起永久口径157÷2；low→medium按裁定周池关系推算，非独立实测；不采用36亿消息数候选或70亿/旧2.25倍率；5h窗口4倍关系不套周池",
       "en": "Old 3.56B→7.85B, permanent basis from 9/14: 157÷2; low→medium, inferred from the confirmed weekly-pool relation — not an independent measurement; neither the 3.6B message-count candidate nor 7B / the old 2.25× multiplier adopted; the 4× relation of the 5h window is not applied to the weekly pool"
+    },
+    {
+      "zh": "https://www.anthropic.com/claude-haiku-5-5；分档价目见 list-prices-claude-haiku55-round1-2026-10-08.json",
+      "en": "https://www.anthropic.com/claude-haiku-5-5; tier prices in list-prices-claude-haiku55-round1-2026-10-08.json"
+    },
+    {
+      "zh": "新增163.711亿：基准 claude_pro×opus-5.5 采用值30.54亿 × Opus5.5/Haiku5.5(>100k 档) 标价混合比5.360544（blended(0.2,4,20)/blended(0.05,0.50,2.50)＝$0.394/$0.0735）；>100k 档三段价均为 ≤100k 档 5×，故本档额度恰为主行 1/5；情景点与主行并列展示、不可相加；2026-10-08 套算，无订阅实测样本",
+      "en": "New 16.3711B: base claude_pro×opus-5.5 adopted value 3.054B × Opus 5.5/Haiku 5.5 (>100k tier) list-price blended ratio 5.360544 (blended(0.2,4,20)/blended(0.05,0.50,2.50) = $0.394/$0.0735); all three prices of the >100k tier are 5× the ≤100k tier, so this tier's allowance is exactly 1/5 of the main row; scenario points are shown alongside the main row and must not be summed; computed 2026-10-08, no in-subscription measurement"
+    },
+    {
+      "zh": "新增272.852亿：基准同上 × 混合档比8.934240（两档混合价取算术平均 $0.0441 再取比，非两个比值的平均）；假定一半用量落在 >100k 档，是情景假设而非实测分布（官方称约 90% 请求落在 ≤100k 档）→ low；情景点不可与主行相加",
+      "en": "New 27.2852B: same base × mixed-tier ratio 8.934240 (the two tiers' blended prices are averaged arithmetically to $0.0441 and then divided, not the average of the two ratios); assuming half of the usage falls in the >100k tier is a scenario assumption, not a measured distribution (the vendor states about 90% of requests land in the ≤100k tier) → low; scenario points must not be summed with the main row"
+    },
+    {
+      "zh": "新增1690.608亿：基准 claude_max_20x×opus-5.5 采用值315.38亿 × 同 >100k 档比5.360544；口径与 claude_pro >100k 行一致；2026-10-08 套算，无订阅实测样本",
+      "en": "New 169.0608B: base claude_max_20x×opus-5.5 adopted value 31.538B × the same >100k tier ratio 5.360544; same convention as the claude_pro >100k row; computed 2026-10-08, no in-subscription measurement"
+    },
+    {
+      "zh": "新增2817.681亿：基准同上 × 混合档比8.934240；50/50 为情景假设（官方称约 90% 请求落在 ≤100k 档）→ low；口径与 claude_pro 混合行一致",
+      "en": "New 281.7681B: same base × mixed-tier ratio 8.934240; the 50/50 split is a scenario assumption (the vendor states about 90% of requests land in the ≤100k tier) → low; same convention as the claude_pro mixed row"
     },
     {
       "zh": "维护者提供样本：Max账号同日 /usage 周额度0%→19% 对应 2443 轮 285.6M raw tokens（cache读283M+输出2.6M）；claude-fable51-round3-2026-09-20.json；round9 时间线校正",
@@ -1115,6 +1151,46 @@
       "en": "Old 8.9B→19.625B; 78.5×price ratio 2.5, derived on the 9/14 permanent basis; claude-adoption-round6-2026-09-06.json"
     },
     {
+      "zh": "由同套餐 claude-opus-5.5 30.54 亿 × 1.3401360544217689",
+      "en": "From same plan claude-opus-5.5 3.054B x 1.3401360544217689"
+    },
+    {
+      "zh": "新增40.928亿：基准 claude_pro×opus-5.5 采用值30.54亿（low）×Opus5.5/Sonnet5.5 标价混合比1.340136（blended(0.2,4,20)/blended(0.2,2,10)＝0.394/0.294：cache read 同为$0.2、占标准负载97%权重，input/output 仅2×，故非简单 in/out 比2.0、亦非 Opus5 代2.5）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
+      "en": "New 4.0928B: base claude_pro x opus-5.5 adopted 3.054B (low) x Opus 5.5 / Sonnet 5.5 list-price blend ratio 1.340136 (blended(0.2,4,20)/blended(0.2,2,10) = 0.394/0.294: same $0.2 cache read at 97% of the standard workload, input/output only 2x, so neither the plain in/out 2.0 nor the Opus 5 generation 2.5); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
+    },
+    {
+      "zh": "由同套餐 claude-opus-5.5 315.38 亿 × 1.3401360544217689",
+      "en": "From same plan claude-opus-5.5 31.538B x 1.3401360544217689"
+    },
+    {
+      "zh": "新增422.652亿：基准 claude_max_20x×opus-5.5 采用值315.38亿（medium）×标价混合比1.340136；倍率口径同 claude_pro 行（非2.0/2.5 说明见该行）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
+      "en": "New 42.2652B: base claude_max_20x x opus-5.5 adopted 31.538B (medium) x list-price blend ratio 1.340136; same ratio rationale as the claude_pro row (see that row for the non-2.0/2.5 note); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
+    },
+    {
+      "zh": "由同套餐 claude-opus-5 78.5 亿 × 2.6920516486849517",
+      "en": "From same plan claude-opus-5 7.85B x 2.6920516486849517"
+    },
+    {
+      "zh": "新增211.326亿：基准 claude_max_5x×opus-5 采用值78.5亿×档间比2.008790（同5x×opus-5.5行301.7÷157）×Opus5.5/Sonnet5.5标价混合比1.340136；等价于20x Sonnet5.5派生值422.652÷2（维护者确认20x周池=5x的2倍，同Opus 5.5行301.7÷2）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
+      "en": "New 21.1326B: base claude_max_5x x opus-5 adopted 7.85B x tier ratio 2.008790 (same as the 5x x opus-5.5 row 301.7/157) x Opus 5.5 / Sonnet 5.5 list-price blend ratio 1.340136; equals the 20x Sonnet 5.5 derived value 422.652 / 2 (maintainer confirmed the 20x weekly pool is 2x the 5x pool, same as Opus 5.5 row 301.7/2); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
+    },
+    {
+      "zh": "由同套餐 claude-opus-5.5 30.54 亿 × 26.802721088435373",
+      "en": "Derived from same-plan claude-opus-5.5 3.054B × 26.802721088435373"
+    },
+    {
+      "zh": "新增818.555亿：基准 claude_pro×opus-5.5 采用值30.54亿（high）×Opus5.5/Haiku5.5 标价混合比26.802721（blended(0.2,4,20)/blended(0.01,0.10,0.50)＝$0.394/$0.0147）；即 Claude Pro 额度改按 Haiku 5.5 结算时的理论可套量；灵敏度：套餐 worth 若按含 cache write 的 $0.419 计价（≈$1,279.6/月）÷$0.0147 = 870.49 亿，高 6.3%；2026-10-08 套算，无订阅实测样本；https://www.anthropic.com/claude-haiku-5-5",
+      "en": "New 81.8555B: base claude_pro×opus-5.5 adopted value 3.054B (high) × Opus 5.5/Haiku 5.5 list-price blended ratio 26.802721 (blended(0.2,4,20)/blended(0.01,0.10,0.50) = $0.394/$0.0147); the theoretical allowance if all of Claude Pro's quota were settled on Haiku 5.5; sensitivity: valuing the plan worth at the cache-write-inclusive $0.419 (about $1,279.6/month) ÷ $0.0147 = 87.049B, 6.3% higher; computed 2026-10-08, no in-subscription measurement; https://www.anthropic.com/claude-haiku-5-5"
+    },
+    {
+      "zh": "由同套餐 claude-opus-5.5 315.38 亿 × 26.802721088435373",
+      "en": "Derived from same-plan claude-opus-5.5 31.538B × 26.802721088435373"
+    },
+    {
+      "zh": "新增8453.042亿：基准 claude_max_20x×opus-5.5 采用值315.38亿（medium）×标价混合比26.802721；倍率口径同 claude_pro 行（含 cache write 灵敏度 8989.40 亿）；2026-10-08 套算，无订阅实测样本；https://www.anthropic.com/claude-haiku-5-5",
+      "en": "New 845.3042B: base claude_max_20x×opus-5.5 adopted value 31.538B (medium) × list-price blended ratio 26.802721; same ratio convention as the claude_pro row (cache-write sensitivity 898.94B); computed 2026-10-08, no in-subscription measurement; https://www.anthropic.com/claude-haiku-5-5"
+    },
+    {
       "zh": "由同套餐 claude-opus-5 78.5 亿 × 0.11764705882352941",
       "en": "Derived from same-plan claude-opus-5 7.85B × 0.11764705882352941"
     },
@@ -1483,6 +1559,46 @@
       "en": "List price cached 0.2/in 4.0/out 20.0, cache write (5m) $5 × Anthropic unified workload 97.0%/2.50%/0.50% (the regular-input share is billed at the 5-minute cache-write price)"
     },
     {
+      "zh": "platform.claude.com/docs/en/about-claude/pricing；2026-09-28发布保持Sonnet 5定价$2/$10（cache read 0.1×）、写 $2.5/5m $4/1h、Batch $1/$5；list-prices-claude-sonnet55-round1-2026-09-30.json",
+      "en": "platform.claude.com/docs/en/about-claude/pricing; launched 2026-09-28 keeping Sonnet 5 pricing $2/$10 (cache read 0.1x), cache write $2.5/5m $4/1h, Batch $1/$5; list-prices-claude-sonnet55-round1-2026-09-30.json"
+    },
+    {
+      "zh": "标价 cached 0.2/in 2.0/out 10.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.2/in 2.0/out 10.0 x project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://www.anthropic.com/claude-haiku-5-5；2026-10-07发布，≤100k 档 cache read $0.01(输入0.1×)/cache write $0.125(输入1.25×)/输入 $0.10/输出 $0.50；官方称 90% 请求落在 ≤100k 档，>100k 档为 5×($0.05/$0.50/$2.50、写$0.625)；较 Haiku 4.5 降 90%",
+      "en": "https://www.anthropic.com/claude-haiku-5-5; released 2026-10-07, ≤100k tier cache read $0.01 (input 0.1×)/cache write $0.125 (input 1.25×)/input $0.10/output $0.50; the vendor states 90% of requests land in the ≤100k tier, while the >100k tier is 5× ($0.05/$0.50/$2.50, write $0.625); 90% cheaper than Haiku 4.5"
+    },
+    {
+      "zh": "标价 cached 0.01/in 0.1/out 0.5 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.01/in 0.1/out 0.5 × project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json",
+      "en": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ official 50% launch-discount list price; list-prices-gemini-4-argon-round1-2026-10-01.json"
+    },
+    {
+      "zh": "标价 cached 0.1/in 2.0/out 10.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.1/in 2.0/out 10.0 x project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s",
+      "en": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash; single RTX 5090 (32GB) local measurement: Qwen3.8-27B NVFP4 with the SGLang runtime and DFlash2 speculative decoding, end-to-end task time 14.8s, 193 tok/s measured at full 155K-256K context"
+    },
+    {
+      "zh": "标价 cached 0.001/in 0.01/out 0.05 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.001/in 0.01/out 0.05 x project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s",
+      "en": "https://github.com/syv-ai/HyperQwen; single 24GB local measurement: Qwen3.8-27B W4A16 AutoRound with patched vLLM and KVarN INT4 KV cache compression, end-to-end task time 27.7s, 127 tok/s single-user throughput, about 96-105 tok/s at full 256k long context"
+    },
+    {
+      "zh": "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark；经全文校验原厂 README：单卡 RTX PRO 6000 (Blackwell 96GB) 运行 RadixArk NVFP4-BF16-LMHead 与纯注意力 DFlash 2 投机草稿头。草稿 greedy head 折叠进 CUDA 图，单步验证 8 个 tokens，单流解码实测突破 240+ tok/s，AA 基准 Task Time 压降至 11.9s；55GB FP8 KV 池容纳约 1.7M tokens，原生支持 256K~512K 上下文且支持 8 路并发",
+      "en": "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark; upstream README verified in full: single RTX PRO 6000 (Blackwell 96GB) running RadixArk NVFP4-BF16-LMHead with a pure-attention DFlash 2 speculative draft head. The greedy draft head is folded into the CUDA graph, 8 tokens verified per step, single-stream decoding measured above 240+ tok/s, AA benchmark task time down to 11.9s; a 55GB FP8 KV pool holds about 1.7M tokens, natively supporting 256K-512K context and 8-way concurrency"
+    },
+    {
       "zh": "标价 cached 0.2/in 2.0/out 12.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
       "en": "List price cached 0.2/in 2.0/out 12.0 × project standard workload 97.0%/2.50%/0.50%"
     },
@@ -1519,90 +1635,6 @@
       "en": "Vendor self-report, not an official tbench.ai leaderboard run. The Anthropic 2026-09-22 Opus 5.5 release page's eval table shows Terminal-Bench 4 at 66.4% (default effort); the same table's FrontierCode 54.4%, CursorBench 52.5% and GDPval-AA 1846 are not this repository's boards — kept as evidence only; AA/arena/OpenDesign have no third-party snapshot score, so none is fabricated. See claude-opus55-round1-2026-09-23.json."
     },
     {
-      "zh": "AA 内嵌载荷标记 intelligenceIndexIsEstimated=true；按估计值保留，不作完整实测处理。",
-      "en": "Marked intelligenceIndexIsEstimated=true in AA embedded payload; retained as estimate, not treated as fully measured."
-    },
-    {
-      "zh": "分数属于该命名 agent/harness × 模型配置，并非与 harness 无关的模型测量。indexScore 以百分数存储（原始小数 ×100）。",
-      "en": "Score belongs to this named agent/harness × model configuration; it is not a harness-independent model measurement. indexScore stored as percent (raw fraction × 100)."
-    },
-    {
-      "zh": "官方 Terminal-Bench 4.0 榜单行；分数属于该 harness × 模型 × effort 的具体配置。",
-      "en": "Official Terminal-Bench 4.0 leaderboard row; score belongs to this harness × model × effort configuration."
-    },
-    {
-      "zh": "Google 2026-09-30 官方首发发布会与目录价；首发50%折扣（读$0.10/入$2.00/出$10.00）；按 Google AI Pro 额度池 $1.19/1% 标价与低缓存档($0.19125/MTok)换算；list-prices-gemini-4-argon-round1-2026-10-01.json",
-      "en": "Google launch event and list price 2026-09-30; 50% launch discount (read $0.10 / input $2.00 / output $10.00); converted via the Google AI Pro allowance pool at $1.19 per 1% list-worth and the low-cache band ($0.19125/MTok); list-prices-gemini-4-argon-round1-2026-10-01.json"
-    },
-    {
-      "zh": "新增11.62亿：按 Antigravity/Google AI Pro 官方周池合池机制（两实测样本 worth 约$123.42/周×4周=$493.66/月），结合 Gemini 4 Argon 首发优惠低缓存混合价（85% cache读$0.10 + 14.5%入$2.00 + 0.5%出$10.00 = $0.425/MTok）换算得出 11.62 亿/月；标准目录价恢复后约 5.81 亿/月。",
-      "en": "New 1.162B: converted from the Antigravity / Google AI Pro official shared weekly pool (two measured samples worth about $123.42/week x 4 weeks = $493.66/month) at the Gemini 4 Argon launch-discount low-cache blended price (85% cache read $0.10 + 14.5% input $2.00 + 0.5% output $10.00 = $0.425/MTok), giving 1.162B/month; about 0.581B/month once standard list pricing returns."
-    },
-    {
-      "zh": "新增58.1亿：Pro采用值11.62亿×官方worth倍率5；单价约$0.01721/MTok；非独立实测",
-      "en": "New 5.81B: Pro adopted value 1.162B x official worth multiplier 5; about $0.01721/MTok; not independently measured"
-    },
-    {
-      "zh": "新增232.4亿：Pro采用值11.62亿×官方worth倍率20；单价约$0.008605/MTok；非独立实测",
-      "en": "New 23.24B: Pro adopted value 1.162B x official worth multiplier 20; about $0.008605/MTok; not independently measured"
-    },
-    {
-      "zh": "由同套餐 claude-opus-5.5 30.54 亿 × 1.3401360544217689",
-      "en": "From same plan claude-opus-5.5 3.054B x 1.3401360544217689"
-    },
-    {
-      "zh": "新增40.928亿：基准 claude_pro×opus-5.5 采用值30.54亿（low）×Opus5.5/Sonnet5.5 标价混合比1.340136（blended(0.2,4,20)/blended(0.2,2,10)＝0.394/0.294：cache read 同为$0.2、占标准负载97%权重，input/output 仅2×，故非简单 in/out 比2.0、亦非 Opus5 代2.5）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
-      "en": "New 4.0928B: base claude_pro x opus-5.5 adopted 3.054B (low) x Opus 5.5 / Sonnet 5.5 list-price blend ratio 1.340136 (blended(0.2,4,20)/blended(0.2,2,10) = 0.394/0.294: same $0.2 cache read at 97% of the standard workload, input/output only 2x, so neither the plain in/out 2.0 nor the Opus 5 generation 2.5); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
-    },
-    {
-      "zh": "由同套餐 claude-opus-5.5 315.38 亿 × 1.3401360544217689",
-      "en": "From same plan claude-opus-5.5 31.538B x 1.3401360544217689"
-    },
-    {
-      "zh": "新增422.652亿：基准 claude_max_20x×opus-5.5 采用值315.38亿（medium）×标价混合比1.340136；倍率口径同 claude_pro 行（非2.0/2.5 说明见该行）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
-      "en": "New 42.2652B: base claude_max_20x x opus-5.5 adopted 31.538B (medium) x list-price blend ratio 1.340136; same ratio rationale as the claude_pro row (see that row for the non-2.0/2.5 note); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
-    },
-    {
-      "zh": "由同套餐 claude-opus-5 78.5 亿 × 2.6920516486849517",
-      "en": "From same plan claude-opus-5 7.85B x 2.6920516486849517"
-    },
-    {
-      "zh": "新增211.326亿：基准 claude_max_5x×opus-5 采用值78.5亿×档间比2.008790（同5x×opus-5.5行301.7÷157）×Opus5.5/Sonnet5.5标价混合比1.340136；等价于20x Sonnet5.5派生值422.652÷2（维护者确认20x周池=5x的2倍，同Opus 5.5行301.7÷2）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
-      "en": "New 21.1326B: base claude_max_5x x opus-5 adopted 7.85B x tier ratio 2.008790 (same as the 5x x opus-5.5 row 301.7/157) x Opus 5.5 / Sonnet 5.5 list-price blend ratio 1.340136; equals the 20x Sonnet 5.5 derived value 422.652 / 2 (maintainer confirmed the 20x weekly pool is 2x the 5x pool, same as Opus 5.5 row 301.7/2); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
-    },
-    {
-      "zh": "platform.claude.com/docs/en/about-claude/pricing；2026-09-28发布保持Sonnet 5定价$2/$10（cache read 0.1×）、写 $2.5/5m $4/1h、Batch $1/$5；list-prices-claude-sonnet55-round1-2026-09-30.json",
-      "en": "platform.claude.com/docs/en/about-claude/pricing; launched 2026-09-28 keeping Sonnet 5 pricing $2/$10 (cache read 0.1x), cache write $2.5/5m $4/1h, Batch $1/$5; list-prices-claude-sonnet55-round1-2026-09-30.json"
-    },
-    {
-      "zh": "标价 cached 0.2/in 2.0/out 10.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
-      "en": "List price cached 0.2/in 2.0/out 10.0 x project standard workload 97.0%/2.50%/0.50%"
-    },
-    {
-      "zh": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json",
-      "en": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ official 50% launch-discount list price; list-prices-gemini-4-argon-round1-2026-10-01.json"
-    },
-    {
-      "zh": "标价 cached 0.1/in 2.0/out 10.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
-      "en": "List price cached 0.1/in 2.0/out 10.0 x project standard workload 97.0%/2.50%/0.50%"
-    },
-    {
-      "zh": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s",
-      "en": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash; single RTX 5090 (32GB) local measurement: Qwen3.8-27B NVFP4 with the SGLang runtime and DFlash2 speculative decoding, end-to-end task time 14.8s, 193 tok/s measured at full 155K-256K context"
-    },
-    {
-      "zh": "标价 cached 0.001/in 0.01/out 0.05 × 项目统一标准负载 97.0%/2.50%/0.50%",
-      "en": "List price cached 0.001/in 0.01/out 0.05 x project standard workload 97.0%/2.50%/0.50%"
-    },
-    {
-      "zh": "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s",
-      "en": "https://github.com/syv-ai/HyperQwen; single 24GB local measurement: Qwen3.8-27B W4A16 AutoRound with patched vLLM and KVarN INT4 KV cache compression, end-to-end task time 27.7s, 127 tok/s single-user throughput, about 96-105 tok/s at full 256k long context"
-    },
-    {
-      "zh": "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark；经全文校验原厂 README：单卡 RTX PRO 6000 (Blackwell 96GB) 运行 RadixArk NVFP4-BF16-LMHead 与纯注意力 DFlash 2 投机草稿头。草稿 greedy head 折叠进 CUDA 图，单步验证 8 个 tokens，单流解码实测突破 240+ tok/s，AA 基准 Task Time 压降至 11.9s；55GB FP8 KV 池容纳约 1.7M tokens，原生支持 256K~512K 上下文且支持 8 路并发",
-      "en": "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark; upstream README verified in full: single RTX PRO 6000 (Blackwell 96GB) running RadixArk NVFP4-BF16-LMHead with a pure-attention DFlash 2 speculative draft head. The greedy draft head is folded into the CUDA graph, 8 tokens verified per step, single-stream decoding measured above 240+ tok/s, AA benchmark task time down to 11.9s; a 55GB FP8 KV pool holds about 1.7M tokens, natively supporting 256K-512K context and 8-way concurrency"
-    },
-    {
       "zh": "Artificial Analysis 2026-09-30 首测数据：智力得分 53 追平 GPT-6 Astra，首发 50% 折扣下每任务成本 $1.99。",
       "en": "Artificial Analysis first measurement 2026-09-30: intelligence score 53 matches GPT-6 Astra, cost per task $1.99 at the 50% launch discount."
     },
@@ -1617,6 +1649,10 @@
     {
       "zh": "测算环境与纯硬件依据：纯单卡 24GB (RTX 3080/3090/4090) 本地运行环境。基于开源仓库 syv-ai/HyperQwen 实测：Qwen3.8-27B W4A16 AutoRound 量化配合打补丁的 vLLM 与 KVarN INT4 KV Cache 压缩。端到端基准 Task Time 为 27.7 秒，单用户解码速率 127 tok/s，满 256k 极限长文本下约为 96~105 tok/s（35.2s）。",
       "en": "Measurement environment and pure-hardware basis: single 24GB (RTX 3080/3090/4090) local runtime. Measured against the open-source syv-ai/HyperQwen repo: Qwen3.8-27B W4A16 AutoRound quantization with patched vLLM and KVarN INT4 KV cache compression. End-to-end benchmark task time 27.7 seconds, single-user decode 127 tok/s, about 96-105 tok/s at the full 256k long-context limit (35.2s)."
+    },
+    {
+      "zh": "官方 Terminal-Bench 4.0 榜单行；分数属于该 harness × 模型 × effort 的具体配置。",
+      "en": "Official Terminal-Bench 4.0 leaderboard row; score belongs to this harness × model × effort configuration."
     }
   ]
 }

@@ -1,3 +1,6 @@
+# Cloudflare Pages 语法：线上实际是 nginx（/etc/nginx/sites-available/real-plan.fja.su.conf），
+# nginx 不读取本文件（2026-10-08 实测：assets 的双 Cache-Control 与这里的 1 年 max-age 不一致）。
+# 本文件仅为将来改用 Cloudflare Pages 部署时的备选；缓存策略的权威来源是 nginx 配置。
 /data/*
   Cache-Control: public, max-age=0, must-revalidate
 

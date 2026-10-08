@@ -1,0 +1,38 @@
+{
+  "collectedAt": "2026-10-08",
+  "sourceType": "official pricing page",
+  "source": "https://www.anthropic.com/claude-haiku-5-5",
+  "checkedAt": "2026-10-08",
+  "launchAt": "2026-10-07",
+  "scope": "Anthropic Claude Haiku 5.5（2026-10-07 发布，API id claude-haiku-5-5）按量三段价与缓存价，供 compute.py 算标价混合价（list_blended）与每任务成本换算。取 ≤100k 档（官方称约 90% 请求落在该档）；>100k 档与缓存写价列在 variants，不进混合价。",
+  "models": [
+    {
+      "model": "claude-haiku-5.5",
+      "vendor": "Anthropic",
+      "input": 0.1,
+      "cachedInput": 0.01,
+      "output": 0.5,
+      "currency": "USD",
+      "variants": {
+        "tierOver100k": {
+          "input": 0.5,
+          "cachedInput": 0.05,
+          "output": 2.5,
+          "cacheWrite5m": 0.625,
+          "note": ">100k 输入 token 档，三段价与 5m 缓存写价均为 ≤100k 档的 5 倍"
+        },
+        "cacheWrite5m": {
+          "input": 0.125
+        },
+        "cacheWrite1h": {
+          "input": 0.2,
+          "note": "按 Anthropic 规则推定（1h 写 = 5m 写 ×1.6）；发布页未列，未经官方核实"
+        }
+      },
+      "source": "https://www.anthropic.com/claude-haiku-5-5",
+      "checkedAt": "2026-10-08",
+      "note": "≤100k 档 $0.10/$0.50、cache read $0.01（= 输入 0.1×，标准 Anthropic 规则，非 Opus 5.5 的 0.05× 特例）、cache write 5m $0.125（= 输入 1.25×）；>100k 档统一 5×。较 Haiku 4.5 降约 90%。标准负载混合价 0.97×0.01＋0.025×0.10＋0.005×0.50＝$0.0147/MTok（与 gpt-6-luna 同为 $0.01/$0.10/$0.50 档，二者混合价相同属巧合）。"
+    }
+  ],
+  "notFound": []
+}

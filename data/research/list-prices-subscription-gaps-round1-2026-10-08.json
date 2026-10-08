@@ -1,0 +1,84 @@
+{
+  "collectedAt": "2026-10-08",
+  "usdPerCny": 6.7787,
+  "sourceType": "official pricing pages (in-repo evidence) + third-party price tables",
+  "scope": "补齐订阅点标价缺口：compute.py load_list_prices() 原先对这 5 个模型无条目，导致 derived/points.json 的 list_blended_usd_per_mtok 为空、前端「每任务成本」轴走 MEDIAN_AA_TASK_MTOK=3.51759 × 真实单价的常数回退（多 effort 档被压到同一 x，前沿可能被画歪）。本档只收 (a) 类——有可查公开三段价的模型；ChatGPT 独占且无 API 定价页的 gpt-6-astra、官方未公布价的 minimax-m3.1-flash-preview、促销期免费的 Devin swe-2 记入 notFound，不编价。model 字段一律用项目模型 id（非官方 API id）。",
+  "models": [
+    {
+      "model": "claude-fable-5.1",
+      "vendor": "Anthropic",
+      "input": 10.0,
+      "cachedInput": 0.25,
+      "output": 50.0,
+      "currency": "USD",
+      "variants": {
+        "cacheWrite5m": { "input": 12.5 },
+        "cacheWrite1h": { "input": 20.0 }
+      },
+      "source": "https://www.anthropic.com/claude/fable",
+      "checkedAt": "2026-10-08",
+      "note": "官方产品页：$10/MTok input、$50/MTok output、缓存读 $0.25/MTok（比 Fable 5 的 $1 降 75%）；官方 API id 为 claude-fable-5-1，项目模型 id 为 claude-fable-5.1。写价 $12.50(5m)/$20(1h) 沿用 Fable 5 比例，见 claude-fable51-round1-2026-09-13.json（evidenceType=official_doc）。标准负载混合价 0.97×0.25＋0.025×10＋0.005×50＝$0.7425/MTok。"
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "vendor": "OpenAI",
+      "input": 2.0,
+      "cachedInput": 0.1,
+      "output": 10.0,
+      "currency": "USD",
+      "source": "https://developers.openai.com/api/docs/pricing （OpenAI 官方页，一手）+ learn.chatgpt.com token rates credits 2.5/50/250 双源一致",
+      "checkedAt": "2026-10-08",
+      "note": "官方页 $2 输入 / $0.10 缓存读 / $10 输出（cached = 输入 5%）；learn.chatgpt.com token rates credits 2.5/50/250 ÷25 结果一致，两独立来源，见 chatgpt-gpt61sol-plus-round3-2026-09-30.json 的 priceBasis.adopted。标准负载混合价 0.97×0.10＋0.025×2＋0.005×10＝$0.197/MTok，与该文件段 worth 折算所用 $0.197 一致。"
+    },
+    {
+      "model": "gpt-6-sol",
+      "vendor": "OpenAI",
+      "input": 2.0,
+      "cachedInput": null,
+      "output": 10.0,
+      "currency": "USD",
+      "source": "https://artificialanalysis.ai/ （AA 榜页面，二手源）+ ChatGPT credits Sol 10/100/500 比例互证；cached 为 0.1× 推定，未见官方页",
+      "checkedAt": "2026-10-08",
+      "note": "AA 页标价 $2 输入 / $10 输出；cached 未见官方页确认，按项目惯例 0.1× 兜底（cachedInput=null → compute.py 取 input×0.1 = $0.20），与 ChatGPT credits Sol 10/100/500 的 1:10:50 比一致，见 workload-conversion-round1-2026-09-30.json 与 chatgpt-gpt6sol-plus-round1-2026-09-24.json（其中 $2/$10 与 AA 页标价一致，cached 0.1× 为推定）。标准负载混合价 0.97×0.2＋0.025×2＋0.005×10＝$0.294/MTok，与该文件 $0.294 一致。"
+    },
+    {
+      "model": "gemini-3.6-flash",
+      "vendor": "Google",
+      "input": 0.75,
+      "cachedInput": 0.075,
+      "output": 3.75,
+      "currency": "USD",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "checkedAt": "2026-10-08",
+      "note": "与同页 Gemini 3.7 Flash 同价 $0.75 输入 / $0.075 缓存读（输入 0.1×）/ $3.75 输出；community issue #55 投稿亦称 3.6 Flash 与 3.8 Flash 同价、每 1% 标价美元几乎相同，支持同一按价额度池（community-issues-round1-2026-09-29.json），issue #55 的 worth 算式即用 $0.075/$0.75/$3.75 三段价。标准负载混合价 0.97×0.075＋0.025×0.75＋0.005×3.75＝$0.11025/MTok；该行 decision_note 另用低缓存档 $0.19125 折算额度。"
+    },
+    {
+      "model": "mistral-medium-3.5",
+      "vendor": "Mistral",
+      "input": 1.5,
+      "cachedInput": null,
+      "output": 7.5,
+      "currency": "USD",
+      "source": "https://mistral.ai/pricing/",
+      "checkedAt": "2026-10-08",
+      "note": "Mistral Medium 3.5 公开价 $1.50 输入 / $7.50 输出，第三方价目表两源一致（https://benchlm.ai/mistral/api-pricing 、https://developer.puter.com/tutorials/mistral-api-pricing/ ，2026-10-08 检索）。缓存读未见官方页，按项目惯例 0.1× 兜底（cachedInput=null → $0.15）。标准负载混合价 0.97×0.15＋0.025×1.5＋0.005×7.5＝$0.2205/MTok。"
+    }
+  ],
+  "notFound": [
+    {
+      "model": "gpt-6-astra",
+      "reason": "ChatGPT 独占，无独立 API 定价页；库内只有订阅内 credits 换算（Astra 25/250/1250 vs Sol 10/100/500，同为 1:10:50 比），属订阅内等效价而非 API 标价，按口径不硬塞。",
+      "evidence": "workload-conversion-round1-2026-09-30.json；chatgpt-astra-round14-2026-09-21.json（周池 $1200~1500 list-worth）"
+    },
+    {
+      "model": "minimax-m3.1-flash-preview",
+      "reason": "MiniMax 官方未公布 M3.1 独立计价比例，项目 2026-10-01 裁定暂不折算、不借用 M3 价；2026-10-08 外部检索亦无官方 per-MTok 价（评测称该 preview 无 verified per-model pricing）。",
+      "evidence": "minimax-m31-flash-preview-cn-round1-2026-10-01.json（normalization.officialM31PriceRatiosVerified=false）；https://daily.dev/posts/minimax-m3-1-flash-fully-tested-okay-this-model-is-pretty-good--jljkx8rst"
+    },
+    {
+      "model": "swe-2",
+      "reason": "Devin 订阅制自研模型，无公开 API 三段价；促销期内对 Pro/Max/Teams 不占额度不计费（该点 real_usd_per_mtok 记 0），常数回退对 ≈$0 点无实际影响。",
+      "evidence": "devin-swe2-round1-2026-09-12.json；data/adopted.csv 该行 decision_note（促销至 2026-10-31，到期须复核）"
+    }
+  ]
+}

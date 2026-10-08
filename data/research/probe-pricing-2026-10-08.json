@@ -1,0 +1,71 @@
+{
+  "collectedAt": "2026-10-08",
+  "checkedAt": "2026-10-08T09:19:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek）",
+  "summary": "2026-10-08 官方 API 标价排查结论：Anthropic 新增 Claude Haiku 5.5（2026-10-07 发布，≤100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50），已建档并派生；OpenAI 2026-10-06 简化 API Usage Tiers（Build/Launch/Grow 三档），主要模型标价（GPT-6.1 Sol / GPT-6 Luna / GPT-6 Astra）保持不变；Google Gemini 4 Argon 仍处于受限防守者计划，尚未开放公众 API 计价；DeepSeek 峰平谷与缓存价维持不变。除 Haiku 5.5 外，今日无其他新增模型或价格调整。",
+  "vendors": {
+    "Anthropic": {
+      "status": "new_model_detected",
+      "model": "claude-haiku-5.5",
+      "officialSlug": "claude-haiku-5-5",
+      "releaseDate": "2026-10-07",
+      "listPricing": {
+        "tierUnder100k": {
+          "inputUsdPerMtok": 0.10,
+          "cachedInputUsdPerMtok": 0.01,
+          "outputUsdPerMtok": 0.50,
+          "cacheWrite5mUsdPerMtok": 0.125
+        },
+        "tierOver100k": {
+          "inputUsdPerMtok": 0.50,
+          "cachedInputUsdPerMtok": 0.05,
+          "outputUsdPerMtok": 2.50,
+          "cacheWrite5mUsdPerMtok": 0.625
+        }
+      },
+      "handling": "已入库 data/research/list-prices-claude-haiku55-round1-2026-10-08.json；已在 scripts/build_adopted.py 派生主行及分档情景点",
+      "otherModels": {
+        "claude-sonnet-5.5": "保持 $2.00/$10.00 (cache read $0.20)，无变动",
+        "claude-opus-5.5": "保持 $4.00/$20.00 (cache read $0.20)，无变动"
+      }
+    },
+    "OpenAI": {
+      "status": "tier_structure_update_no_price_change",
+      "recentChanges": [
+        "2026-10-06 API Usage Tiers 简化为三档：Build ($5/月上限$500), Launch ($100/月上限$5,000), Grow ($500/月上限$200,000)，降低高并发门槛",
+        "GPT-6.1 Sol: 标价维持 $2.00 输入 / $0.10 缓存读 / $10.00 输出（已纳入 list-prices-subscription-gaps）",
+        "GPT-6 Luna: 维持 $0.10 输入 / $0.50 输出",
+        "GPT-6 Astra: 维持 $10.00 输入 / $50.00 输出",
+        "GPT-5.6 Sol: 促销价维持至 2026-11-21",
+        "o4-mini: 定于 2026-10-23 下线"
+      ],
+      "handling": "无标价变更，无需建新档或调整采用值"
+    },
+    "Google": {
+      "status": "no_change",
+      "recentChanges": [
+        "Gemini 4 Argon: 2026-09-30 发布至 Fairwind Program 专属受限访问，公众 API 定价尚未发布；当前库内以 list-prices-gemini-4-argon-round1-2026-10-01.json 记录首发优惠参考价",
+        "Gemini 3.8 Flash: 引入价 $0.75/$3.75 维持至 2026-12-31（2027-01-01 预计翻倍至 $1.50/$7.50）",
+        "Gemini 3.6 Flash / 3.7 Flash: 标价稳定"
+      ],
+      "handling": "无标价变更，无需建新档或调整采用值"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash: 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持不变",
+        "DeepSeek-V4-Pro: 维持服务与既有峰平谷计费"
+      ],
+      "handling": "无标价变更，无需建新档或调整采用值"
+    }
+  },
+  "candidates": [
+    {
+      "model": "claude-haiku-5.5",
+      "type": "new_model",
+      "status": "integrated",
+      "notes": "AA round6 已收录；项目标价档与采用值已完成"
+    }
+  ]
+}
