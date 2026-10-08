@@ -71,6 +71,7 @@ jobs:
           python scripts/checks/verify_haiku55_tiers.py
           python scripts/checks/verify_list_blended.py
           python scripts/checks/verify_scenario_points.py
+          python scripts/checks/verify_price_basis.py
           python scripts/checks/verify_palette.py
           python scripts/checks/verify_docs_refs.py
 

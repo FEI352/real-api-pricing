@@ -51,6 +51,7 @@ FALLBACK_CHECKS = [
     "scripts/checks/verify_haiku55_tiers.py",
     "scripts/checks/verify_list_blended.py",
     "scripts/checks/verify_scenario_points.py",
+    "scripts/checks/verify_price_basis.py",
     "scripts/checks/verify_configuration_html.cjs",
     "scripts/checks/verify_fee_bands.py",
     "scripts/checks/verify_chart_labels.py",
