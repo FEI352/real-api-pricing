@@ -192,6 +192,7 @@ nginx 对 `/data/` 与 `/index.html` 发 `no-cache, must-revalidate`，部署后
 
 - 三条「无法判定」的记录格式统一：`[需人工介入] <动作> 未完成/未判定：<原因>`，追加进 `data/research/daily-log-<YYYY-MM>.md`；**没有记录 = 视为本轮未做**。
 - 与陷阱表的对应：本节第 1/2 条的失败口径 ↔ #16；「已存在即拒绝覆盖」`--force` 守卫 ↔ #12 / #14；`--slug-map` 逐条给全 ↔ #15。同一件事只在这两处出现，改动时两处一起改。
+- git 入库兜底（不依赖 Agent 执行）：DSH automation task `hostcron:rap-gitpush` 每日 10:30 执行同一脚本（deepseek.fja.su → 设置 → Cron Jobs 面板可见，支持 Run now）；日志 `/var/log/real-api-pricing-gitpush.log`。（2026-10-17 由系统 crontab 迁入，避免双调度。）
 
 ---
 

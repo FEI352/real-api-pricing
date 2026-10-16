@@ -20,3 +20,4 @@
 
 
 - 2026-10-17 05:27 | 手动补账（非定时轮） | — | A/B/C 补账：A=提交并推送 10-08 以来积压（5 commits + 211 项产物 → 1865e17）；B=合并上游 63 提交（保留叉内方法学与前端；推迟上游 web 重构 13 文件、build_adopted 5 处口径、compute 的 list-prices-claude55 引用——DECISIONS.md 双侧合并留档）→ 全链重建部署（17 OK/1 噪声/0 FAIL → 9871c0e/7e6167d）；C=收尾入库机制上线（runbook §7 第 6 行 + sidecar prompt 收尾段 + gitpush 助手 + 主机 10:30 兜底 cron）。conventions 版本日 10-08 → 10-17（线上已生效）。
+- 2026-10-17 05:35 | 机制变更 | — | 自动入库兜底改挂：系统 crontab → DSH automation task「hostcron:rap-gitpush」（deepseek.fja.su 设置→Cron Jobs，kind=command，每日 10:30）；已实弹试射通过（last_status=ok，输出 Everything up-to-date），crontab 旧条目已撤回防双调度。
