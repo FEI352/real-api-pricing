@@ -1,0 +1,60 @@
+{
+  "collectedAt": "2026-10-16",
+  "collectionMethod": "Manual capture of the official OpenCode Go plan page and docs page (English). Official pricing tables only.",
+  "sources": [
+    "https://opencode.ai/docs/go/",
+    "https://opencode.ai/go"
+  ],
+  "scope": "OpenCode Go official price table only. No leaderboard/score data, no Command Goat, no shared-pool changes, no other OpenCode rows.",
+  "adopted": {
+    "provider": "opencode_go",
+    "model": "step-5-preview",
+    "modelId": "step-5-preview",
+    "monthlyCreditsUsd": 15,
+    "effectiveUsageUsd": 15,
+    "inputPerMTokUsd": 1.0,
+    "outputPerMTokUsd": 2.7,
+    "cachedReadPerMTokUsd": 0.1,
+    "cacheWritePerMTokUsd": null,
+    "cacheWriteNote": "No cache-write price listed in the official table.",
+    "confidence": "medium",
+    "basis": "official"
+  },
+  "computation": {
+    "standardTokenMix": {
+      "cached": 0.97,
+      "input": 0.025,
+      "output": 0.005
+    },
+    "blendedUsdPerMTok": 0.1355,
+    "blendedFormula": "0.97*0.10 + 0.025*1.00 + 0.005*2.70 = 0.1355",
+    "effectiveUsageFormula": "min(60, 15) = 15",
+    "monthlyYi": 1.107,
+    "monthlyYiFormula": "round(15 / 0.1355 / 100, 3) = 1.107"
+  },
+  "limitedTime4xNotAdopted": {
+    "pageLabel": "4x Limited time",
+    "creditsUsd": 60,
+    "endDate": null,
+    "adopted": false,
+    "reason": "CONVENTIONS requires every temporary promotion to carry an end date. The page shows a 4x (→ $60) limited-time multiplier with no deadline, so it is recorded here as evidence only and is not used for the adopted row.",
+    "impact": "Adopted monthly credit stays at the steady-state $15; monthlyYi would be ~4.428 if and when the 4x promotion is confirmed with a deadline.",
+    "landingPageQuote": "Step 5 Preview is now available in Go with 4× usage for a limited time."
+  },
+  "priorFreeNotAdopted": {
+    "date": "2026-10-15",
+    "modelId": "step-5-preview-free",
+    "label": "Step 5 Preview Free",
+    "allowance": "Free / Unlimited / limited time",
+    "adopted": false,
+    "reason": "A free unlimited limited-time entry carries no monetary allowance, so it was never turned into an adopted point. The 2026-10-16 paid row is the first measured point for this model on OpenCode Go.",
+    "impact": "Creates the first adopted opencode_go row for step-5-preview at monthlyYi 1.107."
+  },
+  "officialRequestEstimates": {
+    "note": "Official 'Estimated requests' table for the Go plan (https://opencode.ai/docs/go/, re-checked 2026-10-16); used only as cross-check evidence, never as the allowance main value. The page shows the $15 tier struck through and the 4x tier in bold.",
+    "steadyState15Usd": {"per5h": 430, "perWeek": 1070, "perMonth": 2130},
+    "limitedTime4x60Usd": {"per5h": 1720, "perWeek": 4280, "perMonth": 8520},
+    "crossCheck": "Official per-request workload for Step 5 Preview = 1,000 input + 55,000 cached + 200 output → $0.001 + $0.0055 + $0.00054 = $0.00704; 2,130 × $0.00704 = $15.0 (matches the $15 Usage). 5h ≈ 20% and week ≈ 50% of the monthly figure, matching the page's per-model 5h/weekly/monthly = 20%/50%/100% rule.",
+    "correction": "The first draft of this file recorded per5h 430 / perWeek 1720 / perMonth 1070, mixing the two tiers; corrected before merge."
+  }
+}

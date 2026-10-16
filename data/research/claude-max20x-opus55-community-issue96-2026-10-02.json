@@ -1,0 +1,251 @@
+{
+  "collectedAt": "2026-10-15",
+  "scopeNote": "GitHub issue #96（投稿人 Kanttz）的社区实测原样录入：Claude Max 20x $200/月、国际站，账号在两个共享机器上只用 Claude Code。数据源为 Claude Code transcripts（message.usage 按 message.id + requestId 去重）+ statusline rate_limits 的整数 % 读数（窗口 A 有 2,941 个采样）。覆盖 2026-09-21 起的两个周窗与 2026-09-22 上调后 36 个 5h 窗。本文件只存档投稿数字与其自算推论，不参与采用值计算；采用值是否调整由上游维护者按自身算法裁定。",
+  "source": {
+    "type": "github_issue_community_measurement",
+    "url": "https://github.com/Fei2411/real-api-pricing/issues/96",
+    "author": "Kanttz",
+    "postedAt": "2026-10-02",
+    "providedBy": "GitHub issue 正文（2026-10-15 录入）"
+  },
+  "adoptionStatus": "research-only; not adopted; adopted values (claude_max_20x × claude-opus-5.5 = 315.38亿, claude_max_5x × claude-opus-5.5 = 183.34亿) unchanged pending maintainer review",
+  "items": [
+    {
+      "id": "issue96-weekly-window-A",
+      "planId": "claude_max_20x",
+      "priceUsd": 200,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_transcript_measurement",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/96",
+      "sourceDate": "2026-09-21 08:01 ~ 2026-09-28 07:54 (UTC)",
+      "observed": {
+        "windowLabel": "A",
+        "windowUtc": "2026-09-21 08:01 to 09-28 07:54",
+        "quotaPctUsed": "0% → 94%",
+        "quotaPctDelta": 94,
+        "statuslineSamples": 2941,
+        "tokensMTok": {
+          "freshInput": 0.1,
+          "cacheWrite5m": 5.5,
+          "cacheWrite1h": 104.7,
+          "cacheRead": 4944.11,
+          "output": 36.65,
+          "total": 5091.06
+        },
+        "apiListWorthUsdByModel": {
+          "opus55": 2368.0,
+          "opus5": 362.67,
+          "sonnet55": "–",
+          "other": 14.36,
+          "total1hWritesAt1hPrice": 2745.03,
+          "totalAllWritesAt5mPrice": 2423.48
+        },
+        "worthPerWeeklyPpUsd": {
+          "writesAt5mPrice": 25.78,
+          "formula": "$2,423.48 ÷ 94 = $25.78 per pp, so a full week is about $2,578",
+          "fullWeekWorthUsd": 2578
+        },
+        "shareOfApiUsdByModelEffortWritesAt5mPrice": {
+          "opus55·xhigh": "66.3%",
+          "opus55·medium": "19.2%",
+          "opus55·high": "–",
+          "opus5·xhigh": "13.7%",
+          "sonnet55·medium": "–",
+          "other": "0.8%"
+        }
+      }
+    },
+    {
+      "id": "issue96-weekly-window-B",
+      "planId": "claude_max_20x",
+      "priceUsd": 200,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_transcript_measurement",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/96",
+      "sourceDate": "2026-09-28 08:00 ~ 2026-10-02 08:15 (UTC)",
+      "observed": {
+        "windowLabel": "B",
+        "windowUtc": "2026-09-28 08:00 to 10-02 08:15",
+        "quotaPctUsed": "0% → 39%",
+        "quotaPctDelta": 39,
+        "tokensMTok": {
+          "freshInput": 0.06,
+          "cacheWrite5m": 0.76,
+          "cacheWrite1h": 55.54,
+          "cacheRead": 2222.34,
+          "output": 17.45,
+          "total": 2296.15
+        },
+        "apiListWorthUsdByModel": {
+          "opus55": 848.41,
+          "opus5": "–",
+          "sonnet55": 252.94,
+          "other": 0.96,
+          "total1hWritesAt1hPrice": 1102.31,
+          "totalAllWritesAt5mPrice": 968.6
+        },
+        "worthPerWeeklyPpUsd": {
+          "writesAt5mPrice": 24.84,
+          "formula": "$968.60 ÷ 39 = $24.84 per pp, so a full week is about $2,484",
+          "fullWeekWorthUsd": 2484
+        },
+        "shareOfApiUsdByModelEffortWritesAt5mPrice": {
+          "opus55·xhigh": "60.7%",
+          "opus55·medium": "15.5%",
+          "opus55·high": "0.9%",
+          "opus5·xhigh": "–",
+          "sonnet55·medium": "22.0%",
+          "other": "0.9%"
+        }
+      }
+    },
+    {
+      "id": "issue96-weekly-linearity-and-fit",
+      "planId": "claude_max_20x",
+      "priceUsd": 200,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_linearity_check",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/96",
+      "sourceDate": "2026-09-21 ~ 2026-10-02 (UTC)",
+      "observed": {
+        "claim": "The quota is linear inside a week, so a sample does not need to reach 100%.",
+        "apiUsdSpentWhenQuotaFirstShowedValueWindowA": {
+          "quotaPct": [
+            10,
+            30,
+            50,
+            70,
+            90,
+            94
+          ],
+          "usdPerPp": [
+            25.75,
+            25.94,
+            25.81,
+            25.65,
+            25.58,
+            25.61
+          ]
+        },
+        "fitWithIntercept": {
+          "windowA": {
+            "formula": "quota % = −0.93 + 0.03918 × API $",
+            "samples": 2941,
+            "usdPerPp": 25.53
+          },
+          "windowB": {
+            "formula": "quota % = −0.11 + 0.04032 × API $",
+            "usdPerPp": 24.8
+          }
+        }
+      }
+    },
+    {
+      "id": "issue96-five-hour-windows-post-2026-09-22-change",
+      "planId": "claude_max_20x",
+      "priceUsd": 200,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_five_hour_window_fit",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/96",
+      "sourceDate": "2026-09-23 00:00 ~ 2026-10-02 08:22 (UTC)",
+      "observed": {
+        "section": "5h windows after the 2026-09-22 limit change",
+        "windowCount": 36,
+        "windowRangeUtc": "2026-09-23 00:00 to 2026-10-02 08:22 UTC",
+        "excluded": "Windows that ended at 98% or more are excluded as capped.",
+        "fitForm": "quota % = k × API $（过原点）",
+        "writesAt5mPrice": {
+          "kPpPerUsd": 0.1511,
+          "rSquared": 0.994,
+          "meanAbsoluteErrorPp": 0.53,
+          "fullWindowWorthUsd": 662
+        },
+        "writesAt1hPrice": {
+          "kPpPerUsd": 0.1326,
+          "rSquared": 0.993,
+          "fullWindowWorthUsd": 754
+        },
+        "referenceMiaAiWindow": "Your MiaAI window gives $628 (= $471.10 ÷ 75%)",
+        "windowsPerWeekFromThisData": {
+          "formula": "Full week ÷ full 5h window, both at the 5m price",
+          "windowA": "$2,578 ÷ $662 = 3.89",
+          "windowB": "$2,484 ÷ $662 = 3.75",
+          "note": "This matches the 3.75 windows per week from the official multipliers, not the 5.5 from round10 #15."
+        }
+      }
+    },
+    {
+      "id": "issue96-mixed-model-weighting-check",
+      "planId": "claude_max_20x",
+      "priceUsd": 200,
+      "model": "mixed (Opus 5.5 / Opus 5 / Sonnet 5.5)",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_weighting_r2_comparison",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/96",
+      "sourceDate": "2026-08-17 ~ 2026-10-02",
+      "observed": {
+        "claim": "The quota tracks API list price across models with cache reads included.",
+        "sevenDaySamples": {
+          "range": "2026-08-17 to 2026-10-02",
+          "points": 314,
+          "apiPriceR2": 0.935,
+          "rawTokensEqualWeightedR2": 0.8,
+          "apiPriceWithCacheReadsFreeR2": 0.931
+        },
+        "postChangeFiveHourWindows": {
+          "apiPriceR2": 0.993,
+          "rawTokensEqualWeightedR2": 0.973,
+          "apiPriceWithCacheReadsFreeR2": 0.977
+        },
+        "posterConclusion": "So converting a mixed sample by API $ looks sound. The 5h data alone separates the weightings only weakly."
+      }
+    }
+  ],
+  "measurementConditions": {
+    "plan": "Claude Max 20x",
+    "price": "$200 / month",
+    "region": "international site",
+    "modelNote": "mostly Claude Opus 5.5 (86% and 77% of API $ in the two weeks below), the rest Opus 5 and Sonnet 5.5. Effort comes from the transcript `effort` field of each call.",
+    "tool": "Claude Code transcripts (`message.usage` per API call, deduplicated by `message.id` + `requestId`), on two machines that share one account.",
+    "quotaSource": "Claude Code statusline `rate_limits` field (integer %), logged on each statusline refresh (2,941 samples in window A).",
+    "fieldSemantics": "Anthropic usage fields. `input_tokens` excludes cache reads and cache writes. Output includes thinking tokens.",
+    "officialPublishedAllowance": "none in tokens",
+    "listPriceReference": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "scope": "The account used only Claude Code in these windows, with no claude.ai chat or app use, so the transcripts hold all usage. The near-zero intercepts above agree."
+  },
+  "contributorDerived": {
+    "disclaimer": "以下换算均为投稿人自行推算，未被本仓库采用；采用值不变，仅作存档与交叉参考。",
+    "monthlyTokenInferenceYiPerMonth": {
+      "writesAt5mPrice": {
+        "windowA": 246.1,
+        "windowB": 237.1
+      },
+      "writesAt1hPrice": {
+        "windowA": 278.8,
+        "windowB": 269.8
+      }
+    },
+    "formula": "At your Opus 5.5 Anthropic-workload price ($0.419/MTok) and 4 weeks per month",
+    "worthPerPpWritesAt1hPrice": {
+      "windowA": 29.2,
+      "windowB": 28.26
+    },
+    "comparisonToAdopted": "against the current 315.38亿",
+    "proCrossCheck": "Your Pro × Opus 5.5 row prices 1h writes at $8 and gives $3.19865 per Pro pp, so a Pro week is about $319.87. On the same pricing, a Max 20x week is $2,920 (A) and $2,826 (B), which is 9.1× and 8.8× a Pro week rather than 10×."
+  },
+  "openQuestions": [
+    "Whether the quota prices 1h cache writes at the 1h or the 5m rate. The two fits differ by 0.001 in R², so this data cannot tell. The choice moves the result by about 12%.",
+    "窗口 A 的 1h 写占 104.70 MTok、5m 写仅 5.50 MTok，两种写价口径下 worth 分别为 $2,745.03 与 $2,423.48；这一档位归属未由任何官方材料确认。",
+    "投稿的 5h 窗结论（3.75~3.89 窗/周）与 round10 条目 #15 的 5.5 窗/周冲突，两者在同库内并存，未裁定。"
+  ],
+  "relatedFiles": [
+    "claude-opus55-max20x-round2-2026-09-30.json",
+    "claude-max5x-opus55-round1-2026-10-03.json",
+    "community-issues-round1-2026-09-29.json",
+    "claude-adoption-round10-2026-09-25.json"
+  ]
+}

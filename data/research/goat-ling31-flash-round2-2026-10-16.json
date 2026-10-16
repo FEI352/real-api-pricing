@@ -1,0 +1,85 @@
+{
+  "collectedAt": "2026-10-16",
+  "collectionMethod": "Manual capture of the official Command Code GOAT plan page (English) around 10:36 Beijing time. Credits table, three-part pricing and the embedded RSC payload only. Re-verification of the round1 row; no leaderboard or score data.",
+  "sources": [
+    "https://commandcode.ai/docs/plans/goat"
+  ],
+  "scope": "Command Code GOAT official catalog only. One existing paid model row re-verified (per-model credits $20 -> $100). No leaderboard/score changes, no OpenCode Go changes, no shared-pool changes, no new model rows.",
+  "supersedes": {
+    "file": "data/research/goat-ling31-flash-round1-2026-10-15.json",
+    "relation": "re-verification of the same row; round1 is kept unchanged under the append-only rule",
+    "changed": "perModelCreditsUsd 20 -> 100, effectiveUsageUsd 20 -> 70, monthlyYi 2.849 -> 9.972",
+    "unchanged": "three-part price cached/input/output = $0.06/$0.30/$0.90, shared monthly pool $70, modelId, vendor, minPlan, confidence, basis"
+  },
+  "adopted": {
+    "provider": "command_code_goat",
+    "plan": "Command Code GOAT",
+    "model": "ling-3.1-flash",
+    "modelId": "inclusionai/ling-3.1-flash",
+    "vendor": "inclusionAI",
+    "minPlan": "Go",
+    "perModelCreditsUsd": 100,
+    "previousPerModelCreditsUsd": 20,
+    "effectiveUsageUsd": 70,
+    "effectiveUsageFormula": "min(shared monthly pool $70, per-model credits $100) = 70",
+    "inputPerMTokUsd": 0.3,
+    "outputPerMTokUsd": 0.9,
+    "cachedReadPerMTokUsd": 0.06,
+    "cacheWritePerMTokUsd": null,
+    "cacheWriteNote": "No cache-write price listed in the official table.",
+    "confidence": "medium",
+    "basis": "official"
+  },
+  "observedCredits": {
+    "displayedCreditsUsd": 100,
+    "displayForm": "flat $100 in the credits table",
+    "promoMarkers": null,
+    "promoMarkerDetail": "No 'was', 'through' or creditDeal wording present anywhere in the credits presentation at collection time, so the value is not rendered as a temporary or limited-time credit deal.",
+    "reasonAdopted": "CONVENTIONS and the recorded DECISIONS precedent treat a credit value carrying no end marker as the standing tier. The page now shows an unqualified $100, so $100 is adopted rather than the previous $20.",
+    "precedent": "Same rule previously applied to DeepSeek V4.1 Flash on Command Code GOAT ($15 -> $60) and to OpenCode Go V4.1 Flash, both adopted as permanent once the page dropped the limited-time marking."
+  },
+  "rscPayload": {
+    "budgetUsd": 100,
+    "budgetSteps": [
+      {
+        "at": "2026-10-15T12:30:00Z",
+        "budgetUsd": 100
+      }
+    ],
+    "interpretation": "budgetUsd is a flat 100 and the single budget step raises the budget to 100 on 2026-10-15T12:30Z with no subsequent down-step and no end date, i.e. the step is now live and is not a temporary promotion.",
+    "changeFromRound1": "At the 2026-10-15 ~14:05 Beijing capture the $100 step was not yet live, so round1 kept the adopted row at the steady-state $20 and recorded the step as evidence only. It is live at this collection."
+  },
+  "computation": {
+    "standardTokenMix": {
+      "cached": 0.97,
+      "input": 0.025,
+      "output": 0.005
+    },
+    "blendedUsdPerMTok": 0.0702,
+    "blendedFormula": "0.97*0.06 + 0.025*0.30 + 0.005*0.90 = 0.0702",
+    "monthlyYi": 9.972,
+    "monthlyYiFormula": "round(70 / 0.0702 / 100, 3) = 9.972",
+    "previousMonthlyYi": 2.849,
+    "realUsdPerMTok": 0.0351
+  },
+  "notAdopted": {
+    "freeVariant": {
+      "model": "Ling 3.1 Flash Free",
+      "adopted": false,
+      "reason": "Free variant rows are excluded from the adopted set under the existing project rule; unchanged by this collection."
+    },
+    "budgetStep": {
+      "adopted": false,
+      "reason": "The 2026-10-15T12:30Z $100 step is not treated as a separate promotion to be excluded; it is the live standing budget and is the same $100 already shown in the credits table, so it is captured as evidence rather than an extra tier."
+    }
+  },
+  "sharedPoolUnchanged": {
+    "commandCodeGoatSharedMonthlyUsd": 70,
+    "note": "Shared pool value and every other GOAT row are unchanged. This row is now capped by the shared $70 pool rather than by its own per-model credits, so any future pool increase would raise it again."
+  },
+  "unchangedScope": [
+    "No leaderboard or score data touched.",
+    "No OpenCode Go rows touched.",
+    "No other Command Code GOAT row touched."
+  ]
+}

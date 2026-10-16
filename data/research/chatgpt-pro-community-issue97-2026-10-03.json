@@ -1,0 +1,516 @@
+{
+  "collectedAt": "2026-10-16",
+  "sourceIssue": {
+    "issue": 97,
+    "url": "https://github.com/Fei2411/real-api-pricing/issues/97",
+    "author": "muscgab",
+    "postedAt": "2026-10-03T12:34:05Z",
+    "title": "[数据 / Data] OpenAI · ChatGPT Pro $100 / Pro $200 · GPT-6.1 Sol / GPT-5.6 Sol / GPT-5.6 Terra / GPT-6 Astra",
+    "transcriptionPolicy": "原样录入：observed 内所有数值逐项照抄投稿正文与三张表格，未换算、未改写、未补齐、未排序调整；投稿原文的「万」单位同时以 numeric 字段落数并保留 text 原文字段",
+    "notEvidence": "帖内最后一条 klarkxy 2026-10-16T02:49:49Z 评论为维护者确认留言（收到确认 + 建议先录 research），非数据证据，未录入 observed"
+  },
+  "scopeNote": "OpenAI ChatGPT Pro 两个档的社区实测原样录入：①Pro $100（Pro 5x，plan_type = prolite）对照实验——Codex CLI 0.159.0 在 2026-10-03 10:21–15:35（UTC+8）内跑 11 组单一负载分组（Astra / 6.1 Sol / 5.6 Sol / 5.6 Terra），周额度 0%→77%，每组带调用数、区间数、每 1% token、实扣/官方积分价倍率与单区间范围；②Pro $200（plan_type = pro，老账号 20 倍档保留至 2026-10-29）日常使用记录——三段混合负载按周额度增量分列 Astra 与 Terra 的未缓存/缓存/输出 token 及每 1% 积分；③历史周窗口用尽时间表（08-23~10-02 共 8 个周窗，主要模型 5.6 Sol / Terra / Astra）。证据形态对齐仓库「同窗 %↔token/积分」口径（chatgpt-astra-10pct-window-round10 同类）。全部为 research 证据，本轮不改 adopted：投稿人自推的每周积分、每 1% 积分与每周 token / 等效 API$ 一律归入 contributorDerived 并标注未采用。",
+  "adoptionStatus": "research-only; not adopted; existing ChatGPT Pro adopted values unchanged pending maintainer review",
+  "items": [
+    {
+      "planId": "chatgpt_pro_5x",
+      "priceUsd": 100,
+      "model": "gpt-6-astra / gpt-6.1-sol / gpt-5.6-sol / gpt-5.6-terra",
+      "models": ["gpt-6-astra", "gpt-6.1-sol", "gpt-5.6-sol", "gpt-5.6-terra"],
+      "client": "Codex CLI 0.159.0（codex exec）",
+      "evidenceType": "community_controlled_experiment",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/97",
+      "sourceDate": "2026-10-03",
+      "observed": {
+        "section": "一、ChatGPT Pro $100（对照实验）",
+        "experimentMeta": {
+          "company": "OpenAI",
+          "plan": "ChatGPT Pro $100（Pro 5x，plan_type = prolite）",
+          "price": "$100 / 月",
+          "region": "国际站",
+          "modelsWithEffort": "gpt-6-astra、gpt-6.1-sol、gpt-5.6-sol、gpt-5.6-terra，effort low",
+          "measurementTool": "Codex CLI 0.159.0（codex exec，rollout 中的 token_count 与 rate_limits）",
+          "measurementWindow": "2026-10-03 10:21–15:35（UTC+8）",
+          "quotaUsedPercent": "周额度 0% → 77%（只有周窗口，无 5h 窗口；used_percent 为整数）",
+          "windowTokens": {
+            "calls": 4033,
+            "input": 190621297,
+            "inputCached": 139135872,
+            "inputUncached": 51485425,
+            "output": 1590298,
+            "outputReasoningSubset": 13329
+          },
+          "fieldSemantics": "input 包含 cached_input；output 包含 reasoning",
+          "officialAllowance": "Plus 的 5 倍",
+          "creditsBalance": 0
+        },
+        "officialCreditPriceTable": {
+          "note": "官方积分价（每百万 token，输入 / 缓存 / 输出）",
+          "rows": [
+            {"model": "gpt-6-astra", "modelText": "Astra", "input": 250, "cache": 25, "output": 1250, "text": "Astra 250 / 25 / 1250"},
+            {"model": "gpt-6.1-sol", "modelText": "6.1 Sol", "input": 50, "cache": 2.5, "output": 250, "text": "6.1 Sol 50 / 2.5 / 250"},
+            {"model": "gpt-5.6-sol", "modelText": "5.6 Sol", "input": 100, "cache": 10, "output": 500, "text": "5.6 Sol 100 / 10 / 500"},
+            {"model": "gpt-5.6-terra", "modelText": "5.6 Terra", "input": 50, "cache": 5, "output": 300, "text": "5.6 Terra 50 / 5 / 300"}
+          ]
+        },
+        "groupTable": {
+          "note": "每组单一负载，按完整 1% 区间计；同账号其他会话的消耗已按时间扣除。",
+          "columns": ["组", "模型", "负载", "时间", "周额度", "调用", "区间数", "每 1% token", "实扣 / 官方积分价", "单区间范围"],
+          "rows": [
+            {
+              "groupId": "A",
+              "model": "gpt-6-astra",
+              "modelText": "Astra",
+              "workload": "无缓存输入",
+              "timeText": "10:21–10:27",
+              "weekQuotaText": "0→9%",
+              "weekQuotaFrom": 0,
+              "weekQuotaTo": 9,
+              "calls": 161,
+              "intervals": 8,
+              "tokensPerPointText": "31.9 万输入",
+              "tokensPerPointInput": 319000,
+              "actualOverOfficialCreditPrice": 1.0,
+              "intervalRangeText": "0.93–1.10",
+              "intervalRange": [0.93, 1.1]
+            },
+            {
+              "groupId": "S",
+              "model": "gpt-6.1-sol",
+              "modelText": "6.1 Sol",
+              "workload": "无缓存输入",
+              "timeText": "10:27–10:35",
+              "weekQuotaText": "9→18%",
+              "weekQuotaFrom": 9,
+              "weekQuotaTo": 18,
+              "calls": 209,
+              "intervals": 8,
+              "tokensPerPointText": "115 万输入",
+              "tokensPerPointInput": 1150000,
+              "actualOverOfficialCreditPrice": 1.34,
+              "intervalRangeText": "1.19–1.57",
+              "intervalRange": [1.19, 1.57]
+            },
+            {
+              "groupId": "AO",
+              "model": "gpt-6-astra",
+              "modelText": "Astra",
+              "workload": "输出",
+              "timeText": "10:35–11:20",
+              "weekQuotaText": "18→25%",
+              "weekQuotaFrom": 18,
+              "weekQuotaTo": 25,
+              "calls": 149,
+              "intervals": 6,
+              "tokensPerPointText": "5.1 万输出",
+              "tokensPerPointOutput": 51000,
+              "actualOverOfficialCreditPrice": 1.08,
+              "intervalRangeText": "0.81–1.26",
+              "intervalRange": [0.81, 1.26]
+            },
+            {
+              "groupId": "SO",
+              "model": "gpt-6.1-sol",
+              "modelText": "6.1 Sol",
+              "workload": "输出",
+              "timeText": "11:20–13:36",
+              "weekQuotaText": "25→32%",
+              "weekQuotaFrom": 25,
+              "weekQuotaTo": 32,
+              "calls": 240,
+              "intervals": 6,
+              "tokensPerPointText": "17.5 万输出",
+              "tokensPerPointOutput": 175000,
+              "actualOverOfficialCreditPrice": 1.52,
+              "intervalRangeText": "1.12–1.96",
+              "intervalRange": [1.12, 1.96]
+            },
+            {
+              "groupId": "AC",
+              "model": "gpt-6-astra",
+              "modelText": "Astra",
+              "workload": "缓存输入",
+              "timeText": "13:36–13:51",
+              "weekQuotaText": "32→39%",
+              "weekQuotaFrom": 32,
+              "weekQuotaTo": 39,
+              "calls": 422,
+              "intervals": 6,
+              "tokensPerPointText": "287 万缓存",
+              "tokensPerPointCached": 2870000,
+              "actualOverOfficialCreditPrice": 1.02,
+              "intervalRangeText": "0.98–1.08",
+              "intervalRange": [0.98, 1.08]
+            },
+            {
+              "groupId": "SC",
+              "model": "gpt-6.1-sol",
+              "modelText": "6.1 Sol",
+              "workload": "缓存输入",
+              "timeText": "13:51–14:07",
+              "weekQuotaText": "39→45%",
+              "weekQuotaFrom": 39,
+              "weekQuotaTo": 45,
+              "calls": 665,
+              "intervals": 5,
+              "tokensPerPointText": "1,990 万缓存",
+              "tokensPerPointCached": 19900000,
+              "actualOverOfficialCreditPrice": 1.33,
+              "intervalRangeText": "1.28–1.36",
+              "intervalRange": [1.28, 1.36]
+            },
+            {
+              "groupId": "AI",
+              "model": "gpt-6-astra",
+              "modelText": "Astra",
+              "workload": "图片（16 张/次）",
+              "timeText": "14:08–14:30",
+              "weekQuotaText": "45→52%",
+              "weekQuotaFrom": 45,
+              "weekQuotaTo": 52,
+              "calls": 434,
+              "intervals": 6,
+              "tokensPerPointText": "33.6 万输入",
+              "tokensPerPointInput": 336000,
+              "actualOverOfficialCreditPrice": 1.0,
+              "intervalRangeText": "0.87–1.05",
+              "intervalRange": [0.87, 1.05]
+            },
+            {
+              "groupId": "SI",
+              "model": "gpt-6.1-sol",
+              "modelText": "6.1 Sol",
+              "workload": "图片（16 张/次）",
+              "timeText": "14:30–15:20",
+              "weekQuotaText": "52→59%",
+              "weekQuotaFrom": 52,
+              "weekQuotaTo": 59,
+              "calls": 1326,
+              "intervals": 6,
+              "tokensPerPointText": "158 万输入",
+              "tokensPerPointInput": 1580000,
+              "actualOverOfficialCreditPrice": 1.36,
+              "intervalRangeText": "1.27–1.42",
+              "intervalRange": [1.27, 1.42]
+            },
+            {
+              "groupId": "T",
+              "model": "gpt-5.6-terra",
+              "modelText": "5.6 Terra",
+              "workload": "无缓存输入",
+              "timeText": "15:20–15:26",
+              "weekQuotaText": "59→65%",
+              "weekQuotaFrom": 59,
+              "weekQuotaTo": 65,
+              "calls": 176,
+              "intervals": 5,
+              "tokensPerPointText": "148 万输入",
+              "tokensPerPointInput": 1480000,
+              "actualOverOfficialCreditPrice": 1.12,
+              "intervalRangeText": "1.07–1.15",
+              "intervalRange": [1.07, 1.15]
+            },
+            {
+              "groupId": "S56",
+              "model": "gpt-5.6-sol",
+              "modelText": "5.6 Sol",
+              "workload": "无缓存输入",
+              "timeText": "15:26–15:30",
+              "weekQuotaText": "65→71%",
+              "weekQuotaFrom": 65,
+              "weekQuotaTo": 71,
+              "calls": 138,
+              "intervals": 5,
+              "tokensPerPointText": "117 万输入",
+              "tokensPerPointInput": 1170000,
+              "actualOverOfficialCreditPrice": 0.69,
+              "intervalRangeText": "0.62–0.74",
+              "intervalRange": [0.62, 0.74]
+            },
+            {
+              "groupId": "A2",
+              "model": "gpt-6-astra",
+              "modelText": "Astra",
+              "workload": "无缓存输入",
+              "timeText": "15:30–15:35",
+              "weekQuotaText": "71→77%",
+              "weekQuotaFrom": 71,
+              "weekQuotaTo": 77,
+              "calls": 113,
+              "intervals": 5,
+              "tokensPerPointText": "32.6 万输入",
+              "tokensPerPointInput": 326000,
+              "actualOverOfficialCreditPrice": 1.0,
+              "intervalRangeText": "0.91–1.06",
+              "intervalRange": [0.91, 1.06]
+            }
+          ],
+          "groupModelIndex": {
+            "gpt-6-astra": ["A", "AO", "AC", "AI", "A2"],
+            "gpt-6.1-sol": ["S", "SO", "SC", "SI"],
+            "gpt-5.6-terra": ["T"],
+            "gpt-5.6-sol": ["S56"]
+          },
+          "groupOrderNote": "rows 按投稿表格原顺序（A / S / AO / SO / AC / SC / AI / SI / T / S56 / A2），时间与周额度区间首尾相接 0%→77%"
+        }
+      },
+      "verification": "统计期 token 分项自洽：139,135,872 缓存 + 51,485,425 未缓存 = 190,621,297 输入 ✓；11 组周额度区间首尾相接（0→9→18→25→32→39→45→52→59→65→71→77%）✓；各组 calls 之和 161+209+149+240+422+665+434+1326+176+138+113 = 4033，与统计期 4,033 次调用一致 ✓。区间数普遍比周额度 pp 差少 1（如 A 组 0→9% 记 8 区间、S56 组 65→71% 记 5 区间），与 used_percent 为整数读数一致，见 openQuestions。",
+      "contributorDerivedNotAdopted": {
+        "note": "投稿正文「周额度」小节的换算，非实测读数，未采用",
+        "creditsPerPoint": "1% ≈ 80.2 积分",
+        "weeklyCredits": "一周 ≈ 8,020 积分",
+        "basis": "以 Astra 无缓存输入按官方积分价 250/M 计"
+      },
+      "confidence": "medium",
+      "adoption": "research-only；chatgpt_pro_5x × gpt-6-astra / gpt-5.6-sol / gpt-5.6-terra 及无采用行的 gpt-6.1-sol 均不变，待维护者裁定"
+    },
+    {
+      "planId": "chatgpt_pro_20x",
+      "priceUsd": 200,
+      "model": "gpt-6-astra / gpt-5.6-terra",
+      "models": ["gpt-6-astra", "gpt-5.6-terra"],
+      "client": "Codex rollout（token_count 与 rate_limits）；--ephemeral 批跑的 token 取自批跑回执（Astra）",
+      "evidenceType": "community_daily_usage_log",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/97",
+      "sourceDate": "2026-10-03",
+      "observed": {
+        "section": "二、ChatGPT Pro $200（日常使用记录）",
+        "planMeta": {
+          "company": "OpenAI",
+          "plan": "ChatGPT Pro $200（plan_type = pro，老账号，20 倍档保留至 2026-10-29）",
+          "price": "$200 / 月",
+          "modelsWithEffort": "gpt-6-astra（high / xhigh）、gpt-5.6-terra（xhigh）",
+          "measurementTool": "Codex rollout 的 token_count 与 rate_limits；--ephemeral 批跑的 token 取自批跑回执（Astra）",
+          "creditsBalance": 62499.5,
+          "creditsBalanceNote": "统计期内不变"
+        },
+        "segmentTable": {
+          "columns": ["时段（UTC+8）", "周额度增量", "Astra 未缓存 / 缓存 / 输出", "Terra 未缓存 / 缓存 / 输出", "每 1% 积分（官方价）", "每 1% 积分（Terra 按 1.12 倍）"],
+          "rows": [
+            {
+              "windowText": "10-02 20:06–23:35",
+              "weekQuotaDeltaPp": 15,
+              "astra": {"uncachedInput": 1795267, "cacheRead": 121653248, "output": 360231},
+              "terra": {"uncachedInput": 4149467, "cacheRead": 127657472, "output": 806225},
+              "creditsPerPointOfficialPrice": 335.2,
+              "creditsPerPointTerra112x": 350.1
+            },
+            {
+              "windowText": "10-02 23:35–10-03 01:09",
+              "weekQuotaDeltaPp": 19,
+              "astra": {"uncachedInput": 13520519, "cacheRead": 47075456, "output": 949920},
+              "terra": {"uncachedInput": 1761123, "cacheRead": 43848192, "output": 284885},
+              "creditsPerPointOfficialPrice": 323.0,
+              "creditsPerPointTerra112x": 331.6
+            },
+            {
+              "windowText": "10-03 03:13–03:47",
+              "weekQuotaDeltaPp": 4,
+              "astra": {"uncachedInput": 1496536, "cacheRead": 21132032, "output": 148590},
+              "terra": {"uncachedInput": 834343, "cacheRead": 25816960, "output": 136102},
+              "creditsPerPointOfficialPrice": 325.0,
+              "creditsPerPointTerra112x": 337.4
+            },
+            {
+              "rowType": "total",
+              "windowText": "合计",
+              "weekQuotaDeltaPp": 38,
+              "creditsPerPointOfficialPrice": 328.0,
+              "creditsPerPointTerra112x": 339.5
+            }
+          ],
+          "totalRowNote": "投稿合计行的 token 列为空（原文「合计 | 38 | | | 328.0 | 339.5」），此处不补齐"
+        }
+      },
+      "verification": "三段周额度增量 15+19+4 = 38 pp，与合计行一致 ✓；合计每 1% 积分 328.0（官方价）落在三段 335.2/323.0/325.0 的加权区间内 ✓。Terra 按 1.12 倍一列三段 350.1/331.6/337.4 与合计 339.5 关系同上。",
+      "contributorDerivedNotAdopted": {
+        "note": "投稿正文表格后的每周积分与倍数推算，非实测读数，未采用",
+        "weeklyCreditsOfficialPrice": "≈ 32,800 积分",
+        "weeklyCreditsTerra112x": "≈ 33,950 积分",
+        "ratioVsPro100": "为 Pro $100 的 4.1–4.2 倍"
+      },
+      "confidence": "medium",
+      "adoption": "research-only；chatgpt_pro_20x × gpt-6-astra（38.12 亿）与 gpt-5.6-terra（249.552 亿）不变，待维护者裁定"
+    },
+    {
+      "planId": "chatgpt_pro_5x",
+      "priceUsd": 100,
+      "model": "gpt-5.6-sol / gpt-5.6-terra",
+      "models": ["gpt-5.6-sol", "gpt-5.6-terra"],
+      "client": "Codex CLI 本机日志",
+      "evidenceType": "community_local_log_history",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/97",
+      "sourceDate": "2026-10-03",
+      "observed": {
+        "section": "三、历史周窗口用尽时间（本机 Codex 日志）",
+        "tableNote": "投稿第三节表共 8 行，按 plan_id 拆为两项录入（Pro $100 两行、Pro $200 六行），列与数值原样",
+        "columns": ["方案", "窗口开始（UTC+8）", "最高", "到 50%", "到 80%", "到 90%", "到 100%", "主要模型"],
+        "rows": [
+          {
+            "planText": "Pro $100",
+            "windowStartText": "09-05 22:40",
+            "maxPercentText": "99%",
+            "daysTo50Text": "0.41 天",
+            "daysTo80Text": "0.69 天",
+            "daysTo90Text": "0.74 天",
+            "daysTo100Text": null,
+            "primaryModelsText": "5.6 Sol / Terra",
+            "primaryModels": ["gpt-5.6-sol", "gpt-5.6-terra"]
+          },
+          {
+            "planText": "Pro $100",
+            "windowStartText": "09-06 17:50",
+            "maxPercentText": "85%",
+            "daysTo50Text": "0.25 天",
+            "daysTo80Text": "0.54 天",
+            "daysTo90Text": null,
+            "daysTo100Text": null,
+            "primaryModelsText": "5.6 Sol / Terra",
+            "primaryModels": ["gpt-5.6-sol", "gpt-5.6-terra"]
+          }
+        ]
+      },
+      "confidence": "low-medium",
+      "adoption": "research-only；chatgpt_pro_5x × gpt-5.6-sol（30.8 亿）与 gpt-5.6-terra（59.574 亿）不变"
+    },
+    {
+      "planId": "chatgpt_pro_20x",
+      "priceUsd": 200,
+      "model": "gpt-5.6-sol / gpt-5.6-terra / gpt-6-astra",
+      "models": ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-6-astra"],
+      "client": "Codex CLI 本机日志",
+      "evidenceType": "community_local_log_history",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/97",
+      "sourceDate": "2026-10-03",
+      "observed": {
+        "section": "三、历史周窗口用尽时间（本机 Codex 日志）",
+        "tableNote": "投稿第三节表共 8 行，按 plan_id 拆为两项录入（本项为 Pro $200 六行）",
+        "columns": ["方案", "窗口开始（UTC+8）", "最高", "到 50%", "到 80%", "到 90%", "到 100%", "主要模型"],
+        "rows": [
+          {
+            "planText": "Pro $200",
+            "windowStartText": "08-23 10:20",
+            "maxPercentText": "90%",
+            "daysTo50Text": "0.56 天",
+            "daysTo80Text": "0.90 天",
+            "daysTo90Text": "0.93 天",
+            "daysTo100Text": null,
+            "primaryModelsText": "5.6 Sol",
+            "primaryModels": ["gpt-5.6-sol"]
+          },
+          {
+            "planText": "Pro $200",
+            "windowStartText": "08-24 08:40",
+            "maxPercentText": "75%",
+            "daysTo50Text": "0.33 天",
+            "daysTo80Text": null,
+            "daysTo90Text": null,
+            "daysTo100Text": null,
+            "primaryModelsText": "5.6 Sol",
+            "primaryModels": ["gpt-5.6-sol"]
+          },
+          {
+            "planText": "Pro $200",
+            "windowStartText": "09-19 16:20",
+            "maxPercentText": "86%",
+            "daysTo50Text": "5.49 天",
+            "daysTo80Text": "6.15 天",
+            "daysTo90Text": null,
+            "daysTo100Text": null,
+            "primaryModelsText": "5.6 Sol",
+            "primaryModels": ["gpt-5.6-sol"]
+          },
+          {
+            "planText": "Pro $200",
+            "windowStartText": "09-27 01:00",
+            "maxPercentText": "100%",
+            "daysTo50Text": "0.85 天",
+            "daysTo80Text": "1.15 天",
+            "daysTo90Text": "1.24 天",
+            "daysTo100Text": "1.32 天",
+            "primaryModelsText": "Terra / Astra",
+            "primaryModels": ["gpt-5.6-terra", "gpt-6-astra"]
+          },
+          {
+            "planText": "Pro $200",
+            "windowStartText": "09-28 11:10",
+            "maxPercentText": "99%",
+            "daysTo50Text": "2.14 天",
+            "daysTo80Text": "3.62 天",
+            "daysTo90Text": "3.74 天",
+            "daysTo100Text": null,
+            "primaryModelsText": "Astra / Terra",
+            "primaryModels": ["gpt-6-astra", "gpt-5.6-terra"]
+          },
+          {
+            "planText": "Pro $200",
+            "windowStartText": "10-02 07:30",
+            "maxPercentText": "92%",
+            "daysTo50Text": "0.60 天",
+            "daysTo80Text": "0.75 天",
+            "daysTo90Text": "0.85 天",
+            "daysTo100Text": null,
+            "primaryModelsText": "Astra / Terra",
+            "primaryModels": ["gpt-6-astra", "gpt-5.6-terra"]
+          }
+        ]
+      },
+      "verification": "表内仅 09-27 01:00 一个周窗记录到 100%（1.32 天），其余 7 个窗口的「到 100%」为空——历史窗多为未打满即跨窗，非完整用尽样本。",
+      "confidence": "low-medium",
+      "adoption": "research-only；chatgpt_pro_20x × gpt-5.6-sol（129.02 亿）、gpt-5.6-terra（249.552 亿）、gpt-6-astra（38.12 亿）均不变"
+    }
+  ],
+  "contributorDerived": {
+    "status": "投稿人推算，未采用（contributor-derived, not adopted）",
+    "attribution": "以下全部来自 muscgab 帖内自算，非面板/遥测直接读数，不得作为 adopted 输入；未做交叉校验。",
+    "pro100": {
+      "creditsPerPoint": "1% ≈ 80.2 积分",
+      "weeklyCredits": "一周 ≈ 8,020 积分",
+      "basis": "以 Astra 无缓存输入按官方积分价 250/M 计"
+    },
+    "pro200": {
+      "weeklyCreditsOfficialPrice": "一周 ≈ 32,800 积分（官方价）",
+      "weeklyCreditsTerra112x": "一周 ≈ 33,950 积分（Terra 按 1.12 倍）",
+      "ratioVsPro100": "为 Pro $100 的 4.1–4.2 倍"
+    },
+    "weeklyQuotaTable": {
+      "section": "四、每周额度",
+      "assumptions": "缓存命中率 97.3%，输出 = 输入的 0.35%",
+      "equivalentApiUsdBasis": "等效 API $ 按 1 积分 = $0.04；5.6 Sol 的缓存与输出按 0.69 倍计；Pro $200 按 Pro $100 的 4 倍计",
+      "columns": ["方案", "模型", "每周输入 token", "每周等效 API $"],
+      "rows": [
+        {"planText": "Pro $100", "model": "gpt-5.6-sol", "weeklyInputTokensText": "≈ 8.2 亿", "weeklyInputTokensApprox": 820000000, "weeklyEquivalentApiUsdText": "≈ $465", "weeklyEquivalentApiUsdApprox": 465},
+        {"planText": "Pro $100", "model": "gpt-6.1-sol", "weeklyInputTokensText": "≈ 12.6 亿", "weeklyInputTokensApprox": 1260000000, "weeklyEquivalentApiUsdText": "≈ $234", "weeklyEquivalentApiUsdApprox": 234},
+        {"planText": "Pro $100", "model": "gpt-6-astra", "weeklyInputTokensText": "≈ 2.2 亿", "weeklyInputTokensApprox": 220000000, "weeklyEquivalentApiUsdText": "≈ $313", "weeklyEquivalentApiUsdApprox": 313},
+        {"planText": "Pro $200（20 倍档）", "model": "gpt-5.6-sol", "weeklyInputTokensText": "≈ 33 亿", "weeklyInputTokensApprox": 3300000000, "weeklyEquivalentApiUsdText": "≈ $1,860", "weeklyEquivalentApiUsdApprox": 1860},
+        {"planText": "Pro $200（20 倍档）", "model": "gpt-6.1-sol", "weeklyInputTokensText": "≈ 50 亿", "weeklyInputTokensApprox": 5000000000, "weeklyEquivalentApiUsdText": "≈ $938", "weeklyEquivalentApiUsdApprox": 938},
+        {"planText": "Pro $200（20 倍档）", "model": "gpt-6-astra", "weeklyInputTokensText": "≈ 8.8 亿", "weeklyInputTokensApprox": 880000000, "weeklyEquivalentApiUsdText": "≈ $1,254", "weeklyEquivalentApiUsdApprox": 1254}
+      ]
+    },
+    "maintainerCaveat": "上述每周 token 与等效 API$ 与仓库「月 token 等效」口径不同（仓库按月 × 亿、混合价折算），且依赖 1 积分 = $0.04、97.3% 命中率、0.69 倍、4 倍关系等一串未验证假设，仅作旁证登记。"
+  },
+  "openQuestions": [
+    "Pro $100 对照实验的周窗本轮只走到 77%，未到 100%：分段实测未覆盖满窗，不能直接给出整周池（投稿的「一周 ≈ 8,020 积分」是由 77% 段外推的推算值）。",
+    "used_percent 为整数精度：11 组的周额度区间与区间数普遍差 1 档（A 组 0→9% 记 8 区间、S 组 9→18% 记 8 区间、S56 组 65→71% 记 5 区间），单区间范围 0.62–1.96 主要反映该取整抖动，分组倍率读数带约 ±1pp 系统误差。",
+    "Pro $200 为老账号 20 倍档（plan_type = pro，保留至 2026-10-29），并非当前新购档口径；该档到期后的现售口径无对应证据。",
+    "Pro $200 三段为日常混合负载（Astra + Terra 混合、effort high/xhigh），非单一负载对照；且 Astra 部分 token 取自 --ephemeral 批跑回执而非 rollout 遥测，遥测口径与第一节不对齐。",
+    "Terra 的 1.12 倍由同一对照实验的 T 组（无缓存输入）推得，缓存输入与输出负载未单独实测，第二节「Terra 按 1.12 倍」的积分列依赖该外推。",
+    "5.6 Sol 的 0.69 倍只测了无缓存输入一组（S56，65→71%），其缓存输入与输出负载未测；第四节却把 0.69 倍套到 5.6 Sol 的缓存与输出上。"
+  ],
+  "adoptedUnchanged": [
+    "chatgpt_pro_5x × gpt-5.6-sol = 30.8 亿/月（medium）",
+    "chatgpt_pro_5x × gpt-5.6-terra = 59.574 亿/月（medium）",
+    "chatgpt_pro_5x × gpt-6-astra = 9.1 亿/月（low）",
+    "chatgpt_pro_20x × gpt-5.6-sol = 129.02 亿/月（high）",
+    "chatgpt_pro_20x × gpt-5.6-terra = 249.552 亿/月（medium）",
+    "chatgpt_pro_20x × gpt-6-astra = 38.12 亿/月（medium）",
+    "gpt-6.1-sol 在 chatgpt_pro_5x / chatgpt_pro_20x 下暂无采用行；本帖不新增、不派生 Pro 行"
+  ],
+  "relatedFiles": [
+    "chatgpt-astra-10pct-window-round10-2026-09-12.json",
+    "chatgpt-astra-round14-2026-09-21.json",
+    "chatgpt-astra-sameframe-round13-2026-09-20.json",
+    "chatgpt-astra-adoption-round7-2026-09-11.json",
+    "chatgpt-gpt61sol-plus-round3-2026-09-30.json"
+  ]
+}

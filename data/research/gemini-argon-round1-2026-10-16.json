@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-10-16",
+  "sourceType": "community_tweet_screenshot",
+  "trigger": "维护者提供 X @leo114119（Leo - Building w/ AI）推文截图：「付费 Google Pro 用户实测 Gemini 4 Argon antigravity（反重力）额度测试」",
+  "communitySample": {
+    "source": "X @leo114119 推文（维护者提供截图；推文发布约 1 小时前，即 2026-10-16）",
+    "authorHome": "@leo114119 同时为 claude-team-opus55-round1-2026-10-06 样本的推主",
+    "model": "gemini-4-argon",
+    "plan": "Google AI Pro（$19.99/mo）",
+    "panel": "「Antigravity」第三方网关/relay 使用统计页（页脚：仅统计网关调用，本地拒绝的请求不计入汇总），非官方 quota API 读数",
+    "modelPools": {
+      "全部模型": 3,
+      "gemini_5h": {"used": "0%", "reset": "15:58（5 小时后）", "pace": "±0%"},
+      "gemini_7d": {"used": "0%", "reset": "2026-10-23 10:58（7 天后）", "pace": "±0%"},
+      "gemini_4_argon_7d": {"used": "15.1%", "reset": "2026-10-23 10:38（7 天后）", "pace": "+15%"},
+      "claude_gpt_5h": {"used": "0%", "reset": "15:58（5 小时后）", "pace": "±0%"},
+      "claude_gpt_7d": {"used": "0%", "reset": "2026-10-23 10:58（7 天后）", "pace": "±0%"},
+      "note": "Argon 池只有 7 天条、无 5 小时条，与官方「weekly-only Argon quota」口径一致"
+    },
+    "gatewayStats": {
+      "calls": 23,
+      "tokensTotal": 184100,
+      "input": 109000,
+      "output": 75100,
+      "reasoning": 28000,
+      "reasoningNote": "面板标「推理 28.0K 计入输出」；184K = 输入 109K + 输出 75.1K，输出分项含推理",
+      "cacheRead": 955000,
+      "cacheHitRate": "90%"
+    },
+    "statsToPoolBinding": "推断：Gemini 与 Claude&GPT 各池均为 0%、仅 Argon 7天池 15.1%——网关统计的 23 次调用用量全归 Argon；面板未把 token 统计按池分列，绑定为推断而非明示",
+    "tweetClaims": [
+      "现在的 Gemini normal\\Opus\\Argon 的三个额度是独立的",
+      "根据里面的额度反推周限应该是 10 刀左右",
+      "这额度实在是少的可怜了"
+    ]
+  },
+  "officialEvidence": {
+    "apiPricing": {
+      "source": "https://ai.google.dev/gemini-api/docs/pricing（gemini-4-argon 表）",
+      "checkedAt": "2026-10-16",
+      "introThrough": "2026-11-30",
+      "intro": {"input": 2.0, "output": 10.0, "cacheRead": 0.10},
+      "fromDec1": {"input": 4.0, "output": 20.0, "cacheRead": 0.20},
+      "notes": [
+        "output 价含 thinking tokens（官方原文 including thinking tokens）——与面板「推理计入输出」口径一致",
+        "上下文缓存仅隐式缓存（explicit caching 不支持），$0.10 为缓存读价",
+        "官方注明 Argon 不对 Free tier 开放，也不含在 Google AI Pro 的 API 里（订阅内的 Argon 只走 Antigravity）"
+      ]
+    },
+    "antigravityAvailability": {
+      "source": "https://antigravity.google/blog/gemini-4-argon-in-google-antigravity/（2026-10-13）",
+      "quote": "rolling out Gemini 4 Argon directly inside Google Antigravity for Google AI Pro and Ultra subscribers"
+    },
+    "quotaStructure": {
+      "source": "https://discuss.ai.google.dev/t/gemini-4-argon-ultra/188901（Google 开发者论坛官方回复，2026-10-15）",
+      "quote": "we've rolled out a separate weekly-only Argon quota on top of your existing Gemini quota for 3.8 Flash",
+      "retiredModels": "同一回复：Gemini 3.1 Pro / 3.6 Flash / 3.7 Flash 已在 Antigravity 退役——影响 google_ai_pro_us::gemini-3.6-flash 行的当前可用性，本文件只记录不动该行"
+    }
+  },
+  "derivations": {
+    "segment": {"cache_read": 955000, "input": 109000, "output": 75100},
+    "weeklyFractionPp": 15.1,
+    "segmentWorthUsd": 1.0645,
+    "worthFormula": "cache 0.955M×$0.10 + 入 0.109M×$2 + 出 0.0751M×$10（引入价，推理含在输出内不另计）",
+    "weeklyWorthUsd": 7.05,
+    "monthlyWorthUsd": 28.2,
+    "monthlyAdoptedYi": 0.66,
+    "adoptedFormula": "周 worth $7.05 ×4周 = $28.20 ÷ 低缓存档混合价 $0.425/MTok（0.85×0.10 + 0.145×2.0 + 0.005×10.0）= 0.66亿",
+    "tweetCrossCheck": "帖主反推周限≈$10：高于本值 $7.05；若推理 28K 在 75.1K 之外另计输出（出 103.1K）则段 worth $1.3445→周 $8.90→月 0.84亿，为取整与口径范围内的近似，采纳本行口径为准",
+    "rawMonthlyYi": 0.30,
+    "rawFormula": "raw 合计 1.1391M ÷15.1% ×4周 = 30.18M = 0.30亿（留作对照）",
+    "standardMixYi": 1.43,
+    "standardFormula": "周 $7.05 ×4 ÷ 标准档 $0.197/MTok（0.97×0.10+0.025×2+0.005×10）= 1.43亿（不采：实测 cache 命中 ~84~90% 属低缓存族）",
+    "realUnitPrice": "$19.99 ÷ 0.66亿 ≈ $0.301/MTok（折算口径）",
+    "geminiPoolComparison": "同套餐 Gemini（3.8 Flash 合池）周 worth 约 $123.42——Argon 独立周池 $7.05 约为其 1/17；与推文「少的可怜」一致"
+  },
+  "weaknesses": [
+    "n=1 推文、单读数 15.1pp 样本小；显示取整（15.05~15.15% 区间 → 周 worth $7.03~7.07）",
+    "第三方网关面板：token 统计为网关口径、未按池分列，「全部用量归 Argon」由其余各池 0% 推断",
+    "面板读数 = relay 侧统计，非官方 quota API 导出；网关调用口径可能漏计非网关路径",
+    "Argon 刚发布三天（2026-10-13 起放量），15.1% 可能含首日集中测试，不代表稳态消耗",
+    "帖主 ≈$10/周 与本行 $7.05/周 差约 40%，差异方向：帖主口径不明（疑把推理另计或未按引入价折算）"
+  ],
+  "notDrawn": [
+    "同面板 Gemini 主池（3.8 Flash）：已有采用值，本样本该池 0% 不提供新信息",
+    "Claude & GPT 池（5h + 7d）：0% 无实测，不画",
+    "Google AI Ultra 的 Argon 池：无独立实测，不派生（沿用既有裁定：非独立实测不派生 Ultra）",
+    "google_ai_pro_us::gemini-3.6-flash 行：官方论坛称 3.6 Flash 已在 Antigravity 退役；历史实测值保留，退役影响待裁定"
+  ],
+  "confidence": "low",
+  "confidenceNote": "首个 Argon 采用点：单推文、15.1pp 小样本、第三方网关面板、用量-池绑定为推断 → low；待第二样本复核"
+}

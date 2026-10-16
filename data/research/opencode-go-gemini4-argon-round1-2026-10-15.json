@@ -1,0 +1,48 @@
+{
+  "collectedAt": "2026-10-15",
+  "collectionMethod": "Manual capture of the official OpenCode Go plan page and docs page (English). Official pricing tables only.",
+  "sources": [
+    "https://opencode.ai/docs/go/",
+    "https://opencode.ai/go"
+  ],
+  "scope": "OpenCode Go official price table only. No leaderboard/score data, no Command Goat, no shared-pool changes.",
+  "adopted": {
+    "provider": "opencode_go",
+    "model": "gemini-4-argon-contributor",
+    "modelId": "gemini-4-argon-contributor",
+    "monthlyCreditsUsd": 30,
+    "effectiveUsageUsd": 30,
+    "inputPerMTokUsd": 4.0,
+    "outputPerMTokUsd": 20.0,
+    "cachedReadPerMTokUsd": 0.2,
+    "cacheWritePerMTokUsd": null,
+    "cacheWriteNote": "No cache-write price listed in the official table.",
+    "confidence": "medium",
+    "basis": "official"
+  },
+  "computation": {
+    "standardTokenMix": {
+      "cached": 0.97,
+      "input": 0.025,
+      "output": 0.005
+    },
+    "blendedUsdPerMTok": 0.394,
+    "blendedFormula": "0.97*0.20 + 0.025*4.0 + 0.005*20.0 = 0.394",
+    "effectiveUsageFormula": "min(60, 30) = 30",
+    "monthlyYi": 0.761,
+    "monthlyYiFormula": "round(30 / 0.394 / 100, 3) = 0.761"
+  },
+  "limitedTimeDoubleNotAdopted": {
+    "pageLabel": "2x Limited time",
+    "creditsUsd": 60,
+    "endDate": null,
+    "adopted": false,
+    "reason": "CONVENTIONS requires every temporary promotion to carry an end date. The page shows a 2x (→ $60) limited-time credit with no deadline, so it is recorded here as evidence only and is not used for the adopted row.",
+    "impact": "Adopted monthly credit stays at the steady-state $30; monthlyYi would be ~1.522 if and when the doubling is confirmed with a deadline."
+  },
+  "privacy": {
+    "modelTraining": "Yes",
+    "zeroDataRetention": false,
+    "zdrLabel": "Not ZDR"
+  }
+}

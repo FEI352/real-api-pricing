@@ -1,0 +1,259 @@
+{
+  "collectedAt": "2026-10-15",
+  "scopeNote": "GitHub issue #98（投稿人 muscgab）的社区实测原样录入：Claude Max 5x $100/月、国际站，Claude Code CLI 2.1.280 无头 `-p` 受控跑量，主跑 claude-opus-5-5 effort medium（关缓存、每次 4 张图），同日依次跑 low 对照组（文字/纯输出/图片/开缓存四段）。统计期 2026-10-03 04:3x–08:37（UTC+8）。本文件只存档投稿数字与其自算推论，不参与采用值计算；采用值是否调整由上游维护者按自身算法裁定。",
+  "source": {
+    "type": "github_issue_community_measurement",
+    "url": "https://github.com/Fei2411/real-api-pricing/issues/98",
+    "author": "muscgab",
+    "postedAt": "2026-10-03",
+    "providedBy": "GitHub issue 正文（2026-10-15 录入）"
+  },
+  "adoptionStatus": "research-only; not adopted; adopted values (claude_max_20x × claude-opus-5.5 = 315.38亿, claude_max_5x × claude-opus-5.5 = 183.34亿) unchanged pending maintainer review",
+  "items": [
+    {
+      "id": "issue98-main-run-5h-window",
+      "planId": "claude_max_5x",
+      "priceUsd": 100,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code CLI 2.1.280",
+      "evidenceType": "community_issue_cli_usage_measurement",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/98",
+      "sourceDate": "2026-10-03 04:3x–08:37（UTC+8）",
+      "observed": {
+        "measurementWindow": "2026-10-03 04:3x–08:37（UTC+8）",
+        "tool": "Claude Code CLI 2.1.280（无头 `-p`，每次调用的 usage 与 rate_limit_event）",
+        "load": "关闭缓存，每次 4 张图，effort medium",
+        "fiveHourWindowQuotaUsedPct": "68% → 95%",
+        "calls": 2271,
+        "tokens": {
+          "input": 4319736,
+          "output": 1042112,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "avgPerCallTokens": {
+          "input": 1902,
+          "output": 459
+        },
+        "cliReportedCostUsd": 38.12,
+        "segmentFit": {
+          "segment": "5h 窗口 68% → 95%",
+          "integerPoints": 28,
+          "fullWindowWorthUsd": 63.2,
+          "confidenceInterval95": "±0.4",
+          "equivalentTokens": "约合 717 万输入 + 173 万输出"
+        },
+        "concurrentInteractiveSessionUsd": 3.51,
+        "combinedWorthUsdRange": "$68–76"
+      }
+    },
+    {
+      "id": "issue98-control-groups",
+      "planId": "claude_max_5x",
+      "priceUsd": 100,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code CLI 2.1.280",
+      "evidenceType": "community_issue_control_group_table",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/98",
+      "sourceDate": "2026-10-03 08:04–08:36（UTC+8）",
+      "observed": {
+        "modelEffort": "claude-opus-5-5（主跑 medium，对照组 low）",
+        "countingRule": "同日依次跑，按完整 1% 区间计",
+        "fiveHourWindowQuotaUsedPct": "30% → 50%",
+        "controlGroupTotals": {
+          "calls": 856,
+          "input": 1391164,
+          "cacheRead": 18298137,
+          "cacheWrite1h": 258383,
+          "output": 177609,
+          "text": "对照组 856 次调用：输入 1,391,164，缓存读 18,298,137，1h 缓存写 258,383，输出 177,609",
+          "verification": "四组调用数 127+48+101+580 = 856，与总数一致"
+        },
+        "groups": [
+          {
+            "group": "B",
+            "load": "文字输入，关缓存",
+            "timeUtc8": "08:06–08:08",
+            "fiveHourWindowPct": "35→40%",
+            "calls": 127,
+            "tokensPer1pct": "168,726 输入 + 124 输出",
+            "listUsdPer1pct": 0.677,
+            "intervalUsd": [
+              0.68,
+              0.68,
+              0.68,
+              0.68,
+              0.68
+            ]
+          },
+          {
+            "group": "C",
+            "load": "输出，关缓存",
+            "timeUtc8": "08:08–08:26",
+            "fiveHourWindowPct": "40→45%",
+            "calls": 48,
+            "tokensPer1pct": "4,182 输入 + 33,165 输出",
+            "listUsdPer1pct": 0.68,
+            "intervalUsd": [
+              0.7,
+              0.67,
+              0.66,
+              0.73,
+              0.65
+            ]
+          },
+          {
+            "group": "A",
+            "load": "图片 16 张/次，关缓存",
+            "timeUtc8": "08:04–08:06",
+            "fiveHourWindowPct": "30→35%",
+            "calls": 101,
+            "tokensPer1pct": "162,375 输入 + 186 输出",
+            "listUsdPer1pct": 0.653,
+            "intervalUsd": [
+              0.63,
+              0.68
+            ]
+          },
+          {
+            "group": "D",
+            "load": "3.16 万 system prompt，开缓存",
+            "timeUtc8": "08:26–08:36",
+            "fiveHourWindowPct": "45→50%",
+            "calls": 580,
+            "tokensPer1pct": "4,132,092 缓存读 + 51,123 1h 写 + 523 输出",
+            "listUsdPer1pct": 1.247,
+            "intervalUsd": [
+              1.26,
+              1.25,
+              1.24,
+              1.24
+            ]
+          }
+        ],
+        "fiveHourWindowPer1pctUsd": 0.68,
+        "fiveHourWindowFullUsd": 68,
+        "fiveHourWindowNote": "5h 窗口 1% ≈ $0.68，一个窗口 ≈ $68（无缓存，标价）。"
+      }
+    },
+    {
+      "id": "issue98-cache-read-back-solve",
+      "planId": "claude_max_5x",
+      "priceUsd": 100,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code CLI 2.1.280",
+      "evidenceType": "community_issue_back_solved_pricing",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/98",
+      "sourceDate": "2026-10-03 08:26–08:36（UTC+8）",
+      "observed": {
+        "section": "缓存读实际计价（由 D 组反推）",
+        "rows": [
+          {
+            "oneHourCacheWritePriceUsd": 8,
+            "cacheReadUsdPerMTok": 0.062,
+            "shareOfApiReadPrice020": "31%"
+          },
+          {
+            "oneHourCacheWritePriceUsd": 5,
+            "cacheReadUsdPerMTok": 0.1,
+            "shareOfApiReadPrice020": "50%"
+          },
+          {
+            "oneHourCacheWritePriceUsd": 4,
+            "cacheReadUsdPerMTok": 0.112,
+            "shareOfApiReadPrice020": "56%"
+          },
+          {
+            "oneHourCacheWritePriceUsd": 0,
+            "cacheReadUsdPerMTok": 0.161,
+            "shareOfApiReadPrice020": "81%"
+          }
+        ],
+        "apiReadPriceUsdPerMTok": 0.2
+      }
+    },
+    {
+      "id": "issue98-weekly-quota-segments",
+      "planId": "claude_max_5x",
+      "priceUsd": 100,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code CLI 2.1.280",
+      "evidenceType": "community_issue_weekly_quota_segments",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/98",
+      "sourceDate": "2026-10-03（UTC+8）",
+      "observed": {
+        "weeklyQuotaUsedPct": "10% → 16%",
+        "segments": [
+          {
+            "weeklyPct": "10→11%",
+            "listUsdPer1pct": 8.24,
+            "ofWhichInteractiveSessionUsd": 1.0
+          },
+          {
+            "weeklyPct": "11→12%",
+            "listUsdPer1pct": 9.21,
+            "ofWhichInteractiveSessionUsd": 4.32
+          },
+          {
+            "weeklyPct": "12→13%",
+            "listUsdPer1pct": 7.54,
+            "ofWhichInteractiveSessionUsd": 0.17
+          },
+          {
+            "weeklyPct": "13→14%",
+            "listUsdPer1pct": 8.23,
+            "ofWhichInteractiveSessionUsd": 0
+          },
+          {
+            "weeklyPct": "14→15%",
+            "listUsdPer1pct": 9.76,
+            "ofWhichInteractiveSessionUsd": 3.19
+          },
+          {
+            "weeklyPct": "15→16%",
+            "listUsdPer1pct": 8.31,
+            "ofWhichInteractiveSessionUsd": 0
+          }
+        ]
+      }
+    }
+  ],
+  "measurementConditions": {
+    "plan": "Claude Max 5x",
+    "price": "$100 / 月",
+    "region": "国际站",
+    "modelWithEffort": "claude-opus-5-5（主跑 medium，对照组 low）",
+    "fieldSemantics": "input 不含 cache_read / cache_write；output 包含 thinking",
+    "officialAllowance": "Pro 的 5 倍"
+  },
+  "contributorDerived": {
+    "disclaimer": "以下换算均为投稿人自行推算，未被本仓库采用；采用值不变，仅作存档与交叉参考。",
+    "fiveHourWindow": {
+      "onePctUsd": 0.68,
+      "fullWindowUsd": 68,
+      "note": "5h 窗口 1% ≈ $0.68，一个窗口 ≈ $68（无缓存，标价）。"
+    },
+    "weeklyWorthUsdRange": {
+      "range": "$750–830",
+      "note": "一周 ≈ $750–830（无缓存，标价），约 12 个 5h 窗口。"
+    },
+    "weeklyTokenAndApiWorth": {
+      "cacheHitRate": "97.3%",
+      "outputAsShareOfInput": "0.35%",
+      "weeklyInputTokensYi": "21.7–24.0 亿",
+      "equivalentApiUsd": "$1,040–1,150",
+      "pricesUsed": "$4 / 读 $0.20 / 1h 写 $8 / 出 $20；缓存读按 $0.062 计量"
+    }
+  },
+  "openQuestions": [
+    "周额度只覆盖 10%→16% 六个百分点，且其中含交互会话占用（$1.00 / $4.32 / $0.17 / 0 / $3.19 / 0）；整周未打满，$750–830 的整周外推依赖「额度在周内线性」这一未在该投稿中直接验证的假设。",
+    "缓存读实际计价由 D 组反推，四行结果（$0.062 / $0.100 / $0.112 / $0.161 每百万）完全取决于 1h 缓存写按 $8 / $5 / $4 / 0 的假设，投稿未指明实际适用哪一档；每周等效 API $1,040–1,150 的结论锁死在「1h 写 $8 + 缓存读 $0.062」这一组合上。",
+    "主跑段（68%→95%）拟合给出的整窗 ≈ $63.2 与对照组四段给出的 ≈ $68 不一致；投稿以「同期另有交互会话 $3.51，合计 $68–76」调和，但该交互会话是否同属 Opus 5.5 负载未说明。",
+    "对照组 low 与主跑 medium 两个 effort 档混在同一 5h 窗口内，投稿未给按 effort 拆分的每 1% 标价。"
+  ],
+  "relatedFiles": [
+    "claude-max5x-opus55-round1-2026-10-03.json",
+    "claude-opus55-max20x-round2-2026-09-30.json",
+    "community-issues-round1-2026-09-29.json"
+  ]
+}

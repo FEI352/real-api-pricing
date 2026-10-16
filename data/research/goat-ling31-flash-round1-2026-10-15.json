@@ -1,0 +1,60 @@
+{
+  "collectedAt": "2026-10-15",
+  "collectionMethod": "Manual capture of the official Command Code GOAT plan page (English). Official per-model credits and three-part pricing only.",
+  "sources": [
+    "https://commandcode.ai/docs/plans/goat"
+  ],
+  "scope": "Command Code GOAT official catalog only. One new paid model row. No leaderboard/score data, no OpenCode Go changes, no shared-pool changes.",
+  "adopted": {
+    "provider": "command_code_goat",
+    "plan": "Command Code GOAT",
+    "model": "ling-3.1-flash",
+    "modelId": "inclusionai/ling-3.1-flash",
+    "vendor": "inclusionAI",
+    "minPlan": "Go",
+    "perModelCreditsUsd": 20,
+    "effectiveUsageUsd": 20,
+    "effectiveUsageFormula": "min(shared monthly pool $70, per-model credits $20) = 20",
+    "inputPerMTokUsd": 0.3,
+    "outputPerMTokUsd": 0.9,
+    "cachedReadPerMTokUsd": 0.06,
+    "cacheWritePerMTokUsd": null,
+    "cacheWriteNote": "No cache-write price listed in the official table.",
+    "confidence": "medium",
+    "basis": "official"
+  },
+  "computation": {
+    "standardTokenMix": {
+      "cached": 0.97,
+      "input": 0.025,
+      "output": 0.005
+    },
+    "blendedUsdPerMTok": 0.0702,
+    "blendedFormula": "0.97*0.06 + 0.025*0.30 + 0.005*0.90 = 0.0702",
+    "monthlyYi": 2.849,
+    "monthlyYiFormula": "round(20 / 0.0702 / 100, 3) = 2.849",
+    "realUsdPerMTok": 0.0351
+  },
+  "budgetStepsNotAdopted": {
+    "pageLabel": "budgetSteps",
+    "scheduledAt": "2026-10-15T12:30:00Z",
+    "scheduledAtBeijing": "2026-10-15 20:30",
+    "creditsUsd": 100,
+    "endDate": null,
+    "liveAtCollection": false,
+    "adopted": false,
+    "reason": "CONVENTIONS requires every temporary or not-yet-effective promotion to carry an end date. The page marks the step-up as having no end date, and at the 14:05 Beijing capture on 2026-10-15 it was not yet live. Recorded here as evidence only and not used for the adopted row.",
+    "impact": "Adopted per-model credits stay at the steady-state $20; if the $100 step were adopted, effective usage would be min($70 shared pool, $100) = $70, i.e. ~9.972 monthlyYi."
+  },
+  "notAdopted": {
+    "freeVariant": {
+      "model": "Ling 3.1 Flash Free",
+      "adopted": false,
+      "reason": "Free variant rows are excluded from the adopted set under the existing project rule; unchanged by this collection."
+    }
+  },
+  "sharedPoolUnchanged": {
+    "commandCodeGoatSharedMonthlyUsd": 70,
+    "note": "Shared pool value and every other GOAT row are unchanged; this row is capped by its own $20 per-model credits."
+  }
+}
