@@ -1,0 +1,83 @@
+{
+  "collectedAt": "2026-10-09",
+  "checkedAt": "2026-10-09T09:25:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, Mistral）",
+  "summary": "2026-10-09 官方 API 标价与采用值排查结论：1) Anthropic：Claude Haiku 5.5（10-07 发布）本地已完成 3 档分档情景及机器守卫落地；Claude Sonnet 5.5 官方确认缓存读取单价调降 50% 至 $0.10/MTok（与 Opus 5.5 对齐），已新建标价档 data/research/list-prices-claude-sonnet55-round2-2026-10-09.json；Max/Team 方案新增月度 API 赠额暂不混入额度池。2) OpenAI：API Usage Tiers 维持三档结构（Build/Launch/Grow）；AA 原始载荷新增 gpt-6-sol-daybreak-blue 行，但其基准测试得分全为 null，标价维持 GPT-6 Sol 标准价（$2/$10，缓存读 $0.20/写 $2.50），暂不进榜。3) Google：Gemini 4 Argon 仍处于 Fairwind Program 受限访问阶段，公众 API 尚未开放。4) Mistral：Mistral Large 4 Preview 维持公测优惠价（$0.68/$2.09，缓存 $0.07），AA 智力得分 38.0，缺乏主流订阅载体，保持观察。5) 上游 PR #104 (Cursor Ultra Other Models 8.96亿)、#105 (Claude Team 126.05亿)、#101 (Claude Max 5x CC 实测 183.34亿) 属于有效实测候选，建议 Lead 作为专题审阅。",
+  "vendors": {
+    "Anthropic": {
+      "status": "price_cut_verified",
+      "model": "claude-sonnet-5.5",
+      "officialSlug": "claude-sonnet-5-5",
+      "recentChanges": [
+        "Claude Sonnet 5.5 缓存读取单价下调 50% 至 $0.10/MTok（原 $0.20/MTok，现与 Opus 5.5 统一为 base input × 0.05）；输入 $2.00、输出 $10.00、缓存写入（5m $2.5 / 1h $4.0）保持不变",
+        "Claude Haiku 5.5（10-07 发布，≤100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50）在本地已于 2026-10-08 完成分档建模与 verify_haiku55_tiers 守卫验证",
+        "Claude Max / Team 方案新增月度 API 赠额（Max 5x 赠 $100/月、Team 赠最高 $500/月池化 API 额度），计费管道独立暂不混入 monthly_tokens"
+      ],
+      "handling": "已新建 data/research/list-prices-claude-sonnet55-round2-2026-10-09.json 记录 Sonnet 5.5 降价事实，并向 Lead 提交 LIST_PRICE_FILES 更新建议"
+    },
+    "OpenAI": {
+      "status": "new_unscored_variant_detected",
+      "recentChanges": [
+        "AA models 原始载荷新增 gpt-6-sol-daybreak-blue 行，显示为 GPT-6 Sol (Daybreak Blue, max)，但 intelligenceIndex 等评测指标全为 null，标价为 $2.00 输入 / $10.00 输出 / $0.20 缓存读 / $2.50 缓存写",
+        "GPT-6.1 Sol 标价维持 $2.00 输入 / $0.10 缓存读 / $10.00 输出",
+        "GPT-6 Luna 标价维持 $0.10 输入 / $0.50 输出",
+        "GPT-6 Astra 标价维持 $10.00 输入 / $50.00 输出",
+        "API Usage Tiers 维持 Build ($5) / Launch ($100) / Grow ($500) 三档结构",
+        "o4-mini 定于 2026-10-23 废弃"
+      ],
+      "handling": "gpt-6-sol-daybreak-blue 无 benchmark 分数，不纳入 scores 亦不建标价档；其余无标价调整"
+    },
+    "Google": {
+      "status": "no_change",
+      "recentChanges": [
+        "Gemini 4 Argon 仍由 Fairwind Program 防守者计划受限访问，公众 API 价格尚未公开",
+        "Gemini 3.8 Flash 维持引入优惠价 $0.75/$3.75（至 2026-12-31）",
+        "Google AI Pro / Ultra 套餐口径稳定"
+      ],
+      "handling": "无标价变更，无需建新档"
+    },
+    "Mistral": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview ('le Chonk', 10-06 发布) 维持公测优惠价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok（原标价 $1.36/$0.14/$4.18）",
+        "AA Intelligence Index 实测得分 38.0，位列高性价比中位段"
+      ],
+      "handling": "目前仅 API 可用，尚未进入主流聚合订阅（如 OpenCode Go），作为候选保持追踪"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "DeepSeek-V4-Pro 维持既有阶梯计费"
+      ],
+      "handling": "无标价变更，无需建新档"
+    }
+  },
+  "candidates": [
+    {
+      "model": "claude-sonnet-5.5",
+      "type": "price_cut",
+      "status": "list_price_file_created",
+      "notes": "官方缓存读取单价降至 $0.10/MTok，已建 round2 标价档，建议 Lead 在 compute.py 中追加"
+    },
+    {
+      "model": "gpt-6-sol-daybreak-blue",
+      "type": "new_variant_no_score",
+      "status": "ignored",
+      "notes": "AA models 载荷新增但无评测分数，不进榜不建档"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_api_only",
+      "status": "monitoring",
+      "notes": "公测价极具性价比但缺乏订阅套餐落地，持续跟踪"
+    },
+    {
+      "model": "upstream_measured_points",
+      "type": "upstream_empirical_adoptions",
+      "status": "review_candidates",
+      "notes": "PR #101 Max 5x (183.34亿)、PR #104 Cursor Ultra Other Models (8.96亿)、PR #105 Claude Team (126.05亿) 建议作为独立专题由 Lead 审阅"
+    }
+  ]
+}

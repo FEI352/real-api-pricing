@@ -25,6 +25,7 @@ const slugs: Record<string, string> = {
   MiniMax: "minimax",
   Alibaba: "alibaba",
   OpenCode: "opencode",
+  OpenDesign: "opendesign",
   DeepSeek: "deepseek",
   Google: "google",
   "Command Code": "command-code",

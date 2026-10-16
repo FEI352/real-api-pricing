@@ -32,7 +32,7 @@ MIN_TIMED_ROWS = 300
 # 快照指纹：claude-haiku-5-5（max effort 行）在 2026-10-08 快照的 configurationRank。
 # AA 换榜（新 round）后该值必然漂移、本守卫会红——这是刻意的：换榜时必须人工复核
 # 新快照里该 slug 的 rank 并更新此常量，顺带确认配置身份没有被错配。
-EXPECTED_HAIKU_RANK = 43
+EXPECTED_HAIKU_RANK = 45
 SCORE_TOLERANCE = 1e-9     # score 是 round(raw, 4) 的精确副本，只留浮点比较余量
 
 failures = []

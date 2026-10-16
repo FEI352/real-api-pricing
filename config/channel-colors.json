@@ -19,6 +19,7 @@
     "StepFun": "#00F4E5",
     "Devin": "#A1A1AA",
     "Factory": "#0A0ABF",
+    "OpenDesign": "#800080",
     "Local": "#4B5563"
   },
   "aliases": {
@@ -104,6 +105,10 @@
       "Factory"
     ],
     [
+      "opendesign",
+      "OpenDesign"
+    ],
+    [
       "google_gemini",
       "Google"
     ],
@@ -114,6 +119,10 @@
     [
       "hyperqwen_local",
       "Local"
+    ],
+    [
+      "google",
+      "Google"
     ]
   ],
   "fallback": "#8A94A6",

@@ -1,0 +1,22 @@
+{
+  "_doc": "增量套餐行（由 scripts/add_subscription.py 自动维护，勿手改）。build_adopted.py 会在 SUBS 之后 extend 这里的行；字段与 SUBS 元组一一对应，额外支持 main（进精选图）与 date_inherit（数据日期沿用锚点）。",
+  "rows": [
+    {
+      "plan_id": "google_ai_pro_student",
+      "plan_name": "Google AI Pro 学生版",
+      "price": 5.0,
+      "currency": "USD",
+      "model": "gemini-3.8-flash",
+      "monthly_yi": 25.81,
+      "confidence": "medium",
+      "source": "Google 官方学生优惠分两档（https://gemini.google/students/）：免费学割档为 Google AI Plus（非 Pro，1 年期）；Google AI Pro 学生档为付费 $5/月（学生身份期内），美国另有 Pro 免费 12 个月活动。本条目按维护者 2026-10-16 裁定：Pro 学生档 $5/月，额度与标准 Google AI Pro 同池。",
+      "note": "$5 学生档：额度按维护者裁定等同 google_ai_pro_us（gemini-3.8-flash 25.81 亿/月，同一额度池，不缩水）；线性换算 real_usd_per_mtok = 5 ÷ 25.81亿 × 1e6 = $0.0019372/MTok，与 $19.99 标准档同额度、1/4 价格 → 同负载下性价比为标准的 4×。免费学割档是 Google AI Plus（非本档）；美国学生另有 Pro 免费 12 个月。学生资质限制。",
+      "main": true,
+      "plan_name_en": "Google AI Pro (Student)",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    }
+  ]
+}

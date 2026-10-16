@@ -627,7 +627,7 @@ OPENCODE_GO_MODELS = (
     ("qwen3.8-max", 15, 0.25, 2.0, 6.0, "官网单档"),
     ("qwen3.8-flash", 30, 0.016, 0.15, 0.47, "官网单档"),
     ("qwen3.7-plus", 60, 0.04, 0.4, 1.6, "≤256K 标价；>256K 档保留在 research variants"),
-    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网 Monthly limit 永久 $60；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 80, 0.003, 0.15, 0.60, "官网 Monthly limit $80（2026-10-16 由 $60 上调，docs/go 实测）；Off-Peak；Peak=2×保留在 research variants"),
     ("deepseek-v4-pro", 15, 0.022, 0.66, 1.98, "Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改"),
     ("deepseek-v4-flash", 30, 0.003, 0.15, 0.60, "back in official catalog, Usage $30 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("deepseek-v4-flash-vision-exp", 15, 0.003, 0.15, 0.60, "back in official catalog, Usage $15 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
@@ -676,7 +676,7 @@ OPENCODE_GO_NOTES = {
 def opencode_go_rows() -> list[tuple]:
     rows = []
     for model, usage, cached, inp, out, variant_note in OPENCODE_GO_MODELS:
-        effective_usage = min(60, usage)
+        effective_usage = usage  # 2026-10-16 起官网改为「每模型独立 monthly limit」（5h=20%/周=50%/月=100%），$60 共享池上限已废止
         yi = round(effective_usage / blended(cached, inp, out) / 100, 3)
         old = OPENCODE_GO_OLD_YI.get(model)
         change = f"旧{old:g}亿（请求估算）→{yi:g}亿" if old is not None else f"新增{yi:g}亿"
@@ -693,18 +693,42 @@ def opencode_go_rows() -> list[tuple]:
     return rows
 
 
+# OpenDesign Go：基础月额度 $60，针对 DeepSeek V4.1 Flash 专项 2× 翻倍至 $120；
+# 官方证据：https://open-design.ai/pricing/ 与 https://open-design.ai/model-credits/
+# 7天窗口上限 $30（基础 $15），5小时窗口上限 $10（基础 $5）；首月 $8，续费 $10/月（收录按常态 $10，在备注注明首月 $8）。
+# 额度按统一标准负载加权价换算：yi = 120 / blended(0.003, 0.15, 0.60) / 100 = 124.224 亿。
+OPENDESIGN_GO_DEEPSEEK_SOURCE = (
+    "https://open-design.ai/pricing/ 与 https://open-design.ai/model-credits/ 官方 Design Plan 与 Model credits 规则；"
+    "100K stars 活动宣布 DeepSeek V4.1 Flash 额度翻倍至每月最高 $120"
+)
+OPENDESIGN_GO_DEEPSEEK_NOTE = (
+    "新增124.224亿：首月促销$8/常态月费$10（项目按常态$10收录）；基础月额度$60，针对 DeepSeek V4.1 Flash 专项2×翻倍至$120；"
+    "官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60；按统一标准负载加权价折算；"
+    "官方预估 145600 请求/7天（582400/月）作为交叉校验。5小时窗口硬顶$10，7天窗口硬顶$30，同套餐各模型额度不可相加"
+)
+
+
+def opendesign_go_rows() -> list[tuple]:
+    return [
+        (
+            "opendesign_go", "OpenDesign Go", 10, "USD", "deepseek-v4.1-flash", 124.224, "medium",
+            OPENDESIGN_GO_DEEPSEEK_SOURCE, OPENDESIGN_GO_DEEPSEEK_NOTE,
+        )
+    ]
+
+
 # Command Code GOAT：共享月池 $70 + 每模型 monthly allowance；effective=min(70, allowance)。
 # 元组：(model, allowance USD, cached, input, output, 采用价档说明)
 # 证据：https://commandcode.ai/docs/plans/goat 完整两表（Every model + New models）；
 #       data/research/code-subscriptions-round1-2026-09-06.json。cache write 不进统一标准负载。
-COMMAND_CODE_GOAT_SHARED_USD = 70
+COMMAND_CODE_GOAT_SHARED_USD = 80  # 2026-10-16 官方 pricing 页 "$80 in credits included"（原 $70）
 COMMAND_CODE_GOAT_MODELS = (
     # —— Every model 表（含既有 11 行，勿删）——
     ("gpt-5.6-sol", 70, 0.5, 5.0, 30.0, "官网三段价"),
     ("glm-5.2", 70, 0.26, 1.4, 4.4, "官网三段价"),
     ("hy3", 70, 0.035, 0.14, 0.58, "官网三段价"),
     ("qwen3.8-27b", 70, 0.04, 0.4, 3.0, "官网三段价"),
-    ("deepseek-v4.1-flash", 60, 0.003, 0.15, 0.60, "官网 allowance 永久 $60；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 100, 0.003, 0.15, 0.60, "官网 pricing 页 per-model allowance $100 on DeepSeek V4.1 Flash（2026-10-16 实测；原 $60）；Off-Peak；Peak=2×保留在 research variants"),
     ("kimi-k2.7-code", 60, 0.19, 0.95, 4.0, "官网三段价"),
     ("deepseek-v4-flash", 60, 0.003, 0.15, 0.60, "back in official catalog as 'V4 Flash (latest)' at $60 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("deepseek-v4.1-flash-fast", 60, 0.016, 0.16, 0.58, "new official row 'V4.1 Flash Fast' at $60 (off-peak $0.016/$0.16/$0.58, 57,500 requests/mo); goat-opencode-catalogs-round3-2026-09-30.json"),
@@ -1106,6 +1130,8 @@ SUBS = [
     ("aliyun_coding_pro_global", "Alibaba Cloud Coding Plan Pro", 50, "USD", "qwen3.7-plus", 1.98, "low", "同 CN 档额度", "未折算：CN 档同源（《财经》¥101/亿），无分项"),
     # OpenCode Go —— 官网全量模型；美元额度 × 项目统一标准负载，旧请求估算仅作旁证。
     *opencode_go_rows(),
+    # OpenDesign Go —— 官方 Design Plan；首月$8/常态$10，DeepSeek V4.1 Flash 专项 2× 翻倍至 $120。
+    *opendesign_go_rows(),
     # Command Code GOAT —— 官网每模型 allowance + 三段价；effective=min($70, allowance)；不含 Muse Code（仅5h请求窗）。
     *command_code_goat_rows(),
     # Ollama Cloud Pro/Max —— 官方 credits × 官方价表；DeepSeek 用 off-peak。
@@ -1266,7 +1292,7 @@ METERED = [
 # 精选图只画主流套餐 + 前沿相关点，避免 60 个点挤在一起；全量图画全部
 MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x", "cursor_ultra", "cursor_ultra_fast", "cursor_pro",
               "claude_pro_over100k", "claude_pro_mix5050", "claude_max_20x_over100k", "claude_max_20x_mix5050",
-              "google_ai_pro_us",
+              "google_ai_pro_us", "google_ai_pro_student",
               "supergrok_heavy", "supergrok", "kimi_allegretto_cn", "glm_coding_pro_cn_new_peak", "glm_coding_pro_cn_new_mid", "glm_coding_pro_cn_new_offpeak", "glm_coding_pro_cn_old_peak", "glm_coding_pro_cn_old_mid", "glm_coding_pro_cn_old_offpeak",
               "minimax_token_plus_cn", "minimax_token_plus_global", "aliyun_coding_pro_cn", "devin_max", "devin_pro", "droid_max",
               "mimo_token_lite_day", "mimo_token_standard_day", "mimo_token_pro_day", "mimo_token_max_day",
@@ -1275,6 +1301,7 @@ MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x",
 MAIN_EXTRA = {
     ("opencode_go", "deepseek-v4.1-flash"),
     ("opencode_go", "glm-5.3-flash"),
+    ("opendesign_go", "deepseek-v4.1-flash"),
     ("command_code_goat", "deepseek-v4.1-flash"),
 }
 
@@ -1297,6 +1324,7 @@ DATA_DATES = {
     ("google_gemini4_argon_api", "gemini-4-argon"): ("2026-09-30", "official"),
     ("anthropic_sonnet55_api", "claude-sonnet-5.5"): ("2026-09-28", "official"),
     ("anthropic_haiku55_api", "claude-haiku-5.5"): ("2026-10-07", "official"),
+    ("opendesign_go", "deepseek-v4.1-flash"): ("2026-10-10", "official"),
     ("claude_pro_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
     ("claude_pro_mix5050", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
     ("claude_max_20x_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),
@@ -1383,6 +1411,7 @@ DATA_DATE_INHERIT = {
     ("supergrok_heavy", "grok-4.6"): ("supergrok", "grok-4.6"),
     ("supergrok_plus", "grok-4.7"): ("supergrok", "grok-4.7"),
     ("supergrok_heavy", "grok-4.7"): ("supergrok", "grok-4.7"),
+    ("google_ai_pro_student", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("google_ai_ultra_5x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("google_ai_ultra_20x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("claude_max_5x", "claude-opus-5"): ("claude_max_20x", "claude-opus-5"),
@@ -1450,9 +1479,40 @@ def workload_of(pid: str, billing: str, model: str = "") -> str:
     if (pid == "chatgpt_plus" and model in ("gpt-6-sol", "gpt-6-luna", "gpt-6.1-sol", "gpt-5.6-luna")) \
             or (pid in ("chatgpt_pro_5x", "chatgpt_pro_20x") and model == "gpt-5.6-luna"):
         return "standard"
-    if pid.startswith(("opencode_", "command_code_", "ollama_", "glm_coding_", "mimo_token_")):
+    if pid.startswith(("opencode_", "command_code_", "ollama_", "glm_coding_", "mimo_token_", "opendesign_")):
         return "standard"
     return "measured"
+
+
+def load_extra_spec() -> list:
+    """data/extra_subscriptions.json —— add_subscription.py 维护的增量套餐行。
+
+    易变数据放配置、代码只写骨架：新套餐一律走这个文件，不再手工改本脚本。
+    """
+    path = OUT.parent / "extra_subscriptions.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8")).get("rows", [])
+
+
+def extra_sub_rows(spec: list) -> list:
+    """把增量行构造为与 sub_row 完全相同的字段集，避免两处漂移。"""
+    out = []
+    for r in spec:
+        price, cur = r["price"], r["currency"]
+        price_usd = price / USD_PER_CNY if cur == "CNY" else price
+        monthly_yi = round(r["monthly_yi"], 3)
+        tokens = round(monthly_yi * YI)
+        out.append(dict(
+            plan_id=r["plan_id"], plan_name=r["plan_name"], plan_name_en=r.get("plan_name_en", ""),
+            billing="subscription", price=price, currency=cur, price_usd=round(price_usd, 2),
+            served_model=r["model"], monthly_tokens=int(tokens), monthly_yi=monthly_yi,
+            real_usd_per_mtok=sig(price_usd / tokens * 1e6), unmetered="", promo_until="",
+            confidence=r["confidence"], chart_tier="main" if r.get("main") else "full",
+            source=r["source"], decision_note=r["note"],
+            plan_gen=plan_gen_of(r["plan_id"]), workload=workload_of(r["plan_id"], "subscription", r["model"]),
+        ))
+    return out
 
 
 def sub_row(pid, name, price, cur, model, yi, conf, src, note, tier=None) -> dict:
@@ -1495,8 +1555,13 @@ def unmetered_row(pid, name, price, cur, model, conf, src, note) -> dict:
 
 def main() -> None:
     from minimax_m31_rows import subscription_specs as minimax_m31_specs
+    extra_spec = load_extra_spec()
+    for r in extra_spec:  # 增量行的数据日期沿用锚点，与 DATA_DATE_INHERIT 同一张表
+        if r.get("date_inherit"):
+            DATA_DATE_INHERIT[(r["plan_id"], r["model"])] = tuple(r["date_inherit"])
     rows = [sub_row(*s) for s in SUBS if (s[0], s[4]) not in EXCLUDED_SUBSCRIPTIONS]
     rows.extend(sub_row(*s) for s in minimax_m31_specs(CONVENTIONS))
+    rows.extend(extra_sub_rows(extra_spec))
     base = {(r["plan_id"], r["served_model"]): r for r in rows}
     derived_base = {}  # (派生行 plan_id, served_model) -> (锚点 plan_id, served_model)，数据日期沿用锚点
     for pid, bmodel, model, ratio, conf, how, main_ in DERIVED:

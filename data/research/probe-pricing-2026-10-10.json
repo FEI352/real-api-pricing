@@ -1,0 +1,132 @@
+{
+  "collectedAt": "2026-10-10",
+  "checkedAt": "2026-10-10T09:20:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, Mistral, Meituan/LongCat）与上游 29 提交定价/采用值评估",
+  "summary": "2026-10-10 官方 API 标价与采用值排查结论：1) Anthropic：各模型官方标价稳定于 10-07 / 10-08 调价后水平；Claude Haiku 5.5 本地已完成 ≤100k 主行与 >100k / 50/50 混合分档情景建模；Claude Sonnet 5.5 缓存读取单价降至 $0.10/MTok 已于昨日建档 (list-prices-claude-sonnet55-round2-2026-10-09.json)；今日无新标价变动。2) OpenAI：API Usage Tiers 维持 Build/Launch/Grow 三档结构；GPT-6 Astra/Sol/Luna 及 GPT-6.1 Sol 标价无变动；AA 载荷中 gpt-6-sol-daybreak-blue 评测指标仍全为 null，不建档。3) Google：Gemini 4 Argon 仍由 Fairwind Program 受限访问，公众 API 尚未开放；Gemini 3.8 Flash 维持 $0.75/$3.75 优惠价。4) Mistral：Mistral Large 4 Preview 维持公测优惠价（$0.68/$2.09），AA 智力得分 38.0，缺乏主流订阅载体，保持观察。5) Meituan/LongCat：AA models 原始载荷将 LongCat 2.0 价格从促销价（$0.30/$1.20/$0.006）调整为未打折标准价（$0.75/$2.95/$0.015），但在本项目中 LongCat 2.0 仅通过 OpenCode Go 与 Command Code GOAT 渠道套餐提供，额度采用值直接绑定渠道 catalog，且 compute.py 优先匹配渠道目录价，无需新建标价档。6) 上游评估：上游 29 个提交中，PR #101 (Claude Max 5x 183.34亿)、PR #104 (Cursor Ultra Other Models 8.96亿)、PR #105 (Claude Team 126.05亿) 包含实测采用值候选，但上游 PR #108 粗暴采用 90/10 混合价，与本地严密的分档情景守卫 (verify_haiku55_tiers) 冲突，严禁直接 git merge，建议 Lead 作为独立专题审阅采纳。",
+  "vendors": {
+    "Anthropic": {
+      "status": "stable_post_update",
+      "recentChanges": [
+        "Claude Haiku 5.5（2026-10-07 发布，≤100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50）在本地由 3 档情景建模纳管，verify_haiku55_tiers 守卫验证通过",
+        "Claude Sonnet 5.5 缓存读取单价 $0.10/MTok（调降 50%，与 Opus 5.5 对齐），已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档",
+        "Claude Opus 5.5 维持 $4.00 输入 / $0.20 缓存读 / $20.00 输出",
+        "Claude Fable 5.1 维持 $10.00 输入 / $0.25 缓存读 / $50.00 输出",
+        "今日无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，今日无须新建标价档"
+    },
+    "OpenAI": {
+      "status": "stable",
+      "recentChanges": [
+        "GPT-6 Astra 标价维持 $10.00 输入 / $1.00 缓存读 / $50.00 输出",
+        "GPT-6.1 Sol 标价维持 $2.00 输入 / $0.10 缓存读 / $10.00 输出",
+        "GPT-6 Luna 标价维持 $0.10 输入 / $0.01 缓存读 / $0.50 输出",
+        "GPT-6 Sol 标价维持 $2.00 输入 / $0.20 缓存读 / $10.00 输出",
+        "AA 原始载荷新增之 gpt-6-sol-daybreak-blue 评测分数仍全为 null",
+        "API Usage Tiers 维持 Build ($5) / Launch ($100) / Grow ($500) 三档结构",
+        "o4-mini 定于 2026-10-23 废弃"
+      ],
+      "handling": "gpt-6-sol-daybreak-blue 无基准分数不建档；其余无标价调整，无须新建标价档"
+    },
+    "Google": {
+      "status": "no_change",
+      "recentChanges": [
+        "Gemini 4 Argon 仍由 Fairwind Program 受限访问，公众 API 价格尚未公开",
+        "Gemini 3.8 Flash 维持引入优惠价 $0.75/$3.75（至 2026-12-31）",
+        "Google AI Pro / Ultra 订阅额度稳定"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "DeepSeek-V4-Pro 维持既有阶梯计费"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "Mistral": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview 维持公测优惠价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok",
+        "AA Intelligence Index 实测得分 38.0，缺乏主流订阅渠道落地"
+      ],
+      "handling": "保持观察，暂不纳为订阅候选"
+    },
+    "LongCat": {
+      "status": "aa_standard_price_update",
+      "recentChanges": [
+        "AA 载荷中 LongCat 2.0 价格从限时促销价（输入 $0.30 / 输出 $1.20 / 缓存 $0.006）调整为未打折官方标价（输入 $0.75 / 输出 $2.95 / 缓存 $0.015）",
+        "LongCat 2.0 在本项目中仅作为 OpenCode Go 及 Command Code GOAT 的可用模型，采用值由渠道额度与目录价直接锁定"
+      ],
+      "handling": "compute.py 优先匹配渠道 catalog 价格，无需新建标价档"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 29,
+    "head": "5262576201a2d5b02c3cec79845ed85aecf97401",
+    "mergeBase": "dce850df080582f2926a3376f97a2edf6020a508",
+    "verdict": "reject_direct_merge_selective_review",
+    "reason": "上游 PR #108 粗暴将 Haiku 5.5 压成 90/10 混合价，与本地领先的 3 档分档情景守卫 (verify_haiku55_tiers) 严重冲突；且上游 29 个提交与本地脏文件存在 54 个重叠。直接 merge 将破坏机器守卫链与计算口径。",
+    "valuableCandidates": [
+      {
+        "pr": "#101",
+        "model": "claude-opus-5.5",
+        "plan": "claude_max_5x",
+        "monthlyTokensYi": 183.34,
+        "confidence": "medium",
+        "notes": "Claude Code 截图实测，单会话 1.3b cache读/5.6m 写（1h TTL 实际写档）占周池 19%，折月 183.34 亿"
+      },
+      {
+        "pr": "#104",
+        "model": "claude-opus-5.5",
+        "plan": "cursor_ultra",
+        "monthlyTokensYi": 8.96,
+        "confidence": "medium",
+        "notes": "X @xuanwo usage-events CSV 导出 7.78 亿 raw tokens 实测，按 Other Models 月池用尽折算"
+      },
+      {
+        "pr": "#105",
+        "model": "claude-opus-5.5",
+        "plan": "claude_team",
+        "monthlyTokensYi": 126.05,
+        "confidence": "low",
+        "notes": "第三方 relay 统计面板 7d 窗 40.91 亿 tokens（$1,320.38 worth）实测"
+      }
+    ],
+    "recommendation": "保持本地分支独立，由 Lead 在后续版本以专题 PR 形式按本地架构标准吸收 PR #101/#104/#105 的实测数据。"
+  },
+  "candidates": [
+    {
+      "model": "claude-sonnet-5.5",
+      "type": "price_cut",
+      "status": "list_price_file_ready",
+      "notes": "官方缓存读取单价降至 $0.10/MTok，已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册"
+    },
+    {
+      "model": "longcat-2.0",
+      "type": "aa_pricing_adjustment",
+      "status": "covered_by_channel_catalog",
+      "notes": "AA 显示原价 $0.75/$2.95，渠道目录价 $0.30/$1.20 已由 build_adopted.py 和 compute.py 覆盖，无需建档"
+    },
+    {
+      "model": "gpt-6-sol-daybreak-blue",
+      "type": "new_variant_no_score",
+      "status": "ignored",
+      "notes": "AA models 载荷新增但评测分数全为 null，不建档不进榜"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_api_only",
+      "status": "monitoring",
+      "notes": "公测价极具性价比但缺乏订阅套餐落地，持续跟踪"
+    },
+    {
+      "model": "upstream_empirical_adoptions",
+      "type": "upstream_empirical_adoptions",
+      "status": "selective_review_for_lead",
+      "notes": "PR #101 Max 5x (183.34亿)、PR #104 Cursor Ultra Other Models (8.96亿)、PR #105 Claude Team (126.05亿) 建议 Lead 作为独立专题审阅"
+    }
+  ]
+}

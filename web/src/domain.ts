@@ -1024,6 +1024,7 @@ export function displayPlan(plan: string, lang: string): string {
     闲时: "Off-peak",
     中间值: "Midpoint",
     忙时: "Peak",
+    学生版: "(Student)",
     " 日间": " (Day)",
     " 夜间0.8×": " (Night 0.8x)",
     "促销至 ": "promo until ",

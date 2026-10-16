@@ -63,7 +63,7 @@ plt.rcParams["svg.hashsalt"] = "real-api-pricing"
 
 # 色值与 id 前缀统一来自 config/channel-colors.json；此处只定图例顺序。
 VENDOR_COLORS = palette(["OpenAI", "Anthropic", "SpaceXAI", "Cursor", "Kimi", "Zhipu", "MiniMax", "Alibaba",
-                         "OpenCode", "Command Code", "Ollama", "DeepSeek", "Google", "StepFun",
+                         "OpenCode", "OpenDesign", "Command Code", "Ollama", "DeepSeek", "Google", "StepFun",
                          "Xiaomi", "Devin", "Factory", "Local"])
 # 图例沿用旧显示名（GLM/Gemini），内部键均为 canonical 渠道名。
 LABEL = {"Zhipu": "GLM", "Google": "Gemini"}
@@ -95,7 +95,7 @@ def output_stem(view: str, board: dict | None, language: str, table: bool = Fals
 VENDOR_CODES = {
     "OpenAI": "OA", "Anthropic": "AN", "SpaceXAI": "XA", "Cursor": "CU",
     "Kimi": "KI", "Zhipu": "GL", "MiniMax": "MM", "Alibaba": "AL",
-    "OpenCode": "OC", "Command Code": "CC", "Ollama": "OL",
+    "OpenCode": "OC", "OpenDesign": "OD", "Command Code": "CC", "Ollama": "OL",
     "DeepSeek": "DS", "Google": "GE", "StepFun": "SF", "Devin": "DV",
     "Xiaomi": "MI", "Factory": "FA", "Local": "LO",
 }
@@ -155,6 +155,7 @@ def plan_name(row: dict, language: str) -> str:
             "闲时": "Off-peak",
             "中间值": "Midpoint",
             "忙时": "Peak",
+            "学生版": "(Student)",
             # Haiku 5.5 输入长度分档情景（2026-10-08）：整段替换，含全角括号；
             # 措辞必须与 web/src/domain.ts displayPlan() 保持一致，改名两处同步
             "（Haiku >100k 档）": " (>100k tier)",

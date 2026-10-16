@@ -1,0 +1,35 @@
+{
+  "collectedAt": "2026-10-09",
+  "sourceType": "official pricing page update",
+  "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "checkedAt": "2026-10-09",
+  "revises": "list-prices-claude-sonnet55-round1-2026-09-30.json",
+  "scope": "Anthropic Claude Sonnet 5.5 官方缓存读取单价调降（$0.20 -> $0.10/MTok，即 base input × 0.05，与 Opus 5.5 对齐）；基础输入 $2.00 与输出 $10.00 保持不变。",
+  "models": [
+    {
+      "model": "claude-sonnet-5.5",
+      "vendor": "Anthropic",
+      "input": 2.0,
+      "cachedInput": 0.1,
+      "output": 10.0,
+      "currency": "USD",
+      "variants": {
+        "batch": {
+          "input": 1.0,
+          "output": 5.0,
+          "note": "Batch API 50% off"
+        },
+        "cacheWrite5m": {
+          "input": 2.5
+        },
+        "cacheWrite1h": {
+          "input": 4.0
+        }
+      },
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "checkedAt": "2026-10-09",
+      "note": "2026-10-07 / 2026-10-08 随 Claude Haiku 5.5 发布，Anthropic 官方下调 Claude Sonnet 5.5 缓存读取单价 50% 至 $0.10/MTok（base input × 0.05，与 Opus 5.5 口径一致）；input $2.00、output $10.00 与缓存写入（5m $2.5 / 1h $4.0）保持不变。"
+    }
+  ],
+  "notFound": []
+}

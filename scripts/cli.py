@@ -102,16 +102,25 @@ def sync_dist_to_deploy(dist_dir, deploy_dir, protected=("data",), dry_run=False
 
 def update_data():
     """执行完整的数据更新与网站构建部署流程"""
-    _info("[1/4] 运行 build_adopted.py...")
+    _info("[1/5] 运行 build_adopted.py...")
     run_cmd(f"{PY} scripts/build_adopted.py", cwd=REPO_ROOT, env={"PYTHONPATH": "scripts"})
 
-    _info("[2/4] 运行 compute.py...")
+    _info("[2/5] 运行 compute.py...")
     run_cmd(f"{PY} scripts/compute.py", cwd=REPO_ROOT, env={"PYTHONPATH": "scripts"})
 
-    _info("[3/4] 运行 web 构建与数据打包 (npm run data && npm run build)...")
+    # 2026-10-16 修复：原先 update 跳过图表链，改了额度后 SVG 停在旧数据上
+    # （verify_svg 会直接判 FAIL），这里补齐全套图表生成。
+    _info("[3/5] 生成全套图表（Pareto SVG/PNG · 交互 HTML · 月额度表）...")
+    run_cmd(f"{PY} scripts/plot_svg.py", cwd=REPO_ROOT, env={"PYTHONPATH": "scripts"})
+    run_cmd("node scripts/render_svg.cjs", cwd=REPO_ROOT)
+    run_cmd(f"{PY} scripts/build_html.py", cwd=REPO_ROOT, env={"PYTHONPATH": "scripts"})
+    run_cmd(f"{PY} scripts/plot_quotas.py", cwd=REPO_ROOT, env={"PYTHONPATH": "scripts"})
+    run_cmd(f"{PY} scripts/publish_charts.py", cwd=REPO_ROOT, env={"PYTHONPATH": "scripts"})
+
+    _info("[4/5] 运行 web 构建与数据打包 (npm run data && npm run build)...")
     run_cmd("npm run data && npm run build", cwd=WEB_DIR)
 
-    _info("[4/4] 部署到 Nginx 目录（复制 + 清理旧构建残留）...")
+    _info("[5/5] 部署到 Nginx 目录（复制 + 清理旧构建残留）...")
     removed = sync_dist_to_deploy(WEB_DIR / "dist", DEPLOY_DIR)
     if removed:
         preview = ", ".join(removed[:5]) + ("…" if len(removed) > 5 else "")
@@ -745,6 +754,23 @@ def main():
     cron_parser.add_argument("--to", default=DEFAULT_RECIPIENT, help="收件邮箱")
     cron_parser.add_argument("--force", action="store_true", help="无论有无变动都发信（旧周报行为）")
 
+    add_plan_parser = subparsers.add_parser("add-plan", help="一键录入/更新套餐订阅并同步构建、校验与部署上线")
+    add_plan_parser.add_argument("--plan-id", required=True, help="套餐唯一ID，如 opendesign_go")
+    add_plan_parser.add_argument("--plan-name", required=True, help="套餐名称，如 OpenDesign Go")
+    add_plan_parser.add_argument("--price-usd", type=float, required=True, help="月费(USD)，如 10.0")
+    add_plan_parser.add_argument("--model", required=True, help="模型ID，如 deepseek-v4.1-flash")
+    add_plan_parser.add_argument("--monthly-yi", type=float, help="月额度(亿token)")
+    add_plan_parser.add_argument("--allowance-usd", type=float, help="等效美元额度，自动按三段价换算为亿token")
+    add_plan_parser.add_argument("--cached-price", type=float, default=0.003, help="缓存命中价($/1M)")
+    add_plan_parser.add_argument("--input-price", type=float, default=0.15, help="输入价($/1M)")
+    add_plan_parser.add_argument("--output-price", type=float, default=0.60, help="输出价($/1M)")
+    add_plan_parser.add_argument("--channel", help="所属渠道名，如 OpenDesign")
+    add_plan_parser.add_argument("--source-zh", required=True, help="中文数据源说明")
+    add_plan_parser.add_argument("--source-en", help="英文数据源说明")
+    add_plan_parser.add_argument("--note-zh", required=True, help="中文收录备注")
+    add_plan_parser.add_argument("--note-en", help="英文收录备注")
+    add_plan_parser.add_argument("--no-deploy", action="store_true", help="仅生成数据，不部署")
+
     args = parser.parse_args()
     if getattr(args, "json_only", False):
         QUIET = True
@@ -763,6 +789,26 @@ def main():
         elif args.command == "diff":
             r = generate_report()
             print(json.dumps(diff_state(load_state(), frontier_state(r)), ensure_ascii=False, indent=2))
+        elif args.command == "add-plan":
+            import add_subscription
+            # delegate to add_subscription main
+            cmd_args = [
+                f"--plan-id={args.plan_id}",
+                f"--plan-name={args.plan_name}",
+                f"--price-usd={args.price_usd}",
+                f"--model={args.model}",
+                f"--source-zh={args.source_zh}",
+                f"--note-zh={args.note_zh}",
+            ]
+            if args.source_en: cmd_args.append(f"--source-en={args.source_en}")
+            if args.note_en: cmd_args.append(f"--note-en={args.note_en}")
+            if args.channel: cmd_args.append(f"--channel={args.channel}")
+            if args.monthly_yi is not None: cmd_args.append(f"--monthly-yi={args.monthly_yi}")
+            if args.allowance_usd is not None: cmd_args.append(f"--allowance-usd={args.allowance_usd}")
+            if args.no_deploy: cmd_args.append("--no-deploy")
+            
+            p = subprocess.run([PY, str(REPO_ROOT / "scripts/add_subscription.py")] + cmd_args, cwd=REPO_ROOT)
+            sys.exit(p.returncode)
         elif args.command == "cron-run":
             _info("=== 开始执行自动化巡检（更新部署 → 比对前沿 → 有变动才发信）===")
             update_data()

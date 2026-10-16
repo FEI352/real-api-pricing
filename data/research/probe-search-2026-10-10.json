@@ -1,0 +1,276 @@
+{
+  "checkedDate": "2026-10-10",
+  "collectedAt": "2026-10-10T09:17:00+08:00",
+  "collector": "Worker-Search",
+  "searchScope": [
+    "Artificial Analysis (AA) Leaderboard & Indices (Intelligence Index v4.3.2, Coding Agent Index, Upcoming v5 Preview)",
+    "Anthropic Official Pricing & Plans (Claude Haiku 5.5 tiered pricing & 100k context cliff, Sonnet 5.5 cache read 50% price cut, Opus 5.5 leader, Haiku 4.5 retirement)",
+    "OpenAI Official Pricing & ChatGPT Plans (Decisions API beta with GPT-6 Luna, Intelligent UI rollout, ChatGPT Pro 100/200/500 tiers & Pro 200 quota drop warning countdown, GPT-6.1 Sol / Astra)",
+    "Google Official Pricing & AI Plans (Gemini 4 Argon restricted rollout, Gemini 3.8 Flash intro pricing, Google AI Ultra/Pro tiers tightening)",
+    "Mistral AI Official Releases (Mistral Large 4 Preview 'le Chonk' 1.05T MoE, preview pricing, Oct 27/31 open weights)",
+    "StepFun Official Pricing (Step-5 Preview 600B MoE pricing, Oct 15 open weights, Step 3.5 Flash)",
+    "DeepSeek Official Pricing (DeepSeek V4.1 Flash peak/off-peak pricing, V4 Pro retention)",
+    "Alibaba Qwen (Qwen3.8 series, Qwen-Image-2.1-Turbo, Qwen 4 late-October anticipation)",
+    "Chinese Frontier Model Providers (GLM-5.3 Bedrock GA, MiniMax M3.1 series, Moonshot Kimi K2.8/K3)",
+    "OpenRouter Platform Updates (Decisions models GPT-6 Luna / Microsoft-Decision-1, Batch API, ElevenLabs 50% promo)",
+    "IDE & Platform Subscriptions (Cursor Pro/Pro+/Ultra dual usage pools, GitHub Copilot AI Credits & Oct 19 model retirement wave)",
+    "Community Signals (Reddit r/LocalLLaMA, r/ClaudeAI, r/OpenAI, Linux Do)"
+  ],
+  "summary": "2026-10-10 调研全网最新大模型发布、标价调整、订阅变动与评测基准演进：1) OpenAI 推出 Decisions API (Beta)，采用专用 GPT-6 Luna 架构，仅按输入 $0.10/MTok 计费（输出/缓存为 0），面向超低延迟分类与路由；ChatGPT Pro 200 额度腰斩（20x -> 10x）倒计时持续引发社区热议，10-29 宽限期终了将直接冲击 chatgpt_pro_20x 成本前沿；ChatGPT Intelligent UI 交互组件已全量铺开；2) Anthropic Claude Sonnet 5.5 提示词缓存读取降价 50%（$0.10/MTok）稳固生效；Haiku 5.5 确立 100k 分档计费（$0.10/$0.50 vs $0.50/$2.50），社区高度警惕 100k 悬崖；Haiku 4.5 预定 10-15 后退役；3) Mistral Large 4 Preview ('le Chonk') 1.05T MoE 性能强劲（AA 智力 38.0），公测优惠价 $0.68/$2.09，预定 10 月底开源；4) StepFun Step-5 Preview 600B MoE 标价确立为 $1.00/$2.70（缓存读取 $0.05），计划 10-15 开放权重；5) Google Gemini 4 Argon（AA 智力 52.6~53.0）维持 Fairwind 受限试用与 $2.00/$10.00 首发 API 价，Google AI Ultra 订阅层级准入收紧；Gemini 3.8 Flash 优惠期延续至年底；6) OpenRouter 上线 GPT-6 Luna Decisions 与 Microsoft-Decision-1 路由模型，并力推 Batch API；7) GitHub Copilot 准备迎接 10-19 强制模型更替（全面切换为 Gemini 3.8 / GPT-5.6 Sol / GPT-5.6 Luna）。",
+  "benchmarkUpdates": {
+    "aaIntelligenceIndex": {
+      "version": "v4.3.2 (Upcoming v5 in late October 2026)",
+      "evaluationsCount": 10,
+      "recentChanges": "由 Terminal-Bench 4.0, SciCode, AA-LCR v1.1, AutomationBench-AA 等 10 项严苛测试构成；v5 计划本月下旬引入 Terminal-Bench Science 与私有评测集。",
+      "notableNewScores": [
+        { "model": "claude-opus-5.5", "score": 57.6, "releaseDate": "2026-09-23", "status": "In Repo Baseline (Cost & Price Frontier Leader 57.62)" },
+        { "model": "claude-sonnet-5.5", "score": 56.0, "releaseDate": "2026-09-30", "status": "In Repo Baseline (Price Frontier Leader 56.00)" },
+        { "model": "gemini-4-argon", "score": 53.0, "releaseDate": "2026-09-30", "status": "In Repo Baseline (Cost Frontier Leader 53.00)" },
+        { "model": "gpt-6.1-sol", "score": 51.8, "releaseDate": "2026-09-24", "status": "In Repo Baseline (Cost Frontier Leader 51.83)" },
+        { "model": "claude-haiku-5.5", "score": 43.4, "releaseDate": "2026-10-07", "status": "In Repo Baseline (Cost & Price Frontier Leader 43.40)" },
+        { "model": "mistral-large-4", "score": 38.0, "releaseDate": "2026-10-06", "status": "Candidate (High Priority, Not yet in repo scores)" },
+        { "model": "qwen3.8-27b-local", "score": 33.7, "releaseDate": "2026-09-30", "status": "In Repo Supplement (Local Hardware Baseline)" }
+      ]
+    },
+    "aaCodingAgentIndex": {
+      "version": "v1.5",
+      "composition": "DeepSWE v1.1 + Terminal-Bench 4.0 + SWE-Atlas-QnA",
+      "topPerformers": [
+        { "configuration": "Claude Code + Sonnet 5.5 (max effort)", "score": 68.4, "costPerTaskUsd": 14.19, "category": "Top Absolute Performance" },
+        { "configuration": "Codex + GPT-6.1 Sol (xhigh effort)", "score": 62.9, "costPerTaskUsd": 1.04, "category": "Best Cost-Performance Ratio" }
+      ],
+      "trend": "评测重心转向 Harness 与模型联合调度（Reasoning Effort 档位敏感度）；工具环境与端到端 Agent 框架执行效率成为决定最终得分的核心因子。"
+    }
+  },
+  "candidates": [
+    {
+      "name": "OpenAI Decisions API (GPT-6 Luna)",
+      "provider": "OpenAI",
+      "event_type": "new_model_and_pricing",
+      "details": "OpenAI 于 2026 年 10 月初公测 Decisions API，基于专用轻量模型 GPT-6 Luna。专门针对高频分类、路由、审核及打分场景优化，推理延迟低至 150ms。计费创新：仅收取输入 token $0.10/MTok，无缓存读取费与输出生成费（$0.00/MTok）。",
+      "source_url": "https://openai.com/index/decisions-api",
+      "impact_on_frontier": "该接口专为结构化决策与概率输出设计，不具备长文本或通用编程生成能力，不在 AA Intelligence Index / Coding Agent Index 收录范围内，对当前 Pareto 前沿无直接冲击。建议列入特定架构参考。",
+      "modelOrPlan": "OpenAI Decisions API (GPT-6 Luna)",
+      "vendor": "OpenAI",
+      "category": "new_model_and_pricing",
+      "sourceUrl": "https://openai.com/index/decisions-api",
+      "factSummary": "OpenAI 推出 Decisions API (Beta)，专用于分类、路由、审核与规则打分。底层专供 GPT-6 Luna，推理延迟低至 150ms。极简计费结构：仅收取输入 token $0.10/MTok，无缓存读取费，无输出生成费（$0.00/MTok）。",
+      "currentRepoState": "repo 未收录专有决策路由类 API 专用端点。",
+      "recommendation": "monitor",
+      "priority": "P3 (专用功能接口，暂不采纳)",
+      "rationale": "非通用端到端 Agent 推理模型，不影响通用编程基准。"
+    },
+    {
+      "name": "ChatGPT Pro 体系重构及 Pro 200 额度腰斩倒计时 (20x -> 10x)",
+      "provider": "OpenAI",
+      "event_type": "quota_change",
+      "details": "OpenAI 确立 Pro 100 ($100/mo, 5x)、Pro 200 ($200/mo, 10x)、Pro 500 ($500/mo, 25x Ultrafast) 体系。老用户 20x 宽限期将在 2026-10-29 终了，届时统一降为 10x（每周 100 条 GPT-6 Pro 消息），并赠送 62,500 credits ($2,500 价值) 过渡券（年底到期）。社区对额度缩水表达强烈不满。",
+      "source_url": "https://help.openai.com/en/articles/chatgpt-pro-tiers",
+      "impact_on_frontier": "重大潜在风险点。当前仓库采用点 chatgpt_pro_20x（估算月度 129.02 亿 tokens）是 Pareto 成本前沿的关键支柱。10-29 之后其实际单价将翻倍，导致该订阅点退出前沿。需提前研制 chatgpt_pro_10x 情景方案以防前沿塌陷。",
+      "modelOrPlan": "ChatGPT Pro 体系重构 (Pro 100/200/500) 及 Pro 200 额度腰斩",
+      "vendor": "OpenAI",
+      "category": "quota_change",
+      "sourceUrl": "https://help.openai.com/en/articles/chatgpt-pro-tiers",
+      "factSummary": "OpenAI 自 2026-09-29 起将 ChatGPT Pro 统一为三档：Pro 100、Pro 200、Pro 500。原有 Pro 200 新用户额度降为 10x；老用户 20x 宽限期将于 2026-10-29 终止，全量统一为 10x。",
+      "currentRepoState": "repo 中采用行均为 chatgpt_pro_20x（按历史 20x 及实测 129.02 亿计算）。",
+      "recommendation": "prep_action",
+      "priority": "P1 (额度架构预警与前沿防御储备)",
+      "rationale": "10-29 宽限期终了后单价翻倍，直接撼动 chatgpt_pro_20x 在成本前沿的统治力。建议提前在 build_adopted.py 预研 chatgpt_pro_10x 分档情景点。"
+    },
+    {
+      "name": "Claude Sonnet 5.5 (Cache-Read 50% 降价)",
+      "provider": "Anthropic",
+      "event_type": "price_change",
+      "details": "Anthropic Claude Sonnet 5.5 提示词缓存读取（Cache Read）单价从 $0.20/MTok 降至 $0.10/MTok（输入 $2.00、输出 $10.00 保持不变；5分钟缓存写入 $2.50，1小时缓存写入 $4.00）。在长上下文多轮 Agent 编程中可降低综合成本约 20%。",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "impact_on_frontier": "直接拉低 Sonnet 5.5 的混合标价（list_blended_usd_per_mtok）与每任务成本。项目已于 2026-10-09 补建 round2 标价档，有力强化了 Sonnet 5.5 在价格与成本前沿的高分防守优势。",
+      "modelOrPlan": "claude-sonnet-5.5 (Cache-Read Price Cut)",
+      "vendor": "Anthropic",
+      "category": "price_change",
+      "sourceUrl": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "factSummary": "Anthropic 于 2026-10-07 生效新版定价：Claude Sonnet 5.5 提示词缓存读取（Cache Read）单价从 $0.20/MTok 腰斩至 $0.10/MTok。在多轮 Agentic 编程工作流中，折算综合任务开销降低约 20%。",
+      "currentRepoState": "repo 现已建立 list-prices-claude-sonnet55-round2-2026-10-09.json 并纳管。",
+      "recommendation": "adopt",
+      "priority": "P0 (核心变动，已在流程中落实)",
+      "rationale": "直接影响 Sonnet 5.5 的混合标价与每任务成本计算。"
+    },
+    {
+      "name": "Claude Haiku 5.5 (100k 分档计费与 Context Cliff)",
+      "provider": "Anthropic",
+      "event_type": "pricing_clarification",
+      "details": "2026-10-07 发布的 Claude Haiku 5.5 确认采用 100k 双档阶梯：Prompt <= 100k tokens 为 $0.10 in / $0.50 out；> 100k tokens 为 $0.50 in / $2.50 out。AA 智力得分 43.4。社区热烈讨论 100k 悬崖效应。老款 Haiku 4.5 定于 10-15 后退役。",
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+      "impact_on_frontier": "Haiku 5.5 在 <=100k 档凭借极低成本直接占领 Pareto 成本前沿（`claude_max_20x::claude-haiku-5.5` 分数 43.395，成本 $0.003425，单价 $0.000237），构筑起 40-45 分区间的绝对统治力。当前前沿已完全吸纳该模型。",
+      "modelOrPlan": "claude-haiku-5.5 (分档标价落地核查)",
+      "vendor": "Anthropic",
+      "category": "new_model",
+      "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+      "factSummary": "2026-10-07 正式推出。官方确认为分档计费：请求 Prompt <= 100,000 tokens 为 $0.10 input / $0.50 output；Prompt > 100,000 tokens 为 $0.50 input / $2.50 output。AA Intelligence Index 官方得分 43.4，速度达 243 tok/s。",
+      "currentRepoState": "本项目 2026-10-08 已建立 round1 标价档，并在 build_adopted.py 成功入库 4 档订阅点。",
+      "recommendation": "monitor",
+      "priority": "P0 (已闭环，保持基准一致性)",
+      "rationale": "项目已完全覆盖并上线，前沿数据稳定，持续监控 100k 悬崖对实际用量混合比的影响。"
+    },
+    {
+      "name": "Mistral Large 4 Preview ('le Chonk')",
+      "provider": "Mistral AI",
+      "event_type": "new_model",
+      "details": "2026-10-06 发布的 1.05T MoE 模型（52B 活跃，1.6B 视觉，1M 上下文）。AA Intelligence Index 得分 38.0。公测优惠 API 价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok（标准定价 $1.36/$4.18）。计划 2026-10-27/31 开源权重。r/LocalLLaMA 对本地量化部署极为看好。",
+      "source_url": "https://mistral.ai/news/mistral-large-4/",
+      "impact_on_frontier": "AA 智力得分 38.0 逼近 GPT-6 Luna 与 DeepSeek V4.1 Flash。公测价格具有颠覆性，若被第三方聚合订阅（如 OpenCode Go）纳管，将对中档（35-40分）成本前沿形成强劲冲击。目前尚无固定订阅套餐行，建议建立候选标价档持续追踪。",
+      "modelOrPlan": "Mistral Large 4 Preview ('le Chonk')",
+      "vendor": "Mistral AI",
+      "category": "new_model",
+      "sourceUrl": "https://mistral.ai/news/mistral-large-4/",
+      "factSummary": "2026-10-06 发布的 1.05T 总参数 / 52B 活跃参数顶级 MoE 模型，具备 1.6B 视觉编码器，支持 1M 上下文。AA Intelligence Index 得分 38.0。公测 API 优惠价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok。官方计划 2026-10-31 开源权重。",
+      "currentRepoState": "repo 当前 adopted.csv 仅包含 mistral-medium-3.5，尚未收录 Mistral Large 4。",
+      "recommendation": "adopt",
+      "priority": "P1 (高价值旗舰候选)",
+      "rationale": "AA 智力得分 38.0，公测价格极低，未来权重开源与三方聚合潜力大，建议建立标价档储备。"
+    },
+    {
+      "name": "StepFun Step-5 Preview 旗舰 MoE 定价与开源计划",
+      "provider": "StepFun (阶跃星辰)",
+      "event_type": "new_model_and_pricing",
+      "details": "2026 年 10 月初推出的稀疏 MoE 旗舰（600B 总参数 / 27B 活跃，1M 上下文）。API 标价：输入 $1.00/MTok，缓存读取 $0.05/MTok，输出 $2.70/MTok。官方宣布定于 2026-10-15 开放权重开源。Step-3.5 Flash 维持 $0.10/$0.30 极致低价。",
+      "source_url": "https://stepfun.ai/pricing",
+      "impact_on_frontier": "Step-3.5 Flash 已占领当前超低成本前沿第一点（`stepfun_max_cn::step-3.5-flash`，得分 16.96，成本 $0.002095）。Step-5 Preview 若在 10-15 开源后获得权威 AA 评测，凭借 $1.00/$2.70 的低定价可能对中高档位构成冲击。当前尚无 AA 官方分，暂不改变前沿。",
+      "modelOrPlan": "StepFun Step-5 Preview 旗舰 MoE 定价与开源计划",
+      "vendor": "StepFun",
+      "category": "new_model_and_pricing",
+      "sourceUrl": "https://stepfun.ai/pricing",
+      "factSummary": "StepFun Step-5 Preview 600B MoE 旗舰定价确立为 $1.00 input / $0.05 cache read / $2.70 output，支持 1M 上下文，计划 2026-10-15 开源权重。",
+      "currentRepoState": "repo 收录了 step-3.5-flash 与 step-plan 系列，尚未收录 Step-5 Preview 标价档。",
+      "recommendation": "prep_action",
+      "priority": "P2 (跟进 10-15 开源与 AA 评测)",
+      "rationale": "等待 AA 官方榜单或社区权威基准实测出分后纳管。"
+    },
+    {
+      "name": "Gemini 4 Argon (限制性试用及分批开放规划)",
+      "provider": "Google",
+      "event_type": "new_model",
+      "details": "Gemini 4 Argon 官方 AA 智力分 52.6~53.0，目前限 Fairwind 受信防御者与内部试用。API 首发优惠价 $2.00 in / $10.00 out（95% 缓存折扣），未来标准价 $4.00/$20.00。Google 正在收紧 Google AI Ultra ($99.99~$199.99/mo) 消费级套餐模型矩阵。Gemini 3.8 Flash 优惠期 ($0.75/$3.75) 延续至 2026-12-31。",
+      "source_url": "https://blog.google/technology/ai/gemini-4-argon",
+      "impact_on_frontier": "当前 `google_ai_ultra_20x_us::gemini-4-argon` 稳居 Pareto 成本前沿（分值 53.0，成本 $0.086928），属于 53 分位的高性价比标杆。公测全面开放后需核验实际订阅并发配额。",
+      "modelOrPlan": "Gemini 4 Argon (限制性试用及分批开放规划)",
+      "vendor": "Google",
+      "category": "new_model",
+      "sourceUrl": "https://blog.google/technology/ai/gemini-4-argon",
+      "factSummary": "2026-09-30 发布的前沿大模型，AA 官方得分 52.6（repo round6 为 53.0）。首发 API 优惠价为 $2.00 input / $10.00 output（缓存 95% 折扣）。",
+      "currentRepoState": "repo 已包含 scores-gemini-4-argon-round1-2026-10-01.json 与 list-prices-gemini-4-argon-round1-2026-10-01.json，已建立订阅点并进入前沿。",
+      "recommendation": "monitor",
+      "priority": "P2 (保持关注，维持既有前沿)",
+      "rationale": "数据已在库，前沿稳定。"
+    },
+    {
+      "name": "GitHub Copilot 计费架构全面切换与 10-19 模型强制退役换代",
+      "provider": "GitHub / Microsoft",
+      "event_type": "tier_restructure",
+      "details": "GitHub Copilot 已全量推行 AI Credits 模式（Pro $10/$15额度, Pro+ $39/$70额度, Max $100/$200额度）。10-02 已退役旧模型；10-19 将强制退役 Gemini 3.7 Flash(升级为 3.8)、GPT-5.4/5.5(升级为 GPT-5.6 Sol)、GPT-5.4 mini(升级为 GPT-5.6 Luna)、Grok 4.5(升级为 4.6)。",
+      "source_url": "https://docs.github.com/en/copilot/managing-copilot/about-github-copilot-pricing",
+      "impact_on_frontier": "现有 Copilot 订阅点挂载模型需要准备在 10-19 节点同步更名，防止依赖退役模型。目前对 Pareto 前沿无直接震荡，但涉及元数据规范维护。",
+      "modelOrPlan": "GitHub Copilot 计费体系全面切换为 AI Credits 与模型换代轮次",
+      "vendor": "GitHub / Microsoft",
+      "category": "tier_restructure",
+      "sourceUrl": "https://docs.github.com/en/copilot/managing-copilot/about-github-copilot-pricing",
+      "factSummary": "GitHub Copilot 推行 AI Credits 计量，并定于 10-19 强制退役 Gemini 3.7/GPT-5.5/Grok 4.5，全面升级至新一代模型。",
+      "currentRepoState": "repo 现有 copilot 采用点以经典包月固定模型为主。",
+      "recommendation": "prep_action",
+      "priority": "P2 (跟踪 10-19 强制升级节点)",
+      "rationale": "10-19 模型强制退役后，现有 Copilot 订阅点需同步映射。"
+    },
+    {
+      "name": "OpenRouter 决策模型集群 (GPT-6 Luna Decisions & Microsoft-Decision-1) 与 Batch API",
+      "provider": "OpenRouter",
+      "event_type": "platform_update",
+      "details": "OpenRouter 于 10-06 引入 GPT-6 Luna Decisions，10-09 引入 Microsoft-Decision-1，专注于置信度路由、安全护栏与超快决策输出。Batch API 提供大批量离线异步任务折扣。ElevenLabs 全系促销 50% 折扣至 10-19。",
+      "source_url": "https://openrouter.ai/pricing",
+      "impact_on_frontier": "决策模型与语音模型不进入通用文本/编程 Agent 评测体系，Batch API 属于离线批处理机制，对实时交互前沿无直接影响。",
+      "modelOrPlan": "OpenRouter 决策模型集群与 Batch API",
+      "vendor": "OpenRouter",
+      "category": "platform_update",
+      "sourceUrl": "https://openrouter.ai/pricing",
+      "factSummary": "OpenRouter 上线 GPT-6 Luna Decisions 及 Microsoft-Decision-1 等快速决策模型，上线 Batch API 批处理通道。",
+      "currentRepoState": "未收录离线 Batch 或专项分类模型。",
+      "recommendation": "reject",
+      "priority": "P3 (不采纳)",
+      "rationale": "专项决策与批处理不符合通用前沿评测标准。"
+    },
+    {
+      "name": "Qwen3.8 系列扩展与 Qwen 4 预期",
+      "provider": "Alibaba Qwen",
+      "event_type": "model_update",
+      "details": "2026-10-09 推出 Qwen-Image-2.1-Turbo。开源社区对云栖大会预告的 Qwen 4（预期 10 月底）充满期待。当前 Qwen3.8-27B 在单卡工作站（RTX 3080/4090/5090）上保持本地推理基准主力地位。",
+      "source_url": "https://qwenlm.github.io/",
+      "impact_on_frontier": "本地硬件推理前沿保持稳定，Qwen 4 尚未发布，不构成当前前沿变动。",
+      "modelOrPlan": "Qwen3.8 系列扩展与 Qwen 4 预期",
+      "vendor": "Alibaba Qwen",
+      "category": "model_update",
+      "sourceUrl": "https://qwenlm.github.io/",
+      "factSummary": "Qwen 推出图像加速模型，Qwen 4 处于发布预期中，Qwen3.8-27B 维持本地部署标杆。",
+      "currentRepoState": "已收录 Qwen3.8-27B 本地推理配置。",
+      "recommendation": "monitor",
+      "priority": "P2 (跟踪 Qwen 4 发布)",
+      "rationale": "等待 Qwen 4 官方发布与实测。"
+    }
+  ],
+  "toolAndIDEPlans": {
+    "cursor": {
+      "tiers": [
+        { "name": "Hobby", "priceMonthlyUsd": 0, "features": "Limited agent requests, Composer 2.5" },
+        { "name": "Pro", "priceMonthlyUsd": 20, "features": "Unlimited tab completions, credit pool for frontier models, cloud agents" },
+        { "name": "Pro+", "priceMonthlyUsd": 60, "features": "3x agent limits of Pro" },
+        { "name": "Ultra", "priceMonthlyUsd": 200, "features": "20x agent limits of Pro, prioritized compute" }
+      ],
+      "creditArchitecture": "Dual Usage Pool: Cursor Models Pool (Grok-based/Composer) + Other Models Pool (Pass-through cost for Claude/GPT/Gemini). On-demand overage supported."
+    },
+    "githubCopilot": {
+      "tiers": [
+        { "name": "Free", "priceMonthlyUsd": 0, "creditsAllowance": "Limited" },
+        { "name": "Pro", "priceMonthlyUsd": 10, "creditsAllowance": "$15 total AI Credits" },
+        { "name": "Pro+", "priceMonthlyUsd": 39, "creditsAllowance": "$70 total AI Credits" },
+        { "name": "Max", "priceMonthlyUsd": 100, "creditsAllowance": "$200 total AI Credits" },
+        { "name": "Business", "priceMonthlyUsd": 19, "creditsAllowance": "1,900 credits/seat pooled" },
+        { "name": "Enterprise", "priceMonthlyUsd": 39, "creditsAllowance": "3,900 credits/seat pooled" }
+      ],
+      "retirementTimeline": {
+        "retiredOn2026-10-02": ["Gemini 3.5 Flash", "Gemini 3.6 Flash", "Kimi K2.7 Code", "Claude Opus 4.7"],
+        "scheduledFor2026-10-19": [
+          "Gemini 3.7 Flash -> Gemini 3.8 Flash",
+          "GPT-5.5 / GPT-5.4 -> GPT-5.6 Sol",
+          "GPT-5 mini / 5.4 mini -> GPT-5.6 Luna",
+          "Grok 4.5 -> Grok 4.6"
+        ]
+      }
+    }
+  },
+  "communitySignals": [
+    {
+      "channel": "Reddit r/OpenAI",
+      "sentiment": "对 ChatGPT Pro 200 额度腰斩（20x -> 10x）表达强烈失望与焦虑",
+      "summary": "社区广泛声讨 Pro 200 方案额度减半至 100条/周，称性价比断崖式下跌；对 Pro 500 ($500/月) 的高门槛感到无奈；讨论补偿的 62,500 credits 用尽后的替代方案；对 Intelligent UI 交互体验表示好评。"
+    },
+    {
+      "channel": "Reddit r/ClaudeAI",
+      "sentiment": "热烈支持 Sonnet 5.5 缓存降价，聚焦 Haiku 5.5 的 100k 悬崖",
+      "summary": "开发者盛赞 Sonnet 5.5 缓存读取单价降至 $0.10/MTok，大幅减轻了 Claude Code 在大型代码库中的开发开销；针对 Haiku 5.5 则强调必须严格监控 prompt 长度，避免触及 100k 悬崖导致费用激增 5 倍；关注 Haiku 4.5 在 10-15 的退役安排。"
+    },
+    {
+      "channel": "Reddit r/LocalLLaMA",
+      "sentiment": "高度期待 Mistral Large 4 权重开源与 Step-5 开源",
+      "summary": "开发者持续热议 Mistral Large 4 ('le Chonk') 定于 10 月底开源的动向，评估 52B 活跃参数在双卡 RTX 5090 上的运行可行性；关注 StepFun Step-5 Preview 定于 10-15 开源的 600B MoE；期待月底云栖预热的 Qwen 4。"
+    },
+    {
+      "channel": "Linux Do (L站)",
+      "sentiment": "聚焦 OpenAI Decisions API 超快分类与中转网关成本优化",
+      "summary": "深入探讨 OpenAI Decisions API 的 $0.10/MTok 单向输入计费在自动化网关和内容路由中的套利空间；密切监控 ChatGPT Pro 老用户宽限期倒计时。"
+    }
+  ],
+  "coreConclusionsForLead": [
+    "【核心发现 1：OpenAI Decisions API 发布（专有分类端点，不影响前沿）】OpenAI 正式推出 Decisions API (Beta)，专供 GPT-6 Luna，单价仅 $0.10/MTok 输入（无输出费/缓存费），推理延迟低至 150ms。因其专用于结构化判定且无长文本生成能力，不属于通用智力/编程评测范畴，对当前 Pareto 前沿无冲击。",
+    "【核心发现 2：ChatGPT Pro 20x 前沿防守倒计时（重大潜在风险点）】OpenAI Pro 200 方案额度确定下调为 10x（老用户宽限至 2026-10-29）。由于当前项目 Pareto 成本前沿重度依赖 chatgpt_pro_20x 的超高估算额度（129.02 亿 tokens），宽限期终了后其实际单价将翻倍，导致该订阅点退出前沿。需提前研制 chatgpt_pro_10x 分档情景点以平滑过渡。",
+    "【核心发现 3：Claude Sonnet 5.5 Cache-Read 降价 50% 落地】Sonnet 5.5 提示词缓存读取降至 $0.10/MTok，项目已于 10-09 建立 round2 标价档，有力增强了 Sonnet 5.5 在价格前沿（56.00 分位）的竞争力。",
+    "【核心发现 4：Mistral Large 4 与 Step-5 Preview 开源前瞻】Mistral Large 4 ('le Chonk'，AA 得分 38.0，公测价 $0.68/$2.09) 定于 10 月底开源；StepFun Step-5 Preview (600B MoE，标价 $1.00/$2.70) 定于 10-15 开源。两者均为极具潜力的开源/中档高性价比旗舰，一旦被第三方聚合订阅纳管或出具权威编程榜单分数，将对 35-40 分段前沿构成冲击。",
+    "【核心发现 5：当前 Pareto 前沿整体稳定】今日全网暂无颠覆当前 Pareto 前沿构成（7 个成本前沿点、4 个价格前沿点）的突发正式发布，基线状态保持稳固。"
+  ]
+}

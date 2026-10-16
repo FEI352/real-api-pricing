@@ -607,6 +607,14 @@
       "en": "Added 1.487B: min(shared monthly pool $60, model Usage $60) ÷ project standard-workload weighted price; single official tier. The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
     },
     {
+      "zh": "https://open-design.ai/pricing/ 与 https://open-design.ai/model-credits/ 官方 Design Plan 与 Model credits 规则；100K stars 活动宣布 DeepSeek V4.1 Flash 额度翻倍至每月最高 $120",
+      "en": "Official Design Plan and Model credits rules at https://open-design.ai/pricing/ and https://open-design.ai/model-credits/; 100K stars campaign doubles DeepSeek V4.1 Flash credits up to $120/mo"
+    },
+    {
+      "zh": "新增124.224亿：首月促销$8/常态月费$10（项目按常态$10收录）；基础月额度$60，针对 DeepSeek V4.1 Flash 专项2×翻倍至$120；官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60；按统一标准负载加权价折算；官方预估 145600 请求/7天（582400/月）作为交叉校验。5小时窗口硬顶$10，7天窗口硬顶$30，同套餐各模型额度不可相加",
+      "en": "Added 12.4224B: $8 promo first month / $10 regular monthly fee (recorded at regular $10); base monthly allowance $60, boosted 2x to $120 specifically for DeepSeek V4.1 Flash; official off-peak three-part price cached/input/output=$0.003/$0.15/$0.60; converted via standard workload weighted price; official estimate 145600 req/7d (582400/mo) used as cross-check. 5h window cap $10, 7d window cap $30, allowances across models in the same plan do not add"
+    },
+    {
       "zh": "新增0.921亿：min(共享月池$70, 模型allowance $70) ÷ 统一标准负载加权价；官网三段价。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表",
       "en": "Added 92.1M: min(shared monthly pool $70, model allowance $70) ÷ project standard-workload weighted price; official three-part pricing. Processing fee ignored; allowances of different models in the same plan are not additive; no usage-panel token+% screenshot — computed from official absolute credits and the price list"
     },
@@ -1053,6 +1061,14 @@
     {
       "zh": "未折算、暂估：缺M3.1独立公开计价比例，不借用M3价格；有分项样本的临时raw例外，2026-10-01 裁定接受（MiniMax 官方未公布 M3.1 价格，暂不折算）。Go小时累计23,970,451 tok对应周已用4%→10%，5h已用41%→100%；并非0%→100%完整5h窗口。12:00至12:01起点累计未截图，全段以起始小时计数为0、期间无其他共享池消耗为假设，两项未单独确认。周整数显示取整敏感性约13.6974~19.1764亿/月(4周)，不是统计置信区间；中末差分12,201,679 tok/3pp对应16.2689亿/月，仅作对照。全口径cache/input/output约95.1823%/3.4854%/1.3323%，页面96.5%是输入缓存命中率，不等同标准负载缓存占比。按相同负载与饱和使用比较，不是官方固定token额度。本档为Go×12外推，假设官网倍率适用于周池，非本档独立实测。年付¥4690，月比较费=年费/12；需整年预付，不是按月售价。假设同档年付与月付周池相同，不是一次发放全年token。；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html",
       "en": "Not workload-normalized, provisional estimate: M3.1 has no independent published pricing ratio, so M3 prices are not borrowed; a temporary raw exception with a component-level sample, accepted by ruling on 2026-10-01 (MiniMax has not published official M3.1 prices, so no normalization for now). Go's hourly cumulative 23,970,451 tok maps to weekly-used 4%→10% and 5h-used 41%→100%; it is not a complete 0%→100% 5-hour window. The 12:00–12:01 starting cumulative was not screenshotted; the whole segment assumes the starting hour count was 0 and that no other shared-pool consumption occurred — neither assumption was separately confirmed. The weekly integer-display rounding sensitivity is about 1.36974B~1.91764B/month (4 weeks), not a statistical confidence interval; the mid-to-end delta 12,201,679 tok/3pp maps to 1.62689B/month, kept only for comparison. The all-basis cache/input/output mix is about 95.1823%/3.4854%/1.3323%; the page's 96.5% is the input cache-hit rate, not the standard-workload cache share. Compared under identical workload and saturated use; it is not an official fixed token quota. This tier is Go×12 extrapolated — assumes the official multiplier applies to the weekly pool; not independently measured for this tier.Annual ¥4690; the monthly comparison fee = annual fee/12 — full-year prepayment required, not a per-month price. Assumes the same-tier annual and monthly plans share the same weekly pool — not a one-time grant of a full year of tokens.; exchange rate 1 USD = 6.7787 CNY (2026-09-04 CNY central parity rate; old rate 7.2); CNY monthly fee divided by the rate to get USD; https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+    },
+    {
+      "zh": "Google 官方学生优惠分两档（https://gemini.google/students/）：免费学割档为 Google AI Plus（非 Pro，1 年期）；Google AI Pro 学生档为付费 $5/月（学生身份期内），美国另有 Pro 免费 12 个月活动。本条目按维护者 2026-10-16 裁定：Pro 学生档 $5/月，额度与标准 Google AI Pro 同池。",
+      "en": "Google runs two student offers — https://gemini.google/students/ — the free student tier is Google AI Plus (not Pro, 1 year); Google AI Pro has a paid student tier at $5/mo, and US students separately get 12 months of Pro free. Per maintainer ruling 2026-10-16: Pro student tier at $5/mo, quota on the same pool as standard Google AI Pro."
+    },
+    {
+      "zh": "$5 学生档：额度按维护者裁定等同 google_ai_pro_us（gemini-3.8-flash 25.81 亿/月，同一额度池，不缩水）；线性换算 real_usd_per_mtok = 5 ÷ 25.81亿 × 1e6 = $0.0019372/MTok，与 $19.99 标准档同额度、1/4 价格 → 同负载下性价比为标准的 4×。免费学割档是 Google AI Plus（非本档）；美国学生另有 Pro 免费 12 个月。学生资质限制。",
+      "en": "$5 student tier: quota equals google_ai_pro_us (gemini-3.8-flash, 2.581B tokens/mo, same pool, not reduced). Linear conversion: real_usd_per_mtok = 5 / 2.581B x 1e6 = $0.0019372/MTok. Same quota as the $19.99 standard tier at 1/4 the price, i.e. 4x value density on equal load. The free student tier is Google AI Plus (not this one); US students separately get 12 months of Pro free. Student eligibility required."
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
