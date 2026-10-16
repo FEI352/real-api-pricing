@@ -75,3 +75,9 @@
 3) 校验链：`$R/.venv/bin/python scripts/checks/run_all.py` 退出码 0（唯一允许的 KNOWN-NOISE 是 `verify_label_overlap`）。
 4) `data/research/frontier-state.json` 已更新（`date` = 本轮日期），`data/research/daily-log-<YYYY-MM>.md` 追加了本轮记录（含证据路径）。
 5) 有变动 → 邮件已发出**且可自证**：`send-email` 的 stdout 必须出现「✅ 邮件已成功送达 <收件人>」；无变动 → daily-log 明确写「今日无前沿变动」。
+
+■ 收尾 · git 入库（2026-10-17 起必做）
+全部完成定义满足后，由 Lead 执行：
+  /usr/local/bin/real-api-pricing-gitpush.sh "chore(sync): daily update $(date +%F) (changed=<本轮 changed 值>)"
+· 唯一通道：add -A →（有变更才）commit → pull --rebase → push origin main。**这是"每日产物当天入库"的机制**；不做 = 仓库在 GitHub 上静默积压（2026-10-09..16 的实际事故）。
+· push/commit 失败 → 只记录（daily-log 追加 `git-push-failed: <原因>`），不重试超过一次，不阻塞本轮结论。

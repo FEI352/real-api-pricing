@@ -188,6 +188,7 @@ nginx 对 `/data/` 与 `/index.html` 发 `no-cache, must-revalidate`，部署后
 | 3 | 线上数据核验 | 见 §5（点数 + `conventions.updatedAt`） | **必须** | curl 失败 → 「无法判定」，不许当「线上已更新」 |
 | 4 | 前沿状态与留痕 | 见 §6.4 / §6.5 | **必须** | — |
 | 5 | 重写图表指纹基线 | `$R/.venv/bin/python scripts/chart_fingerprint.py --write data/research/chart-fingerprint-<本轮日期>.json` | 可选（仅当本轮图表确实重出） | 写失败 → 记 daily-log，沿用旧基线并在下一轮注明 |
+| 6 | **git 提交与推送（收尾入库）** | `/usr/local/bin/real-api-pricing-gitpush.sh "chore(sync): daily update $(date +%F) (changed=<本轮 changed 判定>)"` | **必须**（2026-10-17 起。此前不提交 → 10-09..16 产物在 GitHub 上静默积压一周，无人发现） | push/commit 失败 → daily-log 记 `git-push-failed: <原因>`，**不重试超过一次**；站点部署已完成即算本轮完成，但必须留痕 |
 
 - 三条「无法判定」的记录格式统一：`[需人工介入] <动作> 未完成/未判定：<原因>`，追加进 `data/research/daily-log-<YYYY-MM>.md`；**没有记录 = 视为本轮未做**。
 - 与陷阱表的对应：本节第 1/2 条的失败口径 ↔ #16；「已存在即拒绝覆盖」`--force` 守卫 ↔ #12 / #14；`--slug-map` 逐条给全 ↔ #15。同一件事只在这两处出现，改动时两处一起改。
