@@ -1,0 +1,197 @@
+{
+  "collectedAt": "2026-10-17",
+  "checkedAt": "2026-10-17T09:15:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, Mistral, Moonshot, StepFun, Sapiens AI, Meta 等）与上游同步状态评估",
+  "summary": "2026-10-17 官方 API 标价与采用值排查结论：1) 上游评估：上游历史 63 个提交已于今日早前在 commit 9871c0e 完成审阅并合并入 main（DECISIONS.md 留档完整，保留本地方法学并已重建部署上线），当前 upstream/main 相对 HEAD 无新提交（verdict=noop，commitCount=0），本轮无须任何上游合并动作。2) Anthropic：全线模型官方标价稳定；Claude Haiku 5.5 本地已通过 <=100k 主行与 >100k / 50/50 混合分档情景建模纳管，verify_haiku55_tiers 守卫验证通过；Claude Sonnet 5.5 维持 round2 标价档（缓存读 $0.10/MTok）；今日无新增标价变动。3) OpenAI：API Usage Tiers 维持 Free/Build/Launch/Grow 四档架构；GPT-6 Astra/Sol/Luna 及 GPT-6.1 Sol 标价无变动；ChatGPT Pro 200 额度 20x 宽限期终了倒计时（至 10-29 降为 10x，距今 T-12 天）；o4-mini 将于 10-23 停用（距今 T-6 天）；AA 载荷中 gpt-6-sol-daybreak-blue 评测分数仍全为 null，不予建档。4) Google：Gemini 4 Argon 仍由 Fairwind Program 受限访问，API 价格维持首发优惠价 $2.00/$10.00（缓存读 $0.10，至 11-30）；Gemini 3.8 Flash 维持 $0.75/$3.75 优惠价（至 2026-12-31）；新增的 Google AI Pro 学生版（$5/月，gemini-3.8-flash 25.81 亿/月）已在 data/extra_subscriptions.json 登记并经 build_adopted.py 闭环纳入 adopted.csv，今日无须额外改动。5) DeepSeek：动态峰谷定价稳固运行（Flash 闲时 $0.15/$0.60，忙时 $0.30/$1.20）；OpenDesign Go 针对 V4.1 Flash 专项 2× 翻倍月额度已由 build_adopted.py 纳管。6) Mistral：Mistral Large 4 Preview 维持公测优惠价（$0.68/$2.09，缓存读 $0.07），缺乏主流订阅渠道落地，持续观察。7) StepFun：Step-5 Preview 维持 $1.00/$2.70 定价，10-15 权重开源落地，10-16 STEPX Neo 智能体手机开启预售（附赠百亿月额度 Token Plan）；AA Coding Agent 载荷实测 51.2 分，但尚未入 AA curated 智力主榜且无独立开发者订阅套餐，暂不建档。8) GitHub Copilot：全面推行 AI Credits 计量，距 10-19 强制退役 6 款旧模型仅剩 2 天（T-2），持续跟踪。9) Sapiens AI：AA 原始载荷新增 agnes-2-5-pro-beta（估算 35.24 分，标价 $0.10/$0.30），无订阅渠道落地且未映射入 curated scores，不建档。10) Meta / AA：AA 载荷 rawRecords muse-wonder (52.39分, $4.00/$20.00) 与 muse-wonder-full (55.80分) 尚未映射入 AA curated scores，且无订阅套餐落地，不建档。11) 采用与标价建档：今日无新模型需要新建 list-prices 档，build_adopted.py 无须修改，全链 18 项 CI 检查 17 OK/1 KNOWN-NOISE/0 FAIL 完美通过。",
+  "vendors": {
+    "Anthropic": {
+      "status": "stable_post_update",
+      "recentChanges": [
+        "Claude Haiku 5.5（2026-10-07 发布，<=100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50）在本地由 3 档情景建模纳管，verify_haiku55_tiers 守卫验证通过",
+        "Claude Sonnet 5.5 缓存读取单价 $0.10/MTok（调降 50%，与 Opus 5.5 对齐），已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册",
+        "Claude Opus 5.5 维持 $4.00 输入 / $0.20 缓存读 / $20.00 输出",
+        "Claude Fable 5.1 维持 $10.00 输入 / $0.25 缓存读 / $50.00 输出",
+        "今日无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，今日无须新建标价档"
+    },
+    "OpenAI": {
+      "status": "stable",
+      "recentChanges": [
+        "GPT-6 Astra 标价维持 $10.00 输入 / $1.00 缓存读 / $50.00 输出",
+        "GPT-6.1 Sol 标价维持 $2.00 输入 / $0.10 缓存读 / $10.00 输出",
+        "GPT-6 Luna 标价维持 $0.10 输入 / $0.01 缓存读 / $0.50 输出",
+        "GPT-6 Sol 标价维持 $2.00 输入 / $0.20 缓存读 / $10.00 输出",
+        "AA 原始载荷新增之 gpt-6-sol-daybreak-blue 评测分数仍全为 null",
+        "API Usage Tiers 维持 Free / Build ($5) / Launch ($100) / Grow ($500) 四档架构",
+        "ChatGPT Pro 200 额度 20x 宽限期终了倒计时（至 2026-10-29 终止降至 10x，距今 T-12 天）",
+        "o4-mini 定于 2026-10-23 废弃（距今 T-6 天）",
+        "今日无新增标价调整"
+      ],
+      "handling": "gpt-6-sol-daybreak-blue 无基准分数不建档；其余无标价调整，无须新建标价档"
+    },
+    "Google": {
+      "status": "stable",
+      "recentChanges": [
+        "Gemini 4 Argon 仍由 Fairwind Program 受限访问，API 价格维持首发优惠价 $2.00/$10.00（缓存读 $0.10，长期标准价 $4.00/$20.00 / 缓存读 $0.20 自 2026-12-01 起生效）",
+        "Gemini 3.8 Flash 维持引入优惠价 $0.75/$3.75（至 2026-12-31）",
+        "Google AI Pro / Ultra 订阅额度稳定",
+        "Google AI Pro 学生版（$5/月，gemini-3.8-flash 25.81 亿/月）已在 data/extra_subscriptions.json 登记并已纳管入库",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "DeepSeek-V4-Pro 维持既有阶梯计费",
+        "OpenDesign Go 针对 DeepSeek V4.1 Flash 专项 2× 翻倍至每月最高 $120（折算 124.224 亿）已入库",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "Mistral": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview 维持公测优惠价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok（标准价 $1.36/$4.18）",
+        "AA Intelligence Index 实测得分 38.0，开源权重预计 10 月下旬开放，缺乏主流订阅渠道落地"
+      ],
+      "handling": "保持观察，暂不纳为订阅候选"
+    },
+    "StepFun": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Step-5 Preview 600B MoE 维持 API 标价 $1.00/$2.70（缓存读取 $0.05/$0.10），国内按量 ¥7/¥20（缓存命中 ¥0.35）已由 list-prices-stepfun-round2-2026-09-21.json 覆盖",
+        "权重开源：已于 2026-10-15 正式公开开源权重",
+        "智能体手机：10-13 发布首款 STEPX Neo 智能体手机（3999元），10-16 开启预售，附赠 12 个月 STEPX Token Plan（百亿/月）",
+        "AA Coding Agent 载荷实测得分 51.2 ($1.66/task)，但尚未进入 AA curated 智力主榜，且缺乏独立开发者 SaaS 订阅套餐"
+      ],
+      "handling": "跟踪开源后第三方聚合渠道（如 OpenCode Go/Zen）落地与 AA 正榜出分，暂不新建标价档"
+    },
+    "GitHub_Copilot": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "全面推行 AI Credits 计量体系（Pro $15, Pro+ $70, Max $200）",
+        "距离 2026-10-19 强制退役 6 款旧模型仅剩 2 天（T-2），系统将自动升级至 Gemini 3.8 Flash / GPT-5.6 Sol / GPT-5.6 Luna / Grok 4.6"
+      ],
+      "handling": "跟踪 10-19 强制升级节点，repo 采用点以经典包月固定模型为主，今日无须改动"
+    },
+    "Sapiens_AI": {
+      "status": "raw_payload_only",
+      "recentChanges": [
+        "AA models 原始载荷新增 agnes-2-5-pro-beta（Agnes 2.5 Pro Beta），预估智力分为 35.241",
+        "官方 API 标价：输入 $0.10/MTok、输出 $0.30/MTok、缓存读取 $0.01/MTok",
+        "尚未映射入 AA curated scores，且无任何主流编码/订阅渠道落地"
+      ],
+      "handling": "无订阅落地且未入正榜，暂不建档"
+    },
+    "LongCat": {
+      "status": "covered_by_catalog",
+      "recentChanges": [
+        "AA 载荷中 LongCat 2.0 价格维持未打折官方标价（输入 $0.75 / 输出 $2.95 / 缓存 $0.015）",
+        "LongCat 2.0 在本项目中仅作为 OpenCode Go 及 Command Code GOAT 的可用模型，采用值由渠道额度与目录价直接锁定"
+      ],
+      "handling": "compute.py 优先匹配渠道 catalog 价格，无需新建标价档"
+    },
+    "Meta_Muse": {
+      "status": "raw_payload_only",
+      "recentChanges": [
+        "AA 智力榜 rawRecords 出现 muse-wonder (52.39分, $4.00/$20.00, hit $0.20) 与 muse-wonder-full (55.80分)",
+        "两款模型尚未映射入 curated scores，且无任何订阅渠道落地"
+      ],
+      "handling": "保持关注，暂无订阅套餐，无需新建标价档"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 0,
+    "head": "42c36df816152db5d2151e21d82dbcdc0d1dda00",
+    "upstreamHead": "89480751e6b13b71f5d2b1d7b67ab6bbf72a37f8",
+    "mergeBase": "89480751e6b13b71f5d2b1d7b67ab6bbf72a37f8",
+    "verdict": "noop",
+    "reason": "upstream/main 相对 HEAD 无新提交（merge-base 89480751e6b13b71f5d2b1d7b67ab6bbf72a37f8），上游 63 提交已于今日早前在 commit 9871c0e 全量合并入库，DECISIONS.md 留档完整",
+    "valuableCandidates": [],
+    "recommendation": "上游与 HEAD 完全对齐，本轮无须任何上游合并动作。"
+  },
+  "candidates": [
+    {
+      "model": "google_ai_pro_student",
+      "type": "new_subscription_tier",
+      "status": "already_integrated",
+      "notes": "Google AI Pro 学生版（$5/月，gemini-3.8-flash 25.81 亿/月），已在 data/extra_subscriptions.json 登记并通过 build_adopted.py 闭环纳入 adopted.csv"
+    },
+    {
+      "model": "claude-sonnet-5.5",
+      "type": "price_cut",
+      "status": "list_price_file_ready",
+      "notes": "官方缓存读取单价降至 $0.10/MTok，已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册"
+    },
+    {
+      "model": "claude-haiku-5.5",
+      "type": "tiered_pricing",
+      "status": "multitier_scenarios_verified",
+      "notes": "官方 100k 双档（$0.10/$0.50 vs $0.50/$2.50）在本地通过 3 档情景点建模，守卫 verify_haiku55_tiers.py 验证通过"
+    },
+    {
+      "model": "step-5-preview",
+      "type": "new_model_moe_open_weights",
+      "status": "monitoring",
+      "notes": "定价 $1.00/$2.70（缓存 $0.05/$0.10），2026-10-15 正式开源权重，10-16 开启 STEPX Neo 智能体手机预售（百亿/月 Token Plan），AA Coding Agent 载荷实测 51.2 分，跟踪第三方开发者订阅渠道落地与 AA 正榜出分"
+    },
+    {
+      "model": "github-copilot",
+      "type": "tier_change_and_model_retirement",
+      "status": "monitoring",
+      "notes": "全量 AI Credits 计量，10-19（距今 T-2 天）强制退役 6 款旧模型，现有订阅点稳定，持续跟踪"
+    },
+    {
+      "model": "chatgpt-pro",
+      "type": "quota_change_countdown",
+      "status": "monitoring",
+      "notes": "老用户 20x 宽限期终了倒计时（距今 T-12 天，10-29 终了），目前采用 chatgpt_pro_20x 保持有效，跟踪到期切换预案"
+    },
+    {
+      "model": "o4-mini",
+      "type": "model_deprecation_countdown",
+      "status": "ignored",
+      "notes": "OpenAI 定于 2026-10-23 终止接口（距今 T-6 天），repo 主力已迁移至 GPT-6 系列，不予新增收录"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_api_only",
+      "status": "monitoring",
+      "notes": "公测价极具性价比（$0.68/$2.09）但缺乏订阅套餐落地，开源权重定于 10 月下旬，持续跟踪"
+    },
+    {
+      "model": "gemini-4-argon",
+      "type": "promotional_pricing_countdown",
+      "status": "covered_by_list_prices",
+      "notes": "首发优惠价 $2.00/$10.00（缓存读 $0.10）有效至 2026-11-30，其后调整为标准价 $4.00/$20.00，已在 list-prices-gemini-4-argon-round1-2026-10-01.json 建档"
+    },
+    {
+      "model": "muse-wonder",
+      "type": "new_model_raw_payload",
+      "status": "monitoring",
+      "notes": "AA rawRecords 新增（52.39分，$4.00/$20.00），尚未进 curated scores 且无订阅，不建档"
+    },
+    {
+      "model": "longcat-2.0",
+      "type": "aa_pricing_adjustment",
+      "status": "covered_by_channel_catalog",
+      "notes": "AA 显示原价 $0.75/$2.95，渠道目录价 $0.30/$1.20 已由 build_adopted.py 和 compute.py 覆盖，无需建档"
+    },
+    {
+      "model": "agnes-2-5-pro-beta",
+      "type": "new_variant_no_subscription",
+      "status": "ignored",
+      "notes": "AA models 原始载荷新增（预估智力 35.24，标价 $0.10/$0.30/缓存 $0.01），无订阅落地且未映射入 curated scores，不建档"
+    },
+    {
+      "model": "gpt-6-sol-daybreak-blue",
+      "type": "new_variant_no_score",
+      "status": "ignored",
+      "notes": "AA models 载荷新增但评测分数全为 null，不建档不进榜"
+    }
+  ]
+}
