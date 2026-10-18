@@ -1,7 +1,7 @@
 # 模型 × 榜 可见性矩阵 / Model-by-board visibility
 
 > 由 `python scripts/visibility_matrix.py --write-docs` 生成，请勿手改。
-> 生成时间：2026-10-17 09:13 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-10-17）。
+> 生成时间：2026-10-18 09:14 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-10-17）。
 > 口径：mappings 与 configurations 的 join 与 `web/src/loadData.ts` 的 `unpackData()` 完全一致；可见性判据与 `web/src/domain.ts` 一致。
 
 ## 1. 榜覆盖统计
