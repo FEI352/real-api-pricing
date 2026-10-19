@@ -1,0 +1,114 @@
+{
+  "collectedAt": "2026-10-20",
+  "supplement": true,
+  "supplementNote": "MiniMax-M3.1-Flash 首次进入 AA 智力榜（2026-10-20 抓取）：intelligenceIndex 42.3811、Terminal-Bench 4.0 25.7576%，官方按量价 $0.15/$0.60/cache $0.015 与项目 list-prices-minimax-m31-round1-2026-10-19.json 一致。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-10-20",
+      "note": "2026-10-20 抓取 AA models 榜载荷中的 MiniMax-M3.1-Flash 行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-10-20",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 0.257575757575758 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "minimax-m3.1-flash-preview",
+      "variantLabel": "MiniMax-M3.1-Flash",
+      "score": 42.3811,
+      "secondary": {
+        "configurationRank": 26,
+        "costPerTaskUsd": 0.2201,
+        "scoreRoundedDisplay": 42,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "minimax-m3-1-flash",
+        "shortName": "MiniMax-M3.1-Flash",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "MiniMax",
+        "effort": null,
+        "terminalBench40": 0.257575757575758,
+        "scicode": 0.533564814814815,
+        "hle": 0.479610750695088,
+        "price1mInputTokens": 0.15,
+        "price1mOutputTokens": 0.6,
+        "cacheHitPrice": 0.015,
+        "intelligenceIndex": 42.3811052132362,
+        "medianOutputTokensPerSecond": 125.482238084073,
+        "medianTimeToFirstTokenSeconds": 1.03627291099997,
+        "medianEndToEndResponseTimeSeconds": 20.95941134215388,
+        "medianReasoningTimeSeconds": 15.93851074492313
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-20"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "minimax-m3.1-flash-preview",
+      "variantLabel": "Artificial Analysis - MiniMax-M3.1-Flash",
+      "score": 25.7576,
+      "secondary": {
+        "configurationRank": 26,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "minimax-m3-1-flash",
+        "shortName": "MiniMax-M3.1-Flash",
+        "terminalBench40Fraction": 0.257575757575758
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-20",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "minimax-m3-1-flash",
+        "name": "MiniMax-M3.1-Flash",
+        "shortName": "MiniMax-M3.1-Flash",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "low",
+        "modelCreatorName": "MiniMax",
+        "modelCreatorColor": "#EB3568",
+        "modelCreatorLogo": "/img/logos/minimax.svg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 42.3811052132362,
+        "intelligenceIndexIsEstimated": false,
+        "omniscience": 15.55,
+        "omniscienceAccuracy": 0.562,
+        "omniscienceNonHallucination": 0.07191780821917804,
+        "gdpvalNormalized": 0.478845,
+        "terminalBench40": 0.257575757575758,
+        "lcr": 0.796666666666667,
+        "hle": 0.479610750695088,
+        "scicode": 0.533564814814815,
+        "critpt": 0.222857142857143,
+        "mmmuPro": 0.791329479768786,
+        "intelligenceIndexCostPerTask": 0.2201135746720313,
+        "price1mInputTokens": 0.15,
+        "price1mOutputTokens": 0.6,
+        "cacheHitPrice": 0.015,
+        "cacheWritePrice": null,
+        "medianOutputTokensPerSecond": 125.482238084073,
+        "medianTimeToFirstTokenSeconds": 1.03627291099997,
+        "medianTimeToFirstAnswerTokenSeconds": 16.9747836559231,
+        "medianEndToEndResponseTimeSeconds": 20.95941134215388,
+        "medianReasoningTimeSeconds": 15.93851074492313
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

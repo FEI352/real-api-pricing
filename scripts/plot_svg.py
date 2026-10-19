@@ -193,6 +193,10 @@ def label_position(p, board, x, y, tier="main"):
     if model == "gpt-6.1-sol":
         if board == "open_design_arena" and tier == "full":
             return x + 0, y - 50, "end"
+    if model == "muse-spark-1.3-contributor" and board == "aa_intelligence_index" and tier == "full":
+        # 该点与 Claude Sonnet 5.5 的右下标签、右侧 Haiku 5.5 的左侧标签同处一条横带：
+        # 左移 20px 让出右边距，纵向保持默认，与两层标签各留 19px / 14px 间隙；不移动数据点。
+        return x - 40, y - 52, "end"
     if model == "gpt-6-sol":
         if board == "open_design_arena" and tier == "full":
             return x - 20, y + 80, "end"
@@ -254,6 +258,9 @@ def label_position(p, board, x, y, tier="main"):
         return x + 23, y - 40, "start"
     if model in {"deepseek-v4-flash", "deepseek-v4.1-flash"}:
         if model == "deepseek-v4.1-flash" and board == "aa_intelligence_index":
+            if tier == "full":
+                # 全量图右上角三点同处一带：下移到点下方，让出 Haiku 5.5 的左侧标签。
+                return x - 20, y + 25, "end"
             return x + 10, y - 50, "start"
         if model == "deepseek-v4.1-flash" and board == "deepswe_1_1":
             return x - 24, y - 52, "end"

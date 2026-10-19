@@ -56,6 +56,7 @@ SCORE_FILES = (
     "scores-gemini-4-argon-round1-2026-10-01.json",
     "scores-hyperqwen-local-2026-10-02.json",
     "scores-deepseek-v41-flash-round1-2026-10-19.json",
+    "scores-minimax-m31-round1-2026-10-20.json",
 )
 LIST_PRICE_FILES = (
     "list-prices-2026-09.json",
