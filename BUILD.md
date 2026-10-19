@@ -28,6 +28,7 @@ python scripts/checks/verify_chart_labels.py
 python scripts/publish_charts.py
 python scripts/checks/verify_svg.py
 python scripts/checks/verify_label_overlap.py
+python scripts/checks/verify_front_label_overlap.py
 python scripts/checks/verify_four_boards.py
 python scripts/checks/verify_publication.py
 python scripts/checks/verify_palette.py
@@ -49,6 +50,7 @@ CI (`.github/workflows/ci.yml`) checks the committed outputs against a fresh run
 - PNGs and matplotlib SVGs depend on the rendering machine's fonts, so CI rebuilds them only to feed the checks; render and commit them locally.
 - To judge "stale artifact vs real change" after a rebuild, run `.venv/bin/python scripts/chart_fingerprint.py --compare data/research/chart-fingerprint-2026-10-08.json` (exit 0 = byte-identical, exit 1 = added/removed/changed listed) instead of diffing files by eye; PNGs are byte-stable across re-renders on one machine, so add `--ignore '*.png'` only when comparing across machines with different fonts.
 - `verify_label_overlap.py` measures real glyph boxes and therefore needs the chart fonts (Microsoft YaHei / Noto Sans CJK SC); it prints a SKIP line and passes under `CHART_FONT_FALLBACK=1`.
+- `verify_front_label_overlap.py` is the font-independent counterpart: it reads the committed Pareto SVGs, reconstructs each `front-label` bounding box from its `text` coordinates and `plot_svg.text_width()` (width factor 0.92), and fails on any >8x5px overlap or a box within 30px of the canvas edge. It caught four real collisions the glyph-based check could not report locally.
 - A second job runs the website's `npm test` and `npm run build`.
 
 On Windows, set `PYTHONIOENCODING=utf-8` if the console cannot print Chinese filenames. `plot_static.py` is a compatibility entry point for `plot_svg.py`.

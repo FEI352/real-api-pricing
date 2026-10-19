@@ -170,7 +170,9 @@ def label_position(p, board, x, y, tier="main"):
         return x - 24, y + 13, "end"
     if model == "claude-sonnet-5":
         if board == "arena_agent_mode" and tier == "full":
-            return x - 40, y - 11, "end"
+            # AgentArena 上 Sonnet 5 / Muse 1.3 Contributor / DeepSeek V4.1 三点几乎同分：
+            # 三层错开（本行上移 100，DeepSeek 上移 170，Muse 保持默认）。
+            return x - 40, y - 100, "end"
         return x + 22, y - 54, "start"
     if model == "claude-sonnet-5.5":
         if tier == "full":
@@ -192,7 +194,8 @@ def label_position(p, board, x, y, tier="main"):
                 return x + 12, y - 34, "start"
     if model == "gpt-6.1-sol":
         if board == "open_design_arena" and tier == "full":
-            return x + 0, y - 50, "end"
+            # 与右侧 Claude Sonnet 5.5 的标签横向只差 12px：上移让出整行高度。
+            return x + 0, y - 90, "end"
     if model == "muse-spark-1.3-contributor" and board == "aa_intelligence_index" and tier == "full":
         # 该点与 Claude Sonnet 5.5 的右下标签、右侧 Haiku 5.5 的左侧标签同处一条横带：
         # 左移 20px 让出右边距，纵向保持默认，与两层标签各留 19px / 14px 间隙；不移动数据点。
@@ -213,7 +216,8 @@ def label_position(p, board, x, y, tier="main"):
         if board == "aa_terminal_bench_4" and tier == "full":
             return x - 168, y - 236, "end"
         if board == "open_design_arena" and tier == "full":
-            return x - 40, y + 52, "end"
+            # 默认在点下方，与 DeepSeek V4.1 的左侧标签整段压字：改到点上方。
+            return x - 40, y - 40, "end"
     if model == "mimo-v2.5":
         if board == "aa_intelligence_index":
             return x + 22, y - 25, "start"
@@ -267,7 +271,7 @@ def label_position(p, board, x, y, tier="main"):
         if model == "deepseek-v4.1-flash" and board == "terminal_bench_4":
             return x - 141, y + 21, "end"
         if model == "deepseek-v4.1-flash" and board == "arena_agent_mode" and tier == "full":
-            return x + 0, y - 100, "middle"
+            return x + 0, y - 170, "middle"
         if model == "deepseek-v4.1-flash" and board == "arena_code" and tier == "full":
             return x + 0, y - 160, "middle"
         if model == "deepseek-v4.1-flash" and board == "aa_terminal_bench_4" and tier == "full":

@@ -57,6 +57,7 @@ FALLBACK_CHECKS = [
     "scripts/checks/verify_chart_labels.py",
     "scripts/checks/verify_svg.py",
     "scripts/checks/verify_label_overlap.py",
+    "scripts/checks/verify_front_label_overlap.py",
     "scripts/checks/verify_four_boards.py",
     "scripts/checks/verify_publication.py",
     "scripts/checks/verify_palette.py",

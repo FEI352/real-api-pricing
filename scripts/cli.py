@@ -791,6 +791,15 @@ def main():
     add_plan_parser.add_argument("--note-en", help="英文收录备注")
     add_plan_parser.add_argument("--no-deploy", action="store_true", help="仅生成数据，不部署")
 
+    add_score_parser = subparsers.add_parser(
+        "add-score", help="按 AA 公开载荷一键录入模型分数（supplement 档 + 注册 SCORE_FILES）")
+    add_score_parser.add_argument("--model", required=True, help="项目模型 id，如 minimax-m3.1-flash-preview")
+    add_score_parser.add_argument("--slug", help="AA 载荷 slug；省略则按名字唯一匹配，歧义即报错")
+    add_score_parser.add_argument("--date", help="采集日 YYYY-MM-DD，默认今天")
+    add_score_parser.add_argument("--round", type=int, default=1, help="档内轮次号（同名档已存在时改此值）")
+    add_score_parser.add_argument("--deploy", action="store_true", help="追加完整图表链 + 前端构建 + 部署 + 守卫")
+    add_score_parser.add_argument("--dry-run", action="store_true", help="只打印将写入的内容，不落盘")
+
     args = parser.parse_args()
     if getattr(args, "json_only", False):
         QUIET = True
@@ -829,6 +838,14 @@ def main():
             
             p = subprocess.run([PY, str(REPO_ROOT / "scripts/add_subscription.py")] + cmd_args, cwd=REPO_ROOT)
             sys.exit(p.returncode)
+        elif args.command == "add-score":
+            cmd = [PY, str(REPO_ROOT / "scripts/add_score.py"), f"--model={args.model}",
+                   f"--round={args.round}"]
+            if args.slug: cmd.append(f"--slug={args.slug}")
+            if args.date: cmd.append(f"--date={args.date}")
+            if args.deploy: cmd.append("--deploy")
+            if args.dry_run: cmd.append("--dry-run")
+            sys.exit(subprocess.run(cmd, cwd=REPO_ROOT).returncode)
         elif args.command == "cron-run":
             _info("=== 开始执行自动化巡检（更新部署 → 比对前沿 → 有变动才发信）===")
             update_data()
