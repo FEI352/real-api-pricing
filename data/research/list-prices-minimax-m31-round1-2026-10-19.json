@@ -1,0 +1,25 @@
+{
+  "collectedAt": "2026-10-19",
+  "usdPerCny": 6.7787,
+  "sourceType": "official pricing page (platform.minimax.io/docs/pricing/overview, Standard tier)",
+  "scope": "MiniMax-M3.1-Flash-Preview 官方按量价建档（2026-10-19 首次公布）：国际站 $0.15 输入 / $0.60 输出 / $0.015 缓存读取；国内站 ¥1.00 / ¥4.00 / ¥0.10 三档同比例。本档用国际站 USD 三段价，与既有 minimax-m3 档同源。缓存占比按 2026-10-19 指示手动取 96%（M3.1 实测全口径 cache 95.18% 低于阈值），用档内 tokenMix 覆盖项目标准 97% 档。",
+  "models": [
+    {
+      "model": "minimax-m3.1-flash-preview",
+      "vendor": "MiniMax",
+      "input": 0.15,
+      "cachedInput": 0.015,
+      "output": 0.6,
+      "currency": "USD",
+      "tokenMix": {
+        "cache": 0.96,
+        "input": 0.035,
+        "output": 0.005
+      },
+      "source": "https://platform.minimax.io/docs/pricing/overview（官方定价概览，LLM 表 Standard 档）+ https://platform.minimax.cn/docs/pricing/overview（国内站 ¥1.00/¥4.00/¥0.10 交叉核对）",
+      "checkedAt": "2026-10-19",
+      "note": "官方一手价，非暂代：MiniMax-M3.1-Flash 标准档 $0.15 输入 / $0.60 输出 / $0.015 缓存读取（缓存读 = 输入的 10%，与 M3 的 20% 不同）；官方表只列单行，无 ≤512k / >512k 长度分档，也未列 Priority 档（M3 才有 priority 1.5×）。国内站同表为 ¥1.00 / ¥4.00 / ¥0.10 每百万 tokens，按项目汇率 6.7787 折算 $0.1475 / $0.5901 / $0.01475，与国际站整数价一致，取国际站建档。缓存占比手动取 96%（2026-10-19 指示：M3 实测低于 96% 时 M3.1 暂按 96%）；非 cache 余量 4% 中输出沿用标准档 0.5%、其余 3.5% 归普通输入。本档混合价 0.96×0.015＋0.035×0.15＋0.005×0.60＝$0.02265/MTok。"
+    }
+  ],
+  "notFound": []
+}

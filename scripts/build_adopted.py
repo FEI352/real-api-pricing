@@ -1333,7 +1333,7 @@ DATA_DATES = {
     ("hyperqwen_local_qwen38_27b", "qwen3.8-27b-dflash-5090"): ("2026-10-02", "sample"),
     ("hyperqwen_local_qwen38_27b_3090", "qwen3.8-27b-hyperqwen-3090"): ("2026-10-02", "sample"),
     ("hyperqwen_local_qwen38_27b_pro6000", "qwen3.8-27b-rtx-pro-6000"): ("2026-10-02", "sample"),
-    ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"): ("2026-10-01", "sample"),
+    ("minimax_m_plan_go_cn", "minimax-m3.1-flash-preview"): ("2026-10-19", "derived", "MiniMax M Plan Go (CN) · minimax-m3"),
     ("chatgpt_plus", "gpt-5.6-sol"): ("2026-07-30", "sample"),
     ("chatgpt_pro_20x", "gpt-5.6-sol"): ("2026-06-10~2026-09-06", "sample"),
     ("chatgpt_plus", "gpt-5.6-luna"): ("2026-09-08", "sample"),

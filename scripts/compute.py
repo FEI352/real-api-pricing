@@ -69,6 +69,7 @@ LIST_PRICE_FILES = (
     "list-prices-claude-haiku55-round1-2026-10-08.json",
     "list-prices-gemini-4-argon-round1-2026-10-01.json",
     "list-prices-subscription-gaps-round1-2026-10-08.json",
+    "list-prices-minimax-m31-round1-2026-10-19.json",
 )
 
 
@@ -149,9 +150,12 @@ def load_list_prices(scores: list[dict] | None = None) -> dict[str, dict]:
         for m in json.loads((RESEARCH / name).read_text(encoding="utf-8"))["models"]:
             cached = m["cachedInput"] if m["cachedInput"] is not None else m["input"] * 0.1
             rate = CONVENTIONS["usdPerCny"] if m["currency"] == "CNY" else 1
+            # 档内 tokenMix 覆盖：仅按量价已建档但实测/指定负载偏离标准档的模型使用
+            # （如 minimax-m3.1-flash-preview 按指示固定 96% 缓存）；缺省走 STANDARD_MIX。
+            mix = m.get("tokenMix") or STANDARD_MIX
             out[m["model"]] = dict(
                 cached=cached, input=m["input"], output=m["output"], currency=m["currency"],
-                blended_usd=(STANDARD_MIX["cache"] * cached + STANDARD_MIX["input"] * m["input"] + STANDARD_MIX["output"] * m["output"]) / rate,
+                blended_usd=(mix["cache"] * cached + mix["input"] * m["input"] + mix["output"] * m["output"]) / rate,
             )
     if scores:
         for s in scores:

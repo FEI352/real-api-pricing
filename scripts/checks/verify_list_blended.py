@@ -34,9 +34,7 @@ FALLBACK_MTOK = 3.51759  # web/src/domain.ts MEDIAN_AA_TASK_MTOK
 # list-prices-subscription-gaps-round1-2026-10-08.json 补档，gpt-6-astra 由
 # compute.load_list_prices() 的 AA 兜底补齐），swe-2 当前无订阅行——均已删除。
 # 现在只剩真正无价可建的一条；将来再出现缺失，本守卫会直接 FAIL 点名。
-WHITELIST = {
-    "minimax-m3.1-flash-preview": ("ruled", "preview 档：AA 快照 rawRecords 无该模型价格行，官方也未公布按量价（gaps 档记 notFound）"),
-}
+WHITELIST = {}
 WHITELIST_WARN_SIZE = 10
 
 failures = []
