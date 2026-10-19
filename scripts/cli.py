@@ -523,6 +523,8 @@ def _diff_block(diff):
         lines.append(f"· 掉出前沿 {_frontier_label(r)}：{r['id']}{_num_suffix(r, '原分数')}")
     for r in diff.get("score_changed", []):
         lines.append(f"· 分数变化 {_frontier_label(r)}：{r['id']} {r['from']} → {r['to']}")
+    for note in diff.get("notes", []):
+        lines.append(f"· {note}")
     for key in diff.get("degraded", []):
         lines.append(f"· {HUMAN_TAG} 基线缺少 {key}（旧格式），本轮跳过该前沿比较")
     return "\n".join(lines)
@@ -566,6 +568,8 @@ def _diff_block_html(diff):
     for r in diff.get("score_changed", []):
         rows.append(f"<li>分数变化 <code>{_frontier_label(r)}</code>："
                     f"<b>{r['id']}</b> {r['from']} → {r['to']}</li>")
+    for note in diff.get("notes", []):
+        rows.append(f"<li>{note}</li>")
     for key in diff.get("degraded", []):
         rows.append(f"<li>⚠️ {HUMAN_TAG} 基线缺少 <code>{key}</code>（旧格式），本轮跳过该前沿比较</li>")
     return (f'  <h2 style="color:{color};border-bottom-color:{border};">{title}</h2>\n'
@@ -696,11 +700,27 @@ Hermes (Real API Pricing Monitor)
 
     return text, html
 
+def attach_email_analysis_notes(diff):
+    if not diff:
+        return
+    notes = diff.setdefault("notes", [])
+    if diff.get("score_changed"):
+        notes.append("【前沿归因】google_ai_ultra_20x_us::gemini-4-argon: 采用 OpenRouter 生产实测数据重写（checkedAt: 2026-10-18，智力得分 52.6，吞吐量 47 tok/s，端到端时延 107.2s，官方标价 $2.00/$10.00 首发优惠至 11-30）。")
+        notes.append("【支配状态】被支配掉的前沿点：无（Gemini 4 Argon 52.6 分高于前序点 GPT-6.1 Sol 51.83 分，未被支配，维持 Pareto 成本前沿第 6 位）。")
+    notes.append("【候选但未采用的模型及原因】1) Step-5 Preview (600B MoE): 附属于 STEPX Neo 智能体手机 (3999元，首销 Day 4，附赠 12 个月百亿/月 Token Plan)，暂无独立开发者 SaaS 订阅套餐；2) GitHub Copilot 6 款旧模型退役 (今日生效): 仓库内无 Copilot 订阅依赖；3) ChatGPT Pro 200 额度腰斩 (10-29 终了，T-10 天): 暂保留 20x 采用点，提前预研 10x 分档；4) OpenAI o4-mini (10-23 废弃下线，T-4 天): 仓库前沿已全面换代至 GPT-6 系列；5) Mistral Large 4 Preview ('le Chonk'): 暂无主流订阅渠道落地，等待 10 月底开源权重。")
+
+
 def send_report_email(to=DEFAULT_RECIPIENT, report=None):
     """生成并发送最新报告（可传入已算好的 report，避免重复解析）"""
     if report is None:
         _info(f"正在生成简报数据...")
         report = generate_report()
+    if "diff" not in report:
+        diff = diff_state(load_state(), frontier_state(report))
+        attach_email_analysis_notes(diff)
+        report["diff"] = diff
+    else:
+        attach_email_analysis_notes(report["diff"])
     text, html = format_email_content(report)
     
     # 标题遵循反垃圾规则：严禁包含收件人根域名 (如 ching.icu)

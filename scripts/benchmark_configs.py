@@ -150,6 +150,14 @@ def configuration(record, archive):
     if resp_time is None and secondary.get("slug") in TIME_FALLBACKS:
         resp_time = TIME_FALLBACKS[secondary["slug"]]
 
+    # 用户 2026-10-18 裁决：Antigravity 环境实测 Gemini 3.8 约为 OpenRouter 测速的两倍，
+    # 暂不抓 OpenRouter 数据，统一修正为 200.0 tok/s，用时按比例折算
+    if model == "gemini-3.8-flash":
+        old_tps = tps or 145.4
+        tps = 200.0
+        if resp_time is not None:
+            resp_time = round(resp_time * (old_tps / 200.0), 2)
+
     return dict(
         configuration_id=cid, board=board, model=model,
         variant=label + (" [AA estimate]" if estimated else "") + (" [vendor self-report]" if self_reported else ""),

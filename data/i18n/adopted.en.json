@@ -1651,8 +1651,8 @@
       "en": "Vendor self-report, not an official tbench.ai leaderboard run. The Anthropic 2026-09-22 Opus 5.5 release page's eval table shows Terminal-Bench 4 at 66.4% (default effort); the same table's FrontierCode 54.4%, CursorBench 52.5% and GDPval-AA 1846 are not this repository's boards — kept as evidence only; AA/arena/OpenDesign have no third-party snapshot score, so none is fabricated. See claude-opus55-round1-2026-09-23.json."
     },
     {
-      "zh": "Artificial Analysis 2026-09-30 首测数据：智力得分 53 追平 GPT-6 Astra，首发 50% 折扣下每任务成本 $1.99。",
-      "en": "Artificial Analysis first measurement 2026-09-30: intelligence score 53 matches GPT-6 Astra, cost per task $1.99 at the 50% launch discount."
+      "zh": "OpenRouter 2026-10-18 生产实测数据：吞吐量 47 tok/s，端到端任务耗时 107.2s，智力指数 52.6。",
+      "en": "OpenRouter 2026-10-18 production measurements: throughput 47 tok/s, end-to-end task duration 107.2s, Intelligence Index 52.6."
     },
     {
       "zh": "测算环境与纯硬件依据：纯单卡 NVIDIA RTX 5090 (32GB GDDR7, sm_120) 本地运行环境。基于开源仓库 shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash 实测：Qwen3.8-27B NVFP4 主模型配合 SGLang 运行时与 DFlash2 投机草稿头。在 8,187-in / 1,024-out 标准编码任务评测下，投机命中峰值 405.5 tok/s，AA 综合基准折算端到端 Task Time 为 14.8 秒；满血 155K~256K 上下文实测解码速率 193 tok/s。",
@@ -1669,6 +1669,12 @@
     {
       "zh": "官方 Terminal-Bench 4.0 榜单行；分数属于该 harness × 模型 × effort 的具体配置。",
       "en": "Official Terminal-Bench 4.0 leaderboard row; score belongs to this harness × model × effort configuration."
+    }
+  ],
+  "translations": [
+    {
+      "zh": "OpenRouter 2026-10-18 生产实测数据：吞吐量 47 tok/s，端到端任务耗时 107.2s，智力指数 52.6。",
+      "en": "OpenRouter 2026-10-18 production measurements: throughput 47 tok/s, end-to-end task duration 107.2s, Intelligence Index 52.6."
     }
   ]
 }
