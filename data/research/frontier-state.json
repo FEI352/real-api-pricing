@@ -1,6 +1,6 @@
 {
   "date": "2026-10-17",
-  "total_points": 338,
+  "total_points": 335,
   "cost_frontier": [
     {
       "id": "stepfun_max_cn::step-3.5-flash",
@@ -26,11 +26,6 @@
       "id": "chatgpt_plus::gpt-6.1-sol",
       "score": 51.8333,
       "cost": 0.084509
-    },
-    {
-      "id": "google_ai_ultra_20x_us::gemini-4-argon",
-      "score": 52.6,
-      "cost": 0.086928
     },
     {
       "id": "claude_max_20x::claude-opus-5.5",

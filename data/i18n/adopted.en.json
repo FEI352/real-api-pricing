@@ -139,32 +139,16 @@
       "en": "1.762B→2.489B (2026-09-30 decision: uniform workload-normalization for measured samples with token breakdown, low-cache tier): #55 segment worth $25.824 (cache 78.32M×$0.075 + in 14.95M×$0.75 + out 2.33M×$3.75) ÷21.70pp = $1.19005/pp → $119.0/week ×4 weeks ÷ low-cache $0.19125/MTok; the raw-basis 17.62 is kept for comparison. Original 2026-09-29 adoption decision (raw basis) — new 1.762B, 2026-09-29 decision: issue #55 (agy CLI, same method as #54, only segments where 3.6 Flash exceeds 95%) 95.60M raw = +21.70 weekly percentage points ×100×4 weeks, 84.0% cache hit. About $1.19 list dollars per 1%, the same as 3.8 Flash — supporting a shared value-priced quota pool across Google AI Pro models. A single sample of only 21.7 percentage points from one contributor → medium. Ultra not derived. Evidence: community-issues-round1-2026-09-29.json."
     },
     {
-      "zh": "Google 2026-09-30 官方首发发布会与目录价；首发50%折扣（读$0.10/入$2.00/出$10.00）；按 Google AI Pro 额度池 $1.19/1% 标价与低缓存档($0.19125/MTok)换算；list-prices-gemini-4-argon-round1-2026-10-01.json",
-      "en": "Google launch event and list price 2026-09-30; 50% launch discount (read $0.10 / input $2.00 / output $10.00); converted via the Google AI Pro allowance pool at $1.19 per 1% list-worth and the low-cache band ($0.19125/MTok); list-prices-gemini-4-argon-round1-2026-10-01.json"
-    },
-    {
-      "zh": "新增11.62亿：按 Antigravity/Google AI Pro 官方周池合池机制（两实测样本 worth 约$123.42/周×4周=$493.66/月），结合 Gemini 4 Argon 首发优惠低缓存混合价（85% cache读$0.10 + 14.5%入$2.00 + 0.5%出$10.00 = $0.425/MTok）换算得出 11.62 亿/月；标准目录价恢复后约 5.81 亿/月。",
-      "en": "New 1.162B: converted from the Antigravity / Google AI Pro official shared weekly pool (two measured samples worth about $123.42/week x 4 weeks = $493.66/month) at the Gemini 4 Argon launch-discount low-cache blended price (85% cache read $0.10 + 14.5% input $2.00 + 0.5% output $10.00 = $0.425/MTok), giving 1.162B/month; about 0.581B/month once standard list pricing returns."
-    },
-    {
       "zh": "官方：Ultra $100 = 5× Pro token worth（antigravity.google/blog 2026-05-19）",
       "en": "Official: Ultra $100 = 5× Pro token worth (antigravity.google/blog 2026-05-19)"
     },
     {
-      "zh": "新增58.1亿：Pro采用值11.62亿×官方worth倍率5；单价约$0.01721/MTok；非独立实测",
-      "en": "New 5.81B: Pro adopted value 1.162B x official worth multiplier 5; about $0.01721/MTok; not independently measured"
+      "zh": "新增129.05亿：Pro采用值×官方worth倍率5；LLMDevs Ultra~5.0B/周同量级旁证；非独立实测",
+      "en": "Added 12.905B: Pro adopted value × official worth multiplier 5; LLMDevs' Ultra ~5.0B/week is same-magnitude corroboration; not an independent measurement"
     },
     {
       "zh": "官方：Ultra $200 = 20× Pro token worth（antigravity.google/blog 2026-05-19）",
       "en": "Official: Ultra $200 = 20× Pro token worth (antigravity.google/blog 2026-05-19)"
-    },
-    {
-      "zh": "新增232.4亿：Pro采用值11.62亿×官方worth倍率20；单价约$0.008605/MTok；非独立实测",
-      "en": "New 23.24B: Pro adopted value 1.162B x official worth multiplier 20; about $0.008605/MTok; not independently measured"
-    },
-    {
-      "zh": "新增129.05亿：Pro采用值×官方worth倍率5；LLMDevs Ultra~5.0B/周同量级旁证；非独立实测",
-      "en": "Added 12.905B: Pro adopted value × official worth multiplier 5; LLMDevs' Ultra ~5.0B/week is same-magnitude corroboration; not an independent measurement"
     },
     {
       "zh": "新增516.2亿：Pro采用值×官方worth倍率20；非独立实测",
