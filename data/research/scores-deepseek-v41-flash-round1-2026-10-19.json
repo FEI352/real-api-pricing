@@ -1,0 +1,102 @@
+{
+  "collectedAt": "2026-10-19",
+  "supplement": true,
+  "supplementNote": "Artificial Analysis 2026-10-17 独立实测更新：DeepSeek V4.1 Flash 1017 (Max) 智力得分升至 45.0965（由 39.4562 提升），Terminal-Bench 4.0 升至 33.8384%（由 26.7677% 提升），端到端任务耗时 12.09s，单任务基准成本降至 $0.2620。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-10-19",
+      "note": "Artificial Analysis 2026-10-17 独立实测数据（模型 checkpoint 1017）。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-10-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 0.338383838383838 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "deepseek-v4.1-flash",
+      "variantLabel": "DeepSeek V4.1 Flash 1017 (max)",
+      "score": 45.0965,
+      "secondary": {
+        "configurationRank": 30,
+        "costPerTaskUsd": 0.262,
+        "scoreRoundedDisplay": 45,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "deepseek-v4-1-flash-1017",
+        "shortName": "DeepSeek V4.1 Flash 1017 (max)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "DeepSeek",
+        "effort": "max",
+        "terminalBench40": 0.338383838383838,
+        "scicode": 0.559027777777778,
+        "hle": 0.433271547729379,
+        "price1mInputTokens": 0.3,
+        "price1mOutputTokens": 1.2,
+        "cacheHitPrice": 0.006,
+        "intelligenceIndex": 45.0965048681912,
+        "medianOutputTokensPerSecond": 227.098369805911,
+        "medianTimeToFirstTokenSeconds": 1.085426179,
+        "medianEndToEndResponseTimeSeconds": 12.093871559460538,
+        "medianReasoningTimeSeconds": 8.806756304368431
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-19"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "deepseek-v4.1-flash",
+      "variantLabel": "Artificial Analysis - DeepSeek V4.1 Flash 1017 (max)",
+      "score": 33.8384,
+      "secondary": {
+        "configurationRank": 30,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": "max",
+        "slug": "deepseek-v4-1-flash-1017",
+        "shortName": "DeepSeek V4.1 Flash 1017 (max)",
+        "terminalBench40Fraction": 0.338383838383838
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "deepseek-v4-1-flash-1017",
+        "name": "DeepSeek V4.1 Flash 1017 (Max)",
+        "shortName": "DeepSeek V4.1 Flash 1017 (max)",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": true,
+        "paramClass": "large",
+        "priceClass": "medium",
+        "modelCreatorName": "DeepSeek",
+        "modelCreatorColor": "#2243e6",
+        "modelCreatorLogo": "/img/logos/deepseek.svg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 45.0965048681912,
+        "intelligenceIndexIsEstimated": false,
+        "terminalBench40": 0.338383838383838,
+        "intelligenceIndexCostPerTask": 0.2620484273114172,
+        "price1mInputTokens": 0.3,
+        "price1mOutputTokens": 1.2,
+        "cacheHitPrice": 0.006,
+        "medianOutputTokensPerSecond": 227.098369805911,
+        "medianTimeToFirstTokenSeconds": 1.085426179,
+        "medianEndToEndResponseTimeSeconds": 12.093871559460538
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

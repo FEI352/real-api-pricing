@@ -6,7 +6,7 @@
   "description": "informational（2026-10-08 修正）：前端每任务成本 = cost × real ÷ list，cost ÷ list 是 AA 任务的 token 数，list 必须是 AA 价（benchmark_list_price），换分母即篡改 token 数。比值在 [min, max] 内标 consistent；超界标 data_quality_suspect（提示**项目档价可能错**，人工核实，不改数据）；无项目档价标 no_curated_baseline（保留 AA 价）。"
  },
  "counts": {
-  "consistent": 137,
+  "consistent": 138,
   "data_quality_suspect": 10,
   "no_curated_baseline": 8,
   "cross_model_suspect": 4
@@ -1765,6 +1765,17 @@
    "curated_list_blended": null,
    "ratio": null,
    "status": "no_curated_baseline",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:817e23f6365a6084",
+   "board": "aa_intelligence_index",
+   "model": "deepseek-v4.1-flash",
+   "variant": "DeepSeek V4.1 Flash 1017 (max)",
+   "benchmark_list_price": 0.01932,
+   "curated_list_blended": 0.01932,
+   "ratio": 1.0,
+   "status": "consistent",
    "affected_point_board_cells": 0
   }
  ]

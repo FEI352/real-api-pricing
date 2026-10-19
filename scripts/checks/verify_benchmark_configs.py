@@ -108,8 +108,8 @@ assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["real_usd_per_
 assert indexed["deepseek_v41_flash_peak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.01932
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["open_design_arena__score"] == 81.2
 # AA round5 (2026-09-30) superseded round4, so the round3-pinned intelligence
-# supplement retired and these two scores now come from round5 itself.
-assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 39.4562
+# supplement retired; 2026-10-19 supplement bumped DeepSeek V4.1 Flash to 1017 (45.0965).
+assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 45.0965
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 31.2
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score_is_self_reported"] is True
 # AA 快照自 round5 起把 intelligenceIndex 四舍五入到 4 位小数（round6 沿用），

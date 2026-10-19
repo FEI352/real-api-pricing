@@ -10,8 +10,9 @@ Artificial Analysis Intelligence Index v4.3 | Intelligence Index | 2026-10-15
 序号  套餐                    价格/月  服务模型                    月额度(亿)  $/MTok   置信度  Intelligence Index  得分版本                               Harness  思考强度  映射
 ----  ----------------------  -------  --------------------------  ----------  -------  ------  ------------------  -------------------------------------  -------  --------  -----------------------------
 1     Claude Max 20x (9/14+)  USD 200  Claude Haiku 5.5            8453.04     0.00024  medium  43.395              Claude Haiku 5.5 (max)                 —        max       model_configuration_reference
-2     OpenCode Go             USD 10   Muse Spark 1.3 Contributor  110.294     0.00091  medium  48.0923             Muse Spark 1.3 (max)                   —        max       model_configuration_reference
-3     Claude Max 20x (9/14+)  USD 200  Claude Sonnet 5.5           422.652     0.00473  low     56.0001             Claude Sonnet 5.5 (max with fallback)  —        max       model_configuration_reference
-4     Claude Max 5x (9/14+)   USD 100  Claude Sonnet 5.5           211.326     0.00473  low     56.0001             Claude Sonnet 5.5 (max with fallback)  —        max       model_configuration_reference
-5     Claude Max 20x (9/14+)  USD 200  Claude Opus 5.5             315.38      0.00634  medium  57.6224             Claude Opus 5.5 (max with fallback)    —        max       model_configuration_reference
-6     Claude Max 5x (9/14+)   USD 100  Claude Opus 5.5             157.69      0.00634  low     57.6224             Claude Opus 5.5 (max with fallback)    —        max       model_configuration_reference
+2     OpenDesign Go           USD 10   DeepSeek V4.1 Flash         124.224     0.0008   medium  45.0965             DeepSeek V4.1 Flash 1017 (max)         —        max       model_configuration_reference
+3     OpenCode Go             USD 10   Muse Spark 1.3 Contributor  110.294     0.00091  medium  48.0923             Muse Spark 1.3 (max)                   —        max       model_configuration_reference
+4     Claude Max 20x (9/14+)  USD 200  Claude Sonnet 5.5           422.652     0.00473  low     56.0001             Claude Sonnet 5.5 (max with fallback)  —        max       model_configuration_reference
+5     Claude Max 5x (9/14+)   USD 100  Claude Sonnet 5.5           211.326     0.00473  low     56.0001             Claude Sonnet 5.5 (max with fallback)  —        max       model_configuration_reference
+6     Claude Max 20x (9/14+)  USD 200  Claude Opus 5.5             315.38      0.00634  medium  57.6224             Claude Opus 5.5 (max with fallback)    —        max       model_configuration_reference
+7     Claude Max 5x (9/14+)   USD 100  Claude Opus 5.5             157.69      0.00634  low     57.6224             Claude Opus 5.5 (max with fallback)    —        max       model_configuration_reference

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-17",
   "total_points": 338,
   "cost_frontier": [
     {
@@ -43,6 +43,11 @@
       "id": "claude_max_20x::claude-haiku-5.5",
       "score": 43.395,
       "real_price": 0.00023660121
+    },
+    {
+      "id": "opendesign_go::deepseek-v4.1-flash",
+      "score": 45.0965,
+      "real_price": 0.00080499742
     },
     {
       "id": "opencode_go::muse-spark-1.3-contributor",

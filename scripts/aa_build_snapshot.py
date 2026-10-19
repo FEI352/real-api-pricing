@@ -87,6 +87,8 @@ def prior_maps(prior_paths: list[Path]) -> tuple[dict, dict, list]:
                 slug_map.setdefault(sec["slug"], s["model"])
             if sec.get("hostModelSlug"):
                 host_map.setdefault(sec["hostModelSlug"], s["model"])
+            if sec.get("hostConfigId"):
+                host_map.setdefault(sec["hostConfigId"], s["model"])
         added.append({"file": path.name, "inheritedSlugs": len(slug_map), "inheritedHosts": len(host_map)})
     return slug_map, host_map, added
 
@@ -99,7 +101,7 @@ def coding_rows(agents_html: Path) -> list[dict]:
             obj, _ = DEC.raw_decode(d[m.start():])
         except ValueError:
             continue
-        if isinstance(obj, dict) and {"displayLabel", "hostModelSlug", "indexScore"} <= set(obj):
+        if isinstance(obj, dict) and {"displayLabel", "indexScore"} <= set(obj):
             out[obj["id"]] = obj
     return [out[k] for k in out]
 
@@ -230,7 +232,8 @@ def main() -> int:
     agents = coding_rows(agents_html)
     ca = 0
     for a in agents:
-        model = host_map.get(a["hostModelSlug"])
+        host_key = a.get("hostModelSlug") or a.get("id")
+        model = host_map.get(host_key)
         if not model:
             continue
         ev = a.get("mean", {})
@@ -239,7 +242,7 @@ def main() -> int:
             "variantLabel": a["displayLabel"], "score": round(a["indexScore"] * 100, 4),
             "secondary": {
                 "configurationRank": None, "agentHarness": a["agentName"], "provider": a.get("provider"),
-                "hostModelSlug": a["hostModelSlug"], "displayModel": (a.get("display") or {}).get("model"),
+                "hostModelSlug": a.get("hostModelSlug") or a.get("id"), "displayModel": (a.get("display") or {}).get("model"),
                 "isUnavailable": a.get("isUnavailable"), "variantOf": a.get("variantOf"),
                 "deepSWE": (a.get("evals") or [{}])[0].get("score") if a.get("evals") else None,
                 "meanCostUsdPerTask": ev.get("costUsd"), "agentWallTimeSec": ev.get("agentWallTimeSec"),
@@ -252,7 +255,7 @@ def main() -> int:
         ca += 1
     print(f"curated coding rows: {ca} (of {len(agents)} configs)", file=sys.stderr)
 
-    unmatched = sorted({(a["hostModelSlug"], a["agentName"]) for a in agents if a["hostModelSlug"] not in host_map})
+    unmatched = sorted({(a.get("hostModelSlug") or a.get("id"), a["agentName"]) for a in agents if (a.get("hostModelSlug") or a.get("id")) not in host_map})
     print(f"unmapped coding hosts: {len(unmatched)}", file=sys.stderr)
     for u in unmatched[:15]:
         print("   ", u, file=sys.stderr)

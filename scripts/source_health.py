@@ -51,11 +51,11 @@ SOURCES = (
     dict(
         id="aa_coding_agents",
         url="https://artificialanalysis.ai/agents/coding-agents",
-        markers=("hostModelSlug", "indexScore"),
+        markers=("displayLabel", "indexScore"),
         min_bytes=400_000, max_bytes=3_000_000,
         require_html=True,
         note="AA coding-agents 页原始 HTML（必须非 JSON）。标记依据：aa_build_snapshot.coding_rows() 依赖的 "
-             "hostModelSlug / indexScore；2026-10-08 实测 931,961 B。",
+             "displayLabel / indexScore（2026-10-16 AA 载荷改版剥离 hostModelSlug 字段）；2026-10-08 实测 931,961 B。",
     ),
     dict(
         id="anthropic_pricing",
