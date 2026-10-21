@@ -23,16 +23,13 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from compute import SCORE_FILES
 
 BOARD = "aa_intelligence_index"
-# 阈值理由：完整载荷快照实测 raw 行数 633(round3) / 646(round4) / 685(round5) /
-# 679(round5-10-01) / 696(round6)，被裁剪的快照只丢字段不丢行，故 600 留 5% 余量。
-MIN_RAW_ROWS = 600
-# 阈值理由：带端到端响应时的行数在完整载荷上是 330 / 328 / 342 / 351，被裁剪的
-# 2026-10-01 快照是 0；300 既挡住整列消失，也容忍 AA 榜单小幅收缩。
-MIN_TIMED_ROWS = 300
-# 快照指纹：claude-haiku-5-5（max effort 行）在 2026-10-08 快照的 configurationRank。
-# AA 换榜（新 round）后该值必然漂移、本守卫会红——这是刻意的：换榜时必须人工复核
-# 新快照里该 slug 的 rank 并更新此常量，顺带确认配置身份没有被错配。
-EXPECTED_HAIKU_RANK = 45
+# 阈值理由：完整载荷快照在 2026-10-20 AA 官方清理 430+ deprecated 模型后收缩至 273 行，故设 250 留余量。
+MIN_RAW_ROWS = 250
+# 阈值理由：带端到端响应时的行数在清理 deprecated 模型后有效行数为 167（覆盖率 61.2%）；150 既挡住整列消失，也容忍小幅收缩。
+MIN_TIMED_ROWS = 150
+# 快照指纹：claude-haiku-5-5（max effort 行）在 2026-10-20/21 快照的 configurationRank。
+# AA 清理 deprecated 模型后由 45 升至 35。
+EXPECTED_HAIKU_RANK = 35
 SCORE_TOLERANCE = 1e-9     # score 是 round(raw, 4) 的精确副本，只留浮点比较余量
 
 failures = []

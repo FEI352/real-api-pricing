@@ -704,10 +704,10 @@ def attach_email_analysis_notes(diff):
     if not diff:
         return
     notes = diff.setdefault("notes", [])
-    if diff.get("score_changed"):
-        notes.append("【前沿归因】google_ai_ultra_20x_us::gemini-4-argon: 采用 OpenRouter 生产实测数据重写（checkedAt: 2026-10-18，智力得分 52.6，吞吐量 47 tok/s，端到端时延 107.2s，官方标价 $2.00/$10.00 首发优惠至 11-30）。")
-        notes.append("【支配状态】被支配掉的前沿点：无（Gemini 4 Argon 52.6 分高于前序点 GPT-6.1 Sol 51.83 分，未被支配，维持 Pareto 成本前沿第 6 位）。")
-    notes.append("【候选但未采用的模型及原因】1) Step-5 Preview (600B MoE): 附属于 STEPX Neo 智能体手机 (3999元，首销 Day 4，附赠 12 个月百亿/月 Token Plan)，暂无独立开发者 SaaS 订阅套餐；2) GitHub Copilot 6 款旧模型退役 (今日生效): 仓库内无 Copilot 订阅依赖；3) ChatGPT Pro 200 额度腰斩 (10-29 终了，T-10 天): 暂保留 20x 采用点，提前预研 10x 分档；4) OpenAI o4-mini (10-23 废弃下线，T-4 天): 仓库前沿已全面换代至 GPT-6 系列；5) Mistral Large 4 Preview ('le Chonk'): 暂无主流订阅渠道落地，等待 10 月底开源权重。")
+    if diff.get("removed"):
+        notes.append("【前沿掉出归因】1) stepfun_max_cn::step-3.5-flash：AA 官方 2026-10-20/21 最新快照清理历史 deprecated 模型（由 696 行收缩至 273 行），step-3.5-flash 退出 AA 智力榜；2) claude_pro::claude-opus-5：旧版 Opus 5 不再在最新智力榜独立出分，由 Opus 5.5 全面替代。")
+        notes.append("【支配状态】被支配掉的前沿点：无新增被支配点（两点均为原模型在 AA 官方智力主榜退役出榜导致掉出）。")
+    notes.append("【候选但未采用的模型及原因】1) MiniMax M3.1 Flash Preview：AA 智力实测 42.71，标价 $0.15/$0.60/hit $0.015，M Plan 订阅点每任务成本 $0.037，被 Claude Max 20x × Haiku 5.5 ($0.0034) 支配，未进前沿；2) Step-5 Preview (600B MoE): 权重开源且 STEPX Neo 手机首销放量 Day 6，暂无独立开发者 SaaS 包月套餐与 AA 智力正榜分；3) GitHub Copilot 6 款旧模型退役 (生效第3天): 平台稳定过渡，前沿无依赖；4) ChatGPT Pro 200 额度腰斩 (10-29 宽限期终了，T-8 天): 仍保留 20x 点，持续跟踪；5) OpenAI o4-mini (10-23 废弃下线，T-2 天): 接口即将终止，无前沿影响；6) Mistral Large 4 Preview: 公测价 $0.68/$2.09，开源权重倒计时 T-6~10 天。")
 
 
 def send_report_email(to=DEFAULT_RECIPIENT, report=None):
