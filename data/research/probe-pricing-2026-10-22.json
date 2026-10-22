@@ -1,0 +1,328 @@
+{
+  "collectedAt": "2026-10-22",
+  "checkedAt": "2026-10-22T09:10:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, MiniMax, StepFun, Mistral, GitHub Copilot, Command Code GOAT 等）与上游 PR #125/#126/#128 状态评估",
+  "summary": "2026-10-22 官方 API 标价与采用值排查结论：1) 上游提交评估：根据 /tmp/upstream.json 与 git 审计，上游 upstream/main 共有 6 个新提交，分别对应 PR #125（Issue #124 Claude Pro × Opus 5.5 社区实测）、PR #126（Command Code GOAT 官方目录新增 MiniMax M3.1 Flash）与 PR #128（Command Code GOAT 官方目录新增 Ornith 1.5 122B）。三者均显式声明 adoptionStatus: research-only; not adopted，仅增添 data/research/ 下的调研证据 JSON 文件，完全未修改 scripts/build_adopted.py、data/adopted.csv 或任何计算代码，无采用值改动，无合并冲突风险，建议 Lead 择机 merge 作为证据归档；本地采用值保持现有口径。2) MiniMax：MiniMax-M3.1-Flash-Preview 官方按量价（bash.15/bash.60/cache bash.015）已于 2026-10-19 建档入库（list-prices-minimax-m31-round1-2026-10-19.json），M Plan 套餐行等金额换算已在 build_adopted.py 闭环，AA 智力榜出分稳定（42.71 idx / TB4 25.76%）；Command Code GOAT 观察到的限时免费款已于 10-21 到期按既有规则排除，付费款因尚未在 AA 独立出分且 ID 存在 Preview 后缀差异，暂不作为采用值行收录。3) Ornith (Command Code GOAT)：PR #128 录入 Ornith 1.5 122B（开源 MoE 编码模型，三段价 bash.16/bash.64/缓存读 bash.02，perModelCreditsUsd 0），目前 AA 榜单尚未出分，缺乏独立评测数据，上游亦裁定 research-only，暂不增补 adopted.csv 订阅行。4) Anthropic：全线模型官方标价稳定；Claude Haiku 5.5 维持 <=100k 主行与 >100k / 50/50 混合分档情景建模；Claude Sonnet 5.5 维持 round2 标价档（缓存读 bash.10/MTok）；新版 Usage Policy 定于 11-12 生效（T-21 天）；今日无新增标价调整。5) OpenAI：API Usage Tiers 维持 Free/Build/Launch/Grow 架构；GPT-6 Astra/Sol/Luna 及 GPT-6.1 Sol 标价无变动；ChatGPT Pro 200 额度 20x 宽限期终了倒计时（至 10-29 终了降为 10x，距今 T-7 天）；o4-mini 将于 10-23 正式停用下线（距今 T-1 天）；Decisions API (GPT-6 Luna, bash.10 in / bash out) 维持稳定 beta；今日无新增标价调整。6) Google：Gemini 4 Argon 维持首发优惠价 .00/0.00（缓存读 bash.10，至 11-30，T-39 天）；Google AI Pro 学生版（/月）在 extra_subscriptions.json 中稳定维护；Gemini 3.8 Flash 维持 bash.75/.75 优惠价（至 2026-12-31）；今日无新增标价调整。7) DeepSeek：动态峰谷定价稳固运行（Flash 闲时 bash.15/bash.60/hit bash.003，忙时 bash.30/.20/hit bash.006）；V4.1 Flash 维持 AA 1017 检查点（45.10 idx / 33.84% TB4）；OpenDesign Go 专项 2× 额度正常生效。8) Mistral：Mistral Large 4 Preview ('le Chonk' 1.05T MoE，AA 智力 38.0) 维持公测优惠价（bash.68/.09，缓存读 bash.07），开源权重预计 10 月下旬开放（距今约 5-9 天），缺乏主流订阅渠道落地。9) StepFun：Step-5 Preview 600B MoE 维持 .00/.70 定价（缓存读 bash.05），STEPX Neo 智能体手机首销进入第 7 日（Day 7）；AA Coding Agent 载荷实测 51.2 分，尚未入 AA curated 智力主榜且无独立开发者订阅套餐。10) GitHub Copilot：全面推行 AI Credits 计量，6 款旧模型已于 10-19 正式退役下线，repo 无 Copilot 独立订阅点。11) AA 2026-10-22 快照：今日快照收录 40 款模型，模型集合保持稳定（added 0 / removed 0）；curated 分数项共 180 项（较昨日 184 项减少 4 项，系上游 models 原始载荷移除了 muse-spark-1.3 的智力指数与 TB4 两档，coding agent index 仍保留 2 档），既有存量配置分数无差异（diff 0）。12) 标价与采用值建档状态：既有 13 个标价档完整无缺；build_adopted.py 产出 335 行订阅点完全一致（diff 0），今日无须改动 build_adopted.py，无须新建 list-prices 档。",
+  "vendors": {
+    "Anthropic": {
+      "status": "stable_post_update",
+      "recentChanges": [
+        "Claude Haiku 5.5（2026-10-07 发布，<=100k 档 bash.10/bash.50、>100k 档 bash.50/.50）在本地由 3 档情景建模纳管，verify_haiku55_tiers 与 verify_scenario_points 守卫双重验证通过",
+        "Claude Sonnet 5.5 缓存读取单价 bash.10/MTok（调降 50%，与 Opus 5.5 对齐），已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册",
+        "Claude Opus 5.5 维持 .00 输入 / bash.20 缓存读 / 0.00 输出，Fast Mode 提供 2x 加速费率 ( in / 0 out)",
+        "Claude Fable 5.1 维持 0.00 输入 / bash.25 缓存读 / 0.00 输出",
+        "官方宣布将于 2026-11-12 生效新版防滥用 Usage Policy（距今 T-21 天），确立 11 个高风险领域、虐待模型禁令与物理设备控制",
+        "老款 Haiku 4.5 维持活跃状态（Active）",
+        "Claude Max 订阅（Max 5x 赠 00/月、Max 20x 赠 00/月 API credits）平稳运行",
+        "今日无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，今日无须新建标价档"
+    },
+    "OpenAI": {
+      "status": "stable",
+      "recentChanges": [
+        "GPT-6 Astra 标价维持 0.00 输入 / .00 缓存读 / 0.00 输出",
+        "GPT-6.1 Sol 标价维持 .00 输入 / bash.10 缓存读 / 0.00 输出",
+        "GPT-6 Luna 标价维持 bash.10 输入 / bash.01 缓存读 / bash.50 输出",
+        "GPT-6 Sol 标价维持 .00 输入 / bash.20 缓存读 / 0.00 输出",
+        "Decisions API (GPT-6 Luna) 维持输入 bash.10/MTok、输出 bash.00/MTok，专用于路由过滤，AA Decision Index v1.0 纳入评测，非通用生成式模型不收录",
+        "API Usage Tiers 维持 Free / Build () / Launch (00) / Grow (00) 四档架构",
+        "ChatGPT Pro 200 额度 20x 宽限期终了倒计时（至 2026-10-29 终止降至 10x，距今 T-7 天）",
+        "o4-mini 定于 2026-10-23 废弃下线（距今 T-1 天）",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价调整，无须新建标价档"
+    },
+    "Google": {
+      "status": "stable",
+      "recentChanges": [
+        "Gemini 4 Argon 仍由 Fairwind Program 受限访问，API 价格维持首发优惠价 .00/0.00（缓存读 bash.10，长期标准价 .00/0.00 / 缓存读 bash.20 自 2026-12-01 起生效，优惠期剩余 T-39 天）",
+        "2026-10-19 依据独立额度池实测，已在 build_adopted.py 中下架 Google AI Pro/Ultra 的 Argon 订阅行（commit 2a9bd53）",
+        "Gemini 3.8 Flash 维持引入优惠价 bash.75/.75（至 2026-12-31）",
+        "Google AI Pro / Ultra 既有订阅额度稳定",
+        "Google AI Pro 学生版（/月，gemini-3.8-flash 25.81 亿/月）已在 data/extra_subscriptions.json 登记并经 build_adopted.py 闭环纳入 adopted.csv",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 闲时 bash.15/bash.60 (hit bash.003)，忙时 bash.30/.20 (hit bash.006) 维持稳定",
+        "2026-10-19 已更新 scores-deepseek-v41-flash-round1-2026-10-19.json 至 AA 1017 检查点（45.10 智力指数 / 33.84% TB4）",
+        "DeepSeek-V4-Pro 维持既有阶梯计费",
+        "OpenDesign Go 针对 DeepSeek V4.1 Flash 专项 2× 翻倍至每月最高 20（折算 124.224 亿）已入库",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "MiniMax": {
+      "status": "fully_integrated",
+      "recentChanges": [
+        "MiniMax-M3.1-Flash-Preview 官方按量价于 2026-10-19 正式公布：bash.15 输入 / bash.60 输出 / bash.015 缓存读取",
+        "list-prices-minimax-m31-round1-2026-10-19.json 已建档并纳入 LIST_PRICE_FILES，采用 96% 缓存覆盖档内混合价 bash.02265/MTok",
+        "build_adopted.py 已于 2026-10-19 将 MiniMax M Plan 套餐行调整为等金额折算口径（commit bb15a6e）",
+        "AA 智力榜出分稳定 42.7057，Terminal-Bench 4.0 出分 25.7576%，已建档 scores-minimax-m31-round1-2026-10-20.json 并并入全量快照",
+        "上游 PR #126 提交 Command Code GOAT 观察到 MiniMax M3.1 Flash（paid, 0 allowance）及限时免费款（至 10-21 截止）。根据项目规则，限时免费活动排除，付费款因未在 AA 独立出分且 ID 存在 Preview 后缀差异，暂不作为采用值行收录",
+        "今日无新增标价调整"
+      ],
+      "handling": "全链路均已纳管完成，上游证据保持 research-only，无须新建标价档"
+    },
+    "Command_Code_GOAT": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "上游 PR #128 录入 goat-ornith-15-122b-round1-2026-10-21.json：Command Code GOAT 官方目录于 2026-10-21 新增 Ornith 1.5 122B（开源 MoE，262K 上下文，按量标价 bash.16 输入 / bash.64 输出 / bash.02 缓存读，perModelCreditsUsd 0），另有 deal 限时免费款",
+        "该文件 adoptionStatus 明确标为 \"research-only; not adopted\"，AA 各榜单均未出分，缺乏独立评测数据支撑，暂不增加 command_code_goat × ornith-1.5-122b 采用值行",
+        "上游 PR #126 录入 goat-minimax-m31-flash-round1-2026-10-20.json：观察到 MiniMax M3.1 Flash 目录（限时免费款已于 10-21 到期，付费款 0），同样标为 research-only，不改采用值"
+      ],
+      "handling": "保持研究归档，不改动 build_adopted.py 与 adopted.csv"
+    },
+    "Mistral": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview ('le Chonk' 1.05T MoE) 维持公测优惠价：输入 bash.68/MTok、缓存读取 bash.07/MTok、输出 .09/MTok（标准价 .36/.18）",
+        "AA Intelligence Index 实测得分 38.0，开源权重预计 10 月下旬开放（预计 10-27 至 10-31，距今约 5-9 天），缺乏主流订阅渠道落地"
+      ],
+      "handling": "保持观察，暂不纳为订阅候选"
+    },
+    "StepFun": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Step-5 Preview 600B MoE 维持 API 标价 .00/.70（缓存读取 bash.05/bash.10），国内按量 ¥7/¥20（缓存命中 ¥0.35）已由 list-prices-stepfun-round2-2026-09-21.json 覆盖",
+        "权重开源：已于 2026-10-15 正式公开 BF16/FP8 权重，适配 vLLM/SGLang 与华为昇腾 950",
+        "智能体手机：10-13 发布首款 STEPX Neo 智能体手机（3999元），10-16 开启首销，今日为首销第 7 日（Day 7），附赠 12 个月 STEPX Token Plan（百亿/月）",
+        "腾讯 WorkBuddy 独家限免持续进行（10-12 至 10-25）",
+        "AA Coding Agent 载荷实测得分 51.2 (.66/task)，但尚未进入 AA curated 智力主榜，且缺乏独立开发者 SaaS 订阅套餐"
+      ],
+      "handling": "跟踪开源后第三方聚合渠道（如 OpenCode Go/Zen）落地与 AA 正榜出分，暂不新建标价档"
+    },
+    "GitHub_Copilot": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "全面推行 AI Credits 计量体系（Pro 0/5额度, Pro+ 9/0额度, Max 00/00额度）",
+        "2026-10-19 为 6 款旧模型正式强制退役生效日（T+3 天），系统自动升级至新模型",
+        "本项目订阅点以经典固定渠道与直连套餐为主，无单独 Copilot 订阅点，不影响现有 adopted.csv"
+      ],
+      "handling": "旧模型已正式下线，项目现有点集无 Copilot 依赖，无须修改"
+    },
+    "Sapiens_AI": {
+      "status": "raw_payload_only",
+      "recentChanges": [
+        "AA models 原始载荷新增 agnes-2-5-pro-beta（Agnes 2.5 Pro Beta），预估智力分为 35.241",
+        "官方 API 标价：输入 bash.10/MTok、输出 bash.30/MTok、缓存读取 bash.01/MTok",
+        "尚未映射入 AA curated scores，且无任何主流编码/订阅渠道落地"
+      ],
+      "handling": "无订阅落地且未入正榜，暂不建档"
+    },
+    "LongCat": {
+      "status": "covered_by_catalog",
+      "recentChanges": [
+        "AA 载荷中 LongCat 2.0 价格维持未打折官方标价（输入 bash.75 / 输出 .95 / 缓存 bash.015）",
+        "LongCat 2.0 在本项目中仅作为 OpenCode Go 及 Command Code GOAT 的可用模型，采用值由渠道额度与目录价直接锁定"
+      ],
+      "handling": "compute.py 优先匹配渠道 catalog 价格，无需新建标价档"
+    },
+    "Meta_Muse": {
+      "status": "raw_payload_only",
+      "recentChanges": [
+        "2026-10-22 AA models 原始载荷中 muse-spark-1.3 的智力榜行下线，coding agents 榜中仍保留（Muse Code - Muse Spark 1.3 max 得分 54.30，xhigh 得分 48.30）",
+        "AA 智力榜 rawRecords 曾出现 muse-wonder (52.39分, .00/0.00, hit bash.20)、muse-wonder-full (55.80分) 以及 muse-spark-open (38.87分)",
+        "上述模型尚未映射入 curated scores，且无任何订阅渠道落地（开源或按量 API）"
+      ],
+      "handling": "保持关注，暂无订阅套餐，无需新建标价档"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 6,
+    "head": "36349d2f98755479c1be7334ceac8c7bba6c79ce",
+    "upstreamHead": "087fd0961930475af3f01b6940da9648adcf88f0",
+    "mergeBase": "89480751e6b13b71f5d2b1d7b67ab6bbf72a37f8",
+    "verdict": "review",
+    "reason": "上游有 6 个新提交（PR #125, PR #126 与 PR #128）",
+    "commits": [
+      {
+        "hash": "087fd0961930475af3f01b6940da9648adcf88f0",
+        "short": "087fd09",
+        "date": "2026-10-21",
+        "subject": "Merge pull request #128 from klarkxy/data/goat-ornith-15-122b-evidence-2026-10-21"
+      },
+      {
+        "hash": "59ff7e6f01709ef24749ce72d3b57bbb9884cad0",
+        "short": "59ff7e6",
+        "date": "2026-10-21",
+        "subject": "Research: 录入 Command Code GOAT 新增 Ornith 1.5 122B 官方目录（不改采用值）"
+      },
+      {
+        "hash": "926d2d1263e97cd297a4b51c921a0f4a6ca32e07",
+        "short": "926d2d1",
+        "date": "2026-10-20",
+        "subject": "Merge pull request #126 from klarkxy/data/goat-minimax-m31-flash-evidence-2026-10-20"
+      },
+      {
+        "hash": "1f6016119d5cce77564276231519e50edb1ff1ba",
+        "short": "1f60161",
+        "date": "2026-10-20",
+        "subject": "Research: 录入 Command Code GOAT 新增 MiniMax M3.1 Flash 官方目录（不改采用值）"
+      },
+      {
+        "hash": "0be92b7ce3edf7690672ce5217607032a4bc7c45",
+        "short": "0be92b7",
+        "date": "2026-10-19",
+        "subject": "Merge PR #125: Research: 录入 #124 Claude Pro × Opus 5.5 社区实测（不改采用值）"
+      },
+      {
+        "hash": "896b4c849ed5676048775ec62afd70c0922b01c2",
+        "short": "896b4c8",
+        "date": "2026-10-19",
+        "subject": "Research: 录入 #124 Claude Pro × Opus 5.5 社区实测（不改采用值）"
+      }
+    ],
+    "changedFiles": [
+      "data/research/claude-pro-opus55-community-issue124-2026-10-18.json",
+      "data/research/goat-minimax-m31-flash-round1-2026-10-20.json",
+      "data/research/goat-ornith-15-122b-round1-2026-10-21.json"
+    ],
+    "recommendation": "1) PR #125（Claude Pro × Opus 5.5 实测）：单用户社区打满数据，显式标注 research-only，与本地基于 Issue #52 的 30.54亿 基线一致，无需改动采用值；建议 Lead 择机 merge 作为证据归档。\n2) PR #126（GOAT MiniMax M3.1 Flash 目录）：限时免费款已于 10-21 到期且按规则排除；付费款因 AA 暂无评测分数且 ID 存在 Preview 差异，上游同样裁定 research-only，无需在 build_adopted.py 增行；建议 Lead 择机 merge 作为证据归档。\n3) PR #128（GOAT Ornith 1.5 122B 目录）：新入录开源 MoE 模型，AA 暂无评测分数，上游裁定 research-only，无需在 build_adopted.py 增行；建议 Lead 择机 merge 作为证据归档。\n4) 全部 PR 仅触及 data/research/ 归档文件，无代码或核心数据冲突，建议 Lead 择机 merge 入库。"
+  },
+  "candidates": [
+    {
+      "model": "ornith-1.5-122b",
+      "type": "channel_catalog_addition",
+      "status": "ignored",
+      "notes": "PR #128 录入之 Command Code GOAT 官方目录新模型（三段价 bash.16/bash.64/缓存 bash.02），AA 暂无独立评测分数，上游声明 research-only; not adopted，不新增采用值行"
+    },
+    {
+      "model": "minimax-m3.1-flash-preview",
+      "type": "new_model_and_pricing",
+      "status": "fully_integrated",
+      "notes": "官方标价 bash.15/bash.60/cache bash.015（list-prices-minimax-m31-round1-2026-10-19.json），M Plan 等金额派生完成，AA 智力榜 42.7057 分数已建档入库"
+    },
+    {
+      "model": "command_code_goat_minimax_m31_flash",
+      "type": "channel_catalog_addition",
+      "status": "ignored",
+      "notes": "GOAT 观察到的限时免费款（已于 10-21 到期）按规则排除；付费款（0 allowance）因 AA 暂无独立得分且 ID 存在 Preview 后缀差异，暂不新增采用值行，上游亦为 research-only"
+    },
+    {
+      "model": "claude_pro_opus55_issue124",
+      "type": "community_quota_measurement",
+      "status": "ignored",
+      "notes": "PR #125 录入之社区单用户实测，显式标注 research-only，本地采用值 30.54亿（high 置信度）已非常稳固，无需改动"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "type": "checkpoint_update",
+      "status": "score_updated",
+      "notes": "AA 1017 检查点更新（45.10 idx / 33.84% TB4），已由 scores-deepseek-v41-flash-round1-2026-10-19.json 覆盖"
+    },
+    {
+      "model": "google_ai_pro_student",
+      "type": "new_subscription_tier",
+      "status": "already_integrated",
+      "notes": "Google AI Pro 学生版（/月，gemini-3.8-flash 25.81 亿/月），已在 data/extra_subscriptions.json 登记并通过 build_adopted.py 闭环纳入 adopted.csv"
+    },
+    {
+      "model": "claude-sonnet-5.5",
+      "type": "price_cut",
+      "status": "list_price_file_ready",
+      "notes": "官方缓存读取单价降至 bash.10/MTok，已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册"
+    },
+    {
+      "model": "claude-haiku-5.5",
+      "type": "tiered_pricing",
+      "status": "multitier_scenarios_verified",
+      "notes": "官方 100k 双档（bash.10/bash.50 vs bash.50/.50）在本地通过 3 档情景点建模，守卫 verify_haiku55_tiers.py 与 verify_scenario_points.py 双重验证通过"
+    },
+    {
+      "model": "step-5-preview",
+      "type": "new_model_moe_open_weights",
+      "status": "monitoring",
+      "notes": "定价 .00/.70（缓存 bash.05/bash.10），2026-10-15 正式开源权重，STEPX Neo 智能体手机首销进入第 7 日（Day 7，百亿/月 Token Plan），AA Coding Agent 载荷实测 51.2 分，跟踪第三方开发者订阅渠道落地与 AA 正榜出分"
+    },
+    {
+      "model": "github-copilot",
+      "type": "tier_change_and_model_retirement",
+      "status": "monitoring",
+      "notes": "全量 AI Credits 计量，2026-10-19 为 6 款旧模型强制退役生效日（T+3 天），现有订阅点无 Copilot 依赖，持续跟踪"
+    },
+    {
+      "model": "chatgpt-pro",
+      "type": "quota_change_countdown",
+      "status": "monitoring",
+      "notes": "老用户 20x 宽限期终了倒计时（距今 T-7 天，10-29 终了），目前采用 chatgpt_pro_20x 保持有效，跟踪到期切换预案"
+    },
+    {
+      "model": "o4-mini",
+      "type": "model_deprecation_countdown",
+      "status": "ignored",
+      "notes": "OpenAI 定于 2026-10-23 终止接口（距今 T-1 天），repo 主力已迁移至 GPT-6 系列，不予新增收录"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_api_only",
+      "status": "monitoring",
+      "notes": "公测价极具性价比（bash.68/.09）但缺乏订阅套餐落地，开源权重定于 10 月下旬（10-27 至 10-31，距今 5-9 天），持续跟踪"
+    },
+    {
+      "model": "gemini-4-argon",
+      "type": "promotional_pricing_countdown",
+      "status": "covered_by_list_prices",
+      "notes": "首发优惠价 .00/0.00（缓存读 bash.10）有效至 2026-11-30（T-39 天），其后调整为标准价 .00/0.00，已在 list-prices-gemini-4-argon-round1-2026-10-01.json 建档；订阅行已按独立池实测下架"
+    },
+    {
+      "model": "reflection-beam",
+      "type": "new_model_open_weights",
+      "status": "ignored",
+      "notes": "AA models 原始载荷新增（Beam 1.0，30.33 分），纯开源权重且无订阅渠道，不建档"
+    },
+    {
+      "model": "muse-spark-open",
+      "type": "new_model_open_weights",
+      "status": "ignored",
+      "notes": "AA models 原始载荷新增（Muse Spark Open Xhigh，38.87 分），纯开源权重且无订阅渠道，不建档"
+    },
+    {
+      "model": "nemotron-3-5-bolt-74b-a9b",
+      "type": "new_model_open_weights",
+      "status": "ignored",
+      "notes": "AA models 原始载荷新增（21.41 分），纯开源权重且无订阅渠道，不建档"
+    },
+    {
+      "model": "nemotron-3-5-super-vl",
+      "type": "new_model_open_weights",
+      "status": "ignored",
+      "notes": "AA models 原始载荷新增（26.49 分），纯开源权重且无订阅渠道，不建档"
+    },
+    {
+      "model": "muse-wonder",
+      "type": "new_model_raw_payload",
+      "status": "monitoring",
+      "notes": "AA rawRecords 新增（52.39分，.00/0.00），尚未进 curated scores 且无订阅，不建档"
+    },
+    {
+      "model": "longcat-2.0",
+      "type": "aa_pricing_adjustment",
+      "status": "covered_by_channel_catalog",
+      "notes": "AA 显示原价 bash.75/.95，渠道目录价 bash.30/.20 已由 build_adopted.py 和 compute.py 覆盖，无需建档"
+    },
+    {
+      "model": "agnes-2-5-pro-beta",
+      "type": "new_variant_no_subscription",
+      "status": "ignored",
+      "notes": "AA models 原始载荷新增（预估智力 35.24，标价 bash.10/bash.30/缓存 bash.01），无订阅落地且未映射入 curated scores，不建档"
+    },
+    {
+      "model": "gpt-6-sol-daybreak-blue",
+      "type": "new_variant_no_score",
+      "status": "ignored",
+      "notes": "AA models 载荷新增但评测分数全为 null，不建档不进榜"
+    },
+    {
+      "model": "gpt-6-luna-decisions",
+      "type": "new_model_and_pricing",
+      "status": "ignored",
+      "notes": "OpenAI Decisions API (Beta) 底层专供 GPT-6 Luna，bash.10 in / bash out，仅用于分类路由与决策判定，不属于通用生成式基准，不建档"
+    }
+  ]
+}

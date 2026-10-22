@@ -8,9 +8,14 @@
       "cost": 0.003425
     },
     {
-      "id": "opencode_go::muse-spark-1.3-contributor",
-      "score": 48.0923,
-      "cost": 0.007349
+      "id": "opendesign_go::deepseek-v4.1-flash",
+      "score": 45.0965,
+      "cost": 0.010917
+    },
+    {
+      "id": "command_code_goat::mimo-v2.6-pro",
+      "score": 46.3242,
+      "cost": 0.066603
     },
     {
       "id": "chatgpt_plus::gpt-6.1-sol",
@@ -33,11 +38,6 @@
       "id": "opendesign_go::deepseek-v4.1-flash",
       "score": 45.0965,
       "real_price": 0.00080499742
-    },
-    {
-      "id": "opencode_go::muse-spark-1.3-contributor",
-      "score": 48.0923,
-      "real_price": 0.00090666763
     },
     {
       "id": "claude_max_20x::claude-sonnet-5.5",

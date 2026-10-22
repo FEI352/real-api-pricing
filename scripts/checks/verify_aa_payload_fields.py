@@ -27,9 +27,9 @@ BOARD = "aa_intelligence_index"
 MIN_RAW_ROWS = 250
 # 阈值理由：带端到端响应时的行数在清理 deprecated 模型后有效行数为 167（覆盖率 61.2%）；150 既挡住整列消失，也容忍小幅收缩。
 MIN_TIMED_ROWS = 150
-# 快照指纹：claude-haiku-5-5（max effort 行）在 2026-10-20/21 快照的 configurationRank。
-# AA 清理 deprecated 模型后由 45 升至 35。
-EXPECTED_HAIKU_RANK = 35
+# 快照指纹：claude-haiku-5-5（max effort 行）在 2026-10-22 快照的 configurationRank。
+# AA 官方榜单排名变动后由 35 变为 33。
+EXPECTED_HAIKU_RANK = 33
 SCORE_TOLERANCE = 1e-9     # score 是 round(raw, 4) 的精确副本，只留浮点比较余量
 
 failures = []

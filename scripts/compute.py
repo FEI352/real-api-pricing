@@ -50,6 +50,7 @@ SCORE_FILES = (
     "scores-aa-round6-2026-10-15.json",
     "scores-aa-round6-2026-10-20.json",
     "scores-aa-round6-2026-10-21.json",
+    "scores-aa-round6-2026-10-22.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
     "scores-code-arena-round2-2026-10-01.json",

@@ -705,9 +705,10 @@ def attach_email_analysis_notes(diff):
         return
     notes = diff.setdefault("notes", [])
     if diff.get("removed"):
-        notes.append("【前沿掉出归因】1) stepfun_max_cn::step-3.5-flash：AA 官方 2026-10-20/21 最新快照清理历史 deprecated 模型（由 696 行收缩至 273 行），step-3.5-flash 退出 AA 智力榜；2) claude_pro::claude-opus-5：旧版 Opus 5 不再在最新智力榜独立出分，由 Opus 5.5 全面替代。")
-        notes.append("【支配状态】被支配掉的前沿点：无新增被支配点（两点均为原模型在 AA 官方智力主榜退役出榜导致掉出）。")
-    notes.append("【候选但未采用的模型及原因】1) MiniMax M3.1 Flash Preview：AA 智力实测 42.71，标价 $0.15/$0.60/hit $0.015，M Plan 订阅点每任务成本 $0.037，被 Claude Max 20x × Haiku 5.5 ($0.0034) 支配，未进前沿；2) Step-5 Preview (600B MoE): 权重开源且 STEPX Neo 手机首销放量 Day 6，暂无独立开发者 SaaS 包月套餐与 AA 智力正榜分；3) GitHub Copilot 6 款旧模型退役 (生效第3天): 平台稳定过渡，前沿无依赖；4) ChatGPT Pro 200 额度腰斩 (10-29 宽限期终了，T-8 天): 仍保留 20x 点，持续跟踪；5) OpenAI o4-mini (10-23 废弃下线，T-2 天): 接口即将终止，无前沿影响；6) Mistral Large 4 Preview: 公测价 $0.68/$2.09，开源权重倒计时 T-6~10 天。")
+        notes.append("【前沿变动与掉出归因】opencode_go::muse-spark-1.3-contributor（原智力分 48.0923，任务成本 $0.007349，真实单价 $0.000907/MTok）掉出任务成本与真实单价前沿。归因：Artificial Analysis 官方 2026-10-22 最新快照下线 muse-spark-1-3 智力主榜记录（仅保留 Coding Agent 榜）。")
+        notes.append("【新增前沿点与采用值】1) opendesign_go::deepseek-v4.1-flash（智力分 45.0965，任务成本 $0.010917，真实单价 $0.000805/MTok）新进入任务成本前沿，采用值数据日期 2026-10-17（1017 检查点，闲时标价 $0.15/$0.60，OpenDesign Go 折算）；2) command_code_goat::mimo-v2.6-pro（智力分 46.3242，任务成本 $0.066603，真实单价 $0.012500/MTok）新进入任务成本前沿，采用值数据日期 2026-09-22。")
+        notes.append("【支配状态】被支配掉的前沿点：无现有前沿点被新点劣后支配（因 muse-spark-1.3-contributor 退出，此前被其覆盖的 43.40~48.09 分帕累托包络区间释放，使 deepseek-v4.1-flash 与 mimo-v2.6-pro 浮现至成本前沿）。")
+    notes.append("【候选但未采用的模型及原因】1) MiniMax M3.1 Flash Preview：AA 智力实测 42.71，标价 $0.15/$0.60/cache $0.015，M Plan 订阅点每任务成本 $0.037，被 Claude Max 20x × Haiku 5.5 ($0.0034) 绝对支配，未进前沿；2) Step-5 Preview (600B MoE): 权重开源且 STEPX Neo 手机首销放量 Day 7，暂无独立开发者 SaaS 包月套餐与 AA 智力正榜分；3) GitHub Copilot 6 款旧模型退役 (生效第 4 天): 平台稳定过渡，前沿无依赖；4) ChatGPT Pro 200 额度腰斩 (10-29 宽限期终了，T-7 天): 仍保留 20x 点，持续跟踪；5) OpenAI o4-mini (10-23 废弃下线，T-1 天): 接口即将终止，无前沿影响；6) Mistral Large 4 Preview: 公测价 $0.68/$2.09，开源权重倒计时 T-5~9 天；7) Command Code GOAT Ornith 1.5 122B (上游 PR #128): 仅目录证据归档，AA 暂无得分，research-only 不改采用值。")
 
 
 def send_report_email(to=DEFAULT_RECIPIENT, report=None):
