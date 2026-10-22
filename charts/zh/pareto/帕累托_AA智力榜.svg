@@ -58,7 +58,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Intelligence Index</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >真实单价 · 美元 / 百万 token</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >越右越便宜 →</text>
-<path id="frontier" d="M120.000,271.985 L839.582,271.985 L879.229,286.433 L1119.094,383.537 L1284.910,398.690 L1338.000,398.690" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,271.985 L839.582,271.985 L879.229,286.433 L1102.987,356.857 L1119.094,383.537 L1284.910,398.690 L1338.000,398.690" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.12578616" data-score="52.6737" data-x="435.022" data-y="316.057" transform="translate(435.022 316.057)"><title>GPT-6 Astra · Plus · $0.12579/MTok · 52.6737 · highGPT-6 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -303,6 +303,10 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.011950287" data-score="29.2203" data-x="753.776" data-y="524.925" transform="translate(753.776 524.925)"><title>MiniMax M3 · OpenCode Go · $0.01195/MTok · 29.2203 · mediumMiniMax-M3 · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.00090666763" data-score="48.0923" data-x="1102.987" data-y="356.857" transform="translate(1102.987 356.857)"><title>Muse Spark 1.3 Contributor · OpenCode Go · $0.00091/MTok · 48.0923 · mediumMuse Spark 1.3 (max) · Served-model alias: muse-spark-1.3-contributor is the same model as muse-spark-1.3 (user decision 2026-09-30); reference inherited. Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#0F766E" stroke-width="1.35"/>
+<circle r="4" fill="#0F766E"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0094670075" data-score="25.1622" data-x="785.321" data-y="561.065" transform="translate(785.321 561.065)"><title>Qwen3.7 Plus · OpenCode Go · $0.00947/MTok · 25.1622 · mediumQwen3.7 Plus · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
@@ -356,6 +360,12 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.15455951" data-score="44.7774" data-x="407.126" data-y="386.379" transform="translate(407.126 386.379)"><title>GLM 5.3 · Command Code GOAT · $0.15456/MTok · 44.7774 · mediumGLM-5.3 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.099009901" data-score="48.0923" data-x="467.436" data-y="356.857" transform="translate(467.436 356.857)"><title>Muse Spark 1.3 · Command Code GOAT · $0.09901/MTok · 48.0923 · mediumMuse Spark 1.3 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0027199782" data-score="48.0923" data-x="954.215" data-y="356.857" transform="translate(954.215 356.857)"><title>Muse Spark 1.3 Contributor · Command Code GOAT · $0.00272/MTok · 48.0923 · mediumMuse Spark 1.3 (max) · Served-model alias: muse-spark-1.3-contributor is the same model as muse-spark-1.3 (user decision 2026-09-30); reference inherited. Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.22026432" data-score="43.5938" data-x="359.153" data-y="396.919" transform="translate(359.153 396.919)"><title>Kimi K3 · Command Code GOAT · $0.22026/MTok · 43.5938 · mediumKimi K3 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -630,6 +640,12 @@
 <text x="903.229" y="266.433" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Max 5x / 20x · 9/14+</text>
 <text x="903.229" y="286.433" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00473</text>
 </g>
+<g class="front-label" data-model="muse-spark-1.3-contributor">
+<path d="M1092.223,346.410Q1092.223,323.857 1068.987,323.857" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="1062.987" y="304.857" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Muse Spark 1.3 Contributor · max</text>
+<text x="1062.987" y="324.857" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >OpenCode Go</text>
+<text x="1062.987" y="344.857" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00091</text>
+</g>
 <g class="front-label" data-model="deepseek-v4.1-flash">
 <path d="M1107.705,393.299Q1107.705,395.537 1105.094,395.537" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
 <text x="1099.094" y="408.537" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">DeepSeek V4.1 Flash · max</text>
@@ -679,7 +695,7 @@
 <path d="M278.72 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="292.720" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5，Droid月=周×2 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >171 个订阅位置 / 14 个 API 位置 / 4 个前沿位置</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >174 个订阅位置 / 14 个 API 位置 / 5 个前沿位置</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max：9/14 起永久额度估算；Pro：Opus 5 周池面板反推。Y 取同模型存档最高分变体。</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>

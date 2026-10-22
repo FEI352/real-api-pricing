@@ -117,7 +117,13 @@ def vendor_of(model: str) -> str:
 
 
 def load_scores() -> list[dict]:
-    """Keep all configurations in each board's selected snapshot, never mix versions."""
+    """Keep all configurations in each board's selected snapshot, never mix versions.
+
+    注意：不要在这里展开 *-contributor 别名。别名映射由
+    benchmark_configs.alias_for() + candidates() 在「点 → 配置」查找时完成，
+    在这里复制 record 会制造幽灵配置、顶翻 verify_benchmark_configs 的
+    `len(configs) == len(expected)` 守卫（2026-10-22 实测多出 10 条）。
+    """
     archives = [(name, json.loads((RESEARCH / name).read_text(encoding="utf-8")))
                 for name in SCORE_FILES]
     return [configuration(record, name) for name, record in current_score_records(archives)]

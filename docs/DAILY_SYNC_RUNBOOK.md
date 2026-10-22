@@ -66,6 +66,27 @@ Task Prompt 只写编排与门禁，所有"具体怎么做"都在这里；改口
    - `--models-html` 决定 `extraction.payloadSha256`（§0.3 的早退判据）；不给会 WARN 并把该字段写 null。
    - 输出文件已存在时脚本**拒绝覆盖**（退出码 1）；确认要重写同一版才加 `--force`。
    - `--prior` 吃 `data/research/` 下的文件名或任意路径，可重复；`--slug-map` / `--host-map` 只做**精确同名**映射（近似名 `-next` / `-preview` / `-turbo` 一律不映射，落 `unmappedPublicRows`）。
+3.5 🔴 **deprecated 模型恢复（2026-10-22 新增，必跑）**
+
+   AA 的 `/leaderboards/models` 只收录**有公开 API 的模型**，会把 deprecated 模型剔除；
+   但详情页 `/models/<slug>` 仍保留 Intelligence 分数（如 `muse-spark-1-3` 至今显示 48.09、#24/214）。
+   不补的话，模型被判「下线」→ 退出帕累托前沿 → **释放包络** → 别的模型被误报「新进前沿」→ 发出错误变更邮件
+   （2026-10-22 真实事故）。
+
+   ```bash
+   $R/.venv/bin/python scripts/aa_recover_deprecated.py \
+     --snapshot data/research/scores-aa-round6-<YYYY-MM-DD>.json \
+     --prior <被替换的上一版快照文件名>
+   ```
+
+   - 对比 prior 与新版 slug 集合，对「上一版有、这一版没有」的模型逐个探测详情页；
+   - **HTTP 200** → 从 RSC 载荷取 `intelligenceIndex`，补进 `scores`（`boardId=aa_intelligence_index`）+ `rawRecords`；
+   - **HTTP 404** → 确认真下线，只记录不补；
+   - 补回的记录自动带 `source` / `checkedAt` / `intelligenceIndexIsEstimated`，能过 `verify_aa_snapshot`；
+   - `--dry-run` 只打印不落盘；退出码 2 = 网络全失败，需人工介入。
+
+   **不要**用「沿用旧值」代替——AA 那边的分是真的在更新（`muse-spark-1.3` 从 48.09 的 deprecated 状态仍在维护默认 10k 输入工作负载的评测）。
+
 4. 脚本已实现的口径（**改动前先读脚本 docstring**）：
    - `scores` 收录：智力榜全部 effort 变体 + TB4（`terminalBench40×100`）+ 编程 Agent（`indexScore×100`）；
    - **分数四舍五入到 4 位小数**（round5 起的既有约定，校验器容差 5.1e-5）；`costPerTaskUsd = round(intelligenceIndexCostPerTask, 4)`；

@@ -159,8 +159,16 @@ def print_matrix(data: dict, joined: list[dict]) -> None:
 
 def query_model(data: dict, joined: list[dict], model: str) -> None:
     boards = boards_of(data)
-    points = [p for p in data["points"] if p["model"] == model]
-    rows = [m for m in joined if m["model"] == model]
+    # *-contributor 是项目侧的计费档别名，AA 榜上只有基础模型 id。
+    # 不展开的话 --model xxx-contributor 会一直显示「无该榜映射」，
+    # 掩盖它其实继承着基础模型的分数这一事实。
+    try:
+        from benchmark_configs import SERVED_MODEL_ALIASES
+    except Exception:
+        SERVED_MODEL_ALIASES = {}
+    base = SERVED_MODEL_ALIASES.get(model, model)
+    points = [p for p in data["points"] if p["model"] in (model, base)]
+    rows = [m for m in joined if m["model"] in (model, base)]
     if not points and not rows:
         sys.exit(f"unknown model: {model}（可用 --list-models 查看全部）")
     print(f"== {model} ==")
