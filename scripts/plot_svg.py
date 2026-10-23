@@ -179,7 +179,7 @@ def label_position(p, board, x, y, tier="main"):
             if board == "aa_terminal_bench_4":
                 return x - 28, y - 50, "end"
             if board == "aa_coding_agent_index":
-                return x - 4, y - 60, "end"
+                return x - 16, y - 35, "end"
             if board == "aa_intelligence_index":
                 return x + 24, y - 40, "start"
             if board == "arena_code":
@@ -191,7 +191,7 @@ def label_position(p, board, x, y, tier="main"):
             if board == "aa_terminal_bench_4":
                 return x + 12, y - 20, "start"
             if board == "aa_coding_agent_index":
-                return x + 12, y - 34, "start"
+                return x + 12, y - 80, "start"
     if model == "gpt-6.1-sol":
         if board == "open_design_arena" and tier == "full":
             # 与右侧 Claude Sonnet 5.5 的标签横向只差 12px：上移让出整行高度。
@@ -276,6 +276,8 @@ def label_position(p, board, x, y, tier="main"):
             return x + 0, y - 160, "middle"
         if model == "deepseek-v4.1-flash" and board == "aa_terminal_bench_4" and tier == "full":
             return x - 4, y + 124, "end"
+        if model == "deepseek-v4.1-flash" and board == "aa_coding_agent_index":
+            return x - 20, y - 60, "end"
         return x - 24, y + 49, "end"
     if model == "gpt-6-luna":
         if board == "aa_terminal_bench_4":
@@ -320,7 +322,9 @@ def label_position(p, board, x, y, tier="main"):
         # 不计额度点贴右边界，标签只能往左上放，且要避开 TB4 里 Luna 的下方标签。
         if board == "terminal_bench_4":
             return x + 74, y + 27, "end"
-        return x - 30, y + 34, "end"
+    if model == "claude-haiku-5.5":
+        if board == "aa_coding_agent_index":
+            return x - 20, y + 30, "end"
     return x - 20, y - 52, "end"
 
 

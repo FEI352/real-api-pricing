@@ -704,11 +704,11 @@ def attach_email_analysis_notes(diff):
     if not diff:
         return
     notes = diff.setdefault("notes", [])
-    if diff.get("removed"):
-        notes.append("【前沿变动与掉出归因】opencode_go::muse-spark-1.3-contributor（原智力分 48.0923，任务成本 $0.007349，真实单价 $0.000907/MTok）掉出任务成本与真实单价前沿。归因：Artificial Analysis 官方 2026-10-22 最新快照下线 muse-spark-1-3 智力主榜记录（仅保留 Coding Agent 榜）。")
-        notes.append("【新增前沿点与采用值】1) opendesign_go::deepseek-v4.1-flash（智力分 45.0965，任务成本 $0.010917，真实单价 $0.000805/MTok）新进入任务成本前沿，采用值数据日期 2026-10-17（1017 检查点，闲时标价 $0.15/$0.60，OpenDesign Go 折算）；2) command_code_goat::mimo-v2.6-pro（智力分 46.3242，任务成本 $0.066603，真实单价 $0.012500/MTok）新进入任务成本前沿，采用值数据日期 2026-09-22。")
-        notes.append("【支配状态】被支配掉的前沿点：无现有前沿点被新点劣后支配（因 muse-spark-1.3-contributor 退出，此前被其覆盖的 43.40~48.09 分帕累托包络区间释放，使 deepseek-v4.1-flash 与 mimo-v2.6-pro 浮现至成本前沿）。")
-    notes.append("【候选但未采用的模型及原因】1) MiniMax M3.1 Flash Preview：AA 智力实测 42.71，标价 $0.15/$0.60/cache $0.015，M Plan 订阅点每任务成本 $0.037，被 Claude Max 20x × Haiku 5.5 ($0.0034) 绝对支配，未进前沿；2) Step-5 Preview (600B MoE): 权重开源且 STEPX Neo 手机首销放量 Day 7，暂无独立开发者 SaaS 包月套餐与 AA 智力正榜分；3) GitHub Copilot 6 款旧模型退役 (生效第 4 天): 平台稳定过渡，前沿无依赖；4) ChatGPT Pro 200 额度腰斩 (10-29 宽限期终了，T-7 天): 仍保留 20x 点，持续跟踪；5) OpenAI o4-mini (10-23 废弃下线，T-1 天): 接口即将终止，无前沿影响；6) Mistral Large 4 Preview: 公测价 $0.68/$2.09，开源权重倒计时 T-5~9 天；7) Command Code GOAT Ornith 1.5 122B (上游 PR #128): 仅目录证据归档，AA 暂无得分，research-only 不改采用值。")
+    if diff.get("added"):
+        notes.append("【前沿变动与新进归因】opencode_go::muse-spark-1.3-contributor（智力分 48.0923，任务成本 $0.003189，真实单价 $0.000907/MTok）重返任务成本与真实单价双前沿。归因：AA 官方详情页保留 Muse Spark 1.3 智力指数（48.0923），经 runbook §1.3.5 aa_recover_deprecated.py 机制恢复注入 2026-10-23 最新快照。")
+        notes.append("【被支配掉的前沿点】1) claude_max_20x::claude-haiku-5.5（原分数 43.395，任务成本 $0.003425）；2) opendesign_go::deepseek-v4.1-flash（原分数 45.0965，任务成本 $0.010917）；3) command_code_goat::mimo-v2.6-pro（原分数 46.3242，任务成本 $0.066603）。上述三点单任务成本均高于 muse-spark-1.3-contributor ($0.003189) 且智力分低于 48.0923，形成强帕累托包络，全部被劣后支配退出成本前沿。")
+        notes.append("【新增前沿点与采用值】opencode_go::muse-spark-1.3-contributor 采用值基于 OpenCode Go 订阅额度池换算（数据日期 2026-09-10），挂载 2026-10-23 AA 恢复智力分 48.0923。")
+    notes.append("【候选但未采用的模型及原因】1) Step-5 Preview (600B MoE): 今日 AA 智力主榜收录得分 43.73 (TB4 33.33%，cost $1.0264，排名 32)，Coding Agent 榜 43.13%，官方标价 $1.00/$2.70，STEPX Neo 手机首销 Day 8，暂无独立第三方低价包月聚合点，列为 P1 观察；2) OpenAI o4-mini: 今日 (2026-10-23) 正式停运下线 (Day 1)，项目已全量平滑迁移至 GPT-6 系列，无负面扰动；3) ChatGPT Pro 200: 额度腰斩 (20x -> 10x) 宽限期剩余 6 天 (10-29 终了，T-6)，维持现状密切监控；4) MiniMax M3.1 Flash: AA 智力实测 42.71，标价 $0.15/$0.60/cache $0.015，M Plan 每任务成本 $0.037，被支配未进前沿；5) Mistral Large 4 Preview: AA 智力 38.38，开源权重预计 10 月下旬开放 (T-4~8)；6) 上游 PR #130 / #128 / #126 / #125: 均为 research-only 证据归档，不改采用值。")
 
 
 def send_report_email(to=DEFAULT_RECIPIENT, report=None):

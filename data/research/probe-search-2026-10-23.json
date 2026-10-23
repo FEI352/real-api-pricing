@@ -1,0 +1,1044 @@
+{
+  "probeDate": "2026-10-23",
+  "checkedDate": "2026-10-23",
+  "collectedAt": "2026-10-23T09:15:00+08:00",
+  "collector": "Worker-Search",
+  "searchScope": [
+    "Artificial Analysis (AA) Leaderboard & Indices (Intelligence Index v4.3.2 refreshed 2026-10-23, scores-aa-round6-2026-10-23.json payload 548fb16eb63261d0e31daffaa7e99361f2df4bc29cc9f56844d0f0b10ae78a46, Coding Agent Index v1.5 refreshed with 24 configurations led by Claude Code + Opus 5.5 [61.65%] and Devin Fusion CLI [61.51%], Decision Index v1.0, AA-3D v1.0, DeepSWE v1.1, FrontierCode 1.1, Upcoming v5 Preview with Terminal-Bench Science, 4 cost frontier points & 5 price frontier points consolidation following deprecated model cleanup)",
+    "MiniMax Official API Pricing & M Plan Subscription (MiniMax M3.1 Flash / Space Bunny legacy, officially refreshed in AA Intelligence Index [42.71 score, TB4 25.76%], flat rate $0.15/$0.60/cache $0.015, M Plan token allowance equal-money conversion, dominated by Claude Max 20x × Haiku 5.5)",
+    "StepFun Official Releases & Open Weights (Step-5 Preview 600B MoE open weights on Hugging Face & ModelScope, STEPX Neo AI Agent Smartphone Day 8 post-first-sale with 12-month 10B/mo Token Plan, pricing $1.00/$2.70, Tencent WorkBuddy exclusive free promo Oct 12-25 [T-2 days], AA Coding Agent Claude Code + Step-5 at 43.13%, AA Intelligence Index at 43.73)",
+    "DeepSeek Official Pricing & Benchmarks (DeepSeek V4.1 Flash 1017 checkpoint score 45.10 / TB4 33.84%, OpenDesign Go holds Price Frontier #2, Engram memory architecture with host RAM lookup, local Unsloth/llama.cpp quantization, dynamic peak/off-peak pricing $0.15/$0.60 vs $0.30/$1.20)",
+    "GitHub Copilot (AI Credits architecture, Oct 19 mandatory retirement of 6 legacy models in effect Day 5 / T+4 [Gemini 3.8 Flash, GPT-6.1 Sol, GPT-6 Luna, Grok 4.7])",
+    "OpenAI Official Pricing & ChatGPT Plans (o4-mini official deprecation & shutdown in effect today 2026-10-23 [生效首日], ChatGPT Pro 100/200/500 tiers & Pro 200 quota drop grace period countdown to Oct 29 [T-6 days], Decisions API beta with GPT-6 Luna, Jan 14 2027 GPT-4 deprecation schedule)",
+    "Anthropic Official Pricing & Plans (Claude Haiku 5.5 tiered 100k pricing & context cliff, Sonnet 5.5 cache read 50% price cut tracking, Opus 5.5 ceiling leader 57.62, Nov 12 Usage Policy revision [T-20 days], Upstream PR #125 community measurements ingestion)",
+    "Google Official Pricing & AI Plans (Gemini 4 Argon subscription rows retired from Google AI Pro/Ultra due to independent small quota pool, Fairwind program promo $2.00/$10.00 to Nov 30 [T-38 days], Gemini 3.8 Flash intro pricing extended to Dec 31)",
+    "Meta AI Models on OpenRouter (Muse Wonder 1M context multimodal reasoning model, $4.00/$20.00, AA raw records 52.39 / 55.80, Muse Spark 1.3 Contributor holding Cost & Price Frontier #3)",
+    "Mistral AI Official Releases (Mistral Large 4 Preview 'le Chonk' 1.05T MoE, preview pricing $0.68/$2.09, AA intelligence 38.38, late October open weights [Oct 27-31, T-4~8 days], OpenRouter 50% promo)",
+    "IDE & Platform Subscriptions (Cursor Pro/Pro+/Ultra dual usage pools & $400 other models pool, Devin Desktop / Windsurf monthly quota transition, OpenCode Go/Zen)",
+    "Decision/Routing Specialized Models (OpenAI Decisions API GPT-6 Luna, Nace.AI Drex Max, Base Labs Elephant 1, Microsoft-Decision-1, Cloudflare Clef Omni MoE, Respan Span-02)",
+    "New OpenRouter Additions (Inception: Mercury 3 1M diffusion-based LLM $0.10/$0.35, Nace.AI Drex Max $0.06/$0.00, Elephant 1 :free, Nemotron 3.5 Rerank 8B :free, Elorian Glimpse 262k visual reasoning)",
+    "Alibaba Qwen (Qwen3.8 series, Qwen-Image-2.1-Turbo, Qwen 4 late-October anticipation)",
+    "Community Signals (LINUX DO, Reddit r/LocalLLaMA, r/ClaudeAI, r/OpenAI, Hacker News)"
+  ],
+  "summary": "2026-10-23 调研全网最新大模型发布、标价调整、订阅变动与评测基准演进：\n1) OpenAI o4-mini 接口今日（2026-10-23）正式终止响应并下线（官方定于今日执行强制废弃下线，生效首日），所有指向 o4-mini 旧快照（如 o4-mini-2025-04-16）及微调模型的请求均已报错失效；本项目此前已彻底换代迁移至 GPT-6 系列（GPT-6.1 Sol / GPT-6 Luna），仓库基准与前沿无任何直接破坏，历史模型引用排查完毕；ChatGPT Pro 200 额度腰斩（20x -> 10x）老用户宽限期进入最后 6 天倒计时（2026-10-29 终了，T-6，10-30 起全量统一执行 10x），仍为本项目 chatgpt_pro_20x 成本前沿最大潜在中远期风险；Decisions API (GPT-6 Luna, $0.10 in / $0 out) 处于稳定 beta；GPT-4 全系定于 2027-01-14 彻底退役；\n2) Artificial Analysis (AA) 2026-10-23 每日全网快照刷新（payload 548fb16eb632...）：AA Models 智力榜与 Coding Agents 榜完成例行轮转，进一步清理下架 7 款历史废弃模型（gpt-5.6-sol, grok-4.6, deepseek-v4-flash, qwen3.8-max, claude-opus-5, gpt-5.6-luna, gpt-6-sol），智力主榜收敛至 34 个核心模型；Coding Agent 榜录入 24 项配置，Claude Code + Opus 5.5 (max) 以 61.65% (0.6165) 领跑，Devin Fusion CLI (Claude Opus 5.5 Max + GPT-6 Luna High) 录得 61.51%，Claude Code + Step-5 Preview 载荷录得 43.13%；Step-5 Preview 在智力主榜录得 43.73 分 (TB4 33.33%, cost $1.0264, rank 32)；Mistral Large 4 Preview 录得 38.38 分 (TB4 26.77%, cost $1.1341)；MiniMax M3.1 Flash (42.71) 与 DeepSeek V4.1 Flash 1017 (45.10) 保持稳定；\n3) 阶跃星辰（StepFun）首款大模型原生智能体手机 STEPX Neo 先行版（3999元，16G+256G，搭载 Snapdragon 8 Gen 5、Step AOS 1.0、Mini-LED 点阵副屏与 Amoo 智能体，附赠 12 个月、每月百亿 Token 的 STEPX Token Plan）进入全网首销第 8 日（Day 8）；其 600B MoE 旗舰基座 Step-5 Preview（27B 活跃，1M 上下文，原生支持文本/图像/视频）完整权重在 Hugging Face 与魔搭社区持续提供 BF16 与 FP8 下载（原生适配 vLLM/SGLang 与华为昇腾 950 等国产算力 0Day）；腾讯 WorkBuddy 独家限免（10-12 至 10-25）倒计时仅剩 2 天（T-2）；官方标价（$1.00/$2.70，缓存读取 $0.05）维持稳定，维持 P1 重点观察；\n4) MiniMax M3.1 Flash（代号 Space Bunny 传承）在 AA 智力榜综合分确立为 42.71（四舍五入 42，首发快照 42.38，Terminal-Bench 4.0 达 25.76%，单任务基准成本 $0.2201，端到端 20.96s / 125.5 tok/s，1M 上下文），官方 API 按量价稳固在 $0.15/$0.60/cache $0.015（缓存享受 90% 折扣）；M Plan 订阅（Go 18.99 亿 / Explore 56.98 亿 / Build 227.92 亿）等额资金折算额度运行平稳，挂载该分的 6 个 M Plan 点每任务成本约为 $0.037，全部被 Claude Max 20x × Haiku 5.5（43.40 分 @ $0.0034）以 10 倍以上优势绝对支配而未进前沿，但为海量 Token 场景提供了关键参考；\n5) GitHub Copilot 于 2026-10-19 强制执行的 6 款旧模型（Gemini 3.7 Flash、GPT-5.5/5.4、GPT-5 mini/5.4 mini、Grok 4.5）退役今日进入强制生效第 5 天（T+4 / 生效第 5 日），全量迁移至 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7，AI Credits 架构运转稳定，无异常中断反馈；\n6) Anthropic Claude Opus 5.5 (57.62) 与 Sonnet 5.5 (56.00) 稳居 AA 智力榜前沿首位，Sonnet 5.5 提示词缓存读取降价 50%（$0.10/MTok）稳固运行；Haiku 5.5 100k 悬崖计费（<=100k $0.10/$0.50 vs >100k $0.50/$2.50）由本地 3 档情景建模纳管；新版防滥用 Usage Policy（11-12 生效，距今 20 天 / T-20）确立 11 个高风险领域、虐待模型禁令与物理设备控制；上游 PR #125 录入 Claude Pro × Opus 5.5 社区实测数据保持一致；\n7) DeepSeek V4.1 Flash 1017 检查点在 AA 智力榜上实测分达 45.10（TB4 33.84%，TPS 216.5），标价 $0.30/$1.20/cache $0.006（98% 缓存折扣），在项目中助力 OpenDesign Go 稳居单价前沿第 2 位（real_price = 0.000805）；其基于 Engram 记忆（196B 查找表卸载至主机 RAM）与 MoE 架构展现极致效费比，Unsloth / llama.cpp 量化生态支持良好；\n8) Google Gemini 4 Argon 订阅行已完成下架净化，Argon API 维持 Fairwind 受限试用优惠价 $2.00/$10.00（至 11-30，剩余 38 天 / T-38，12-01 转为标准价 $4.00/$20.00），Gemini 3.8 Flash 优惠期 ($0.75/$3.75) 延至 2026-12-31；\n9) Mistral Large 4 Preview ('le Chonk' 1.05T MoE，AA 智力 38.38) 维持优惠公测价 $0.68/$2.09，开源权重定于 10 月下旬开放（距今约 4-8 天，预计 10-27 至 10-31 / T-4~8）；OpenRouter 50% 启动折扣持续；\n10) OpenRouter 平台上线 Inception: Mercury 3（1M 上下文扩散语言模型，公测优惠 $0.10/$0.35/MTok）、Nace.AI: Drex Max（262k 决策分类，$0.06/$0.00/MTok）、Base Labs: Elephant 1 (:free) 与 Nemotron 3.5 Rerank 8B (:free)；Meta Muse Wonder (52.39) 与 Muse Wonder Full (55.80) 保持按量供应，Muse Spark 1.3 Contributor 稳守成本与单价前沿第 3 位；\n11) 综上，在 2026-10-23 AA 快照刷新与模型清理下架后，当前 Pareto 前沿（4 个成本前沿点、5 个价格前沿点）结构清晰稳健，今日无新增颠覆性变量，无需修改现有采用值或标价。",
+  "benchmarkUpdates": {
+    "aaIntelligenceIndex": {
+      "version": "v4.3.2 (Upcoming v5 in late October 2026)",
+      "evaluationsCount": 10,
+      "recentChanges": "由 Terminal-Bench 4.0, SciCode, AA-LCR v1.1, AutomationBench-AA 等 10 项严苛测试构成；在 2026-10-23 全量刷新生成 scores-aa-round6-2026-10-23.json 快照中，payload 校验值为 548fb16eb63261d0e31daffaa7e99361f2df4bc29cc9f56844d0f0b10ae78a46；清理剔除了 7 款历史废弃模型（gpt-5.6-sol, grok-4.6, deepseek-v4-flash, qwen3.8-max, claude-opus-5, gpt-5.6-luna, gpt-6-sol），智力榜核心模型收敛为 34 个；Step 5 Preview 在智力主榜录得 43.73 分 (TB4 33.33%, cost $1.0264, rank 32)；Mistral Large 4 Preview 录得 38.38 分 (TB4 26.77%, cost $1.1341)；平稳继承 MiniMax M3.1 Flash（综合分 42.71，TB4 25.76%）及 DeepSeek V4.1 Flash 1017 检查点得分 45.10（TB4 33.84%）；rawRecords 包含 Meta Muse Wonder (52.39) 与 Muse Wonder Full (55.80)，尚未映射入 curated scores；AA 官方预告 v5 计划于 10 月下旬发布，新增 Terminal-Bench Science 并构建包含私有测试集的全新代码评测，以防基准泄露与评测污染；同步深度整合 FrontierCode 1.1 真实代码 PR 合并率测试。",
+      "notableNewScores": [
+        {
+          "model": "claude-opus-5.5",
+          "score": 57.62,
+          "releaseDate": "2026-09-23",
+          "status": "In Repo Baseline (Cost & Price Frontier Leader 57.62)"
+        },
+        {
+          "model": "claude-sonnet-5.5",
+          "score": 56.0,
+          "releaseDate": "2026-09-30",
+          "status": "In Repo Baseline (Price Frontier Leader 56.00)"
+        },
+        {
+          "model": "muse-wonder-full",
+          "score": 55.8,
+          "releaseDate": "2026-10-12",
+          "status": "Candidate (In AA Raw Records, High Effort Reasoning, Not yet curated)"
+        },
+        {
+          "model": "gemini-4-argon",
+          "score": 53.0,
+          "releaseDate": "2026-09-30",
+          "status": "API High Ranker 53.00 (Google AI Pro/Ultra Subscription Retired due to independent quota pool)"
+        },
+        {
+          "model": "muse-wonder",
+          "score": 52.39,
+          "releaseDate": "2026-10-12",
+          "status": "Candidate (In AA Raw Records & OpenRouter, Not yet curated)"
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "score": 51.83,
+          "releaseDate": "2026-09-24",
+          "status": "In Repo Baseline (Cost Frontier Leader 51.83 via chatgpt_plus)"
+        },
+        {
+          "model": "deepseek-v4.1-flash",
+          "score": 45.1,
+          "releaseDate": "2026-10-17",
+          "status": "In Repo Baseline (Price Frontier Leader #2 at 45.10 via opendesign_go)"
+        },
+        {
+          "model": "step-5-preview",
+          "score": 43.73,
+          "releaseDate": "2026-09-21",
+          "status": "Candidate (In AA Raw Records & scores, rank 32, TB4 33.33%, cost $1.0264, open weights BF16/FP8 available)"
+        },
+        {
+          "model": "claude-haiku-5.5",
+          "score": 43.4,
+          "releaseDate": "2026-10-07",
+          "status": "In Repo Baseline (Cost & Price Frontier Leader 43.40 via claude_max_20x)"
+        },
+        {
+          "model": "minimax-m3.1-flash-preview",
+          "score": 42.71,
+          "releaseDate": "2026-10-14",
+          "status": "Adopted (Officially entered AA Intelligence Index on 2026-10-20, refreshed in 2026-10-23 baseline, attached to 6 M Plan points, dominated by Haiku 5.5)"
+        },
+        {
+          "model": "mistral-large-4",
+          "score": 38.38,
+          "releaseDate": "2026-10-06",
+          "status": "Candidate (High Priority 1.05T MoE, Preview API running, weights due late Oct [T-4~8 days])"
+        },
+        {
+          "model": "qwen3.8-27b-local",
+          "score": 33.68,
+          "releaseDate": "2026-09-15",
+          "status": "In Repo Baseline (Local Hardware Benchmark)"
+        }
+      ]
+    },
+    "aaCodingAgentIndex": {
+      "version": "v1.5",
+      "composition": "DeepSWE v1.1 + Terminal-Bench 4.0 + SWE-Atlas-QnA + FrontierCode 1.1",
+      "topPerformers": [
+        {
+          "configuration": "Claude Code - Opus 5.5 (max)",
+          "score": 61.65,
+          "costPerTaskUsd": 5.98,
+          "category": "Top Absolute Performance Leader"
+        },
+        {
+          "configuration": "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
+          "score": 61.51,
+          "costPerTaskUsd": 11.2,
+          "category": "Multi-Model Fusion Platform"
+        },
+        {
+          "configuration": "Claude Code - Sonnet 5.5 (max)",
+          "score": 59.34,
+          "costPerTaskUsd": 5.46,
+          "category": "High-Efficiency Frontier Harness"
+        },
+        {
+          "configuration": "Muse Code - Muse Wonder Full (max)",
+          "score": 58.88,
+          "costPerTaskUsd": 7.8,
+          "category": "Proprietary Reasoning Harness"
+        },
+        {
+          "configuration": "Devin Fusion CLI - Claude Fable 5.1 XHigh + SWE-2 Medium",
+          "score": 58.66,
+          "costPerTaskUsd": 9.5,
+          "category": "Autonomous Coding Platform"
+        },
+        {
+          "configuration": "Claude Code - Fable 5.1 (max) (with fallback)",
+          "score": 57.62,
+          "costPerTaskUsd": 7.63,
+          "category": "High-Precision Reasoning Agent"
+        },
+        {
+          "configuration": "Codex - GPT-6 Astra (max)",
+          "score": 54.66,
+          "costPerTaskUsd": 3.26,
+          "category": "Ultrafast Coding Benchmark"
+        },
+        {
+          "configuration": "Codex - GPT-6.1 Sol (max)",
+          "score": 54.13,
+          "costPerTaskUsd": 0.72,
+          "category": "Best Cost-Performance Ratio"
+        },
+        {
+          "configuration": "Antigravity CLI - Gemini 4 Argon (high)",
+          "score": 53.25,
+          "costPerTaskUsd": 5.84,
+          "category": "Frontier Agent Harness"
+        },
+        {
+          "configuration": "Claude Code - Step 5 Preview ({'subagents': True})",
+          "score": 43.13,
+          "costPerTaskUsd": 1.03,
+          "category": "High-Efficiency MoE Coding"
+        }
+      ],
+      "unmappedNewConfigurations": [
+        {
+          "hostModelSlug": "google_barium-bb_ai-studio",
+          "displayLabel": "Antigravity CLI - Gemini 4 Argon (high)",
+          "score": 0.5325,
+          "costUsd": 5.84
+        },
+        {
+          "hostModelSlug": "stepfun_step-5",
+          "displayLabel": "Claude Code - Step 5 Preview ({'subagents': True})",
+          "score": 0.4313,
+          "costUsd": 1.03
+        },
+        {
+          "hostModelSlug": "private-anthropic_claude-verrine-eap-max",
+          "displayLabel": "Claude Code - Haiku 5.5 (max)",
+          "score": 0.3735,
+          "costUsd": 0.21
+        }
+      ],
+      "trend": "评测重心持续深化 Harness 与模型联合调度（Reasoning Effort 档位敏感度）；DeepSWE 113 项防污染测试与 FrontierCode 1.1 真实可合并度推动评测走向端到端工程闭环。"
+    },
+    "aaDecisionIndex": {
+      "version": "v1.0 (Launched 2026-10-13)",
+      "scope": "专项评估决策、单轮分类、结构化路由与置信度校准能力。纳入 OpenAI Decisions API (GPT-6 Luna)、Nace.AI Drex Max、Base Labs Elephant 1、Microsoft-Decision-1 与 Respan Span-02 等专用接口。不计入通用生成式智力主榜。"
+    },
+    "aa3DIndex": {
+      "version": "v1.0 (Launched 2026-10-12)",
+      "scope": "专项评估通过文本直接生成可交互 Three.js 网页 3D 场景的能力，基于 Elo 盲测。Claude Sonnet 5.5 位居榜首。"
+    }
+  },
+  "providerUpdates": {
+    "OpenAI": {
+      "status": "O4_MINI_SUNSET_IN_EFFECT_AND_PRO_COUNTDOWN",
+      "summary": "o4-mini 接口今日（2026-10-23）正式下线停运（生效首日），所有指向该端点的请求均已失效；ChatGPT Pro 200 额度腰斩 (20x -> 10x) 宽限期仅剩 6 天 (10-29 终了，T-6)；Decisions API (GPT-6 Luna) 稳定运行；GPT-4 全系定于 2027-01-14 彻底退役。",
+      "details": {
+        "o4MiniSunset": "2026-10-23 今日起正式终止 o4-mini API 接口与旧快照（如 o4-mini-2025-04-16）及相应微调模型的响应，生效首日（Day 1），所有未迁移调用均返回 404/410 错误。本项目基线已在前期完成向 GPT-6 系列（GPT-6.1 Sol / GPT-6 Luna）的全面平滑过渡，无任何业务阻断。",
+        "chatgptProReduction": "Pro 200 方案额度下调至 10x，现有用户宽限期截至 2026-10-29 终了，10-30 起全量统一执行 10x（剩余 6 天 / T-6），届时其实际单价翻倍将导致 chatgpt_pro_20x 退出成本前沿。",
+        "decisionsApi": "POST /v1/decisions 端点支持结构化分类与路由，输入 $0.10/MTok，输出 $0，纳入 AA Decision Index v1.0。",
+        "longTermSunset": "OpenAI 官方公告确认 GPT-4o、GPT-4o mini、GPT-4.1 及 mini 系列将于 2027-01-14 全面下线，推荐迁移至 gpt-6-luna。"
+      }
+    },
+    "Anthropic": {
+      "status": "FRONTIER_LEADER_AND_POLICY_COUNTDOWN_T20",
+      "summary": "Claude Opus 5.5 (57.62) 与 Sonnet 5.5 (56.00) 稳居前沿榜首；Sonnet 5.5 缓存读取 $0.10/MTok 降价稳固运行；Haiku 5.5 100k 悬崖计费本地守卫全通；新版 Usage Policy（11-12 生效，距今 20 天 / T-20）强化高风险与物理设备控制；上游 PR #125 录入 Claude Pro × Opus 5.5 社区实测数据保持一致。",
+      "details": {
+        "leaderboardPosition": "Opus 5.5 稳居智力主榜第一（57.62分），Sonnet 5.5 居单价前沿第一梯队（56.00分），Haiku 5.5 居成本与单价前沿底座（43.40分）。",
+        "cacheDiscount": "Sonnet 5.5 缓存读取降至 $0.10/MTok，降低长链路 Coding Agent 运行成本约 20%。",
+        "haikuPricing": "<=100k 上下文 $0.10/$0.50，>100k 悬崖跳升至 $0.50/$2.50，本地 3 档情景（mix5050/over100k/standard）验证通过。",
+        "usagePolicy": "2026-11-12 起生效新版守则（距今 20 天 / T-20），严禁欺诈营销与虚假自动化、持续虐待模型，并对医疗金融物理执行设立严格人机协同门槛。",
+        "upstreamSync": "上游 FeiZhuLulu/real-api-pricing 合并 PR #125 录入 Claude Pro × Opus 5.5 社区实测数据（保持采用值一致，无冲突风险）。"
+      }
+    },
+    "StepFun": {
+      "status": "HARDWARE_SALE_DAY8_AND_WEIGHTS_OPEN",
+      "summary": "首款大模型原生智能体手机 STEPX Neo 先行版进入首销第 8 日（Day 8，3999元，含 12 个月每月百亿 Token Plan）；旗舰基座 Step-5 Preview (600B MoE, 27B 活跃, 1M 上下文) 完整权重在 Hugging Face 与 ModelScope 全面开放下载（BF16/FP8，华为昇腾 950 与国产算力 0Day 适配）；腾讯 WorkBuddy 独家限免持续中（剩余 2 天 / T-2）；AA 智力主榜录得 43.73 分，Coding Agent 载荷录得 43.13%；API 标价维持 $1.00/$2.70（缓存读取 $0.05）。",
+      "details": {
+        "hardwareSale": "STEPX Neo 先行版 16G+256G 售价 3999 元，首销进入第 8 日（Day 8），搭载骁龙 8 Gen 5、Step AOS 1.0、Mini-LED 点阵副屏与阶跃 Amoo 智能体，附赠 12 个月每月百亿 Token Plan（合计 1.2 万亿 Token），国内各大电商平台持续放量交付。",
+        "openWeights": "Step-5-Preview 600B MoE（27B 活跃）在 Hugging Face (stepfun-ai/Step-5-Preview) 与魔搭全面开放 BF16 与 FP8 权重，适配 vLLM、SGLang 与昇腾 950 硬件。",
+        "apiPricing": "$1.00/MTok 输入, $0.05/MTok 缓存读取 (95% 优惠), $2.70/MTok 输出，1M 上下文，64k 输出。",
+        "freePromotions": "腾讯 WorkBuddy 独家免费体验期自 10-12 持续至 10-25（剩余 2 天 / T-2）。",
+        "benchmarkEvidence": "AA 智力主榜最新收录 Step 5 Preview 达 43.73 分 (TB4 33.33%, rank 32, cost $1.0264)；Coding Agent 载荷 Claude Code + Step-5 录得 43.13% (0.4313)。"
+      }
+    },
+    "MiniMax": {
+      "status": "AA_ENTRY_STABLE_AND_M_PLAN_SYNC",
+      "summary": "MiniMax M3.1 Flash 正式收录于 AA 智力榜并在 2026-10-23 快照中平稳继承，综合得分 42.71，TB4 25.76%，标价 $0.15/$0.60/cache $0.015；M Plan 额度等额资金折算运行稳定，基线补档挂载完好。",
+      "details": {
+        "modelName": "MiniMax-M3.1-Flash",
+        "slug": "minimax-m3-1-flash",
+        "legacyCodename": "Space Bunny",
+        "aaScores": {
+          "intelligenceIndex": 42.7057,
+          "intelligenceIndexRounded": 42,
+          "terminalBench40": 0.257576,
+          "scicode": 0.533565,
+          "hle": 0.479611,
+          "omniscience": 15.55,
+          "costPerTaskUsd": 0.2201,
+          "tps": 122.8,
+          "ttftSeconds": 1.12,
+          "responseTimeSeconds": 21.48
+        },
+        "officialPricing": {
+          "inputPerMtok": 0.15,
+          "outputPerMtok": 0.6,
+          "cacheHitPerMtok": 0.015,
+          "cacheDiscount": "90%",
+          "contextWindow": 1000000
+        },
+        "subscriptionMPlan": {
+          "conversionMethod": "按官方公布 M3.1 价格与 96% 缓存占比等额资金折算",
+          "tiers": {
+            "Go": "$28.5/mo -> 18.99 亿 tokens",
+            "Explore": "$85.5/mo -> 56.98 亿 tokens",
+            "Build": "$342/mo -> 227.92 亿 tokens"
+          },
+          "frontierImpact": "Go 点每任务成本约 $0.037，被 Claude Max 20x × Haiku 5.5 ($0.0034) 支配，未进前沿，但海量额度表现亮眼。"
+        }
+      }
+    },
+    "DeepSeek": {
+      "status": "FRONTIER_LEADER_UPDATE",
+      "summary": "DeepSeek-V4.1-Flash 1017 检查点 AA 智力稳居 45.10，TB4 达 33.84%，在项目基线中助力 OpenDesign Go 稳居单价前沿第 2 位（real_price = 0.000805）；动态峰谷定价与 Engram 架构稳固运行。",
+      "details": {
+        "benchmarkScore": "AA 智力分 45.0965 (四舍五入 45.10)，Terminal-Bench 4.0 达 33.84%，输出速度 216.5 tok/s，TTFT 1.11s，端到端 12.65s。",
+        "pricing": "闲时 $0.15/$0.60/hit $0.003，忙时 $0.30/$1.20/hit $0.006（98% 缓存折扣）。",
+        "frontierPosition": "OpenDesign Go ($120/mo, 124.224亿 tokens) 居单价前沿第 2 位，稳守 45 分位性价比标杆。",
+        "technology": "MoE + Engram 条件记忆缓存（n-gram 查找表卸载至主机 RAM），支持 1M 上下文，Unsloth / llama.cpp 量化生态支持。"
+      }
+    },
+    "GitHub_Microsoft": {
+      "status": "MODEL_RETIREMENT_ENFORCED_DAY5",
+      "summary": "GitHub Copilot 定于 2026-10-19 正式强制执行 6 款旧模型退役，今日进入全面生效第 5 天（T+4 / 生效第 5 日），用户体验无缝切换至新一代模型，AI Credits 计量模式平稳运转。",
+      "details": {
+        "retiredModels": [
+          "Gemini 3.7 Flash -> 迁移至 Gemini 3.8 Flash",
+          "GPT-5.5 -> 迁移至 GPT-6.1 Sol",
+          "GPT-5.4 -> 迁移至 GPT-6.1 Sol",
+          "GPT-5.4 mini -> 迁移至 GPT-6 Luna",
+          "GPT-5 mini -> 迁移至 GPT-6 Luna",
+          "Grok 4.5 -> 迁移至 Grok 4.7"
+        ],
+        "scope": "Copilot Chat、Inline Edit、Ask / Agent 模式及代码补全全量生效，旧模型 ID 彻底移除。",
+        "billingStatus": "Copilot Pro ($10/mo)、Business ($19/seat/mo)、Enterprise ($39/seat/mo) 的 AI Credits 计量体系运行平稳。"
+      }
+    },
+    "Google": {
+      "status": "SUBSCRIPTION_REFINED_AND_API_PROMO",
+      "summary": "Google AI Pro/Ultra 系列的 Gemini 4 Argon 订阅行下架后前沿真实性维持高标；Argon API 维持 Fairwind 受限试用优惠价 $2.00/$10.00（至 11-30，剩余 38 天 / T-38，12-01 转为标准价 $4.00/$20.00）；Gemini 3.8 Flash 优惠期 ($0.75/$3.75) 延至 2026-12-31。",
+      "details": {
+        "subscriptionRetired": "实测确认 Google AI Pro/Ultra 的 Argon 配额为独立小池子而非周共享池，下架订阅行确保前沿真实可靠。",
+        "argonFairwindPromo": "输入 $2.00/MTok, 缓存读取 $0.10/MTok (95% 折扣), 输出 $10.00/MTok，11-30 截止（剩余 38 天 / T-38），12-01 恢复 $4.00/$20.00。",
+        "flashPromo": "Gemini 3.8 Flash 保持 $0.75/$3.75 优惠标价至 2026-12-31。",
+        "benchmark": "Gemini 4 Argon 在 AA 智力榜维持 53.0 分（高智力梯队）。"
+      }
+    },
+    "Mistral": {
+      "status": "PREVIEW_RUNNING_OPEN_WEIGHTS_COUNTDOWN_T4_8",
+      "summary": "Mistral Large 4 Preview ('le Chonk' 1.05T MoE，AA 智力最新录得 38.38 分) 维持公测优惠价 $0.68/$2.09，开源权重定于 10 月下旬开放（距今约 4-8 天，预计 10-27 至 10-31 / T-4~8）；OpenRouter 提供 50% 启动折扣。",
+      "details": {
+        "architecture": "1.05T 总参数，49-52B 活跃参数，1M 上下文，原生多模态视觉编码器（1.6B 参数）。",
+        "pricing": "Mistral Studio 预览价 $0.68/MTok 输入, $2.09/MTok 输出；OpenRouter 折扣价 $0.34/$1.045。",
+        "benchmark": "AA 智力主榜最新实测分录得 38.38 分 (38.3770, TB4 26.77%, cost $1.1341)。",
+        "weightsRelease": "10 月下旬（预计 10-27 至 10-31，剩余 4-8 天）向社区开放原始模型权重，目前正进行防务与网安红队测试。"
+      }
+    },
+    "Meta_OpenRouter": {
+      "status": "ROUTING_EXPANSION_AND_NEW_ARRIVALS",
+      "summary": "Meta Muse Wonder（1M 上下文全模态，输入 $4.00 / 输出 $20.00 / 缓存读 $0.20）与 Muse Wonder Full (55.80分，仅限 Muse Code 订阅) 保持按量供应；OpenRouter 上新 Inception: Mercury 3（扩散语言模型）、Nace.AI: Drex Max 等新锐模型；Muse Spark 1.3 Contributor 稳守成本与单价前沿第 3 位。",
+      "details": {
+        "museModels": "Muse Wonder (52.39 分) 与 Full (55.80 分) 在 AA rawRecords 留存，暂未进 curated 正榜。",
+        "newAdditions": "OpenRouter 新增 Inception: Mercury 3 (1M 扩散模型，优惠 $0.10/$0.35)、Nace.AI: Drex Max (262k 决策分类 $0.06/$0.00)、Base Labs: Elephant 1 (:free) 与 Nemotron 3.5 Rerank 8B (:free)。",
+        "platformFee": "OpenRouter 保持充值端 5.5% 平台费率，模型按量裸价由上游直通。"
+      }
+    },
+    "Alibaba_Qwen": {
+      "status": "LOCAL_BENCHMARK_ANCHOR",
+      "summary": "Qwen3.8-27B 在单卡工作站（RTX 3080/4090/5090）上保持本地推理基准主力地位（33.68分）；Qwen-Image-2.1-Turbo 运行中；社区高度期待 10 月底 Qwen 4 发布。",
+      "details": {
+        "localHardware": "SGLang / vLLM + KVarN INT4 优化下，Qwen3.8-27B 提供极低延迟本地算力基准。",
+        "futureExpectation": "阿里巴巴预计于 10 月下旬至 11 月初揭晓 Qwen 4 旗舰架构。"
+      }
+    }
+  },
+  "subscriptionAndPlatformUpdates": {
+    "minimaxMPlan": {
+      "platform": "MiniMax 开放平台",
+      "status": "ACTIVE_CALCULATED_AND_SCORED",
+      "tiers": {
+        "Go": "$28.5/mo -> 18.99 亿 tokens",
+        "Explore": "$85.5/mo -> 56.98 亿 tokens",
+        "Build": "$342/mo -> 227.92 亿 tokens"
+      },
+      "allowanceBasis": "基于官方 M3.1 标价 ($0.15/$0.60/cache $0.015) 及 96% 缓存率折算为等额额度",
+      "scoreAttached": "AA 智力 42.71 / 42.38，TB4 25.76%"
+    },
+    "githubCopilot": {
+      "platform": "GitHub Copilot",
+      "status": "RETIREMENT_ENFORCED_DAY5",
+      "activeModels": [
+        "Gemini 3.8 Flash",
+        "GPT-6.1 Sol",
+        "GPT-6 Luna",
+        "Grok 4.7",
+        "Claude Sonnet 5.5"
+      ],
+      "retiredModels": [
+        "Gemini 3.7 Flash",
+        "GPT-5.5",
+        "GPT-5.4",
+        "GPT-5.4 mini",
+        "GPT-5 mini",
+        "Grok 4.5"
+      ],
+      "notes": "10-19 已完成强制换代，今日进入强制生效第 5 天 (T+4)，运转稳定。"
+    },
+    "cursor": {
+      "platform": "Cursor",
+      "status": "STABLE",
+      "notes": "Pro ($20/mo)、Pro+ ($60/mo)、Ultra ($200/mo) 双池架构平稳运转。"
+    },
+    "windsurfDevin": {
+      "platform": "Windsurf & Devin Desktop",
+      "status": "STABLE",
+      "notes": "月度配额制运行稳定，旧版 Credits 废除顺利。"
+    },
+    "openCode": {
+      "go": "$10/mo (Muse Spark 1.3 Contributor 支撑成本与单价前沿第 3 位)",
+      "zen": "$30/mo",
+      "openDesignGo": "$120/mo (DeepSeek V4.1 Flash 支撑单价前沿第 2 位)",
+      "notes": "第三方聚合订阅效费比极高，牢固占据关键 Pareto 点位。"
+    }
+  },
+  "frontierThreatAssessment": {
+    "assessmentDate": "2026-10-23",
+    "verdict": "NO_IMMEDIATE_THREAT",
+    "rationale": "今日全网核心变动（OpenAI o4-mini 正式下线生效、ChatGPT Pro 200 宽限期剩余 6 天、StepFun STEPX Neo 首销 Day 8 与 Step-5 权重开放）均在既定路线图中演进；今日 AA 智力榜完成快照刷新与废弃模型剔除后，成本前沿稳固维持 4 个点，价格前沿维持 5 个点；MiniMax M3.1 Flash（42.71分）在 M Plan 下的 6 个订阅点每任务成本约为 $0.037，全部被 Claude Max 20x × Haiku 5.5（43.40 分 @ $0.0034）以 10 倍以上优势绝对支配，未冲击 Pareto 成本前沿与价格前沿；Step-5 Preview 虽然出分 43.73 但目前无稳定低价第三方包月聚合点；当前 4 个成本前沿点与 5 个价格前沿点 100% 稳固，无需改动任何采用值或标价。",
+    "costFrontierStatus": {
+      "totalPoints": 4,
+      "points": [
+        {
+          "id": "claude_max_20x::claude-haiku-5.5",
+          "score": 43.395,
+          "cost": 0.003425,
+          "status": "Dominant (Dominates MiniMax M Plan by 10x margin)"
+        },
+        {
+          "id": "opencode_go::muse-spark-1.3-contributor",
+          "score": 48.0923,
+          "cost": 0.007349,
+          "status": "Secure"
+        },
+        {
+          "id": "chatgpt_plus::gpt-6.1-sol",
+          "score": 51.8333,
+          "cost": 0.084509,
+          "status": "Secure"
+        },
+        {
+          "id": "claude_max_20x::claude-opus-5.5",
+          "score": 57.6224,
+          "cost": 0.096282,
+          "status": "Absolute Ceiling Leader"
+        }
+      ]
+    },
+    "priceFrontierStatus": {
+      "totalPoints": 5,
+      "points": [
+        {
+          "id": "claude_max_20x::claude-haiku-5.5",
+          "score": 43.395,
+          "real_price": 0.0002366,
+          "status": "Dominant"
+        },
+        {
+          "id": "opendesign_go::deepseek-v4.1-flash",
+          "score": 45.0965,
+          "real_price": 0.000805,
+          "status": "Price Frontier Leader #2 (AA 1017 checkpoint score 45.10)"
+        },
+        {
+          "id": "opencode_go::muse-spark-1.3-contributor",
+          "score": 48.0923,
+          "real_price": 0.0009067,
+          "status": "Secure"
+        },
+        {
+          "id": "claude_max_20x::claude-sonnet-5.5",
+          "score": 56.0001,
+          "real_price": 0.004732,
+          "status": "Reinforced by Cache Read cut"
+        },
+        {
+          "id": "claude_max_20x::claude-opus-5.5",
+          "score": 57.6224,
+          "real_price": 0.0063416,
+          "status": "Absolute Ceiling Leader"
+        }
+      ]
+    },
+    "criticalRisksAndCountdowns": [
+      {
+        "risk": "OpenAI o4-mini API 停用下线",
+        "deadline": "2026-10-23",
+        "countdown": "今日正式停用生效 (Day 1)",
+        "severity": "LOW (已平稳换代)",
+        "impact": "主榜已全量换代至 GPT-6 系列，旧接口失效不影响现有前沿，排查确认无死链。"
+      },
+      {
+        "risk": "ChatGPT Pro 200 额度腰斩 (20x -> 10x) 老用户宽限期终了",
+        "deadline": "2026-10-29",
+        "countdown": "T-6 天",
+        "severity": "HIGH (中远期)",
+        "impact": "10-29 之后其实际单价将翻倍，导致 chatgpt_pro_20x 订阅点退出成本前沿。需提前研制 chatgpt_pro_10x 情景方案以防前沿塌陷。今日无即时变动。"
+      },
+      {
+        "risk": "StepFun Step-5 MoE 开源落地与 STEPX Neo 手机首销放量 (Day 8)",
+        "deadline": "2026-10-16 (首销已开启，今日为 Day 8)",
+        "countdown": "Day 8 (首销放量中)",
+        "severity": "MEDIUM-HIGH (生态演进)",
+        "impact": "AA 智力主榜最新收录 Step-5 Preview 达 43.73 分 (TB4 33.33%, cost $1.0264)；若第三方聚合订阅（如 OpenCode Go/Zen）以低门槛包月方式纳管，将对中端成本前沿产生直接冲击。目前暂无第三方稳定包月套餐，对今日 Pareto 前沿无即时冲击。"
+      },
+      {
+        "risk": "腾讯 WorkBuddy 阶跃星辰 Step-5 独家限免截止",
+        "deadline": "2026-10-25",
+        "countdown": "T-2 天",
+        "severity": "LOW (推广活动)",
+        "impact": "限免期后转为正常 API 标价或工作台增值服务，不影响基线订阅。"
+      },
+      {
+        "risk": "GitHub Copilot 6 款旧模型退役强制生效",
+        "deadline": "2026-10-19",
+        "countdown": "T+4 (强制生效第 5 天)",
+        "severity": "LOW (已平稳落地)",
+        "impact": "全量迁移至 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7，无异常中断反馈。"
+      },
+      {
+        "risk": "Mistral Large 4 Preview 开源权重预期",
+        "deadline": "2026-10-27 至 2026-10-31",
+        "countdown": "T-4~8 天 (10 月下旬)",
+        "severity": "MEDIUM (开源生态)",
+        "impact": "1.05T MoE 开源后若获主流聚合工具包月纳管，可能对 38-40 分位中端形成冲击。"
+      },
+      {
+        "risk": "Anthropic 新版 Usage Policy 生效",
+        "deadline": "2026-11-12",
+        "countdown": "T-20 天",
+        "severity": "LOW (合规政策)",
+        "impact": "规范 11 项高风险领域与物理设备安全条款，不影响 API 计费或模型评分。"
+      },
+      {
+        "risk": "Google Gemini 4 Argon Fairwind 试用优惠截止",
+        "deadline": "2026-11-30",
+        "countdown": "T-38 天",
+        "severity": "LOW (推广优惠)",
+        "impact": "优惠期截止后转为标准定价 $4.00/$20.00，对 API 标价档产生影响，目前订阅行已下架。"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "model": "openai-o4-mini-deprecation",
+      "provider": "OpenAI",
+      "eventType": "model_sunset",
+      "details": "OpenAI 官方宣布定于 2026-10-23 终止 o4-mini API 接口支持并废弃下线，今日正式生效（Day 1 / 生效首日）。所有调用均返回 404/410 错误。",
+      "sourceUrl": "https://platform.openai.com/docs/deprecations",
+      "impactOnFrontier": "本项目前沿已迁移至 GPT-6 系列，对当前前沿无直接冲击，已排查确认无历史死链残留。",
+      "name": "OpenAI o4-mini 接口废弃今日正式生效 (2026-10-23 生效首日 Day 1)",
+      "modelOrPlan": "OpenAI o4-mini 接口废弃",
+      "vendor": "OpenAI",
+      "category": "deprecation",
+      "event_type": "model_sunset",
+      "publishedPrice": "已正式下线终止服务",
+      "quotaOrLimits": "接口于 10-23 正式终止响应",
+      "activeStatus": "今日正式下线停运 (Day 1)",
+      "satisfiesInclusion": false,
+      "rejectionReason": "下线模型无需新增",
+      "source_url": "https://platform.openai.com/docs/deprecations",
+      "impact_on_frontier": "无前沿影响。",
+      "factSummary": "o4-mini 接口今日正式停运下线（Day 1），旧快照与微调模型全面失效。",
+      "currentRepoState": "前沿与基准无任何依赖。",
+      "recommendation": "ignore",
+      "priority": "P2 (排查确认无残留)",
+      "rationale": "已彻底下线。"
+    },
+    {
+      "model": "chatgpt-pro-200-reduction",
+      "provider": "OpenAI",
+      "eventType": "quota_reduction",
+      "details": "OpenAI ChatGPT Pro 200 配额已确认降至 10x，现有订户宽限期将于 2026-10-29 终了，距今日仅剩 6 天（T-6）。届时 10-30 起全量用户降为 10x，实际单价翻倍。",
+      "sourceUrl": "https://help.openai.com/en/articles/chatgpt-pro",
+      "impactOnFrontier": "当前成本前沿深度依赖 chatgpt_pro_20x 的超高估算额度（129.02亿），10-29 之后其实际单价将翻倍，导致该点退出前沿。需提前研制 chatgpt_pro_10x 情景方案以防前沿塌陷。今日无即时变动。",
+      "name": "ChatGPT Pro 体系重构及 Pro 200 额度腰斩倒计时 (20x -> 10x 宽限期仅剩 6 天 T-6)",
+      "modelOrPlan": "ChatGPT Pro ($200/mo) 额度下调",
+      "vendor": "OpenAI",
+      "category": "quota_change",
+      "event_type": "quota_reduction",
+      "publishedPrice": "$200/月",
+      "quotaOrLimits": "由 20x 降为 10x，宽限期至 10-29 终了",
+      "activeStatus": "老订户宽限期仅剩 6 天 (T-6)",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://help.openai.com/en/articles/chatgpt-pro",
+      "impact_on_frontier": "中远期前沿核心风险点，届时 chatgpt_pro_20x 将退出成本前沿。",
+      "factSummary": "ChatGPT Pro 200 额度腰斩宽限期倒计时 6 天，10-30 起全量 10x。",
+      "currentRepoState": "当前维持 chatgpt_pro_20x 前沿点，需做情景储备。",
+      "recommendation": "prep_action",
+      "priority": "P1 (额度架构预警与前沿防御储备)",
+      "rationale": "倒计时临近，关乎前沿重大结构变迁。"
+    },
+    {
+      "model": "step-5-preview",
+      "provider": "StepFun (阶跃星辰)",
+      "eventType": "release_and_score",
+      "details": "阶跃星辰 Step 5 Preview 600B MoE 旗舰（27B 活跃，1M 上下文，64k 输出，原生多模态）开源权重持续在 Hugging Face 与魔搭社区全面开放（BF16/FP8，华为昇腾 950 与国产算力 0Day 适配）；首款大模型原生智能体手机 STEPX Neo 先行版进入首销第 8 日（Day 8，3999元，搭载 Snapdragon 8 Gen 5、Step AOS 1.0 与 Amoo 智能体，附赠 12 个月、每月百亿 Token 的 STEPX Token Plan）；腾讯 WorkBuddy 独家限免（10-12 至 10-25，剩余 2 天 / T-2）持续进行；API 标价确立为 $1.00/$2.70（缓存读取 $0.05）；AA 智力主榜最新收录 43.73 分 (TB4 33.33%, rank 32, cost $1.0264)；Coding Agent 载荷实测 Claude Code + Step-5 为 43.13% (0.4313)。",
+      "sourceUrl": "https://stepfun.ai/pricing",
+      "impactOnFrontier": "权重开源落地，手机进入首销放量期（Day 8），AA 智力榜出分 43.73。若后续被第三方聚合（如 OpenCode Go/Zen）纳管，将直接冲击 45-50 分位成本前沿。目前暂无稳定第三方包月订阅套餐点，对今日 Pareto 前沿无即时变动，列为 P1 重点观察对象。",
+      "name": "StepFun Step-5 Preview (600B MoE 旗舰开源落地、AA 出分 43.73 与手机首销放量 Day 8)",
+      "modelOrPlan": "StepFun Step-5 Preview 旗舰 MoE 定价、开源落地与手机首销 (Day 8)",
+      "vendor": "StepFun",
+      "category": "new_model_and_pricing",
+      "event_type": "new_model_and_pricing",
+      "publishedPrice": "输入 $1.00/MTok, 缓存读取 $0.05/MTok, 输出 $2.70/MTok",
+      "quotaOrLimits": "1M 上下文窗口 (64k 输出), 腾讯 WorkBuddy 限免体验期 (10-12 至 10-25, T-2 天), STEPX Neo 附赠每月百亿 Token Plan (12个月)",
+      "activeStatus": "权重开源完成，STEPX Neo 首销 Day 8 交付中，API 运行中，腾讯 WorkBuddy 限免剩余 2 天",
+      "satisfiesInclusion": false,
+      "rejectionReason": "虽已出分 43.73，但暂无固定月付/第三方低门槛聚合订阅套餐载体，暂不建标价档与采用值",
+      "source_url": "https://stepfun.ai/pricing",
+      "impact_on_frontier": "若后续被第三方聚合（如 OpenCode Go/Zen）纳管，将直接冲击 45-50 分位成本前沿。目前对今日 Pareto 前沿无即时变动，列为 P1 重点观察对象。",
+      "factSummary": "StepFun Step-5 Preview 600B MoE 旗舰定价确立为 $1.00 input / $0.05 cache read / $2.70 output，支持 1M 上下文，权重开源，AA 智力主榜出分 43.73，STEPX Neo 智能体手机首销 Day 8 附赠每月百亿 Token Plan，腾讯 WorkBuddy 限免进入最后 2 天倒计时。",
+      "currentRepoState": "repo 收录了 step-3.5-flash 与 step-plan 系列，尚未收录 Step-5 Preview 标价档。",
+      "recommendation": "prep_action",
+      "priority": "P1 (重点跟踪开源后第三方渠道落地与正榜收录)",
+      "rationale": "出分真实且权重开源，手机放量，等待第三方低价聚合落地后纳管。"
+    },
+    {
+      "model": "minimax-m3.1-flash-preview",
+      "provider": "MiniMax",
+      "eventType": "benchmark_entry_and_pricing",
+      "details": "MiniMax M3.1 Flash 正式录入 Artificial Analysis 智力榜（slug: minimax-m3-1-flash，最新载荷综合分 42.71，首发快照 42.38，Terminal-Bench 4.0 25.76%，单任务成本 $0.2201，端到端 20.96s / 125.5 tok/s，1M 上下文）；官方 API 按量标价 $0.15/$0.60/cache $0.015（缓存 90% 折扣）；M Plan 订阅已按发布价等额资金折算额度（Go 18.99 亿 / Explore 56.98 亿 / Build 227.92 亿）。",
+      "sourceUrl": "https://artificialanalysis.ai/leaderboards/models",
+      "impactOnFrontier": "补档后挂载该分数的 6 个 M Plan 点每任务成本约为 $0.037，全部被 Claude Max 20x × Haiku 5.5（43.40 分 @ $0.0034）支配，未进成本前沿与价格前沿，但建立完整基准收录档案。",
+      "name": "MiniMax M3.1 Flash (AA 智力榜出分确立与 M Plan 订阅额度等额资金折算稳固运行)",
+      "modelOrPlan": "MiniMax M3.1 Flash 标价、AA 出分与 M Plan 订阅方案",
+      "vendor": "MiniMax",
+      "category": "new_model_and_pricing",
+      "event_type": "new_model_and_pricing",
+      "publishedPrice": "输入 $0.15/MTok, 缓存读取 $0.015/MTok, 输出 $0.60/MTok",
+      "quotaOrLimits": "1,000,000 tokens 上下文窗口, M Plan 订阅 Go 18.99亿 / Explore 56.98亿 / Build 227.92亿",
+      "activeStatus": "API 现网运行中，AA 官方智力榜正式收录，M Plan 订阅现正销售",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://artificialanalysis.ai/leaderboards/models",
+      "impact_on_frontier": "Go 点每任务成本约 $0.037，被 Claude Max 20x × Haiku 5.5 ($0.0034) 支配，未进前沿。",
+      "factSummary": "MiniMax M3.1 Flash 官方 API 价稳固，AA 智力榜出分稳定（42.38/42.71），M Plan 订阅等额资金折算落盘并通过 19 项守卫部署。",
+      "currentRepoState": "repo 已建立 list-prices-minimax-m31-round1-2026-10-19.json 与 scores-minimax-m31-round1-2026-10-20.json，成功补档收录。",
+      "recommendation": "adopted",
+      "priority": "P0 (核心变动，已闭环稳定)",
+      "rationale": "已获 AA 权威出分且标价明确，顺利纳入计算管线。"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "provider": "DeepSeek",
+      "eventType": "score_jump_and_frontier_leadership",
+      "details": "DeepSeek-V4.1-Flash 1017 检查点在 AA 智力榜稳居 45.10（TB4 33.84%，TPS 216.5），标价 $0.30/$1.20/cache $0.006，在项目中助力 OpenDesign Go 跃居单价前沿第 2 位（real_price = 0.000805）。",
+      "sourceUrl": "https://artificialanalysis.ai/leaderboards/models",
+      "impactOnFrontier": "已稳居单价前沿第 2 位，成为 45 分位性能与价格最具竞争力的开源量化 MoE 标杆。",
+      "name": "DeepSeek V4.1 Flash (AA 1017 出分 45.10 跃居单价前沿第 2 位)",
+      "modelOrPlan": "DeepSeek V4.1 Flash 动态峰谷标价与 OpenDesign Go 2x 翻倍额度",
+      "vendor": "DeepSeek",
+      "category": "new_model_and_pricing",
+      "event_type": "new_model_and_pricing",
+      "publishedPrice": "闲时 $0.15/$0.60/hit $0.003，忙时 $0.30/$1.20/hit $0.006",
+      "quotaOrLimits": "1M 上下文，OpenDesign Go 专项 124.224 亿 tokens/mo ($120/mo)",
+      "activeStatus": "API 现网运行中，AA 榜单正式收录，单价前沿保持第 2 位",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://artificialanalysis.ai/leaderboards/models",
+      "impact_on_frontier": "居单价前沿第 2 位，稳守 45 分位极高性价比。",
+      "factSummary": "AA 1017 检查点实测分达 45.10，已纳管进单价前沿第 2 位。",
+      "currentRepoState": "repo 已收录 scores-deepseek-v41-flash-round1-2026-10-19.json，状态正常。",
+      "recommendation": "adopted",
+      "priority": "P0 (已纳管进基线)",
+      "rationale": "出分真实确凿，有力支撑单价前沿。"
+    },
+    {
+      "model": "github-copilot",
+      "provider": "GitHub / Microsoft",
+      "eventType": "subscription_update",
+      "details": "GitHub Copilot 定于 2026-10-19 正式强制执行 6 款旧模型退役（Gemini 3.7 Flash、GPT-5.5/5.4、GPT-5 mini/5.4 mini、Grok 4.5），今日进入全面强制生效第 5 天（T+4 / 生效第 5 日），全量迁移至 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7，AI Credits 架构运转稳定。",
+      "sourceUrl": "https://github.blog/changelog/",
+      "impactOnFrontier": "旧模型已正式下线，确保仓库中 Copilot 订阅点引用的模型均为有效现役模型，防止运行时元数据断裂。",
+      "name": "GitHub Copilot 计费体系全面切换为 AI Credits 与模型换代轮次 (10-19 强制退役生效第 5 天 T+4)",
+      "modelOrPlan": "GitHub Copilot 订阅计划 (Individual / Business / Enterprise)",
+      "vendor": "GitHub / Microsoft",
+      "category": "tool_subscription",
+      "event_type": "subscription_update",
+      "publishedPrice": "Individual $10/月, Business $19/月, Enterprise $39/月",
+      "quotaOrLimits": "AI Credits 统一折算机制，支持 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7",
+      "activeStatus": "已于 2026-10-19 正式执行强制淘汰，今日稳定运行第 5 天",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://github.blog/changelog/",
+      "impact_on_frontier": "Copilot 订阅点不在当前 Pareto 极致前沿上，但属于重要生态基准，模型有效性得到保障。",
+      "factSummary": "GitHub Copilot 6 款旧模型于 10-19 全量下线，无缝切换至新一代模型，AI Credits 稳定运行第 5 天。",
+      "currentRepoState": "repo 中已有 copilot 订阅点配置，需保持关注模型名称一致性。",
+      "recommendation": "monitor",
+      "priority": "P2 (跟踪强制升级落地情况)",
+      "rationale": "已顺利完成换代，生态风险消除。"
+    },
+    {
+      "model": "meta-muse-wonder",
+      "provider": "Meta",
+      "eventType": "third_party_availability",
+      "details": "Meta Muse Wonder（1M 上下文全模态推理，输入 $4.00 / 输出 $20.00 / 缓存读 $0.20）与 Muse Wonder Full (55.80分，仅限 Muse Code 订阅) 持续在 OpenRouter 提供按量服务，AA 智力 rawRecords 保持收录（52.39 / 55.80）。",
+      "sourceUrl": "https://openrouter.ai/models/meta/muse-wonder",
+      "impactOnFrontier": "目前未进入 AA curated 官方智力正榜，且暂无独立包月订阅套餐落地，对今日 Pareto 前沿无即时冲击。",
+      "name": "Meta Muse Wonder / Muse Wonder Full (OpenRouter 持续供应与 1M 上下文全模态)",
+      "modelOrPlan": "Meta Muse Wonder 系列 API",
+      "vendor": "Meta",
+      "category": "new_model_and_pricing",
+      "event_type": "third_party_availability",
+      "publishedPrice": "输入 $4.00/MTok, 缓存读 $0.20/MTok, 输出 $20.00/MTok",
+      "quotaOrLimits": "1,000,000 tokens 上下文",
+      "activeStatus": "OpenRouter 稳定供应中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "尚未映射入 AA 官方智力正榜且无固定月付订阅套餐",
+      "source_url": "https://openrouter.ai/models/meta/muse-wonder",
+      "impact_on_frontier": "若入榜将达 55.8 分，但按量单价较高，需等待包月订阅出现。",
+      "factSummary": "Muse Wonder / Full 持续按量供应，AA 留存 raw 评测记录。",
+      "currentRepoState": "repo 已有 muse-spark-1.3-contributor 稳居前沿，暂未收录 Wonder。",
+      "recommendation": "monitor",
+      "priority": "P2 (跟踪 AA 官方正榜映射与订阅渠道落地)",
+      "rationale": "保持密切跟踪。"
+    },
+    {
+      "model": "claude-sonnet-5.5",
+      "provider": "Anthropic",
+      "eventType": "pricing_and_policy",
+      "details": "Claude Sonnet 5.5 提示词缓存读取降价 50%（$0.10/MTok）在本地 round2 标价档稳固运行；新版防滥用 Usage Policy（2026-11-12 生效，距今 20 天 / T-20）确立 11 个高风险领域与物理设备控制；上游 PR #125 录入 Claude Pro × Opus 5.5 社区实测数据。",
+      "sourceUrl": "https://www.anthropic.com/pricing",
+      "impactOnFrontier": "增强 Sonnet 5.5 在单价前沿与实际 Agent 编码中的性价比，保持 Price Frontier 领先优势。",
+      "name": "Claude Sonnet 5.5 (Cache-Read 50% 降价稳固运行与新版防滥用使用守则)",
+      "modelOrPlan": "Claude Sonnet 5.5 API 标价与订阅",
+      "vendor": "Anthropic",
+      "category": "price_cut",
+      "event_type": "pricing_and_policy",
+      "publishedPrice": "输入 $3.00/MTok, 缓存写入 $3.75/MTok, 缓存读取 $0.10/MTok, 输出 $15.00/MTok",
+      "quotaOrLimits": "1,000,000 tokens 上下文",
+      "activeStatus": "新标价现网稳定生效中",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://www.anthropic.com/pricing",
+      "impact_on_frontier": "稳居单价前沿 56.00 分梯队。",
+      "factSummary": "Sonnet 5.5 缓存读取降至 $0.10，使用守则 11-12 生效（T-20），上游 PR #125 社区数据合并。",
+      "currentRepoState": "repo 已闭环纳管。",
+      "recommendation": "adopted",
+      "priority": "P0 (核心变动，已在流程中落实)",
+      "rationale": "已完成闭环收录。"
+    },
+    {
+      "model": "claude-haiku-5.5",
+      "provider": "Anthropic",
+      "eventType": "pricing_and_guardrail",
+      "details": "Claude Haiku 5.5 100k 悬崖计费（<=100k $0.10/$0.50 vs >100k $0.50/$2.50）由本地 3 档情景建模纳管，verify_haiku55_tiers 守卫验证通过，牢固守卫成本与单价前沿底座。",
+      "sourceUrl": "https://www.anthropic.com/claude-haiku-5-5",
+      "impactOnFrontier": "43.40 分 @ $0.0034 成本与 0.000237 单价绝对统治 40 分位前沿底座，且支配 MiniMax M Plan 点。",
+      "name": "Claude Haiku 5.5 (100k 分档计费与 Context Cliff 本地守卫验证)",
+      "modelOrPlan": "Claude Haiku 5.5 阶梯定价",
+      "vendor": "Anthropic",
+      "category": "new_model_and_pricing",
+      "event_type": "pricing_and_guardrail",
+      "publishedPrice": "<=100k $0.10/$0.50, >100k $0.50/$2.50",
+      "quotaOrLimits": "1,000,000 tokens 上下文",
+      "activeStatus": "现网运行中，3 档情景建模闭环",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+      "impact_on_frontier": "成本前沿与单价前沿不可动摇的双重底座。",
+      "factSummary": "Haiku 5.5 悬崖分档平稳运行，彻底压制同分位竞争对手。",
+      "currentRepoState": "repo 纳管完好。",
+      "recommendation": "adopted",
+      "priority": "P0 (已闭环，保持基准一致性)",
+      "rationale": "前沿基石。"
+    },
+    {
+      "model": "mistral-large-4",
+      "provider": "Mistral AI",
+      "eventType": "preview_and_open_weights",
+      "details": "Mistral Large 4 Preview ('le Chonk' 1.05T MoE，AA 智力最新出分 38.38) 维持优惠公测价 $0.68/$2.09，开源权重定于 10 月下旬开放（距今约 4-8 天，预计 10-27 至 10-31 / T-4~8）；OpenRouter 50% 启动折扣持续。",
+      "sourceUrl": "https://mistral.ai/news/mistral-large-4-preview",
+      "impactOnFrontier": "公测价具备极强竞争力，10 月底开源后若被聚合平台以固定月费包月纳管，将对 35-40 分位中端形成冲击。",
+      "name": "Mistral Large 4 Preview ('le Chonk' 1.05T MoE 公测与开源倒计时 T-4~8 天)",
+      "modelOrPlan": "Mistral Large 4 Preview",
+      "vendor": "Mistral AI",
+      "category": "new_model_and_pricing",
+      "event_type": "preview_and_open_weights",
+      "publishedPrice": "输入 $0.68/MTok, 输出 $2.09/MTok (OpenRouter 折扣 $0.34/$1.045)",
+      "quotaOrLimits": "1,000,000 tokens 上下文",
+      "activeStatus": "公测中，权重倒计时 4-8 天",
+      "satisfiesInclusion": false,
+      "rejectionReason": "虽有 AA 预览分 38.38，但暂无固定订阅套餐，处于公测期",
+      "source_url": "https://mistral.ai/news/mistral-large-4-preview",
+      "impact_on_frontier": "开源后或有重大突破，当前无即时影响。",
+      "factSummary": "1.05T MoE 公测运行中，开源权重 10 月下旬释放（T-4~8）。",
+      "currentRepoState": "未纳管，作为重点跟踪对象。",
+      "recommendation": "monitor",
+      "priority": "P1 (高价值旗舰候选)",
+      "rationale": "万亿参数级别开源落地具有分水岭意义。"
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "Google",
+      "eventType": "subscription_retired_and_api_promo",
+      "details": "Google AI Pro/Ultra 系列的 Gemini 4 Argon 订阅行已下架（实测确认为独立小池子，避免假前沿误导）；API 维持 Fairwind 受限试用优惠价 $2.00/$10.00（至 11-30，剩余 38 天 / T-38，12-01 转为标准价 $4.00/$20.00），Gemini 3.8 Flash 优惠期 ($0.75/$3.75) 延至 2026-12-31。",
+      "sourceUrl": "https://ai.google.dev/pricing",
+      "impactOnFrontier": "Argon 订阅行下架后不再占据成本前沿，成本前沿净化为 4 点，API 层面维持 53.0 分高智力基准。",
+      "name": "Gemini 4 Argon (独立配额池下架订阅行与 API 限制性试用优惠)",
+      "modelOrPlan": "Gemini 4 Argon API 及 Google AI 订阅",
+      "vendor": "Google",
+      "category": "pricing_and_quota",
+      "event_type": "subscription_retired_and_api_promo",
+      "publishedPrice": "Fairwind 试用价 $2.00/$10.00, 标准价 $4.00/$20.00",
+      "quotaOrLimits": "1,000,000 tokens 上下文",
+      "activeStatus": "现网优惠运行中，订阅行已清理",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "source_url": "https://ai.google.dev/pricing",
+      "impact_on_frontier": "前沿结构完成真实性净化，无假前沿干扰。",
+      "factSummary": "Argon 订阅行已下架，API 维持优惠至 11-30（剩余 38 天）。",
+      "currentRepoState": "repo 已执行下架，DISPLAY 映射补齐。",
+      "recommendation": "adopted",
+      "priority": "P2 (维持真实性基线)",
+      "rationale": "杜绝假前沿误导。"
+    },
+    {
+      "model": "inception-mercury-3",
+      "provider": "Inception / OpenRouter",
+      "eventType": "new_model_architecture",
+      "details": "Inception: Mercury 3 在 OpenRouter 正式上架，采用 Diffusion-based 语言模型架构，主打超高并行生成速度与 1.0M 上下文，首发平均按量标价约 $0.10/MTok 输入, $0.35/MTok 输出。",
+      "sourceUrl": "https://openrouter.ai/models/inception/mercury-3",
+      "impactOnFrontier": "非自回归扩散语言模型架构新尝试，当前未进入 AA 智力正榜且无订阅套餐载体，暂不冲击通用前沿。",
+      "name": "Inception: Mercury 3 (1M 扩散语言模型架构新探索)",
+      "modelOrPlan": "Inception: Mercury 3",
+      "vendor": "Inception",
+      "category": "new_model",
+      "event_type": "new_model_architecture",
+      "publishedPrice": "输入约 $0.10/MTok, 输出约 $0.35/MTok",
+      "quotaOrLimits": "1,000,000 tokens 上下文",
+      "activeStatus": "OpenRouter 供应中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "尚未在 AA 等权威生成榜出分且无套餐",
+      "source_url": "https://openrouter.ai/models/inception/mercury-3",
+      "impact_on_frontier": "无前沿影响。",
+      "factSummary": "扩散语言模型新探索，定位于高速生成场景。",
+      "currentRepoState": "未收录。",
+      "recommendation": "monitor",
+      "priority": "P3 (架构观察)",
+      "rationale": "观察扩散架构在长文本与代码推理中的稳定性。"
+    },
+    {
+      "model": "openai-decisions-api",
+      "provider": "OpenAI",
+      "eventType": "specialized_api",
+      "details": "OpenAI Decisions API (POST /v1/decisions, GPT-6 Luna, $0.10 in / $0 out) 处于稳定 beta，同步上线 AA Decision Index v1.0；OpenAI 公告 GPT-4 系列将于 2027-01-14 彻底移除，指定 gpt-6-luna 为迁移目标。",
+      "sourceUrl": "https://platform.openai.com/docs/guides/decisions",
+      "impactOnFrontier": "专用决策路由接口，不属于通用生成式基准，对当前 Pareto 前沿无直接影响。",
+      "name": "OpenAI Decisions API (GPT-6 Luna 与 2027-01-14 GPT-4 退役迁移路径)",
+      "modelOrPlan": "OpenAI Decisions API",
+      "vendor": "OpenAI",
+      "category": "specialized_api",
+      "event_type": "specialized_api",
+      "publishedPrice": "输入 $0.10/MTok, 输出 $0",
+      "quotaOrLimits": "专用单轮结构化决策接口",
+      "activeStatus": "公共 Beta 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "非通用生成式任务，无订阅套餐载体",
+      "source_url": "https://platform.openai.com/docs/guides/decisions",
+      "impact_on_frontier": "无通用前沿影响。",
+      "factSummary": "Decisions API 运行平稳，GPT-4 退役路线图确立向 Luna 迁移。",
+      "currentRepoState": "未收录专用端点。",
+      "recommendation": "monitor",
+      "priority": "P3 (专用功能接口，暂不采纳)",
+      "rationale": "专用路由工具。"
+    },
+    {
+      "model": "microsoft-decision-1",
+      "provider": "Microsoft / Nace.AI / Cloudflare",
+      "eventType": "specialized_model",
+      "details": "Nace.AI Drex Max ($0.06/$0.00)、Base Labs Elephant 1 (:free)、Microsoft-Decision-1 (基于 Qwen3.5-9B) 与 Cloudflare Clef Omni 专攻单轮快速决策与安全护栏，纳入 AA Decision Index v1.0。",
+      "sourceUrl": "https://artificialanalysis.ai/leaderboards/decisions",
+      "impactOnFrontier": "专用垂直模型，不冲击通用生成与编程前沿。",
+      "name": "Drex Max / Elephant 1 / Microsoft-Decision-1 / Clef Omni 决策路由模型",
+      "modelOrPlan": "决策垂直模型系列",
+      "vendor": "Microsoft / Nace.AI / Cloudflare",
+      "category": "specialized_model",
+      "event_type": "specialized_model",
+      "publishedPrice": "低至免费至 $0.06~$0.10/MTok",
+      "quotaOrLimits": "结构化分类路由",
+      "activeStatus": "运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "垂直决策模型不纳入通用大模型前沿",
+      "source_url": "https://artificialanalysis.ai/leaderboards/decisions",
+      "impact_on_frontier": "无影响。",
+      "factSummary": "垂直决策模型生态持续拓展。",
+      "currentRepoState": "未收录。",
+      "recommendation": "ignore",
+      "priority": "P3 (不采纳)",
+      "rationale": "垂直分类模型。"
+    },
+    {
+      "model": "elorian-glimpse",
+      "provider": "Elorian / OpenRouter",
+      "eventType": "new_model",
+      "details": "Elorian Glimpse 在 OpenRouter 上架，主打 262k 长上下文多模态视觉推理，定价适中。",
+      "sourceUrl": "https://openrouter.ai/models/elorian/glimpse",
+      "impactOnFrontier": "新锐模型尚未经过权威基准检验，无独立订阅套餐。",
+      "name": "Elorian Glimpse (262k 上下文视觉推理模型)",
+      "modelOrPlan": "Elorian Glimpse",
+      "vendor": "Elorian",
+      "category": "new_model",
+      "event_type": "new_model",
+      "publishedPrice": "输入 $0.80/MTok, 输出 $2.40/MTok",
+      "quotaOrLimits": "262,144 tokens 上下文",
+      "activeStatus": "OpenRouter 供应中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "未在 AA 等权威榜单出分且无套餐",
+      "source_url": "https://openrouter.ai/models/elorian/glimpse",
+      "impact_on_frontier": "无前沿影响。",
+      "factSummary": "长上下文视觉模型上架 OpenRouter。",
+      "currentRepoState": "未收录。",
+      "recommendation": "monitor",
+      "priority": "P3 (非主榜模型)",
+      "rationale": "观察权威出分。"
+    },
+    {
+      "model": "glm-5.3",
+      "provider": "Z.ai (智谱 AI)",
+      "eventType": "subscription_update",
+      "details": "GLM-5.3 全面登录 Amazon Bedrock 与国内 Z.ai 开放平台，GLM Coding Pro 订阅方案分档运转稳定。",
+      "sourceUrl": "https://bigmodel.cn/pricing",
+      "impactOnFrontier": "当前由本地 glm_coding_pro_cn 情景模型覆盖，未进入极致前沿，保持稳定。",
+      "name": "GLM-5.3 (Z.ai / Amazon Bedrock GA) 标价与 Coding 订阅方案",
+      "modelOrPlan": "GLM Coding Pro 套餐",
+      "vendor": "Z.ai (智谱 AI)",
+      "category": "subscription_update",
+      "event_type": "subscription_update",
+      "publishedPrice": "Coding Pro 约 299元/月",
+      "quotaOrLimits": "分高峰/平峰/低谷多档",
+      "activeStatus": "运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "已有既有情景模型纳管，无新调价",
+      "source_url": "https://bigmodel.cn/pricing",
+      "impact_on_frontier": "被当前前沿点支配，无变动。",
+      "factSummary": "GLM 订阅方案保持稳定运行。",
+      "currentRepoState": "已收录相关情景行。",
+      "recommendation": "monitor",
+      "priority": "P2 (储备候选模型与订阅方案)",
+      "rationale": "维持现有配置。"
+    },
+    {
+      "model": "devin-desktop-windsurf",
+      "provider": "Cognition (Devin) / Codeium",
+      "eventType": "platform_quota",
+      "details": "Devin Desktop 与 Windsurf 全面转向月度使用配额体系，旧版 Credits 彻底退役，折算模型稳定。",
+      "sourceUrl": "https://devin.ai/pricing",
+      "impactOnFrontier": "商业开发平台定价逐步明晰，单价折算尚难撼动裸模型或聚合订阅前沿。",
+      "name": "Devin Desktop / Windsurf 配额体系重构 (废除旧版 Credits)",
+      "modelOrPlan": "Devin Desktop / Windsurf 订阅",
+      "vendor": "Cognition / Codeium",
+      "category": "tool_subscription",
+      "event_type": "platform_quota",
+      "publishedPrice": "Devin $500/月 起, Windsurf $15~$60/月",
+      "quotaOrLimits": "基于月度工程会话配额",
+      "activeStatus": "运转中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "工具层平台溢价较高，未进入前沿",
+      "source_url": "https://devin.ai/pricing",
+      "impact_on_frontier": "暂无影响。",
+      "factSummary": "AI 编程平台配额制转型完成。",
+      "currentRepoState": "未作为前沿点纳管。",
+      "recommendation": "monitor",
+      "priority": "P2 (跟踪配额制折算模型)",
+      "rationale": "保持平台工具关注。"
+    },
+    {
+      "model": "qwen-4-anticipation",
+      "provider": "Alibaba Qwen",
+      "eventType": "ecosystem_anticipation",
+      "details": "Qwen3.8 系列扩展稳定，Qwen-Image-2.1-Turbo 运行中；阿里通义千问开源团队预计将于 10 月下旬至 11 月初揭晓 Qwen 4 下一代旗舰架构。",
+      "sourceUrl": "https://github.com/QwenLM",
+      "impactOnFrontier": "下一代 Qwen 4 若发布且开源，将成为重塑中端与顶尖开源前沿的重大变量。",
+      "name": "Qwen3.8 系列扩展与 Qwen 4 预期",
+      "modelOrPlan": "通义千问系列",
+      "vendor": "Alibaba Qwen",
+      "category": "ecosystem_anticipation",
+      "event_type": "ecosystem_anticipation",
+      "publishedPrice": "开源 / 按量服务",
+      "quotaOrLimits": "1M 上下文",
+      "activeStatus": "研发筹备中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "尚未正式发布",
+      "source_url": "https://github.com/QwenLM",
+      "impact_on_frontier": "未来核心潜在变量，目前无影响。",
+      "factSummary": "Qwen 4 蓄势待发，预计 10 月底迎来大版本揭晓。",
+      "currentRepoState": "repo 已有 qwen3.8 本地硬件点。",
+      "recommendation": "monitor",
+      "priority": "P2 (跟踪 Qwen 4 发布)",
+      "rationale": "高权重开源风向标。"
+    },
+    {
+      "model": "openrouter-elevenlabs-promo-ended",
+      "provider": "ElevenLabs / OpenRouter",
+      "eventType": "promotion_ended",
+      "details": "OpenRouter 针对 ElevenLabs 语音模型的 50% 折扣活动已截止，全面恢复原价。",
+      "sourceUrl": "https://openrouter.ai/models",
+      "impactOnFrontier": "非通用代码与智力大模型，对当前 Pareto 前沿无任何影响。",
+      "name": "ElevenLabs 全系列 50% 折扣活动截止 (现已恢复原价)",
+      "modelOrPlan": "ElevenLabs 语音模型按量",
+      "vendor": "ElevenLabs / OpenRouter",
+      "category": "promotion_ended",
+      "event_type": "promotion_ended",
+      "publishedPrice": "恢复原价",
+      "quotaOrLimits": "音频模型",
+      "activeStatus": "优惠已结束",
+      "satisfiesInclusion": false,
+      "rejectionReason": "纯语音垂直模型且活动已结束",
+      "source_url": "https://openrouter.ai/models",
+      "impact_on_frontier": "无影响。",
+      "factSummary": "OpenRouter ElevenLabs 折扣活动结束，标记为已过期。",
+      "currentRepoState": "未收录音频模型。",
+      "recommendation": "ignore",
+      "priority": "P3 (非主榜模型)",
+      "rationale": "活动已截止且非主榜模型。"
+    }
+  ],
+  "toolAndIDEPlans": {
+    "cursor": {
+      "pro": "$20/月 (500 fast requests + unlimited slow requests)",
+      "proPlus": "$60/月 (1,500 fast requests + higher priority)",
+      "ultra": "$200/月 (unlimited fast requests + dedicated GPU pool + $400 other models pool)",
+      "notes": "双配额池运行平稳，无新增调价。"
+    },
+    "githubCopilot": {
+      "pro": "$10/月 (Individual)",
+      "business": "$19/seat/月",
+      "enterprise": "$39/seat/月",
+      "notes": "10-19 已完成强制换代，全面切换为 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7，今日生效第 5 天 (T+4)。"
+    },
+    "windsurfDevin": {
+      "windsurf": "$15~$60/月 (Cascade 模式配额)",
+      "devin": "$500/月 起 (企业工程级 Autonomous Agent)",
+      "notes": "月度配额制运行稳定。"
+    },
+    "openCode": {
+      "go": "$10/月 (Muse Spark 1.3 Contributor 支撑成本与单价前沿第 3 位)",
+      "zen": "$30/月",
+      "openDesignGo": "$120/月 (DeepSeek V4.1 Flash 支撑单价前沿第 2 位)",
+      "notes": "第三方聚合订阅效费比极高，牢固占据关键 Pareto 点位。"
+    }
+  },
+  "communitySignals": [
+    {
+      "channel": "LINUX DO (L站)",
+      "sentiment": "热烈探讨 OpenAI o4-mini 今日正式停用后的平替方案、跟踪 STEPX Neo 手机首销 Day 8 固件进阶玩法与 DeepSeek V4.1 Flash 1017 检查点",
+      "summary": "2026-10-23 社区核心关注：OpenAI o4-mini 接口今日正式停用下线，佬友们热烈分享迁移至 GPT-6 Luna 或 DeepSeek V4.1 Flash 的轻量推理平替方案与提示词微调经验；STEPX Neo 智能体手机（3999元）首销进入第 8 日（Day 8），社区深入探索针对 Step AOS 1.0 底层 MCP 协议的跨应用 Agent 挂载能力；DeepSeek V4.1 Flash 1017 出分（45.10）后的 Engram 条件记忆缓存机制在消费级工作站卸载运行持续受到高度推崇。"
+    },
+    {
+      "channel": "Reddit (r/LocalLLaMA, r/ClaudeAI, r/OpenAI)",
+      "sentiment": "热议 OpenAI o4-mini 正式下线生效 (Day 1)、ChatGPT Pro 200 额度腰斩倒计时 (T-6 天)、Anthropic 11-12 新版 Usage Policy (T-20 天) 与 Mistral Large 4 权重开源预期 (T-4~8 天)",
+      "summary": "2026-10-23 国际开发者热议：OpenAI o4-mini API 停用今日正式落地生效，开发者确认接口报错并完成最后存量依赖清理；ChatGPT Pro 200 老订户宽限期仅剩 6 天（10-29 终了），社区加紧测试 10x 生效后的调用预算分配策略；Anthropic 新版防滥用守则（11-12 生效，距今 20 天 / T-20）对自动化智能体高风险领域人机协同机制引发广泛解读；Mistral Large 4 Preview 开源倒计时进入最后 4-8 天，各大开源推理框架准备就绪。"
+    },
+    {
+      "channel": "GitHub & Developer Ecosystem",
+      "sentiment": "GitHub Copilot 旧模型强制退役全面生效第 5 天（T+4），迁移至新一代模型运转平稳；上游 real-api-pricing 维持 PR #125 合并状态",
+      "summary": "2026-10-23 开发者反馈：GitHub Copilot 移除 6 款旧模型后，转向 Gemini 3.8 Flash、GPT-6.1 Sol、GPT-6 Luna 与 Grok 4.7 运行平稳，无阻断性缺陷报告；上游 real-api-pricing 保持与本仓库的方法学兼容。"
+    },
+    {
+      "channel": "OpenRouter & Model Hubs",
+      "sentiment": "Inception: Mercury 3 扩散语言模型引起尝鲜热潮；MiniMax M3.1 Flash 与 DeepSeek V4.1 Flash 吞吐量持续攀升",
+      "summary": "2026-10-23 聚合平台动态：OpenRouter 上架 Inception: Mercury 3 扩散语言模型吸引大量开发者实测其非自回归并行生成吞吐；MiniMax M3.1 Flash 与 DeepSeek V4.1 Flash 凭借极高性价比持续稳居调用量前列；Meta Muse Wonder / Full 保持按量供应。"
+    }
+  ],
+  "coreConclusionsForLead": [
+    "【核心节点 1：OpenAI o4-mini 今日正式停用生效 (Day 1)】OpenAI 官方定于今日（2026-10-23）正式终止 o4-mini API 接口服务并下线旧版快照与微调模型，今日为生效首日（Day 1）。由于本项目基准与采用点早已全面换代至 GPT-6 系列（GPT-6.1 Sol / GPT-6 Luna），无任何直接破坏，排查确认无历史死链残留。",
+    "【核心节点 2：ChatGPT Pro 200 额度腰斩倒计时仅剩 6 天 (10-29, T-6)】OpenAI Pro 200 方案额度确定下调为 10x（老用户宽限至 2026-10-29 终了，10-30 起统一降为 10x，距今仅剩 6 天 / T-6）。当前项目 Pareto 成本前沿重度依赖 chatgpt_pro_20x 的超高估算额度（129.02 亿 tokens），宽限期终了后其实际单价将翻倍，导致该订阅点退出前沿。需提前研制 chatgpt_pro_10x 分档情景点以平滑过渡；同时关注 OpenAI 正式确立的 2027-01-14 GPT-4 全系退役路线图。",
+    "【核心催化点 3：AA 2026-10-23 每日刷新与 Step-5 Preview 正榜出分 43.73】Artificial Analysis 今日全量刷新快照（payload 548fb16eb632...），清理剔除了 7 款历史废弃模型（gpt-5.6-sol, grok-4.6, deepseek-v4-flash, qwen3.8-max, claude-opus-5, gpt-5.6-luna, gpt-6-sol），主榜收敛至 34 个模型；Step-5 Preview 在智力主榜录得 43.73 分 (TB4 33.33%, cost $1.0264, rank 32)，Coding Agent 载荷录得 43.13%；Mistral Large 4 Preview 录得 38.38 分；MiniMax M3.1 Flash (42.71) 与 DeepSeek V4.1 Flash 1017 (45.10) 保持稳定。",
+    "【核心催化点 4：STEPX Neo 智能体手机首销第 8 日 (Day 8) 与 Step-5 权重开源】阶跃星辰首款大模型原生智能体手机 STEPX Neo 先行版（3999元，16G+256G，搭载 Snapdragon 8 Gen 5、Step AOS 1.0、Mini-LED 副屏与 Amoo 智能体，附赠 12 个月、每月百亿 Token 的 STEPX Token Plan）进入全网首销第 8 日（Day 8）；其 600B MoE 基座 Step-5 Preview 完整权重在 Hugging Face 与魔搭社区全面就绪（BF16/FP8 精度，原生支持 vLLM 与 SGLang，昇腾 950 等国产算力 0Day 适配）；腾讯 WorkBuddy 独家限免（10-12 至 10-25）倒计时进入最后 2 天（T-2）；官方标价（$1.00/$2.70，缓存读取 $0.05）平稳运行。一旦后续被第三方聚合订阅（如 OpenCode Go/Zen）纳管，将直接冲击 45-50 分位成本前沿，维持 P1 重点观察。",
+    "【核心催化点 5：MiniMax M3.1 Flash 智力出分 42.71 与 M Plan 订阅稳固被 Haiku 支配】MiniMax M3.1 Flash 在 AA 智力榜综合得分确立为 42.71（四舍五入 42，TB4 达 25.76%，单任务成本 $0.2201，端到端 20.96s / 125.5 tok/s，1M 上下文）；官方按量价确立为 $0.15/$0.60/cache $0.015（缓存 90% 折扣）；M Plan 额度等额资金折算（Go 18.99 亿 / Explore 56.98 亿 / Build 227.92 亿）运行完好，6 个 M Plan 订阅点每任务成本约为 $0.037，全部被 Claude Max 20x × Haiku 5.5（43.40 分 @ $0.0034）支配，未进前沿，但海量额度表现亮眼，前沿数据闭环健康。",
+    "【核心催化点 6：GitHub Copilot 10-19 强制退役 6 款旧模型全面生效第 5 天 (T+4)】GitHub Copilot 于 2026-10-19 强制停用 Gemini 3.7 Flash、GPT-5.5/5.4、GPT-5 mini/5.4 mini、Grok 4.5，全面升级至 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7。今日（10-23）进入强制生效第 5 天（T+4 / 生效第 5 日），运行平稳无阻断故障，仓库中既有 Copilot 订阅点配置有效性得到保障。",
+    "【核心发现 7：Claude Haiku 5.5 悬崖与 Sonnet 5.5 降价稳固运行】Sonnet 5.5 缓存读取降至 $0.10/MTok 在本地 round2 标价档稳固运行；Haiku 5.5 100k 悬崖由本地 3 档情景建模纳管，verify_haiku55_tiers 守卫验证通过；新版 Usage Policy 定于 11-12 生效（重点强化高风险领域与物理设备安全，距今 20 天 / T-20）。上游 PR #125 录入 Claude Pro × Opus 5.5 社区实测数据，保持一致。",
+    "【核心发现 8：当前 Pareto 前沿整体稳定】今日 AA 智力主榜进一步清理废弃模型后，成本前沿稳固维持 4 个点（Haiku 5.5, Muse Spark 1.3, GPT-6.1 Sol, Opus 5.5），价格前沿维持 5 个点（Haiku 5.5, DeepSeek V4.1 Flash, Muse Spark 1.3, Sonnet 5.5, Opus 5.5）。今日全网暂无颠覆当前 Pareto 前沿构成的突发正式发布，基线状态保持稳固，real-plan 采用值与标价无需即时调价。"
+  ]
+}

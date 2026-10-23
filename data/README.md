@@ -10,8 +10,8 @@ These files are the public redacted edition. Original local evidence is backed u
 
 | Board / 榜单 | Scored rows / 有分行 | Unscored rows / 缺分行 |
 |---|---:|---:|
-| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->194<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_aa_intelligence_index -->141<!-- /stat --> |
-| AA Coding Agent | <!-- stat:scored_aa_coding_agent_index -->121<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_aa_coding_agent_index -->214<!-- /stat --> |
+| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->197<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_aa_intelligence_index -->138<!-- /stat --> |
+| AA Coding Agent | <!-- stat:scored_aa_coding_agent_index -->98<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_aa_coding_agent_index -->237<!-- /stat --> |
 | Code Arena | <!-- stat:scored_arena_code -->268<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_arena_code -->67<!-- /stat --> |
 | Agent Arena | <!-- stat:scored_arena_agent_mode -->208<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_arena_agent_mode -->127<!-- /stat --> |
 | OpenDesign Arena | <!-- stat:scored_open_design_arena -->77<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_open_design_arena -->258<!-- /stat --> |
