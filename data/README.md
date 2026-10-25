@@ -16,7 +16,7 @@ These files are the public redacted edition. Original local evidence is backed u
 | Agent Arena | <!-- stat:scored_arena_agent_mode -->208<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_arena_agent_mode -->127<!-- /stat --> |
 | OpenDesign Arena | <!-- stat:scored_open_design_arena -->77<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_open_design_arena -->258<!-- /stat --> |
 | Terminal-Bench 4.0 | <!-- stat:scored_terminal_bench_4 -->113<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_terminal_bench_4 -->222<!-- /stat --> |
-| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->190<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_aa_terminal_bench_4 -->145<!-- /stat --> |
+| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->182<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_aa_terminal_bench_4 -->153<!-- /stat --> |
 | DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->199<!-- /stat --> / <!-- stat:points_total -->335<!-- /stat --> | <!-- stat:unscored_deepswe_1_1 -->136<!-- /stat --> |
 
 具体缺分模型以 [`points.csv`](../derived/points.csv) / [`points.json`](../derived/points.json) 的空分数字段为准；不为缺失模型补造分数。
