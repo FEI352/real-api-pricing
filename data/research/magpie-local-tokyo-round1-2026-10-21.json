@@ -1,0 +1,4508 @@
+{
+  "schema_version": 1,
+  "collected_at": "2026-10-22",
+  "observation_cutoff": "2026-10-21T15:50:00Z",
+  "title": "Anonymous local and Tokyo Magpie quota evidence",
+  "adoption_status": "Research-only PR. Conditional measured evidence, not a change to the adopted price table.",
+  "adoption_reason": "CONVENTIONS.md section 3 requires maintainer resolution of conflicting measurements. Different account variants, workloads and reset cycles must not be silently averaged or replace existing anchors.",
+  "reference_repository": {
+    "url": "https://github.com/Fei2411/real-api-pricing",
+    "revision": "087fd0961930475af3f01b6940da9648adcf88f0",
+    "conventions": {
+      "updatedAt": "2026-10-16",
+      "project": "真实API定价",
+      "role": "定义当前采用、计算、绘图和公开发布共用的项目口径",
+      "formula": "订阅价 ÷ 用户实际能用到的月 token = 真实混合单价",
+      "usdPerCny": 6.7787,
+      "exchangeRate": {
+        "date": "2026-09-04",
+        "pair": "USD/CNY",
+        "units": "CNY per USD; legacy field usdPerCny stores this direction",
+        "kind": "人民币汇率中间价",
+        "labelZh": "中国外汇交易中心中间价，新华社转载",
+        "labelEn": "CFETS central parity, via Xinhua",
+        "source": "https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html",
+        "evidence": "data/research/fx-caijing-round5-2026-09-05.json",
+        "previousRate": 7.2,
+        "note": "2026-09-05为周六，采用最近交易日9月4日中间价；非银行卡实际结算价。100美元=677.87人民币。"
+      },
+      "unmeteredPolicy": "订阅内明确不占额度、无并发上限的模型：真实单价记 0、显示为 ≈$0/MTok（分母无界，趋于 0 而非精确 0），X 轴以专用‘不计额度’刻度位表示、不进对数换算；参与前沿。促销口径必须标截止日并在到期后复核。",
+      "promotions": {
+        "devin_swe2": {
+          "startDate": "2026-09-10",
+          "endDate": "2026-10-31",
+          "labelZh": "SWE-2 促销：Pro/Max/Teams 不计额度",
+          "labelEn": "SWE-2 promo: unmetered on Pro/Max/Teams",
+          "endDateBasis": "2026-09-12 给定；官推仅写 for the next month",
+          "evidence": "data/research/devin-swe2-round1-2026-09-12.json"
+        }
+      },
+      "monthWeeks": 4,
+      "monthWeeksAlt": "30/7 只作灵敏度",
+      "tokenPolicy": "所有 token 一视同仁；美元额度和三段价统一按项目标准负载折算",
+      "standardTokenMix": {
+        "cache": 0.97,
+        "input": 0.025,
+        "output": 0.005,
+        "labelZh": "项目统一标准负载：缓存读取97% / 普通输入2.5% / 输出0.5%",
+        "labelEn": "Project standard workload: 97% cache reads / 2.5% fresh input / 0.5% output",
+        "note": "固定比较口径，不代表任何平台或用户的实际负载；三项合计100%。当前不单列cache write；厂商另收缓存写入费时，换算可能偏高估token。2026-09-23 由 97.5%/2.15%/0.35% 修订为本值：standard-token-mix-round2-2026-09-23.json 14样本审计（输出中位0.51%、输入中位2.79%、剔除网关池化96.89/2.57/0.54），裁定。"
+      },
+      "lowCacheTokenMix": {
+        "cache": 0.85,
+        "input": 0.145,
+        "output": 0.005,
+        "labelZh": "低缓存负载：缓存读取85% / 普通输入14.5% / 输出0.5%",
+        "labelEn": "Low-cache workload: 85% cache reads / 14.5% fresh input / 0.5% output",
+        "note": "2026-09-22 裁定的第二档统一负载，用于实测打不到标准 97% cache 的渠道（当前：Step 全系、Google——Gemini 实测 82.6% 属同族，2026-09-30 裁定其实测样本按标价折 worth 后用本档换算）。锚点：step-5-preview 本机实测 mix 79.0%/20.7%/0.34%（210.17M tokens，stepfun-step5-panel-round5-2026-09-21.json）与 Google AI Pro 实测 82.6%，统一取 85% 档；step5 采用值的 decision_note 内保留 79% 实测口径对照数。非cache部分输出占比 0.5% 跟随标准负载、余量归输入。2026-09-23 随标准档由 85%/14.65%/0.35% 修订（standard-token-mix-round2-2026-09-23.json）。"
+      },
+      "anthropicTokenMix": {
+        "cache": 0.97,
+        "cacheWrite": 0.025,
+        "output": 0.005,
+        "labelZh": "Anthropic 统一负载：缓存读97% / 缓存写2.5% / 输出0.5%",
+        "labelEn": "Anthropic workload: 97% cache reads / 2.5% cache writes / 0.5% output",
+        "note": "Anthropic 单独收缓存写入费，未命中缓存的输入几乎全部走缓存写（Devin 面板 input 0.001%/write 7.67%；MiaAI Claude Code 样本 input 0.14%/write 2.05%），故标准档的普通输入份额对 Anthropic 按 5 分钟缓存写入价计；份额与 standardTokenMix 联动（cacheWrite = standard.input）。2026-09-24 裁定。"
+      },
+      "sourcePriority": [
+        "维护者面板截图反推、受控打满实测、官方绝对token或积分表",
+        "本地日志/ccusage与同窗额度百分比",
+        "确认；若与多个独立来源冲突，必须公开冲突并重新拍板",
+        "官方美元/credits额度与三段价按项目统一标准负载换算",
+        "第三方综述和跨档假设仅作低置信旁证"
+      ]
+    }
+  },
+  "source_files": {
+    "local": {
+      "quota-history.json": {
+        "sha256": "3822ef9d711e88832f8e238eb5ad80442783d0d06e2a79e1eff82c537067465c",
+        "bytes": 252902
+      },
+      "quotas.json": {
+        "sha256": "c91ffb4387b275cfcc294a563cf227e740b2ae920fbce3ef2fdc97a6adf16f12",
+        "bytes": 4259
+      },
+      "usage.jsonl": {
+        "sha256": "830166c166b320c92d95e9f3e06deea045849efa3e44bcf8c2d451a92e5aa461",
+        "bytes": 24285467
+      }
+    },
+    "tokyo": {
+      "quota-history.json": {
+        "sha256": "6ef9eee61b924d1c53ec233d5018f2c00b2a4edc18be3ffd79b1b5b222adccb9",
+        "bytes": 61633
+      },
+      "quotas.json": {
+        "sha256": "c53d84b6c1cfaf8677e0ebd399264262652e9684a91750b6adc2cf22ec720ff4",
+        "bytes": 4193
+      },
+      "usage.jsonl": {
+        "sha256": "f138cbb375de99da45943d59011936c5ae948b0712323c0551e1e5fa09ecdb23",
+        "bytes": 3280211
+      }
+    }
+  },
+  "collection": {
+    "input_gateway_rows": {
+      "local": 41357,
+      "tokyo": 5150
+    },
+    "mirrored_forwarding_rows_removed": 207,
+    "merged_gateway_rows": 46300,
+    "gateway_rows_at_or_before_cutoff": 46292,
+    "deduplication": "Same upstream response ID and complete token vector; retain upstream provider record over the local forwarding alias. Shared accounts and histories are one pool, not independent hosts.",
+    "direct_audit": {
+      "cutoff": "2026-10-21T15:50:00+00:00",
+      "records": 23582,
+      "sha256": "bf3406f6fc66e6322e9b9c413daee95ac133722f7b051f015b9360ae904417ea",
+      "pages": 48,
+      "minimum_total": 23619,
+      "maximum_total": 23619,
+      "status": "stable_page_totals_with_cutoff",
+      "limitation": "All 48 page totals were stable. No snapshot-isolation guarantee; captured candidates can downgrade evidence, but absence of other direct usage is not proven. Grades capped at medium.",
+      "agent_counts": {
+        "codex": 15683,
+        "claude": 232,
+        "dsh": 150,
+        "kimi": 96,
+        "minimax-code": 7394,
+        "agy": 27
+      }
+    },
+    "tokyo_direct_audit": {
+      "method": "Read-only magpie usage --csv --days 11 inside the existing container",
+      "rows": 5177,
+      "direct_rows": 0,
+      "sha256": "bd82c1e0699bbed8b8b611797a2a9b26f7e6987d34813e2614549975b543b55e",
+      "limitation": "No direct-session rows found by the installed CLI; this does not prove no activity outside its discovered sources."
+    },
+    "account_identity": "Anonymous stable references only. No emails, host addresses, request/session IDs, credentials, prompts or absolute private paths exported."
+  },
+  "qualification_policy": {
+    "version": "delta_sample_stability_v1",
+    "high": {
+      "delta_pp": 30,
+      "model_calls": 200,
+      "effective_segments": 4,
+      "weighted_cv": 0.25,
+      "leave_one_out_change": 0.15,
+      "rounding_ratio": 0.1
+    },
+    "medium": {
+      "delta_pp": 10,
+      "model_calls": 30,
+      "effective_segments": 1.5,
+      "weighted_cv": 0.5,
+      "leave_one_out_change": 0.35,
+      "rounding_ratio": 0.25
+    },
+    "gap_fraction_medium_cap": 0.25,
+    "direct_ratio_medium_cap": 0.05,
+    "direct_ratio_low_cap": 0.2,
+    "interpretation": "Local evidence rubric; thresholds are not vendor rules or confidence probabilities"
+  },
+  "methodology": {
+    "equation_normalized": "sum(sample model list-worth) / (sum(delta_pp)/100) / reference_blend * 1e6",
+    "equation_raw": "sum(sample model raw tokens) / (sum(delta_pp)/100)",
+    "pure_model_only": true,
+    "unmetered_models": "Excluded under the pinned repository promotion rules.",
+    "rejected_mixed_pools": "No model contribution proxy or NNLS value admitted as exclusive capacity.",
+    "month": "Four weeks; Kimi uses the project convention of five weekly pools. These are saturated comparison scenarios.",
+    "rounding": "Endpoint +/-1pp sensitivity; not a statistical confidence interval.",
+    "miniMax_exception": "M3.1 Flash Preview has no adopted independent reference rates. Raw only under the existing 2026-10-01 exception; the newer minimax-m3.1-flash identifier is not assumed identical.",
+    "grade": "Transparent evidence rubric, not a probability. Statistical grade is separate from tier/fee confirmation and population representativeness.",
+    "limits": "Conditional observational estimates. Hidden client activity, sampling latency, price/weight changes and account variants can alter capacity. Arithmetic can be reproduced from anonymous aggregates; private raw attribution cannot be independently authenticated from this public edition."
+  },
+  "official_facts": [
+    {
+      "id": "command_code_goat_credit_terms",
+      "evidence_grade": "high",
+      "type": "official_credit_terms",
+      "verified_on": "2026-10-22",
+      "urls": [
+        "https://commandcode.ai/docs/plans/goat",
+        "https://commandcode.ai/docs/resources/usage-limits"
+      ],
+      "monthly_fee_usd": 10,
+      "usage_limits_table_monthly_credits": 70,
+      "five_hour_usage_credits": 14,
+      "weekly_usage_credits": 35,
+      "plan_page_headline_credits": 80,
+      "different_scopes": "The refreshed GOAT page headline says 80 and its per-model section says up to 80; its Usage limits section and the separate usage-limits table still say 70 monthly / 14 five-hour / 35 weekly. Preserve both observations. Do not replace the shared pool with 80 or treat per-model allowances as additive.",
+      "local_cached_observation": {
+        "observed_at": "2026-10-21T15:50:48Z",
+        "plan": "GOAT",
+        "monthly_used_percent": 68.811565488,
+        "monthly_display_used": 48.17,
+        "monthly_display_cap": 70
+      },
+      "unit": "Vendor usage credits; monthly allowance and window slices are not additive and not universal API-list-dollar balances.",
+      "excluded_legacy_constants": {
+        "five_hour": 10,
+        "weekly": 40,
+        "reason": "Old local collector constants are not current vendor evidence. Neither they nor percentage-only cache records establish an actual current window cap."
+      },
+      "adopted": false
+    }
+  ],
+  "measurements": [
+    {
+      "id": "kimi_allegro-cycle-1-kimi-k3",
+      "account_ref": "kimi_allegro",
+      "provider": "kimi-code-cn",
+      "plan": "Kimi Allegro",
+      "model": "kimi-k3",
+      "telemetry_model": "kimi-k3",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "existing_contributor_account_map",
+        "vendor_tier_label": null,
+        "note": "Historical local mapping; missing vendor tier labels do not independently verify the tier or paid fee."
+      },
+      "reference_monthly_fee": {
+        "value": 699,
+        "currency": "CNY",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-17T15:31:42Z",
+      "period_end": "2026-10-21T15:44:58Z",
+      "cycle_start": "2026-10-17T13:19:32+00:00",
+      "resets_at": "2026-10-24T13:19:32+00:00",
+      "workload": "standard",
+      "normalized": true,
+      "reference_rates_usd_per_MTok": {
+        "cache_read": 0.3,
+        "input": 3.0,
+        "output": 15.0,
+        "cache_write_5m": 3.0,
+        "cache_write_1h": 3.0
+      },
+      "reference_blend_usd_per_MTok": 0.441,
+      "weekly_tokens": 643841587,
+      "weeks_per_comparison_month": 5,
+      "monthly_tokens": 3219207935,
+      "saturated_reference_price_native_per_MTok": 0.21713415663533397,
+      "rounding_sensitivity_weekly_tokens": [
+        636266980,
+        651598715
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 84,
+      "calls": 2782,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "high",
+        "grade": "medium",
+        "scope": "standardized_weekly_capacity",
+        "delta_pp": 84,
+        "model_calls": 2782,
+        "segments": 7,
+        "effective_segments": 6.277580071174377,
+        "weighted_cv": 0.23596231982729252,
+        "leave_one_out_max_relative_change": 0.07244099172058527,
+        "rounding_delta_relative_error": 0.011904761904761904,
+        "disjoint_runs": 1,
+        "segment_min_tokens": 408900226.75736964,
+        "segment_max_tokens": 953365058.7507732,
+        "cycle_observed_delta_pp": 84,
+        "estimation_span_relevant_delta_pp": 84,
+        "excluded_delta_within_span_pp": 0,
+        "selected_cycle_delta_fraction": 1.0,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated",
+        "segment_capacity_varies_over_2x"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-17T15:31:42Z",
+          "period_end": "2026-10-19T13:14:38Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 377,
+              "request_count": 378,
+              "tokens": {
+                "in": 1096384,
+                "out": 113480,
+                "cache_read": 27072699,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 28282563
+              },
+              "reference_worth_usd": 13.1131617,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T13:14:38Z",
+          "period_end": "2026-10-20T12:22:46Z",
+          "pct_consumed": 12,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 260,
+              "request_count": 266,
+              "tokens": {
+                "in": 2496449,
+                "out": 286423,
+                "cache_read": 32844360,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 35627232
+              },
+              "reference_worth_usd": 21.639,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T12:22:46Z",
+          "period_end": "2026-10-20T15:01:08Z",
+          "pct_consumed": 11,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 335,
+              "request_count": 336,
+              "tokens": {
+                "in": 2340918,
+                "out": 229642,
+                "cache_read": 57661639,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 60232199
+              },
+              "reference_worth_usd": 27.7658757,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T15:01:08Z",
+          "period_end": "2026-10-21T06:41:16Z",
+          "pct_consumed": 17,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 827,
+              "request_count": 830,
+              "tokens": {
+                "in": 3285119,
+                "out": 467235,
+                "cache_read": 104063808,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 107816162
+              },
+              "reference_worth_usd": 48.0830244,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T06:41:16Z",
+          "period_end": "2026-10-21T10:12:01Z",
+          "pct_consumed": 10,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 209,
+              "request_count": 209,
+              "tokens": {
+                "in": 3027471,
+                "out": 126815,
+                "cache_read": 46369780,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 49524066
+              },
+              "reference_worth_usd": 24.895572,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T10:12:01Z",
+          "period_end": "2026-10-21T14:02:20Z",
+          "pct_consumed": 18,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 472,
+              "request_count": 475,
+              "tokens": {
+                "in": 4681058,
+                "out": 290004,
+                "cache_read": 127890236,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 132861298
+              },
+              "reference_worth_usd": 56.7603048,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T14:02:20Z",
+          "period_end": "2026-10-21T15:44:58Z",
+          "pct_consumed": 11,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "kimi-k3": {
+              "calls": 302,
+              "request_count": 302,
+              "tokens": {
+                "in": 2545380,
+                "out": 150083,
+                "cache_read": 121201180,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 123896643
+              },
+              "reference_worth_usd": 46.247739,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    },
+    {
+      "id": "supergrok_heavy-cycle-0-grok-4.7",
+      "account_ref": "supergrok_heavy",
+      "provider": "grok",
+      "plan": "SuperGrok Heavy",
+      "model": "grok-4.7",
+      "telemetry_model": "grok-4.7",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "existing_contributor_account_map",
+        "vendor_tier_label": null,
+        "note": "Historical local mapping; missing vendor tier labels do not independently verify the tier or paid fee."
+      },
+      "reference_monthly_fee": {
+        "value": 300,
+        "currency": "USD",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-13T16:23:39Z",
+      "period_end": "2026-10-16T14:13:12Z",
+      "cycle_start": "2026-10-09T14:14:17+00:00",
+      "resets_at": "2026-10-16T14:14:17+00:00",
+      "workload": "standard",
+      "normalized": true,
+      "reference_rates_usd_per_MTok": {
+        "cache_read": 0.5,
+        "input": 2.0,
+        "output": 6.0,
+        "cache_write_5m": 2.0,
+        "cache_write_1h": 2.0
+      },
+      "reference_blend_usd_per_MTok": 0.5650000000000001,
+      "weekly_tokens": 2148880956,
+      "weeks_per_comparison_month": 4,
+      "monthly_tokens": 8595523824,
+      "saturated_reference_price_native_per_MTok": 0.03490188685910622,
+      "rounding_sensitivity_weekly_tokens": [
+        1953528142,
+        2387645506
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 10,
+      "calls": 1755,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "medium",
+        "grade": "medium",
+        "scope": "standardized_weekly_capacity",
+        "delta_pp": 10,
+        "model_calls": 1755,
+        "segments": 2,
+        "effective_segments": 2.0,
+        "weighted_cv": 0.10585558201299336,
+        "leave_one_out_max_relative_change": 0.10585558201299339,
+        "rounding_delta_relative_error": 0.1,
+        "disjoint_runs": 1,
+        "segment_min_tokens": 1921409911.5044243,
+        "segment_max_tokens": 2376352000.0,
+        "cycle_observed_delta_pp": 15,
+        "estimation_span_relevant_delta_pp": 10,
+        "excluded_delta_within_span_pp": 0,
+        "selected_cycle_delta_fraction": 0.6666666666666666,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": false,
+            "sample_count": true,
+            "effective_segments": false,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated",
+        "some_cycle_segments_excluded"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-13T04:50:43Z",
+          "period_end": "2026-10-13T16:23:39Z",
+          "pct_consumed": 5,
+          "status": "insufficient",
+          "reasons": [
+            "full_token_total_unknown"
+          ],
+          "warnings": [
+            "full_token_total_unknown",
+            "incomplete_token_breakdown",
+            "token_breakdown_cannot_be_normalized"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {
+            "grok-4.7": {
+              "calls": 408,
+              "request_count": 431,
+              "tokens": {
+                "in": 3741928,
+                "out": 569079,
+                "cache_read": 44697856,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 49008863
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": false
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-13T16:23:39Z",
+          "period_end": "2026-10-15T11:30:42Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "grok-4.7": {
+              "calls": 767,
+              "request_count": 790,
+              "tokens": {
+                "in": 4708771,
+                "out": 586072,
+                "cache_read": 82691712,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 87986555
+              },
+              "reference_worth_usd": 54.27983,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T11:30:42Z",
+          "period_end": "2026-10-16T14:13:12Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "grok-4.7": {
+              "calls": 988,
+              "request_count": 992,
+              "tokens": {
+                "in": 4171340,
+                "out": 559128,
+                "cache_read": 110868992,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 115599460
+              },
+              "reference_worth_usd": 67.131944,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    },
+    {
+      "id": "devin_pro-cycle-0-claude-opus-5.5",
+      "account_ref": "devin_pro",
+      "provider": "devin",
+      "plan": "Devin Pro",
+      "model": "claude-opus-5.5",
+      "telemetry_model": "claude-opus-5.5",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "contributor_confirmation",
+        "confirmed_on": "2026-10-22",
+        "cached_vendor_label_conflict": true,
+        "note": "Contributor confirms Pro; cached Max label retained as a discrepancy."
+      },
+      "reference_monthly_fee": {
+        "value": 20,
+        "currency": "USD",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-13T14:59:27Z",
+      "period_end": "2026-10-15T12:13:01Z",
+      "cycle_start": "2026-10-11T08:00:00+00:00",
+      "resets_at": "2026-10-18T08:00:00+00:00",
+      "workload": "anthropic",
+      "normalized": true,
+      "reference_rates_usd_per_MTok": {
+        "cache_read": 0.2,
+        "input": 4.0,
+        "output": 20.0,
+        "cache_write_5m": 5.0,
+        "cache_write_1h": 8.0
+      },
+      "reference_blend_usd_per_MTok": 0.41900000000000004,
+      "weekly_tokens": 72427830,
+      "weeks_per_comparison_month": 4,
+      "monthly_tokens": 289711320,
+      "saturated_reference_price_native_per_MTok": 0.06903423725382908,
+      "rounding_sensitivity_weekly_tokens": [
+        70703358,
+        74238526
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 82,
+      "calls": 202,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "high",
+        "grade": "medium",
+        "scope": "standardized_weekly_capacity",
+        "delta_pp": 82,
+        "model_calls": 202,
+        "segments": 14,
+        "effective_segments": 13.611336032388664,
+        "weighted_cv": 0.10145522612975419,
+        "leave_one_out_max_relative_change": 0.01438855938750494,
+        "rounding_delta_relative_error": 0.024390243902439025,
+        "disjoint_runs": 2,
+        "segment_min_tokens": 57628400.954653926,
+        "segment_max_tokens": 85628170.24661893,
+        "cycle_observed_delta_pp": 100,
+        "estimation_span_relevant_delta_pp": 90,
+        "excluded_delta_within_span_pp": 8,
+        "selected_cycle_delta_fraction": 0.82,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated",
+        "mixed_proxy_segments_not_used_for_capacity"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-13T14:59:27Z",
+          "period_end": "2026-10-14T05:05:23Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 18,
+              "request_count": 18,
+              "tokens": {
+                "in": 38,
+                "out": 6780,
+                "cache_read": 1827490,
+                "cache_write": 141213,
+                "cache_write_1h": 0,
+                "total": 1975521
+              },
+              "reference_worth_usd": 1.207315,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T05:05:23Z",
+          "period_end": "2026-10-14T05:14:20Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 26,
+              "request_count": 26,
+              "tokens": {
+                "in": 52,
+                "out": 13778,
+                "cache_read": 4791781,
+                "cache_write": 73182,
+                "cache_write_1h": 0,
+                "total": 4878793
+              },
+              "reference_worth_usd": 1.6000342000000003,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T05:14:20Z",
+          "period_end": "2026-10-14T05:30:57Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 12,
+              "request_count": 12,
+              "tokens": {
+                "in": 26,
+                "out": 19212,
+                "cache_read": 2521416,
+                "cache_write": 252813,
+                "cache_write_1h": 0,
+                "total": 2793467
+              },
+              "reference_worth_usd": 2.1526922,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T05:30:57Z",
+          "period_end": "2026-10-14T05:38:27Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 13,
+              "request_count": 13,
+              "tokens": {
+                "in": 26,
+                "out": 26128,
+                "cache_read": 3413785,
+                "cache_write": 35892,
+                "cache_write_1h": 0,
+                "total": 3475831
+              },
+              "reference_worth_usd": 1.384881,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T05:38:27Z",
+          "period_end": "2026-10-14T05:50:32Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 15,
+              "request_count": 15,
+              "tokens": {
+                "in": 30,
+                "out": 48661,
+                "cache_read": 4614220,
+                "cache_write": 54975,
+                "cache_write_1h": 0,
+                "total": 4717886
+              },
+              "reference_worth_usd": 2.171059,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T05:50:32Z",
+          "period_end": "2026-10-14T09:37:13Z",
+          "pct_consumed": 8,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 12,
+              "request_count": 12,
+              "tokens": {
+                "in": 26,
+                "out": 22857,
+                "cache_read": 3273575,
+                "cache_write": 272488,
+                "cache_write_1h": 0,
+                "total": 3568946
+              },
+              "reference_worth_usd": 2.474399,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T09:37:13Z",
+          "period_end": "2026-10-14T16:04:11Z",
+          "pct_consumed": 8,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found",
+            "unresolved_model_quota_weights"
+          ],
+          "mixed": true,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 31,
+              "request_count": 31,
+              "tokens": {
+                "in": 66,
+                "out": 15580,
+                "cache_read": 4499475,
+                "cache_write": 176200,
+                "cache_write_1h": 0,
+                "total": 4691321
+              },
+              "reference_worth_usd": 2.092759,
+              "full_token_total_known": true
+            },
+            "gemini-4-argon": {
+              "calls": 4,
+              "request_count": 4,
+              "tokens": {
+                "in": 114555,
+                "out": 30708,
+                "cache_read": 139264,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 284527
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T16:04:11Z",
+          "period_end": "2026-10-14T16:11:21Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 11,
+              "request_count": 11,
+              "tokens": {
+                "in": 22,
+                "out": 27855,
+                "cache_read": 1820245,
+                "cache_write": 226752,
+                "cache_write_1h": 0,
+                "total": 2074874
+              },
+              "reference_worth_usd": 2.054997,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T16:11:21Z",
+          "period_end": "2026-10-14T16:23:59Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 8,
+              "request_count": 8,
+              "tokens": {
+                "in": 18,
+                "out": 66217,
+                "cache_read": 1675825,
+                "cache_write": 17328,
+                "cache_write_1h": 0,
+                "total": 1759388
+              },
+              "reference_worth_usd": 1.746217,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T16:23:59Z",
+          "period_end": "2026-10-14T16:32:51Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 11,
+              "request_count": 11,
+              "tokens": {
+                "in": 22,
+                "out": 48051,
+                "cache_read": 2627892,
+                "cache_write": 38413,
+                "cache_write_1h": 0,
+                "total": 2714378
+              },
+              "reference_worth_usd": 1.6787514,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T16:32:51Z",
+          "period_end": "2026-10-14T16:55:44Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 24,
+              "request_count": 24,
+              "tokens": {
+                "in": 48,
+                "out": 19697,
+                "cache_read": 6432455,
+                "cache_write": 25009,
+                "cache_write_1h": 0,
+                "total": 6477209
+              },
+              "reference_worth_usd": 1.805668,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T16:55:44Z",
+          "period_end": "2026-10-15T01:00:42Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 7,
+              "request_count": 7,
+              "tokens": {
+                "in": 16,
+                "out": 5714,
+                "cache_read": 1753615,
+                "cache_write": 302945,
+                "cache_write_1h": 0,
+                "total": 2062290
+              },
+              "reference_worth_usd": 1.979792,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T01:00:42Z",
+          "period_end": "2026-10-15T02:18:49Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 23,
+              "request_count": 23,
+              "tokens": {
+                "in": 48,
+                "out": 17580,
+                "cache_read": 2929898,
+                "cache_write": 168390,
+                "cache_write_1h": 0,
+                "total": 3115916
+              },
+              "reference_worth_usd": 1.7797216,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T02:18:49Z",
+          "period_end": "2026-10-15T11:29:09Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 10,
+              "request_count": 10,
+              "tokens": {
+                "in": 28,
+                "out": 35047,
+                "cache_read": 631224,
+                "cache_write": 91827,
+                "cache_write_1h": 0,
+                "total": 758126
+              },
+              "reference_worth_usd": 1.2864318000000001,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T11:29:09Z",
+          "period_end": "2026-10-15T12:13:01Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {
+            "swe-2": 2
+          },
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 12,
+              "request_count": 12,
+              "tokens": {
+                "in": 28,
+                "out": 29865,
+                "cache_read": 1160563,
+                "cache_write": 146654,
+                "cache_write_1h": 0,
+                "total": 1337110
+              },
+              "reference_worth_usd": 1.5627946000000001,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T12:13:01Z",
+          "period_end": "2026-10-16T01:18:18Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found",
+            "unresolved_model_quota_weights"
+          ],
+          "mixed": true,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {
+            "swe-2": 488
+          },
+          "used_for_this_model": false,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 1,
+              "request_count": 1,
+              "tokens": {
+                "in": 4,
+                "out": 493,
+                "cache_read": 558,
+                "cache_write": 1318,
+                "cache_write_1h": 0,
+                "total": 2373
+              },
+              "reference_worth_usd": 0.016577599999999998,
+              "full_token_total_known": true
+            },
+            "gemini-4-argon": {
+              "calls": 31,
+              "request_count": 31,
+              "tokens": {
+                "in": 837147,
+                "out": 7137,
+                "cache_read": 5019423,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 5863707
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-16T01:18:18Z",
+          "period_end": "2026-10-16T01:22:35Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "exhausted_endpoint_may_be_censored",
+            "model_price_not_found"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {
+            "gemini-4-argon": {
+              "calls": 14,
+              "request_count": 14,
+              "tokens": {
+                "in": 741224,
+                "out": 13533,
+                "cache_read": 3735594,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 4490351
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    },
+    {
+      "id": "devin_pro-cycle-1-claude-opus-5.5",
+      "account_ref": "devin_pro",
+      "provider": "devin",
+      "plan": "Devin Pro",
+      "model": "claude-opus-5.5",
+      "telemetry_model": "claude-opus-5.5",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "contributor_confirmation",
+        "confirmed_on": "2026-10-22",
+        "cached_vendor_label_conflict": true,
+        "note": "Contributor confirms Pro; cached Max label retained as a discrepancy."
+      },
+      "reference_monthly_fee": {
+        "value": 20,
+        "currency": "USD",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-18T08:02:44Z",
+      "period_end": "2026-10-20T12:32:29Z",
+      "cycle_start": "2026-10-18T08:00:00+00:00",
+      "resets_at": "2026-10-25T08:00:00+00:00",
+      "workload": "anthropic",
+      "normalized": true,
+      "reference_rates_usd_per_MTok": {
+        "cache_read": 0.2,
+        "input": 4.0,
+        "output": 20.0,
+        "cache_write_5m": 5.0,
+        "cache_write_1h": 8.0
+      },
+      "reference_blend_usd_per_MTok": 0.41900000000000004,
+      "weekly_tokens": 69146459,
+      "weeks_per_comparison_month": 4,
+      "monthly_tokens": 276585836,
+      "saturated_reference_price_native_per_MTok": 0.07231028272901148,
+      "rounding_sensitivity_weekly_tokens": [
+        67556885,
+        70812639
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 85,
+      "calls": 235,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "high",
+        "grade": "medium",
+        "scope": "standardized_weekly_capacity",
+        "delta_pp": 85,
+        "model_calls": 235,
+        "segments": 13,
+        "effective_segments": 12.183811129848229,
+        "weighted_cv": 0.16355277957570383,
+        "leave_one_out_max_relative_change": 0.05290020250290106,
+        "rounding_delta_relative_error": 0.023529411764705882,
+        "disjoint_runs": 2,
+        "segment_min_tokens": 41712496.42004773,
+        "segment_max_tokens": 80296106.3757245,
+        "cycle_observed_delta_pp": 91,
+        "estimation_span_relevant_delta_pp": 91,
+        "excluded_delta_within_span_pp": 6,
+        "selected_cycle_delta_fraction": 0.9340659340659341,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated",
+        "mixed_proxy_segments_not_used_for_capacity"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-18T08:02:44Z",
+          "period_end": "2026-10-18T08:15:02Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 11,
+              "request_count": 11,
+              "tokens": {
+                "in": 26,
+                "out": 38825,
+                "cache_read": 3396586,
+                "cache_write": 45193,
+                "cache_write_1h": 0,
+                "total": 3480630
+              },
+              "reference_worth_usd": 1.6818862,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T08:15:02Z",
+          "period_end": "2026-10-18T08:30:11Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 21,
+              "request_count": 22,
+              "tokens": {
+                "in": 50,
+                "out": 13873,
+                "cache_read": 2865553,
+                "cache_write": 151545,
+                "cache_write_1h": 0,
+                "total": 3031021
+              },
+              "reference_worth_usd": 1.6084956000000001,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T08:30:11Z",
+          "period_end": "2026-10-18T08:42:16Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 20,
+              "request_count": 20,
+              "tokens": {
+                "in": 44,
+                "out": 18890,
+                "cache_read": 2266111,
+                "cache_write": 176602,
+                "cache_write_1h": 0,
+                "total": 2461647
+              },
+              "reference_worth_usd": 1.7142081999999998,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T08:42:16Z",
+          "period_end": "2026-10-18T09:44:00Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 9,
+              "request_count": 9,
+              "tokens": {
+                "in": 20,
+                "out": 25717,
+                "cache_read": 1249399,
+                "cache_write": 179978,
+                "cache_write_1h": 0,
+                "total": 1455114
+              },
+              "reference_worth_usd": 1.6641898,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T09:44:00Z",
+          "period_end": "2026-10-18T09:54:25Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 22,
+              "request_count": 22,
+              "tokens": {
+                "in": 50,
+                "out": 28628,
+                "cache_read": 4348938,
+                "cache_write": 50931,
+                "cache_write_1h": 0,
+                "total": 4428547
+              },
+              "reference_worth_usd": 1.6972026,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T09:54:25Z",
+          "period_end": "2026-10-18T10:35:17Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 14,
+              "request_count": 14,
+              "tokens": {
+                "in": 34,
+                "out": 6978,
+                "cache_read": 3073667,
+                "cache_write": 264934,
+                "cache_write_1h": 0,
+                "total": 3345613
+              },
+              "reference_worth_usd": 2.0790994,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T10:35:17Z",
+          "period_end": "2026-10-18T10:48:42Z",
+          "pct_consumed": 10,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 6,
+              "request_count": 7,
+              "tokens": {
+                "in": 14,
+                "out": 12774,
+                "cache_read": 1317288,
+                "cache_write": 245752,
+                "cache_write_1h": 0,
+                "total": 1575828
+              },
+              "reference_worth_usd": 1.7477536,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T10:48:42Z",
+          "period_end": "2026-10-18T11:00:30Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 21,
+              "request_count": 21,
+              "tokens": {
+                "in": 50,
+                "out": 10977,
+                "cache_read": 5942388,
+                "cache_write": 29768,
+                "cache_write_1h": 0,
+                "total": 5983183
+              },
+              "reference_worth_usd": 1.5570576,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T11:00:30Z",
+          "period_end": "2026-10-19T15:04:37Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found",
+            "unresolved_model_quota_weights"
+          ],
+          "mixed": true,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {
+            "swe-2": 4
+          },
+          "used_for_this_model": false,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 49,
+              "request_count": 49,
+              "tokens": {
+                "in": 122,
+                "out": 23503,
+                "cache_read": 4849512,
+                "cache_write": 290993,
+                "cache_write_1h": 0,
+                "total": 5164130
+              },
+              "reference_worth_usd": 2.8954154,
+              "full_token_total_known": true
+            },
+            "gemini-4-argon": {
+              "calls": 3,
+              "request_count": 3,
+              "tokens": {
+                "in": 1242,
+                "out": 15,
+                "cache_read": 0,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 1257
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            },
+            "claude-fable-5-1": {
+              "calls": 4,
+              "request_count": 4,
+              "tokens": {
+                "in": 16,
+                "out": 28,
+                "cache_read": 2242,
+                "cache_write": 24,
+                "cache_write_1h": 0,
+                "total": 2310
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            },
+            "gemini-3-8-flash": {
+              "calls": 1,
+              "request_count": 1,
+              "tokens": {
+                "in": 392,
+                "out": 71,
+                "cache_read": 0,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 463
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            },
+            "claude-sonnet-5.5": {
+              "calls": 2,
+              "request_count": 2,
+              "tokens": {
+                "in": 8,
+                "out": 20,
+                "cache_read": 1116,
+                "cache_write": 14,
+                "cache_write_1h": 0,
+                "total": 1158
+              },
+              "reference_worth_usd": 0.00036260000000000003,
+              "full_token_total_known": true
+            },
+            "claude-haiku-5-5": {
+              "calls": 2,
+              "request_count": 2,
+              "tokens": {
+                "in": 8,
+                "out": 20,
+                "cache_read": 1116,
+                "cache_write": 14,
+                "cache_write_1h": 0,
+                "total": 1158
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T15:04:37Z",
+          "period_end": "2026-10-19T15:27:34Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 31,
+              "request_count": 31,
+              "tokens": {
+                "in": 66,
+                "out": 19255,
+                "cache_read": 3821392,
+                "cache_write": 36387,
+                "cache_write_1h": 0,
+                "total": 3877100
+              },
+              "reference_worth_usd": 1.3315773999999998,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T15:27:34Z",
+          "period_end": "2026-10-20T00:47:01Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 20,
+              "request_count": 20,
+              "tokens": {
+                "in": 52,
+                "out": 17412,
+                "cache_read": 2187372,
+                "cache_write": 306723,
+                "cache_write_1h": 0,
+                "total": 2511559
+              },
+              "reference_worth_usd": 2.3195373999999997,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T00:47:01Z",
+          "period_end": "2026-10-20T01:17:37Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 22,
+              "request_count": 22,
+              "tokens": {
+                "in": 54,
+                "out": 17421,
+                "cache_read": 3310252,
+                "cache_write": 198658,
+                "cache_write_1h": 0,
+                "total": 3526385
+              },
+              "reference_worth_usd": 2.0039764,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T01:17:37Z",
+          "period_end": "2026-10-20T04:11:50Z",
+          "pct_consumed": 7,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 4,
+              "request_count": 4,
+              "tokens": {
+                "in": 12,
+                "out": 3707,
+                "cache_read": 1212134,
+                "cache_write": 407694,
+                "cache_write_1h": 0,
+                "total": 1623547
+              },
+              "reference_worth_usd": 2.3550847999999998,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T04:11:50Z",
+          "period_end": "2026-10-20T12:32:29Z",
+          "pct_consumed": 10,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 34,
+              "request_count": 34,
+              "tokens": {
+                "in": 74,
+                "out": 35581,
+                "cache_read": 6292282,
+                "cache_write": 179214,
+                "cache_write_1h": 0,
+                "total": 6507151
+              },
+              "reference_worth_usd": 2.8664424000000004,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    },
+    {
+      "id": "devin_max-cycle-0-claude-opus-5.5",
+      "account_ref": "devin_max_standard",
+      "provider": "devin",
+      "plan": "Devin Max (standard)",
+      "model": "claude-opus-5.5",
+      "telemetry_model": "claude-opus-5.5",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "contributor_confirmation",
+        "confirmed_on": "2026-10-22",
+        "cached_vendor_label_conflict": false,
+        "note": "Contributor confirms a standard Devin Max account."
+      },
+      "reference_monthly_fee": {
+        "value": 200,
+        "currency": "USD",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-14T05:00:43Z",
+      "period_end": "2026-10-15T10:13:22Z",
+      "cycle_start": "2026-10-11T08:00:00+00:00",
+      "resets_at": "2026-10-18T08:00:00+00:00",
+      "workload": "anthropic",
+      "normalized": true,
+      "reference_rates_usd_per_MTok": {
+        "cache_read": 0.2,
+        "input": 4.0,
+        "output": 20.0,
+        "cache_write_5m": 5.0,
+        "cache_write_1h": 8.0
+      },
+      "reference_blend_usd_per_MTok": 0.41900000000000004,
+      "weekly_tokens": 321039045,
+      "weeks_per_comparison_month": 4,
+      "monthly_tokens": 1284156180,
+      "saturated_reference_price_native_per_MTok": 0.1557442958379097,
+      "rounding_sensitivity_weekly_tokens": [
+        294285792,
+        353142950
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 22,
+      "calls": 307,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "medium",
+        "grade": "medium",
+        "scope": "standardized_weekly_capacity",
+        "delta_pp": 22,
+        "model_calls": 307,
+        "segments": 4,
+        "effective_segments": 3.9672131147540983,
+        "weighted_cv": 0.4757130832550631,
+        "leave_one_out_max_relative_change": 0.2516391130526131,
+        "rounding_delta_relative_error": 0.09090909090909091,
+        "disjoint_runs": 2,
+        "segment_min_tokens": 195381789.97613367,
+        "segment_max_tokens": 595711379.4749403,
+        "cycle_observed_delta_pp": 97,
+        "estimation_span_relevant_delta_pp": 41,
+        "excluded_delta_within_span_pp": 19,
+        "selected_cycle_delta_fraction": 0.2268041237113402,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": false,
+            "sample_count": true,
+            "effective_segments": false,
+            "stability": false,
+            "leave_one_out": false,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "large_gap_within_estimation_span",
+            "excluded_delta_fraction": 0.4634146341463415
+          },
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-11T14:39:45Z",
+          "period_end": "2026-10-12T12:24:46Z",
+          "pct_consumed": 15,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-12T12:24:46Z",
+          "period_end": "2026-10-12T14:50:29Z",
+          "pct_consumed": 7,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-12T14:50:29Z",
+          "period_end": "2026-10-13T01:11:31Z",
+          "pct_consumed": 10,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-13T01:11:31Z",
+          "period_end": "2026-10-13T13:54:21Z",
+          "pct_consumed": 13,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-13T13:54:21Z",
+          "period_end": "2026-10-14T05:00:43Z",
+          "pct_consumed": 5,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-14T05:00:43Z",
+          "period_end": "2026-10-14T08:57:19Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 96,
+              "request_count": 96,
+              "tokens": {
+                "in": 196,
+                "out": 124447,
+                "cache_read": 17776224,
+                "cache_write": 231805,
+                "cache_write_1h": 0,
+                "total": 18132672
+              },
+              "reference_worth_usd": 7.203993800000001,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-14T08:57:19Z",
+          "period_end": "2026-10-14T13:37:49Z",
+          "pct_consumed": 7,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-14T13:37:49Z",
+          "period_end": "2026-10-14T15:20:26Z",
+          "pct_consumed": 7,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-14T15:20:26Z",
+          "period_end": "2026-10-15T01:27:59Z",
+          "pct_consumed": 5,
+          "status": "insufficient",
+          "reasons": [
+            "quota_drop_without_recorded_paid_tokens"
+          ],
+          "warnings": [],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {}
+        },
+        {
+          "period_start": "2026-10-15T01:27:59Z",
+          "period_end": "2026-10-15T02:23:50Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 87,
+              "request_count": 88,
+              "tokens": {
+                "in": 184,
+                "out": 58691,
+                "cache_read": 13108164,
+                "cache_write": 240229,
+                "cache_write_1h": 0,
+                "total": 13407268
+              },
+              "reference_worth_usd": 4.997333800000001,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T02:23:50Z",
+          "period_end": "2026-10-15T02:57:03Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 96,
+              "request_count": 96,
+              "tokens": {
+                "in": 204,
+                "out": 141425,
+                "cache_read": 30437612,
+                "cache_write": 712663,
+                "cache_write_1h": 0,
+                "total": 31291904
+              },
+              "reference_worth_usd": 12.4801534,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T02:57:03Z",
+          "period_end": "2026-10-15T10:13:22Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 28,
+              "request_count": 28,
+              "tokens": {
+                "in": 62,
+                "out": 37158,
+                "cache_read": 9557201,
+                "cache_write": 451410,
+                "cache_write_1h": 0,
+                "total": 10045831
+              },
+              "reference_worth_usd": 4.9118982,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-15T10:13:22Z",
+          "period_end": "2026-10-18T07:58:46Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "exhausted_endpoint_may_be_censored",
+            "model_price_not_found",
+            "unresolved_model_quota_weights"
+          ],
+          "mixed": true,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {
+            "swe-2": 2
+          },
+          "used_for_this_model": false,
+          "models": {
+            "gemini-4-argon": {
+              "calls": 11,
+              "request_count": 11,
+              "tokens": {
+                "in": 29170,
+                "out": 7533,
+                "cache_read": 3430763,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 3467466
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            },
+            "claude-opus-5.5": {
+              "calls": 208,
+              "request_count": 209,
+              "tokens": {
+                "in": 488,
+                "out": 194293,
+                "cache_read": 35591055,
+                "cache_write": 966816,
+                "cache_write_1h": 0,
+                "total": 36752652
+              },
+              "reference_worth_usd": 15.840103,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    },
+    {
+      "id": "devin_max-cycle-1-claude-opus-5.5",
+      "account_ref": "devin_max_standard",
+      "provider": "devin",
+      "plan": "Devin Max (standard)",
+      "model": "claude-opus-5.5",
+      "telemetry_model": "claude-opus-5.5",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "contributor_confirmation",
+        "confirmed_on": "2026-10-22",
+        "cached_vendor_label_conflict": false,
+        "note": "Contributor confirms a standard Devin Max account."
+      },
+      "reference_monthly_fee": {
+        "value": 200,
+        "currency": "USD",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-18T08:02:44Z",
+      "period_end": "2026-10-21T15:46:15Z",
+      "cycle_start": "2026-10-18T08:00:00+00:00",
+      "resets_at": "2026-10-25T08:00:00+00:00",
+      "workload": "anthropic",
+      "normalized": true,
+      "reference_rates_usd_per_MTok": {
+        "cache_read": 0.2,
+        "input": 4.0,
+        "output": 20.0,
+        "cache_write_5m": 5.0,
+        "cache_write_1h": 8.0
+      },
+      "reference_blend_usd_per_MTok": 0.41900000000000004,
+      "weekly_tokens": 730473427,
+      "weeks_per_comparison_month": 4,
+      "monthly_tokens": 2921893708,
+      "saturated_reference_price_native_per_MTok": 0.0684487596014906,
+      "rounding_sensitivity_weekly_tokens": [
+        722172593,
+        738967304
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 87,
+      "calls": 1152,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "high",
+        "grade": "medium",
+        "scope": "standardized_weekly_capacity",
+        "delta_pp": 87,
+        "model_calls": 1152,
+        "segments": 17,
+        "effective_segments": 16.93288590604027,
+        "weighted_cv": 0.07424795697337253,
+        "leave_one_out_max_relative_change": 0.010985215482457789,
+        "rounding_delta_relative_error": 0.011494252873563218,
+        "disjoint_runs": 1,
+        "segment_min_tokens": 630304448.6873507,
+        "segment_max_tokens": 862073718.3770881,
+        "cycle_observed_delta_pp": 87,
+        "estimation_span_relevant_delta_pp": 87,
+        "excluded_delta_within_span_pp": 0,
+        "selected_cycle_delta_fraction": 1.0,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-18T08:02:44Z",
+          "period_end": "2026-10-18T13:50:21Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 107,
+              "request_count": 108,
+              "tokens": {
+                "in": 256,
+                "out": 79508,
+                "cache_read": 20074170,
+                "cache_write": 2139205,
+                "cache_write_1h": 0,
+                "total": 22293139
+              },
+              "reference_worth_usd": 16.302043,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T13:50:21Z",
+          "period_end": "2026-10-18T15:25:31Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 43,
+              "request_count": 43,
+              "tokens": {
+                "in": 104,
+                "out": 29621,
+                "cache_read": 12058661,
+                "cache_write": 2040062,
+                "cache_write_1h": 0,
+                "total": 14128448
+              },
+              "reference_worth_usd": 13.2048782,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T15:25:31Z",
+          "period_end": "2026-10-18T16:38:07Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 50,
+              "request_count": 50,
+              "tokens": {
+                "in": 116,
+                "out": 46106,
+                "cache_read": 18448960,
+                "cache_write": 2123914,
+                "cache_write_1h": 0,
+                "total": 20619096
+              },
+              "reference_worth_usd": 15.231946,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T16:38:07Z",
+          "period_end": "2026-10-19T00:47:43Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 29,
+              "request_count": 29,
+              "tokens": {
+                "in": 74,
+                "out": 19524,
+                "cache_read": 11777217,
+                "cache_write": 3062845,
+                "cache_write_1h": 0,
+                "total": 14859660
+              },
+              "reference_worth_usd": 18.060444399999998,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T00:47:43Z",
+          "period_end": "2026-10-19T06:09:33Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 105,
+              "request_count": 106,
+              "tokens": {
+                "in": 258,
+                "out": 114147,
+                "cache_read": 12758990,
+                "cache_write": 1945944,
+                "cache_write_1h": 0,
+                "total": 14819339
+              },
+              "reference_worth_usd": 14.56549,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T06:09:33Z",
+          "period_end": "2026-10-20T15:39:32Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 101,
+              "request_count": 101,
+              "tokens": {
+                "in": 234,
+                "out": 81619,
+                "cache_read": 28108683,
+                "cache_write": 1543894,
+                "cache_write_1h": 0,
+                "total": 29734430
+              },
+              "reference_worth_usd": 14.974522600000002,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T15:39:32Z",
+          "period_end": "2026-10-20T16:17:07Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 114,
+              "request_count": 114,
+              "tokens": {
+                "in": 262,
+                "out": 61899,
+                "cache_read": 40435502,
+                "cache_write": 1905027,
+                "cache_write_1h": 0,
+                "total": 42402690
+              },
+              "reference_worth_usd": 18.851263399999997,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T16:17:07Z",
+          "period_end": "2026-10-20T17:27:42Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 62,
+              "request_count": 62,
+              "tokens": {
+                "in": 138,
+                "out": 61443,
+                "cache_read": 24552397,
+                "cache_write": 2092999,
+                "cache_write_1h": 0,
+                "total": 26706977
+              },
+              "reference_worth_usd": 16.6048864,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T17:27:42Z",
+          "period_end": "2026-10-20T18:07:59Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 34,
+              "request_count": 34,
+              "tokens": {
+                "in": 80,
+                "out": 22683,
+                "cache_read": 15143798,
+                "cache_write": 2025543,
+                "cache_write_1h": 0,
+                "total": 17192104
+              },
+              "reference_worth_usd": 13.610454599999999,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T18:07:59Z",
+          "period_end": "2026-10-20T19:52:10Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 36,
+              "request_count": 36,
+              "tokens": {
+                "in": 84,
+                "out": 25147,
+                "cache_read": 16001562,
+                "cache_write": 2047765,
+                "cache_write_1h": 0,
+                "total": 18074558
+              },
+              "reference_worth_usd": 13.9424134,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-20T19:52:10Z",
+          "period_end": "2026-10-21T00:53:45Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 78,
+              "request_count": 78,
+              "tokens": {
+                "in": 182,
+                "out": 63841,
+                "cache_read": 41962545,
+                "cache_write": 1176879,
+                "cache_write_1h": 0,
+                "total": 43203447
+              },
+              "reference_worth_usd": 15.554452,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T00:53:45Z",
+          "period_end": "2026-10-21T06:10:23Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 70,
+              "request_count": 70,
+              "tokens": {
+                "in": 160,
+                "out": 43183,
+                "cache_read": 17664096,
+                "cache_write": 2151613,
+                "cache_write_1h": 0,
+                "total": 19859052
+              },
+              "reference_worth_usd": 15.155184199999999,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T06:10:23Z",
+          "period_end": "2026-10-21T10:43:14Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 70,
+              "request_count": 70,
+              "tokens": {
+                "in": 164,
+                "out": 64840,
+                "cache_read": 17165090,
+                "cache_write": 2276080,
+                "cache_write_1h": 0,
+                "total": 19506174
+              },
+              "reference_worth_usd": 16.110874,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T10:43:14Z",
+          "period_end": "2026-10-21T11:47:41Z",
+          "pct_consumed": 6,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 38,
+              "request_count": 38,
+              "tokens": {
+                "in": 98,
+                "out": 26103,
+                "cache_read": 15406278,
+                "cache_write": 2900782,
+                "cache_write_1h": 0,
+                "total": 18333261
+              },
+              "reference_worth_usd": 18.1076176,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T11:47:41Z",
+          "period_end": "2026-10-21T13:29:01Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 92,
+              "request_count": 92,
+              "tokens": {
+                "in": 208,
+                "out": 62548,
+                "cache_read": 16925526,
+                "cache_write": 2331252,
+                "cache_write_1h": 0,
+                "total": 19319534
+              },
+              "reference_worth_usd": 16.2931572,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T13:29:01Z",
+          "period_end": "2026-10-21T14:38:02Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 61,
+              "request_count": 61,
+              "tokens": {
+                "in": 142,
+                "out": 50816,
+                "cache_read": 13845013,
+                "cache_write": 2193528,
+                "cache_write_1h": 0,
+                "total": 16089499
+              },
+              "reference_worth_usd": 14.7535306,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-21T14:38:02Z",
+          "period_end": "2026-10-21T15:46:15Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [],
+          "mixed": false,
+          "workload": "normalized",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "claude-opus-5.5": {
+              "calls": 62,
+              "request_count": 62,
+              "tokens": {
+                "in": 152,
+                "out": 45086,
+                "cache_read": 18412989,
+                "cache_write": 2074279,
+                "cache_write_1h": 0,
+                "total": 20532506
+              },
+              "reference_worth_usd": 14.9563208,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    },
+    {
+      "id": "minimax_go-cycle-4-m3.1-flash-preview",
+      "account_ref": "minimax_go",
+      "provider": "minimax-code",
+      "plan": "MiniMax Go",
+      "model": "minimax-m3.1-flash-preview",
+      "telemetry_model": "m3.1-flash-preview",
+      "evidence_grade": "medium",
+      "scope": "conditional_account_cycle_capacity",
+      "plan_identity": {
+        "basis": "existing_contributor_account_map",
+        "vendor_tier_label": "M Plan Go",
+        "note": "Historical local mapping; missing vendor tier labels do not independently verify the tier or paid fee."
+      },
+      "reference_monthly_fee": {
+        "value": 49,
+        "currency": "CNY",
+        "basis": "Existing contributor mapping and repository reference price; no invoice or actual-spend claim."
+      },
+      "period_start": "2026-10-18T18:10:40Z",
+      "period_end": "2026-10-19T13:04:28Z",
+      "cycle_start": "2026-10-18T17:21:34+00:00",
+      "resets_at": "2026-10-25T17:21:51+00:00",
+      "workload": "measured",
+      "normalized": false,
+      "reference_rates_usd_per_MTok": null,
+      "reference_blend_usd_per_MTok": null,
+      "weekly_tokens": 387201820,
+      "weeks_per_comparison_month": 4,
+      "monthly_tokens": 1548807280,
+      "saturated_reference_price_native_per_MTok": 0.031637247986076096,
+      "rounding_sensitivity_weekly_tokens": [
+        368763638,
+        407580863
+      ],
+      "rounding_sensitivity_is_confidence_interval": false,
+      "delta_pp": 20,
+      "calls": 664,
+      "confidence_assessment": {
+        "policy_version": "delta_sample_stability_v1",
+        "base_grade": "medium",
+        "grade": "medium",
+        "scope": "observed_workload_weekly_capacity",
+        "delta_pp": 20,
+        "model_calls": 664,
+        "segments": 4,
+        "effective_segments": 4.0,
+        "weighted_cv": 0.39389789157877086,
+        "leave_one_out_max_relative_change": 0.22667503646203602,
+        "rounding_delta_relative_error": 0.05,
+        "disjoint_runs": 1,
+        "segment_min_tokens": 123894860.0,
+        "segment_max_tokens": 492150480.0,
+        "cycle_observed_delta_pp": 33,
+        "estimation_span_relevant_delta_pp": 20,
+        "excluded_delta_within_span_pp": 0,
+        "selected_cycle_delta_fraction": 0.6060606060606061,
+        "unattributed_calls": 0,
+        "possible_unattributed_ratio": 0.0,
+        "unattributed_ratio_basis": "none",
+        "known_portion_unattributed_ratio": 0.0,
+        "unquantified_unattributed_calls": 0,
+        "candidate_known_raw_tokens": 0,
+        "candidate_raw_token_ratio_not_billing_ratio": 0.0,
+        "unattributed_scenario": "If all matching candidate usage belonged to this account; not proven attribution",
+        "criteria": {
+          "high": {
+            "delta": false,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": false,
+            "leave_one_out": false,
+            "rounding": true
+          },
+          "medium": {
+            "delta": true,
+            "sample_count": true,
+            "effective_segments": true,
+            "stability": true,
+            "leave_one_out": true,
+            "rounding": true
+          }
+        },
+        "grade_limits": [
+          {
+            "maximum_grade": "medium",
+            "reason": "direct_audit_not_snapshot_isolated"
+          }
+        ],
+        "plan_identity": "matched",
+        "is_probability": false
+      },
+      "limitations": [
+        "direct_audit_not_snapshot_isolated",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded"
+      ],
+      "samples": [
+        {
+          "period_start": "2026-10-18T17:21:33Z",
+          "period_end": "2026-10-18T18:10:40Z",
+          "pct_consumed": 5,
+          "status": "insufficient",
+          "reasons": [
+            "rolling_window_is_not_fixed_weekly_capacity",
+            "unresolved_reset_boundary_shift"
+          ],
+          "warnings": [
+            "model_price_not_found"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {
+            "m3.1-flash-preview": {
+              "calls": 147,
+              "request_count": 147,
+              "tokens": {
+                "in": 1143835,
+                "out": 51831,
+                "cache_read": 16892416,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 18088082
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-18T18:10:40Z",
+          "period_end": "2026-10-19T02:06:13Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "m3.1-flash-preview": {
+              "calls": 154,
+              "request_count": 154,
+              "tokens": {
+                "in": 336033,
+                "out": 191875,
+                "cache_read": 24079616,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 24607524
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T02:06:13Z",
+          "period_end": "2026-10-19T03:04:24Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "m3.1-flash-preview": {
+              "calls": 87,
+              "request_count": 87,
+              "tokens": {
+                "in": 305004,
+                "out": 67319,
+                "cache_read": 23398784,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 23771107
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T03:04:24Z",
+          "period_end": "2026-10-19T08:16:54Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "m3.1-flash-preview": {
+              "calls": 250,
+              "request_count": 252,
+              "tokens": {
+                "in": 488352,
+                "out": 136541,
+                "cache_read": 22242097,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 22866990
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T08:16:54Z",
+          "period_end": "2026-10-19T13:04:28Z",
+          "pct_consumed": 5,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found"
+          ],
+          "mixed": false,
+          "workload": "measured",
+          "unattributed_calls": 0,
+          "unattributed_models": {},
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": true,
+          "models": {
+            "m3.1-flash-preview": {
+              "calls": 173,
+              "request_count": 186,
+              "tokens": {
+                "in": 490472,
+                "out": 501571,
+                "cache_read": 5202700,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 6194743
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        },
+        {
+          "period_start": "2026-10-19T13:04:28Z",
+          "period_end": "2026-10-21T15:44:59Z",
+          "pct_consumed": 8,
+          "status": "eligible",
+          "reasons": [],
+          "warnings": [
+            "model_price_not_found",
+            "unattributed_usage_in_interval",
+            "unresolved_model_quota_weights"
+          ],
+          "mixed": true,
+          "workload": "measured",
+          "unattributed_calls": 7091,
+          "unattributed_models": {
+            "minimax-m3.1-flash": {
+              "calls": 6989,
+              "total_tokens": 937876804,
+              "worth": null
+            },
+            "claude-opus-5.5": {
+              "calls": 102,
+              "total_tokens": 17325010,
+              "worth": 23.485346399999997
+            }
+          },
+          "excluded_unmetered_calls": {},
+          "used_for_this_model": false,
+          "models": {
+            "m3.1-flash-preview": {
+              "calls": 208,
+              "request_count": 220,
+              "tokens": {
+                "in": 736006,
+                "out": 1937826,
+                "cache_read": 311184,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 2985016
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            },
+            "minimax-m3.1-flash": {
+              "calls": 425,
+              "request_count": 453,
+              "tokens": {
+                "in": 1074029,
+                "out": 411165,
+                "cache_read": 22813063,
+                "cache_write": 0,
+                "cache_write_1h": 0,
+                "total": 24298257
+              },
+              "reference_worth_usd": null,
+              "full_token_total_known": true
+            }
+          }
+        }
+      ],
+      "adopted": false
+    }
+  ],
+  "excluded_observations": [
+    {
+      "id": "codex_pro_5x-cycle-0-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 0,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-1-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "medium",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-1-gpt-6.1-sol",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6.1-sol",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-3-codex-auto-review",
+      "account_ref": "codex_pro_5x",
+      "model": "codex-auto-review",
+      "cycle_index": 3,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-3-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 3,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "mixed_proxy_segments_not_used_for_capacity"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-3-gpt-6.1-sol",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6.1-sol",
+      "cycle_index": 3,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "segment_capacity_varies_over_2x",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-4-codex-auto-review",
+      "account_ref": "codex_pro_5x",
+      "model": "codex-auto-review",
+      "cycle_index": 4,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-4-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 4,
+      "status": "contribution_only",
+      "evidence_grade": "medium",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "segment_capacity_varies_over_2x",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-4-gpt-6.1-sol",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6.1-sol",
+      "cycle_index": 4,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "segment_capacity_varies_over_2x",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-6-codex-auto-review",
+      "account_ref": "codex_pro_5x",
+      "model": "codex-auto-review",
+      "cycle_index": 6,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "unattributed_usage_in_interval",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-6-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 6,
+      "status": "contribution_only",
+      "evidence_grade": "medium",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "segment_capacity_varies_over_2x",
+        "unattributed_usage_in_interval",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-6-gpt-6.1-sol",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6.1-sol",
+      "cycle_index": 6,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-7-codex-auto-review",
+      "account_ref": "codex_pro_5x",
+      "model": "codex-auto-review",
+      "cycle_index": 7,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-7-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 7,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-7-gpt-6.1-sol",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6.1-sol",
+      "cycle_index": 7,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-8-gpt-6-astra",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6-astra",
+      "cycle_index": 8,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "codex_pro_5x-cycle-8-gpt-6.1-sol",
+      "account_ref": "codex_pro_5x",
+      "model": "gpt-6.1-sol",
+      "cycle_index": 8,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "kimi_allegro-cycle-0-kimi-k3",
+      "account_ref": "kimi_allegro",
+      "model": "kimi-k3",
+      "cycle_index": 0,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "supergrok_heavy-cycle-1-grok-4.7",
+      "account_ref": "supergrok_heavy",
+      "model": "grok-4.7",
+      "cycle_index": 1,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded"
+      ]
+    },
+    {
+      "id": "supergrok_heavy-cycle-1-grok-4.7-build-fast",
+      "account_ref": "supergrok_heavy",
+      "model": "grok-4.7-build-fast",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "some_cycle_segments_excluded",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "devin_pro-cycle-0-gemini-4-argon",
+      "account_ref": "devin_pro",
+      "model": "gemini-4-argon",
+      "cycle_index": 0,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "fewer_than_20_paid_calls",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only"
+      ]
+    },
+    {
+      "id": "devin_pro-cycle-1-claude-fable-5-1",
+      "account_ref": "devin_pro",
+      "model": "claude-fable-5-1",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "devin_pro-cycle-1-claude-haiku-5-5",
+      "account_ref": "devin_pro",
+      "model": "claude-haiku-5-5",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "devin_pro-cycle-1-claude-sonnet-5.5",
+      "account_ref": "devin_pro",
+      "model": "claude-sonnet-5.5",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "devin_pro-cycle-1-gemini-3-8-flash",
+      "account_ref": "devin_pro",
+      "model": "gemini-3-8-flash",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "devin_pro-cycle-1-gemini-4-argon",
+      "account_ref": "devin_pro",
+      "model": "gemini-4-argon",
+      "cycle_index": 1,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "devin_max-cycle-0-gemini-4-argon",
+      "account_ref": "devin_max",
+      "model": "gemini-4-argon",
+      "cycle_index": 0,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "some_cycle_segments_excluded",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "minimax_go-cycle-2-m3.1-flash-preview",
+      "account_ref": "minimax_go",
+      "model": "m3.1-flash-preview",
+      "cycle_index": 2,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "minimax_go-cycle-4-minimax-m3.1-flash",
+      "account_ref": "minimax_go",
+      "model": "minimax-m3.1-flash",
+      "cycle_index": 4,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "some_cycle_segments_excluded",
+        "unattributed_usage_in_interval",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "minimax_explore-cycle-1-None",
+      "account_ref": "minimax_explore",
+      "model": null,
+      "cycle_index": 1,
+      "status": "insufficient",
+      "evidence_grade": null,
+      "reasons": [
+        "account_plan_label_conflict",
+        "direct_usage_not_checked",
+        "no_eligible_segment",
+        "no_measurable_consumption_in_current_cycle",
+        "some_cycle_segments_excluded"
+      ]
+    },
+    {
+      "id": "minimax_explore-cycle-4-m3.1-flash-preview",
+      "account_ref": "minimax_explore",
+      "model": "m3.1-flash-preview",
+      "cycle_index": 4,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "account_plan_label_conflict",
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "unattributed_usage_in_interval"
+      ]
+    },
+    {
+      "id": "commandcode_goat-cycle-1-deepseek/deepseek-v4.1-flash",
+      "account_ref": "commandcode_goat",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "cycle_index": 1,
+      "status": "dollar_pool_no_token_capacity",
+      "evidence_grade": null,
+      "reasons": [
+        "direct_usage_not_checked",
+        "no_eligible_segment",
+        "nonpositive_quota_delta",
+        "some_cycle_segments_excluded",
+        "window_is_dollar_pool"
+      ]
+    },
+    {
+      "id": "commandcode_goat-cycle-2-deepseek/deepseek-v4.1-flash",
+      "account_ref": "commandcode_goat",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "cycle_index": 2,
+      "status": "dollar_pool_no_token_capacity",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "unresolved_model_quota_weights",
+        "window_is_dollar_pool"
+      ]
+    },
+    {
+      "id": "commandcode_goat-cycle-2-moonshotai/kimi-k3",
+      "account_ref": "commandcode_goat",
+      "model": "moonshotai/kimi-k3",
+      "cycle_index": 2,
+      "status": "dollar_pool_no_token_capacity",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "mixed_proxy_segments_not_used_for_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "segment_capacity_varies_over_2x",
+        "window_is_dollar_pool"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-0-kimi-k3",
+      "account_ref": "opencode_go",
+      "model": "kimi-k3",
+      "cycle_index": 0,
+      "status": "insufficient",
+      "evidence_grade": null,
+      "reasons": [
+        "direct_usage_not_checked",
+        "full_token_total_unknown",
+        "no_eligible_segment",
+        "some_cycle_segments_excluded"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-0-mimo-v2.6-flash",
+      "account_ref": "opencode_go",
+      "model": "mimo-v2.6-flash",
+      "cycle_index": 0,
+      "status": "insufficient",
+      "evidence_grade": null,
+      "reasons": [
+        "direct_usage_not_checked",
+        "full_token_total_unknown",
+        "no_eligible_segment",
+        "some_cycle_segments_excluded"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-1-None",
+      "account_ref": "opencode_go",
+      "model": null,
+      "cycle_index": 1,
+      "status": "insufficient",
+      "evidence_grade": null,
+      "reasons": [
+        "direct_usage_not_checked",
+        "no_eligible_segment",
+        "no_measurable_consumption_in_current_cycle",
+        "some_cycle_segments_excluded"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-2-cat-jam-free",
+      "account_ref": "opencode_go",
+      "model": "cat-jam-free",
+      "cycle_index": 2,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "not_workload_normalized",
+        "single_segment_raw_extrapolation_is_magnitude_only",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-2-deepseek-v4.1-flash",
+      "account_ref": "opencode_go",
+      "model": "deepseek-v4.1-flash",
+      "cycle_index": 2,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-2-gemini-4-argon-contributor",
+      "account_ref": "opencode_go",
+      "model": "gemini-4-argon-contributor",
+      "cycle_index": 2,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "fewer_than_20_paid_calls",
+        "mixed_proxy_segments_not_used_for_capacity"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-2-kimi-k3",
+      "account_ref": "opencode_go",
+      "model": "kimi-k3",
+      "cycle_index": 2,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "model_contribution_is_not_full_pool_capacity",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-2-mimo-v2.6-flash",
+      "account_ref": "opencode_go",
+      "model": "mimo-v2.6-flash",
+      "cycle_index": 2,
+      "status": "contribution_only",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "exhausted_endpoint_may_be_censored",
+        "model_contribution_is_not_full_pool_capacity",
+        "model_price_not_found",
+        "segment_capacity_varies_over_2x",
+        "unresolved_model_quota_weights"
+      ]
+    },
+    {
+      "id": "opencode_go-cycle-4-kimi-k3",
+      "account_ref": "opencode_go",
+      "model": "kimi-k3",
+      "cycle_index": 4,
+      "status": "estimated",
+      "evidence_grade": "low",
+      "reasons": [
+        "direct_usage_not_checked",
+        "quota_delta_below_5pp"
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "account_ref": "antigravity_unclassified_1",
+      "provider": "antigravity",
+      "hosts_with_history": [],
+      "cached_vendor_plan": "Google AI Pro",
+      "cached_at": "2026-10-21T15:44:04.916566848Z",
+      "history_windows": [],
+      "cached_windows": [
+        {
+          "name": "Claude Opus 4.6 (Thinking)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Claude Sonnet 4.6 (Thinking)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.5 Flash Lite",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.5 Flash Lite",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3 Flash",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.5 Flash (High)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.1 Flash Image",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.1 Flash Lite",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.5 Flash (Low)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.5 Flash Lite",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.5 Flash (Medium)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.8 Flash (High)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.8 Flash (Low)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "Gemini 3.8 Flash (Medium)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "gemini-3.8-flash-tiered",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "GPT-OSS 120B (Medium)",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:03Z"
+        },
+        {
+          "name": "7 days",
+          "used": 0.908589999999998,
+          "resetsAt": "2026-10-26T10:11:28Z"
+        },
+        {
+          "name": "5 hours",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:04Z"
+        },
+        {
+          "name": "7 days",
+          "used": 0.0019199999999996997,
+          "resetsAt": "2026-10-26T10:13:35Z"
+        },
+        {
+          "name": "5 hours",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:04Z"
+        }
+      ],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "codex_pro_5x",
+      "provider": "codex",
+      "hosts_with_history": [
+        "local",
+        "tokyo"
+      ],
+      "cached_vendor_plan": "prolite",
+      "cached_at": "2026-10-21T15:51:17.289760615Z",
+      "history_windows": [
+        "7 days"
+      ],
+      "cached_windows": [
+        {
+          "name": "7 days",
+          "used": 34,
+          "resetsAt": "2026-10-28T07:38:30Z"
+        }
+      ],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "commandcode_goat",
+      "provider": "commandcode-plan",
+      "hosts_with_history": [
+        "local"
+      ],
+      "cached_vendor_plan": "GOAT",
+      "cached_at": "2026-10-21T23:50:48.9992176+08:00",
+      "history_windows": [
+        "5 hours",
+        "Credits",
+        "Weekly"
+      ],
+      "cached_windows": [
+        {
+          "name": "5 hours",
+          "used": 0
+        },
+        {
+          "name": "Weekly",
+          "used": 45.59721501114286,
+          "resetsAt": "2026-10-23T15:28:06.477Z"
+        },
+        {
+          "name": "Credits",
+          "used": 68.811565488,
+          "display": "$48.17 / $70.00",
+          "resetsAt": "2026-10-22T03:14:22Z"
+        }
+      ],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "cursor_ultra",
+      "provider": "cursor",
+      "hosts_with_history": [
+        "local",
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "Cursor Models",
+        "Other Models"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "devin_pro",
+      "provider": "devin",
+      "hosts_with_history": [
+        "local",
+        "tokyo"
+      ],
+      "cached_vendor_plan": "Devin Max",
+      "cached_at": "2026-10-14T17:37:13.6474074+08:00",
+      "history_windows": [
+        "1 day",
+        "7 days"
+      ],
+      "cached_windows": [
+        {
+          "name": "1 day",
+          "used": 12,
+          "resetsAt": "2026-10-15T08:00:00Z"
+        },
+        {
+          "name": "7 days",
+          "used": 36,
+          "resetsAt": "2026-10-18T08:00:00Z"
+        }
+      ],
+      "qualified_measurement_ids": [
+        "devin_pro-cycle-0-claude-opus-5.5",
+        "devin_pro-cycle-1-claude-opus-5.5"
+      ]
+    },
+    {
+      "account_ref": "devin_max_standard",
+      "provider": "devin",
+      "hosts_with_history": [
+        "local",
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": "2026-10-14T17:37:13.6574499+08:00",
+      "history_windows": [
+        "7 days"
+      ],
+      "cached_windows": [
+        {
+          "name": "7 days",
+          "used": 59,
+          "resetsAt": "2026-10-18T08:00:00Z"
+        }
+      ],
+      "qualified_measurement_ids": [
+        "devin_max-cycle-0-claude-opus-5.5",
+        "devin_max-cycle-1-claude-opus-5.5"
+      ]
+    },
+    {
+      "account_ref": "devin_unclassified_3",
+      "provider": "devin",
+      "hosts_with_history": [
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "1 day",
+        "7 days"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "devin_unclassified_4",
+      "provider": "devin",
+      "hosts_with_history": [
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "1 day",
+        "7 days"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "drag-api_unclassified_1",
+      "provider": "drag-api",
+      "hosts_with_history": [],
+      "cached_vendor_plan": null,
+      "cached_at": "2026-10-19T20:05:15.0303807+08:00",
+      "history_windows": [],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "supergrok_heavy",
+      "provider": "grok",
+      "hosts_with_history": [
+        "local",
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": "2026-10-21T15:44:02.451084123Z",
+      "history_windows": [
+        "7 days"
+      ],
+      "cached_windows": [
+        {
+          "name": "7 days",
+          "used": 63,
+          "resetsAt": "2026-10-23T14:14:17.461Z"
+        }
+      ],
+      "qualified_measurement_ids": [
+        "supergrok_heavy-cycle-0-grok-4.7"
+      ]
+    },
+    {
+      "account_ref": "kimi_allegro",
+      "provider": "kimi-code-cn",
+      "hosts_with_history": [
+        "local"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "5 hours",
+        "7 days"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": [
+        "kimi_allegro-cycle-1-kimi-k3"
+      ]
+    },
+    {
+      "account_ref": "kimi-code-cn_unclassified_2",
+      "provider": "kimi-code-cn",
+      "hosts_with_history": [],
+      "cached_vendor_plan": null,
+      "cached_at": "2026-10-21T23:44:58.2032295+08:00",
+      "history_windows": [],
+      "cached_windows": [
+        {
+          "name": "5 hours",
+          "used": 89,
+          "resetsAt": "2026-10-21T18:19:32.896643Z"
+        },
+        {
+          "name": "7 days",
+          "used": 84,
+          "resetsAt": "2026-10-24T13:19:32.896643Z"
+        }
+      ],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "minimax_explore",
+      "provider": "minimax-code",
+      "hosts_with_history": [
+        "local"
+      ],
+      "cached_vendor_plan": "M Plan Build",
+      "cached_at": "2026-10-21T23:44:59.899868+08:00",
+      "history_windows": [
+        "4 hours",
+        "5 hours",
+        "7 days"
+      ],
+      "cached_windows": [
+        {
+          "name": "5 hours",
+          "used": 1,
+          "resetsAt": "2026-10-21T19:25:58.916Z"
+        },
+        {
+          "name": "7 days",
+          "used": 70,
+          "resetsAt": "2026-10-28T13:25:35.882Z"
+        }
+      ],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "minimax_go",
+      "provider": "minimax-code",
+      "hosts_with_history": [
+        "local"
+      ],
+      "cached_vendor_plan": "M Plan Go",
+      "cached_at": "2026-10-21T23:44:59.9180821+08:00",
+      "history_windows": [
+        "5 hours",
+        "7 days"
+      ],
+      "cached_windows": [
+        {
+          "name": "5 hours",
+          "used": 0,
+          "resetsAt": "2026-10-21T20:44:59.991Z"
+        },
+        {
+          "name": "7 days",
+          "used": 33,
+          "resetsAt": "2026-10-25T17:21:51.155Z"
+        }
+      ],
+      "qualified_measurement_ids": [
+        "minimax_go-cycle-4-m3.1-flash-preview"
+      ]
+    },
+    {
+      "account_ref": "opencode_go",
+      "provider": "opencode-go",
+      "hosts_with_history": [
+        "local"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "5 hours",
+        "7 days",
+        "Month"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "opencode-go_unclassified_2",
+      "provider": "opencode-go",
+      "hosts_with_history": [],
+      "cached_vendor_plan": null,
+      "cached_at": "2026-10-21T23:44:58.7224857+08:00",
+      "history_windows": [],
+      "cached_windows": [
+        {
+          "name": "5 hours",
+          "used": 0
+        },
+        {
+          "name": "7 days",
+          "used": 12,
+          "resetsAt": "2026-10-26T00:00:00Z"
+        },
+        {
+          "name": "Month",
+          "used": 100,
+          "resetsAt": "2026-10-22T03:10:50Z"
+        }
+      ],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "workbuddy-ai_unclassified_1",
+      "provider": "workbuddy-ai",
+      "hosts_with_history": [
+        "local",
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "Credits"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "workbuddy-ai_unclassified_2",
+      "provider": "workbuddy-ai",
+      "hosts_with_history": [
+        "tokyo"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "Credits"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "workbuddy_unclassified_1",
+      "provider": "workbuddy",
+      "hosts_with_history": [
+        "local"
+      ],
+      "cached_vendor_plan": null,
+      "cached_at": null,
+      "history_windows": [
+        "Credits"
+      ],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    },
+    {
+      "account_ref": "zooywoo_unclassified_1",
+      "provider": "zooywoo",
+      "hosts_with_history": [],
+      "cached_vendor_plan": null,
+      "cached_at": "2026-10-19T20:05:15.0082397+08:00",
+      "history_windows": [],
+      "cached_windows": [],
+      "qualified_measurement_ids": []
+    }
+  ]
+}

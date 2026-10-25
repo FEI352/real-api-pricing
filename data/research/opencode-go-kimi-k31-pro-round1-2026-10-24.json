@@ -1,0 +1,109 @@
+{
+  "collectedAt": "2026-10-24",
+  "collectionMethod": "Manual capture of the official OpenCode Go docs page and landing page (English) around 10:34 Beijing time / 02:34Z on 2026-10-24. Official per-model pricing table, per-model Monthly limit, the usage-window rule, the official 'Estimated requests' table, the landing-page Go model table and the privacy table were read as published. Research-only — no adopted row generated, no adopted value changed.",
+  "sources": [
+    "https://opencode.ai/docs/go/",
+    "https://opencode.ai/go"
+  ],
+  "scope": "OpenCode Go official price table only. One catalog entry was added on 2026-10-24: the new paid model 'Kimi K3.1 Pro' (model id kimi-k3.1-pro). The landing page now carries the banner 'Kimi K3.1 Pro is now available in Go.' and the model counter moved from 'View all 29 models' to 'View all 30 models'. No leaderboard/score data, no Command Code GOAT value changed (cross-channel note only), no shared-pool figure restated, no adopted.csv row, no computed allowance in this file.",
+  "adoptionStatus": "research-only; not adopted; no opencode_go × kimi-k3.1-pro row in adopted.csv yet — adding one requires an OPENCODE_GO_MODELS entry in scripts/build_adopted.py, left to maintainer review",
+  "observed": {
+    "paidModel": {
+      "name": "Kimi K3.1 Pro",
+      "modelId": "kimi-k3.1-pro",
+      "vendor": "Moonshot / Kimi",
+      "category": "opensource",
+      "categoryNote": "License / open-weight status is not stated on the captured OpenCode Go pages; recorded for context only and not consumed by any adopted value or pipeline step.",
+      "statusChange": "New paid row added to the official OpenCode Go price table on 2026-10-24, with a matching landing-page banner 'Kimi K3.1 Pro is now available in Go.' and the model counter moving from 29 to 30.",
+      "endpoint": "https://opencode.ai/inference/go/openai/v1/chat/completions",
+      "sdk": "@ai-sdk/openai-compatible",
+      "threePartPrice": {
+        "inputPerMTokUsd": 2.00,
+        "outputPerMTokUsd": 10.00,
+        "cachedReadPerMTokUsd": 0.20,
+        "cacheWritePerMTokUsd": 2.00,
+        "officialQuote": "Kimi K3.1 Pro Input $2.00 Output $10.00 Cached Read $0.20 Cached Write $2.00 Usage $15"
+      },
+      "priceScope": "Go and Go Plus show the same three-part price.",
+      "monthlyLimitUsd": {
+        "go": 15,
+        "goPlus": 60
+      },
+      "usageWindowRule": "Each model has the following usage limits: 5-hour — 20% of the monthly limit; weekly — 50%; and monthly — 100%.",
+      "officialRequestEstimates": {
+        "note": "Official 'Estimated requests' figures, kept as cross-check evidence only; never used as the allowance main value.",
+        "go": {
+          "per5h": 147,
+          "perWeek": 368,
+          "perMonth": 735
+        },
+        "goPlus": {
+          "per5h": 588,
+          "perWeek": 1471,
+          "perMonth": 2941
+        },
+        "landingPageGoTable": {
+          "go": {
+            "per5h": 147,
+            "monthlyLimitUsd": 15
+          },
+          "goPlus": {
+            "per5h": 588,
+            "monthlyLimitUsd": 60
+          },
+          "note": "The landing-page Go model table lists this row with a 'New' marker."
+        }
+      },
+      "requestShape": {
+        "inputTokens": 1050,
+        "cachedReadTokens": 76500,
+        "outputTokens": 300,
+        "pageWording": "Kimi K3.1 Pro — 1,050 input, 76,500 cached, 300 output tokens per request",
+        "note": "Same request shape as the Kimi K3 row."
+      },
+      "privacy": {
+        "modelTraining": "Not used",
+        "dataRetention": "0 days"
+      },
+      "landingPageBanner": "Kimi K3.1 Pro is now available in Go.",
+      "modelCount": {
+        "before": 29,
+        "after": 30,
+        "pageWording": "'View all 29 models' → 'View all 30 models'"
+      }
+    }
+  },
+  "crossChannelNote": {
+    "commandCodeGoat": {
+      "observation": "Command Code GOAT added the same model on the same day at $2.00 / $10.00 / $0.20 (cached read) per 1M tokens, with $20 per-model credits; the GOAT catalog entry carries launchedAt 2026-10-23.",
+      "evidence": "https://commandcode.ai/docs/plans/goat, https://commandcode.ai/models — captured the same day alongside this round; not yet written as a separate repo research file.",
+      "adopted": false,
+      "reason": "Cross-channel corroboration of the three-part price only; no GOAT row or GOAT value was changed by this capture."
+    }
+  },
+  "otherObservations": [
+    {
+      "topic": "Kimi K3 cached-write price",
+      "observation": "In the Kimi K3 row of the official price table, the cached-write entry changed from '-' to $3.00; input $3.00, output $15.00, cached read $0.30 and the $15 / $60 monthly limits are unchanged.",
+      "note": "Recorded only; the existing opencode_go × kimi-k3 adopted row is not changed by this capture."
+    },
+    {
+      "topic": "Enable restricted models section",
+      "observation": "The docs page gained a new 'Enable restricted models' section covering privacy and region settings: DeepSeek V4.1 Flash and DeepSeek V4 Pro require 'Global' to be selected in Regions; Gemini 4 Argon Contributor, Muse Spark 1.3 Contributor and Muse Spark 1.2 Contributor require 'Allow paid endpoints that train on request data' to be enabled.",
+      "note": "Recorded only; no price, quota or usage-window value changed."
+    },
+    {
+      "topic": "\"Extra usage\" entry wording",
+      "observation": "The 'Extra usage' entry wording was moved to the Go page.",
+      "note": "Recorded only; no price, quota or usage-window value changed."
+    },
+    {
+      "topic": "Kimi Code / MiMo Code session-header issue status",
+      "observation": "The session-header issue status wording was updated for Kimi Code / MiMo Code.",
+      "note": "Recorded only; no price, quota or usage-window value changed."
+    }
+  ],
+  "computationNote": "No monthlyYi, no blended per-MTok price and no adopted value are computed in this file; all numbers are transcribed as published on the official pages.",
+  "confidence": "medium",
+  "basis": "official"
+}

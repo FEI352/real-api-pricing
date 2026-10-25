@@ -1,0 +1,290 @@
+{
+  "collectedAt": "2026-10-19",
+  "scopeNote": "GitHub issue #124（投稿人 ganpei777）的社区实测原样录入：Claude Pro $20/月、国际站，本机 Claude Code JSONL 依 message.id 去重后加总，对齐官方 seven_day 整数用量条（CSV 约每 5 分钟一笔）。统计窗 2026-10-09 14:00 台北（06:00 UTC）用量条 0%，到 2026-10-14 00:10 台北（2026-10-13 16:10:02 UTC）第一次 100%，本周七天条 0% → 100% 打满，无五小时限额行。本文件只存档投稿数字与其自算推论，不参与采用值计算；采用值是否调整由上游维护者按自身算法裁定。证据 gist 的 CSV 未复制进仓库。",
+  "source": {
+    "type": "github_issue_community_measurement",
+    "url": "https://github.com/Fei2411/real-api-pricing/issues/124",
+    "author": "ganpei777",
+    "postedAt": "2026-10-18T18:57Z",
+    "providedBy": "GitHub issue 正文（2026-10-19 录入）"
+  },
+  "adoptionStatus": "research-only; not adopted; adopted value claude_pro × claude-opus-5.5 = 30.54亿 (issue #52) unchanged pending maintainer review",
+  "items": [
+    {
+      "id": "issue124-pro-weekly-0-to-100",
+      "planId": "claude_pro",
+      "priceUsd": 20,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_transcript_measurement",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/124",
+      "sourceDate": "2026-10-09 14:00 ~ 2026-10-14 00:10（台北，UTC+8）",
+      "observed": {
+        "measurementWindow": "2026-10-09 14:00 台北（2026-10-09T06:00:02Z）用量条 0% → 2026-10-14 00:10 台北（2026-10-13T16:10:02Z）第一次 100%",
+        "weeklyReset": "2026-10-16 14:00 台北（2026-10-16T06:00:00Z）",
+        "sevenDayQuotaUsedPct": "0% → 100%",
+        "fiveHourWindowNote": "这周没有五小时限额纪录，先满的是七天条",
+        "tool": "本机 Claude Code JSONL，依 message.id 去重后加总；百分比取官方 seven_day 已用百分比，大约每 5 分钟一笔",
+        "promptsOrRepliesIncluded": false,
+        "apiRows": 12951,
+        "listPriceCardUsed": "Opus 5.5 价表：新输入 $4、5 分钟写入 $5、1 小时写入 $8、快取读取 $0.20、输出 $20，每百万 token。整段整数加总后再除一次。",
+        "tokenBreakdown": [
+          {
+            "item": "快取读取",
+            "mTok": 4029.712,
+            "shareOfRaw": "98.957%",
+            "listUsd": 805.94
+          },
+          {
+            "item": "1 小时写入",
+            "mTok": 30.219,
+            "shareOfRaw": "0.742%",
+            "listUsd": 241.75
+          },
+          {
+            "item": "输出（含 thinking）",
+            "mTok": 10.474,
+            "shareOfRaw": "0.257%",
+            "listUsd": 209.49
+          },
+          {
+            "item": "5 分钟写入",
+            "mTok": 1.773,
+            "shareOfRaw": "0.044%",
+            "listUsd": 8.86
+          },
+          {
+            "item": "新输入",
+            "mTok": 0.027,
+            "shareOfRaw": "0.001%",
+            "listUsd": 0.11
+          },
+          {
+            "item": "合计",
+            "mTok": 4072.205,
+            "shareOfRaw": "100%",
+            "listUsd": 1266.15
+          }
+        ],
+        "totalMTok": 4072.205,
+        "totalListUsd": 1266.15,
+        "modelMix": "claude-opus-5-5 占这段 raw token 的 99.99%；另有 claude-haiku-5-5 九笔，牌价 $0.99。effort 没有存。",
+        "haikuCalls": 9,
+        "haikuListUsd": 0.99,
+        "thinkingInsideOutput": "thinking 3.763 MTok，已在输出的 10.474 MTok 里面，不另加。",
+        "worthPerSevenDayPpUsd": 12.66,
+        "fullWeekWorthUsd": 1266.15,
+        "worthFormula": "0% 到 100% 直接除：$1,266.15 ÷ 100 = 每 1% $12.66"
+      }
+    },
+    {
+      "id": "issue124-integer-percent-first-hits",
+      "planId": "claude_pro",
+      "priceUsd": 20,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_integer_percent_first_hits",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/124",
+      "sourceDate": "2026-10-09 ~ 2026-10-13 (UTC)",
+      "observed": {
+        "section": "用量条第一次到达各整数时的累计牌价",
+        "rows": [
+          {
+            "used": "10%",
+            "timeUtc": "2026-10-09 11:50:02 UTC",
+            "cumulativeListUsd": 97.71,
+            "listUsdPerPoint": 9.77
+          },
+          {
+            "used": "20%",
+            "timeUtc": "2026-10-09 19:00:02 UTC",
+            "cumulativeListUsd": 224.82,
+            "listUsdPerPoint": 11.24
+          },
+          {
+            "used": "30%",
+            "timeUtc": "2026-10-10 10:50:02 UTC",
+            "cumulativeListUsd": 356.99,
+            "listUsdPerPoint": 11.9
+          },
+          {
+            "used": "40%",
+            "timeUtc": "2026-10-11 04:40:02 UTC",
+            "cumulativeListUsd": 490.55,
+            "listUsdPerPoint": 12.26
+          },
+          {
+            "used": "50%",
+            "timeUtc": "2026-10-11 13:30:02 UTC",
+            "cumulativeListUsd": 623.81,
+            "listUsdPerPoint": 12.48
+          },
+          {
+            "used": "60%",
+            "timeUtc": "2026-10-12 02:00:02 UTC",
+            "cumulativeListUsd": 759.23,
+            "listUsdPerPoint": 12.65
+          },
+          {
+            "used": "70%",
+            "timeUtc": "2026-10-12 12:50:01 UTC",
+            "cumulativeListUsd": 890.77,
+            "listUsdPerPoint": 12.73
+          },
+          {
+            "used": "80%",
+            "timeUtc": "2026-10-12 23:25:01 UTC",
+            "cumulativeListUsd": 1013.13,
+            "listUsdPerPoint": 12.66
+          },
+          {
+            "used": "90%",
+            "timeUtc": "2026-10-13 09:00:02 UTC",
+            "cumulativeListUsd": 1150.33,
+            "listUsdPerPoint": 12.78
+          },
+          {
+            "used": "99%",
+            "timeUtc": "2026-10-13 15:15:02 UTC",
+            "cumulativeListUsd": 1255.91,
+            "listUsdPerPoint": 12.69
+          },
+          {
+            "used": "100%",
+            "timeUtc": "2026-10-13 16:10:02 UTC",
+            "cumulativeListUsd": 1266.15,
+            "listUsdPerPoint": 12.66
+          }
+        ],
+        "from10To100AddedListUsd": 1168.44,
+        "from10To100PerPointUsd": 12.98,
+        "note": "前 10% 较便宜。10% 走到 100% 增加 $1,168.44，约每点 $12.98。百分比是整数，低段比较粗。"
+      }
+    },
+    {
+      "id": "issue124-after-100-percent",
+      "planId": "claude_pro",
+      "priceUsd": 20,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_after_100_percent",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/124",
+      "sourceDate": "2026-10-13 ~ 2026-10-16 (UTC)",
+      "observed": {
+        "section": "100% 之后",
+        "meterFirstShowed100AtUtc": "2026-10-13T16:10:02Z",
+        "cumulativeListUsdAtFirst100": 1266.15,
+        "firstSevenDayLimitRowUtc": "2026-10-13T16:47:19Z",
+        "cumulativeListUsdAtFirstLimitRow": 1274.73,
+        "cumulativeListUsdAtWeeklyReset": 1375.15,
+        "weeklyResetUtc": "2026-10-16T06:00:00Z",
+        "extraUsdNotUsedAsPool": 109.0,
+        "poolDefinition": "多出來的 $109.00 不拿來當池子容量。池子用第一次 100% 的 $1,266.15。"
+      }
+    },
+    {
+      "id": "issue124-evidence-gist-csv",
+      "planId": "claude_pro",
+      "priceUsd": 20,
+      "model": "claude-opus-5.5",
+      "client": "Claude Code",
+      "evidenceType": "community_issue_evidence_gist",
+      "source": "https://github.com/Fei2411/real-api-pricing/issues/124",
+      "sourceDate": "2026-10-09 ~ 2026-10-16 (UTC)",
+      "observed": {
+        "gistUrl": "https://gist.github.com/ganpei777/e2dd64cd73578ebc09b3e6769e00c223",
+        "csvName": "quota-2026-10-09-to-10-16.csv",
+        "csvRows": 1670,
+        "csvScope": "只有这一周的用量条",
+        "csvFields": [
+          "taken_at",
+          "five_hour_utilization",
+          "five_hour_resets_at",
+          "seven_day_utilization",
+          "seven_day_resets_at",
+          "subscription_type"
+        ],
+        "csvFieldSemantics": "taken_at = 取样时间；five_hour_utilization / five_hour_resets_at = 五小时已用百分比和重置时间；seven_day_utilization / seven_day_resets_at = 七天已用百分比和重置时间；subscription_type = 官方用量条的订阅类型",
+        "csvHasNo": "没有路径、没有账号、没有 message id",
+        "firstRowPct": "第一笔是 0%",
+        "lastRowPct": "档案内最后一笔是 100%",
+        "csvNotCopiedIntoRepo": true,
+        "invoiceAttached": false,
+        "rawUsageJsonRetained": false,
+        "rawUsageJsonMissingFields": "extra_usage、limits[]、七天模型分项都不在这包里；官方 /api/oauth/usage 原始 JSON 没有留，附上的 CSV 是当时存下來的用量条栏位"
+      }
+    }
+  ],
+  "measurementConditions": {
+    "plan": "Claude Pro",
+    "price": "$20 / 月",
+    "priceNote": "官方用量条 subscription_type 是 pro，价格依 Pro 月费 $20 填，这包没有账单",
+    "region": "国际站",
+    "modelWithEffort": "claude-opus-5-5（这段 raw token 的 99.99%），effort 没有存；另有 claude-haiku-5-5 九笔",
+    "tool": "本机 Claude Code JSONL（message.usage），依 message.id 去重后加总",
+    "quotaSource": "官方 seven_day 已用百分比（整数），CSV 大约每 5 分钟一笔，本周 1,670 笔",
+    "fieldSemantics": "`input` 不含快取读取、不含快取写入。`output` 含 thinking。raw = 新输入 + 快取写入 + 快取读取 + 输出",
+    "officialTokenAllowance": "没有官方公布的 token 数",
+    "scope": "七天条 0% → 100% 打满；这周没有五小时限额纪录，先满的是七天条",
+    "writePricing": "1 小时写入按 $8、5 分钟写入按 $5。这段写入以 1 小时为主"
+  },
+  "contributorDerived": {
+    "disclaimer": "以下换算均为投稿人自行推算，未被本仓库采用；采用值不变，仅作存档与交叉参考。投稿人自己声明这不是请直接改采用值。",
+    "worthPerSevenDayPpUsd": {
+      "value": 12.66,
+      "formula": "$1,266.15 ÷ 100 = 每 1% $12.66"
+    },
+    "fullWeekWorthUsd": 1266.15,
+    "from10To100PerPointUsd": {
+      "addedListUsd": 1168.44,
+      "perPointUsd": 12.98,
+      "note": "前 10 点较便宜；百分比是整数，低段比较粗"
+    },
+    "comparisonToAdoptedRow": {
+      "adoptedRow": "claude_pro × claude-opus-5.5（issue #52，测于 2026-09-22 ~ 2026-09-27）",
+      "adoptedUsdPerPp": 3.19865,
+      "adoptedFullWeekUsd": 319.87,
+      "thisWeekUsdPerPp": 12.66,
+      "ratio": "约 3.96 倍"
+    },
+    "monthlyConversion": {
+      "formula": "沿用仓库算法：×4 週，再除 Anthropic 标准负载 $0.419 / MTok",
+      "monthlyListWorthUsd": 5064.61,
+      "monthlyTokensYi": "约 120.9 亿",
+      "realPriceUsdPerMTok": 0.00165,
+      "note": "这是投稿人换算，不是请直接改采用值。"
+    }
+  },
+  "verification": {
+    "by": "本仓库录入方（2026-10-19）",
+    "object": "证据 gist 内的 quota-2026-10-09-to-10-16.csv（本地下载副本，未复制进仓库）",
+    "checks": [
+      "数据行 1,670 行（表头 1 行，末行无换行计数差异已按 csv 模块处理），与投稿「1,670 笔」一致",
+      "subscription_type 全程只有 'pro' 一个取值",
+      "seven_day_utilization 单调不减（无回退），taken_at 单调不减",
+      "首行 2026-10-09T06:00:02Z，seven_day_utilization = 0.0；末行 2026-10-15T19:40:02Z，seven_day_utilization = 100.0",
+      "seven_day_utilization 取值覆盖 0–100 全部 101 个整数档，与「百分比是整数」一致",
+      "各整数百分比首次出现时间与正文表逐行一致：10% 2026-10-09T11:50:02Z、20% 2026-10-09T19:00:02Z、30% 2026-10-10T10:50:02Z、40% 2026-10-11T04:40:02Z、50% 2026-10-11T13:30:02Z、60% 2026-10-12T02:00:02Z、70% 2026-10-12T12:50:01Z、80% 2026-10-12T23:25:01Z、90% 2026-10-13T09:00:02Z、99% 2026-10-13T15:15:02Z、100% 2026-10-13T16:10:02Z",
+      "seven_day_resets_at 全程指向 2026-10-16 06:00 UTC（周边秒级取整），与周重置 2026-10-16 14:00 台北一致",
+      "five_hour_utilization 最高只到 45%，与「这周没有五小时限额纪录、先满的是七天条」一致"
+    ],
+    "notVerified": [
+      "CSV 只有用量条字段，不含 token 计数，故 4,072.205 MTok / $1,266.15 / 12,951 笔 API 行与累计标价表无法由本包重算",
+      "首笔 seven_day limit 行时间 2026-10-13T16:47:19Z 与 $1,274.73、$1,375.15、$109.00 均来自官方 usage JSON，该原始 JSON 未保留，不可复核"
+    ]
+  },
+  "openQuestions": [
+    "单账号样本，用量百分比是整数，低段（尤其前 10 点）每点的粒度粗。",
+    "官方用量条覆盖整个账号。若这段期间还有 claude.ai 网页用量，JSONL 会少计，每 1% 的牌价会偏低。",
+    "没有 effort 字段。几乎全是 Opus 5.5，牌价统一按 Opus 5.5 价表，未按 effort 拆分每 1% 标价。",
+    "缓存读占 raw 98.957%，远高于 #52 样本；与现采用 #52 行每 1% $3.19865 相差 3.96 倍。可能指向 9/22 之后 Pro 周额度上调，或缓存读在官方用量条中的权重低于其标价比，需维护者裁定，本文件不改动采用值。",
+    "官方 /api/oauth/usage 原始 JSON 未保留：extra_usage、limits[]、七天模型分项都不在证据包内，无法核对用量条的权重口径。",
+    "没有账单，本包只有 Pro 月费 $20 与客户端自算标价，无官方计费侧交叉验证。"
+  ],
+  "relatedFiles": [
+    "community-issues-round1-2026-09-29.json",
+    "claude-adoption-round10-2026-09-25.json",
+    "claude-max20x-opus55-community-issue96-2026-10-02.json",
+    "claude-max5x-opus55-community-issue98-2026-10-03.json"
+  ]
+}

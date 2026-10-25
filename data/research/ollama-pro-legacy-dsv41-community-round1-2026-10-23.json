@@ -1,0 +1,213 @@
+{
+  "collectedAt": "2026-10-24",
+  "subject": "Ollama Pro 老套餐（session + weekly 限额制）× deepseek-v4.1-flash:1017 社区实测（GitHub Issue #134，作者 ThedoRap）原样录入",
+  "scopeNote": "上游 Issue #134 的投稿内容与面板截图原样录入，只作 research 证据存档。本文件不计算 monthlyYi、不算混合价、不做周→月折算、不改任何采用值；仓库现有 ollama_pro 采用行由 scripts/build_adopted.py 在新版「共享月池 $60 usage credits ÷ 标准负载」口径下生成，与本条老版 session/weekly 制实测不是同一计量方式，是否采用留给维护者裁定。",
+  "plan": {
+    "name": "Ollama Pro（老套餐 / legacy session + weekly 限额制）",
+    "vendor": "Ollama (Ollama Cloud)",
+    "priceUsdPerMonth": 20,
+    "priceNote": "USD $20/月（Issue 正文「价格（注明币种）」栏）",
+    "region": "International（国际站）",
+    "servedModel": "deepseek-v4.1-flash:1017",
+    "source": "https://github.com/Fei2411/real-api-pricing/issues/134",
+    "officialAllowance": "Issue 正文「官方公布的额度（如有）」栏留空；面板只给出 session / weekly 限额的使用率，未给出绝对 token 额度",
+    "planVersionNote": "Issue 正文填「Pro 老套餐」；官方面板提示「A new version of your plan is available at the same price. It includes a set dollar amount of usage each month, replacing session and weekly limits.」，即该账户仍为老版 session/weekly 限额制，而非新版美元 usage credits 池",
+    "renewalNote": "Current plan: Pro，renews November 17, 2026（面板截图读数）"
+  },
+  "source": {
+    "type": "community_issue_dashboard_screenshot",
+    "platform": "GitHub Issue",
+    "issue": "#134",
+    "url": "https://github.com/Fei2411/real-api-pricing/issues/134",
+    "author": "ThedoRap",
+    "postedAt": "2026-10-23 20:09 (UTC+8)",
+    "followUpComment": "2026-10-23 23:46 (UTC+8)",
+    "followUpComment2": "2026-10-24 11:49 (UTC+8)",
+    "followUpComment2Body": "周额度起点： 10/19 开始时为 0%\n面板B：查询的时间也是一样的\nhttps://img.xingtan.one/i/2026/10/24/6adc2a3c76031.png\n10.96M是输出 两个面板总和",
+    "issueTitle": "补充数据 / Contribute evidence",
+    "providedBy": "GitHub issue 正文与附件（2026-10-24 录入）",
+    "measurementWindow": "2026/10/19 - 2026/10/23（Issue 正文；周额度已经用完了。起止具体时刻未记录）",
+    "measurementTool": "面板（Issue 正文「统计工具」栏填「面板」；正文附注「中途换了面板 所以截的是两个面板的」——厂商面板 + 两个第三方代理面板）",
+    "issueBodyFieldsAsSubmitted": {
+      "aiCompany": "Ollama",
+      "subscriptionPlan": "Pro 老套餐",
+      "price": "$20",
+      "region": "国际站",
+      "model": "deepseek-v4.1-flash:1017",
+      "measurementTool": "面板",
+      "measurementWindow": "2026/10/19 - 2026/10/23 周额度已经用完了",
+      "quotaUsedPctAtStartAndEnd": "周额度100%（只填了终点百分比；起点百分比未写明）",
+      "tokensDuringWindow": "total：3996.19M 普通输入：3985.22M 缓存读取：3909.05M 缓存写入：10.96M",
+      "fieldSemantics": "已包含",
+      "screenshotOrSourceLink": "https://img.xingtan.one/i/2026/10/23/6adb4dcec8ef8.png；https://img.xingtan.one/i/2026/10/23/6adb4ded03865.png；https://img.xingtan.one/i/2026/10/23/6adb4e2dbab5d.png；https://img.xingtan.one/i/2026/10/23/6adb4e5a76686.png；中途换了面板 所以截的是两个面板的",
+      "officiallyPublishedAllowance": "（留空）"
+    },
+    "quotaUsedPctStartClarified": "作者 2026-10-24 补充：周额度起点 10/19 开始时为 0%；终点 100%",
+    "followUpCommentBody": "有张面板图片传重了 缺了一张\nhttps://img.xingtan.one/i/2026/10/23/6adb8143bd82f.png",
+    "recorderVerificationOfIssueText": "2026-10-24 录入方经 GitHub API 复核 issue #134 正文与唯一评论：作者 ThedoRap，created_at 2026-10-23T12:09:26Z（= 20:09 UTC+8），评论 created_at 2026-10-23T15:46:48Z（= 23:46 UTC+8）；正文各栏（Ollama / Pro 老套餐 / $20 / 国际站 / deepseek-v4.1-flash:1017 / 面板 / 2026/10/19 - 2026/10/23 周额度已经用完了 / 周额度100% / total 3996.19M、普通输入 3985.22M、缓存读取 3909.05M、缓存写入 10.96M / 已包含）与评论正文（补图 URL + 「有张面板图片传重了 缺了一张」）逐字一致"
+  },
+  "dashboardScreenshots": [
+    {
+      "id": "panelA-model-row",
+      "order": 1,
+      "postedIn": "issue 正文",
+      "panel": "第三方代理面板 A（按模型行）",
+      "url": "https://img.xingtan.one/i/2026/10/23/6adb4dcec8ef8.png",
+      "modelRow": "deepseek-v4.1-flash:1017",
+      "readings": {
+        "requests": "13.3k",
+        "success": "13.3k",
+        "failure": "0",
+        "input": "2897.12M",
+        "output": "6.93M",
+        "cacheHit": "2850.35M",
+        "cacheHitRate": "98.4%",
+        "total": "2904.06M"
+      },
+      "note": "原样转录面板读数，未做换算"
+    },
+    {
+      "id": "panelA-usage-stats-2026-10-19-to-2026-10-23",
+      "order": 2,
+      "postedIn": "issue 正文",
+      "panel": "第三方代理面板 A（日期区间 2026/10/19 至 2026/10/23 的用量统计）",
+      "url": "https://img.xingtan.one/i/2026/10/23/6adb4ded03865.png",
+      "dateRange": "2026/10/19 至 2026/10/23",
+      "readings": {
+        "requests": "13.8k",
+        "success": "13.8k",
+        "failure": "0",
+        "successRate": "100.0%",
+        "input": "2932.51M",
+        "cacheHitWithinInput": "2882.45M",
+        "output": "7.14M",
+        "cacheHitRate": "98.3%",
+        "total": "2939.65M"
+      },
+      "note": "按模型行与截图 1 相同，该行在截图中被红框标出；面板日期区间与 Issue 正文统计期 2026/10/19 - 2026/10/23 一致"
+    },
+    {
+      "id": "ollama-official-panel-pro",
+      "order": 3,
+      "postedIn": "issue 正文",
+      "panel": "Ollama 官方面板 Pro",
+      "url": "https://img.xingtan.one/i/2026/10/23/6adb4e2dbab5d.png",
+      "readings": {
+        "sessionUsage": "Weekly limit reached（Sessions resume in 2 days）",
+        "weeklyUsage": "100% used（Resets in 2 days）",
+        "modelsUsedThisWeek": "deepseek-v4.1-flash:1017 — 17130 requests",
+        "usageCredits": "$0"
+      },
+      "note": "老版 session/weekly 限额制的直接证据：Session usage 与 Weekly usage 两条独立限额、Weekly 100% 用满、Usage credits $0（尚未切到新版美元 usage credits 池）"
+    },
+    {
+      "id": "ollama-official-panel-current-plan",
+      "order": 4,
+      "postedIn": "issue 正文",
+      "panel": "Ollama 官方面板 Pro（套餐信息）",
+      "url": "https://img.xingtan.one/i/2026/10/23/6adb4e5a76686.png",
+      "readings": {
+        "currentPlan": "Pro",
+        "renews": "November 17, 2026",
+        "bannerText": "A new version of your plan is available at the same price. It includes a set dollar amount of usage each month, replacing session and weekly limits."
+      },
+      "note": "该提示说明新版套餐以固定美元 usage credits 取代 session/weekly 限额；本账户仍在老版（与 Issue 正文「Pro 老套餐」一致）"
+    },
+    {
+      "id": "panelB-openai-compatible-ollama",
+      "order": 5,
+      "postedIn": "issue 评论补图（2026-10-23 23:46 UTC+8）",
+      "panel": "第三方代理面板 B（筛选 openai-compatible-ollama）",
+      "url": "https://img.xingtan.one/i/2026/10/23/6adb8143bd82f.png",
+      "readings": {
+        "cost": "$10.01（已配置单价模型）",
+        "tokens": "1.1B",
+        "reasoningTokens": "0",
+        "input": "1.1B（占比 99.6%）",
+        "output": "4.0M（占比 0.4%）",
+        "cache": "1.1B",
+        "cacheHitRate": "97.3%"
+      },
+      "note": "时间范围未截入；请求数未截入（评论正文另称「有张面板图片传重了 缺了一张」）；时间范围与调用数见 order 6 补图"
+    },
+    {
+      "id": "panelB-custom-range-2026-10-19-to-2026-10-24",
+      "order": 6,
+      "postedIn": "issue 评论补图（2026-10-24 11:49 UTC+8）",
+      "panel": "第三方代理面板 B（筛选 openai-compatible-ollama，「自定义」时间对话框）",
+      "url": "https://img.xingtan.one/i/2026/10/24/6adc2a3c76031.png",
+      "dateRange": "2026/10/19 00:00 - 2026/10/24 23:59（「自定义」时间对话框读数）",
+      "readings": {
+        "requests": "6.8K（5 账号）",
+        "successRate": "67.1%",
+        "input": "1.1B（占比 99.6%）",
+        "output": "4.0M（占比 0.4%）",
+        "cache": "1.1B（命中率 97.3%）",
+        "failure": "2243",
+        "log": "500"
+      },
+      "note": "面板 B 查询区间为 2026/10/19 00:00–2026/10/24 23:59，比 Issue 正文统计期 10/19–10/23 多覆盖 10/24 一天（周额度已于此前用满，成功率 67.1% 与 2243 次失败相容），投稿人称「查询的时间也是一样的」；读数为取整显示"
+    }
+  ],
+  "contributorReportedTokens": {
+    "unit": "M（Issue 正文原文以 M 记）",
+    "total": "3996.19M",
+    "freshInput": "3985.22M",
+    "cacheRead": "3909.05M",
+    "cacheWrite": "10.96M（原文填于此栏；作者已澄清实为输出）",
+    "output": "10.96M（作者 2026-10-24 澄清：原正文「缓存写入」栏即输出）",
+    "authorClarification2026-10-24": "10.96M 是输出（两个面板总和），原 Issue 正文误填在「缓存写入」栏",
+    "fieldSemantics": "已包含（Issue 正文原文；即 input 已包含 cache_read）",
+    "outputIncludesReasoning": "未说明（Issue 正文只回「已包含」）",
+    "workloadNormalized": false,
+    "note": "以上数字为投稿人填写值，原样记录，未做换算或归一化"
+  },
+  "reviewNotes": {
+    "by": "本仓库录入方（2026-10-24）",
+    "notes": [
+      "量级核对（仅核对，不产生采用值）：面板 A 合计 2904.06M + 面板 B 约 1.1B 与投稿 total 3996.19M 量级一致。",
+      "10.96M 疑点（已由作者确认）：作者 2026-10-24 明确「10.96M是输出 两个面板总和」，即 Issue 正文填在「缓存写入」栏的 10.96M 实为输出（output）而非缓存写入；原正文栏位与实际口径不一致，issueBodyFieldsAsSubmitted 仍按原文原样保留。",
+      "请求数核对（已由作者补充面板 B 读数）：面板 A 按模型行 13.3k 加面板 B 6.8K 调用（成功 67.1%，失败 2243），与 Ollama 官方面板 17130 requests 量级相容；但面板 B 为取整读数、含 10/24 当天的失败请求、且未按模型筛选，仍不能精确闭合。",
+      "周额度起点百分比（已由作者补充）：作者 2026-10-24 补充「周额度起点： 10/19 开始时为 0%」，终点为 100%（周额度已用满）；统计期起点即为 0%。",
+      "适用范围：仅老版 session/weekly 限额制 Pro。仓库现有 ollama_pro 采用行（deepseek-v4.1-flash 等）是新版「共享月池 $60 usage credits ÷ 标准负载加权价」口径（见 code-subscriptions-round1-2026-09-06.json、ollama-deepseek-v41-round1-2026-09-11.json），与本条老版 session/weekly 计量方式不同，两者不可直接互换。",
+      "deepseek-v4.1-flash:1017 与采用行的 deepseek-v4.1-flash 是否同价同计费未核实；:1017 的含义（构建/版本后缀）未核实。",
+      "面板 A 与面板 B 均为第三方代理面板，非 Ollama 官方账单；面板 B 的「花费 $10.01」是代理面板按已配置单价自行估算，非 Ollama 计费侧金额。",
+      "Ollama 官方面板 Usage credits $0：说明该账户当时仍按 session/weekly 限额计，与新版 credits 池口径互斥，不能与采用行的 $60 月池相加或对比。",
+      "是否采用留给维护者：本文件不改采用值，也不改 scripts/build_adopted.py。"
+    ],
+    "notVerified": [
+      "五张面板截图已由维护流程（klarkxy，2026-10-24 约 10:35 UTC+8）下载人工目视核对，上述 dashboardScreenshots 读数与截图一致；Issue 正文文字栏已经 GitHub API 逐字复核一致。第六张补图（order 6，2026-10-24 11:49 UTC+8 评论）由同一维护流程于 2026-10-25 约 10:45 UTC+8 下载目视核对，读数与本文记录一致。",
+      "投稿 token 数字（3996.19M / 3985.22M / 3909.05M / 10.96M）无面板对账明细可核：面板 A / B 读数与投稿填写的分项无逐项对应关系。",
+      "逐日读数无记录。",
+      "面板 B 查询区间比正文统计期多 1 天，且未按模型过滤；作者称查询时间一致，以截图为准"
+    ],
+    "followUpUpdatedAt": "2026-10-25",
+    "noNewValuesComputed": "本文件不计算 monthlyYi、不算混合价、不做周→月折算、不产生或修改任何采用值；所有数字均为 Issue 原文或面板读数原样记录。"
+  },
+  "caveats": [
+    "单账号、单次观测样本，且统计期仅约 4~5 天（2026/10/19 - 2026/10/23）。",
+    "两个代理面板混用（投稿人自述「中途换了面板」），面板间 token 口径是否完全一致未知。",
+    "投稿 token 分项口径自相矛盾嫌疑（见 reviewNotes 备注；作者 2026-10-24 已澄清「缓存写入」栏的 10.96M 实为输出）。",
+    "老版 session/weekly 制套餐与仓库现采用的美元 usage credits 月池制不是同一计量方式，不能直接折算比较。",
+    "面板读数为 k/M/B 量级的取整显示（13.3k、13.8k、1.1B、6.8K），精度有限。",
+    "面板 B 查询区间 10/19 00:00–10/24 23:59 与正文 10/19–10/23 不完全一致。",
+    "模型标识 deepseek-v4.1-flash:1017 与采用行 deepseek-v4.1-flash 的对应关系未核实。"
+  ],
+  "adoptionStatus": "research-only; not adopted; ollama_pro rows are generated by scripts/build_adopted.py on the new monthly-credit basis and left to maintainer review",
+  "confidence": "low",
+  "basis": "community_measurement",
+  "revisions": [
+    {
+      "date": "2026-10-24",
+      "note": "初次录入"
+    },
+    {
+      "date": "2026-10-25",
+      "note": "录入作者 2026-10-24 补充：起点 0%、面板 B 时间范围截图、10.96M 为输出"
+    }
+  ],
+  "relatedFiles": [
+    "code-subscriptions-round1-2026-09-06.json",
+    "ollama-deepseek-v41-round1-2026-09-11.json"
+  ]
+}

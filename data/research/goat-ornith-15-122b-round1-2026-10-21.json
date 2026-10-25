@@ -1,0 +1,107 @@
+{
+  "collectedAt": "2026-10-21",
+  "collectionMethod": "Manual capture of the official Command Code GOAT plan page and pricing/limits page (English) around 10:40 Beijing time / 02:40Z on 2026-10-21. RSC payload (modelScope and planScope), credits table (New models) and request estimates on the plan page, and the pricing-limits deal wording. One new paid model observed, one new free limited-time variant observed, plus three same-day observations on other GOAT models recorded for context. Research-only — no adopted row generated and no adopted value changed.",
+  "sources": [
+    "https://commandcode.ai/docs/plans/goat",
+    "https://commandcode.ai/docs/resources/pricing-limits",
+    "https://commandcode.ai/pricing"
+  ],
+  "scope": "Command Code GOAT official catalog only. New paid model 'Ornith 1.5 122B' (slug ornith-1-5-122b) observed in the New models table, plus a free limited-time variant 'Ornith 1.5 122B Free' (slug ornith-1-5-122b-free) with a deal window. No leaderboard/score data, no shared-pool change, no other GOAT row changes, no adopted.csv row.",
+  "adoptionStatus": "research-only; not adopted; no command_code_goat × ornith-1.5-122b row in adopted.csv yet — adding one requires a COMMAND_CODE_GOAT_MODELS entry in scripts/build_adopted.py, left to maintainer review",
+  "observed": {
+    "paidModel": {
+      "name": "Ornith 1.5 122B",
+      "slug": "ornith-1-5-122b",
+      "modelId": "ornith/ornith-1.5-122b",
+      "vendor": "Ornith",
+      "category": "opensource",
+      "blurb": "open-weight MoE for fast agentic coding",
+      "launchedAt": "2026-10-20",
+      "minPlanName": "Go",
+      "contextWindow": 262144,
+      "reasoning": true,
+      "vision": true,
+      "zdr": "included",
+      "score": "not yet scored",
+      "threePartPrice": {
+        "inputPerMTokUsd": 0.16,
+        "outputPerMTokUsd": 0.64,
+        "cachedReadPerMTokUsd": 0.02,
+        "cacheWritePerMTokUsd": null,
+        "cacheWriteNote": "Cache-write price not listed in the official table (page shows '-' / '$undefined')."
+      },
+      "perModelCreditsUsd": 20,
+      "creditsSource": {
+        "rscBudgetUsd": 20,
+        "budgetSteps": null,
+        "creditDeal": null,
+        "creditsColumnDisplay": "$20",
+        "table": "New models table"
+      },
+      "pageRequestShape": {
+        "inputTokens": 800,
+        "outputTokens": 200,
+        "cacheReadTokens": 50000
+      },
+      "pageRequestEstimate": {
+        "per5Hours": 3180,
+        "perWeek": 7960,
+        "perMonth": 15900
+      },
+      "rscPlanScopeModelIdsInclude": [
+        "ornith/ornith-1.5-122b:free",
+        "ornith/ornith-1.5-122b"
+      ]
+    }
+  },
+  "notAdopted": {
+    "freeVariant": {
+      "name": "Ornith 1.5 122B Free",
+      "slug": "ornith-1-5-122b-free",
+      "modelId": "ornith/ornith-1.5-122b:free",
+      "threePartPrice": {
+        "inputPerMTokUsd": 0,
+        "outputPerMTokUsd": 0,
+        "cachedReadPerMTokUsd": 0,
+        "cacheWritePerMTokUsd": 0
+      },
+      "deal": {
+        "id": "ornith-1-5-122b-free",
+        "label": "Free",
+        "discountPercent": 100,
+        "term": "until 11:00 PM PT on October 21",
+        "free": true,
+        "expires": "2026-10-22T06:00:00Z"
+      },
+      "pricingLimitsPageWording": "ornith-1.5-122b:free is free until 11:00 PM PT on October 21, with no daily request limit. Requests on this model cost no credits.",
+      "adopted": false,
+      "reason": "Free variant rows are excluded from the adopted set under the existing project rule (same precedent as Ling 3.1 Flash Free, Beam 1.0 and MiniMax M3.1 Flash Free). The deal is also limited-time (expires 2026-10-22T06:00:00Z), reinforcing the exclusion."
+    }
+  },
+  "otherObservations": [
+    {
+      "model": "DeepSeek V4.1 Flash (latest)",
+      "observation": "The 24h boosted allowance of $100 has ended (budgetSteps 2026-10-21T01:00:00Z steps back to 80); RSC budgetUsd is 80. The pricing-limits page gained a new deal id 'deepseek-v4.1-flash-boosted-credits' with the wording \"DeepSeek V4.1 Flash carries permanently boosted monthly credits, with no end date.\", at $10 Go / $80 GOAT / $90 Pro, with \"Rates unchanged\".",
+      "adopted": false,
+      "reason": "main currently adopts $60 for deepseek-v4.1-flash. Maintainer PR #127 has proposed $60→$80; this file records the observation only and changes no adopted value. Supporting evidence for maintainer review."
+    },
+    {
+      "model": "Mistral Large 4",
+      "observation": "The limited-time $40 allowance (through Oct 20) has ended; RSC budgetUsd is 20 with budgetSteps 2026-10-21T00:00:00Z → 20. The page credits column shows $20 and the monthly request estimate moved 4,480 → 2,240.",
+      "adopted": false,
+      "reason": "No adopted row exists in main for this model. Recorded for context only; no adopted value changed."
+    },
+    {
+      "model": "ZDR column (catalog-wide)",
+      "observation": "The page added a ZDR column with the values ✓ included / $+ extra / — none.",
+      "adopted": false,
+      "reason": "Zero-data-retention is a privacy attribute only; it does not affect credits or allowance. Recorded for context only."
+    }
+  ],
+  "sharedPoolUnchanged": {
+    "commandCodeGoatSharedMonthlyUsd": 70,
+    "note": "Shared monthly pool $70 and every existing GOAT row are unchanged by this observation."
+  },
+  "confidence": "medium",
+  "basis": "official"
+}

@@ -1,0 +1,94 @@
+{
+  "collectedAt": "2026-10-20",
+  "collectionMethod": "Manual capture of the official Command Code GOAT plan page and pricing/limits page (English) around 10:35 Beijing time / 02:35Z on 2026-10-20. RSC payload (modelScope and planScope), credits table (Every model / New models) and the pricing-limits free-deal wording. One new paid model observed, one new free limited-time variant observed. Research-only — no adopted row generated.",
+  "sources": [
+    "https://commandcode.ai/docs/plans/goat",
+    "https://commandcode.ai/docs/resources/pricing-limits",
+    "https://commandcode.ai/pricing"
+  ],
+  "scope": "Command Code GOAT official catalog only. New paid model 'MiniMax M3.1 Flash' (slug minimax-m3-1-flash) observed in the New models table, plus a free limited-time variant 'MiniMax M3.1 Flash Free' (slug minimax-m3-1-flash-free) with a deal window. No leaderboard/score data, no shared-pool change, no other GOAT row changes, no adopted.csv row.",
+  "adoptionStatus": "research-only; not adopted; no command_code_goat × minimax-m3.1-flash row in adopted.csv yet — adding one requires a COMMAND_CODE_GOAT_MODELS entry in scripts/build_adopted.py, left to maintainer review",
+  "observed": {
+    "paidModel": {
+      "name": "MiniMax M3.1 Flash",
+      "slug": "minimax-m3-1-flash",
+      "modelId": "minimax/minimax-m3.1-flash",
+      "vendor": "MiniMax",
+      "category": "opensource",
+      "launchedAt": "2026-10-19",
+      "minPlanName": "Go",
+      "contextWindow": 1000000,
+      "reasoning": true,
+      "vision": true,
+      "score": "not yet scored",
+      "threePartPrice": {
+        "inputPerMTokUsd": 0.15,
+        "outputPerMTokUsd": 0.60,
+        "cachedReadPerMTokUsd": 0.015,
+        "cacheWritePerMTokUsd": null,
+        "cacheWriteNote": "Cache-write price not listed in the official table (page shows '-' / '$undefined')."
+      },
+      "perModelCreditsUsd": 20,
+      "creditsSource": {
+        "rscBudgetUsd": 20,
+        "budgetSteps": null,
+        "creditDeal": null,
+        "creditsColumnDisplay": "$20",
+        "table": "New models table (consistent with the default $20 for other New models entries)"
+      },
+      "pageRequestShape": {
+        "inputTokens": 800,
+        "outputTokens": 125,
+        "cacheReadTokens": 50000
+      },
+      "pageRequestEstimate": {
+        "per5Hours": 4230,
+        "perWeek": 10600,
+        "perMonth": 21200
+      },
+      "rscPlanScopeModelIdsInclude": [
+        "minimax/minimax-m3.1-flash:free",
+        "minimax/minimax-m3.1-flash"
+      ]
+    }
+  },
+  "notAdopted": {
+    "freeVariant": {
+      "name": "MiniMax M3.1 Flash Free",
+      "slug": "minimax-m3-1-flash-free",
+      "modelId": "minimax/minimax-m3.1-flash:free",
+      "threePartPrice": {
+        "inputPerMTokUsd": 0,
+        "outputPerMTokUsd": 0,
+        "cachedReadPerMTokUsd": 0,
+        "cacheWritePerMTokUsd": 0
+      },
+      "deal": {
+        "id": "minimax-m3-1-flash-free",
+        "label": "Free",
+        "discountPercent": 100,
+        "term": "for a limited time",
+        "free": true,
+        "starts": "2026-10-19T11:00:00Z",
+        "expires": "2026-10-21T10:45:00Z"
+      },
+      "pricingLimitsPageWording": "MiniMax M3.1 Flash is free for a limited time… Requests cost no credits",
+      "adopted": false,
+      "reason": "Free variant rows are excluded from the adopted set under the existing project rule (same precedent as Ling 3.1 Flash Free and Beam 1.0). The deal is also limited-time (2026-10-19T11:00:00Z → 2026-10-21T10:45:00Z), reinforcing the exclusion."
+    }
+  },
+  "crossChannelNote": {
+    "opencodeGo": {
+      "observation": "OpenCode Go (https://opencode.ai/docs/go/) also added 'MiniMax M3.1 Flash Free' (model id minimax-m3.1-flash-free, 'Free for a limited time'); usage shown as Unlimited on both Go and Go Plus. Space Bunny was removed from the OpenCode Go catalog the same day (it had no adopted row).",
+      "adopted": false,
+      "reason": "Free limited-time variant — same exclusion rule as the Command Code GOAT free variant."
+    }
+  },
+  "vendorConflictNote": "The repo already uses model id 'minimax-m3.1-flash-preview' for MiniMax's own CN M Plan (data/research/minimax-m31-flash-preview-cn-round1-2026-10-01.json). GOAT lists 'MiniMax M3.1 Flash' (minimax/minimax-m3.1-flash) without the Preview suffix; whether it maps to the same model id is left to the maintainer.",
+  "sharedPoolUnchanged": {
+    "commandCodeGoatSharedMonthlyUsd": 70,
+    "note": "Shared monthly pool $70 and every existing GOAT row are unchanged by this observation."
+  },
+  "confidence": "medium",
+  "basis": "official"
+}

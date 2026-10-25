@@ -1,0 +1,103 @@
+{
+  "collectedAt": "2026-10-23",
+  "collectionMethod": "Manual capture of the official OpenCode Go docs page and landing page (English) around 10:33 Beijing time / 02:33Z on 2026-10-23. Official per-model pricing table, per-model Monthly limit, the usage-window rule, the official 'Estimated requests' table and the landing-page Go model table were read as published. Research-only — no adopted row generated, no adopted value changed.",
+  "sources": [
+    "https://opencode.ai/docs/go/",
+    "https://opencode.ai/go"
+  ],
+  "scope": "OpenCode Go official price table only. One catalog entry changed: 'MiniMax M3.1 Flash Free' (2026-10-20 → 2026-10-22) was replaced on 2026-10-23 by the paid row 'MiniMax M3.1 Flash'. No leaderboard/score data, no Command Code GOAT change (cross-channel note only), no shared-pool change, no other OpenCode model row changed, no adopted.csv row.",
+  "adoptionStatus": "research-only; not adopted; no opencode_go × minimax-m3.1-flash row in adopted.csv yet — adding one requires an OPENCODE_GO_MODELS entry in scripts/build_adopted.py, left to maintainer review",
+  "observed": {
+    "paidModel": {
+      "name": "MiniMax M3.1 Flash",
+      "modelId": "minimax-m3.1-flash",
+      "vendor": "MiniMax",
+      "category": "opensource",
+      "statusChange": "On 2026-10-23 the free limited-time entry 'MiniMax M3.1 Flash Free' became the paid row 'MiniMax M3.1 Flash'; the free variant and its landing-page banner were withdrawn on the same day.",
+      "endpoint": "https://opencode.ai/inference/go/openai/v1/chat/completions",
+      "sdk": "@ai-sdk/openai-compatible",
+      "threePartPrice": {
+        "inputPerMTokUsd": 0.15,
+        "outputPerMTokUsd": 0.60,
+        "cachedReadPerMTokUsd": 0.015,
+        "cacheWritePerMTokUsd": null,
+        "cacheWriteNote": "Cache-write price not listed in the official table (page shows '-')."
+      },
+      "priceScope": "Go and Go Plus show the same three-part price.",
+      "monthlyLimitUsd": {
+        "go": 20,
+        "goPlus": 80
+      },
+      "usageWindowRule": "Each model has the following usage limits: 5-hour — 20% of the monthly limit; weekly — 50%; and monthly — 100%.",
+      "officialRequestEstimates": {
+        "note": "Official 'Estimated requests' figures, kept as cross-check evidence only; never used as the allowance main value.",
+        "go": {
+          "per5h": 3880,
+          "perWeek": 9690,
+          "perMonth": 19380
+        },
+        "goPlus": {
+          "per5h": 15500,
+          "perWeek": 38760,
+          "perMonth": 77520
+        },
+        "landingPageGoTable": {
+          "go": {
+            "per5h": 3880,
+            "monthlyLimitUsd": 20
+          },
+          "goPlus": {
+            "per5h": 15500,
+            "monthlyLimitUsd": 80
+          }
+        }
+      },
+      "requestShape": {
+        "inputTokens": 500,
+        "cachedReadTokens": 49400,
+        "outputTokens": 360,
+        "pageWording": "MiniMax M3.1 Flash — 500 input, 49,400 cached, 360 output tokens per request"
+      }
+    }
+  },
+  "priorFreeNotAdopted": {
+    "dateRange": "2026-10-20 → 2026-10-22",
+    "label": "MiniMax M3.1 Flash Free",
+    "modelId": "minimax-m3.1-flash-free",
+    "allowance": "Free / Unlimited / limited time",
+    "threePartPrice": {
+      "inputPerMTokUsd": 0,
+      "outputPerMTokUsd": 0,
+      "cachedReadPerMTokUsd": 0,
+      "cacheWritePerMTokUsd": 0
+    },
+    "landingPageBanner": "MiniMax M3.1 Flash Free is now available in Go, free for a limited time.",
+    "adopted": false,
+    "reason": "A free unlimited limited-time entry carries no monetary allowance, so it was never turned into an adopted point (same rule as Step 5 Preview Free and the Command Code GOAT free variant). The free variant and the banner were withdrawn on 2026-10-23 when the model turned into a paid row.",
+    "modelIdSource": "Recorded in data/research/goat-minimax-m31-flash-round1-2026-10-20.json (crossChannelNote.opencodeGo), which observed the same OpenCode Go free entry.",
+    "impact": "The 2026-10-23 paid row is the first priced observation of this model on OpenCode Go; no opencode_go × minimax-m3.1-flash point existed before or after this capture."
+  },
+  "crossChannelNote": {
+    "commandCodeGoat": {
+      "observation": "Command Code GOAT lists the same model at $0.15 / $0.60 / $0.015 (cached read) per 1M tokens with $20 per-model credits; the GOAT RSC payload still shows budgetUsd 20 on 2026-10-23.",
+      "evidence": "data/research/goat-minimax-m31-flash-round1-2026-10-20.json",
+      "adopted": false,
+      "reason": "Cross-channel corroboration of the three-part price only; no GOAT row or GOAT value was changed by this capture."
+    }
+  },
+  "otherObservations": [
+    {
+      "topic": "Step 5 Preview limited-time promotion",
+      "observation": "The landing-page '4× usage Limited Time' row for Step 5 Preview has been removed.",
+      "note": "The docs page had already reverted to the $15 baseline on 2026-10-22, which is consistent with the repo's current opencode_go × step-5-preview adopted row. Recorded only; no value changed."
+    },
+    {
+      "topic": "Free tier wording",
+      "observation": "The free-tier description no longer contains 'with a quota of 200 requests/day'.",
+      "note": "Recorded only; no value changed."
+    }
+  ],
+  "computationNote": "No monthlyYi, no blended per-MTok price and no adopted value are computed in this file; all numbers are transcribed as published on the official pages.",
+  "confidence": "medium",
+  "basis": "official"
+}
