@@ -1,19 +1,19 @@
 # 模型 × 榜 可见性矩阵 / Model-by-board visibility
 
 > 由 `python scripts/visibility_matrix.py --write-docs` 生成，请勿手改。
-> 生成时间：2026-10-25 09:10 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-10-17）。
+> 生成时间：2026-10-26 09:20 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-10-17）。
 > 口径：mappings 与 configurations 的 join 与 `web/src/loadData.ts` 的 `unpackData()` 完全一致；可见性判据与 `web/src/domain.ts` 一致。
 
 ## 1. 榜覆盖统计
 
 | 榜 | 名称 | 快照 | 配置数 | 映射数 | 有分模型 | 最高分 |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| `aa_intelligence_index` | Artificial Analysis Intelligence Index v4.3 | 2026-10-25 | 80 | 427 | 36 | 57.6224 · `claude-opus-5.5` |
+| `aa_intelligence_index` | Artificial Analysis Intelligence Index v4.3 | 2026-10-26 | 80 | 427 | 36 | 57.6224 · `claude-opus-5.5` |
 | `terminal_bench_4` | Terminal-Bench 4.0 | 2026-09-21 | 30 | 169 | 18 | 66.4 · `claude-opus-5.5` |
-| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-10-25 | 74 | 412 | 30 | 63.6364 · `claude-sonnet-5.5` |
+| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-10-26 | 74 | 412 | 30 | 63.6364 · `claude-sonnet-5.5` |
 | `arena_code` | Code Arena \| WebDev Overall | 2026-09-30 | 62 | 304 | 53 | 1818 · `claude-opus-5.5` |
 | `arena_agent_mode` | Agent Arena · Overall (Ranking / Pareto) | 2026-09-30 | 40 | 216 | 38 | 14.55 · `claude-fable-5.1` |
-| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-10-25 | 20 | 122 | 16 | 61.6529 · `claude-opus-5.5` |
+| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-10-26 | 20 | 122 | 16 | 61.6529 · `claude-opus-5.5` |
 | `open_design_arena` | OpenDesign Arena · Quality ranking | 2026-10-01 | 16 | 77 | 16 | 90.1 · `gpt-6.1-sol` |
 | `deepswe_1_1` | DeepSWE v1.1 | 2026-09-03 | 70 | 415 | 28 | 74.2 · `deepseek-v4.1-flash` |
 
