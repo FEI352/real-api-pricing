@@ -1,0 +1,282 @@
+{
+  "collectedAt": "2026-10-27",
+  "checkedAt": "2026-10-27T09:15:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, MiniMax, StepFun, Mistral, GitHub Copilot, Kimi/Moonshot, Command Code GOAT, OpenCode Go 等）与上游 upstream/main 提交状态评估",
+  "summary": "2026-10-27 官方 API 标价与采用值排查结论：1) 上游提交评估：根据 /tmp/upstream.json 与 git 审计，本地 HEAD (8c36acc) 已完全纳管合并 upstream/main 最新历史（含昨日 PR #129 Kimi 699 实测、PR #138 Kimi 199 实测、PR #140 Ollama Pro 补充、PR #141 OpenCode Go Argon 改名 50% off 等全部 research-only 提交），upstream/main 当前相对 HEAD 无任何新提交（commitCount: 0, mergeBase: d2df196fe37960e88037c512fb5508021ef7157c），verdict 明确判定为 noop，今日无上游动作，本地采用值保持现有口径。2) OpenAI 重大发布与 AA 新模型入榜检查：OpenAI 于昨日（2026-10-26）正式宣布并上线 GPT-6.1 Terra（gpt-6.1-terra），官方标价 $1.00 输入 / $5.00 输出 / $0.05 缓存读取（输入 5%）/ $1.25 缓存写入，较前代 gpt-5.6-terra 与 gpt-6.1-sol 降低 50%。该模型已出现在今日 AA 原始抓取载荷 /tmp/aa_models_raw.json（272 行）中，涵盖 6 款推理变体（Max 48.11, Xhigh 45.36, High 43.87, Medium 41.32, Low 36.21, Non-reasoning 33.49），载荷自带完整三段价（$1/$5/hit $0.05）。目前 gpt-6.1-terra 刚发布，ChatGPT Plus/Pro 额度划分与三方渠道实测尚未出炉，adopted.csv 暂无该模型订阅行；全库 309 个订阅点 list_blended 经 verify_list_blended.py 校验 100% 具备有效正值（0 回退）；今日无需新建 list-prices-*.json 标价档。3) 采用值与 build_adopted.py：今日无新订阅套餐或额度实测变动，build_adopted.py 维持绝对稳定（0 diff），DATA_DATES 保持现有锚点，产出点位完全一致。4) Anthropic：全线模型官方标价稳定；Claude Haiku 5.5 维持 <=100k 主行与 >100k / 50/50 混合分档情景建模；Claude Sonnet 5.5 维持 round2 标价档（缓存读 $0.10/MTok）；新版 Usage Policy 定于 11-12 生效（T-16 天）；今日无新增标价调整。5) OpenAI 其他动态：API Usage Tiers 维持 Free/Build/Launch/Grow 架构；GPT-6 Astra/Sol/Luna 及 GPT-6.1 Sol 标价无变动；ChatGPT Pro $200 额度 20x 宽限期终了倒计时（至 10-29 终了降为 10x，距今 T-2 天）；o4-mini 于 10-23 正式废弃下线（T+4 天）；Decisions API (GPT-6 Luna, $0.10 in / $2 out) 维持稳定 beta。6) Google：Gemini 4 Argon 维持首发优惠价 $2.00/$10.00（缓存读 $0.10，至 11-30，T-34 天）；Google AI Pro 学生版（$10/月）在 extra_subscriptions.json 中稳定维护；Gemini 3.8 Flash 维持 $0.75/$3.75 优惠价（至 2026-12-31）；今日无新增标价调整。7) DeepSeek：动态峰谷定价稳固运行（Flash 闲时 $0.15/$0.60/hit $0.003，忙时 $0.30/$1.20/hit $0.006）；Search & Fetch API 独立收费 $0.75/1k calls 将于 11-01 生效（T-5 天）；V4.1 Flash 维持 AA 1017 检查点（45.10 idx / 33.84% TB4）；OpenDesign Go 专项 2× 额度正常生效。8) MiniMax：MiniMax-M3.1-Flash-Preview 官方按量价（$0.15/$0.60/cache $0.015）已于 2026-10-19 建档入库，M Plan 套餐行等金额换算在 build_adopted.py 闭环，AA 智力榜出分稳定（42.71 idx / TB4 25.76%）。9) StepFun：Step-5 Preview 600B MoE 维持 $2.00/$0.70 定价（国内按量 ¥7/¥20，缓存读 $0.05/¥0.35）；权重开源进入第 12 日（Day 12），STEPX Neo 智能体手机首销进入第 12 日；AA Coding Agent 载荷实测 51.2 分，尚未入 AA curated 智力主榜且无独立开发者 SaaS 订阅套餐。10) Mistral：Mistral Large 4 Preview ('le Chonk' 1.05T MoE，AA 智力 38.0) 维持公测优惠价（$0.68/$2.09，缓存读 $0.07），开源权重定于 10 月 31 日前开放（距今 T-4 天），缺乏主流订阅渠道落地。11) Kimi / Moonshot：Kimi K3.1 Pro（含 PR #136/#137 渠道行与 PR #138 k3.1-pro-highspeed 实测）均缺乏 AA 独立评测出分，开源权重计划 11 月 4 日开放，上游明确声明 research-only; not adopted，暂不增补 adopted.csv 订阅行；Kimi 会员既有 199/99/49/699 套餐点运行稳定。12) GitHub Copilot：全面推行 AI Credits 计量，6 款旧模型已于 10-19 正式退役下线（T+8 天），repo 无 Copilot 独立订阅点。",
+  "vendors": {
+    "Anthropic": {
+      "status": "stable_post_update",
+      "recentChanges": [
+        "Claude Haiku 5.5（2026-10-07 发布，<=100k 档 $1.00/$5.00、>100k 档 $2.50/$12.50）在本地由 3 档情景建模纳管，verify_haiku55_tiers 与 verify_scenario_points 守卫双重验证通过",
+        "Claude Sonnet 5.5 缓存读取单价 $0.10/MTok（调降 50%，与 Opus 5.5 对齐），已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册",
+        "Claude Opus 5.5 维持 $4.00 输入 / $0.20 缓存读 / $20.00 输出，Fast Mode 提供 2x 加速费率 ($10 in / $50 out)",
+        "Claude Fable 5.1 维持 $10.00 输入 / $0.25 缓存读 / $50.00 输出",
+        "官方宣布将于 2026-11-12 生效新版防滥用 Usage Policy（距今 T-16 天），确立 11 个高风险领域、虐待模型禁令与物理设备控制",
+        "老款 Haiku 4.5 维持活跃状态（Active）",
+        "Claude Max 订阅（Max 5x 赠 $100/月、Max 20x 赠 $400/月 API credits）平稳运行",
+        "今日无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，今日无须新建标价档"
+    },
+    "OpenAI": {
+      "status": "new_model_released",
+      "recentChanges": [
+        "GPT-6.1 Terra（gpt-6.1-terra）于 2026-10-26 正式发布并上线 API，官方定价 $1.00 输入 / $5.00 输出 / $0.05 缓存读取（输入 5%）/ $1.25 缓存写入，较 GPT-5.6 Terra 与 GPT-6.1 Sol 降低 50%",
+        "AA 载荷 /tmp/aa_models_raw.json 已收录 gpt-6-1-terra 全线 6 个 effort 变体（Max 48.11, Xhigh 45.36, High 43.87, Medium 41.32, Low 36.21, Non-reasoning 33.49），载荷自带完整三段价",
+        "GPT-6.1 Terra 目前为 API / ChatGPT Work / Codex 刚上线状态，Plus/Pro 额度配额尚未有实测数据，暂不录入 adopted.csv 订阅行",
+        "GPT-6 Astra 标价维持 $10.00 输入 / $1.00 缓存读 / $50.00 输出，compute.py 自动走 AA 载荷兜底解析",
+        "GPT-6.1 Sol 标价维持 $2.00 输入 / $0.10 缓存读 / $10.00 输出",
+        "GPT-6 Luna 标价维持 $0.10 输入 / $0.01 缓存读 / $0.50 输出",
+        "GPT-6 Sol 标价维持 $2.00 输入 / $0.20 缓存读 / $10.00 输出",
+        "Decisions API (GPT-6 Luna) 维持输入 $0.10/MTok、输出 $2.00/MTok，专用于路由过滤，非通用生成式模型不收录",
+        "API Usage Tiers 维持 Free / Build ($100) / Launch ($1,000) / Grow ($5,000) 四档架构",
+        "ChatGPT Pro $200 额度 20x 宽限期终了倒计时（至 2026-10-29 终止降至 10x，距今 T-2 天）",
+        "o4-mini 已于 2026-10-23 正式废弃下线（T+4 天）"
+      ],
+      "handling": "GPT-6.1 Terra 为纯 API 刚发布，暂无订阅点采用行，AA 载荷已自带三段价兜底；今日无须新建标价档"
+    },
+    "Google": {
+      "status": "stable",
+      "recentChanges": [
+        "Gemini 4 Argon 仍由 Fairwind Program 受限访问，API 价格维持首发优惠价 $2.00/$10.00（缓存读 $0.10，长期标准价 $4.00/$20.00 / 缓存读 $0.20 自 2026-12-01 起生效，优惠期剩余 T-34 天）",
+        "Gemini 3.8 Flash 维持引入优惠价 $0.75/$3.75（至 2026-12-31）",
+        "Google AI Pro / Ultra 既有订阅额度稳定",
+        "Google AI Pro 学生版（$10/月，gemini-3.8-flash 25.81 亿/月）已在 data/extra_subscriptions.json 登记并经 build_adopted.py 闭环纳入 adopted.csv",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "Search & Fetch API 独立收费 $0.75/1,000 requests 计划于 2026-11-01 生效（距今 T-5 天）",
+        "DeepSeek-V4.1-Flash 维持 AA 1017 检查点（45.10 智力指数 / 33.84% TB4）",
+        "DeepSeek-V4-Pro 维持既有阶梯计费",
+        "OpenDesign Go 针对 DeepSeek V4.1 Flash 专项 2× 翻倍至每月最高 $20（折算 124.224 亿）已入库",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "MiniMax": {
+      "status": "fully_integrated",
+      "recentChanges": [
+        "MiniMax-M3.1-Flash-Preview 官方按量价维持：$0.15 输入 / $0.60 输出 / $0.015 缓存读取",
+        "list-prices-minimax-m31-round1-2026-10-19.json 已建档并纳入 LIST_PRICE_FILES，采用 96% 缓存覆盖档内混合价 $0.02265/MTok",
+        "build_adopted.py 已于 2026-10-19 将 MiniMax M Plan 套餐行调整为等金额折算口径",
+        "AA 智力榜出分稳定 42.7057，Terminal-Bench 4.0 出分 25.7576%",
+        "今日无新增标价调整"
+      ],
+      "handling": "全链路均已纳管完成，无须新建标价档"
+    },
+    "Kimi_Moonshot": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "Kimi K3.1 Pro（2.8T-3T MoE）已于 10-23/24 发布 API 并提供 1M 上下文，开源权重计划 2026-11-04 释放",
+        "上游 PR #136 录入 OpenCode Go 新增 Kimi K3.1 Pro 计费行（Go $15 / Go Plus $60），显式标注 research-only; not adopted",
+        "上游 PR #137 录入 Command Code GOAT 新增 Kimi K3.1 Pro 官方目录（$20 usage credits / 0 allowance），显式标注 research-only; not adopted",
+        "上游 PR #138 录入 Kimi 老 199 Allegretto × k3.1-pro-highspeed 本机实测与面板反推（medium），显式标注 research-only; not adopted",
+        "截至 2026-10-27 尚未在 AA 智力榜、TB4 榜出分，缺乏独立评测数据支撑",
+        "既有 Kimi K3 / K2.7 订阅点（Kimi 会员 199/99/49/699）运行稳定，维持既有采用值口径"
+      ],
+      "handling": "保持研究归档，不改动 build_adopted.py 与 adopted.csv，暂不建标价档"
+    },
+    "Command_Code_GOAT": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "上游 PR #137 录入 goat-kimi-k31-pro-round1-2026-10-24.json：新增 Kimi K3.1 Pro 官方目录（付费款，0 allowance），AA 未出分，声明 research-only; not adopted",
+        "上游 PR #128 录入 goat-ornith-15-122b-round1-2026-10-21.json：新增 Ornith 1.5 122B（开源 MoE，标价 $0.16/$0.64/缓存 $0.02），AA 未出分，声明 research-only; not adopted",
+        "上游 PR #126 录入 goat-minimax-m31-flash-round1-2026-10-20.json：新增 MiniMax M3.1 Flash（限免已到期，付费款 $0），声明 research-only; not adopted",
+        "维持现有 $10/月 70-80 credits 共享池口径，不作采用值改动"
+      ],
+      "handling": "保持研究归档，不改动 build_adopted.py 与 adopted.csv"
+    },
+    "OpenCode_Go": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "上游 PR #141 录入 opencode-go-gemini4-argon-round2-2026-10-25.json：Gemini 4 Argon 改名并撤下 2x 额度改为 50% off 优惠（Go $30 / Go Plus $120），至 2026-11-30，声明 research-only; not adopted",
+        "上游 PR #136 录入 opencode-go-kimi-k31-pro-round1-2026-10-24.json：OpenCode Go 新增 Kimi K3.1 Pro 计费行（Go $15 / Go Plus $60），声明 research-only; not adopted",
+        "上游 PR #132 录入 opencode-go-minimax-m31-flash-round1-2026-10-23.json：MiniMax M3.1 Flash 转为计费行（Go $20 / Go Plus $80），声明 research-only; not adopted",
+        "OpenCode Go 现有 15 款在库模型采用值与目录价稳定生效，无须修改"
+      ],
+      "handling": "保持研究归档，不改动 build_adopted.py 与 adopted.csv"
+    },
+    "Droid_Factory": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "上游 PR #133 录入 droid-pro-opus55-community-round2-2026-10-22.json：社区实测（low 置信度），声明 research-only; not adopted",
+        "本地 build_adopted.py 已在 line 121-126 基于 DROID_PRO_OPUS55_COMMUNITY_WORTH_USD 完成 low 置信度建模，数值自洽无需调整"
+      ],
+      "handling": "保持研究归档，不改动 build_adopted.py 与 adopted.csv"
+    },
+    "Magpie_Telemetry": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "上游 PR #130 提交 magpie-local-tokyo-round1-2026-10-21.json 与 .md，筛选出 7 项 medium 级测量与 1 项 high 级官方额度条款核查",
+        "上游与贡献者均裁定该批数据为 research-only; not adopted，不替换当前采用表，仅供维护者长期复核"
+      ],
+      "handling": "保持研究归档，不改动 build_adopted.py 与 adopted.csv"
+    },
+    "Mistral": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview ('le Chonk' 1.05T MoE) 维持公测优惠价：输入 $0.68/MTok、缓存读取 $0.07/MTok、输出 $2.09/MTok（标准价 $1.36/$4.18）",
+        "AA Intelligence Index 实测得分 38.0，开源权重定于 10 月 31 日前开放（距今 T-4 天），缺乏主流订阅渠道落地"
+      ],
+      "handling": "保持观察，暂不纳为订阅候选"
+    },
+    "StepFun": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Step-5 Preview 600B MoE 维持 API 标价 $2.00/$0.70（缓存读取 $0.05/$0.10），国内按量 ¥7/¥20（缓存命中 ¥0.35）已由 list-prices-stepfun-round2-2026-09-21.json 覆盖",
+        "权重开源：已于 2026-10-15 正式公开 BF16/FP8 权重，适配 vLLM/SGLang 与华为昇腾 950（开源进入 Day 12）",
+        "智能体手机：10-13 发布首款 STEPX Neo 智能体手机（3999元），10-16 开启首销，今日为首销第 12 日（Day 12），附赠 12 个月 STEPX Token Plan（百亿/月）",
+        "AA Coding Agent 载荷实测得分 51.2 ($2.66/task)，但尚未进入 AA curated 智力主榜，且缺乏独立开发者 SaaS 订阅套餐"
+      ],
+      "handling": "跟踪开源后第三方聚合渠道（如 OpenCode Go/Zen）落地与 AA 正榜出分，暂不新建标价档"
+    },
+    "GitHub_Copilot": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "全面推行 AI Credits 计量体系（Pro $10/50额度, Pro+ $19/90额度, Max $39/200额度）",
+        "2026-10-19 为 6 款旧模型正式强制退役生效日（T+8 天），系统自动升级至新模型",
+        "本项目订阅点以经典固定渠道与直连套餐为主，无单独 Copilot 订阅点，不影响现有 adopted.csv"
+      ],
+      "handling": "旧模型已正式下线，项目现有点集无 Copilot 依赖，无须修改"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 0,
+    "head": "8c36accd8830c9bf9e9abdb9020fccbf47b88751",
+    "upstreamHead": "d2df196fe37960e88037c512fb5508021ef7157c",
+    "mergeBase": "d2df196fe37960e88037c512fb5508021ef7157c",
+    "verdict": "noop",
+    "reason": "upstream/main 相对 HEAD 无新提交（merge-base d2df196fe37960e88037c512fb5508021ef7157c）",
+    "commits": [],
+    "changedFiles": [],
+    "recommendation": "本地 HEAD 已包含 upstream/main 最新历史（含昨日 PR #129, #138, #140, #141 等 research-only 证据），今日上游 0 新提交，判定为 noop，无需进行任何代码或数据合并操作。"
+  },
+  "candidates": [
+    {
+      "model": "gpt-6.1-terra",
+      "type": "new_model_and_pricing",
+      "status": "monitoring",
+      "notes": "OpenAI 于 2026-10-26 正式发布 GPT-6.1 Terra，API 定价 $1.00/$5.00/缓存读 $0.05/缓存写 $1.25，较前代降 50%。AA 载荷已收录 6 个 effort 变体（Max 48.11 分）。暂无 ChatGPT Plus/Pro 独立配额实测，暂不纳入 adopted.csv"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "type": "channel_catalog_addition",
+      "status": "research_only",
+      "notes": "PR #136, #137 与 PR #138 录入之 OpenCode Go、Command Code GOAT 官方目录及 Kimi 老 199 Allegretto 实测新模型，AA 暂无独立评测分数，权重预定 11-04 释放，上游明确声明 research-only; not adopted，不新增采用值行"
+    },
+    {
+      "model": "opencode_go_gemini4_argon",
+      "type": "channel_catalog_update",
+      "status": "research_only",
+      "notes": "PR #141 录入之 OpenCode Go Gemini 4 Argon 改名与撤下 2x 改 50% 优惠记录，声明 research-only; not adopted，不改采用值"
+    },
+    {
+      "model": "kimi_699_k3_quota",
+      "type": "empirical_quota_measurement",
+      "status": "research_only",
+      "notes": "PR #129 录入之 Kimi 699 档 K3 双机采样实测，声明 research-only; not adopted，不改采用值"
+    },
+    {
+      "model": "magpie-telemetry-evidence",
+      "type": "empirical_quota_measurement",
+      "status": "research_only",
+      "notes": "PR #130 录入之双节点网关脱敏证据，涵盖 Kimi、SuperGrok、Devin Pro/Max、MiniMax M Plan 共 7 项测量，上游明确标为 research-only; not adopted，不调整现有采用值"
+    },
+    {
+      "model": "ollama_pro_dsv41_legacy",
+      "type": "community_quota_measurement",
+      "status": "ignored",
+      "notes": "PR #135 / PR #140 录入之 Ollama Pro 老套餐 × DS V4.1 Flash 社区实测与作者补充，标记 low 置信度，声明 research-only; not adopted，不调整采用值"
+    },
+    {
+      "model": "droid_pro_opus55_round2",
+      "type": "community_quota_measurement",
+      "status": "ignored",
+      "notes": "PR #133 录入之 Droid Pro × Opus 5.5 社区实测，标记 low 置信度，与本地现有 Droid Pro 建模一致，声明 research-only; not adopted，不调整采用值"
+    },
+    {
+      "model": "opencode_go_minimax_m31_flash",
+      "type": "channel_catalog_addition",
+      "status": "ignored",
+      "notes": "PR #132 录入之 OpenCode Go 转计费行（Go $20 / Go Plus $80），官方 M Plan 已完成采用值闭环，上游声明 research-only; not adopted，不新增采用值行"
+    },
+    {
+      "model": "ornith-1.5-122b",
+      "type": "channel_catalog_addition",
+      "status": "ignored",
+      "notes": "PR #128 录入之 Command Code GOAT 官方目录新模型（三段价 $0.16/$0.64/缓存 $0.02），AA 暂无独立评测分数，上游声明 research-only; not adopted，不新增采用值行"
+    },
+    {
+      "model": "minimax-m3.1-flash-preview",
+      "type": "new_model_and_pricing",
+      "status": "fully_integrated",
+      "notes": "官方标价 $0.15/$0.60/cache $0.015（list-prices-minimax-m31-round1-2026-10-19.json），M Plan 等金额派生完成，AA 智力榜 42.7057 分数已建档入库"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "type": "checkpoint_update",
+      "status": "score_updated",
+      "notes": "AA 1017 检查点更新（45.10 idx / 33.84% TB4），已由 scores-deepseek-v41-flash-round1-2026-10-19.json 覆盖"
+    },
+    {
+      "model": "google_ai_pro_student",
+      "type": "new_subscription_tier",
+      "status": "already_integrated",
+      "notes": "Google AI Pro 学生版（$10/月，gemini-3.8-flash 25.81 亿/月），已在 data/extra_subscriptions.json 登记并通过 build_adopted.py 闭环纳入 adopted.csv"
+    },
+    {
+      "model": "claude-sonnet-5.5",
+      "type": "price_cut",
+      "status": "list_price_file_ready",
+      "notes": "官方缓存读取单价降至 $0.10/MTok，已在 list-prices-claude-sonnet55-round2-2026-10-09.json 建档并在 compute.py 注册"
+    },
+    {
+      "model": "claude-haiku-5.5",
+      "type": "tiered_pricing",
+      "status": "multitier_scenarios_verified",
+      "notes": "官方 100k 双档（$1.00/$5.00 vs $2.50/$12.50）在本地通过 3 档情景点建模，守卫 verify_haiku55_tiers.py 与 verify_scenario_points.py 双重验证通过"
+    },
+    {
+      "model": "step-5-preview",
+      "type": "new_model_moe_open_weights",
+      "status": "monitoring",
+      "notes": "定价 $2.00/$0.70（缓存 $0.05/$0.10），2026-10-15 正式开源权重（Day 12），STEPX Neo 智能体手机首销第 12 日（百亿/月 Token Plan），AA Coding Agent 载荷实测 51.2 分，跟踪第三方开发者订阅渠道落地与 AA 正榜出分"
+    },
+    {
+      "model": "github-copilot",
+      "type": "tier_change_and_model_retirement",
+      "status": "monitoring",
+      "notes": "全量 AI Credits 计量，2026-10-19 为 6 款旧模型强制退役生效日（T+8 天），现有订阅点无 Copilot 依赖，持续跟踪"
+    },
+    {
+      "model": "chatgpt-pro",
+      "type": "quota_change_countdown",
+      "status": "monitoring",
+      "notes": "老用户 20x 宽限期终了倒计时（距今 T-2 天，10-29 终了），目前采用 chatgpt_pro_20x 保持有效，跟踪到期切换预案"
+    },
+    {
+      "model": "o4-mini",
+      "type": "model_deprecation_countdown",
+      "status": "ignored",
+      "notes": "OpenAI 已于 2026-10-23 终止接口（T+4 天），repo 主力已迁移至 GPT-6 系列，不予新增收录"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_api_only",
+      "status": "monitoring",
+      "notes": "公测价极具性价比（$0.68/$2.09）但缺乏订阅套餐落地，开源权重定于 10 月 31 日前（距今 T-4 天），持续跟踪"
+    },
+    {
+      "model": "gemini-4-argon",
+      "type": "promotional_pricing_countdown",
+      "status": "covered_by_list_prices",
+      "notes": "首发优惠价 $2.00/$10.00（缓存读 $0.10）有效至 2026-11-30（T-34 天），其后调整为标准价 $4.00/$20.00，已在 list-prices-gemini-4-argon-round1-2026-10-01.json 建档；订阅行已按独立池实测下架"
+    }
+  ]
+}
