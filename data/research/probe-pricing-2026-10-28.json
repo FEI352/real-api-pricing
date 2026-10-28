@@ -1,0 +1,291 @@
+{
+  "collectedAt": "2026-10-28",
+  "checkedAt": "2026-10-28T09:15:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, MiniMax, StepFun, Mistral, GitHub Copilot, Kimi/Moonshot, Command Code GOAT, OpenCode Go 等）与上游 upstream/main 14 个新提交评估及 Kimi K3.1 Pro / Argon 派生采用值核验",
+  "summary": "2026-10-28 官方 API 标价与采用值排查结论：1) 上游 14 提交评估：/tmp/upstream.json 检出 upstream/main 相对 HEAD (5319408) 存在 14 个新提交（mergeBase: d2df196fe37960e88037c512fb5508021ef7157c, upstreamHead: 75920ca2ba842beb3e7ac1eee8cfa359c0f5ddd7），verdict 为 review。评估结论：① PR #142 (Kimi v2 quota + 19.46B 换基)：上游以维护者 k3.1-pro 实测 37.36M / 1.92% = 19.46 亿直接重估了既有 kimi_allegretto_cn::kimi-k3 采用值，并新增 Go/Plus/Pro/Max/Ultra 新套餐（v2=v1/2 额度）。与本地存在关键冲突：本地昨日在 data/extra_subscriptions.json 配置了 kimi_ultra_cn ($199 USD 国际档)，而上游在 SUBS 注册了 kimi_ultra_cn (¥1399 CNY 国内档)；且本地已独立收录 kimi-k3.1-pro，若直接合并将导致 plan_id 撞车与重复行。② PR #147 (GOAT shared pool)：Command Code GOAT 官网月池/窗口措辞由 $70/$14/$35 调整为 up to $100/$20/$50，但每模型 allowance 额度未变，上游明确不改采用值（纯 research）。③ PR #146 (2026-10-27 X signals)：录入 4 份社交媒体公开信号 JSON，不碰 adopted.csv 与 conventions，纯 research。④ PR #127 (DeepSeek 1017 检查点)：系 10-20 历史分支于 10-27 合入，触及 6 个核心代码与校验文件（build_adopted.py, compute.py, verify_benchmark_configs.py 等），本地已有 10-21 至 10-27 独立每日快照推进，盲目合并会导致大范围冲突。综上：严格遵循 RUNBOOK §2.3，严禁自动 merge，维持独立手工对齐建议。2) Kimi K3.1 Pro 标价与采用值验证：昨日配置的 list-prices-kimi-k31-round1-2026-10-27.json 格式经校验 100% 正确（model 键为项目统一 id kimi-k3.1-pro，input $2.00 / cached $0.20 / output $10.00）。在项目标准负载（cache 97% / fresh 2.5% / out 0.5%）下，blended 价格为 $0.294/MTok，与 kimi-k3 ($0.441/MTok) 的价比为 0.441 / 0.294 = 1.5000×。昨日在 extra_subscriptions.json 派生的 Kimi 会员各档（Moderato 4.35 亿 / Allegretto 21.765 亿 / Allegro 65.295 亿 / Ultra 130.59 亿）均严格按 1.5× 换算，且 build_adopted.py 中 DATA_DATE_INHERIT 映射正确。全库 323 个订阅点经 verify_list_blended.py 校验 100% 具备正值（0 回退），run_all.py 19 项检查 18 OK + 1 KNOWN-NOISE 全部通过。3) Google Gemini 4 Argon：list-prices 档已覆盖促销价（$0.197/MTok）与 12-01 后标准价（$0.394/MTok），extra_subscriptions.json 已纳管 4 个独立池实测点及 4 个 _std 标准价情景点，DATA_DATE_INHERIT 继承 gemini-3.8-flash 锚点。4) OpenAI GPT-6.1 Terra：维持监控，AA 载荷已录入 6 个推理档（Max 48.11 分），API 三段价 $1/$5/hit $0.05 具备兜底解析能力，暂无订阅套餐配额实测。5) 守卫与流水线：目前工作区数据完备，待 Lead 在 scripts/compute.py 完成 SCORE_FILES、LIST_PRICE_FILES 与 DISPLAY 登记后即可闭环。",
+  "vendors": {
+    "Anthropic": {
+      "status": "stable_post_update",
+      "recentChanges": [
+        "Claude Haiku 5.5（<=100k 档 $1.00/$5.00、>100k 档 $2.50/$12.50）由 3 档情景建模纳管，verify_haiku55_tiers 与 verify_scenario_points 守卫双重验证通过",
+        "Claude Sonnet 5.5 维持 round2 标价档（缓存读 $0.10/MTok，调降 50%）",
+        "Claude Opus 5.5 维持 $4.00 输入 / $0.20 缓存读 / $20.00 输出",
+        "新版防滥用 Usage Policy 定于 2026-11-12 生效（T-15 天）",
+        "Claude Max 订阅（Max 5x 赠 $100/月、Max 20x 赠 $400/月 API credits）平稳运行",
+        "今日官方无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，今日无须新建标价档"
+    },
+    "OpenAI": {
+      "status": "new_model_monitoring",
+      "recentChanges": [
+        "GPT-6.1 Terra（gpt-6.1-terra）于 2026-10-26 正式发布并上线 API，官方定价 $1.00 输入 / $5.00 输出 / $0.05 缓存读取 / $1.25 缓存写入，较前代降 50%",
+        "AA 原始载荷已收录 gpt-6-1-terra 全线 6 个 effort 变体（Max 48.11, Xhigh 45.36, High 43.87, Medium 41.32, Low 36.21, Non-reasoning 33.49），载荷自带完整三段价",
+        "暂无 ChatGPT Plus/Pro 额度配额实测，暂不录入 adopted.csv 订阅行",
+        "ChatGPT Pro $200 额度 20x 宽限期终了倒计时（至 2026-10-29 终止降至 10x，距今 T-1 天）",
+        "GPT-6 Astra/Sol/Luna 及 GPT-6.1 Sol 标价维持稳定",
+        "今日无新增标价调整"
+      ],
+      "handling": "AA 载荷已自带三段价兜底，暂无订阅点采用行，无须新建标价档"
+    },
+    "Google": {
+      "status": "stable_with_argon_derived",
+      "recentChanges": [
+        "Gemini 4 Argon 维持首发优惠价 $2.00/$10.00（缓存读 $0.10，长期标准价 $4.00/$20.00 / 缓存读 $0.20 自 2026-12-01 生效，优惠期剩余 T-33 天）",
+        "list-prices-gemini-4-argon-round1-2026-10-01.json 已完整包含促销与标准双版本定价",
+        "extra_subscriptions.json 已纳管 Google AI Pro / Ultra 5x / Ultra 20x / Ultra 5x TR 独立额度池及 4 个对应 _std 标准价情景行，build_adopted.py 继承 flash 锚点日期",
+        "Gemini 3.8 Flash 维持引入优惠价 $0.75/$3.75（至 2026-12-31）",
+        "今日无新增标价调整"
+      ],
+      "handling": "标价档与采用值派生均已齐备，无须新建标价档"
+    },
+    "DeepSeek": {
+      "status": "no_change",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "Search & Fetch API 独立收费 $0.75/1,000 requests 计划于 2026-11-01 生效（距今 T-4 天）",
+        "DeepSeek-V4.1-Flash 维持 AA 1017 检查点（45.10 智力指数 / 33.84% TB4）",
+        "OpenDesign Go 针对 DeepSeek V4.1 Flash 专项 2× 翻倍至每月最高 $20 维持生效",
+        "上游 PR #127 虽于 10-27 合并但系 10-20 历史分支，本地此前已同步相关分数",
+        "今日无新增标价调整"
+      ],
+      "handling": "无标价变更，无须新建标价档"
+    },
+    "MiniMax": {
+      "status": "fully_integrated",
+      "recentChanges": [
+        "MiniMax-M3.1-Flash-Preview 官方按量价维持：$0.15 输入 / $0.60 输出 / $0.015 缓存读取",
+        "list-prices-minimax-m31-round1-2026-10-19.json 已建档并纳入 LIST_PRICE_FILES，采用 96% 缓存覆盖档内混合价 $0.02265/MTok",
+        "build_adopted.py 已将 MiniMax M Plan 套餐行调整为等金额折算口径",
+        "AA 智力榜出分稳定 42.7057，Terminal-Bench 4.0 出分 25.7576%",
+        "今日无新增标价调整"
+      ],
+      "handling": "全链路均已纳管完成，无须新建标价档"
+    },
+    "Kimi_Moonshot": {
+      "status": "k31_pro_integrated_locally",
+      "recentChanges": [
+        "Kimi K3.1 Pro（2.8T-3T MoE）API 官方三段价已通过 list-prices-kimi-k31-round1-2026-10-27.json 验证（$2/$10/$0.2，blended $0.294/MTok）",
+        "scores-kimi-k31-pro-round1-2026-10-27.json 已从 AA 载荷提取录入（Intelligence Index 55.0869，#5，costPerTask $2.1145）",
+        "extra_subscriptions.json 已录入 Kimi 会员 99 (4.35 亿)、199 (21.765 亿)、699 (65.295 亿)、Ultra (130.59 亿)，按 1.5× 价比换算",
+        "build_adopted.py 已配置 DATA_DATE_INHERIT 映射，沿用 kimi_allegretto_cn::kimi-k3 锚点",
+        "上游 PR #142 于 10-27 合入，以 37.36M/1.92% 实测换基 kimi-k3 为 19.46 亿并录入 v2 套餐，与本地存在 ultra 档位冲突（见 upstreamEvaluation）"
+      ],
+      "handling": "本地 list-prices 与 score 档已就绪，已报告 Lead 在 compute.py 注册 SCORE_FILES/LIST_PRICE_FILES/DISPLAY"
+    },
+    "Command_Code_GOAT": {
+      "status": "shared_pool_wording_updated",
+      "recentChanges": [
+        "上游 PR #147 录入 goat-shared-pool-round1-2026-10-27.json：GOAT 官网月池/窗口措辞由 $70/$14/$35 调整为 up to $100/$20/$50",
+        "确认每模型 allowance 额度上限未变（如 DeepSeek $80, Claude $20 等），维持现有采用值不变（不改 adopted.csv）",
+        "PR #137 录入之 Kimi K3.1 Pro 官方目录（$20 credits / 0 allowance）维持 research-only"
+      ],
+      "handling": "保持研究归档，无须新建标价档，无需调整采用值"
+    },
+    "OpenCode_Go": {
+      "status": "research_evidence_only",
+      "recentChanges": [
+        "PR #141 录入之 Gemini 4 Argon 改名与撤下 2x 改 50% 优惠（至 2026-11-30）维持 research-only",
+        "PR #136 录入之 Kimi K3.1 Pro 计费行（Go $15 / Go Plus $60）维持 research-only",
+        "现有 15 款在库模型采用值与目录价稳定生效"
+      ],
+      "handling": "保持研究归档，无须修改采用值"
+    },
+    "Mistral": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview ('le Chonk' 1.05T MoE) 维持公测优惠价：$0.68/$2.09（缓存 $0.07）",
+        "AA Intelligence Index 实测得分 38.0，开源权重定于 10 月 31 日前开放（距今 T-3 天），缺乏主流订阅渠道落地"
+      ],
+      "handling": "保持观察，暂不纳为订阅候选"
+    },
+    "StepFun": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Step-5 Preview 600B MoE 维持 API 标价 $2.00/$0.70（缓存 $0.05/$0.10），国内按量 ¥7/¥20",
+        "开源进入 Day 13，STEPX Neo 智能体手机首销第 13 日",
+        "AA Coding Agent 载荷实测 51.2 分，尚未入 AA curated 智力主榜且无独立开发者 SaaS 订阅"
+      ],
+      "handling": "持续跟踪聚合渠道落地与 AA 正榜更新"
+    },
+    "GitHub_Copilot": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "全面推行 AI Credits 计量体系，6 款旧模型已退役生效（T+9 天）",
+        "项目现有点集无 Copilot 依赖"
+      ],
+      "handling": "维持现状，无须修改"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 14,
+    "head": "53194083d7ca4d1e83e26009cf5f495a9e8f47ae",
+    "upstreamHead": "75920ca2ba842beb3e7ac1eee8cfa359c0f5ddd7",
+    "mergeBase": "d2df196fe37960e88037c512fb5508021ef7157c",
+    "verdict": "review",
+    "reason": "14 个新提交；触及非生成物数据目录；冲突风险前缀文件 6 个；与本地脏文件重叠 78 个",
+    "commits": [
+      {
+        "hash": "75920ca",
+        "subject": "Merge pull request #142 from Fei2411/devin/1793033449-kimi-v2-quota",
+        "evaluation": "合入 Kimi v2 套餐额度与 k3.1-pro 实测换基（19.46B）。高冲突风险：上游在 SUBS 直接写死 kimi_ultra_cn (¥1399)，与本地 extra_subscriptions.json 中的 kimi_ultra_cn ($199) 冲突；且上游把 k3.1-pro 实测直接套给 k3，与本地独立区分 k3 / k3.1-pro 的口径存在分歧。",
+        "conflictRisk": "high",
+        "recommendation": "严禁直接 git merge。建议维持本地独立模型拆分口径，并由 Lead 裁定是否吸收 v2 套餐（Plus/Pro/Max/Ultra）的 50% 额度规则。"
+      },
+      {
+        "hash": "b631dfc",
+        "subject": "Merge main into devin/1793033449-kimi-v2-quota",
+        "evaluation": "PR #142 的内部同步合并提交，随 PR #142 统一评估。",
+        "conflictRisk": "high",
+        "recommendation": "同上。"
+      },
+      {
+        "hash": "5a3ac6d",
+        "subject": "Merge pull request #127 from Fei2411/devin/1792510964-deepseek-1017-boards-quota",
+        "evaluation": "将 10-20 历史分支 devin/1792510964-deepseek-1017-boards-quota 合入 upstream main。包含 scores-aa-round6-supplement-2026-10-20.json 等 6 份榜单快照，修改了 compute.py, build_adopted.py, verify_benchmark_configs.py 等核心文件。由于本地已在 10-21 至 10-27 独立维护了每日 AA 快照与 DS V4.1 Flash 分数，直接合入会产生严重时序倒流与代码冲突。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并，本地已具备同等或更新的分数检查点。"
+      },
+      {
+        "hash": "90de8d8",
+        "subject": "Merge pull request #146 from Fei2411/daily-2026-10-27-pricing-signals",
+        "evaluation": "合入 2026-10-27 社交媒体 X 定价扫描信号，纯 research 文件，不修改 adopted.csv 与计算逻辑。",
+        "conflictRisk": "low",
+        "recommendation": "内容安全，可择机提取 research 文件作为背景参考。"
+      },
+      {
+        "hash": "1b183e4",
+        "subject": "Kimi k3 rows: sample date to 2026-10-27 for the re-based measurement",
+        "evaluation": "将 kimi_allegretto_cn::kimi-k3 样本日期更新为 2026-10-27。属于 PR #142 子提交。",
+        "conflictRisk": "medium",
+        "recommendation": "随 PR #142 处置。"
+      },
+      {
+        "hash": "4db872e",
+        "subject": "Kimi Allegretto k3: re-base monthly pool to 19.46B on maintainer's k3.1-pro measurement",
+        "evaluation": "基于维护者 Allegretto 账号 k3.1-pro 单日 37.36M / 月总 1.92% = 19.46 亿直接重估 K3 基础月池（cascade 至 moderato 3.89 亿, allegro 58.38 亿）。属于 PR #142 子提交。",
+        "conflictRisk": "high",
+        "recommendation": "注意该实测本身是在 k3.1-pro 上完成的，上游因缺乏 k3.1-pro 模型行而套用给 k3。本地已独立建模 k3.1-pro，不应盲目混淆两者口径。"
+      },
+      {
+        "hash": "dc936be",
+        "subject": "Merge pull request #147 from klarkxy/goat-shared-pool-up-to-100-2026-10-27",
+        "evaluation": "合入 Command Code GOAT 官网月池措辞研究文件 goat-shared-pool-round1-2026-10-27.json。纯 research 文件，声明不改采用值。",
+        "conflictRisk": "low",
+        "recommendation": "安全，已核验确认其不影响 adopted.csv。"
+      },
+      {
+        "hash": "bbcfec7",
+        "subject": "Research: Command Code GOAT 官网月池/窗口措辞 $70/$14/$35 → up to $100/$20/$50（每模型 allowance 未变；不改采用值）",
+        "evaluation": "PR #147 内容提交，已确认每模型上限保持原样。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，不修改 adopted.csv。"
+      },
+      {
+        "hash": "2578751",
+        "subject": "research: 2026-10-27 daily X pricing signals (#143 #144 #145)",
+        "evaluation": "PR #146 内容提交，录入 4 份 X 扫描 JSON（claude, gpt6.1, kimi, x-scan），纯 research。",
+        "conflictRisk": "none",
+        "recommendation": "吸收背景参考，无需操作。"
+      },
+      {
+        "hash": "1116c7d",
+        "subject": "Kimi v2 plans: adopt quotas at half of same-price v1 tiers",
+        "evaluation": "PR #142 核心提交，增加 kimi_plus_cn, kimi_pro_cn, kimi_max_cn, kimi_ultra_cn 且额度取同价 v1 档一半。修改了 build_adopted.py 与 adopted.csv。",
+        "conflictRisk": "high",
+        "recommendation": "与本地 extra_subscriptions.json 存在定义重叠冲突，严禁直接 merge。"
+      },
+      {
+        "hash": "1ba37f0",
+        "subject": "Refresh snapshot date to 2026-10-20",
+        "evaluation": "PR #127 子提交，更新快照日期至 10-20。",
+        "conflictRisk": "high",
+        "recommendation": "本地已推进至 10-27，拒绝倒退。"
+      },
+      {
+        "hash": "b635101",
+        "subject": "Update web test for GOAT DeepSeek V4.1 Flash $80 credits",
+        "evaluation": "PR #127 子提交，修改 web/src/domain.test.ts。",
+        "conflictRisk": "medium",
+        "recommendation": "本地已有相应测试覆盖。"
+      },
+      {
+        "hash": "0a68b11",
+        "subject": "Bump conventions updatedAt to 2026-10-20",
+        "evaluation": "PR #127 子提交，修改 conventions.json。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并。"
+      },
+      {
+        "hash": "7574c70",
+        "subject": "Data: DeepSeek V4.1 Flash 1017 榜单分数 + 榜单刷新 + OpenCode Go/GOAT 用量复核 (2026-10-20)",
+        "evaluation": "PR #127 核心数据提交，包含大量 10-20 分数快照与配置变更。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并。"
+      }
+    ],
+    "changedFiles": [
+      "scripts/build_adopted.py",
+      "scripts/compute.py",
+      "scripts/checks/verify_benchmark_configs.py",
+      "scripts/checks/verify_deepswe.py",
+      "scripts/plot_svg.py",
+      "web/src/domain.test.ts",
+      "data/adopted.csv",
+      "data/conventions.json",
+      "data/i18n/adopted.en.json"
+    ],
+    "recommendation": "严禁执行 git merge upstream/main！14 个新提交中有 8 个触及代码与核心数据且存在时序倒流与结构冲突。Kimi v2 套餐与 19.46B 换基需在解决 extra_subscriptions.json 中 kimi_ultra_cn 冲突后，由 Lead 统一手工对齐；GOAT 措辞与 X 信号为纯研究，不影响采用值；PR #127 历史提交全部忽略。"
+  },
+  "candidates": [
+    {
+      "model": "kimi-k3.1-pro",
+      "type": "new_model_and_pricing",
+      "status": "ready_for_lead_registration",
+      "notes": "官方三段价 $2.00/$10.00/缓存 $0.20（blended $0.294/MTok，为 K3 的 1.5× 效率）已建档 list-prices-kimi-k31-round1-2026-10-27.json；AA 分数 55.0869 已建档 scores-kimi-k31-pro-round1-2026-10-27.json；采用值已在 extra_subscriptions.json 派生（Moderato 4.35 亿 / Allegretto 21.765 亿 / Allegro 65.295 亿 / Ultra 130.59 亿）；build_adopted.py 日期继承已配齐。待 Lead 在 compute.py 注册 SCORE_FILES, LIST_PRICE_FILES 与 DISPLAY。"
+    },
+    {
+      "model": "gemini-4-argon",
+      "type": "new_model_and_pricing",
+      "status": "already_integrated",
+      "notes": "首发优惠价 $2.00/$10.00（blended $0.197/MTok）与 12-01 后标准价 $4.00/$20.00（blended $0.394/MTok）在 list-prices-gemini-4-argon-round1-2026-10-01.json 已齐备；extra_subscriptions.json 已录入 4 个独立池实测点及 4 个 _std 标准价情景点；build_adopted.py 继承 flash 锚点日期；compute.py 已登记。"
+    },
+    {
+      "model": "gpt-6.1-terra",
+      "type": "new_model_and_pricing",
+      "status": "monitoring",
+      "notes": "OpenAI 于 2026-10-26 正式发布 GPT-6.1 Terra，API 定价 $1.00/$5.00/缓存读 $0.05/缓存写 $1.25，较前代降 50%。AA 载荷已收录 6 个 effort 变体（Max 48.11 分）。暂无 ChatGPT Plus/Pro 独立配额实测，暂不纳入 adopted.csv。"
+    },
+    {
+      "model": "kimi-v2-plans",
+      "type": "subscription_generation_upgrade",
+      "status": "upstream_review_pending",
+      "notes": "上游 PR #142 引入的 Kimi v2 套餐（Plus ¥99 / Pro ¥199 / Max ¥699 / Ultra ¥1399），按 v1 同价档 × 1/2 派生额度。因与本地 extra_subscriptions.json 的 kimi_ultra_cn 存在 plan_id 撞车，待 Lead 裁定如何对齐。"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_api_only",
+      "status": "monitoring",
+      "notes": "公测价 $0.68/$2.09（缓存 $0.07），AA 智力指数 38.0，开源权重预定 10 月 31 日前（T-3 天），缺乏主流开发者订阅渠道，保持监控。"
+    },
+    {
+      "model": "step-5-preview",
+      "type": "new_model_moe_open_weights",
+      "status": "monitoring",
+      "notes": "定价 $2.00/$0.70，开源进入 Day 13，STEPX Neo 智能体手机首销第 13 日，AA Coding Agent 载荷实测 51.2 分，尚未入 AA curated 智力主榜且无独立开发者订阅，保持监控。"
+    },
+    {
+      "model": "chatgpt-pro",
+      "type": "quota_change_countdown",
+      "status": "monitoring",
+      "notes": "老用户 20x 宽限期终了倒计时（距今 T-1 天，10-29 终了降至 10x），目前采用 chatgpt_pro_20x 保持有效，跟踪到期切换预案。"
+    },
+    {
+      "model": "command-code-goat-shared-pool",
+      "type": "channel_wording_change",
+      "status": "research_only",
+      "notes": "上游 PR #147 确认官网月池与窗口措辞调整为 up to $100/$20/$50，每模型 allowance 额度上限未变，采用值保持现有口径不变。"
+    }
+  ]
+}

@@ -1414,6 +1414,25 @@ DATA_DATE_INHERIT = {
     ("supergrok_heavy", "grok-4.7"): ("supergrok", "grok-4.7"),
     ("google_ai_pro_student", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("google_ai_ultra_5x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    # Kimi K3.1 Pro：额度由同档 K3 实测锚点按 blended 价比换算（$0.441→$0.294 = 1.5×），日期沿用锚点。
+    # 锚点统一取 kimi_allegretto_cn::kimi-k3 —— 它是三档里唯一由 family_data_date 直给日期的实测点，
+    # moderato/allegro 本身也是从它派生的，指向派生点会踩 KeyError。
+    ("kimi_moderato_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_allegretto_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_allegro_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
+    # Ultra 无国内同名档：额度按官方 credits 倍率从 Max 锚点派生，日期同样沿用。
+    ("kimi_ultra_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_ultra_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
+    # Google Argon 独立额度池（促销价 / 标准价两套口径）：额度由社区 7d $200 基准 × 官方倍率推算，
+    # 日期沿用同档 flash 实测点，不另立新日期。
+    ("google_ai_pro_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_5x_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_20x_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_5x_tr", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_pro_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_5x_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_20x_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    ("google_ai_ultra_5x_tr_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("google_ai_ultra_20x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("claude_max_5x", "claude-opus-5"): ("claude_max_20x", "claude-opus-5"),
     ("cursor_pro_plus", "grok-4.6"): ("cursor_ultra", "grok-4.6"),

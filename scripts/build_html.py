@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from palette import FALLBACK, channel_of, palette
+from deprecated_models import drop_deprecated_points
 
 ROOT = Path(__file__).resolve().parent.parent
 POINTS = ROOT / "derived" / "points.json"
@@ -201,12 +202,17 @@ draw();
 
 def main() -> None:
     data = json.loads(POINTS.read_text(encoding="utf-8"))
+    # Retired models are dropped here too; orphan configuration_points are already
+    # filtered client-side by `base.has(c.point_id)`.
+    data["points"] = drop_deprecated_points(data["points"])
     for point in data["points"]:
         point["channel"] = channel_of(point["id"], point["vendor"])
         if point.get("plan", "").startswith("GLM "):
             for field in ("plan", "label"):
                 point[field] = point[field].replace("老客", "v2").replace("新客", "v3")
     data["configuration_points"] = json.loads((ROOT / "derived/benchmark-points.json").read_text(encoding="utf-8"))
+    kept = {point["id"] for point in data["points"]}
+    data["configuration_points"] = [c for c in data["configuration_points"] if c["point_id"] in kept]
     OUT.parent.mkdir(exist_ok=True)
     # 色值统一来自 config/channel-colors.json；键顺序决定图例顺序，other 为未知渠道兜底。
     colors = palette(["OpenAI", "Anthropic", "SpaceXAI", "Kimi", "Zhipu", "MiniMax", "Alibaba", "DeepSeek",

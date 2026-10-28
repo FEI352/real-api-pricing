@@ -1,6 +1,6 @@
 {
   "date": "2026-10-17",
-  "total_points": 335,
+  "total_points": 349,
   "cost_frontier": [
     {
       "id": "opencode_go::muse-spark-1.3-contributor",
@@ -8,9 +8,9 @@
       "cost": 0.003189
     },
     {
-      "id": "chatgpt_plus::gpt-6.1-sol",
-      "score": 51.8333,
-      "cost": 0.084509
+      "id": "google_ai_ultra_5x_tr::gemini-4-argon",
+      "score": 52.6,
+      "cost": 0.073952
     },
     {
       "id": "claude_max_20x::claude-opus-5.5",

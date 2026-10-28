@@ -408,9 +408,14 @@ function Explorer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, view, selected, vendors, plans, billing, confidence, feeBand]);
   const opts = useMemo(() => options(data), [data]);
+  // Retired models stay in the dataset but are not selected by default.
+  const defaultSelectedIds = useMemo(
+    () => data.points.filter((p) => !p.deprecated).map((p) => p.id),
+    [data],
+  );
   const selectedIds = useMemo(
-    () => new Set(state.selected ?? data.points.map((p) => p.id)),
-    [state.selected, data],
+    () => new Set(state.selected ?? defaultSelectedIds),
+    [state.selected, defaultSelectedIds],
   );
   const models = useMemo(() => {
     const map = new Map<string, Point[]>();
@@ -430,7 +435,10 @@ function Explorer({
   const changeSelection = (ids: string[], checked: boolean) => {
     const next = new Set(selectedIds);
     for (const id of ids) checked ? next.add(id) : next.delete(id);
-    patch({ selected: next.size === data.points.length ? null : [...next] });
+    const isDefault =
+      next.size === defaultSelectedIds.length &&
+      defaultSelectedIds.every((id) => next.has(id));
+    patch({ selected: isDefault ? null : [...next] });
   };
   const toggleFilter = (k: FilterKey, v: string) =>
     patch({
@@ -1293,7 +1301,11 @@ function Explorer({
                   {selectedIds.size} / {data.points.length}{" "}
                   {t("selected", "已选择")}
                 </span>
-                <button onClick={() => patch({ selected: null })}>
+                <button
+                  onClick={() =>
+                    patch({ selected: data.points.map((p) => p.id) })
+                  }
+                >
                   {t("Select all", "全选")}
                 </button>
                 <button onClick={() => patch({ selected: [] })}>
@@ -1345,6 +1357,11 @@ function Explorer({
                             <small>
                               {manufacturer(points[0].vendor)} · {points.length}{" "}
                               {t("plans", "个套餐")}
+                              {points.every((p) => p.deprecated) && (
+                                <span className="deprecated-badge">
+                                  {t("deprecated", "已弃用")}
+                                </span>
+                              )}
                             </small>
                           </span>
                           <span className="selection-fraction">

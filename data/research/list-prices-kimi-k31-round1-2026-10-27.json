@@ -1,0 +1,49 @@
+{
+  "collectedAt": "2026-10-27",
+  "usdPerCny": 7.1,
+  "sourceType": "official",
+  "source": "https://www.kimi.ai/resources/kimi-k3-1-pro-pricing",
+  "checkedAt": "2026-10-24",
+  "launchAt": "2026-10-23",
+  "scope": "Kimi K3.1 Pro 官方 API 三段价：标准版与 Highspeed 变体；K3 系列 cache write 按 TTL 分 5m/1h 两档单列",
+  "models": [
+    {
+      "model": "kimi-k3.1-pro",
+      "vendor": "Moonshot / Kimi",
+      "input": 2.0,
+      "cachedInput": 0.2,
+      "output": 10.0,
+      "currency": "USD",
+      "variants": {
+        "cacheWrite5m": {
+          "input": 2.0
+        },
+        "cacheWrite1h": {
+          "input": 4.0
+        }
+      },
+      "source": "https://www.kimi.ai/resources/kimi-k3-1-pro-pricing",
+      "checkedAt": "2026-10-24",
+      "note": "K3.1 Pro 对 K3 三项齐降三分之一：input $3.00→$2.00、cached $0.30→$0.20、output $15.00→$10.00（官方原文 Standard K3.1 Pro is one-third lower on each of those rates）。新增 cache write 按 TTL 单列（5m $2.00 / 1h $4.00）；项目 STANDARD_MIX 不单列 cache write，故 blended 会低估真实成本。1,048,576 上下文，flat per-token，不随长度分档。"
+    },
+    {
+      "model": "kimi-k3.1-pro-highspeed",
+      "vendor": "Moonshot / Kimi",
+      "input": 4.0,
+      "cachedInput": 0.2,
+      "output": 20.0,
+      "currency": "USD",
+      "variants": {
+        "cacheWrite5m": {
+          "input": 4.0
+        },
+        "cacheWrite1h": {
+          "input": 8.0
+        }
+      },
+      "source": "https://www.kimi.ai/resources/kimi-k3-1-pro-pricing",
+      "checkedAt": "2026-10-24",
+      "note": "Highspeed 变体：regular input / output / cache write 翻倍，cached input 维持 $0.20 不变（缓存重负载不会被简单翻倍）。"
+    }
+  ]
+}

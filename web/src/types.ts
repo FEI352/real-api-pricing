@@ -17,6 +17,8 @@ export interface Point {
   label: string;
   billing: string;
   confidence: string;
+  /** Retired model: the site leaves these points unselected by default; the model panel can tick them back. */
+  deprecated?: boolean;
   price_usd: number | null;
   original_price: number | null;
   currency: string;

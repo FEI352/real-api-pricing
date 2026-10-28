@@ -1947,6 +1947,16 @@ tbody tr.sentinel-row {
 .model-summary small {
   margin-top: 1px;
 }
+.deprecated-badge {
+  margin-left: 6px;
+  padding: 0 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 15px;
+  white-space: nowrap;
+}
 .selection-fraction {
   color: var(--muted);
   font-size: 12px;

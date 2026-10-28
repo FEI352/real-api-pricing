@@ -1,0 +1,115 @@
+{
+  "collectedAt": "2026-10-27",
+  "supplement": true,
+  "supplementNote": "Kimi K3.1 Pro 于 2026-10-27 从 AA models 榜载荷录入：intelligenceIndex 55.0869、Terminal-Bench 4.0 0.0000%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-10-27",
+      "note": "2026-10-27 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-10-27",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "kimi-k3.1-pro",
+      "variantLabel": "Kimi K3.1 Pro",
+      "score": 55.0869,
+      "secondary": {
+        "configurationRank": 5,
+        "costPerTaskUsd": 2.1145,
+        "scoreRoundedDisplay": 55,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "kimi-k3-1-pro",
+        "shortName": "Kimi K3.1 Pro",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Kimi",
+        "effort": null,
+        "terminalBench40": null,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 2,
+        "price1mOutputTokens": 10,
+        "cacheHitPrice": 0.2,
+        "intelligenceIndex": 55.0869210959395,
+        "medianOutputTokensPerSecond": 41.4411592836121,
+        "medianTimeToFirstTokenSeconds": 2.95454551199998,
+        "medianEndToEndResponseTimeSeconds": 63.281043206976975,
+        "medianReasoningTimeSeconds": 48.261198155981596
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-27"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "kimi-k3-1-pro",
+        "name": "Kimi K3.1 Pro",
+        "shortName": "Kimi K3.1 Pro",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": "large",
+        "priceClass": "high",
+        "modelCreatorName": "Kimi",
+        "modelCreatorColor": "#047AFE",
+        "modelCreatorLogo": "/img/logos/kimi.jpg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 55.0869210959395,
+        "intelligenceIndexIsEstimated": false,
+        "omniscience": 29.516666666666666,
+        "scores": {
+          "aa-briefcase": 1677.79,
+          "omniscience-accuracy": 0.5101666666666667,
+          "omniscience-non-hallucination": 0.5610751956447771,
+          "automationbench-aa": 0.7329771090921112,
+          "gdpval-aa-normalized": 1845.72,
+          "humanitys-last-exam": 0.524559777571826,
+          "gdp-pdf": 0.314,
+          "terminalbench-4-0": 0.671717171717172,
+          "artificial-analysis-long-context-reasoning": 0.863333333333333,
+          "scicode": 0.607638888888889,
+          "critpt": 0.245714285714286,
+          "terminal-bench-science": 0.342857142857143,
+          "frontiercode": 0.470664,
+          "aa-analyst-agent": 0.3875,
+          "aa-3d": 1110.1642,
+          "mlcr-aa": 0.383333333333333,
+          "mmmu-pro": 0.838728323699422
+        },
+        "intelligenceIndexCostPerTask": 2.1145052918767275,
+        "price1mInputTokens": 2,
+        "price1mOutputTokens": 10,
+        "cacheHitPrice": 0.2,
+        "cacheWritePrice": null,
+        "medianOutputTokensPerSecond": 41.4411592836121,
+        "percentile05OutputTokensPerSecond": 32.129797465731,
+        "quartile25OutputTokensPerSecond": 35.7267089965529,
+        "quartile75OutputTokensPerSecond": 49.7174379698438,
+        "percentile95OutputTokensPerSecond": 57.4100758268081,
+        "medianTimeToFirstTokenSeconds": 2.95454551199998,
+        "medianTimeToFirstAnswerTokenSeconds": 51.21574366798158,
+        "percentile05TimeToFirstTokenSeconds": 2.2147426733,
+        "quartile25TimeToFirstTokenSeconds": 2.61668656250001,
+        "quartile75TimeToFirstTokenSeconds": 3.51202669499992,
+        "percentile95TimeToFirstTokenSeconds": 5.03681278789999,
+        "medianEndToEndResponseTimeSeconds": 63.281043206976975,
+        "medianReasoningTimeSeconds": 48.261198155981596
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

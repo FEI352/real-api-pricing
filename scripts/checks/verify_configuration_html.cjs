@@ -24,6 +24,10 @@ const context = vm.createContext({
 vm.runInContext(script, context);
 const summary = JSON.parse(fs.readFileSync(path.join(root,'derived/points.json')));
 const links = JSON.parse(fs.readFileSync(path.join(root,'derived/benchmark-points.json')));
+// Retired models are excluded from the interactive chart, so their variants are not expected in hovers.
+// link rows carry point_id "plan::model" plus a display variant, so match on the model part of the id.
+const deprecated = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(root,'config/deprecated-models.json'))).models || {}));
+const deprecatedLink = c => deprecated.has(String(c.point_id || '').split('::')[1]);
 for (const board of Object.keys(summary.boards)) {
   element('board').value = board;
   for (const view of ['all','summary']) {
@@ -33,8 +37,8 @@ for (const board of Object.keys(summary.boards)) {
     const hover = render.traces.flatMap(t=>t.hovertemplate||[]).join('\n');
     const loc=s=>String(s).replaceAll("[vendor self-report]","[厂商自报]").replaceAll("[AA estimate]","[AA 估计值]");
     const esc=s=>loc(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-    const expected = (view==='all' ? links.filter(c=>c.board===board).map(c=>c.variant)
-      : summary.points.map(p=>p[board+'__variant']).filter(Boolean));
+    const expected = (view==='all' ? links.filter(c=>c.board===board && !deprecatedLink(c)).map(c=>c.variant)
+      : summary.points.filter(p=>!deprecated.has(p.model)).map(p=>p[board+'__variant']).filter(Boolean));
     for(const label of new Set(expected)) assert(hover.includes(esc(label)), `${board} ${view} missing ${label}`);
     assert(hover.includes('quota-measurement effort'));
     assert(hover.includes('来源任务成本（非订阅）'));

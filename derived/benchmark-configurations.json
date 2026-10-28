@@ -20202,5 +20202,58 @@
       "checkedAt": "2026-10-20",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
+  },
+  {
+    "configuration_id": "aa_intelligence_index:6df0f86b129304e3",
+    "board": "aa_intelligence_index",
+    "model": "kimi-k3.1-pro",
+    "variant": "Kimi K3.1 Pro",
+    "score_is_estimated": false,
+    "score_is_self_reported": false,
+    "agent_harness": null,
+    "reasoning_effort": null,
+    "service_mode": null,
+    "score": 55.0869,
+    "score_low": null,
+    "score_high": null,
+    "mean_cost_usd_per_task": 2.1145,
+    "median_cost_usd_per_task": null,
+    "benchmark_list_price": 0.294,
+    "response_time_seconds": 63.28,
+    "output_speed_tps": 41.4,
+    "source": "https://artificialanalysis.ai/leaderboards/models",
+    "checked_at": "2026-10-27",
+    "archive": "scores-kimi-k31-pro-round1-2026-10-27.json",
+    "raw_record": {
+      "boardId": "aa_intelligence_index",
+      "model": "kimi-k3.1-pro",
+      "variantLabel": "Kimi K3.1 Pro",
+      "score": 55.0869,
+      "secondary": {
+        "configurationRank": 5,
+        "costPerTaskUsd": 2.1145,
+        "scoreRoundedDisplay": 55,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "kimi-k3-1-pro",
+        "shortName": "Kimi K3.1 Pro",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Kimi",
+        "effort": null,
+        "terminalBench40": null,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 2,
+        "price1mOutputTokens": 10,
+        "cacheHitPrice": 0.2,
+        "intelligenceIndex": 55.0869210959395,
+        "medianOutputTokensPerSecond": 41.4411592836121,
+        "medianTimeToFirstTokenSeconds": 2.95454551199998,
+        "medianEndToEndResponseTimeSeconds": 63.281043206976975,
+        "medianReasoningTimeSeconds": 48.261198155981596
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-27"
+    }
   }
 ]

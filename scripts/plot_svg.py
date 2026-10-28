@@ -9,6 +9,7 @@ from html import escape
 from pathlib import Path
 
 from palette import FALLBACK, channel_of, luminance, palette, shade
+from deprecated_models import drop_deprecated_points
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "_build"
@@ -511,7 +512,10 @@ def draw(board, meta, points, tier, language="zh"):
 
 def main():
     data = json.loads((ROOT / "derived/points.json").read_text(encoding="utf-8"))
-    charts = [draw(board, meta, data["points"], tier, language)
+    # Retired models stay in points.json for the site's model panel, but they must
+    # not occupy a frontier slot or a label in the charts.
+    points = drop_deprecated_points(data["points"])
+    charts = [draw(board, meta, points, tier, language)
               for board, meta in data["boards"].items()
               for tier in ("main", "full") for language in ("zh", "en")]
     (OUT / "SVG坐标核对.json").write_text(json.dumps(charts, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -705,10 +705,10 @@ def attach_email_analysis_notes(diff):
         return
     notes = diff.setdefault("notes", [])
     if diff.get("added"):
-        notes.append("【前沿变动与新进归因】opencode_go::muse-spark-1.3-contributor（智力分 48.0923，任务成本 $0.003189，真实单价 $0.000907/MTok）重返任务成本与真实单价双前沿。归因：AA 官方详情页保留 Muse Spark 1.3 智力指数（48.0923），经 runbook §1.3.5 aa_recover_deprecated.py 机制恢复注入 2026-10-23 最新快照。")
-        notes.append("【被支配掉的前沿点】1) claude_max_20x::claude-haiku-5.5（原分数 43.395，任务成本 $0.003425）；2) opendesign_go::deepseek-v4.1-flash（原分数 45.0965，任务成本 $0.010917）；3) command_code_goat::mimo-v2.6-pro（原分数 46.3242，任务成本 $0.066603）。上述三点单任务成本均高于 muse-spark-1.3-contributor ($0.003189) 且智力分低于 48.0923，形成强帕累托包络，全部被劣后支配退出成本前沿。")
-        notes.append("【新增前沿点与采用值】opencode_go::muse-spark-1.3-contributor 采用值基于 OpenCode Go 订阅额度池换算（数据日期 2026-09-10），挂载 2026-10-23 AA 恢复智力分 48.0923。")
-    notes.append("【候选但未采用的模型及原因】1) Step-5 Preview (600B MoE): 今日 AA 智力主榜收录得分 43.73 (TB4 33.33%，cost $1.0264，排名 32)，Coding Agent 榜 43.13%，官方标价 $1.00/$2.70，STEPX Neo 手机首销 Day 8，暂无独立第三方低价包月聚合点，列为 P1 观察；2) OpenAI o4-mini: 今日 (2026-10-23) 正式停运下线 (Day 1)，项目已全量平滑迁移至 GPT-6 系列，无负面扰动；3) ChatGPT Pro 200: 额度腰斩 (20x -> 10x) 宽限期剩余 6 天 (10-29 终了，T-6)，维持现状密切监控；4) MiniMax M3.1 Flash: AA 智力实测 42.71，标价 $0.15/$0.60/cache $0.015，M Plan 每任务成本 $0.037，被支配未进前沿；5) Mistral Large 4 Preview: AA 智力 38.38，开源权重预计 10 月下旬开放 (T-4~8)；6) 上游 PR #130 / #128 / #126 / #125: 均为 research-only 证据归档，不改采用值。")
+        notes.append("【前沿变动与新进归因】google_ai_ultra_5x_tr::gemini-4-argon（AA 智力分 52.6000，每任务成本 $0.073952，真实单价 $0.007321/MTok）新进任务成本前沿。归因：Argon 独立额度池 40.61 亿 tokens（折合 4,061 MTok），土耳其区官网价格 TRY 1,479.99 ≈ $29.73，搭配促销标价 blended $0.197/MTok，任务成本大幅优化至 $0.073952。")
+        notes.append("【被支配掉的前沿点】chatgpt_plus::gpt-6.1-sol（原分数 51.8333，任务成本 $0.084509）。归因：gemini-4-argon 任务成本更低（$0.073952 < $0.084509）且智力分更高（52.6000 > 51.8333），形成帕累托严格劣后支配，被挤出成本前沿。")
+        notes.append("【新增前沿点与采用值】google_ai_ultra_5x_tr::gemini-4-argon 额度 40.61 亿（月池 $800 ÷ blended $0.197），数据日期沿用同档 flash 实测锚点（2026-09-10）；智力得分 52.6000 继承 scores-gemini-4-argon-round1-2026-10-01.json 快照。")
+    notes.append("【候选但未采用的模型及原因】1) Kimi K3.1 Pro / Highspeed: 官方 API 标价 $2.00/$10.00/cache $0.20（blended $0.294/MTok，效率为 K3 的 1.5×），AA 智力实测 55.0869，排名全球第 4，任务成本约 $0.038~$0.19，各会员档均被 Claude Max 20x 与 OpenCode Go 构筑的前沿包络绝对支配；官方宣布 11-04 开源权重（T-7 倒计时），暂无低价包月，列为 P1 观察；2) ChatGPT Pro 200 降额 (20x -> 10x) 倒计时: 老订户 20x 宽限期截至 2026-10-29 23:59（明日最后 1 天倒计时，T-1），10-30 起全网统一 10x，届时 chatgpt_pro_20x 实际单价翻倍将退出成本前沿；3) GPT-6.1 Terra 系列: 官方发布并上线 AA 载荷，标价 $1.00/$5.00/cache $0.05，最高分 48.11，暂无独立第三方低价包月套餐，未构成前沿威胁；4) Step-5 Preview (600B MoE): WorkBuddy 限免试用已于 10-25 截止（T+3），AA 智力 43.73，被 Claude Haiku 5.5 与 DeepSeek Flash 绝对支配；5) Mistral Large 4 Preview: 权重开放窗口开启（T-0~3），AA 得分 38.38 不足以冲击前沿；6) 上游 14 提交评估: PR #142 (Kimi v2 quota) 与本地国际版命名/派生冲突且直接换基 k3，PR #127 触及 10-20 旧快照与代码，风险过高不予合并；PR #146 / #147 为 research 证据归档，不改采用值。")
 
 
 def send_report_email(to=DEFAULT_RECIPIENT, report=None):

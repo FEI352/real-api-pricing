@@ -15,6 +15,7 @@ export async function buildSiteData({ repo, parseCsv }) {
     evidenceFiles,
     channelColors,
     i18n,
+    deprecatedModels,
   ] = await Promise.all([
     read("derived/points.json"),
     read("derived/benchmark-configurations.json"),
@@ -24,6 +25,7 @@ export async function buildSiteData({ repo, parseCsv }) {
     readdir(path.join(repo, "data/research")),
     read("config/channel-colors.json"),
     read("data/i18n/adopted.en.json"),
+    read("config/deprecated-models.json"),
   ]);
   const adopted = new Map(
     parseCsv(adoptedText, { columns: true, skip_empty_lines: true, bom: true }).map(
@@ -107,6 +109,7 @@ export async function buildSiteData({ repo, parseCsv }) {
         ...base,
         plan_id: a.plan_id,
         channel: channel(p),
+        deprecated: Boolean((deprecatedModels.models || {})[p.model]),
         original_price: a.price === "" ? null : Number(a.price),
         currency: a.currency,
         monthly_tokens: a.monthly_tokens === "" ? null : Number(a.monthly_tokens),

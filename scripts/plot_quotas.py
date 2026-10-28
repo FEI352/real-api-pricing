@@ -23,6 +23,7 @@ from matplotlib import font_manager
 
 from compute import DISPLAY
 from palette import channel_of, palette
+from deprecated_models import drop_deprecated_points, drop_deprecated_rows
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ADOPTED = os.path.join(ROOT, "data", "adopted.csv")
@@ -523,7 +524,7 @@ def plot(rows: list[dict], view: str, language: str, board: dict | None = None,
 
 def main() -> None:
     with open(ADOPTED, encoding="utf-8-sig") as f:
-        all_rows = list(csv.DictReader(f))
+        all_rows = drop_deprecated_rows(list(csv.DictReader(f)))
     # 总览与月费分档仍排除 ≈$0 不计额度点（无 token 分母且无法上对数条形图）；
     # 逐榜前沿输出与帕累托图口径一致，用 all_rows 把不计额度点计入支配筛选。
     rows = [r for r in all_rows if r["real_usd_per_mtok"] and float(r["real_usd_per_mtok"]) > 0]
@@ -545,10 +546,12 @@ def main() -> None:
                 plot(ordered, view, language, mixed_scale=True)
     with open(os.path.join(ROOT, "derived", "points.json"), encoding="utf-8") as f:
         data = json.load(f)
+    # Same exclusion as plot_svg: retired models must not hold a frontier slot.
+    points = drop_deprecated_points(data["points"])
     selections = {}
     for board_id, meta in data["boards"].items():
         board = {**meta, "id": board_id}
-        selected = frontier_rows(all_rows, data["points"], board_id)
+        selected = frontier_rows(all_rows, points, board_id)
         selections[board_id] = {
             **meta,
             "frontier": [{"id": f"{r['plan_id']}::{r['served_model']}", "model": r["served_model"],
@@ -561,7 +564,7 @@ def main() -> None:
                           "mapping_confidence": r["board_mapping_confidence"],
                           "mapping_note": r["board_mapping_note"],
                           "confidence": r["confidence"]} for r in sorted_rows(selected, "prices")],
-            "unscored": [p["id"] for p in data["points"] if p.get(f"{board_id}__score") is None],
+            "unscored": [p["id"] for p in points if p.get(f"{board_id}__score") is None],
         }
         for view in ("quotas", "prices"):
             ordered = sorted_rows(selected, view)

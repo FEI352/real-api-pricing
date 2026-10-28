@@ -1,11 +1,13 @@
-import json,math,re,xml.etree.ElementTree as ET
+import json,math,re,sys,xml.etree.ElementTree as ET
 from pathlib import Path
-root=Path(__file__).resolve().parents[2];data=json.loads((root/'derived/points.json').read_text(encoding='utf-8'))
+root=Path(__file__).resolve().parents[2];sys.path.insert(0,str(root/'scripts'))
+from deprecated_models import drop_deprecated_points
+data=json.loads((root/'derived/points.json').read_text(encoding='utf-8'))
 charts=json.loads((root/'_build/SVG坐标核对.json').read_text(encoding='utf-8'))
 ns={'s':'http://www.w3.org/2000/svg'}
 for chart in charts:
  k=chart['board']+'__score';tier=chart['tier']
- pts=[p for p in data['points'] if p[k] is not None and (p['real_usd_per_mtok']>0 or p.get('unmetered')) and (tier=='full' or p['tier']=='main')]
+ pts=[p for p in drop_deprecated_points(data['points']) if p[k] is not None and (p['real_usd_per_mtok']>0 or p.get('unmetered')) and (tier=='full' or p['tier']=='main')]
  f=[p for p in pts if not any(q['real_usd_per_mtok']<=p['real_usd_per_mtok'] and q[k]>=p[k] and (q['real_usd_per_mtok']<p['real_usd_per_mtok'] or q[k]>p[k]) for q in pts)]
  svg=ET.parse(root/'_build'/f"{chart['stem']}.svg");els=svg.findall('.//s:g[@class="point"]',ns)
  actual={(float(e.attrib['data-price']),float(e.attrib['data-score']),e.attrib['data-billing']) for e in els}
