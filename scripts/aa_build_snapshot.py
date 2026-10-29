@@ -188,7 +188,7 @@ def main() -> int:
             "deprecated": r.get("deprecated"),
             "modelCreatorName": r.get("modelCreatorName"),
             "effort": effort_of(r.get("shortName") or r["name"]),
-            "terminalBench40": r.get("terminalBench40"),
+            "terminalBench40": r.get("terminalBench40") if r.get("terminalBench40") is not None else (r.get("scores") or {}).get("terminalbench-4-0"),
             "scicode": r.get("scicode"),
             "hle": r.get("hle"),
             # AA 载荷自带的三段价，纯附加字段：benchmark_configs.configuration() 用它算
@@ -210,18 +210,19 @@ def main() -> int:
     tb = 0
     for r in payload:
         model = slug_map.get(r["slug"])
-        if not model or r.get("terminalBench40") is None:
+        tb4_val = r.get("terminalBench40") if r.get("terminalBench40") is not None else (r.get("scores") or {}).get("terminalbench-4-0")
+        if not model or tb4_val is None:
             continue
         scores.append({
             "model": model, "boardId": "aa_terminal_bench_4",
             "variantLabel": "Artificial Analysis - " + (r.get("shortName") or r["name"]),
-            "score": round(r["terminalBench40"] * 100, 4),
+            "score": round(tb4_val * 100, 4),
             "secondary": {
                 "configurationRank": rank.get(r["slug"]),
                 "agentHarness": "Artificial Analysis",
                 "reasoningEffort": effort_of(r.get("shortName") or r["name"]),
                 "slug": r["slug"], "shortName": r.get("shortName") or r["name"],
-                "terminalBench40Fraction": r["terminalBench40"],
+                "terminalBench40Fraction": tb4_val,
             },
             "source": args.models_url, "checkedAt": args.collected_at,
             "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。",

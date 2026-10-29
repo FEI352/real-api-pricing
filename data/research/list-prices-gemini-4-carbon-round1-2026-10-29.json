@@ -1,0 +1,26 @@
+{
+  "collectedAt": "2026-10-29",
+  "sourceType": "official pricing page + launch coverage",
+  "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+  "checkedAt": "2026-10-29",
+  "launchAt": "2026-10-28",
+  "scope": "Google Gemini 4 Carbon（2026-10-28 发布，首发优惠价与标准价）按量三段价与缓存价，供 compute.py 标价混合比。",
+  "models": [
+    {
+      "model": "gemini-4-carbon",
+      "vendor": "Google",
+      "input": 2.0,
+      "cachedInput": 0.10,
+      "output": 10.0,
+      "currency": "USD",
+      "variants": {
+        "standard": {
+          "input": 4.0,
+          "cachedInput": 0.20,
+          "output": 20.0,
+          "note": "Standard list price after promo"
+        }
+      }
+    }
+  ]
+}

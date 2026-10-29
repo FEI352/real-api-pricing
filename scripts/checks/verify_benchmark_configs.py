@@ -107,13 +107,12 @@ assert all(c["mean_cost_usd_per_task"] is not None for c in open_design)
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.00966
 assert indexed["deepseek_v41_flash_peak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.01932
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["open_design_arena__score"] == 81.2
-# AA round5 (2026-09-30) superseded round4, so the round3-pinned intelligence
-# supplement retired; 2026-10-19 supplement bumped DeepSeek V4.1 Flash to 1017 (45.0965).
-assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 45.0965
+# AA v5.0 (2026-10-28) 全量升级：DeepSeek V4.1 Flash 1017 为 32.4896，GPT-6 Astra 为 56.8539。
+assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 32.4896
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 31.2
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score_is_self_reported"] is True
 # AA 快照自 round5 起把 intelligenceIndex 四舍五入到 4 位小数（round6 沿用），
-# 故派生分也是 4 位小数；此前的 12 位原值断言已过期。
-assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 52.6737
+# 故派生分也是 4 位小数；AA v5.0 下 GPT-6 Astra 为 56.8539。
+assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__score"] == 56.8539
 assert indexed["chatgpt_plus::gpt-6-astra"]["aa_intelligence_index__configuration_count"] == 5
 print(f"PASS: {len(configs)} configurations preserved, {len(links)} explicit mappings, exact modes, source CIs/costs and price inputs verified")

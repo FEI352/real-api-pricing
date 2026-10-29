@@ -1194,6 +1194,9 @@ def droid_derived_note(model: str) -> str:
     return note
 
 
+RATIO_TERRA61 = blended(0.4, 4.0, 20.0) / blended(0.05, 1.0, 5.0)
+
+
 DERIVED = [
     # OpenAI：Terra/5.5仍按三段credits与项目统一标准负载从Sol换算；Luna已有独立实测，不再从Sol派生
     *[(pid, "gpt-5.6-sol", model, blended(10, 100, 500) / blended(*rates), "medium",
@@ -1202,6 +1205,11 @@ DERIVED = [
       for pid, sol_yi in (("chatgpt_plus", 6.16), ("chatgpt_pro_5x", 30.8), ("chatgpt_pro_20x", CHATGPT_PRO20X_SOL_MONTHLY_YI))
       for model, rates, old_ratio in (("gpt-5.6-terra", (5, 50, 300), 2),
                                       ("gpt-5.5", (12.5, 125, 750), 0.8))],
+    # GPT-6.1 Terra（2026-10-26 发布，标价 input $1.00 / output $5.00 / cache $0.05）：
+    #   按 API 套等金额换算，由同套餐 gpt-5.6-sol 采用值 × 标价混合比 RATIO_TERRA61 派生
+    *[(pid, "gpt-5.6-sol", "gpt-6.1-terra", RATIO_TERRA61, "medium",
+       "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier", True)
+      for pid in ("chatgpt_plus", "chatgpt_pro_5x", "chatgpt_pro_20x")],
     # Anthropic：Sonnet 5 标价 = Opus 的 0.4 → ×2.5；Opus 4.8 与 Opus 5 同价 → ×1；Fable 订阅内权重统一 6.5×（Reddit x5 档 4.25 系 typed meter 软读数、与确认 2× 周池比矛盾，不采），且最多占周额度 50%
     ("claude_pro", "claude-opus-5", "claude-sonnet-5", RATIO_SONNET, "medium", "69.05→64.725亿：基准随 Opus5 折算 27.62→25.89 ×标价比2.5，非Sonnet实测（更早链 39.7→46.95→69.05 为 raw 口径）；community-issues-round1-2026-09-29.json；workload-conversion-round1-2026-09-30.json", True),
     ("claude_pro", "claude-opus-5", "claude-opus-4.8", 1.0, "low", "与Opus5同价同池，27.62→25.89亿随 Opus5 折算基准派生（更早18.78为round8面板、27.62为#53 raw）；历史实测15.88亿留作round5前证据不覆盖；community-issues-round1-2026-09-29.json、claude-adoption-round8-2026-09-20.json；workload-conversion-round1-2026-09-30.json", False),
@@ -1283,10 +1291,13 @@ METERED = [
     ("anthropic_sonnet55_api", "Claude Sonnet 5.5 API", "claude-sonnet-5.5", 0.2, 2.0, 10.0, "platform.claude.com/docs/en/about-claude/pricing；2026-09-28发布保持Sonnet 5定价$2/$10（cache read 0.1×）、写 $2.5/5m $4/1h、Batch $1/$5；list-prices-claude-sonnet55-round1-2026-09-30.json"),
     ("anthropic_haiku55_api", "Claude Haiku 5.5 API", "claude-haiku-5.5", 0.01, 0.10, 0.50, "https://www.anthropic.com/claude-haiku-5-5；2026-10-07发布，≤100k 档 cache read $0.01(输入0.1×)/cache write $0.125(输入1.25×)/输入 $0.10/输出 $0.50；官方称 90% 请求落在 ≤100k 档，>100k 档为 5×($0.05/$0.50/$2.50、写$0.625)；较 Haiku 4.5 降 90%"),
     ("google_gemini4_argon_api", "Gemini 4 Argon API (Intro)", "gemini-4-argon", 0.10, 2.0, 10.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json"),
+    ("google_gemini4_carbon_api", "Gemini 4 Carbon API (Intro)", "gemini-4-carbon", 0.10, 2.0, 10.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ 官方首发优惠目录价；list-prices-gemini-4-carbon-round1-2026-10-29.json"),
+    ("google_gemini4_carbon_api_std", "Gemini 4 Carbon API (Standard)", "gemini-4-carbon", 0.20, 4.0, 20.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ 官方标准目录价；list-prices-gemini-4-carbon-round1-2026-10-29.json"),
     ("hyperqwen_local_qwen38_27b", "Qwen3.8 27B · Single RTX 5090 (SGLang + DFlash2)", "qwen3.8-27b-dflash-5090", 0.001, 0.01, 0.05, "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s"),
     ("hyperqwen_local_qwen38_27b_3090", "Qwen3.8 27B · Single RTX 3080/3090/4090 (HyperQwen 24GB)", "qwen3.8-27b-hyperqwen-3090", 0.001, 0.01, 0.05, "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s"),
     ("hyperqwen_local_qwen38_27b_pro6000", "Qwen3.8 27B · Single RTX PRO 6000 96GB (SGLang + DFlash2)", "qwen3.8-27b-rtx-pro-6000", 0.001, 0.01, 0.05, "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark；经全文校验原厂 README：单卡 RTX PRO 6000 (Blackwell 96GB) 运行 RadixArk NVFP4-BF16-LMHead 与纯注意力 DFlash 2 投机草稿头。草稿 greedy head 折叠进 CUDA 图，单步验证 8 个 tokens，单流解码实测突破 240+ tok/s，AA 基准 Task Time 压降至 11.9s；55GB FP8 KV 池容纳约 1.7M tokens，原生支持 256K~512K 上下文且支持 8 路并发"),
     ("openai_terra_api", "GPT-5.6 Terra API", "gpt-5.6-terra", 0.2, 2.0, 12.0, "developers.openai.com"),
+    ("openai_61_terra_api", "GPT-6.1 Terra API", "gpt-6.1-terra", 0.05, 1.0, 5.0, "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier"),
     ("openai_luna_api", "GPT-5.6 Luna API", "gpt-5.6-luna", 0.02, 0.2, 1.2, "developers.openai.com"),
 ]
 
@@ -1323,7 +1334,10 @@ EXCLUDED_SUBSCRIPTIONS = {
 DATA_DATES = {
     # ("google_ai_pro_us", "gemini-4-argon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro · gemini-3.8-flash"),
     ("google_gemini4_argon_api", "gemini-4-argon"): ("2026-09-30", "official"),
+    ("google_gemini4_carbon_api", "gemini-4-carbon"): ("2026-10-28", "official"),
+    ("google_gemini4_carbon_api_std", "gemini-4-carbon"): ("2026-10-28", "official"),
     ("anthropic_sonnet55_api", "claude-sonnet-5.5"): ("2026-09-28", "official"),
+    ("openai_61_terra_api", "gpt-6.1-terra"): ("2026-10-26", "official"),
     ("anthropic_haiku55_api", "claude-haiku-5.5"): ("2026-10-07", "official"),
     ("opendesign_go", "deepseek-v4.1-flash"): ("2026-10-10", "official"),
     ("claude_pro_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
@@ -1614,9 +1628,10 @@ def main() -> None:
         else:
             mix_price = blended(cached, inp, out)
             default_note = f"标价 cached {cached}/in {inp}/out {out} × 项目统一标准负载 {STANDARD_MIX['cache']:.1%}/{STANDARD_MIX['input']:.2%}/{STANDARD_MIX['output']:.2%}"
+        tier = "full" if pid == "anthropic_haiku55_api" else "main"
         rows.append(dict(plan_id=pid, plan_name=name, plan_name_en="", billing="metered", price="", currency="USD", price_usd="",
                          served_model=model, monthly_tokens="", monthly_yi="", real_usd_per_mtok=sig(mix_price),
-                         unmetered="", promo_until="", confidence="high", chart_tier="main", source=src,
+                         unmetered="", promo_until="", confidence="high", chart_tier=tier, source=src,
                          decision_note=METERED_NOTES.get(pid, default_note),
                          plan_gen=plan_gen_of(pid), workload=workload_of(pid, "metered", model)))
 

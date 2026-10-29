@@ -1031,6 +1031,10 @@ export function displayPlan(plan: string, lang: string): string {
     // Haiku 5.5 输入长度分档情景（2026-10-08）：整段替换，避免全角括号与「档/混合」漏到英文界面
     "（Haiku >100k 档）": " (>100k tier)",
     "（Haiku 50/50 混合档）": " (50/50 mixed tier)",
+    "（标准价）": " (Standard)",
+    " (土耳其)": " (Turkey)",
+    土耳其: "Turkey",
+    标准价: "Standard",
   };
   return Object.entries(words).reduce(
     (s, [from, to]) => s.replaceAll(from, to),

@@ -42,11 +42,11 @@ SOURCES = (
     dict(
         id="aa_models",
         url="https://artificialanalysis.ai/leaderboards/models",
-        markers=("intelligenceIndex", "terminalBench40"),
+        markers=("intelligenceIndex", ("terminalBench40", "terminalbench-4-0")),
         min_bytes=1_200_000, max_bytes=6_000_000,
         require_html=True,
         note="AA models 榜原始 HTML（RSC 载荷内嵌模型行）。标记依据：aa_fetch_parse.py 依赖的载荷字段 "
-             "intelligenceIndex / terminalBench40；2026-10-08 实测 2,456,763 B。",
+             "intelligenceIndex / terminalBench40 (v5.0 为 terminalbench-4-0)；2026-10-08 实测 2,456,763 B。",
     ),
     dict(
         id="aa_coding_agents",
@@ -104,8 +104,21 @@ def check_source(source: dict, timeout: float, url: str | None = None) -> dict:
         return row
 
     text = body.decode("utf-8", "replace")
-    row["markers_found"] = [m for m in source["markers"] if m in text]
-    row["missing_markers"] = [m for m in source["markers"] if m not in text]
+    found, missing = [], []
+    for m in source["markers"]:
+        if isinstance(m, (tuple, list)):
+            hit = next((opt for opt in m if opt in text), None)
+            if hit:
+                found.append(hit)
+            else:
+                missing.append("/".join(m))
+        else:
+            if m in text:
+                found.append(m)
+            else:
+                missing.append(m)
+    row["markers_found"] = found
+    row["missing_markers"] = missing
 
     problems = []
     if row["missing_markers"]:

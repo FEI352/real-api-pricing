@@ -1,48 +1,53 @@
 {
-  "date": "2026-10-17",
-  "total_points": 349,
+  "date": "2026-10-29",
+  "total_points": 363,
   "cost_frontier": [
     {
       "id": "opencode_go::muse-spark-1.3-contributor",
-      "score": 48.0923,
+      "score": 36.4172,
       "cost": 0.003189
     },
     {
-      "id": "google_ai_ultra_5x_tr::gemini-4-argon",
-      "score": 52.6,
-      "cost": 0.073952
+      "id": "chatgpt_pro_20x::gpt-6.1-terra",
+      "score": 50.9765,
+      "cost": 0.025338
     },
     {
-      "id": "claude_max_20x::claude-opus-5.5",
-      "score": 57.6224,
-      "cost": 0.096282
+      "id": "google_ai_ultra_5x_tr::gemini-4-carbon",
+      "score": 59.4257,
+      "cost": 0.144104
     }
   ],
   "price_frontier": [
     {
       "id": "claude_max_20x::claude-haiku-5.5",
-      "score": 43.395,
+      "score": 36.2345,
       "real_price": 0.00023660121
     },
     {
-      "id": "opendesign_go::deepseek-v4.1-flash",
-      "score": 45.0965,
-      "real_price": 0.00080499742
-    },
-    {
       "id": "opencode_go::muse-spark-1.3-contributor",
-      "score": 48.0923,
+      "score": 36.4172,
       "real_price": 0.00090666763
     },
     {
+      "id": "chatgpt_pro_20x::gpt-6.1-terra",
+      "score": 50.9765,
+      "real_price": 0.0025967618
+    },
+    {
       "id": "claude_max_20x::claude-sonnet-5.5",
-      "score": 56.0001,
+      "score": 54.2413,
       "real_price": 0.0047320254
     },
     {
       "id": "claude_max_20x::claude-opus-5.5",
-      "score": 57.6224,
+      "score": 58.406,
       "real_price": 0.0063415562
+    },
+    {
+      "id": "google_ai_ultra_5x_tr::gemini-4-carbon",
+      "score": 59.4257,
+      "real_price": 0.0073208569
     }
   ]
 }

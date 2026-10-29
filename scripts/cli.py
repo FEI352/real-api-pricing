@@ -705,10 +705,10 @@ def attach_email_analysis_notes(diff):
         return
     notes = diff.setdefault("notes", [])
     if diff.get("added"):
-        notes.append("【前沿变动与新进归因】google_ai_ultra_5x_tr::gemini-4-argon（AA 智力分 52.6000，每任务成本 $0.073952，真实单价 $0.007321/MTok）新进任务成本前沿。归因：Argon 独立额度池 40.61 亿 tokens（折合 4,061 MTok），土耳其区官网价格 TRY 1,479.99 ≈ $29.73，搭配促销标价 blended $0.197/MTok，任务成本大幅优化至 $0.073952。")
-        notes.append("【被支配掉的前沿点】chatgpt_plus::gpt-6.1-sol（原分数 51.8333，任务成本 $0.084509）。归因：gemini-4-argon 任务成本更低（$0.073952 < $0.084509）且智力分更高（52.6000 > 51.8333），形成帕累托严格劣后支配，被挤出成本前沿。")
-        notes.append("【新增前沿点与采用值】google_ai_ultra_5x_tr::gemini-4-argon 额度 40.61 亿（月池 $800 ÷ blended $0.197），数据日期沿用同档 flash 实测锚点（2026-09-10）；智力得分 52.6000 继承 scores-gemini-4-argon-round1-2026-10-01.json 快照。")
-    notes.append("【候选但未采用的模型及原因】1) Kimi K3.1 Pro / Highspeed: 官方 API 标价 $2.00/$10.00/cache $0.20（blended $0.294/MTok，效率为 K3 的 1.5×），AA 智力实测 55.0869，排名全球第 4，任务成本约 $0.038~$0.19，各会员档均被 Claude Max 20x 与 OpenCode Go 构筑的前沿包络绝对支配；官方宣布 11-04 开源权重（T-7 倒计时），暂无低价包月，列为 P1 观察；2) ChatGPT Pro 200 降额 (20x -> 10x) 倒计时: 老订户 20x 宽限期截至 2026-10-29 23:59（明日最后 1 天倒计时，T-1），10-30 起全网统一 10x，届时 chatgpt_pro_20x 实际单价翻倍将退出成本前沿；3) GPT-6.1 Terra 系列: 官方发布并上线 AA 载荷，标价 $1.00/$5.00/cache $0.05，最高分 48.11，暂无独立第三方低价包月套餐，未构成前沿威胁；4) Step-5 Preview (600B MoE): WorkBuddy 限免试用已于 10-25 截止（T+3），AA 智力 43.73，被 Claude Haiku 5.5 与 DeepSeek Flash 绝对支配；5) Mistral Large 4 Preview: 权重开放窗口开启（T-0~3），AA 得分 38.38 不足以冲击前沿；6) 上游 14 提交评估: PR #142 (Kimi v2 quota) 与本地国际版命名/派生冲突且直接换基 k3，PR #127 触及 10-20 旧快照与代码，风险过高不予合并；PR #146 / #147 为 research 证据归档，不改采用值。")
+        notes.append("【前沿变动与新进归因】1) chatgpt_pro_20x::gpt-6.1-terra（AA 智力分 50.9765，任务成本 $0.025338/task，真实单价 $0.00259676/MTok）双料新进成本与单价前沿。归因：GPT-6.1 Terra 官方三段标价 $1.00/$5.00/cache $0.05（较前代降 50%），经 ChatGPT Pro 20x 采用值派生（129.02 亿 tokens），在 $0.025 成本档位建立起 50.98 分的高性价比；2) google_ai_ultra_5x_tr::gemini-4-carbon（AA 智力分 59.4257，任务成本 $0.144104/task，真实单价 $0.00732086/MTok）双料新进成本与单价前沿，刷新全球大模型智力最高峰 SOTA。归因：在 Ultra 5x 土耳其区套餐下，以 59.43 分超越所有模型，在最高能力旗舰区间成立新前沿。")
+        notes.append("【被支配掉的前沿点】1) google_ai_ultra_5x_tr::gemini-4-argon（当前分 50.4122，任务成本 $0.142751）。被 chatgpt_pro_20x::gpt-6.1-terra（成本 $0.025338，分 50.9765）严格劣后支配（成本更低且分数更高），挤出成本前沿；2) claude_max_20x::claude-opus-5.5（任务成本 $0.161539，分 58.4060）。被 google_ai_ultra_5x_tr::gemini-4-carbon（成本 $0.144104，分 59.4257）严格劣后支配（成本更低且分数更高），挤出成本前沿（仍保留在单价前沿）；3) opendesign_go::deepseek-v4.1-flash（智力分 32.4896，单价 $0.000805）。被单价更低且分数更高的 claude_max_20x::claude-haiku-5.5（单价 $0.0002366，分 36.2345）严格支配，掉出单价前沿。")
+        notes.append("【新增前沿点与采用值】chatgpt_pro_20x::gpt-6.1-terra 采用值 129.02 亿 tokens（按标价混合比 RATIO_TERRA61 换算），数据日期 2026-10-26（官方发布）；google_ai_ultra_5x_tr::gemini-4-carbon 采用值 40.61 亿 tokens（月池 $800 ÷ blended $0.197），数据日期继承 2026-09-10 锚点，标价档为 list-prices-gemini-4-carbon-round1-2026-10-29.json。")
+    notes.append("【候选但未采用的模型及原因】1) Gemini 4 Carbon API: 官方首发 $2.00/$10.00/cache $0.10，标准价 $4.00/$20.00/cache $0.20，单任务成本高达 $7.76，被 Claude Max 20x 绝对支配；2) ChatGPT Pro 200 降额 (20x -> 10x) 宽限期终了预警: 老订户 20x 宽限期截至今日 2026-10-29 23:59:59（T-0 终局倒计时！），明日 10-30 起全网统一 10x，chatgpt_pro_20x 实际单价翻倍，届时将面临退出成本前沿的结构性重排；3) Moonshot Kimi K3.1 Pro (55.09 分): 各会员档被现有前沿包络绝对支配，官方定于 11-04 开源权重（T-6 倒计时），维持 P1 重点观察；4) DeepSeek V4.1 Flash: Search & Fetch API 免费推广期仅剩 3 天（10-31 截止，T-3 倒计时）；5) Command Code GOAT 官网 /pricing 页面同步 'Up to $100'（PR #153），核验 allowance 上限未变，维持 research-only；6) 上游 16 个新提交评估: PR #142 (Kimi v2) 与本地 extra_subscriptions 冲突，PR #127 触及历史核心代码具高冲突风险，均不合并；PR #146/#147/#153 属 research 归档。")
 
 
 def send_report_email(to=DEFAULT_RECIPIENT, report=None):
@@ -801,6 +801,24 @@ def main():
     add_score_parser.add_argument("--deploy", action="store_true", help="追加完整图表链 + 前端构建 + 部署 + 守卫")
     add_score_parser.add_argument("--dry-run", action="store_true", help="只打印将写入的内容，不落盘")
 
+    sync_aa_parser = subparsers.add_parser(
+        "sync-aa", help="一键全自动同步最新 AA 全量数据并完成部署上线")
+    sync_aa_parser.add_argument("--date", help="采集日 YYYY-MM-DD，默认今天")
+    sync_aa_parser.add_argument("--skip-fetch", action="store_true", help="复用本地 HTML 缓存")
+
+    clone_sub_parser = subparsers.add_parser(
+        "clone-subscriptions", help="一键从锚点模型克隆全套订阅乘区与双语翻译")
+    clone_sub_parser.add_argument("--anchor-model", required=True, help="锚点模型 id，如 gemini-4-argon")
+    clone_sub_parser.add_argument("--target-model", required=True, help="目标新模型 id，如 gemini-4-carbon")
+    clone_sub_parser.add_argument("--target-name", help="目标新模型展示名称")
+    clone_sub_parser.add_argument("--anchor-name", help="锚点模型展示名称")
+    clone_sub_parser.add_argument("--price-file", help="新定价文件名")
+    clone_sub_parser.add_argument("--ratio", type=float, default=1.0, help="额度缩放倍率")
+
+    query_parser = subparsers.add_parser(
+        "query", help="查询模型在 points.json 中的全量点位、单价、跑分与每任务成本")
+    query_parser.add_argument("model", help="模型 id 或关键词")
+
     args = parser.parse_args()
     if getattr(args, "json_only", False):
         QUIET = True
@@ -847,6 +865,36 @@ def main():
             if args.deploy: cmd.append("--deploy")
             if args.dry_run: cmd.append("--dry-run")
             sys.exit(subprocess.run(cmd, cwd=REPO_ROOT).returncode)
+        elif args.command == "sync-aa":
+            cmd = [str(PY), "scripts/aa_sync_all.py"]
+            if args.date: cmd.append(f"--date={args.date}")
+            if args.skip_fetch: cmd.append("--skip-fetch")
+            sys.exit(subprocess.run(cmd, cwd=REPO_ROOT).returncode)
+        elif args.command == "clone-subscriptions":
+            cmd = [str(PY), "scripts/clone_subscriptions.py",
+                   f"--anchor-model={args.anchor_model}",
+                   f"--target-model={args.target_model}",
+                   f"--ratio={args.ratio}"]
+            if args.target_name: cmd.append(f"--target-name={args.target_name}")
+            if args.anchor_name: cmd.append(f"--anchor-name={args.anchor_name}")
+            if args.price_file: cmd.append(f"--price-file={args.price_file}")
+            sys.exit(subprocess.run(cmd, cwd=REPO_ROOT).returncode)
+        elif args.command == "query":
+            points_file = REPO_ROOT / "derived" / "points.json"
+            if not points_file.exists():
+                sys.exit("ERROR: derived/points.json 不存在，先运行 update")
+            pts = json.loads(points_file.read_text(encoding="utf-8")).get("points", [])
+            kw = args.model.lower()
+            matched = [p for p in pts if kw in p.get("model", "").lower() or kw in p.get("id", "").lower()]
+            print(f"找到 {len(matched)} 个匹配点位 ({args.model}):\n")
+            for p in matched:
+                print(f"[{p['id']}] {p.get('label', '')}")
+                print(f"  Billing: {p.get('billing')} | Real USD/MTok: ${p.get('real_usd_per_mtok')}")
+                for b in ["aa_intelligence_index", "aa_terminal_bench_4", "aa_coding_agent_index"]:
+                    if p.get(f"{b}__score") is not None:
+                        print(f"  {b}: score={p.get(f'{b}__score')}, cost_per_task=${p.get(f'{b}__mean_cost_usd_per_task')}")
+                print()
+            sys.exit(0)
         elif args.command == "cron-run":
             _info("=== 开始执行自动化巡检（更新部署 → 比对前沿 → 有变动才发信）===")
             update_data()

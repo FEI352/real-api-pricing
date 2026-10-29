@@ -72,6 +72,12 @@ def pick_row(payload: list[dict], model: str, slug: str | None) -> dict:
 
 
 def build_snapshot(row: dict, payload: list[dict], collected_at: str, round_no: int) -> dict:
+    # AA v5.0 结构自愈：若顶层无 terminalBench40，从 scores["terminalbench-4-0"] 回填
+    if row.get("terminalBench40") is None and isinstance(row.get("scores"), dict):
+        tb4_val = row["scores"].get("terminalbench-4-0")
+        if tb4_val is not None:
+            row["terminalBench40"] = tb4_val
+
     ranked = sorted((r for r in payload if r.get("intelligenceIndex") is not None),
                     key=lambda r: -r["intelligenceIndex"])
     rank = next((i + 1 for i, r in enumerate(ranked) if r["slug"] == row["slug"]), None)

@@ -1123,12 +1123,32 @@
       "en": "New 2.03B tokens: Turkey allowance pool equals the US one (region-independent), so after standard-price conversion it matches google_ai_ultra_5x_us_std. real = 29.73 / 2030 MTok = $0.014645/MTok, still 29.7% of the US standard basis $99.99."
     },
     {
+      "zh": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "en": "Community estimate baseline: Keeper reports the Ultra 5x Gemini 4 Carbon allowance as 5h $50 / 7d $200 (unofficial figures); official tier multipliers Pro 1x / Ultra 5x 5x / Ultra 20x 20x ( https://one.google.com/about/google-ai-plans/ ); Carbon three-part prices in list-prices-gemini-4-carbon-round1-2026-10-29.json (promo $2/$10/$0.1, standard $4/$20/$0.2 after 12-01); converted under the project standard workload cache 97% / input 2.5% / output 0.5%, monthly pool counted as 4 weeks"
+    },
+    {
+      "zh": "新增 8.12 亿：7d $200 ÷ 官方 5× = 7d $40，×4 周 = $160/月，÷ 促销 blended $0.197/MTok。与同档 flash 点（25.81 亿）不冲突：Carbon 是独立小额度池，两者是不同模型口径。12-01 促销结束后按标准价 $0.394/MTok 折算只剩 4.06 亿，除非 Google 同步上调 credits。标准价口径见 google_ai_*_std 点。",
+      "en": "New 0.812B tokens: 7d $200 / official 5x = 7d $40, x4 weeks = $160/month, / promo blended $0.197/MTok. Does not conflict with the same-tier flash point (2.581B): Carbon is a separate small allowance pool, a different model basis. After the 12-01 promo ends, standard price $0.394/MTok leaves only 0.406B unless Google raises credits. Standard-price basis is filed as the google_ai_*_std points."
+    },
+    {
+      "zh": "新增 40.61 亿：7d $200（Keeper 基准）×4 周 = $800/月 ÷ $0.197/MTok。同档 flash 点 129.05 亿，Carbon 口径只有其 31%，这就是「Carbon 额度少」的量化结果。12-01 后标准价折算降为 20.30 亿。标准价口径见 google_ai_*_std 点。",
+      "en": "New 4.061B tokens: 7d $200 (Keeper baseline) x4 weeks = $800/month / $0.197/MTok. The same-tier flash point is 12.905B, so the Carbon basis is only 31% of it, which quantifies the complaint that the Carbon allowance is small. After 12-01 the standard price cuts it to 2.03B. Standard basis is filed as the google_ai_*_std points."
+    },
+    {
+      "zh": "新增 40.61 亿：额度与美国版同池（与地区无关），价格取土耳其官网直购 TRY 1,479.99 ≈ $29.73。real = 29.73 ÷ 4,061 MTok = $0.007321/MTok，为美国版 $99.99 的 29.7%。即土区用 30% 的价格买同样的 Carbon 额度，但绝对量仍只有同档 flash 点的 31%。标准价口径另立 google_ai_*_std 点（额度减半），见同批录入。",
+      "en": "New 4.061B tokens: allowance shares the US pool (region-independent); price is Turkey direct purchase TRY 1479.99 ~= $29.73. real = 29.73 / 4061 MTok = $0.007321/MTok, which is 29.7% of the US $99.99. Turkey thus pays 30% of the price for the same Carbon allowance, but the absolute volume is still only 31% of the same-tier flash point. A separate standard-price point (half the allowance) is filed as google_ai_*_std."
+    },
+    {
+      "zh": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "en": "Community estimate baseline: Keeper reports the Ultra 5x Gemini 4 Carbon allowance as 5h $50 / 7d $200 (unofficial figures); official tier multipliers Pro 1x / Ultra 5x 5x / Ultra 20x 20x ( https://one.google.com/about/google-ai-plans/ ); Carbon three-part prices in list-prices-gemini-4-carbon-round1-2026-10-29.json; converted under the project standard workload cache 97% / input 2.5% / output 0.5%, monthly pool counted as 4 weeks"
+    },
+    {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
       "en": "Derived from same-plan gpt-5.6-sol 616M × 1.9342105263157894"
     },
     {
       "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(5, 50, 300)；旧倍率2、旧月额度12.32亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (5, 50, 300); old multiplier 2, old monthly allowance 1.232B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "en": "https://learn.chatgpt.com/docs/pricing three-tier credits (cache/input/output) Sol=10/100/500 vs (5, 50, 300); legacy multiplier 2, monthly quota 1.232B tokens obsolete; Sol baseline preserved under standard workload; see audit-round4-2026-09-05.json"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 0.7736842105263158",
@@ -1136,7 +1156,7 @@
     },
     {
       "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(12.5, 125, 750)；旧倍率0.8、旧月额度4.928亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (12.5, 125, 750); old multiplier 0.8, old monthly allowance 492.8M voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "en": "https://learn.chatgpt.com/docs/pricing three-tier credits (cache/input/output) Sol=10/100/500 vs (12.5, 125, 750); legacy multiplier 0.8, monthly quota 492.8M tokens obsolete; Sol baseline preserved under standard workload; see audit-round4-2026-09-05.json"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 1.9342105263157894",
@@ -1144,7 +1164,7 @@
     },
     {
       "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(5, 50, 300)；旧倍率2、旧月额度61.6亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (5, 50, 300); old multiplier 2, old monthly allowance 6.16B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "en": "https://learn.chatgpt.com/docs/pricing three-tier credits (cache/input/output) Sol=10/100/500 vs (5, 50, 300); legacy multiplier 2, monthly quota 6.16B tokens obsolete; Sol baseline preserved under standard workload; see audit-round4-2026-09-05.json"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 0.7736842105263158",
@@ -1152,7 +1172,7 @@
     },
     {
       "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(12.5, 125, 750)；旧倍率0.8、旧月额度24.64亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (12.5, 125, 750); old multiplier 0.8, old monthly allowance 2.464B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "en": "https://learn.chatgpt.com/docs/pricing three-tier credits (cache/input/output) Sol=10/100/500 vs (12.5, 125, 750); legacy multiplier 0.8, monthly quota 2.464B tokens obsolete; Sol baseline preserved under standard workload; see audit-round4-2026-09-05.json"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 129.02 亿 × 1.9342105263157894",
@@ -1160,7 +1180,7 @@
     },
     {
       "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(5, 50, 300)；旧倍率2、旧月额度258.04亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (5, 50, 300); old multiplier 2, old monthly allowance 25.804B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "en": "https://learn.chatgpt.com/docs/pricing three-tier credits (cache/input/output) Sol=10/100/500 vs (5, 50, 300); legacy multiplier 2, monthly quota 25.804B tokens obsolete; Sol baseline preserved under standard workload; see audit-round4-2026-09-05.json"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 129.02 亿 × 0.7736842105263158",
@@ -1168,7 +1188,19 @@
     },
     {
       "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(12.5, 125, 750)；旧倍率0.8、旧月额度103.216亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (12.5, 125, 750); old multiplier 0.8, old monthly allowance 10.3216B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "en": "https://learn.chatgpt.com/docs/pricing three-tier credits (cache/input/output) Sol=10/100/500 vs (12.5, 125, 750); legacy multiplier 0.8, monthly quota 10.3216B tokens obsolete; Sol baseline preserved under standard workload; see audit-round4-2026-09-05.json"
+    },
+    {
+      "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 5.969543147208121",
+      "en": "Derived from gpt-5.6-sol 616M tokens under the same plan x 5.969543147208121"
+    },
+    {
+      "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 5.969543147208121",
+      "en": "Derived from gpt-5.6-sol 3.08B tokens under the same plan x 5.969543147208121"
+    },
+    {
+      "zh": "由同套餐 gpt-5.6-sol 129.02 亿 × 5.969543147208121",
+      "en": "Derived from gpt-5.6-sol 12.902B tokens under the same plan x 5.969543147208121"
     },
     {
       "zh": "由同套餐 claude-opus-5 25.89 亿 × 2.5",
@@ -1651,6 +1683,18 @@
       "en": "List price cached 0.1/in 2.0/out 10.0 x project standard workload 97.0%/2.50%/0.50%"
     },
     {
+      "zh": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ 官方首发优惠目录价；list-prices-gemini-4-carbon-round1-2026-10-29.json",
+      "en": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ official launch-discount list price; list-prices-gemini-4-carbon-round1-2026-10-29.json"
+    },
+    {
+      "zh": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ 官方标准目录价；list-prices-gemini-4-carbon-round1-2026-10-29.json",
+      "en": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ official standard list price; list-prices-gemini-4-carbon-round1-2026-10-29.json"
+    },
+    {
+      "zh": "标价 cached 0.2/in 4.0/out 20.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.2/in 4.0/out 20.0 x project unified standard workload 97.0%/2.50%/0.50%"
+    },
+    {
       "zh": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s",
       "en": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash; single RTX 5090 (32GB) local measurement: Qwen3.8-27B NVFP4 with the SGLang runtime and DFlash2 speculative decoding, end-to-end task time 14.8s, 193 tok/s measured at full 155K-256K context"
     },
@@ -1669,6 +1713,10 @@
     {
       "zh": "标价 cached 0.2/in 2.0/out 12.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
       "en": "List price cached 0.2/in 2.0/out 12.0 × project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "标价 cached 0.05/in 1.0/out 5.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.05/in 1.0/out 5.0 x project unified standard workload 97.0%/2.50%/0.50%"
     },
     {
       "zh": "标价 cached 0.02/in 0.2/out 1.2 × 项目统一标准负载 97.0%/2.50%/0.50%",
@@ -1701,10 +1749,6 @@
     {
       "zh": "厂商自报，非 tbench.ai 官方榜运行。Anthropic 2026-09-22 Opus 5.5 发布页评测表 Terminal-Bench 4 行 66.4%（default effort）；同表 FrontierCode 54.4%、CursorBench 52.5%、GDPval-AA 1846 非本仓库榜单仅留证据；AA/arena/OpenDesign 暂无第三方快照分不补造。见 claude-opus55-round1-2026-09-23.json。",
       "en": "Vendor self-report, not an official tbench.ai leaderboard run. The Anthropic 2026-09-22 Opus 5.5 release page's eval table shows Terminal-Bench 4 at 66.4% (default effort); the same table's FrontierCode 54.4%, CursorBench 52.5% and GDPval-AA 1846 are not this repository's boards — kept as evidence only; AA/arena/OpenDesign have no third-party snapshot score, so none is fabricated. See claude-opus55-round1-2026-09-23.json."
-    },
-    {
-      "zh": "OpenRouter 2026-10-18 生产实测数据：吞吐量 47 tok/s，端到端任务耗时 107.2s，智力指数 52.6。",
-      "en": "OpenRouter 2026-10-18 production measurements: throughput 47 tok/s, end-to-end task duration 107.2s, Intelligence Index 52.6."
     },
     {
       "zh": "测算环境与纯硬件依据：纯单卡 NVIDIA RTX 5090 (32GB GDDR7, sm_120) 本地运行环境。基于开源仓库 shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash 实测：Qwen3.8-27B NVFP4 主模型配合 SGLang 运行时与 DFlash2 投机草稿头。在 8,187-in / 1,024-out 标准编码任务评测下，投机命中峰值 405.5 tok/s，AA 综合基准折算端到端 Task Time 为 14.8 秒；满血 155K~256K 上下文实测解码速率 193 tok/s。",

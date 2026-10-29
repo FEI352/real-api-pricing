@@ -1,0 +1,25 @@
+{
+  "collectedAt": "2026-10-28",
+  "sourceType": "official-docs + artificialanalysis.ai announcement",
+  "source": "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier",
+  "sourceZh": "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier",
+  "checkedAt": "2026-10-28",
+  "effectiveAt": "2026-10-26",
+  "officialNotes": [
+    "OpenAI 于 2026-10-26 正式发布 GPT-6.1 Terra，定位极致性价比前沿。",
+    "三段标价：input $1.00/MTok、output $5.00/MTok、cachedInput $0.05/MTok（输入单价的 1/20）。",
+    "对比前代 GPT-5.6 Terra（$2/$12/cache $0.20），输入输出单价减半，缓存读取价格仅为四分之一。"
+  ],
+  "models": [
+    {
+      "model": "gpt-6.1-terra",
+      "officialApiName": "gpt-6.1-terra",
+      "modelVersion": "GPT-6.1-Terra",
+      "vendor": "OpenAI",
+      "input": 1.0,
+      "cachedInput": 0.05,
+      "output": 5.0,
+      "currency": "USD"
+    }
+  ]
+}

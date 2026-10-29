@@ -176,9 +176,9 @@ def label_position(p, board, x, y, tier="main"):
             return x - 40, y - 100, "end"
         return x + 22, y - 54, "start"
     if model == "claude-sonnet-5.5":
+        if board == "aa_terminal_bench_4":
+            return x + 16, y - 80, "start"
         if tier == "full":
-            if board == "aa_terminal_bench_4":
-                return x - 28, y - 50, "end"
             if board == "aa_coding_agent_index":
                 return x - 16, y - 35, "end"
             if board == "aa_intelligence_index":
@@ -326,6 +326,20 @@ def label_position(p, board, x, y, tier="main"):
     if model == "claude-haiku-5.5":
         if board == "aa_coding_agent_index":
             return x - 20, y + 30, "end"
+    if model == "gemini-4-carbon":
+        if board == "aa_terminal_bench_4":
+            return x - 20, y + 40, "end"
+        if board == "aa_intelligence_index":
+            return x + 16, y - 80, "start"
+        return x + 24, y + 10, "start"
+    if model == "gpt-6.1-terra":
+        if board == "aa_intelligence_index":
+            return x + 16, y + 25, "start"
+        if board == "aa_terminal_bench_4":
+            return x + 16, y + 30, "start"
+    # 几何边界保护兜底：若靠左侧太近，向左 end 会越出画布，自动翻转为 start
+    if x - 180 < LEFT:
+        return x + 20, y - 52, "start"
     return x - 20, y - 52, "end"
 
 

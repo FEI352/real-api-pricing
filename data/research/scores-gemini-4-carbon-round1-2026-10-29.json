@@ -1,0 +1,124 @@
+{
+  "collectedAt": "2026-10-29",
+  "supplement": true,
+  "supplementNote": "Gemini 4 Carbon (high) 于 2026-10-29 从 AA models 榜载荷录入：intelligenceIndex 59.4257、Terminal-Bench 4.0 0.0000%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-10-29",
+      "note": "2026-10-29 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-10-29",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "gemini-4-carbon",
+      "variantLabel": "Gemini 4 Carbon (high)",
+      "score": 59.4257,
+      "secondary": {
+        "configurationRank": 1,
+        "costPerTaskUsd": 7.7555,
+        "scoreRoundedDisplay": 59,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "gemini-4-carbon",
+        "shortName": "Gemini 4 Carbon (high)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Google",
+        "effort": null,
+        "terminalBench40": null,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 4,
+        "price1mOutputTokens": 20,
+        "cacheHitPrice": 0.2,
+        "intelligenceIndex": 59.425738829526,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-10-29"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "gemini-4-carbon",
+      "variantLabel": "Artificial Analysis - Gemini 4 Carbon (high)",
+      "score": 65.1515,
+      "secondary": {
+        "configurationRank": 1,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "scoreRoundedDisplay": 65,
+        "slug": "gemini-4-carbon",
+        "shortName": "Gemini 4 Carbon (high)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Google",
+        "terminalBench40Fraction": 0.651515151515151
+      },
+      "source": "https://artificialanalysis.ai/models/gemini-4-carbon",
+      "checkedAt": "2026-10-29",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "gemini-4-carbon",
+        "name": "Gemini 4 Carbon (High)",
+        "shortName": "Gemini 4 Carbon (high)",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "high",
+        "modelCreatorName": "Google",
+        "modelCreatorColor": "#34A853",
+        "modelCreatorLogo": "/img/logos/google.svg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 59.425738829526,
+        "intelligenceIndexIsEstimated": false,
+        "omniscience": 53.5,
+        "terminalBench40": 0.651515151515151,
+        "scores": {
+          "aa-briefcase": 1609.49,
+          "omniscience-accuracy": 0.5826666666666667,
+          "omniscience-non-hallucination": 0.8857827476038339,
+          "automationbench-aa": 0.7781660572624064,
+          "terminal-bench-science": 0.647619047619048,
+          "frontiercode-2-0": 0.405606060606061,
+          "hle-diamond": 0.691,
+          "gdp-pdf": 0.284,
+          "terminalbench-4-0": 0.651515151515151,
+          "critpt-v2-hard": 0.63,
+          "gdpval-aa-normalized": 1733.07,
+          "frontiercode": 0.485231333333333,
+          "humanitys-last-exam": 0.603799814643188,
+          "artificial-analysis-long-context-reasoning": 0.793333333333333,
+          "scicode": 0.642361111111111,
+          "critpt": 0.36
+        },
+        "intelligenceIndexCostPerTask": 7.755545745286556,
+        "price1mInputTokens": 4,
+        "price1mOutputTokens": 20,
+        "cacheHitPrice": 0.2,
+        "cacheWritePrice": 4,
+        "medianReasoningTimeSeconds": null
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

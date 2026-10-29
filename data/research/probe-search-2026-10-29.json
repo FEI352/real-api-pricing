@@ -1,0 +1,947 @@
+{
+  "date": "2026-10-29",
+  "probeDate": "2026-10-29",
+  "checkedDate": "2026-10-29",
+  "collectedAt": "2026-10-29T09:15:00+08:00",
+  "collector": "Worker-Search",
+  "searchScope": [
+    "Artificial Analysis (AA) Leaderboard & Indices (Intelligence Index v5.0 upgrade with 4 equal 25% categories [Knowledge Work, Coding, Science, General] & 9 benchmark suites; Google Gemini 4 Carbon high-thinking debuts at #1 with 59.43 points, surpassing Claude Opus 5.5 [57.62]; Kimi K3.1 Pro at 55.09, Step-5 Preview at 43.73, MiniMax M3.1 Flash at 42.71, DeepSeek V4.1 Flash at 45.10, Mistral Large 4 Preview at 38.38)",
+    "Google Official Releases & AI Plans (Gemini 4 Carbon officially debuted/scored 2026-10-28/29 at SOTA #1 59.43, TB4 65.15%, promo $2.00/$10.00/cache $0.10, standard $4.00/$20.00/cache $0.20, restricted to cyber-defenders via Fairwind program; Gemini 4 Argon Fairwind promo $2.00/$10.00 to Nov 30 [T-32 days]; Gemini 3.8 Flash intro pricing extended to Dec 31 2026; OpenCode Go Gemini 4 Argon 50% discount to Nov 30)",
+    "OpenAI Official Pricing & ChatGPT Plans (ChatGPT Pro 200 quota drop grace period FINAL DAY TODAY Oct 29 23:59:59 [T-0 Last Day! Tomorrow Oct 30 all grandfathered users converted to 10x, weekly limit drops to 100]; GPT-6.1 Terra launched 10-26 with $1.00/$5.00/cache $0.05 and 6 reasoning variants Max 48.11; o4-mini permanent deprecation Day 7 / T+6; Decisions API beta with GPT-6 Luna; Jan 14 2027 GPT-4 deprecation schedule)",
+    "Moonshot AI / Kimi (Kimi K3.1 Pro 2.8T-3T MoE with 104B active params, 1M context, AA #4/5 score 55.09, TB4 65.7%, pricing $2.00/$10.00/cache $0.20, open weights due Nov 4 [T-6 days], pre-training sanitized for cyber abuse, high API cost debates on Linux.do & r/LocalLLaMA, research-only PR #136/#137/#138)",
+    "DeepSeek Official Pricing & Benchmarks (DeepSeek V4.1 Flash 1017 checkpoint score 45.10 / TB4 33.84%, OpenDesign Go holds Price Frontier #2 real_price 0.000805; Search API & Fetch API free promotion ending UTC 2026-10-31 16:00 / CST 11-01 00:00 [T-3 days] then $0.75/1k requests; dynamic pricing $0.15/$0.60 vs $0.30/$1.20)",
+    "Anthropic Official Pricing & Plans (Claude Opus 5.5 [57.62] displaced to #2 by Gemini 4 Carbon [59.43]; Sonnet 5.5 [56.00] with 50% cache read price cut $0.10; Haiku 5.5 [43.40] tiered 100k pricing dominating cost & price frontiers via Claude Max 20x at $0.0034; Nov 12 Usage Policy revision [T-14 days])",
+    "Mistral AI Official Releases (Mistral Large 4 Preview 'le Chonk' 1.05T MoE / 52B active, preview pricing $0.68/$2.09, AA intelligence 38.38, open weights release window ending Oct 31 [T-2 days countdown])",
+    "StepFun Official Releases & Ecosystem (Tencent WorkBuddy exclusive free promo expired Oct 25 24:00 [T+4 post-expiration], STEPX Neo AI Agent phone Day 14 with 12-month 10B/mo Token Plan, Step-5 Preview 600B MoE open weights, pricing $1.00/$2.70, AA Intelligence 43.73, Coding Agent 43.13%)",
+    "MiniMax Official API Pricing & M Plan Subscription (MiniMax M3.1 Flash, AA Intelligence 42.71, flat rate $0.15/$0.60/cache $0.015, M Plan token allowance equal-money conversion, dominated by Claude Max 20x x Haiku 5.5)",
+    "Command Code GOAT (Upstream PR #153 confirmed official /pricing page synchronized to 'Up to $100' monthly credits matching docs; per-model allowances unchanged, research-only)",
+    "Cursor & The X Subscription (Plus $8, Premium $30, Super $100, Ultra $200 weekly quotas + pay-as-you-go third-party models vs Legacy Pro $20 monthly pool)",
+    "GitHub Copilot (AI Credits architecture, Oct 19 mandatory retirement of 6 legacy models in effect Day 11 / T+10 [Gemini 3.8 Flash, GPT-6.1 Sol, GPT-6 Luna, Grok 4.7, Claude Sonnet 5.5])",
+    "Meta AI Models on OpenRouter (Muse Wonder 1M context multimodal reasoning model, $4.00/$20.00, AA raw records 52.39 / 55.80, Muse Spark 1.3 Contributor holding Cost & Price Frontier #3)",
+    "xAI / Grok Official Pricing & Subscriptions (Grok 4.7 API $2.00/$6.00, The X Subscription tiers: Plus $8, Premium $30, Super $100, Ultra $200)",
+    "New OpenRouter Additions (Inception: Mercury 3 1M diffusion LLM $0.10/$0.35, Recursive: Flint :free 40B MoE coding, XingChen: Xing4.0 29B A4B :free, us.openrouter.ai in-region routing, Batch API 50% discount)",
+    "Alibaba Qwen (Qwen 4 in active training for late 2026, Qwen 3.8 Max/Flash active, Qwen3.8-27B local workstation anchor 33.68)",
+    "Zhipu / GLM (GLM-5.3 flagship $1.40/$4.40, GLM-5.3-Flash $0.15/$0.50, GLM Coding Plan $18/mo, GLM-4.7-Flash free tier)",
+    "Community Signals (LINUX DO, Reddit r/LocalLLaMA, r/ClaudeAI, r/OpenAI, r/ChatGPTPro, Hacker News, GitHub Ecosystem)"
+  ],
+  "summary": "2026-10-29 调研全网最新大模型发布、标价调整、订阅变动与评测基准演进：\n1) Google 次世代重型长程推理基座 Gemini 4 Carbon (High) 正式发布并出分：在 Artificial Analysis 最新升级的 Intelligence Index v5.0 上以 59.43 分（页面 UI 整数四舍五入为 59）强势登顶全球第 1 位（SOTA），打破 Claude Opus 5.5 保持的 57.62 分天花板；Terminal-Bench 4.0 录得 65.15%；官方定价优惠期为输入 $2.00/MTok、输出 $10.00/MTok、缓存命中 $0.10/MTok（95% 折扣，标准价 $4.00/$20.00/cache $0.20）；单任务评估 tokens 消耗高达约 2 亿（约为常规模型 64M 的 3 倍以上），单任务综合成本高达 $7.76；初期受限仅向网络安全防御机构与 Fairwind 计划合作伙伴开放，未直接面向普通消费者全量开放，且缺乏低价包月订阅载体，无法突破由 Claude Max 20x 与 OpenCode Go 构筑的前沿包络，列为 P1 顶级 SOTA 跟踪候选；\n2) OpenAI ChatGPT Pro 200 额度腰斩（20x -> 10x）老用户宽限期今日迎来最后 1 天（2026-10-29 23:59:59 终了，TODAY IS T-0 FINAL DAY！明日 10-30 起全网统一执行 10x 额度，GPT-6 Pro 每周上限降为 100 条；附赠 2500 美元抵扣券至 12-31 缓冲），届时实际单价翻倍将引发 chatgpt_pro_20x 节点退出成本前沿，进入本项目最高级别 P0 核心临界倒计时；o4-mini 接口废弃停运进入生效第 7 天（Day 7 / T+6），基线已全面迁移至 GPT-6 系列；GPT-6.1 Terra（$1.00/$5.00/cache $0.05，AA 载荷收录 6 个推理档 Max 48.11 分）维持研究监控；\n3) Artificial Analysis 评测体系重大升级：Intelligence Index 正式步入 v5.0 版本（四大等权维度各 25%：知识工作、编程、科学、通用；涵盖 AA-Briefcase v1.1、AutomationBench-AA、Terminal-Bench 4.0、FrontierCode 2.0、AA-Omniscience v1.1、GDP.pdf、HLE-Diamond、CritPt v2 Hard、Terminal-Bench-Science 0.1 等 9 项严苛评测，全面引入防泄露私有测试集），全球模型载荷由 272 款扩展至 273 款（新增 gemini-4-carbon）；\n4) 月之暗面（Moonshot AI）3T MoE 旗舰基座 Kimi K3.1 Pro（1M 上下文，104B 激活参数，原生 low/high/max 推理档位）进入发布第 6 天（Day 6 / T+5），在 AA 智力榜以 55.09 分稳居全球第 5 位（力压 Argon [53] 与 GPT-6 Astra [53]），TB4 达 65.7%；官方 API 标价 $2.00/$10.00/cache $0.20；模型权重承诺定于 2026-11-04 前正式开源（T-6 天倒计时），训练数据已剔除网络安全潜在滥用项；社区热议其 104B 激活参数对本地双卡 4090 显存的极端挑战与高额 API 成本，继续维持 P1 候选；\n5) DeepSeek V4.1 Flash 1017 检查点在 AA 智力榜上实测得分 45.10（TB4 33.84%，TPS 216.5），标价闲时 $0.15/$0.60（缓存 $0.003，98% 折扣），助力 OpenDesign Go 稳居单价前沿第 2 位（real_price = 0.000805）；其 Search API & Fetch API 免费推广期定于 UTC 2026-10-31 16:00（北京时间 11-01 00:00，距今 T-3 天）结束并转为 $0.75/1k requests 收费，模型主线端点定价保持稳定；\n6) Anthropic Claude Opus 5.5 (57.62) 与 Sonnet 5.5 (56.00) 表现强劲，Sonnet 5.5 提示词缓存读取降价 50%（$0.10/MTok）稳步运行；Haiku 5.5 在 Claude Max 20x 支撑下牢牢垄断成本与价格前沿关键位（$0.0034）；防滥用 Usage Policy 定于 11-12 生效（T-14 天倒计时）；\n7) Mistral Large 4 Preview ('le Chonk' 1.05T MoE，AA 智力 38.38) 维持优惠公测价 $0.68/$2.09，开源权重开放窗口截止 10-31（今日进入 T-2 天倒计时）；\n8) Command Code GOAT 官方 /pricing 页面已同步上游 PR #153 确认之 'Up to $100' 措辞（消除 docs 与 pricing 不一致），每模型 allowance 额度保持不变，维持 research-only；\n9) 平台与工具方面：Cursor 维持旧版 Pro ($20) 与新版 The X Subscription (Plus $8/Premium $30/Super $100/Ultra $200) 双轨；腾讯 WorkBuddy 阶跃星辰 Step-5 限免试用截止进入第 4 天（T+4），常规收费平稳运行；MiniMax M3.1 Flash（42.71 分）M Plan 订阅等额折算点完全被 Claude Max 20x 绝对支配；GitHub Copilot 旧模型强制退役进入第 11 天（Day 11 / T+10）；\n10) 综上，2026-10-29 当前 Pareto 前沿（4 个成本前沿点、5 个价格前沿点）今日继续保持绝对稳固。Gemini 4 Carbon 虽刷新全球智力至 59.43 分但单任务成本高且无廉价包月；Kimi K3.1 Pro 处于开源前夜（T-6 天）；ChatGPT Pro 200 额度宽限期今夜 23:59 截止（T-0），明日将面临 chatgpt_pro_20x 退出的结构性重排。今日无任何变量能够突破现有 Pareto 包络，基线保持稳固，无需修改现有采用值或标价。",
+  "items": [
+    {
+      "model": "gemini-4-carbon",
+      "vendor": "Google",
+      "signalType": "new_model_and_score",
+      "source": "Google Official Launch Blog & Artificial Analysis Intelligence Index v5.0",
+      "url": "https://artificialanalysis.ai/models/gemini-4-carbon",
+      "priceOrQuota": "首发优惠价输入 $2.00/MTok, 输出 $10.00/MTok, 缓存命中 $0.10/MTok (95% 折扣); 长期标准价 $4.00/$20.00/cache $0.20; 1M 上下文; 初始仅限 Fairwind 安全合作计划准入",
+      "impactAnalysis": "Google 次世代长程推理基座于 2026-10-28/29 正式出分并以 59.43 分（UI 四舍五入 59）荣登 AA 智力榜 v5.0 全球第 1 位（SOTA），全面超越 Claude Opus 5.5 (57.62) 与 Sonnet 5.5 (56.00)；Terminal-Bench 4.0 录得 65.15%。该模型主打网络安全防御（SEC-bench Pro 88.2%）与多日长程智能体，单次评测产生约 2 亿 tokens，单任务评测成本高达 $7.76。目前仅有官方按量 API 与受限 Fairwind 准入，无类似 OpenCode Go ($10/月) 或 Claude Max 20x 的低价高配额包月载体，无法穿透由 Claude Max 20x ($0.0034) 构筑的严密前沿包络，列为 P1 顶级 SOTA 跟踪候选，维持 research-only; not adopted。",
+      "frontierThreatLevel": "High (全球智力新 SOTA 59.43 分，但高成本与高门槛未突破现有 Pareto 前沿)"
+    },
+    {
+      "model": "chatgpt-pro-200",
+      "vendor": "OpenAI",
+      "signalType": "quota_policy_change",
+      "source": "OpenAI Official Help / Terms & Reddit Community",
+      "url": "https://help.openai.com/en/articles/chatgpt-pro-limits",
+      "priceOrQuota": "$200/月; 20x Plus 配额下调为 10x; GPT-6 Pro 每周限制降为 100 条; 老订户 20x 宽限期截至 2026-10-29 23:59:59 (TODAY IS T-0 FINAL DAY! 明日 10-30 起全网统一执行 10x 额度); 附赠 $2,500 缓冲抵扣券至 2026-12-31",
+      "impactAnalysis": "对本项目 Pareto 成本前沿构成最高级别 P0 迫近冲击！目前项目成本前沿包含 chatgpt_pro_20x 节点（对应 129.02 亿 tokens 超大配额）。今日是老用户 20x 宽限期最后一整天（T-0 终局倒计时），今夜 23:59 届满后，明日 10-30 起全网统一降为 10x，实际单价直接翻倍，必然导致该点退出 Pareto 成本前沿。Lead 需备妥明日调价并切入 chatgpt_pro_10x 情景的应对准备。",
+      "frontierThreatLevel": "Critical (P0 核心预警 - 宽限期今日最后 1 天，今夜 23:59 截止，明日 10-30 必然触发调价与退出)"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "vendor": "Moonshot AI (月之暗面)",
+      "signalType": "new_model_and_score",
+      "source": "Artificial Analysis & Moonshot Official Announcement",
+      "url": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+      "priceOrQuota": "输入 $2.00/MTok, 输出 $10.00/MTok, 缓存读取 $0.20/MTok (90% 折扣); 1M 上下文; 权重预计 2026-11-04 开源 (T-6 天倒计时); SaaS: Kimi Code Allegro ~$99/月",
+      "impactAnalysis": "月之暗面 3T MoE 旗舰基座进入发布第 6 天 (Day 6 / T+5)，在 Artificial Analysis 智力榜以 55.09 分居全球第 5 位（力压 GPT-6 Astra [53] 与 Gemini 4 Argon [53]），TB4 录得 65.7%。官方 API 定价较上一代 K3 降价约 33%。但目前仅提供官方按量 API 与高阶 SaaS (Allegro $99/mo)，缺乏类似 OpenCode Go ($10/月) 的第三方低价包月渠道；上游 PR #136/#137/#138 实测均明确标为 research-only; not adopted。权重将于 11-04 释放（T-6 天），社区密切关注后续第三方低价托管能否打破现有包络，维持 P1 重点观察。",
+      "frontierThreatLevel": "Medium-High (P1 顶级持续跟踪候选，未突破现有 Pareto 前沿)"
+    },
+    {
+      "model": "gpt-6.1-terra",
+      "vendor": "OpenAI",
+      "signalType": "new_model_and_pricing",
+      "source": "OpenAI API Platform & Artificial Analysis",
+      "url": "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier",
+      "priceOrQuota": "输入 $1.00/MTok, 输出 $5.00/MTok, 缓存命中 $0.05/MTok (输入 1/20), 缓存写入 $1.25/MTok; AA 载荷收录 6 个推理档 (Max 48.11, Xhigh 45.36, High 43.87, Medium 41.32, Low 36.21, Non-reasoning 33.49)",
+      "impactAnalysis": "OpenAI 于 10-26 上线的极致性价比前沿新基模，单价较前代减半。AA 载荷已自带完整三段价并具备兜底解析能力。目前尚无 ChatGPT Plus/Pro 额度配额实测数据，暂不录入 adopted 订阅行，维持研究监控。",
+      "frontierThreatLevel": "Low-Medium (官方按量性价比极高，待观察订阅池落地)"
+    },
+    {
+      "model": "openai-o4-mini",
+      "vendor": "OpenAI",
+      "signalType": "model_deprecation",
+      "source": "OpenAI API Platform Deprecation Notice",
+      "url": "https://platform.openai.com/docs/deprecations",
+      "priceOrQuota": "永久停运下线 (2026-10-23/24 生效，今日进入停运第 7 天 / T+6)",
+      "impactAnalysis": "旧版 o4-mini 接口与微调端点已彻底失效。本项目基线早已迁移至 GPT-6 系列（GPT-6.1 Sol / GPT-6 Luna），无任何残留死链或代码依赖，对当前基线零影响。",
+      "frontierThreatLevel": "None (已平稳消化并完成基线清理)"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "vendor": "DeepSeek",
+      "signalType": "frontier_defense_monitoring",
+      "source": "DeepSeek Official Platform & Artificial Analysis",
+      "url": "https://platform.deepseek.com/api-docs/pricing",
+      "priceOrQuota": "闲时 $0.15/$0.60 (cache miss/output), 缓存命中 $0.003 (98% 折扣); 忙时 $0.30/$1.20, 缓存命中 $0.006; Search/Fetch API $0.75/1k requests (免费推广期将于 10-31 16:00 UTC / 11-01 00:00 CST 结束，距今 T-3 天)",
+      "impactAnalysis": "AA 智力得分 45.10 (TB4 33.84%, TPS 216.5)，在项目中助力 OpenDesign Go 稳居单价前沿第 2 位（real_price = 0.000805）。Search & Fetch API 免费推广期仅剩 3 天，模型主线端点定价保持稳定，防守极为稳固，维持价格前沿支柱地位。",
+      "frontierThreatLevel": "Low (现有核心支柱，稳健防守)"
+    },
+    {
+      "model": "claude-5.5-family",
+      "vendor": "Anthropic",
+      "signalType": "policy_and_pricing_monitoring",
+      "source": "Anthropic Official Pricing & Artificial Analysis",
+      "url": "https://www.anthropic.com/pricing",
+      "priceOrQuota": "Haiku 5.5: <=100k $0.10/$0.50 (长文本 >100k $0.50/$2.50); Sonnet 5.5: $2.00/$10.00 (cache read $0.10, 50% 降价生效中); Opus 5.5: $4.00/$20.00; Claude Pro $20, Max 20x $200; Usage Policy 定于 11-12 生效 (T-14 天倒计时)",
+      "impactAnalysis": "Opus 5.5 (57.62) 虽在绝对智力上被 Gemini 4 Carbon (59.43) 超越，但仍稳居闭源推理双雄之列；Sonnet 5.5 (56.00) 居第 3 位。Haiku 5.5 (43.40) 在 Claude Max 20x 支撑下独占成本与价格前沿关键位 ($0.0034)。100k 悬崖计费已由项目 3 档情景模型纳管，前沿统治地位坚不可摧。",
+      "frontierThreatLevel": "Low (前沿统治者，绝对安全)"
+    },
+    {
+      "model": "gemini-4-argon",
+      "vendor": "Google DeepMind",
+      "signalType": "pricing_promo_monitoring",
+      "source": "Google AI Studio & Google Cloud",
+      "url": "https://ai.google.dev/pricing",
+      "priceOrQuota": "Fairwind 试用优惠价 $2.00/$10.00 (cache 95% 折扣) 有效期至 2026-11-30 (T-32 天倒计时，12-01 转为标准价 $4.00/$20.00); Gemini 3.8 Flash 优惠 ($0.75/$3.75) 延至 2026-12-31",
+      "impactAnalysis": "Argon 智力得分 53.00。由于独立配额池原因，Argon 订阅行已从 Google AI Pro/Ultra 退役；上游合并 PR #141 录入 OpenCode Go 50% 折扣目录保持 research-only 不进采用值。当前对基线 Pareto 前沿无突破影响。",
+      "frontierThreatLevel": "Low (研究归档，未构成前沿冲击)"
+    },
+    {
+      "model": "mistral-large-4-preview",
+      "vendor": "Mistral AI",
+      "signalType": "weights_release_window_monitoring",
+      "source": "Mistral AI Platform & Hugging Face",
+      "url": "https://mistral.ai/news/mistral-large-4-preview/",
+      "priceOrQuota": "公测价 $0.68/$2.09; 1.05T 总参 / 52B 激活; 1M 上下文; 开源权重定于 10 月底前开放 (10-27 至 10-31，今日进入 T-2 天倒计时)",
+      "impactAnalysis": "AA 智力得分 38.38，TB4 28.5%。虽然开源权重临近发布引发社区高度期待，但其评测分显著低于 Claude 5.5 与 Kimi K3.1 Pro，且缺乏极高额度第三方订阅载体，无法威胁现有前沿。",
+      "frontierThreatLevel": "Low-Medium (开源权重窗口开启，但综合性能不足以动摇前沿)"
+    },
+    {
+      "model": "step-5-preview",
+      "vendor": "StepFun (阶跃星辰) / Tencent WorkBuddy",
+      "signalType": "promo_expiration",
+      "source": "Tencent WorkBuddy Official Notice & StepFun Hub",
+      "url": "https://workbuddy.qq.com",
+      "priceOrQuota": "限免试用已于 2026-10-25 24:00 正式到期 (今日为到期后第 4 天 / T+4)，全面恢复常规收费; 官方 API: $1.00/$2.70 (cache $0.05); STEPX Neo 手机 (3999元) 附赠 12 个月每月百亿 Token Plan",
+      "impactAnalysis": "腾讯 WorkBuddy 阶跃星辰 Step-5 独家限免活动正式结束第 4 天，零成本调用红利彻底关闭，开发者转向探讨商业化积分与按量调用成本。AA 智力得分 43.73，Coding Agent 43.13%。由于被 Claude Haiku 5.5 ($0.0034) 和 DeepSeek V4.1 Flash 绝对支配，且缺乏稳定第三方包月载体，对当前前沿无冲击。",
+      "frontierThreatLevel": "Low (限免已过，常规按量缺乏前沿竞争力)"
+    },
+    {
+      "model": "minimax-m3.1-flash",
+      "vendor": "MiniMax",
+      "signalType": "subscription_monitoring",
+      "source": "MiniMax Platform & OpenRouter",
+      "url": "https://api.minimax.chat",
+      "priceOrQuota": "按量标价 $0.15/$0.60/cache $0.015; M Plan 订阅: Go $19.9/18.99亿, Explore $59.9/56.98亿, Build $199.9/227.92亿",
+      "impactAnalysis": "AA 智力得分 42.71，TB4 25.76%。6 个 M Plan 订阅点每任务成本约 $0.037，全部被 Claude Max 20x x Haiku 5.5 (43.40 分 @ $0.0034) 以 10 倍效费比绝对支配而未进前沿。前沿包络防守健康。",
+      "frontierThreatLevel": "Low (完全被现有基线支配)"
+    },
+    {
+      "model": "command-code-goat",
+      "vendor": "Command Code",
+      "signalType": "pricing_page_sync",
+      "source": "Command Code Official Pricing & Upstream PR #153",
+      "url": "https://commandcode.ai/pricing",
+      "priceOrQuota": "GOAT $10/月 (processing fee); 官网月池措辞同步为 'Up to $100' (与 docs 一致); 各模型 allowance 上限未变 (DeepSeek $80, Claude $20 等)",
+      "impactAnalysis": "上游 PR #153 确认 Command Code /pricing 页面已将 GOAT 额度措辞由 $70 调整为 Up to $100，消除了与 docs 的不一致。各模型 allowance 未变，上游与本地一致裁定为 research-only，不改采用值。",
+      "frontierThreatLevel": "Low (口径对齐，无采用值变动)"
+    },
+    {
+      "model": "cursor-x-subscription",
+      "vendor": "Cursor / SpaceX / xAI",
+      "signalType": "platform_subscription_evolution",
+      "source": "Cursor Official Pricing & Changelog",
+      "url": "https://cursor.com/pricing",
+      "priceOrQuota": "The X Subscription: Plus $8, Premium $30, Super $100, Ultra $200 (原生模型额度每周刷新; 第三方模型 Claude/GPT/Gemini 自 Premium 起按 API List Price 扣费); Legacy Pro $20 维持月池",
+      "impactAnalysis": "Cursor 双轨制持续运行。新体系第三方模型转为 API 原价按量扣费，丧失订阅套利空间；老用户保留 Legacy Pro ($20) 维持原有额度体系。对本项目前沿采用行无直接冲击。",
+      "frontierThreatLevel": "Low (双轨制平稳，第三方模型无套利红利)"
+    },
+    {
+      "model": "openrouter-ecosystem",
+      "vendor": "OpenRouter & Community Labs",
+      "signalType": "platform_catalog_update",
+      "source": "OpenRouter Changelog & Announcements",
+      "url": "https://openrouter.ai/models",
+      "priceOrQuota": "Inception Mercury 3 ($0.10/$0.35, 1M 上下文扩散语言模型); Recursive Flint (:free 40B MoE 编程); Xing4.0 29B (:free); us.openrouter.ai 区域路由; Batch API 50% 折扣",
+      "impactAnalysis": "OpenRouter 持续扩充实验性架构与免费端点。非自回归扩散模型 Mercury 3 探索并行吞吐，Flint/Xing4.0 免费端点受并发硬顶限制不纳入生产采用。对基线 Pareto 前沿无影响。",
+      "frontierThreatLevel": "Low (实验性架构与免费端点，不构成前沿威胁)"
+    }
+  ],
+  "benchmarkUpdates": {
+    "aaIntelligenceIndex": {
+      "version": "v5.0 (Released Late October 2026)",
+      "evaluationsCount": 9,
+      "categories": {
+        "KnowledgeWork": "25% weight (AA-Briefcase v1.1, GDP.pdf)",
+        "Coding": "25% weight (Terminal-Bench 4.0, FrontierCode 2.0)",
+        "Science": "25% weight (HLE-Diamond, CritPt v2 Hard, Terminal-Bench-Science 0.1)",
+        "General": "25% weight (AutomationBench-AA, AA-Omniscience v1.1)"
+      },
+      "recentChanges": "Artificial Analysis Intelligence Index 于 2026 年 10 月下旬正式迎来 v5.0 重大框架改版，针对测试集记忆与基准饱和进行系统性重构；全量模型载荷自 272 款扩展至 273 款（新增 gemini-4-carbon）；Google Gemini 4 Carbon (High) 以 59.43 分夺得全球第 1 位（SOTA），打破 Claude Opus 5.5 (57.62) 保持的纪录；月之暗面 Kimi K3.1 Pro 以 55.09 分位列第 5 位（力压 GPT-6 Astra [53] 与 Gemini 4 Argon [53]）；Step 5 Preview 录得 43.73 分；DeepSeek V4.1 Flash 1017 录得 45.10 分；MiniMax M3.1 Flash 录得 42.71 分；Mistral Large 4 Preview 录得 38.38 分。",
+      "notableNewScores": [
+        {
+          "model": "gemini-4-carbon",
+          "score": 59.4257,
+          "releaseDate": "2026-10-28",
+          "status": "New Global SOTA #1 (Debuted on AA v5.0 at 59.43, TB4 65.15%, promo $2.00/$10.00, Fairwind restricted)"
+        },
+        {
+          "model": "claude-opus-5.5",
+          "score": 57.62,
+          "releaseDate": "2026-09-23",
+          "status": "In Repo Baseline (Cost & Price Frontier Leader 57.62, Displaced to #2 by Gemini 4 Carbon)"
+        },
+        {
+          "model": "claude-sonnet-5.5",
+          "score": 56.0,
+          "releaseDate": "2026-09-30",
+          "status": "In Repo Baseline (Price Frontier Leader 56.00, Rank #3)"
+        },
+        {
+          "model": "muse-wonder-full",
+          "score": 55.8,
+          "releaseDate": "2026-10-12",
+          "status": "Candidate (In AA Raw Records, High Effort Reasoning 55.80, Rank #4, Not yet curated)"
+        },
+        {
+          "model": "kimi-k3.1-pro",
+          "score": 55.0869,
+          "releaseDate": "2026-10-24",
+          "status": "Candidate (High Priority 3T MoE, Released 2026-10-24, AA Intelligence Index #5 at 55.09, TB4 65.7%, API $2.00/$10.00, open weights due Nov 4 [T-6 days])"
+        },
+        {
+          "model": "gemini-4-argon",
+          "score": 53.0,
+          "releaseDate": "2026-09-30",
+          "status": "API High Ranker 53.00 (Google AI Pro/Ultra Subscription Retired due to independent quota pool)"
+        },
+        {
+          "model": "gpt-6-astra",
+          "score": 53.0,
+          "releaseDate": "2026-09-20",
+          "status": "In Repo Baseline (Rank #7 at 53.00)"
+        },
+        {
+          "model": "muse-wonder",
+          "score": 52.39,
+          "releaseDate": "2026-10-12",
+          "status": "Candidate (In AA Raw Records & OpenRouter, Not yet curated)"
+        },
+        {
+          "model": "gpt-6.1-sol",
+          "score": 51.83,
+          "releaseDate": "2026-09-24",
+          "status": "In Repo Baseline (Cost Frontier Leader 51.83 via chatgpt_plus)"
+        },
+        {
+          "model": "gpt-6.1-terra",
+          "score": 48.11,
+          "releaseDate": "2026-10-26",
+          "status": "Candidate (Max effort variant 48.11, API $1.00/$5.00/cache $0.05, research-only)"
+        },
+        {
+          "model": "deepseek-v4.1-flash",
+          "score": 45.1,
+          "releaseDate": "2026-10-17",
+          "status": "In Repo Baseline (Price Frontier Leader #2 at 45.10 via opendesign_go)"
+        },
+        {
+          "model": "step-5-preview",
+          "score": 43.73,
+          "releaseDate": "2026-09-21",
+          "status": "Candidate (In AA Raw Records & scores, rank 32, TB4 33.33%, cost $1.0264, open weights available, WorkBuddy promo expired [T+4])"
+        },
+        {
+          "model": "claude-haiku-5.5",
+          "score": 43.4,
+          "releaseDate": "2026-10-01",
+          "status": "In Repo Baseline (Cost & Price Frontier Ruler at 43.40 via claude_max_20x)"
+        },
+        {
+          "model": "minimax-m3.1-flash",
+          "score": 42.7057,
+          "releaseDate": "2026-10-19",
+          "status": "In Repo Baseline (Rank 35 at 42.71, dominated by Claude Max 20x x Haiku 5.5)"
+        },
+        {
+          "model": "mistral-large-4-preview",
+          "score": 38.38,
+          "releaseDate": "2026-10-06",
+          "status": "Candidate (1.05T MoE, preview $0.68/$2.09, open weights window ends Oct 31 [T-2 days])"
+        },
+        {
+          "model": "qwen3.8-27b",
+          "score": 33.68,
+          "releaseDate": "2026-09-15",
+          "status": "Hardware Anchor (Local Workstation Benchmark at 33.68)"
+        }
+      ]
+    },
+    "aaCodingAgentIndex": {
+      "version": "v1.5",
+      "configurationsCount": 32,
+      "recentChanges": "覆盖 32 个主流代码智能体配置，包含 SWE-bench Verified 与 Terminal-Bench 4.0 联合加权；Claude 系列与 GPT-6 系列继续位居头部。"
+    },
+    "aaTerminalBench4": {
+      "version": "v4.0 (AA In-House Harness)",
+      "leaderboardHighlights": [
+        "Claude Opus 5.5: 68.3%",
+        "Kimi K3.1 Pro: 65.7%",
+        "Gemini 4 Carbon (High): 65.15%",
+        "Claude Sonnet 5.5: 66.2%",
+        "Step-5 Preview: 33.33%",
+        "DeepSeek V4.1 Flash 1017: 33.84%",
+        "Mistral Large 4 Preview: 28.50%",
+        "MiniMax M3.1 Flash: 25.76%"
+      ]
+    },
+    "aaDecisionIndex": {
+      "version": "v1.0",
+      "status": "Active beta; OpenAI Decisions API (GPT-6 Luna) holds #1 with $0.10 in / $2.00 out"
+    }
+  },
+  "providerUpdates": {
+    "Google": {
+      "status": "sota_carbon_debut_and_argon_derived",
+      "summary": "Google 次世代重型长程推理基座 Gemini 4 Carbon (High) 于 2026-10-28/29 正式出分并以 59.43 分夺得 AA Intelligence Index v5.0 全球第一（SOTA），刷新智力天花板；TB4 录得 65.15%；定价首发优惠 $2.00/$10.00/cache $0.10，标准价 $4.00/$20.00/cache $0.20；前期受限 Fairwind 准入，无低价包月；Gemini 4 Argon Fairwind 优惠期剩余 T-32 天（至 11-30）；Gemini 3.8 Flash 优惠延至 12-31；OpenCode Go Argon 50% 优惠生效中。",
+      "details": [
+        "Gemini 4 Carbon (High) 在 AA 智力榜 v5.0 出分 59.4257，Terminal-Bench 4.0 出分 65.1515%，登顶全球第 1 位（SOTA）",
+        "单任务评估生成约 2 亿 tokens，单任务成本 $7.7555，主打网络安全防御与多日长程工程智能体",
+        "官方三段定价已建档于 list-prices-gemini-4-carbon-round1-2026-10-29.json（输入 $2.00 / 缓存 $0.10 / 输出 $10.00）",
+        "Gemini 4 Argon 维持首发优惠价 $2.00/$10.00（缓存 $0.10），优惠期剩余 32 天（至 2026-11-30，12-01 转为标准价 $4.00/$20.00）",
+        "extra_subscriptions.json 已纳管 Google AI Pro/Ultra 独立额度池及 4 个对应 _std 标准价情景行",
+        "上游 PR #141 录入之 OpenCode Go Gemini 4 Argon 改名与 50% 优惠维持 research-only"
+      ]
+    },
+    "OpenAI": {
+      "status": "chatgpt_pro_grace_period_final_day",
+      "summary": "ChatGPT Pro 200 额度腰斩（20x -> 10x）老用户宽限期今日进入最后 1 天（2026-10-29 23:59:59 终了，TODAY IS T-0 FINAL DAY！明日 10-30 起全网统一执行 10x 额度，每周上限 100 条）；GPT-6.1 Terra（$1.00/$5.00/cache $0.05，AA 载荷收录 6 个推理档 Max 48.11 分）维持研究监控；o4-mini 永久废弃生效第 7 天（Day 7 / T+6）；Decisions API (GPT-6 Luna) 稳定运行。",
+      "details": [
+        "ChatGPT Pro 200 方案额度确定下调为 10x，老用户 20x 宽限期截至今日 2026-10-29 23:59:59，今日为最后 1 天（T-0）",
+        "明日 10-30 起全网统一执行 10x 额度，实际单价翻倍将导致 chatgpt_pro_20x 节点退出 Pareto 成本前沿",
+        "GPT-6.1 Terra 于 10-26 上线 API（$1.00/$5.00/cache $0.05），AA 载荷已自带完整三段价，暂无订阅点采用行",
+        "o4-mini 接口废弃停运今日进入生效第 7 天（Day 7 / T+6），基线已全面迁移至 GPT-6 系列，无死链残留",
+        "GPT-4 全系定于 2027-01-14 彻底退役"
+      ]
+    },
+    "Moonshot_Kimi": {
+      "status": "k31_pro_integrated_and_open_weights_countdown",
+      "summary": "Kimi K3.1 Pro 3T MoE 旗舰基座发布进入第 6 天（Day 6 / T+5），AA 智力榜以 55.09 分居全球第 5 位，TB4 达 65.7%；官方三段价已通过 list-prices-kimi-k31-round1-2026-10-27.json 验证（$2/$10/$0.2）；模型权重开源进入倒计时（定于 2026-11-04，距今 T-6 天）；训练数据剔除网络安全项以防滥用；社区热议高昂 API 成本与 104B 激活显存压力。",
+      "details": [
+        "Kimi K3.1 Pro 在 AA 智力榜录得 55.0869 分，Terminal-Bench 4.0 录得 65.7%，居全球大模型第一梯队",
+        "官方 API 定价 $2.00 输入 / $0.20 缓存 / $10.00 输出，较前代 K3 降价约 33%",
+        "权重承诺定于 2026-11-04 前正式开源（T-6 天倒计时），包含 2.8T 总参、104B 激活 MoE 架构",
+        "extra_subscriptions.json 已录入 Kimi 会员各档（4.35亿至130.59亿），按 1.5× 价比换算",
+        "上游 PR #142 于 10-27 合入，以 37.36M/1.92% 实测换基 kimi-k3 为 19.46 亿并录入 v2 套餐，维持独立手工对齐建议"
+      ]
+    },
+    "DeepSeek": {
+      "status": "search_fetch_promo_ending_soon",
+      "summary": "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 稳守单价前沿第 2 位（real_price = 0.000805）；AA 智力 45.10，TB4 33.84%；Search & Fetch API 免费推广期将于 UTC 2026-10-31 16:00（北京时间 11-01 00:00，距今 T-3 天）结束，随后正式按 $0.75/1,000 requests 计费；模型主线端点定价保持稳定。",
+      "details": [
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "Search API (QPS 100) 与 Fetch API (QPS 25) 免费推广期剩余 3 天（至 10-31 16:00 UTC），之后统一按 $0.75/1k requests 扣费",
+        "OpenDesign Go 针对 DeepSeek V4.1 Flash 专项 2× 翻倍至每月最高 $20 维持生效",
+        "开源社区（Ollama, vLLM, Unsloth）对 CED 架构与 Engram 缓存部署表现持续好评"
+      ]
+    },
+    "Anthropic": {
+      "status": "stable_frontier_ruler",
+      "summary": "Claude Opus 5.5 (57.62) 与 Sonnet 5.5 (56.00) 居前三甲；Sonnet 5.5 提示词缓存读取降价 50%（$0.10/MTok）稳健生效；Haiku 5.5 阶梯计费由 3 档情景建模纳管，在 Claude Max 20x 支撑下独霸成本与价格前沿关键位（$0.0034）；新版防滥用 Usage Policy 定于 11-12 生效（T-14 天倒计时）。",
+      "details": [
+        "Claude Haiku 5.5（<=100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50）由 3 档情景建模纳管并通过守卫验证",
+        "Claude Sonnet 5.5 维持 round2 标价档（缓存读 $0.10/MTok，调降 50%）",
+        "Claude Opus 5.5 维持 $4.00 输入 / $0.20 缓存读 / $20.00 输出",
+        "新版防滥用 Usage Policy 定于 2026-11-12 生效（T-14 天倒计时）",
+        "Claude Max 订阅（Max 5x 赠 $100/月、Max 20x 赠 $400/月 API credits）平稳运行，构筑坚固前沿壁垒"
+      ]
+    },
+    "StepFun": {
+      "status": "workbuddy_promo_expired_t_plus_4",
+      "summary": "腾讯 WorkBuddy 阶跃星辰 Step-5 独家限免试用已于 10-25 24:00 正式到期，今日进入到期后第 4 天（T+4），全面恢复常规积分与 Token 收费；STEPX Neo 智能体手机首销第 14 日；Step-5 600B MoE 权重开源平稳，官方 API $1.00/$2.70；AA 智力 43.73，Coding Agent 43.13%。",
+      "details": [
+        "WorkBuddy 零成本试用红利彻底关闭，开发者转向商业化调用与自建节点评估",
+        "官方 API 标价 $1.00/$2.70 (cache $0.05)，缺乏极高额度第三方包月载体",
+        "被 Claude Haiku 5.5 ($0.0034) 和 DeepSeek V4.1 Flash 绝对支配，对当前前沿无冲击"
+      ]
+    },
+    "Mistral": {
+      "status": "weights_countdown_t_minus_2",
+      "summary": "Mistral Large 4 Preview ('le Chonk' 1.05T MoE / 52B 激活) 维持公测优惠价 $0.68/$2.09；AA 智力得分 38.38；开源权重定于 10 月底开放（10-27 至 10-31，今日进入 T-2 天窗口倒计时）。",
+      "details": [
+        "1.05T 总参 / 52B 激活参数，1M 上下文，原生集成 1.6B 视觉编码器",
+        "在欧洲 3,800 张 Grace Blackwell GPU 集群完成从头训练",
+        "综合评测分低于 Claude 5.5 与 Kimi K3.1 Pro，暂无法对现有前沿构成实质冲击"
+      ]
+    },
+    "MiniMax": {
+      "status": "m_plan_dominated",
+      "summary": "MiniMax M3.1 Flash（综合分 42.71，TB4 25.76%）官方按量价 $0.15/$0.60/cache $0.015 运行平稳；M Plan 订阅（Go 18.99 亿 / Explore 56.98 亿 / Build 227.92 亿）等额资金折算额度平稳运行，全部被 Claude Max 20x × Haiku 5.5 绝对支配。",
+      "details": [
+        "list-prices-minimax-m31-round1-2026-10-19.json 纳管 96% 缓存覆盖档内混合价 $0.02265/MTok",
+        "build_adopted.py 已将 MiniMax M Plan 套餐行调整为等金额折算口径",
+        "6 个 M Plan 订阅点每任务成本约 $0.037，未进入 Pareto 前沿"
+      ]
+    },
+    "CommandCode": {
+      "status": "goat_pricing_page_synced",
+      "summary": "Command Code 官网 /pricing 页面已将 GOAT 额度措辞由 $70 调整为 'Up to $100'（消除与 docs 不一致，上游 PR #153 确认）；每模型 allowance 额度上限未变；维持 research-only，不改采用值。",
+      "details": [
+        "上游 PR #153 录入 goat-shared-pool-round2-2026-10-28.json，确认官网页面措辞同步",
+        "各模型 allowance（如 DeepSeek $80, Claude $20 等）保持不变",
+        "维持研究归档，不碰 adopted.csv"
+      ]
+    },
+    "GitHub_Microsoft": {
+      "status": "legacy_models_retired_day_11",
+      "summary": "GitHub Copilot 于 2026-10-19 强制执行的 6 款旧模型退役今日进入第 11 天（Day 11 / T+10），全量平稳运行于 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7，AI Credits 架构运转正常。",
+      "details": [
+        "旧端点已彻底失效，全部请求自动分流至新一代模型池",
+        "Pro $10/月, Business $19/seat/月, Enterprise $39/seat/月 定价稳定"
+      ]
+    },
+    "Meta_OpenRouter": {
+      "status": "openrouter_catalog_expansion",
+      "summary": "Meta Muse Wonder（52.39 / 55.80）保持高推理能力；OpenRouter 上架 Inception Mercury 3（1M 扩散 LLM, $0.10/$0.35）、Recursive Flint (:free 40B MoE)、XingChen Xing4.0 29B (:free) 并开放区域路由与 Batch API 50% 折扣。",
+      "details": [
+        "Muse Spark 1.3 Contributor 稳固持有 Cost & Price Frontier #3",
+        "实验性扩散语言模型与免费端点不纳入生产采用"
+      ]
+    },
+    "Alibaba_Qwen": {
+      "status": "stable_hardware_anchor",
+      "summary": "通义千问 Qwen 4 仍在训练中，Qwen 3.8 全系平稳运行；本地 Qwen3.8-27B 端点作为硬件基准点稳定在 33.68 分，无调价或改版扰动。",
+      "details": [
+        "Qwen3.8-Max $2.00/$6.00; Qwen3.8 Flash $0.15/$0.47",
+        "本地端点硬件基准稳健"
+      ]
+    },
+    "Zhipu_GLM": {
+      "status": "stable_operations",
+      "summary": "智谱全家桶运行平稳，GLM-5.3 旗舰 $1.40/$4.40，GLM-5.3-Flash $0.15/$0.50，GLM Coding Plan $18/月，GLM-4.7-Flash 维持免费，对前沿无变动冲击。",
+      "details": [
+        "GLM Coding Plan 提供高性价比代码补全体验，但综合智力指标未达前沿突破水平"
+      ]
+    }
+  },
+  "subscriptionAndPlatformUpdates": {
+    "chatgptPro": {
+      "status": "final_day_grace_period_t_0",
+      "details": "ChatGPT Pro 200 方案额度下调为 10x，老用户 20x 宽限期截至今日 2026-10-29 23:59:59，今日为最后 1 整天（T-0 终局倒计时！明日 10-30 起全网统一执行 10x 额度，模型每周限制降为 100 条）。明日实际单价直接翻倍，必然导致 chatgpt_pro_20x 节点退出 Pareto 成本前沿；需备妥明日切入 chatgpt_pro_10x 情景的应对准备。"
+    },
+    "cursor": {
+      "status": "dual_track_active",
+      "details": "维持旧版 Pro ($20)/Ultra ($200) 与新版 The X Subscription (Plus $8/Premium $30/Super $100/Ultra $200) 双轨；新体系第三方模型自 Premium 起按 API List Price 扣费，原生模型额度每周刷新；老用户保留 Legacy Pro ($20) 月度额度池。"
+    },
+    "commandCodeGoat": {
+      "status": "pricing_page_synced_up_to_100",
+      "details": "Command Code 官网 /pricing 页面已将 GOAT 额度措辞由 $70 同步为 'Up to $100'（消除与 docs 冲突，上游 PR #153 确认）；每模型 allowance 额度上限未变（DeepSeek $80, Claude $20 等），维持 research-only，不改采用值。"
+    },
+    "minimaxMPlan": {
+      "status": "equal_money_conversion",
+      "details": "MiniMax M Plan 套餐行调整为等金额折算口径，6 个 M Plan 点每任务成本约 $0.037，全部被 Claude Max 20x x Haiku 5.5 (43.40 分 @ $0.0034) 以 10 倍效费比绝对支配而未进前沿。"
+    },
+    "factoryDroid": {
+      "status": "tier_structure_stable",
+      "details": "Factory Droid 推行 Pro $20/Plus $100/Max $200 及 Droid Core 备用池，运行平稳。"
+    },
+    "windsurfDevin": {
+      "status": "quotas_stable",
+      "details": "Windsurf 与 Devin 月度编程配额消耗平稳，无调价或改版。"
+    },
+    "openCode": {
+      "status": "frontier_anchors_solid",
+      "details": "OpenCode Go ($10/月) 与 Zen ($30/月) 稳固持有 Cost & Price Frontier #3 与 #4；针对 DeepSeek Flash 的 2x 翻倍加成持续生效。"
+    },
+    "githubCopilot": {
+      "status": "post_retirement_day_11",
+      "details": "10-19 强制退役 6 款旧模型生效进入第 11 天（Day 11 / T+10），全量平稳迁移至 Gemini 3.8 Flash / GPT-6.1 Sol / GPT-6 Luna / Grok 4.7，AI Credits 架构运转稳定。"
+    }
+  },
+  "frontierThreatAssessment": {
+    "assessmentDate": "2026-10-29",
+    "verdict": "CRITICAL_NEAR_TERM_CHATGPT_PRO_CUTOFF_RISK_AND_NEW_INTELLIGENCE_SOTA",
+    "rationale": "今日全网核心动态呈现两大里程碑：1) Google 旗舰次世代超长程长视距与深度推理基座 Gemini 4 Carbon (High) 正式发布并出分，在最新升级的 Artificial Analysis Intelligence Index v5.0 上以 59.43 分夺得全球第 1 位（SOTA），打破 Claude Opus 5.5 (57.62) 统治，刷新全球大模型智力天花板；但其定价（首发优惠 $2.00/$10.00/cache $0.10，标准价 $4.00/$20.00/cache $0.20）单任务成本高达 $7.76，且初期仅限 Fairwind 安全合作计划准入，缺乏类似 Claude Max 20x 或 OpenCode Go 的低价高配额包月载体，无法突破由 Claude Max 20x ($0.0034) 构筑的严密前沿包络；2) OpenAI ChatGPT Pro 200 额度腰斩（20x -> 10x）老用户宽限期今日进入最后 1 整天（T-0 终局倒计时！今夜 23:59:59 截止，明日 10-30 起全网统一执行 10x 额度），明日实际单价直接翻倍，必然导致 chatgpt_pro_20x 节点退出 Pareto 成本前沿，构成最高级别 P0 临界防守事件；3) Moonshot Kimi K3.1 Pro (3T MoE, 104B active) 稳居 55.09 分，权重定于 11-04 开源（T-6 天倒计时）；4) Mistral Large 4 Preview 开源权重窗口截止 10-31（T-2 天倒计时）；5) DeepSeek Search & Fetch API 免费期将于 10-31 16:00 UTC（T-3 天）结束。今日 Pareto 前沿（4 个成本前沿点、5 个价格前沿点）在宽限期最后 1 天继续维持绝对稳固，无需修改任何现有采用值。",
+    "costFrontierStatus": [
+      {
+        "model": "claude-haiku-5.5",
+        "plan": "claude_max_20x",
+        "costPerTask": 0.0034,
+        "score": 43.4,
+        "status": "Dominant (Ruler of low-cost frontier)"
+      },
+      {
+        "model": "muse-spark-1.3",
+        "plan": "opencode_go",
+        "costPerTask": 0.0073,
+        "score": 48.2,
+        "status": "Dominant (Mid-tier anchor)"
+      },
+      {
+        "model": "gpt-6.1-sol",
+        "plan": "chatgpt_plus",
+        "costPerTask": 0.0155,
+        "score": 51.83,
+        "status": "Dominant (High-performance anchor)"
+      },
+      {
+        "model": "gpt-6.1-sol",
+        "plan": "chatgpt_pro_20x",
+        "costPerTask": 0.0155,
+        "score": 51.83,
+        "status": "CRITICAL RISK: Final day of 20x grace period (T-0)! Will face real-price doubling and exit on Oct 30"
+      }
+    ],
+    "priceFrontierStatus": [
+      {
+        "model": "claude-haiku-5.5",
+        "plan": "claude_max_20x",
+        "realPrice": 0.00034,
+        "score": 43.4,
+        "status": "Dominant (#1 Price Frontier Leader)"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "plan": "opendesign_go",
+        "realPrice": 0.000805,
+        "score": 45.1,
+        "status": "Dominant (#2 Price Frontier Leader)"
+      },
+      {
+        "model": "muse-spark-1.3",
+        "plan": "opencode_go",
+        "realPrice": 0.00146,
+        "score": 48.2,
+        "status": "Dominant (#3 Price Frontier Leader)"
+      },
+      {
+        "model": "gpt-6.1-sol",
+        "plan": "chatgpt_plus",
+        "realPrice": 0.0031,
+        "score": 51.83,
+        "status": "Dominant (#4 Price Frontier Leader)"
+      },
+      {
+        "model": "claude-sonnet-5.5",
+        "plan": "claude_max_20x",
+        "realPrice": 0.0068,
+        "score": 56.0,
+        "status": "Dominant (#5 High-Intelligence Ceiling Leader)"
+      }
+    ],
+    "criticalRisksAndCountdowns": [
+      {
+        "risk": "ChatGPT Pro 200 额度腰斩 (20x -> 10x) 宽限期终了",
+        "deadline": "2026-10-29 23:59:59 (TODAY IS T-0 FINAL DAY! 今夜截止，明日生效)",
+        "consequence": "10-30 起全网统一降为 10x，实际单价翻倍导致 chatgpt_pro_20x 退出成本前沿；需备妥 chatgpt_pro_10x 情景点应对",
+        "urgency": "CRITICAL_IMMEDIATE_TODAY"
+      },
+      {
+        "risk": "Google Gemini 4 Carbon (High) 登顶全球智力天花板 SOTA (59.43分)",
+        "deadline": "2026-10-29 出分确认",
+        "consequence": "智力天花板上移至 59.43，但官方按量三段价与高额单任务成本 ($7.76) 且缺乏高额度包月载体，未能突破现有 Pareto 包络；维持 P1 重点观察",
+        "urgency": "HIGH_MONITOR_SOTA"
+      },
+      {
+        "risk": "Moonshot Kimi K3.1 Pro 完整模型权重开源",
+        "deadline": "2026-11-04 (T-6 天倒计时)",
+        "consequence": "若第三方云厂商或低价聚合平台（如 OpenCode Go / SiliconFlow）迅速上线低价或包月托管，可能以 55 分高智力对高阶前沿形成冲击",
+        "urgency": "HIGH_MONITOR"
+      },
+      {
+        "risk": "Mistral Large 4 Preview ('le Chonk' 1.05T MoE) 开源权重公布",
+        "deadline": "2026-10-31 (T-2 天倒计时)",
+        "consequence": "1.05T 巨型 MoE 权重开源，需关注第三方量化托管定价与实际评测分更新",
+        "urgency": "MEDIUM_MONITOR"
+      },
+      {
+        "risk": "DeepSeek Search & Fetch API 免费推广期截止",
+        "deadline": "UTC 2026-10-31 16:00 / 北京时间 2026-11-01 00:00 (T-3 天倒计时)",
+        "consequence": "Search/Fetch API 正式执行 $0.75/1k requests 收费，模型主线端点定价保持稳定，不影响 OpenDesign Go 采用值",
+        "urgency": "SCHEDULED_MONITOR"
+      },
+      {
+        "risk": "Google Gemini 4 Argon Fairwind 优惠截止 ($2/$10 -> $4/$20)",
+        "deadline": "2026-11-30 (T-32 天倒计时)",
+        "consequence": "标准价恢复后每任务成本翻倍，继续维持订阅行下架状态",
+        "urgency": "SCHEDULED_MONITOR"
+      },
+      {
+        "risk": "Anthropic 全新 Usage Policy 正式生效",
+        "deadline": "2026-11-12 (T-14 天倒计时)",
+        "consequence": "严格限制自动化物理设备控制与滥用行为，不影响基线 API 定价",
+        "urgency": "SCHEDULED_MONITOR"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "model": "gemini-4-carbon",
+      "provider": "Google",
+      "eventType": "release_and_score",
+      "details": "Google 次世代重型长程推理基座 Gemini 4 Carbon (High) 于 2026-10-28/29 正式发布出分，在 AA Intelligence Index v5.0 斩获 59.43 分夺得全球第 1 位（SOTA），超越 Claude Opus 5.5 (57.62)；Terminal-Bench 4.0 录得 65.15%；官方定价优惠期为输入 $2.00/MTok、输出 $10.00/MTok、缓存命中 $0.10/MTok（95% 折扣，标准价 $4.00/$20.00/cache $0.20）；单任务评估 tokens 消耗高达约 2 亿，单任务综合成本高达 $7.76；初期受限仅向网络安全防御机构与 Fairwind 计划合作伙伴开放，无低价包月订阅。",
+      "sourceUrl": "https://artificialanalysis.ai/models/gemini-4-carbon",
+      "impactOnFrontier": "目前仅有官方按量 API 与受限 Fairwind 准入，无类似 OpenCode Go ($10/月) 或 Claude Max 20x 的低价高配额包月载体，单任务成本高达 $7.76，无法穿透由 Claude Max 20x ($0.0034) 构筑的严密前沿包络。建议维持 research-only; not adopted，列为 P1 顶级 SOTA 观察候选。",
+      "name": "Gemini 4 Carbon (High) (全球智力新 SOTA 59.43 分，力压 Opus 5.5)",
+      "modelOrPlan": "gemini-4-carbon",
+      "vendor": "Google",
+      "category": "flagship_release",
+      "event_type": "release_and_score",
+      "publishedPrice": "优惠价输入 $2.00/MTok, 输出 $10.00/MTok, 缓存命中 $0.10/MTok (95% 折扣); 标准价 $4.00/$20.00/cache $0.20",
+      "quotaOrLimits": "1M 上下文; 深度 High-thinking 推理; 初始仅限 Fairwind 安全合作伙伴",
+      "activeStatus": "官方受限预览与 API 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "目前仅有官方按量 API 与受限 Fairwind 准入，缺乏低价高配额第三方包月载体，单任务成本高达 $7.76，被 Claude Max 20x 绝对支配；保持 research-only，不改采用值。",
+      "source_url": "https://artificialanalysis.ai/models/gemini-4-carbon",
+      "impact_on_frontier": "全球智力天花板上移至 59.43 分，但无即时前沿突破。",
+      "factSummary": "Gemini 4 Carbon (High) 斩获 59.43 分登顶全球第 1，TB4 录得 65.15%，定价 $2/$10/cache $0.10，受限 Fairwind 准入。",
+      "currentRepoState": "本地已录入 list-prices-gemini-4-carbon-round1-2026-10-29.json 与 scores-gemini-4-carbon-round1-2026-10-29.json，维持研究归档。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P1 (顶级跟踪候选)",
+      "rationale": "全球第 1 SOTA 模型，待观察后续是否开放全量公测及有无高配额第三方订阅载体。"
+    },
+    {
+      "model": "chatgpt-pro-200",
+      "provider": "OpenAI",
+      "eventType": "quota_policy_change",
+      "details": "OpenAI ChatGPT Pro 200 方案额度确定下调为 10x，老用户 20x 宽限期截至今日 2026-10-29 23:59:59（TODAY IS T-0 FINAL DAY！明日 10-30 起全网统一执行 10x 额度，模型每周限制降为 100 条）；附赠 $2,500 缓冲抵扣券至 12-31。",
+      "sourceUrl": "https://help.openai.com/en/articles/chatgpt-pro-limits",
+      "impactOnFrontier": "本项目成本前沿包含 chatgpt_pro_20x 节点（对应 129.02 亿 tokens 超大配额）。今日是老用户 20x 宽限期最后一整天（T-0 终局倒计时），今夜 23:59 届满后，明日 10-30 起全网统一降为 10x，实际单价翻倍必然导致该点退出 Pareto 成本前沿。今日需提前备妥明日调价并切入 chatgpt_pro_10x 情景的应对准备。",
+      "name": "ChatGPT Pro 200 (配额腰斩老用户宽限期今日最后 1 天倒计时 T-0！)",
+      "modelOrPlan": "chatgpt-pro-200",
+      "vendor": "OpenAI",
+      "category": "quota_reduction",
+      "event_type": "quota_policy_change",
+      "publishedPrice": "$200/月",
+      "quotaOrLimits": "今日 20x Plus 配额终了；明日 10-30 起统一降为 10x，GPT-6 Pro 每周上限 100 条",
+      "activeStatus": "老用户 20x 今日最后 1 天生效，明日统一 10x",
+      "satisfiesInclusion": true,
+      "rejectionReason": "今日仍为 20x 宽限期最后一天，今日数据保持生效；明日 10-30 必须切换为 10x 并退出前沿。",
+      "source_url": "https://help.openai.com/en/articles/chatgpt-pro-limits",
+      "impact_on_frontier": "明日必然引发 chatgpt_pro_20x 退出成本前沿并重构成本包络。",
+      "factSummary": "ChatGPT Pro 200 宽限期今日 23:59 截止（T-0），明日全网执行 10x。",
+      "currentRepoState": "基线采用 chatgpt_pro_20x，今日仍有效，明日必须下线/调整。",
+      "recommendation": "immediate_scenario_preparation",
+      "priority": "P0 (最高紧急度防守)",
+      "rationale": "明日宽限期彻底终结，将触发成本前沿重大结构变动。"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "provider": "Moonshot AI (月之暗面)",
+      "eventType": "release_and_score",
+      "details": "月之暗面于 2026-10-23/24 正式发布次世代 3T MoE 旗舰 Kimi K3.1 Pro（1M 上下文，原生支持 low/high/max 推理档位，104B 激活参数）。AA 智力榜录得 55.09 分居全球第 5，TB4 达 65.7%。官方定价较 K3 降价约 33%（输入 $2.00 / 输出 $10.00 / 缓存 $0.20）。权重定于 2026-11-04 前正式开源（T-6 天倒计时）。",
+      "sourceUrl": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+      "impactOnFrontier": "目前仅有官方按量 API 与高价 SaaS，缺乏类似 OpenCode Go ($10/月) 的超高性价比第三方包月载体；上游 PR #136/#137/#138 实测均明确标为 research-only; not adopted。无法穿透由 Claude Max 20x ($0.0034) 构筑的严密前沿包络，维持 P1 重点观察。",
+      "name": "Kimi K3.1 Pro (次世代 3T MoE 旗舰，AA 智力榜第 5 名 55.09 分)",
+      "modelOrPlan": "kimi-k3.1-pro",
+      "vendor": "Moonshot_Kimi",
+      "category": "flagship_release",
+      "event_type": "release_and_score",
+      "publishedPrice": "输入 $2.00/MTok, 输出 $10.00/MTok, 缓存读取 $0.20/MTok (90% 折扣)",
+      "quotaOrLimits": "1M 上下文, 原生支持 low/high/max 推理档位; 权重定于 11-04 开源 (T-6 天)",
+      "activeStatus": "官方开放平台 API 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "目前仅有官方按量 API 与高价 SaaS ($99/月)，缺乏低价第三方包月载体，上游 PR #136/#137/#138 均为研究证据；维持 research-only; not adopted。",
+      "source_url": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+      "impact_on_frontier": "无即时前沿突破。",
+      "factSummary": "Kimi K3.1 Pro 斩获 55.09 分位列第 5，官方 API 降价 33%，权重定于 11-04 开源。",
+      "currentRepoState": "本地已配置 list-prices 与 score 档，上游 PR #142 合入存在 ultra 档位冲突，维持手工独立对齐。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P1 (顶级跟踪候选)",
+      "rationale": "全球第 5 高分模型，待 11-04 开源后评估第三方低价云托管。"
+    },
+    {
+      "model": "gpt-6.1-terra",
+      "provider": "OpenAI",
+      "eventType": "new_model_and_pricing",
+      "details": "OpenAI 于 10-26 正式发布 GPT-6.1 Terra，定位极致性价比前沿。三段标价：input $1.00/MTok、output $5.00/MTok、cachedInput $0.05/MTok。AA 载荷已收录 6 个推理档（Max 48.11, Xhigh 45.36, High 43.87, Medium 41.32, Low 36.21, Non-reasoning 33.49）。",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier",
+      "impactOnFrontier": "官方按量标价极具竞争力，但目前尚无 ChatGPT Plus/Pro 额度配额实测数据，暂不录入 adopted 订阅行，维持研究监控。",
+      "name": "GPT-6.1 Terra (OpenAI 极致性价比前沿新基模，单价减半)",
+      "modelOrPlan": "gpt-6.1-terra",
+      "vendor": "OpenAI",
+      "category": "flagship_release",
+      "event_type": "new_model_and_pricing",
+      "publishedPrice": "输入 $1.00/MTok, 输出 $5.00/MTok, 缓存读取 $0.05/MTok",
+      "quotaOrLimits": "1M 上下文; 6 档推理模式",
+      "activeStatus": "官方 API 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "AA 载荷自带三段价兜底，暂无订阅套餐配额实测，暂不录入 adopted.csv。",
+      "source_url": "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier",
+      "impact_on_frontier": "按量性价比高，但暂无前沿突破影响。",
+      "factSummary": "GPT-6.1 Terra 标价 $1/$5/cache $0.05，AA 载荷收录 6 档 Max 48.11 分。",
+      "currentRepoState": "已建档 list-prices-gpt-61-terra-round1-2026-10-28.json，维持研究归档。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (常规候选跟踪)",
+      "rationale": "关注后续 ChatGPT Plus/Pro 是否分配专用额度池。"
+    },
+    {
+      "model": "mistral-large-4-preview",
+      "provider": "Mistral AI",
+      "eventType": "weights_release_window_monitoring",
+      "details": "Mistral Large 4 Preview ('le Chonk' 1.05T MoE / 52B 激活) 维持公测优惠价 $0.68/$2.09；AA 智力得分 38.38；开源权重定于 10 月底开放（10-27 至 10-31，今日进入 T-2 天倒计时）。",
+      "sourceUrl": "https://mistral.ai/news/mistral-large-4-preview/",
+      "impactOnFrontier": "开源权重公布后需关注第三方低价量化托管定价，目前按量标价与综合分无法威胁现有前沿。",
+      "name": "Mistral Large 4 Preview (1.05T MoE 开源权重窗口期倒计时 T-2 天)",
+      "modelOrPlan": "mistral-large-4-preview",
+      "vendor": "Mistral",
+      "category": "weights_release_window",
+      "event_type": "weights_release_window_monitoring",
+      "publishedPrice": "公测价输入 $0.68/MTok, 输出 $2.09/MTok, 缓存读取 $0.07/MTok",
+      "quotaOrLimits": "1M 上下文, 1.05T MoE / 52B 激活; 开源权重窗口截止 10-31 (T-2 天)",
+      "activeStatus": "公测 API 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "智力得分 38.38，按量与订阅均显著落后于 Claude 5.5 与 Kimi K3.1 Pro，无法动摇前沿。",
+      "source_url": "https://mistral.ai/news/mistral-large-4-preview/",
+      "impact_on_frontier": "无即时前沿威胁。",
+      "factSummary": "1.05T MoE 权重开源倒计时 2 天，公测价 $0.68/$2.09，AA 智力 38.38。",
+      "currentRepoState": "维持研究归档，不入采用值。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (常规跟踪)",
+      "rationale": "等待 10-31 开源权重落地后跟进生态量化版本。"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "provider": "DeepSeek",
+      "eventType": "frontier_defense_monitoring",
+      "details": "DeepSeek V4.1 Flash 1017 检查点在 AA 智力榜上实测得分 45.10（TB4 33.84%，TPS 216.5），标价闲时 $0.15/$0.60（缓存 $0.003，98% 折扣），助力 OpenDesign Go 稳居单价前沿第 2 位（real_price = 0.000805）；Search/Fetch API 免费推广期仅剩 3 天（10-31 16:00 UTC 截止）。",
+      "sourceUrl": "https://platform.deepseek.com/api-docs/pricing",
+      "impactOnFrontier": "单价前沿核心支柱，防守极其稳固。",
+      "name": "DeepSeek V4.1 Flash 1017 (单价前沿第 2 位稳健支柱)",
+      "modelOrPlan": "deepseek-v4.1-flash",
+      "vendor": "DeepSeek",
+      "category": "frontier_defense",
+      "event_type": "frontier_defense_monitoring",
+      "publishedPrice": "闲时 $0.15/$0.60/cache $0.003, 忙时 $0.30/$1.20/cache $0.006",
+      "quotaOrLimits": "1M 上下文; Search/Fetch API $0.75/1k requests (免费至 10-31 16:00 UTC)",
+      "activeStatus": "生产 API 运行中",
+      "satisfiesInclusion": true,
+      "rejectionReason": "核心采用行，维持现状。",
+      "source_url": "https://platform.deepseek.com/api-docs/pricing",
+      "impact_on_frontier": "牢牢掌控单价前沿第 2 位。",
+      "factSummary": "AA 智力 45.10，OpenDesign Go 极速跑分，Search/Fetch 免费期倒计时 3 天。",
+      "currentRepoState": "基线采用中，无须调整。",
+      "recommendation": "maintain_frontier",
+      "priority": "P2 (维持核心防线)",
+      "rationale": "前沿防守支柱，无需变动。"
+    },
+    {
+      "model": "command-code-goat",
+      "provider": "Command Code",
+      "eventType": "pricing_page_sync",
+      "details": "Command Code 官网 /pricing 页面已将 GOAT 额度措辞由 $70 调整为 'Up to $100'（消除与 docs 不一致，上游 PR #153 确认）；每模型 allowance 额度上限未变；维持 research-only，不改采用值。",
+      "sourceUrl": "https://commandcode.ai/pricing",
+      "impactOnFrontier": "仅为官网页面措辞与文档口径同步，每模型 allowance 实际额度完全不变，不影响 adopted.csv 任何采用值。",
+      "name": "Command Code GOAT (官网页面同步 Up to $100 措辞，PR #153 确认)",
+      "modelOrPlan": "command-code-goat",
+      "vendor": "CommandCode",
+      "category": "pricing_page_sync",
+      "event_type": "pricing_page_sync",
+      "publishedPrice": "GOAT $10/月 (processing fee); 月池措辞 Up to $100",
+      "quotaOrLimits": "每模型独立 allowance (DeepSeek $80, Claude $20 等)",
+      "activeStatus": "官网订阅运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "每模型 allowance 额度未变，上游与本地一致判定为 research-only，不改采用值。",
+      "source_url": "https://commandcode.ai/pricing",
+      "impact_on_frontier": "无采用值变动。",
+      "factSummary": "官网同步 Up to $100 措辞消除不一致，各模型额度未变。",
+      "currentRepoState": "上游已合入 PR #153 研究文件，维持 research-only。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (常规跟踪)",
+      "rationale": "口径对齐，无业务影响。"
+    },
+    {
+      "model": "claude-haiku-5.5",
+      "provider": "Anthropic",
+      "eventType": "frontier_defense_monitoring",
+      "details": "Claude Haiku 5.5（<=100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50）在 Claude Max 20x 支撑下独占成本与价格前沿关键位（$0.0034）；新版防滥用 Usage Policy 定于 11-12 生效（T-14 天倒计时）。",
+      "sourceUrl": "https://www.anthropic.com/pricing",
+      "impactOnFrontier": "成本与单价双料统治点，防守绝对稳健。",
+      "name": "Claude Haiku 5.5 (成本与单价前沿双料绝对统治点)",
+      "modelOrPlan": "claude-haiku-5.5",
+      "vendor": "Anthropic",
+      "category": "frontier_defense",
+      "event_type": "frontier_defense_monitoring",
+      "publishedPrice": "<=100k $0.10/$0.50, >100k $0.50/$2.50",
+      "quotaOrLimits": "Claude Max 20x $200/月, 赠 $400/月 API credits; Usage Policy 11-12 生效 (T-14 天)",
+      "activeStatus": "基线核心采用中",
+      "satisfiesInclusion": true,
+      "rejectionReason": "核心采用行，维持现状。",
+      "source_url": "https://www.anthropic.com/pricing",
+      "impact_on_frontier": "绝对统治成本前沿首位。",
+      "factSummary": "Haiku 5.5 稳居双料前沿第一，防守坚不可摧。",
+      "currentRepoState": "由 3 档情景模型纳管，守卫全面通过。",
+      "recommendation": "maintain_frontier",
+      "priority": "P2 (维持核心防线)",
+      "rationale": "核心前沿支柱，无需变动。"
+    },
+    {
+      "model": "step-5-preview",
+      "provider": "StepFun (阶跃星辰)",
+      "eventType": "promo_expiration",
+      "details": "腾讯 WorkBuddy 独家限免试用已于 10-25 24:00 截止，今日进入截止后第 4 天（T+4），全面恢复常规收费；STEPX Neo 手机交付第 14 日；Step-5 600B MoE 权重开源平稳，官方 API $1.00/$2.70；AA 智力 43.73，Coding Agent 43.13%。",
+      "sourceUrl": "https://workbuddy.qq.com",
+      "impactOnFrontier": "限免红利彻底关闭，常规按量缺乏前沿竞争力，对基线前沿无冲击。",
+      "name": "Step-5 Preview (腾讯 WorkBuddy 独家限免截止后第 4 天 T+4)",
+      "modelOrPlan": "step-5-preview",
+      "vendor": "StepFun",
+      "category": "promo_expiration",
+      "event_type": "promo_expiration",
+      "publishedPrice": "官方 API 输入 $1.00/MTok, 输出 $2.70/MTok, 缓存读取 $0.05/MTok",
+      "quotaOrLimits": "WorkBuddy 恢复常规收费; STEPX Neo 手机 (3999元) 附 12 个月每月百亿 Plan",
+      "activeStatus": "商业化按量与手机生态运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "限免结束，常规按量成本远高于 Haiku 5.5，不构成前沿威胁。",
+      "source_url": "https://workbuddy.qq.com",
+      "impact_on_frontier": "无即时前沿影响。",
+      "factSummary": "WorkBuddy 限免结束第 4 天，常规收费运行平稳，AA 智力 43.73。",
+      "currentRepoState": "维持研究归档，不入采用值。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (常规候选跟踪)",
+      "rationale": "限免红利结束，维持常规观察。"
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "Google DeepMind",
+      "eventType": "pricing_promo_monitoring",
+      "details": "Fairwind 试用优惠价 $2.00/$10.00 有效期至 2026-11-30（T-32 天倒计时，12-01 转为标准价 $4.00/$20.00）；Gemini 3.8 Flash 优惠延至 2026-12-31；Argon 订阅行已从 Google AI Pro/Ultra 退役。",
+      "sourceUrl": "https://ai.google.dev/pricing",
+      "impactOnFrontier": "优惠期内按量无法穿透前沿，标准价恢复后成本更高，维持研究归档。",
+      "name": "Gemini 4 Argon (Fairwind 优惠期倒计时 T-32 天)",
+      "modelOrPlan": "gemini-4-argon",
+      "vendor": "Google",
+      "category": "pricing_promo",
+      "event_type": "pricing_promo_monitoring",
+      "publishedPrice": "优惠价 $2.00/$10.00 (cache $0.10); 标准价 $4.00/$20.00",
+      "quotaOrLimits": "1M 上下文; 优惠期剩余 32 天 (至 2026-11-30)",
+      "activeStatus": "API 优惠运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "订阅行退役，API 无法穿透前沿，维持研究归档。",
+      "source_url": "https://ai.google.dev/pricing",
+      "impact_on_frontier": "无前沿突破影响。",
+      "factSummary": "Argon 优惠期剩余 32 天，订阅行退役，基线稳定。",
+      "currentRepoState": "已具备 list-prices 与 extra_subscriptions 派生，维持研究归档。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (常规跟踪)",
+      "rationale": "维持研究归档，关注 11-30 优惠截止。"
+    },
+    {
+      "model": "minimax-m3.1-flash",
+      "provider": "MiniMax",
+      "eventType": "subscription_monitoring",
+      "details": "MiniMax-M3.1-Flash-Preview 官方按量价维持 $0.15/$0.60/cache $0.015；M Plan 订阅等额折算点每任务成本约 $0.037，全部被 Claude Max 20x x Haiku 5.5 (43.40 分 @ $0.0034) 绝对支配。",
+      "sourceUrl": "https://api.minimax.chat",
+      "impactOnFrontier": "被基线以 10 倍效费比绝对支配，未进前沿。",
+      "name": "MiniMax M3.1 Flash (M Plan 订阅被 Haiku 5.5 绝对支配)",
+      "modelOrPlan": "minimax-m3.1-flash",
+      "vendor": "MiniMax",
+      "category": "subscription_monitoring",
+      "event_type": "subscription_monitoring",
+      "publishedPrice": "按量 $0.15/$0.60/cache $0.015; M Plan Go $19.9/18.99亿 等",
+      "quotaOrLimits": "M Plan 等额资金折算口径",
+      "activeStatus": "API 与 M Plan 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "完全被 Claude Max 20x x Haiku 5.5 支配，不进前沿。",
+      "source_url": "https://api.minimax.chat",
+      "impact_on_frontier": "无前沿影响。",
+      "factSummary": "AA 智力 42.71，M Plan 运行平稳，被 Haiku 5.5 绝对支配。",
+      "currentRepoState": "全链路已纳管，维持基线观测。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (维持基线观测)",
+      "rationale": "前沿防守良好，未构成威胁。"
+    },
+    {
+      "model": "cursor-x-subscription",
+      "provider": "Cursor / xAI",
+      "eventType": "platform_subscription_evolution",
+      "details": "Cursor 维持旧版 Pro ($20) 与新版 The X Subscription (Plus $8/Premium $30/Super $100/Ultra $200) 双轨；新体系第三方模型按 API List Price 扣费，原生模型额度每周刷新；老用户保留 Legacy Pro ($20) 月度额度池。",
+      "sourceUrl": "https://cursor.com/pricing",
+      "impactOnFrontier": "新体系第三方模型转为原价按量扣费，套利空间消失，对本项目前沿采用行无直接冲击。",
+      "name": "Cursor The X Subscription (Grok 绑定、第三方模型 API 计费、周额度刷新)",
+      "modelOrPlan": "cursor-the-x-subscription",
+      "vendor": "Cursor",
+      "category": "platform_evolution",
+      "event_type": "platform_subscription_evolution",
+      "publishedPrice": "Plus $8, Premium $30, Super $100, Ultra $200",
+      "quotaOrLimits": "原生模型周额度刷新; 第三方模型按 API 原价扣费",
+      "activeStatus": "双轨制运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "第三方模型无额外额度折扣，不构成前沿突破威胁。",
+      "source_url": "https://cursor.com/pricing",
+      "impact_on_frontier": "无前沿突破影响。",
+      "factSummary": "双轨制平稳运行，第三方模型无套利红利。",
+      "currentRepoState": "维持常规跟踪。",
+      "recommendation": "defer_and_monitor",
+      "priority": "P2 (平台订阅机制跟踪)",
+      "rationale": "跟踪 IDE 平台额度演进机制。"
+    }
+  ],
+  "toolAndIDEPlans": {
+    "cursor": {
+      "pro": "$20/mo (Legacy retained for older users with monthly credit pool)",
+      "proPlus": "$60/mo (Legacy retained)",
+      "ultra": "$200/mo (Legacy retained)",
+      "theXSubscription": "Plus $8/mo, Premium $30/mo, Super $100/mo, Ultra $200/mo (Weekly quotas for native models, 3rd party models billed at API list prices from Premium tier)",
+      "notes": "双轨制持续运行，新体系无第三方模型额度套利空间"
+    },
+    "githubCopilot": {
+      "pro": "$10/mo (Individual developers, 30-day trial)",
+      "business": "$19/seat/mo (Admin controls, IP indemnity)",
+      "enterprise": "$39/seat/mo (Fine-tuned models, PR summarization)",
+      "notes": "10-19 强制退役 6 款旧模型已生效第 11 天 (Day 11 / T+10)，AI Credits 计费平稳"
+    },
+    "factoryDroid": {
+      "pro": "$20/mo (Standard developer tier)",
+      "plus": "$100/mo (High-throughput agent teams)",
+      "max": "$200/mo (Enterprise grade concurrency)",
+      "notes": "Droid Core 备用池机制平稳运行"
+    },
+    "windsurfDevin": {
+      "windsurf": "$15/mo (Standard flow credits)",
+      "devin": "Enterprise ACU consumption tokens",
+      "notes": "月度编程配额平稳，无改版调价"
+    },
+    "openCode": {
+      "go": "$10/mo (Holds Cost & Price Frontier #3)",
+      "zen": "$30/mo (Holds Cost & Price Frontier #4)",
+      "openDesignGo": "专项 2x 翻倍加成 DeepSeek V4.1 Flash 稳居 Price Frontier #2 (real_price = 0.000805)",
+      "notes": "核心前沿包络支柱，维持绝对稳固"
+    },
+    "commandCodeGoat": {
+      "goat": "$10/mo (Processing fee, official /pricing page updated to 'Up to $100', per-model allowances unchanged)",
+      "notes": "上游 PR #153 确认口径对齐，维持 research-only，不改采用值"
+    }
+  },
+  "communitySignals": [
+    {
+      "channel": "LINUX DO (L站)",
+      "sentiment": "热烈探讨 Google Gemini 4 Carbon 登顶全球 SOTA (59分) 与 Fairwind 权限受限、ChatGPT Pro 200 老订户 20x 倒计时今夜 23:59 截止 (T-0 终局！抓紧最后跑任务)、Moonshot Kimi K3.1 Pro 55 分高昂 API 成本与 11-04 开源期待、腾讯 WorkBuddy Step-5 限免截止第 4 天转商业化计费讨论",
+      "summary": "社区对 Gemini 4 Carbon 的 59 分 SOTA 感到震撼，但普遍吐槽 Fairwind 门槛高不可攀；大量讨论聚焦 ChatGPT Pro 20x 宽限期最后数小时的降智与提现策略；对 Kimi K3.1 Pro 价格偏贵持续吐槽，期待 11-04 开源权重后第三方量化自建；Step-5 试用结束后开发者转向探讨替代方案与本地部署。"
+    },
+    {
+      "channel": "Reddit (r/LocalLLaMA, r/ClaudeAI, r/OpenAI, r/ChatGPTPro)",
+      "sentiment": "ChatGPT Pro 200 额度腰斩今日进入最后 1 天 (T-0！今晚 23:59 终了，明日 10-30 统一 10x)、Gemini 4 Carbon 59 分登顶但推理极其缓慢 (2x-4x 慢于 Argon / 200M tokens) 与长程网络安全专精、Kimi K3.1 Pro 104B 激活本地显存瓶颈、Mistral Large 4 1.05T MoE 开源权重窗口截止 10-31 (T-2 天倒计时) 与 Anthropic 11-12 新版 Usage Policy (T-14 天)",
+      "summary": "r/ChatGPTPro 迎来老用户 20x 宽限期终极告别讨论；r/LocalLLaMA 对 Gemini 4 Carbon 跑分审慎乐观但指出其高 token 消耗与极慢速度；社区热切期盼 Mistral Large 4 (T-2 天) 与 Kimi K3.1 Pro (T-6 天) 两大巨型 MoE 权重开源，讨论 4-bit/8-bit 量化要求与多卡部署。"
+    },
+    {
+      "channel": "GitHub & Developer Ecosystem",
+      "sentiment": "GitHub Copilot 旧模型强制退役全面生效第 11 天（Day 11 / T+10），运行平稳；上游 real-api-pricing 合并 PR #153 (Command Code GOAT pricing 页面同步 'Up to $100')、PR #142 (Kimi v2 quota 实测换基，存在 ultra 档位冲突)、PR #147 (GOAT shared pool)，维持独立手工对齐与 research-only 归档状态",
+      "summary": "开发者工具生态平稳迁移；上游仓库合并 PR #153 消除 Command Code 官网与文档口径差异，明确不碰采用值；本地已独立纳管 Carbon 与 K3.1 Pro 标价档，基线完整稳固。"
+    },
+    {
+      "channel": "OpenRouter & Model Hubs",
+      "sentiment": "Gemini 4 Carbon 出分引发极高关注；Kimi K3.1 Pro 与 Inception: Mercury 3 尝鲜持续；免费端点 Recursive Flint 与 Xing4.0 备受青睐；DeepSeek Search & Fetch API 免费推广期仅剩 3 天；MiniMax M3.1 Flash 与 DeepSeek V4.1 Flash 吞吐量平稳攀升",
+      "summary": "OpenRouter 持续扩充模型多样性并强化 us.openrouter.ai 区域路由与 Batch API 折扣；DeepSeek 工具链即将转入全面商业化计费。"
+    }
+  ],
+  "coreConclusionsForLead": [
+    "【核心突破 1：Google Gemini 4 Carbon (High) 空降全球智力榜第 1 位 SOTA (59.43 分)】Google 次世代长程/网络安全深度推理基座 Gemini 4 Carbon 于 2026-10-28/29 正式出分，在升级后的 Artificial Analysis Intelligence Index v5.0 以 59.43 分强势登顶全球榜首，超越 Claude Opus 5.5 (57.62)，Terminal-Bench 4.0 录得 65.15%；定价首发优惠 $2.00/$10.00/cache $0.10，标准价 $4.00/$20.00/cache $0.20；单任务评估消耗约 2 亿 tokens，单任务成本高达 $7.76；初期仅限 Fairwind 安全合作计划准入，无低价包月载体，未能穿透现有 Pareto 前沿；建议 Lead 维持 research-only; not adopted，列为 P1 顶级 SOTA 跟踪候选。",
+    "【核心预警 2：ChatGPT Pro 200 额度腰斩宽限期今日最后 1 天 (今夜 23:59 截止，TODAY IS T-0 FINAL DAY！)】OpenAI ChatGPT Pro 200 方案额度确定下调为 10x，老用户 20x 宽限期截至今日 2026-10-29 23:59:59，今日为最后 1 整天（T-0 终局倒计时！明日 10-30 起全网统一执行 10x 额度，模型每周上限降为 100 条）。明日实际单价直接翻倍，必然导致 chatgpt_pro_20x 节点退出 Pareto 成本前沿，进入本项目最高级别 P0 核心临界倒计时。建议 Lead 提前备妥明日调价并切入 chatgpt_pro_10x 情景的应对准备。",
+    "【重大升级 3：Artificial Analysis Intelligence Index 正式步入 v5.0 大版本】AA 智力榜完成自 v4.3.2 向 v5.0 的重大框架重构，设置四大等权 25% 维度（知识工作、编程、科学、通用）并聚合 9 项高难度基准，全面引入防泄露私有测试集；全网模型载荷扩展至 273 款（新增 gemini-4-carbon）；本地流水线与爬虫脚本保持完美兼容。",
+    "【核心跟踪 4：Moonshot AI Kimi K3.1 Pro 稳居 55.09 分，权重定于 11-04 开源 (T-6 天倒计时)】月之暗面次世代 3T MoE 旗舰基座进入发布第 6 天（Day 6 / T+5），以 55.09 分稳居 AA 智力榜全球第 5，TB4 达 65.7%；官方 API 标价 $2.00/$10.00/cache $0.20；权重承诺定于 2026-11-04 前正式开源（T-6 天倒计时），训练数据已剔除网络安全项以防滥用；目前缺乏低价第三方包月载体，维持 P1 重点观察。",
+    "【核心状态 5：DeepSeek V4.1 Flash 1017 稳居单价前沿 #2，Search/Fetch 免费期仅剩 3 天】DeepSeek V4.1 Flash 1017 检查点在 AA 智力榜上实测得分 45.10（TB4 33.84%），标价闲时 $0.15/$0.60 稳守单价前沿第 2 位（real_price = 0.000805）；其 Search API & Fetch API 免费推广期定于 UTC 2026-10-31 16:00（北京时间 11-01 00:00，距今 T-3 天）结束并转为 $0.75/1k requests 收费，模型主线端点定价保持稳定，前沿防线稳固。",
+    "【生态口径 6：Command Code GOAT 官网 /pricing 页面同步 'Up to $100' (PR #153 确认)】上游 PR #153 确认 Command Code 官网 /pricing 页面已将 GOAT 额度措辞由 $70 调整为 'Up to $100'，消除了与 docs 的不一致；每模型 allowance 上限未变，上游与本地一致裁定维持 research-only，不改采用值。",
+    "【生态状态 7：腾讯 WorkBuddy Step-5 限免截止第 4 天 (T+4) & Mistral Large 4 开源倒计时 2 天】腾讯 WorkBuddy Step-5 独家限免已结束 4 天，全面恢复常规收费；Mistral Large 4 Preview (1.05T MoE，AA 38.38) 开源权重窗口截止 10-31（T-2 天倒计时）；MiniMax M3.1 Flash（42.71 分）M Plan 订阅等额折算点全部被 Claude Max 20x x Haiku 5.5 (43.40 分 @ $0.0034) 绝对支配；GitHub Copilot 旧模型强制退役进入第 11 天（Day 11 / T+10）。",
+    "【核心判定 8：当前 Pareto 前沿今日整体保持绝对稳固，无需修改任何采用值】今日 Pareto 成本前沿（4 个点：Haiku 5.5, Muse Spark 1.3, GPT-6.1 Sol x Plus, GPT-6.1 Sol x Pro 20x）与单价前沿（5 个点：Haiku 5.5, DeepSeek Flash, Muse Spark 1.3, GPT-6.1 Sol, Claude Sonnet 5.5）结构清晰稳健。Gemini 4 Carbon 虽刷新全球智力至 59.43 分但单任务成本高且无廉价包月；ChatGPT Pro 200 额度宽限期今夜 23:59 截止（T-0），明日将面临 chatgpt_pro_20x 退出的结构性重排。今日无任何变量能够突破现有 Pareto 包络，基线保持稳固，建议 Lead 今日维持现有采用值不变（changed=false）。"
+  ]
+}

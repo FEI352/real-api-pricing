@@ -81,6 +81,11 @@ def main() -> int:
         print(f"ERROR: {src} 里找不到含 name/slug/intelligenceIndex 的载荷数组（页面结构可能变了）。", file=sys.stderr)
         return 1
 
+    for r in rows:
+        if r.get("terminalBench40") is None and isinstance(r.get("scores"), dict):
+            if "terminalbench-4-0" in r["scores"]:
+                r["terminalBench40"] = r["scores"]["terminalbench-4-0"]
+
     Path(args.out).write_text(json.dumps(rows, ensure_ascii=False), encoding="utf-8")
     print(f"decoded rsc chars: {len(decoded)}", file=sys.stderr)
     print(f"models rows: {len(rows)}", file=sys.stderr)

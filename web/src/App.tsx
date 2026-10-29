@@ -409,8 +409,18 @@ function Explorer({
   }, [data, view, selected, vendors, plans, billing, confidence, feeBand]);
   const opts = useMemo(() => options(data), [data]);
   // Retired models stay in the dataset but are not selected by default.
+  // Claude Haiku 5.5: only >100k subscription tiers are selected by default (exclude <=100k, 50/50, and API).
   const defaultSelectedIds = useMemo(
-    () => data.points.filter((p) => !p.deprecated).map((p) => p.id),
+    () =>
+      data.points
+        .filter((p) => {
+          if (p.deprecated) return false;
+          if (p.model === "claude-haiku-5.5") {
+            if (!p.id.includes("over100k")) return false;
+          }
+          return true;
+        })
+        .map((p) => p.id),
     [data],
   );
   const selectedIds = useMemo(
@@ -628,14 +638,24 @@ function Explorer({
             >
               {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
             </button>
-            <button
-              className="language"
-              lang={zh ? "en" : "zh-CN"}
-              onClick={() => patch({ lang: zh ? "en" : "zh" })}
-              title={zh ? "Switch to English" : "切换为中文"}
-            >
-              {zh ? "EN" : "中文"}
-            </button>
+            <div className="lang-toggle" role="group" aria-label={t("Language switcher", "语言切换")}>
+              <button
+                type="button"
+                className={`lang-btn ${!zh ? "active" : ""}`}
+                onClick={() => patch({ lang: "en" })}
+                title="Switch to English"
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                className={`lang-btn ${zh ? "active" : ""}`}
+                onClick={() => patch({ lang: "zh" })}
+                title="切换为简体中文"
+              >
+                CN
+              </button>
+            </div>
             <a
               href={REPO}
               className="icon-button github"

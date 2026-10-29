@@ -190,6 +190,134 @@
       "confidence": "low",
       "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Argon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Argon 三段价见 list-prices-gemini-4-argon-round1-2026-10-01.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
       "note": "新增 20.30 亿：土区额度池与美国版相同（与地区无关），标准价折算后与 google_ai_ultra_5x_us_std 同值。real = 29.73 ÷ 2,030 MTok = $0.014645/MTok，仍为美国标准价口径 $99.99 的 29.7%。"
+    },
+    {
+      "plan_id": "google_ai_pro_us",
+      "plan_name": "Google AI Pro",
+      "plan_name_en": "Google AI Pro",
+      "price": 19.99,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 8.12,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 8.12 亿：7d $200 ÷ 官方 5× = 7d $40，×4 周 = $160/月，÷ 促销 blended $0.197/MTok。与同档 flash 点（25.81 亿）不冲突：Carbon 是独立小额度池，两者是不同模型口径。12-01 促销结束后按标准价 $0.394/MTok 折算只剩 4.06 亿，除非 Google 同步上调 credits。标准价口径见 google_ai_*_std 点。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_us",
+      "plan_name": "Google AI Ultra 5x",
+      "plan_name_en": "Google AI Ultra 5x",
+      "price": 99.99,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 40.61,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 40.61 亿：7d $200（Keeper 基准）×4 周 = $800/月 ÷ $0.197/MTok。同档 flash 点 129.05 亿，Carbon 口径只有其 31%，这就是「Carbon 额度少」的量化结果。12-01 后标准价折算降为 20.30 亿。标准价口径见 google_ai_*_std 点。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_20x_us",
+      "plan_name": "Google AI Ultra 20x",
+      "plan_name_en": "Google AI Ultra 20x",
+      "price": 199.99,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 162.44,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 162.44 亿：7d $200 × 4（20× ÷ 5×）= 7d $800，×4 周 = $3200/月 ÷ $0.197/MTok。纯倍率外推，无任何 20x 侧实测；12-01 后标准价折算降为 81.22 亿。标准价口径见 google_ai_*_std 点。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_tr",
+      "plan_name": "Google AI Ultra 5x (土耳其)",
+      "plan_name_en": "Google AI Ultra 5x (Turkey)",
+      "price": 29.73,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 40.61,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 40.61 亿：额度与美国版同池（与地区无关），价格取土耳其官网直购 TRY 1,479.99 ≈ $29.73。real = 29.73 ÷ 4,061 MTok = $0.007321/MTok，为美国版 $99.99 的 29.7%。即土区用 30% 的价格买同样的 Carbon 额度，但绝对量仍只有同档 flash 点的 31%。标准价口径另立 google_ai_*_std 点（额度减半），见同批录入。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_pro_us_std",
+      "plan_name": "Google AI Pro（标准价）",
+      "plan_name_en": "Google AI Pro (Standard)",
+      "price": 19.99,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 4.06,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 4.06 亿：与 google_ai_pro_us 同一月池 $160/月，但按 12-01 后的标准价 blended $0.394/MTok 折算，额度恰好是促销口径 8.12 亿的一半。价格仍记 $19.99，故 real 单价翻倍至 $0.0492/MTok。两个点同模型同分，本点更贵，属被支配的额度情景，不应进前沿。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_us_std",
+      "plan_name": "Google AI Ultra 5x（标准价）",
+      "plan_name_en": "Google AI Ultra 5x (Standard)",
+      "price": 99.99,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 20.3,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 20.30 亿：同 $800/月池 ÷ $0.394/MTok，为促销口径 40.61 亿的一半。这正是社区所说「12-01 促销结束额度再砍一半」的量化结果 —— 若 Google 不调整 credits，token 直接腰斩。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_20x_us_std",
+      "plan_name": "Google AI Ultra 20x（标准价）",
+      "plan_name_en": "Google AI Ultra 20x (Standard)",
+      "price": 199.99,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 81.22,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 81.22 亿：同 $3200/月池 ÷ $0.394/MTok，为促销口径 162.44 亿的一半。纯倍率外推，无 20x 侧实测。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_tr_std",
+      "plan_name": "Google AI Ultra 5x 土耳其（标准价）",
+      "plan_name_en": "Google AI Ultra 5x Turkey (Standard)",
+      "price": 29.73,
+      "currency": "USD",
+      "model": "gemini-4-carbon",
+      "monthly_yi": 20.3,
+      "confidence": "low",
+      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
+      "note": "新增 20.30 亿：土区额度池与美国版相同（与地区无关），标准价折算后与 google_ai_ultra_5x_us_std 同值。real = 29.73 ÷ 2,030 MTok = $0.014645/MTok，仍为美国标准价口径 $99.99 的 29.7%。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
     }
   ]
 }
