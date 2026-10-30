@@ -60,6 +60,7 @@ SCORE_FILES = (
     "scores-kimi-k31-pro-round1-2026-10-27.json",
     "scores-aa-round6-2026-10-28.json",
     "scores-aa-round6-2026-10-29.json",
+    "scores-aa-round6-2026-10-30.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
     "scores-code-arena-round2-2026-10-01.json",
