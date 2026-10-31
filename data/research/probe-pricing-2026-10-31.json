@@ -1,0 +1,324 @@
+{
+  "collectedAt": "2026-10-31",
+  "checkedAt": "2026-10-31T09:15:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, MiniMax, StepFun, Mistral, GitHub Copilot, Kimi/Moonshot, Command Code GOAT, OpenCode Go 等）与上游 upstream/main 18 个新提交评估及既有模型标价与采用值核验",
+  "summary": "2026-10-31 官方 API 标价与采用值排查结论：1) 上游 18 提交评估：/tmp/upstream.json 检出 upstream/main 相对 HEAD (84e4acc) 存在 18 个新提交（mergeBase: d2df196fe37960e88037c512fb5508021ef7157c, upstreamHead: e0037cfc7762410d8035fa1dbb3f03c7e6252442），verdict 为 review。评估结论：① PR #164 (OpenCode Go Teams + MiniMax M3 分段价)：OpenCode Go 新增 Go Teams $20/member/month 档（每模型 allowance = Go + $5），MiniMax M3 增加 >512K 上下文翻倍价；显式声明为 research-only，无 plan_id，不改采用值。② PR #153 (GOAT pricing page sync)：Command Code /pricing 页面同步 'Up to $100' 措辞消除与 docs 不一致，每模型 allowance 上限未变，不改采用值（纯 research）。③ PR #142 (Kimi v2 quota + 19.46B 换基)：上游以维护者 k3.1-pro 实测 37.36M / 1.92% = 19.46 亿直接重估了既有 kimi_allegretto_cn::kimi-k3 采用值，并新增 Go/Plus/Pro/Max/Ultra 新套餐（v2=v1/2 额度）。与本地存在严重冲突：本地在 extra_subscriptions.json 配置了 kimi_ultra_cn ($199 USD 国际档)，而上游在 SUBS 注册了 kimi_ultra_cn (¥1399 CNY 国内档)；且本地已独立收录 kimi-k3.1-pro，若直接合并将导致 plan_id 撞车与重复行。④ PR #147 (GOAT shared pool)：Command Code GOAT 官网月池/窗口措辞由 $70/$14/$35 调整为 up to $100/$20/$50，纯 research。⑤ PR #146 (2026-10-27 X signals)：录入 4 份社交媒体公开信号 JSON，纯 research。⑥ PR #127 (DeepSeek 1017 检查点)：系 10-20 历史分支于 10-27 合入，触及 6 个核心代码与校验文件（build_adopted.py, compute.py, verify_benchmark_configs.py 等），本地早在 10-20 经 07ff4cd 完成 1017 检查点更新与架构重构，盲目合并会导致大范围时序倒流与代码冲突。综上：严格遵循 RUNBOOK §2.3，严禁自动 merge，维持独立手工对齐。2) 官方价格与套餐情报：① OpenAI：ChatGPT Pro 20x 额度腰斩计划正式取消后常态运行，原有老用户 20x 额度长期稳定；GPT-6.1 Terra 标价 input $1.00 / output $5.00 / cachedInput $0.05 稳定。② DeepSeek：Search & Fetch 独立计费将于明日 2026-11-01 00:00 生效 ($0.75/1,000 requests)，今日为免费期最后一天（T-1 倒计时）。③ Google：Gemini 4 Carbon 首发优惠价 $2.00/$10.00 (cache $0.10) 持续至 12-01，AA 智力榜 59.43 分稳居全球第一。④ Anthropic：Claude 5.5 系列（Sonnet 5.5, Haiku 5.5）标价保持稳定，新版 Usage Policy 定于 11-12 生效（T-12 倒计时）。⑤ Mistral AI：Mistral Large 4 ('Le Chonk' 1T MoE, 52B active) 开源权重进入 Day 3，API 标价维持 $0.68/$2.09 (cache $0.07)。3) 标价档完整性核查：本日库内模型（含 Gemini 4 Carbon, GPT-6.1 Terra, Claude 5.5, Kimi K3.1 Pro 等）已具备完备的 list-prices 档；无新模型入库，无需新建 list-prices 文件。4) build_adopted.py 状态：现有逻辑与派生规则完全完备，无需修改，0 diff 保持现状。5) 协同待办：Lead 在 compute.py 的 SCORE_FILES 注册今日 AA 快照 scores-aa-round6-2026-10-31.json（位置紧随 2026-10-30 之后），除此之外无其他行需要新增。",
+  "vendors": {
+    "OpenAI": {
+      "status": "pro20x_permanent_stable",
+      "recentChanges": [
+        "ChatGPT Pro 20x 宽限期终点已过（2026-10-29 确认取消削减至 10x 计划），老用户 20x 额度永久维持，Work 与 Codex 配额翻倍，chatgpt_pro_20x 套餐长期稳定",
+        "GPT-6.1 Terra（gpt-6.1-terra）三段标价 input $1.00 / output $5.00 / cachedInput $0.05 维持稳定，list-prices-gpt-61-terra-round1-2026-10-28.json 覆盖完备",
+        "ChatGPT Plus ($20) / Pro 5x ($100) / Pro 20x ($200) 对应 gpt-6.1-terra 的采用值派生行运行良好",
+        "GPT-6 Astra/Sol/Luna 及 GPT-6.1 Sol 标价维持稳定"
+      ],
+      "handling": "标价档与采用值派生稳定，无需新建标价档"
+    },
+    "Mistral": {
+      "status": "large4_open_weights_day3",
+      "recentChanges": [
+        "Mistral Large 4 ('Le Chonk', 1T MoE / 52B active) 于 2026-10-29 正式开源权重，当前运行在 Day 3",
+        "Mistral Studio API 标价维持：$0.68 输入 / $2.09 输出 / $0.07 缓存读取",
+        "AA Intelligence Index 实测得分 38.0，Terminal-Bench 4.0 领跑开源模型，目前尚无主流开发者订阅渠道落地"
+      ],
+      "handling": "持续监控是否有主流订阅渠道（如 Cursor/OpenCode）引入该模型"
+    },
+    "DeepSeek": {
+      "status": "search_fetch_billing_countdown_t1",
+      "recentChanges": [
+        "Search & Fetch API 独立收费 $0.75/1,000 requests 计划于 2026-11-01 00:00 BJT 正式生效（倒计时最后 1 天，T-1），今日为免费期最后一天",
+        "DeepSeek-V4.1-Flash 闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 维持稳定",
+        "DeepSeek-V4.1-Flash 稳居 AA 1017 检查点（45.10 智力指数 / 33.84% TB4）"
+      ],
+      "handling": "标价档覆盖完备，无需新建标价档"
+    },
+    "Google": {
+      "status": "carbon_and_argon_fully_integrated",
+      "recentChanges": [
+        "Gemini 4 Carbon 首发 50% 优惠目录价 input $2.00 / output $10.00 / cachedInput $0.10（优惠期至 2026-12-01），list-prices-gemini-4-carbon-round1-2026-10-29.json 覆盖完备",
+        "AA 智力榜出分 59.4257 (#1 全球第一)，TB4 得分 65.1515%",
+        "Google AI 套餐 8 个点位（Pro / Ultra 5x / Ultra 20x 促销与标准档）在 extra_subscriptions.json 运行良好",
+        "Gemini 4 Argon 维持 $2.00/$10.00 首发优惠价，Gemini 3.8 Flash 维持 $0.75/$3.75 优惠价"
+      ],
+      "handling": "标价档与订阅点已全部就绪，等待 Lead 在 compute.py 注册快照"
+    },
+    "Anthropic": {
+      "status": "stable",
+      "recentChanges": [
+        "Claude Haiku 5.5（<=100k 档 $0.10/$0.50、>100k 档 $0.50/$2.50）维持 3 档情景建模，verify_haiku55_tiers 守卫验证通过",
+        "Claude Sonnet 5.5 维持 round2 标价档（缓存读 $0.10/MTok）",
+        "Claude Opus 5.5 维持 $4.00/$20.00 (cache $0.20)，Claude Fable 5.1 维持 $10.00/$50.00 (cache $0.25)",
+        "新版防滥用 Usage Policy 定于 2026-11-12 生效（倒计时 T-12 天）",
+        "今日官方无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，无须新建标价档"
+    },
+    "MiniMax": {
+      "status": "stable",
+      "recentChanges": [
+        "MiniMax-M3.1-Flash-Preview 官方按量价维持：$0.15 输入 / $0.60 输出 / $0.015 缓存读取",
+        "list-prices-minimax-m31-round1-2026-10-19.json 采用 96% 缓存覆盖档内混合价 $0.02265/MTok",
+        "AA 智力榜出分稳定 42.7057，Terminal-Bench 4.0 出分 25.7576%",
+        "OpenCode Go 渠道 PR #164 记录 MiniMax M3 分档计费（>512K 翻倍为 $0.60/$2.40/cache $0.12），项目基准负载不触及超大窗口，保持现有采用值"
+      ],
+      "handling": "全链路均已纳管完成，无须新建标价档"
+    },
+    "Kimi_Moonshot": {
+      "status": "k31_pro_stable",
+      "recentChanges": [
+        "Kimi K3.1 Pro 官方三段价通过 list-prices-kimi-k31-round1-2026-10-27.json 验证（$2/$10/$0.2，blended $0.294/MTok）",
+        "AA 智力榜得分 55.0869 稳定在榜",
+        "Kimi 99/199/699/Ultra 四档按 1.5× 价比在 extra_subscriptions.json 运行良好",
+        "K3.1 Pro 开源权重发布倒计时 T-4 天",
+        "上游 PR #142 (Kimi v2 quota) 存在 plan_id 碰撞与口径分歧，维持隔离"
+      ],
+      "handling": "本地 list-prices 与 score 档已就绪，保持独立模型区分口径"
+    },
+    "Command_Code_GOAT": {
+      "status": "stable",
+      "recentChanges": [
+        "上游 PR #153 确认官网 /pricing 页面已同步 GOAT 'Up to $100' 措辞",
+        "每模型 allowance 额度上限未变（如 DeepSeek $80, Claude $20 等），维持现有采用值不变"
+      ],
+      "handling": "保持研究归档，无须新建标价档，无需调整采用值"
+    },
+    "OpenCode_Go": {
+      "status": "teams_tier_published_research_only",
+      "recentChanges": [
+        "2026-10-30 官方上线 Go Teams 计划（$20/member/month，每模型月额度 = Go + $5），上游 PR #164 收录为 research-only，无 plan_id，不改变采用值",
+        "现有 15 款在库模型采用值与目录价稳定生效",
+        "Argon 优惠与 Kimi K3.1 Pro 计费行维持 research-only"
+      ],
+      "handling": "无须修改采用值，保持研究追踪"
+    },
+    "StepFun": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "Step-5 Preview 600B MoE 维持 API 标价 $2.00/$0.70（缓存 $0.05/$0.10）",
+        "开源进入 Day 16，AA Coding Agent 载荷实测 51.2 分，尚未入 AA curated 智力主榜且无独立开发者 SaaS 订阅"
+      ],
+      "handling": "持续跟踪聚合渠道落地与 AA 正榜更新"
+    },
+    "GitHub_Copilot": {
+      "status": "monitor_only",
+      "recentChanges": [
+        "全面推行 AI Credits 计量体系，6 款旧模型已退役生效",
+        "项目现有点集无 Copilot 依赖"
+      ],
+      "handling": "维持现状，无须修改"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 18,
+    "head": "84e4acc60480d84e349660f67a146bddb748147e",
+    "upstreamHead": "e0037cfc7762410d8035fa1dbb3f03c7e6252442",
+    "mergeBase": "d2df196fe37960e88037c512fb5508021ef7157c",
+    "verdict": "review",
+    "reason": "18 个新提交；触及非生成物数据目录；冲突风险前缀文件 6 个；与本地脏文件重叠 0 个",
+    "commits": [
+      {
+        "hash": "e0037cf",
+        "subject": "Merge pull request #164 from klarkxy/data/opencode-go-teams-evidence-2026-10-30",
+        "evaluation": "合入 PR #164，记录 OpenCode Go Teams $20/member 档与 MiniMax M3 >512K 分段价。纯 research 变动，不改采用值。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，无冲突。"
+      },
+      {
+        "hash": "6bd2785",
+        "subject": "Research: OpenCode Go 新增 Go Teams $20/member/month 档（每模型限额 = Go + $5）与 MiniMax M3 >512K 分段价（research-only，不改采用值）",
+        "evaluation": "PR #164 内容提交，增加 data/research/opencode-go-teams-round1-2026-10-30.json。声明为 research-only，无 plan_id，不改变采用值。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，无需改动代码。"
+      },
+      {
+        "hash": "63e8bee",
+        "subject": "Merge pull request #153 from klarkxy/data/goat-pricing-page-sync-2026-10-28",
+        "evaluation": "合入 PR #153，确认 Command Code /pricing 同步 GOAT 'Up to $100'。纯 research 变动，不改采用值。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，无冲突。"
+      },
+      {
+        "hash": "03d816b",
+        "subject": "Research: Command Code /pricing 已同步 GOAT \"Up to $100\"（10-27 与 docs 不一致消除；每模型 allowance 未变；不改采用值）",
+        "evaluation": "PR #153 内容提交，增加 data/research/goat-shared-pool-round2-2026-10-28.json。每模型配额上限未变，声明不改采用值。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，无需改动代码。"
+      },
+      {
+        "hash": "75920ca",
+        "subject": "Merge pull request #142 from Fei2411/devin/1793033449-kimi-v2-quota",
+        "evaluation": "合入 Kimi v2 套餐额度与 k3.1-pro 实测换基（19.46B）。高冲突风险：上游在 SUBS 直接写死 kimi_ultra_cn (¥1399)，与本地 extra_subscriptions.json 中的 kimi_ultra_cn ($199 USD) 碰撞；且重估既有 kimi-k3 采用值会破坏本地已闭环的 kimi-k3.1-pro 独立模型结构。",
+        "conflictRisk": "high",
+        "recommendation": "严禁直接 merge。维持本地独立模型拆分与 extra_subscriptions 口径。"
+      },
+      {
+        "hash": "b631dfc",
+        "subject": "Merge main into devin/1793033449-kimi-v2-quota",
+        "evaluation": "PR #142 分支合并上游 main 历史提交。",
+        "conflictRisk": "medium",
+        "recommendation": "略过。"
+      },
+      {
+        "hash": "5a3ac6d",
+        "subject": "Merge pull request #127 from Fei2411/devin/1792510964-deepseek-1017-boards-quota",
+        "evaluation": "合入 DeepSeek 1017 检查点分支。高冲突风险：触及 build_adopted.py, compute.py, verify_benchmark_configs.py 等 6 个核心文件，本地早在 10-20 经 07ff4cd 完成 1017 检查点全量纳管，合并会导致严重代码与数据冲突。",
+        "conflictRisk": "high",
+        "recommendation": "严禁合并，本地已具备完整且更新的 1017 检查点及后续模型支持。"
+      },
+      {
+        "hash": "90de8d8",
+        "subject": "Merge pull request #146 from Fei2411/daily-2026-10-27-pricing-signals",
+        "evaluation": "合入 10-27 社交媒体公开定价信号。纯 research 变动，不改采用值。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究背景，无需改动代码。"
+      },
+      {
+        "hash": "1b183e4",
+        "subject": "Kimi k3 rows: sample date to 2026-10-27 for the re-based measurement",
+        "evaluation": "PR #142 子提交，修改采样日期至 10-27。",
+        "conflictRisk": "medium",
+        "recommendation": "不予合并。"
+      },
+      {
+        "hash": "4db872e",
+        "subject": "Kimi Allegretto k3: re-base monthly pool to 19.46B on maintainer's k3.1-pro measurement",
+        "evaluation": "PR #142 核心提交，将 Allegretto k3 月池换基为 19.46 亿。将 k3.1-pro 测量回灌至 k3 既有行，与本地保留 k3 独立性冲突。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并。"
+      },
+      {
+        "hash": "dc936be",
+        "subject": "Merge pull request #147 from klarkxy/goat-shared-pool-up-to-100-2026-10-27",
+        "evaluation": "合入 PR #147，GOAT 官网月池措辞说明。纯 research 变动，不改采用值。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，无需改动代码。"
+      },
+      {
+        "hash": "bbcfec7",
+        "subject": "Research: Command Code GOAT 官网月池/窗口措辞 $70/$14/$35 → up to $100/$20/$50（每模型 allowance 未变；不改采用值）",
+        "evaluation": "PR #147 内容提交，增加 data/research/goat-shared-pool-round1-2026-10-27.json。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究结论，无需改动代码。"
+      },
+      {
+        "hash": "2578751",
+        "subject": "research: 2026-10-27 daily X pricing signals (#143 #144 #145)",
+        "evaluation": "PR #146 内容提交，增加 4 份研究 JSON。",
+        "conflictRisk": "none",
+        "recommendation": "吸收研究背景，无需改动代码。"
+      },
+      {
+        "hash": "1116c7d",
+        "subject": "Kimi v2 plans: adopt quotas at half of same-price v1 tiers",
+        "evaluation": "PR #142 核心提交，增加 Kimi v2 套餐派生规则。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并。"
+      },
+      {
+        "hash": "1ba37f0",
+        "subject": "Refresh snapshot date to 2026-10-20",
+        "evaluation": "PR #127 子提交，将快照日期刷新至 10-20。",
+        "conflictRisk": "high",
+        "recommendation": "本地已推进至 10-31，拒绝倒退。"
+      },
+      {
+        "hash": "b635101",
+        "subject": "Update web test for GOAT DeepSeek V4.1 Flash $80 credits",
+        "evaluation": "PR #127 子提交，修改 web/src/domain.test.ts。",
+        "conflictRisk": "medium",
+        "recommendation": "本地已有相应测试覆盖。"
+      },
+      {
+        "hash": "0a68b11",
+        "subject": "Bump conventions updatedAt to 2026-10-20",
+        "evaluation": "PR #127 子提交，修改 conventions.json。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并。"
+      },
+      {
+        "hash": "7574c70",
+        "subject": "Data: DeepSeek V4.1 Flash 1017 榜单分数 + 榜单刷新 + OpenCode Go/GOAT 用量复核 (2026-10-20)",
+        "evaluation": "PR #127 核心数据提交，包含大量 10-20 分数快照与配置变更。",
+        "conflictRisk": "high",
+        "recommendation": "不予合并。"
+      }
+    ],
+    "changedFiles": [
+      "scripts/build_adopted.py",
+      "scripts/compute.py",
+      "scripts/checks/verify_benchmark_configs.py",
+      "scripts/checks/verify_deepswe.py",
+      "scripts/plot_svg.py",
+      "web/src/domain.test.ts",
+      "data/adopted.csv",
+      "data/conventions.json",
+      "data/i18n/adopted.en.json",
+      "data/research/opencode-go-teams-round1-2026-10-30.json",
+      "data/research/goat-shared-pool-round2-2026-10-28.json"
+    ],
+    "recommendation": "严禁执行 git merge upstream/main！18 个新提交中有 8 个触及代码与核心数据且存在时序倒流与结构冲突。Kimi v2 套餐与 19.46B 换基需在解决 extra_subscriptions.json 中 kimi_ultra_cn 冲突后，由 Lead 统一手工对齐；GOAT 措辞、X 信号与 OpenCode Go Teams 为纯研究，不影响采用值；PR #127 历史提交全部忽略。"
+  },
+  "candidates": [
+    {
+      "model": "chatgpt-pro-20x-permanent",
+      "type": "quota_reduction_cancellation",
+      "status": "confirmed_permanent",
+      "notes": "OpenAI 官方于 2026-10-29 宽限期终结之日正式取消削减至 10x 计划，老用户 20x 额度获得永久维持，且 Work/Codex 配额翻倍。chatgpt_pro_20x 保持原样生效，无需降权。"
+    },
+    {
+      "model": "mistral-large-4",
+      "type": "new_model_open_weights_released",
+      "status": "weights_released_monitoring_saas",
+      "notes": "Mistral AI 于 2026-10-29 正式开源 Mistral Large 4 ('Le Chonk' 1T MoE, 52B active)，API $0.68/$2.09 (cache $0.07)，AA 智力指数 38.0，TB4 领跑开源榜首。目前缺乏主流订阅套餐落地，保持监控。"
+    },
+    {
+      "model": "deepseek-search-fetch-api",
+      "type": "api_billing_start_countdown",
+      "status": "countdown_t1",
+      "notes": "DeepSeek Search & Fetch API 独立收费 $0.75/1,000 requests 将于明日 2026-11-01 00:00 生效，今日为免费最后一天（倒计时 T-1 天）。"
+    },
+    {
+      "model": "gemini-4-carbon",
+      "type": "model_fully_integrated",
+      "status": "awaiting_lead_compute_registration",
+      "notes": "Google Gemini 4 Carbon 标价 input $2.00 / output $10.00 / cache $0.10，AA 智力榜出分 59.4257 (#1 全球第一)。标价档与 8 个订阅点已闭环，等待 Lead 在 compute.py 注册快照。"
+    },
+    {
+      "model": "gpt-6.1-terra",
+      "type": "model_fully_integrated",
+      "status": "awaiting_lead_compute_registration",
+      "notes": "OpenAI GPT-6.1 Terra 标价 input $1.00 / output $5.00 / cache $0.05。ChatGPT Plus/Pro 5x/Pro 20x 采用行已由 build_adopted.py 派生并闭环，等待 Lead 在 compute.py 注册快照。"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "type": "model_fully_integrated",
+      "status": "open_weights_countdown_t4",
+      "notes": "Kimi K3.1 Pro 官方三段价 $2/$10/$0.20，AA 智力分 55.0869，4 档订阅点在 extra_subscriptions.json 运行良好。开源权重倒计时 T-4 天。"
+    },
+    {
+      "model": "opencode-go-teams",
+      "type": "channel_new_tier_research_only",
+      "status": "research_only",
+      "notes": "上游 PR #164 录入 OpenCode Go Teams $20/member/month 档（每模型 allowance = Go + $5）与 MiniMax M3 >512K 翻倍价。显式标注 research-only，无对应 plan_id，不改变采用值。"
+    },
+    {
+      "model": "kimi-v2-plans",
+      "type": "subscription_generation_upgrade",
+      "status": "upstream_review_pending",
+      "notes": "上游 PR #142 引入 Kimi v2 套餐（Plus/Pro/Max/Ultra，v2=v1/2 额度）。因与本地 extra_subscriptions.json 的 kimi_ultra_cn 存在 plan_id 碰撞，建议维持本地独立模型拆分口径，不建议直接吸收。"
+    },
+    {
+      "model": "command-code-goat-shared-pool",
+      "type": "channel_wording_change",
+      "status": "research_only",
+      "notes": "上游 PR #153 (goat-shared-pool-round2-2026-10-28.json) 确认官网 /pricing 页面同步 'Up to $100' 措辞，每模型 allowance 额度上限未变，采用值保持现有口径不变。"
+    },
+    {
+      "model": "step-5-preview",
+      "type": "new_model_moe_open_weights",
+      "status": "monitoring",
+      "notes": "定价 $2.00/$0.70，开源进入 Day 16，AA Coding Agent 载荷实测 51.2 分，尚未入 AA curated 智力主榜且无独立开发者订阅，保持监控。"
+    }
+  ]
+}
