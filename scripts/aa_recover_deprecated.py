@@ -110,7 +110,11 @@ def main() -> int:
     args = ap.parse_args()
 
     snap_p = Path(args.snapshot)
+    if not snap_p.is_file() and (ROOT / "data" / "research" / args.snapshot).is_file():
+        snap_p = ROOT / "data" / "research" / args.snapshot
     prior_p = Path(args.prior)
+    if not prior_p.is_file() and (ROOT / "data" / "research" / args.prior).is_file():
+        prior_p = ROOT / "data" / "research" / args.prior
     if not snap_p.is_file():
         print(f"ERROR: 读不到新快照 {snap_p}", file=sys.stderr)
         return 1
