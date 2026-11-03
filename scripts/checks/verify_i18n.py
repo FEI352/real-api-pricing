@@ -136,7 +136,29 @@ def check_numbers(zh: str, en: str) -> list[str]:
         if aug(i, [False] * len(zh_vals)):
             matched += 1
     if matched != len(items) or len(zh_vals) != len(items):
-        problems.append(f'zh nums {sorted(str(v) for v, _ in zh_vals)} vs en {[t for t, _, _ in items]}')
+        # 2026-11-04 加诊断：只列两个数组时，人得自己反推「亿要配 B/M、万要配 K」，
+        # 一次录入能耗上十步往返。这里直接把无对应项与正确写法给出来。
+        used_en = {i for i in match if i >= 0}
+        used_zh = set(match) - {-1}
+        orphan_en = [t for i, (t, _, _) in enumerate(items) if i not in used_en]
+        orphan_zh = [
+            f'{v}{"亿" if tag == "yi" else "万" if tag == "wan" else ""}'
+            for j, (v, tag) in enumerate(zh_vals) if j not in used_zh
+        ]
+        hints = []
+        for v, tag in zh_vals:
+            if tag == 'yi':
+                hints.append(f'{v}亿 对应 en "{float(v) / 10:.6g}B" 或 "{float(v) * 100:.6g}M"')
+            elif tag == 'wan':
+                hints.append(f'{v}万 对应 en "{float(v) * 10:.6g}K"')
+        msg = f'zh nums {sorted(str(v) for v, _ in zh_vals)} vs en {[t for t, _, _ in items]}'
+        if orphan_en:
+            msg += f'\n    en 侧无对应: {orphan_en}（多为多余数字/千分位逗号/序号 (1)(2)(3)）'
+        if orphan_zh:
+            msg += f'\n    zh 侧无对应: {orphan_zh}'
+        if hints:
+            msg += '\n    单位铁律（必守）: ' + '; '.join(dict.fromkeys(hints))
+        problems.append(msg)
     return problems
 
 

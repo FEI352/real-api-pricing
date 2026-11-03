@@ -177,17 +177,44 @@ def main() -> int:
     changed = sorted({p for p in diff.stdout.splitlines() if p.strip()})
     base["files"] = {"count": len(changed), "changed": changed}
 
+    def _clean(path: str) -> str:
+        # git 对非 ASCII 路径默认输出 C 风格转义并加引号，形如
+        # "charts/zh/frontier/\345\211\215..."。不先还原，startswith("charts/") 永远为 False，
+        # 生成物就会被误判成源码，进而伪造出「源码级双改 35 个」的假冲突（2026-11-04 实测）。
+        p = path.strip()
+        if p.startswith('"') and p.endswith('"'):
+            try:
+                p = p[1:-1].encode("latin-1", "backslashreplace").decode("unicode_escape")
+            except (UnicodeDecodeError, UnicodeEncodeError):
+                p = p.strip('"')
+        return p
+
     def is_generated(path: str) -> bool:
-        return path.startswith(GENERATED_PREFIXES) or path in GENERATED_FILES
+        c = _clean(path)
+        return c.startswith(GENERATED_PREFIXES) or c in GENERATED_FILES
 
     data_files = [p for p in changed if p.startswith("data/")]
-    dirty = local_dirty_paths(args.timeout)
+    dirty = {_clean(p) for p in local_dirty_paths(args.timeout)}
+    changed = sorted({_clean(p) for p in changed})
+    base["files"] = {"count": len(changed), "changed": changed}
+    # 2026-11-04 修正：本地脏文件里的「生成物」（charts/ · derived/ · data/research/ ·
+    # web/public/data/ · adopted.csv）是重建产物，stash 后重新生成即可，不构成合并冲突。
+    # 此前把它们一并计入 localOverlap，导致 2026-10-30 起连续 5 天判「高冲突风险不合并」，
+    # 上游 29 个提交（含 customProviders / pricingPrompt 等前端功能）一天都没进来。
+    # 真正的冲突判据只有一个：上游改了 **且** 本地也改了，且不是生成物。
+    dirty_src = {p for p in dirty if not is_generated(p)}
     flags = {
         "touchesData": bool(data_files),
         "touchesDataSignificant": bool([p for p in data_files if not is_generated(p)]),
         "touchesGeneratedOutputs": bool([p for p in changed if is_generated(p)]),
-        "conflictRiskPrefixes": sorted({p for p in changed if p.startswith(RISK_PREFIXES)}),
+        # 真冲突：上游与本地同时改到同一源码文件
+        "conflictRiskPrefixes": sorted({p for p in changed if p.startswith(RISK_PREFIXES) and p in dirty_src}),
+        # 上游单边改动的风险前缀（仅供参考，不阻断合并）
+        "riskTouchedUpstream": sorted({p for p in changed if p.startswith(RISK_PREFIXES)}),
         "localOverlap": sorted(p for p in changed if p in dirty),
+        # 与本地脏源码重叠（真正的阻断项）
+        "localOverlapSource": sorted(p for p in changed if p in dirty_src),
+        "localOverlapGenerated": sorted(p for p in changed if p in dirty and is_generated(p)),
     }
     base["flags"] = flags
     categories: dict[str, int] = {}
@@ -206,18 +233,35 @@ def main() -> int:
         bits = [f"{len(commits)} 个新提交"]
         if flags["touchesDataSignificant"]:
             bits.append("触及非生成物数据目录")
-        if flags["conflictRiskPrefixes"]:
-            bits.append(f"冲突风险前缀文件 {len(flags['conflictRiskPrefixes'])} 个")
-        if flags["localOverlap"]:
-            bits.append(f"与本地脏文件重叠 {len(flags['localOverlap'])} 个")
-        base.update(
-            verdict="review",
-            reason="；".join(bits),
-            suggestedAction=(
-                "逐个评估上游提交；不做自动 merge、不解决冲突，冲突就停下来报告（runbook §2.3）。"
-                + ("本地重叠文件必须先看 `git status --short` 再动。" if flags["localOverlap"] else "")
-            ),
-        )
+        if flags["riskTouchedUpstream"]:
+            bits.append(f"上游改动风险前缀 {len(flags['riskTouchedUpstream'])} 个")
+        if flags["localOverlapSource"]:
+            bits.append(f"源码级双改 {len(flags['localOverlapSource'])} 个（真冲突）")
+        if flags["localOverlapGenerated"]:
+            bits.append(f"生成物重叠 {len(flags['localOverlapGenerated'])} 个（可 stash 丢弃重建）")
+
+        if flags["localOverlapSource"]:
+            base.update(
+                verdict="review",
+                reason="；".join(bits),
+                suggestedAction=(
+                    "上游与本地改到了同一批源码文件，需人工逐个合并（runbook §2.3）。"
+                    "先 `git status --short` 看清本地改动，不要裸 merge。"
+                ),
+            )
+        else:
+            base.update(
+                verdict="mergeable",
+                reason="；".join(bits),
+                suggestedAction=(
+                    "无源码级双改，可直接合并："
+                    "① `git stash push --include-untracked -- <生成物路径>` 或直接 `git checkout -- <生成物>`；"
+                    "② `git merge --no-ff upstream/main`；"
+                    "③ `real-api-pricing-cli update` 重建生成物；"
+                    "④ 跑满 19 项守卫，全绿才算完成。"
+                    "合并前先确认 HEAD 可回滚（记下 merge 前 sha）。"
+                ),
+            )
     return emit(base, args.json)
 
 

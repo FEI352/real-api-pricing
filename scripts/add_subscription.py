@@ -7,6 +7,7 @@ add_subscription.py
 """
 
 import argparse
+import csv
 import json
 import math
 import os
@@ -237,6 +238,55 @@ def evaluate_frontiers(point_id):
     return results
 
 
+CJK_RE = re.compile(r"[\u4e00-\u9fff\u3000-\u303f\uff01-\uff60]")
+
+
+def infer_date_anchor(model: str) -> tuple[str, str] | None:
+    """为缺 --inherit-date 的新行找数据日期锚点。
+
+    2026-11-04 血证：此前缺 anchor 时先落盘、再由 build_adopted 抛
+    `无数据日期`，留下写了一半的脏状态，需要手工回滚。
+    """
+    csv_path = ROOT / "data/adopted.csv"
+    if not csv_path.exists():
+        return None
+    with csv_path.open(encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.DictReader(f))
+    same = [r for r in rows if r.get("served_model") == model and r.get("data_date")]
+    # 优先 sample/official 真日期，其次任意可用日期；同优先级按 plan_id 稳定排序
+    same.sort(key=lambda r: (r.get("data_date_kind") not in ("sample", "official"), r.get("plan_id", "")))
+    if not same:
+        return None
+    return same[0]["plan_id"], same[0]["served_model"]
+
+
+def preflight(args) -> None:
+    """落盘前的硬前置校验：任何一项不过，绝不动 data/extra_subscriptions.json。"""
+    # (a) 中文说明必须配英文，否则 register_i18n 会把中文原样写进 en → verify_i18n 必失败
+    for zh_flag, zh_val, en_flag, en_val in (
+        ("--source-zh", args.source_zh, "--source-en", args.source_en),
+        ("--note-zh", args.note_zh, "--note-en", args.note_en),
+    ):
+        if zh_val and CJK_RE.search(zh_val) and not (en_val or "").strip():
+            sys.exit(
+                f"❌ {zh_flag} 含中文但未提供 {en_flag}。\n"
+                f"   register_i18n 会把中文原样写进 en 条目，verify_i18n 必定报 CJK 混入。\n"
+                f"   请在本次调用里一并给出英文版（数字必须与中文一一对应）。"
+            )
+
+    # (b) 数据日期锚点缺失 → 自动沿用同模型锚点；找不到才停
+    if not args.inherit_date:
+        anchor = infer_date_anchor(args.model)
+        if anchor:
+            args.inherit_date = f"{anchor[0]},{anchor[1]}"
+            print(f"💡 未指定 --inherit-date，自动沿用锚点: {args.inherit_date}", file=sys.stderr)
+        else:
+            sys.exit(
+                f"❌ 缺 --inherit-date，且 data/adopted.csv 里没有 model={args.model} 的可用日期。\n"
+                f"   请显式指定 'plan_id,model'（锚点必须是已存在且有 data_date 的点位）。"
+            )
+
+
 def main():
     parser = argparse.ArgumentParser(description="一键添加/更新套餐并完成全流程构建校验部署")
     parser.add_argument("--plan-id", required=True, help="套餐唯一ID，如 opendesign_go")
@@ -280,7 +330,10 @@ def main():
         print("❌ 错误: 必须指定 --monthly-yi 或 --allowance-usd", file=sys.stderr)
         sys.exit(1)
         
-    # 0. 落盘增量套餐行（数据驱动入口，build_adopted.py 会读取）
+    # 0a. 落盘前硬校验（缺英文说明 / 缺日期锚点一律拒绝，避免留下脏状态）
+    preflight(args)
+
+    # 0b. 落盘增量套餐行（数据驱动入口，build_adopted.py 会读取）
     upsert_extra_row(args, yi)
 
     # 1. 注册渠道配色与前缀

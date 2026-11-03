@@ -1143,6 +1143,18 @@
       "en": "Community estimate baseline: Keeper reports the Ultra 5x Gemini 4 Carbon allowance as 5h $50 / 7d $200 (unofficial figures); official tier multipliers Pro 1x / Ultra 5x 5x / Ultra 20x 20x ( https://one.google.com/about/google-ai-plans/ ); Carbon three-part prices in list-prices-gemini-4-carbon-round1-2026-10-29.json; converted under the project standard workload cache 97% / input 2.5% / output 0.5%, monthly pool counted as 4 weeks"
     },
     {
+      "zh": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99。官网直购价参照 Google 土耳其区定价 feed（https://one.google.com/intl/ALL_tr/about/feeds/pricing_2026_07_28.json），汇率沿用本项目 Ultra 5x 土区口径（TRY 1479.99 ≈ $29.73，即 49.78 TRY/USD）。",
+      "en": "Linux.do intel thread, 2026-11-03: a Turkish-region Apple ID still shows an unretired intro offer group; in iOS Settings > Apple ID > Subscriptions > Google subscription > see all plans, the same 30TB Ultra 20X appears twice: current price TRY 8999.99 and historical promo TRY 2949.99. Direct-purchase reference from the Google Turkey pricing feed (https://one.google.com/intl/ALL_tr/about/feeds/pricing_2026_07_28.json ); FX reuses this project Ultra 5x Turkey basis (TRY 1479.99 = $29.73, i.e. 49.78 TRY/USD)."
+    },
+    {
+      "zh": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24（约合人民币 410 元），仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版同池（与地区无关）= 162.44 亿/月（gemini-4-carbon 折算，纯倍率外推）。real = 59.24 ÷ 16244 MTok = $0.003647/MTok，为美国版 $0.024623/MTok 的 14.8%。⚠️ 三条风险：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测。置信度 low。",
+      "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = $59.24 (about CNY 410), only 32.8% of the direct-purchase TRY 8999.99 (about $180.8) and 29.6% of the US $199.99. Quota shares the US pool (region-independent) = 16.244B/month (gemini-4-carbon basis, pure multiplier extrapolation). real = 59.24 / 16244 MTok = $0.003647/MTok, 14.8% of the US $0.024623/MTok. Risks: first, a leftover promo group in Apple's subscription system, which Google or Apple may retire or force-migrate at any time; second, requires a Turkish Apple ID plus TR gift-card top-up, and the list price excludes 20% TR VAT; third, quota is a 20x multiplier extrapolation with no 20x-side measurement. Confidence low."
+    },
+    {
+      "zh": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24（约合人民币 410 元），仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版同池（与地区无关）= 162.44 亿/月（gemini-4-argon 折算，纯倍率外推）。real = 59.24 ÷ 16244 MTok = $0.003647/MTok，为美国版 $0.012312/MTok 的 29.6%。⚠️ 三条风险：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测。置信度 low。",
+      "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = $59.24 (about CNY 410), only 32.8% of the direct-purchase TRY 8999.99 (about $180.8) and 29.6% of the US $199.99. Quota shares the US pool (region-independent) = 16.244B/month (gemini-4-argon basis, pure multiplier extrapolation). real = 59.24 / 16244 MTok = $0.003647/MTok, 29.6% of the US $0.012312/MTok. Risks: first, a leftover promo group in Apple's subscription system, which Google or Apple may retire or force-migrate at any time; second, requires a Turkish Apple ID plus TR gift-card top-up, and the list price excludes 20% TR VAT; third, quota is a 20x multiplier extrapolation with no 20x-side measurement. Confidence low."
+    },
+    {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
       "en": "Derived from same-plan gpt-5.6-sol 616M × 1.9342105263157894"
     },
