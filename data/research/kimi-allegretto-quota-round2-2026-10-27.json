@@ -1,0 +1,77 @@
+{
+  "collectedAt": "2026-10-27",
+  "collectionMethod": "Two maintainer screenshots of the same Allegretto account: (a) Kimi App usage analysis for K3.1 Pro over the last-7-days view (per-day token trend, model share of total usage); (b) the subscription page showing plan name Allegretto (赠送/gifted), validity to 2026-11-25, monthly total usage 1.92% (reset 2026-11-25 11:25), 5-hour Code 9.64% (reset 10-27 17:25), 7-day Code 9.61% (reset 11-02 11:25). Maintainer instruction: ignore the 5-hour figure, use the 7-day and monthly totals. Confirms the account tier left unconfirmed in kimi-v2-plans-round1-2026-10-26.json: it is a legacy v1 Allegretto (CNY 199 tier).",
+  "sources": [
+    "Maintainer subscription-page screenshot 2026-10-27 (Allegretto gifted, valid to 2026-11-25; 5h/7d/monthly usage bars)",
+    "Maintainer Kimi App usage-analysis screenshot 2026-10-27 (K3.1 Pro: 37.4M tokens in last 7 days, 37% of all-model usage; 10/27 day burst 37,362,656 tokens = 36.7M cache-read + 548K input + 120K output; 99% cache hit, 224 calls)",
+    "data/research/kimi-v2-plans-round1-2026-10-26.json (earlier tile on the same account: 692,462,663 raw tokens = 63.24% -> 1.095B weekly pool)"
+  ],
+  "scope": "Absolute weekly and monthly Code-pool sizes on a confirmed legacy Allegretto (v1, CNY 199) account, measured in raw client tokens of a mixed-model, k3.1-pro-anchored sample.",
+  "adoptionStatus": "adopted 2026-10-27: kimi_allegretto_cn x kimi-k3 monthly_yi 14.51 -> 19.46 (37,362,656 k3.1-pro raw tokens / console monthly 1.92%); cascades to kimi_moderato_cn (x4/20 -> 3.89), kimi_allegro_cn (x60/20 -> 58.38) and the v2 kimi-k3 half-rows (Plus 1.95 / Pro 9.73 / Max 29.19 / Ultra 58.38). kimi-k2.7-code rows unchanged (independent pure-model panel measurement). Prior basis 243,739,068/84% July k3-256k-mix sample superseded.",
+  "target": {
+    "plan": "Allegretto (legacy v1, CNY 199 tier; gifted subscription)",
+    "planIdCandidate": "kimi_allegretto_cn",
+    "windows": {
+      "monthlyTile": "opened ~2026-10-26 11:25, resets 2026-11-25 11:25 (same minute as renewal)",
+      "sevenDayTile": "opened 2026-10-26 11:25, resets 2026-11-02 11:25",
+      "fiveHourSlot": "resets 2026-10-27 17:25 — excluded from the calc per maintainer instruction"
+    }
+  },
+  "observed": {
+    "sevenDayCodePercent": 9.61,
+    "monthlyTotalPercent": 1.92,
+    "fiveHourCodePercent": 9.64,
+    "appSevenDayView": {
+      "k31ProTokens": 37400000,
+      "k31ProTokensExact": 37362656,
+      "k31ProShareOfAllModels": 0.37,
+      "cacheHitPercent": 99,
+      "outputTokens": 120000,
+      "calls": 224,
+      "singleVisibleDay": "2026-10-27 — the only bar in the 7-day trend",
+      "breakdown": {"cacheRead": 36700000, "input": 548000, "output": 120000}
+    }
+  },
+  "calculation": {
+    "inputs": {
+      "k31ProSevenDayTokens": 37362656,
+      "basis": "maintainer clarified 2026-10-27 that the app page's '37% of total usage' refers to their TOTAL LOCAL usage and is unrelated to the kimi plan pool — so the pool-driving consumption is the k3.1-pro figure itself (the earlier all-model extrapolation to ~101M was dropped)",
+      "sevenDayPercent": 0.0961,
+      "monthlyPercent": 0.0192
+    },
+    "weeklyPoolRawTokens": {"point": 388789344, "yi": 3.888, "formula": "37,362,656 / 9.61%"},
+    "monthlyPoolRawTokens": {"point": 1945971667, "yi": 19.46, "formula": "37,362,656 / 1.92%; monthly consumption approximated by this same burst — app view shows essentially no usage before 10/27"},
+    "poolRatioCheck": "monthly / weekly = 5.005 — reproduces the Kimi monthly = 5 x weekly rule within display rounding, so both percentages carry the same consumption",
+    "discardedVariant": {
+      "weeklyYi": 10.51,
+      "monthlyYi": 52.59,
+      "note": "earlier draft divided the ~101M all-model total (37.36M / 37% share) by the tile percentages; dropped after the maintainer clarified the 37% share is their total local usage, not pool consumption"
+    },
+    "crossCheckVsEarlierTile": {
+      "earlierWeeklyPoolYi": 10.95,
+      "source": "kimi-v2-plans-round1-2026-10-26.json screenshotMeasurement (tile 10/21–10/28, 692.5M = 63.24%)",
+      "note": "The earlier tile implies ~10.95B weekly — 2.8x this sample's 3.89B. Either the earlier account (tier then unconfirmed, now Allegretto) ran a much heavier mixed model, or its 692.5M included non-Code usage; the tile-percentage method is identical, so treat the earlier figure as a separate mixed sample, not corroboration."
+    },
+    "comparisonToAdopted": {
+      "adoptedKimi199K3MonthlyYi": 14.51,
+      "measuredMonthlyYiRaw": 19.46,
+      "ratioVsAdopted": 1.34,
+      "possibleExplanations": [
+        "k3.1-pro consumes fewer pool credits per raw token than the adopted sample's k3-256k-dominated mix — i.e. different model-equivalents.",
+        "The pool grew in the new-plan rollout (maintainer's own note: 'Kimi 的额度更新了').",
+        "This is a gifted (赠送) Allegretto whose quota could differ from a paid one."
+      ],
+      "note": "The adopted row is a k3-256k-dominated July measurement; this is a k3.1-pro October measurement. Which K3 variant's credit rate k3.1-pro uses is not officially stated (K3 1M is officially 2x of k3-256k)."
+    },
+    "notWorkloadNormalized": true,
+    "note": "Pool sizes are in raw k3.1-pro client tokens, same raw basis as the repo's existing Kimi rows. If adopted for kimi-k3 it should record the model caveat like the current 14.51B note does."
+  },
+  "whatWouldUpgradeThisSample": [
+    "Per-model breakdown of the remaining 63% of the 7-day usage, so the pool can be denominated in a single model-equivalent.",
+    "Whether the 1.92% monthly figure contains any Kimi-chat (non-Code) usage — the monthly bar legend shows separate Kimi and Code segments and the visible segment is all Code-blue.",
+    "A paid (non-gifted) Allegretto panel to check whether 赠送 accounts share the same pool size."
+  ],
+  "confidence": "medium-high for the pool arithmetic (two independent tiles agree, 5x ratio holds to 0.5%); low for mapping it onto the adopted k3 basis (model-equivalent unresolved)",
+  "basis": "maintainer_screenshots + dashboard_backcalc",
+  "redaction": "Screenshots show plan name, validity date, usage bars and per-model token counts only; no name, avatar, e-mail or account ID."
+}

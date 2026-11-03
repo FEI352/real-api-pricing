@@ -1,0 +1,68 @@
+{
+  "recordedAt": "2026-10-27",
+  "sourceType": "x_public_scan",
+  "relatedIssue": 144,
+  "adoptionStatus": "research-only; not adopted; one-time compensation event — do not rewrite Kimi monthly pool from this alone",
+  "kimiMonthPoolConvention": "月池 = 周池 × 5（CONVENTIONS）",
+  "items": [
+    {
+      "id": "x-kimi-k31-pro-apology-25pct",
+      "confidence": "Medium",
+      "planOrModel": "Kimi K3.1 Pro / Kimi Code 订阅",
+      "observed": {
+        "event": "上线后限流与不必要额度消耗；官方/转述致歉",
+        "compensation": "有效期内会员补月度总额 25%（转述约等于一周用量；不足 25% 有称重置清零）",
+        "allegedCause": "Kimi Code 默认思考强度 Max；子代理继承 Max，一次请求多子代理计额度",
+        "anecdote": "有人称 ¥699 套餐约 30 分钟烧光（showbuger）"
+      },
+      "sources": [
+        {
+          "url": "https://x.com/showbuger/status/2114870319119003935",
+          "hasScreenshot": true
+        },
+        {
+          "url": "https://x.com/Taogso/status/2114871288850448725"
+        },
+        {
+          "url": "https://x.com/thecitylion/status/2114867567235883442"
+        },
+        {
+          "url": "https://x.com/Datcalx/status/2114875977591574966"
+        },
+        {
+          "url": "https://x.com/GunpowderTwi/status/2114870127778730362"
+        },
+        {
+          "url": "https://x.com/jonny20221208/status/2114872326768705937"
+        }
+      ],
+      "gaps": [
+        "需核对官方致歉原文 URL",
+        "多为二手转述"
+      ]
+    },
+    {
+      "id": "x-deepUniverse999-kimi199-70pct",
+      "confidence": "Medium",
+      "source": {
+        "url": "https://x.com/deepUniverse999/status/2114873945409347877",
+        "account": "deepUniverse999"
+      },
+      "observed": {
+        "planPriceCny": 199,
+        "quotaUsedPctClaim": 70,
+        "context": "装个小工具就烧掉 70% 额度"
+      },
+      "gaps": [
+        "无绝对 token",
+        "无截图"
+      ]
+    }
+  ],
+  "relatedFiles": [
+    "kimi199-k31-pro-highspeed-local-round1-2026-10-24.json",
+    "goat-kimi-k31-pro-round1-2026-10-24.json",
+    "opencode-go-kimi-k31-pro-round1-2026-10-24.json",
+    "kimi-k3-quota-round9-2026-10-21.json"
+  ]
+}

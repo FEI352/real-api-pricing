@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-10-27",
+  "sourceType": "x_public_scan",
+  "relatedIssue": 143,
+  "adoptionStatus": "research-only; not adopted; do not change adopted.csv without maintainer confirmation",
+  "scopeNote": "2026-10-27 每日 X 公开搜索保留的 Claude 订阅用量信号。截图仅链原帖，不复制媒体进仓。",
+  "items": [
+    {
+      "id": "x-realNyarime-claude-pro-weekly-8p9yi",
+      "confidence": "High",
+      "planId": "claude_pro",
+      "model": "unspecified (Claude Pro 客户端/CC Switch)",
+      "source": {
+        "type": "x_post",
+        "url": "https://x.com/realNyarime/status/2114886352823292146",
+        "account": "realNyarime",
+        "createdAt": "2026-10-27T01:06:13Z"
+      },
+      "observed": {
+        "weeklyTokensYi": 8.9,
+        "dailyTokensYiApprox": 1.3,
+        "apiWorthUsdApprox": "200+",
+        "toolNamed": "CC Switch",
+        "hasScreenshot": true,
+        "screenshotNote": "原帖 2 张图；未入库复制"
+      },
+      "gaps": [
+        "无 input/cache/output 分项",
+        "无官方配额百分比",
+        "模型档未写明"
+      ]
+    },
+    {
+      "id": "x-UPedrolli-max5x-40yi-vs-chatgpt-pro5x-10yi",
+      "confidence": "High",
+      "source": {
+        "type": "x_post",
+        "url": "https://x.com/UPedrolli46470/status/2114886181683106279",
+        "account": "UPedrolli46470",
+        "createdAt": "2026-10-27T01:05:33Z"
+      },
+      "observed": {
+        "claude": {
+          "plan": "Max 5x",
+          "model": "Claude Opus 5.5",
+          "weeklyTokensYi": 40,
+          "note": "称能跑约 5 天"
+        },
+        "chatgpt": {
+          "plan": "Pro 5x",
+          "model": "ChatGPT 6.1 Sol",
+          "weeklyTokensYi": 10,
+          "note": "称不到两天用完"
+        },
+        "hasScreenshot": false
+      },
+      "gaps": [
+        "无截图",
+        "无百分比",
+        "个人对比帖"
+      ]
+    },
+    {
+      "id": "x-WoKey-claude-weekly-cut-2026-10-27",
+      "confidence": "Medium",
+      "source": {
+        "type": "x_post",
+        "url": "https://x.com/WoKey_AI/status/2114872928210919856",
+        "account": "WoKey_AI",
+        "createdAt": "2026-10-27T00:12:53Z"
+      },
+      "observed": {
+        "claimedWeeklyLimitChange": {
+          "max_20x": "-6%",
+          "pro": "-6%",
+          "team_premium": "-5%",
+          "note": "称连续第二周下降"
+        },
+        "apiWorthUsdPerWeekApprox": {
+          "max_20x": 1600,
+          "pro": 157
+        },
+        "methodClaim": "每周一用真实订阅账号实测"
+      },
+      "gaps": [
+        "第三方聚合",
+        "需与维护者面板交叉"
+      ]
+    },
+    {
+      "id": "x-arinbjornkol-weekly-not-counting",
+      "confidence": "Medium",
+      "source": {
+        "type": "x_post",
+        "url": "https://x.com/arinbjornkol/status/2114886254768861315",
+        "account": "arinbjornkol",
+        "createdAt": "2026-10-27T01:05:50Z"
+      },
+      "observed": {
+        "claim": "Claude isn't counting weekly usage at the moment",
+        "hasScreenshot": true
+      }
+    }
+  ],
+  "relatedFiles": [
+    "claude-pro-opus55-community-issue124-2026-10-18.json",
+    "claude-max20x-opus55-community-issue96-2026-10-02.json",
+    "claude-max5x-opus55-community-issue98-2026-10-03.json"
+  ]
+}

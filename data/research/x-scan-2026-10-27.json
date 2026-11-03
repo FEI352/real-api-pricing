@@ -1,0 +1,156 @@
+{
+  "scannedAt": "2026-10-27",
+  "window": {
+    "start": "2026-10-25T01:00:00Z",
+    "end": "2026-10-27T01:10:00Z"
+  },
+  "method": "Grok Bot built-in public X search_posts_all (namespace x); NOT user X plugin / Platform API quota",
+  "siteSnapshot": {
+    "url": "https://realapipricing.com/",
+    "snapshotDateShown": "2026-10-16",
+    "note": "站点快照仍滞后于扫描日 2026-10-27"
+  },
+  "queries": [
+    "(Kimi OR Claude OR Cursor OR Codex OR DeepSeek OR GLM OR MiniMax OR Devin) (用量 OR 配额 OR 打满 OR 额度 OR token OR tokens OR quota OR usage) -is:retweet",
+    "(Kimi OR \"Kimi Code\" OR Claude OR Cursor) (百分比 OR \"%\" OR 控制台 OR session OR Highspeed OR \"199\" OR Pro) (token OR tokens OR 用量 OR 配额) -is:retweet",
+    "(\"AI coding\" OR Copilot OR Cursor OR Claude OR Codex OR Windsurf) (pricing OR price OR plan OR subscription OR quota OR \"rate limit\" OR tokens) (raise OR cut OR change OR new OR promo OR discount) -is:retweet lang:en",
+    "(调价 OR 涨价 OR 降价 OR 新套餐 OR 促销 OR 限免) (Claude OR Cursor OR Kimi OR DeepSeek OR Codex OR GLM OR MiniMax OR 编程) -is:retweet",
+    "(Kimi OR \"K3.1\" OR \"kimi code\") (补偿 OR 限流 OR 额度 OR 25% OR 打满 OR \"%\" OR 用量) -is:retweet",
+    "(Claude OR \"Claude Code\" OR \"Claude Pro\" OR \"Claude Max\") (亿token OR \"亿 token\" OR \"M tokens\" OR billion OR 周额度 OR 5x OR 20x OR Max) (用量 OR 额度 OR quota OR usage) -is:retweet"
+  ],
+  "counts": {
+    "high": 2,
+    "medium": 8,
+    "discardedLowApprox": 40
+  },
+  "relatedIssues": [
+    143,
+    144,
+    145
+  ],
+  "retained": [
+    {
+      "url": "https://x.com/realNyarime/status/2114886352823292146",
+      "account": "realNyarime",
+      "planOrModel": "Claude Pro",
+      "tokens": "一周约 8.9 亿；日均约 1.3 亿",
+      "percent": null,
+      "hasScreenshot": true,
+      "confidence": "High",
+      "why": "总量 + ~200+ USD 估值 + 截图；缺分项与配额%"
+    },
+    {
+      "url": "https://x.com/UPedrolli46470/status/2114886181683106279",
+      "account": "UPedrolli46470",
+      "planOrModel": "Claude Max 5x / ChatGPT Pro 5x",
+      "tokens": "Claude Opus 5.5 Max5x 一周 40 亿；ChatGPT 6.1 Sol Pro5x 一周 10 亿",
+      "percent": null,
+      "hasScreenshot": false,
+      "confidence": "High",
+      "why": "计划名 + 绝对周额度；无截图，个人对比"
+    },
+    {
+      "url": "https://x.com/WoKey_AI/status/2114872928210919856",
+      "account": "WoKey_AI",
+      "planOrModel": "Claude Max 20x / Pro / Team Premium",
+      "tokens": "周 worth 约 $1600 / $157（API 折算）",
+      "percent": "周额度约 −6% / −6% / −5%",
+      "hasScreenshot": false,
+      "confidence": "Medium",
+      "why": "硬数字+计划档；第三方周一实测"
+    },
+    {
+      "url": "https://x.com/arinbjornkol/status/2114886254768861315",
+      "account": "arinbjornkol",
+      "planOrModel": "Claude",
+      "tokens": null,
+      "percent": null,
+      "hasScreenshot": true,
+      "confidence": "Medium",
+      "why": "周用量未计数 UI 异常+截图"
+    },
+    {
+      "url": "https://x.com/showbuger/status/2114870319119003935",
+      "account": "showbuger",
+      "planOrModel": "Kimi K3.1 Pro / Kimi Code",
+      "tokens": "转述 ¥699 约 30 分钟烧光",
+      "percent": "补偿月度总额 25%",
+      "hasScreenshot": true,
+      "confidence": "Medium",
+      "why": "致歉+补偿规则+截图；多为转述"
+    },
+    {
+      "url": "https://x.com/deepUniverse999/status/2114873945409347877",
+      "account": "deepUniverse999",
+      "planOrModel": "Kimi ¥199",
+      "tokens": null,
+      "percent": "烧掉 70% 额度",
+      "hasScreenshot": false,
+      "confidence": "Medium",
+      "why": "价位+百分比；无绝对 token"
+    },
+    {
+      "url": "https://x.com/iJimmyChan/status/2114886510948544574",
+      "account": "iJimmyChan",
+      "planOrModel": "GPT-6.1 Terra API",
+      "tokens": null,
+      "percent": null,
+      "hasScreenshot": true,
+      "confidence": "Medium",
+      "why": "API $1/$5 per 1M；较 5.6 Terra 半价；二手价表"
+    },
+    {
+      "url": "https://x.com/dsoch8c/status/2114811359703748689",
+      "account": "dsoch8c",
+      "planOrModel": "DeepSeek V4.1 Flash @ OpenRouter",
+      "tokens": null,
+      "percent": "约 84% off",
+      "hasScreenshot": true,
+      "confidence": "Medium",
+      "why": "价表数字+截图；促销需复核截止"
+    },
+    {
+      "url": "https://x.com/paveezheng/status/2114886162317975828",
+      "account": "paveezheng",
+      "planOrModel": "WorkBuddy DeepSeek-V4.1-Flash-1017",
+      "tokens": null,
+      "percent": null,
+      "hasScreenshot": false,
+      "confidence": "Medium",
+      "why": "限免至 2026-10-31",
+      "promoEnds": "2026-10-31"
+    },
+    {
+      "url": "https://x.com/NiuOnAI/status/2114824115291050329",
+      "account": "NiuOnAI",
+      "planOrModel": "ZCode GLM-5.3-Flash",
+      "tokens": "3 亿 tokens",
+      "percent": null,
+      "hasScreenshot": false,
+      "confidence": "Medium",
+      "why": "短窗限免，帖称 10/26 晚至 10/27 早，可能已过期"
+    }
+  ],
+  "discardedExamples": [
+    {
+      "url": "https://x.com/TickerTickless/status/2114868192816591184",
+      "reason": "Low：纯吐槽额度差，无硬计量"
+    },
+    {
+      "url": "https://x.com/sudoaptaj/status/2114867421232218225",
+      "reason": "Low：模糊「用不完」无数字"
+    },
+    {
+      "url": "https://x.com/MarleeSima/status/2114885856062497034",
+      "reason": "Low：Gemini 周额度「算少」无绝对值"
+    },
+    {
+      "url": "https://x.com/baksalyar/status/2114886428379447458",
+      "reason": "Low：订阅烧得快，无数字"
+    },
+    {
+      "url": "https://x.com/namecheckme/status/2114880443241865264",
+      "reason": "丢弃：X/Cursor 账号联动 bug，非定价用量"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "collectedAt": "2026-10-27",
+  "collectionMethod": "Manual capture of the official Command Code pages (English) around 10:35 Beijing time on 2026-10-27: the GOAT plan page, the pricing-limits resource page and the public pricing page, read as published, and compared against the 2026-10-26 capture of the same pages. Plan-page FAQ wording, the GOAT usage-limit block, the pricing-limits plan table, the public pricing page credits table and the embedded RSC payload (budgetUsd per model) were checked. Research-only — no adopted row generated, no adopted value changed, no script changed.",
+  "sources": [
+    "https://commandcode.ai/docs/plans/goat",
+    "https://commandcode.ai/docs/resources/pricing-limits",
+    "https://commandcode.ai/pricing"
+  ],
+  "scope": "Command Code GOAT official pages only. One topic changed on 2026-10-27: the plan-level shared-credit wording moved from a flat $70 to an 'up to $100' phrasing, with the 5-hour and weekly limits moving to 'up to $20' / 'up to $50'. No per-model allowance changed (all 59 GOAT models keep the same budgetUsd in the embedded RSC payload), no model was added to or removed from the GOAT plan, no price changed, no leaderboard/score data touched, no OpenCode Go rows touched, no adopted.csv row.",
+  "previousCapture": {
+    "capturedAt": "2026-10-26",
+    "note": "Baseline capture of the same three pages on 2026-10-26. No repository file was written for that capture, so the diff below is stated as observed between the two captures.",
+    "baselineValues": {
+      "planPageFaqHeading": "How is 8x possible?",
+      "planPageFaqBody": "$80 of credits - an 8x multiplier",
+      "goatUsageLimits": {
+        "per5HoursUsd": 14,
+        "perWeekUsd": 35,
+        "perMonthUsd": 70
+      },
+      "planPageFaqModelExample": "up to the full $70 on models like GLM-5.2",
+      "pricingLimitsPlanTable": {
+        "goat": {
+          "per5HoursUsd": 14,
+          "perWeekUsd": 35,
+          "perMonthUsd": 70
+        },
+        "pro": {
+          "per5HoursUsd": 16,
+          "perWeekUsd": 40,
+          "perMonthUsd": 80
+        }
+      },
+      "pricingPageGoatMonthlyCreditsUsd": 70,
+      "perModelRscBudgetUsd": "unchanged for all 59 GOAT models"
+    }
+  },
+  "adoptionStatus": "research-only; not adopted; the plan-level 'up to $100' wording is not adopted as a new shared-pool value — scripts/build_adopted.py still uses COMMAND_CODE_GOAT_SHARED_USD = 70 with effective = min(shared pool, per-model allowance), and any change of that constant is left to maintainer review",
+  "observed": {
+    "planPage": {
+      "url": "https://commandcode.ai/docs/plans/goat",
+      "faqHeading": {
+        "before": "How is 8x possible?",
+        "after": "How is 10x possible?"
+      },
+      "faqBody": {
+        "before": "$80 of credits - an 8x multiplier",
+        "after": "up to $100 of credits - up to a 10x multiplier"
+      },
+      "goatUsageLimits": {
+        "before": {
+          "per5HoursUsd": 14,
+          "perWeekUsd": 35,
+          "perMonthUsd": 70
+        },
+        "after": {
+          "per5HoursUsd": "up to $20",
+          "perWeekUsd": "up to $50",
+          "perMonthUsd": "up to $100"
+        },
+        "displayForm": "The three limits are now rendered with an 'up to' prefix instead of as flat dollar amounts."
+      },
+      "faqModelExample": {
+        "before": "up to the full $70 on models like GLM-5.2",
+        "after": "up to $70 on models like GLM-5.2"
+      },
+      "faqModelExampleNote": "The FAQ sentence still names $70 as the model-level amount; only the phrase 'the full $70' was dropped, so the $70 figure itself is unchanged."
+    },
+    "pricingLimitsPage": {
+      "url": "https://commandcode.ai/docs/resources/pricing-limits",
+      "planTable": {
+        "goat": {
+          "monthlyCredits": {
+            "before": "$70",
+            "after": "Up to $100 of usage"
+          },
+          "per5Hours": {
+            "before": "$14",
+            "after": "Up to $20"
+          },
+          "perWeek": {
+            "before": "$35",
+            "after": "Up to $50"
+          }
+        },
+        "pro": {
+          "planPrice": "$20/mo",
+          "monthlyCredits": {
+            "before": "$80",
+            "after": "Up to $110"
+          },
+          "per5Hours": {
+            "before": "$16",
+            "after": "Up to $22"
+          },
+          "perWeek": {
+            "before": "$40",
+            "after": "Up to $55"
+          },
+          "trackedInRepo": false,
+          "note": "Context only. The Pro plan is not tracked in this repo (no command_code_goat × Pro row in adopted.csv), so no Pro value is proposed for adoption."
+        }
+      }
+    },
+    "pricingPage": {
+      "url": "https://commandcode.ai/pricing",
+      "goatMonthlyCreditsUsd": 70,
+      "displayForm": "flat $70",
+      "note": "The public pricing page still shows the GOAT plan at $70 monthly credits and was not updated together with the two docs pages; it is inconsistent with the 'Up to $100 of usage' wording on the pricing-limits page at the same collection time.",
+      "inconsistency": true
+    },
+    "rscPayload": {
+      "source": "embedded RSC payload on https://commandcode.ai/docs/plans/goat",
+      "modelCount": 59,
+      "perModelBudgetUsdChanged": false,
+      "note": "The budgetUsd of every GOAT model in the embedded payload is identical to the 2026-10-26 capture; the 2026-10-27 change is confined to the rendered plan-level wording, not to the per-model allowances.",
+      "highestAllowances": [
+        {
+          "model": "Ling 3.1 Flash",
+          "budgetUsd": 100
+        },
+        {
+          "model": "DeepSeek V4.1 Flash (latest)",
+          "budgetUsd": 80
+        },
+        {
+          "model": "GLM-5.3 Flash",
+          "budgetUsd": 80
+        },
+        {
+          "model": "GLM-5.2",
+          "budgetUsd": 70
+        },
+        {
+          "model": "Qwen 3.8 27B",
+          "budgetUsd": 70
+        },
+        {
+          "model": "Tencent Hy3",
+          "budgetUsd": 70
+        }
+      ],
+      "highestAllowancesNote": "The top of the allowance list is unchanged: Ling 3.1 Flash stays at $100 and no model exceeds it, so the $100 wording does not come from a new per-model allowance."
+    }
+  },
+  "interpretation": {
+    "summary": "The plan-level shared monthly pool wording moved from a flat $70 to 'up to $100' (with the 5-hour and weekly limits moving to 'up to $20' and 'up to $50'), while every per-model allowance in the RSC payload stayed exactly where it was.",
+    "ambiguity": {
+      "statement": "The 'up to' phrasing is ambiguous. It may only describe the maximum per-model allowance reachable under the plan (i.e. the pool is still $70 and a model may use up to its own allowance within it), or it may mean the shared pool cap itself is now $100.",
+      "supportingFacts": [
+        "The FAQ sentence still says 'up to $70 on models like GLM-5.2', so $70 is still named as a model-level amount on the same page.",
+        "All 59 GOAT models keep their previous budgetUsd, and the highest is still Ling 3.1 Flash at $100, so no per-model allowance was raised to match a new $100 pool.",
+        "https://commandcode.ai/pricing still advertises the GOAT plan at $70 monthly credits, i.e. the marketing page was not updated.",
+        "The same 'up to' rewrite was applied to the Pro plan ($80 -> 'Up to $110'), which suggests a marketing-wide wording change rather than a GOAT-specific pool change."
+      ]
+    },
+    "repoPipeline": {
+      "file": "scripts/build_adopted.py",
+      "constant": "COMMAND_CODE_GOAT_SHARED_USD = 70",
+      "formula": "effective_usage = min(COMMAND_CODE_GOAT_SHARED_USD, per-model allowance)",
+      "commentOnFile": "Command Code GOAT: shared monthly pool $70 + per-model monthly allowance; effective=min(70, allowance).",
+      "note": "The pipeline still reads a flat $70 shared pool. Under the unchanged per-model allowances, raising the pool to $100 would only affect models whose allowance currently exceeds $70 (Ling 3.1 Flash at $100, DeepSeek V4.1 Flash (latest) at $80, GLM-5.3 Flash at $80); models at or below $70 would be unaffected. No such change is made here."
+    },
+    "notComputed": "This file changes no adopted value, no shared-pool constant and no script, and computes no monthly token numbers. Whether the $70 shared pool should become $100 (or whether the 'up to $100' wording is only a per-model cap description) is left to the maintainer."
+  },
+  "sideNote": {
+    "topic": "GPT-6.1 Terra newly listed on the pricing-limits page",
+    "model": "GPT-6.1 Terra",
+    "contextWindowTokens": 1100000,
+    "contextWindowNote": "The pricing-limits page lists a 1.1M-token context window for this model.",
+    "pricePerMTokUsd": {
+      "input": 1.0,
+      "output": 5.0,
+      "cachedRead": 0.05,
+      "cacheWrite": 1.25
+    },
+    "priceNote": "Listed per 1M tokens as input $1.00 / output $5.00 / cache read $0.05 / cache write $1.25.",
+    "planPlacement": "Not a GOAT-plan model. The GOAT plan model count stays at 70 while the all-plans count moves from 95 to 96, so this is an addition outside the GOAT plan.",
+    "adopted": false,
+    "reason": "Not a GOAT row and not part of the repo's Command Code GOAT model list; recorded as a side note only, with no adopted value changed and no token figures computed."
+  },
+  "unchangedScope": [
+    "No per-model allowance changed: all 59 GOAT models keep the same budgetUsd in the embedded RSC payload.",
+    "No GOAT model was added to or removed from the plan (GOAT plan model count stays at 70).",
+    "No three-part price changed for any GOAT model.",
+    "No leaderboard or score data touched.",
+    "No OpenCode Go rows touched.",
+    "No other channel's rows touched."
+  ],
+  "computationNote": "No monthlyYi, no blended per-MTok price and no adopted value are computed in this file; all numbers are transcribed as published on the official pages.",
+  "relatedFiles": [
+    "goat-ling31-flash-round2-2026-10-16.json",
+    "goat-kimi-k31-pro-round1-2026-10-24.json",
+    "goat-ornith-15-122b-round1-2026-10-21.json",
+    "code-subscriptions-round1-2026-09-06.json"
+  ],
+  "confidence": "medium — the three pages are official, but the 'up to' wording is ambiguous (per-model cap vs. shared-pool cap) and https://commandcode.ai/pricing still shows the old $70 monthly credits at the same collection time",
+  "basis": "official"
+}

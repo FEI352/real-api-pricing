@@ -1,0 +1,76 @@
+{
+  "recordedAt": "2026-10-27",
+  "sourceType": "x_public_scan",
+  "relatedIssue": 145,
+  "adoptionStatus": "research-only; not adopted; verify official price page before metered/catalog rows; do not invent leaderboard scores",
+  "items": [
+    {
+      "id": "x-gpt61-terra-api-and-sub",
+      "confidence": "Medium",
+      "model": "gpt-6.1-terra",
+      "observed": {
+        "apiUsdPerMTok": {
+          "input": 1.0,
+          "output": 5.0,
+          "cachedInputReported": 0.05
+        },
+        "vsPrior": "较 GPT-5.6 Terra 约半价（转述）",
+        "subscription": "Plus/Pro/Enterprise/Edu 在 ChatGPT Work 与 Codex 可用，称不另收费（转述）",
+        "positioning": "computer use / 日常工作流中档"
+      },
+      "sources": [
+        "https://x.com/iJimmyChan/status/2114886510948544574",
+        "https://x.com/Qubax_Ai/status/2114886765228306457",
+        "https://x.com/Tsui1264/status/2114867180332528120",
+        "https://x.com/Yudian_Zero/status/2114794428846240088"
+      ],
+      "gaps": [
+        "二手转述，需核官方价目"
+      ]
+    },
+    {
+      "id": "x-openrouter-deepseek-84off",
+      "confidence": "Medium",
+      "source": {
+        "url": "https://x.com/dsoch8c/status/2114811359703748689"
+      },
+      "observed": {
+        "claim": "OpenRouter 页约 84% off",
+        "pricesUsdPerMTokReported": {
+          "input": {
+            "from": 0.3,
+            "to": 0.0477
+          },
+          "output": {
+            "from": 1.2,
+            "to": 0.1908
+          }
+        },
+        "hasScreenshot": true
+      },
+      "promoNote": "促销须标截止并复核；本帖未给明确截止日"
+    },
+    {
+      "id": "x-workbuddy-deepseek-free-until-1031",
+      "confidence": "Medium",
+      "source": {
+        "url": "https://x.com/paveezheng/status/2114886162317975828"
+      },
+      "observed": {
+        "promo": "WorkBuddy 国际版 DeepSeek-V4.1-Flash-1017 免费用到 2026-10-31",
+        "promoEnds": "2026-10-31"
+      }
+    },
+    {
+      "id": "x-zcode-glm-3yi-short-window",
+      "confidence": "Medium",
+      "source": {
+        "url": "https://x.com/NiuOnAI/status/2114824115291050329"
+      },
+      "observed": {
+        "promo": "ZCode Global Build 送 3 亿 GLM-5.3-Flash Tokens",
+        "windowClaim": "约 2026-10-26 23:00～2026-10-27 09:00 北京时间（短窗，扫描时可能已过期）"
+      }
+    }
+  ]
+}

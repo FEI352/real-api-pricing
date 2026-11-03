@@ -1,0 +1,75 @@
+{
+  "collectedAt": "2026-10-26",
+  "collectionMethod": "Two inputs this round. (a) Maintainer-provided screenshot of the Kimi App usage-analysis page on an account whose plan tier is unconfirmed: all usage on model k3.1-pro inside a 7-day Code window. (b) Official Kimi pages announcing the new subscription plans Go / Plus / Pro / Max / Ultra (CN ¥49/¥99/¥199/¥699/¥1399; international $19/$39/$99/$199), fetched 2026-10-26, plus the maintainer ruling of the same day that each new-plan monthly allowance equals half of the same-price legacy plan's allowance. Research file only for the screenshot measurement; the ruling is adopted through new v2 rows derived in build_adopted.py.",
+  "sources": [
+    "Maintainer screenshot of the Kimi App usage analysis, attached in session 2026-10-26 (private original)",
+    "https://www.kimi.com/pricing and the new-plan help pages (new plan names, prices, Kimi Code inclusion by tier, Agent-credit multipliers), read 2026-10-26",
+    "Maintainer ruling 2026-10-26: \"kimi的v2订阅额度是v1的一半\""
+  ],
+  "scope": "New Kimi plan lineup (v2 plans in repository vocabulary) plus one weekly-pool measurement on k3.1-pro from an account of unknown tier (maintainer guesses a legacy plan). The new plans drop the 7-day cap and keep only a rolling 5-hour limit plus the monthly shared pool, so a weekly figure cannot be attributed to a v2 account anyway.",
+  "adoptionStatus": "v2 rows adopted: kimi_plus_cn / kimi_pro_cn / kimi_max_cn / kimi_ultra_cn × {kimi-k3, kimi-k2.7-code} = same-price v1 value x 1/2 (Ultra x2 of Max per official Agent-credit ratio). The screenshot measurement itself is research-only: plan tier unconfirmed, so it adopts nothing and changes no adopted row.",
+  "officialPlanPage": {
+    "readAt": "2026-10-26",
+    "newPlansCn": {
+      "go": {"priceCny": 49, "kimiCode": false},
+      "plus": {"priceCny": 99, "kimiCode": true, "agentCreditsMultiplierVsMax": "2/14"},
+      "pro": {"priceCny": 199, "kimiCode": true, "agentCreditsMultiplierVsMax": "4/14"},
+      "max": {"priceCny": 699, "kimiCode": true, "agentCreditsMultiplier": "14x"},
+      "ultra": {"priceCny": 1399, "kimiCode": true, "agentCreditsMultiplier": "28x", "officialWording": "是 Max 的 2 倍"}
+    },
+    "newPlansIntl": {"plus": 19, "pro": 39, "max": 99, "ultra": 199},
+    "legacyToNewSamePrice": {
+      "kimi_andante_cn_49": "Go 49",
+      "kimi_moderato_cn_99": "Plus 99",
+      "kimi_allegretto_cn_199": "Pro 199",
+      "kimi_allegro_cn_699": "Max 699",
+      "vivace_1399": "Ultra 1399"
+    },
+    "windowModel": "New plans remove the 7-day limit; Plus and above keep a rolling 5-hour limit plus the shared monthly pool. Go has no Kimi Code.",
+    "k3Access": "K3 base: legacy Moderato+ / new Plus+. K3 1M context and HighSpeed: legacy Allegretto+ / new Pro+."
+  },
+  "maintainerRuling": {
+    "date": "2026-10-26",
+    "ruling": "新套餐（v2）同价位额度 = 旧套餐（v1）的 1/2。Ultra 无 v1 同价档，按官方 Agent 额度 28/14 = 2x Max 派生；Go 无 Kimi Code 不入点。",
+    "derivedAdopted": {
+      "kimi_plus_cn kimi-k3": "1.45亿 = v1 moderato k3 2.90亿 / 2",
+      "kimi_plus_cn kimi-k2.7-code": "1.57亿 = v1 moderato k27 3.14亿 / 2",
+      "kimi_pro_cn kimi-k3": "7.25亿 = v1 allegretto k3 14.51亿 / 2",
+      "kimi_pro_cn kimi-k2.7-code": "7.84亿 = v1 allegretto k27 15.68亿 / 2",
+      "kimi_max_cn kimi-k3": "21.77亿 = v1 allegro k3 43.53亿 / 2",
+      "kimi_max_cn kimi-k2.7-code": "23.52亿 = v1 allegro k27 47.04亿 / 2",
+      "kimi_ultra_cn kimi-k3": "43.53亿 = Max k3 x2",
+      "kimi_ultra_cn kimi-k2.7-code": "47.04亿 = Max k27 x2"
+    }
+  },
+  "screenshotMeasurement": {
+    "adoptionStatus": "research-only",
+    "planAttribution": "Unconfirmed. Maintainer guesses a legacy (v1) plan; the window shown is a 7-day tile, which is consistent with a legacy account since v2 plans dropped weekly caps.",
+    "model": "k3.1-pro",
+    "window": "7-day Code tile 2026-10-21 to 2026-10-28 (reset ~10-28)",
+    "tokensUsed": {
+      "total": 692462663,
+      "input": 9632426,
+      "cacheRead": 681880359,
+      "output": 949878,
+      "cacheHitShare": 0.9861
+    },
+    "weeklyPercentUsed": 63.24,
+    "weeklyPoolBackCalc": {
+      "rawTokensK31ProEquivalent": 1095110000,
+      "formula": "692462663 / 0.6324 = 1.095B k3.1-pro-equivalent raw tokens per 7-day tile",
+      "note": "Raw client totals, same basis as the repository's existing Kimi rows; not workload-normalized."
+    },
+    "comparison": {
+      "vsAdoptedLegacy": "1.095B weekly would be ~5.48B monthly at the 5x pool ratio, inside the v1 spread (Andante 0.78 / Moderato 2.90 / Allegretto 14.51 / Allegro 43.53 yi) — it does not isolate a tier.",
+      "vsNewPlans": "If the account were a v2 plan it would most plausibly sit near Pro 199 (7.25B monthly = 1.45B weekly-equivalent), but the weekly tile itself argues against v2. Unresolved."
+    }
+  },
+  "whatWouldUpgradeThisSample": [
+    "The plan name shown on the account's subscription page, to attribute the 10.95B weekly figure to a tier.",
+    "Whether k3.1-pro consumes credits at the k3-256k or the K3 1M rate on this account."
+  ],
+  "confidence": "low-to-medium for the screenshot (unattributed tier, single window); ruling itself is authoritative",
+  "basis": "maintainer_screenshot + official_plan_pages + maintainer_ruling",
+  "redaction": "The screenshot shows usage bars, percentages and reset dates only; no name, avatar, e-mail or account ID."
+}

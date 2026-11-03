@@ -139,8 +139,16 @@ GOOGLE_PRO_ISSUE54_SEGMENT = {"cache_read": 695_700_000, "input": 146_250_000, "
 # issue #55（NTRYourWaifu，agy CLI 同法）：只计 3.6 Flash ≥95% 区段，95.60M raw = +21.70pp
 GOOGLE_PRO_ISSUE55_WEEKLY_PP = 21.70
 GOOGLE_PRO_ISSUE55_SEGMENT = {"cache_read": 78_320_000, "input": 14_950_000, "output": 2_330_000}
-KIMI_199_USED_TOKENS = 243_739_068
-KIMI_199_USED_FRACTION = 0.84
+# Gemini 4 Argon —— Pro 独立周池（官方论坛 2026-10-15：weekly-only Argon quota，不与 3.8 Flash
+#   合池）。X @leo114119 推文截图第三方网关面板：Argon·7天 已用 15.1%，网关统计 23 次调用
+#   输入 109K / 输出 75.1K（含推理 28K）/ 缓存读 955K；其余各池 0%，段用量全归 Argon（推断）。
+#   帖主反推周限≈$10；按官方引入价逐项折 worth $1.0645 ÷15.1pp → $7.05/周。
+GOOGLE_PRO_ARGON_SEGMENT = {"cache_read": 955_000, "input": 109_000, "output": 75_100}
+GOOGLE_PRO_ARGON_WEEKLY_PP = 15.1
+GEMINI_ARGON_LIST = (0.10, 2.0, 10.0)  # Gemini 4 Argon 引入价至 2026-11-30（ai.google.dev pricing；输出含 thinking，缓存仅隐式读价），其后 $0.2/$4/$20 须复核
+KIMI_199_USED_TOKENS = 37_362_656
+KIMI_199_MONTHLY_FRACTION = 0.0192
+KIMI_199_WEEKLY_FRACTION = 0.0961
 KIMI_MONTHLY_TO_WEEKLY = 5
 KIMI_K27_199_USED_TOKENS = 11_913_113
 KIMI_K27_199_MONTHLY_USED_FRACTION = 0.0076
@@ -211,6 +219,10 @@ KIMI_INTL = {  # plan_id -> (国际版展示名, 国际版月费 USD)
     "kimi_moderato_cn": ("Kimi Moderato", 19),
     "kimi_allegretto_cn": ("Kimi Allegretto", 39),
     "kimi_allegro_cn": ("Kimi Allegro", 99),
+    "kimi_plus_cn": ("Kimi Plus", 19),
+    "kimi_pro_cn": ("Kimi Pro", 39),
+    "kimi_max_cn": ("Kimi Max", 99),
+    "kimi_ultra_cn": ("Kimi Ultra", 199),
 }
 
 STANDARD_MIX = CONVENTIONS["standardTokenMix"]
@@ -476,9 +488,10 @@ def google_ai_pro_36_monthly_yi() -> float:
 
 
 def kimi_199_monthly_yi() -> float:
+    # 2026-10-27 换基：Allegretto(赠送)账号 k3.1-pro 单日 37.36M ÷ 控制台月总1.92% 直推月池；
+    # 同窗 7天9.61% 得周池3.89亿，月/周=5.005 与月池=周池×5 吻合（kimi-allegretto-quota-round2-2026-10-27.json）
     return round(
-        KIMI_199_USED_TOKENS / KIMI_199_USED_FRACTION
-        * KIMI_MONTHLY_TO_WEEKLY / YI,
+        KIMI_199_USED_TOKENS / KIMI_199_MONTHLY_FRACTION / YI,
         2,
     )
 
@@ -604,33 +617,33 @@ def claude_fable51_max_monthly_yi() -> float:
 #   V4 Flash / Vision Exp back in the official catalog, re-adopted; gpt-6-luna added;
 #   glm-5.3-flash and deepseek-v4.1-flash Usage raised to $60; omen-alpha, glm-5.1,
 #   minimax-m2.5, qwen3.7-max, qwen3.6-plus delisted (absent from official tables); now 28 models.
+# 2026-10-20 re-verification: goat-opencode-catalogs-round4-2026-10-20.json — the shared
+#   $12/$30/$60 pool is gone from the docs (each model's monthly limit stands alone, 5h=20%,
+#   week=50%); deepseek-v4.1-flash $60->$80; claude-haiku-5.5 added; grok-4.6, kimi-k2.6,
+#   minimax-m2.7, deepseek-v4-flash, deepseek-v4-flash-vision-exp delisted.
 OPENCODE_GO_MODELS = (
-    ("grok-4.6", 15, 0.5, 2.0, 6.0, "≤200K 标价；>200K 价翻倍，保留在 research variants"),
     ("grok-4.7", 15, 0.5, 2.0, 6.0, "≤200K 标价；>200K 价翻倍，保留在 research variants；mimo-v26-grok47-catalogs-round1-2026-09-22.json"),
     ("gpt-5.6-luna", 15, 0.02, 0.2, 1.2, "≤272K 标价；>272K 档保留在 research variants"),
+    ("claude-haiku-5.5", 15, 0.01, 0.1, 0.5, "new official row; <=100K list price; >100K band kept in research variants; goat-opencode-catalogs-round4-2026-10-20.json"),
     ("gpt-6-luna", 15, 0.01, 0.1, 0.5, "new official row; <=272K list price; >272K band kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("glm-5.3-flash", 60, 0.03, 0.15, 0.5, "official Usage $15->$60 (reverified 2026-09-30); goat-opencode-catalogs-round3-2026-09-30.json"),
     ("glm-5.3", 15, 0.26, 1.4, 4.4, "官网单档"),
     ("glm-5.2", 60, 0.26, 1.4, 4.4, "官网单档"),
     ("kimi-k3", 15, 0.3, 3.0, 15.0, "官网单档"),
     ("kimi-k2.7-code", 60, 0.19, 0.95, 4.0, "官网单档"),
-    ("kimi-k2.6", 60, 0.16, 0.95, 4.0, "官网单档"),
     ("longcat-2.0", 60, 0.006, 0.3, 1.2, "官网单档"),
     ("mimo-v2.5", 60, 0.0028, 0.14, 0.28, "官网单档"),
     ("mimo-v2.5-pro", 15, 0.003625, 0.435, 0.87, "官网单档"),
     ("mimo-v2.6-flash", 60, 0.0028, 0.14, 0.28, "官网单档；Usage $60"),
     ("mimo-v2.6-pro", 15, 0.003625, 0.435, 0.87, "官网单档；Usage $15；与 v2.5-pro 同 Usage 档"),
     ("minimax-m3", 60, 0.06, 0.3, 1.2, "官网单档"),
-    ("minimax-m2.7", 60, 0.06, 0.3, 1.2, "官网单档"),
     ("muse-spark-1.3-contributor", 60, 0.002, 0.1, 0.2, "官网单档"),
     ("muse-spark-1.2-contributor", 60, 0.002, 0.1, 0.2, "官网单档"),
     ("qwen3.8-max", 15, 0.25, 2.0, 6.0, "官网单档"),
     ("qwen3.8-flash", 30, 0.016, 0.15, 0.47, "官网单档"),
     ("qwen3.7-plus", 60, 0.04, 0.4, 1.6, "≤256K 标价；>256K 档保留在 research variants"),
-    ("deepseek-v4.1-flash", 80, 0.003, 0.15, 0.60, "官网 Monthly limit $80（2026-10-16 由 $60 上调，docs/go 实测）；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 80, 0.003, 0.15, 0.60, "官网 Monthly limit $60→$80（2026-10-20）；Off-Peak；Peak=2×保留在 research variants"),
     ("deepseek-v4-pro", 15, 0.022, 0.66, 1.98, "Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改"),
-    ("deepseek-v4-flash", 30, 0.003, 0.15, 0.60, "back in official catalog, Usage $30 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
-    ("deepseek-v4-flash-vision-exp", 15, 0.003, 0.15, 0.60, "back in official catalog, Usage $15 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("hy4-preview", 30, 0.042, 0.834, 2.501, "官网单档"),
     ("hy3", 60, 0.035, 0.14, 0.58, "官网单档"),
 )
@@ -652,23 +665,10 @@ OPENCODE_GO_DEEPSEEK_SOURCE = (
 )
 OPENCODE_GO_NOTES = {
     "deepseek-v4.1-flash": (
-        "15.528→62.112亿：min(共享月池$60, 模型Usage $60) ÷ 统一标准负载加权价；"
-        "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。"
-        "模型月Usage由$15升为永久$60（官网曾标4x限时至9/27，9/30页面撤标按$60常态列示，确认永久；"
-        "估算请求130,000/月为旧$15档32,500的4倍，交叉一致）。官网 Model ID 现为 deepseek-v4.1-flash。"
-        "官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
-    ),
-    "deepseek-v4-flash": (
-        "restored: official Usage $30 (reverified 2026-09-30; removed 09-10 as confirmed offline); "
-        "min(shared monthly pool $60, model Usage $30) / standard-workload blended price; "
-        "off-peak cached/input/output=$0.003/$0.15/$0.60, peak 2x; official estimate 65,000 requests/mo. "
-        "Per-model allowances within the plan do not add"
-    ),
-    "deepseek-v4-flash-vision-exp": (
-        "restored: official Usage $15 (reverified 2026-09-30; removed 09-10 as confirmed offline); "
-        "min(shared monthly pool $60, model Usage $15) / standard-workload blended price; "
-        "off-peak cached/input/output=$0.003/$0.15/$0.60, peak 2x; official estimate 32,500 requests/mo. "
-        "Per-model allowances within the plan do not add"
+        "62.112→82.816亿：模型月Usage $80 ÷ 统一标准负载加权价（2026-10-20 官网 Monthly limit $60→$80，"
+        "共享月池$60已从文档移除，每模型月额度单独计）；"
+        "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。估算请求173,330/月。"
+        "官网 Model ID 为 deepseek-v4.1-flash。官方请求数仅作交叉检查，不作为额度主值；同套餐各模型额度不可相加"
     ),
 }
 
@@ -683,7 +683,7 @@ def opencode_go_rows() -> list[tuple]:
         source = OPENCODE_GO_DEEPSEEK_SOURCE if model.startswith("deepseek-") else OPENCODE_GO_DEFAULT_SOURCE
         note = OPENCODE_GO_NOTES.get(
             model,
-            f"{change}：min(共享月池$60, 模型Usage ${usage:g}) ÷ 统一标准负载加权价；{variant_note}。"
+            f"{change}：模型月Usage ${usage:g} ÷ 统一标准负载加权价；{variant_note}。"
             "官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
         )
         rows.append((
@@ -724,7 +724,7 @@ def opendesign_go_rows() -> list[tuple]:
 COMMAND_CODE_GOAT_SHARED_USD = 80  # 2026-10-16 官方 pricing 页 "$80 in credits included"（原 $70）
 COMMAND_CODE_GOAT_MODELS = (
     # —— Every model 表（含既有 11 行，勿删）——
-    ("gpt-5.6-sol", 70, 0.5, 5.0, 30.0, "官网三段价"),
+    ("gpt-5.6-sol", 20, 0.5, 5.0, 30.0, "官网三段价；credits $70→$20（2026-10-20）"),
     ("glm-5.2", 70, 0.26, 1.4, 4.4, "官网三段价"),
     ("hy3", 70, 0.035, 0.14, 0.58, "官网三段价"),
     ("qwen3.8-27b", 70, 0.04, 0.4, 3.0, "官网三段价"),
@@ -733,7 +733,7 @@ COMMAND_CODE_GOAT_MODELS = (
     ("deepseek-v4-flash", 60, 0.003, 0.15, 0.60, "back in official catalog as 'V4 Flash (latest)' at $60 (restored after the 9/10 removal); Off-Peak; Peak=2x kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("deepseek-v4.1-flash-fast", 60, 0.016, 0.16, 0.58, "new official row 'V4.1 Flash Fast' at $60 (off-peak $0.016/$0.16/$0.58, 57,500 requests/mo); goat-opencode-catalogs-round3-2026-09-30.json"),
     ("minimax-m3", 47, 0.06, 0.3, 1.2, "官网页成交/折扣三段价（-50%类）"),
-    ("glm-5.3-flash", 40, 0.03, 0.15, 0.5, "官网三段价"),
+    ("glm-5.3-flash", 80, 0.03, 0.15, 0.5, "官网三段价；credits $40→$80（$100 限时至10/17已结束，$80 常态）"),
     ("gemini-3.8-flash", 40, 0.15, 1.5, 7.5, "官网三段价"),
     ("qwen3.7-max", 33, 0.5, 2.5, 7.5, "官网三段价"),
     ("qwen3.7-plus", 33, 0.08, 0.4, 1.6, "官网三段价（本渠道 cache read=$0.08）"),
@@ -776,7 +776,8 @@ COMMAND_CODE_GOAT_MODELS = (
     ("jev", 20, 0.0, 0.042, 0.0, "new official row; New models table $20; input $0.042, cache read/output free; Decision model (typesafe/jev); goat-opencode-catalogs-round3-2026-09-30.json"),
     ("longcat-2.0", 50, 0.006, 0.3, 1.2, "official three-part price; Every model table $50; goat-opencode-catalogs-round3-2026-09-30.json"),
     # -- standalone tier --
-    ("claude-sonnet-5.5", 10, 0.2, 2.0, 10.0, "official three-part price; standalone table $10 (launched 2026-09-28); cache write $2.50 excluded from standard workload; goat-opencode-catalogs-round3-2026-09-30.json"),
+    ("claude-sonnet-5.5", 10, 0.1, 2.0, 10.0, "official three-part price; standalone table $10 (launched 2026-09-28); cache write $2.50 excluded from standard workload; cached read $0.20->$0.10 (channel now follows the 2026-10-08 vendor cut, reverified 2026-10-20); goat-opencode-catalogs-round4-2026-10-20.json"),
+    ("claude-haiku-5.5", 20, 0.01, 0.1, 0.5, "new official row; premium table $20 (cache write $0.125 excluded from standard workload); goat-opencode-catalogs-round4-2026-10-20.json"),
     # -- Older models table (all $20) --
     ("kimi-k2.6", 20, 0.16, 0.95, 4.0, "official three-part price; Older models all $20; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("kimi-k2.5", 20, 0.1, 0.6, 3.0, "official three-part price; Older models all $20; goat-opencode-catalogs-round3-2026-09-30.json"),
@@ -800,10 +801,10 @@ COMMAND_CODE_GOAT_DEEPSEEK_SOURCE = (
 )
 COMMAND_CODE_GOAT_NOTES = {
     "deepseek-v4.1-flash": (
-        "41.408→62.112亿：min(共享月池$70, 模型allowance $60) ÷ 统一标准负载加权价；"
+        "62.112→72.464亿：min(共享月池$70, 模型allowance $80) ÷ 统一标准负载加权价；"
         "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。"
-        "模型月allowance由$40升为永久$60（官网估算请求154,000/月与$60档 V4 Flash latest 完全同档，确认永久）。"
-        "官方请求数仅作交叉检查，不再作为额度主值；忽略 processing fee；同套餐各模型额度不可相加"
+        "模型月allowance由$60升为$80（2026-10-20 官网 credits $80；限时 $100 仅 10/20 01:00Z–10/21 01:00Z 24小时，不采用）。"
+        "官方请求数仅作交叉检查，不作为额度主值；忽略 processing fee；同套餐各模型额度不可相加"
     ),
     "deepseek-v4-flash": (
         "restored: official 'V4 Flash (latest)' allowance $60 (reverified 2026-09-30; removed 09-10 as confirmed offline); "
@@ -1106,15 +1107,28 @@ SUBS = [
     ("cursor_pro_plus", "Cursor Pro+", 60, "USD", "grok-4.6", CURSOR_ULTRA_STANDARD_YI * 800 / 3000, "medium", "round3面板Pro+池约$800；按Ultra池$3000等比；cursor-adoption-round8-2026-09-06.json", "旧21.33亿→20.63亿：77.37×800/3000；继承跨档池规模假设，非独立实测；未采社区图反推$4500~4800作为官方池；促销与账号差异保留"),
     # Kimi —— 月池是周池的5倍（不是项目通用4周）；199档本机ccusage反推，其余按官网1x/4x/20x/60x
     #   同名档国内外并点：price_usd 统一按国际版标价（KIMI_INTL），¥价为国内实付；Andante ¥49 无海外同名档
-    ("kimi_allegretto_cn", "Kimi 会员 199", 199, "CNY", "kimi-k3", kimi_199_monthly_yi(), "medium", f"本机ccusage {KIMI_199_USED_TOKENS}/{KIMI_199_USED_FRACTION:.0%}反推周额度×Kimi月池{KIMI_MONTHLY_TO_WEEKLY:g}倍；kimi-adoption-round6-2026-09-08.json", "旧11.61亿→14.51亿：确认Kimi月池=周池×5，旧值误套项目通用4周；样本以k3-256k为主且含kimi-for-coding，非纯K3 1M实测；SWE1.7短时面板的模型/统计窗口不同，未替换基准；ACP14.28为旧模型旁证，不直接采用；未折算：ccusage 只存周合计，无分项"),
-    ("kimi_moderato_cn", "Kimi 会员 99", 99, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 4 / 20, 2), "medium", "199档×官方4/20；kimi-adoption-round6-2026-09-08.json", "旧2.32亿→2.90亿：随199档改用周池×5；继承K3-256K为主的混合负载估算，不是K3 1M纯模型实测"),
+    ("kimi_allegretto_cn", "Kimi 会员 199", 199, "CNY", "kimi-k3", kimi_199_monthly_yi(), "medium", f"维护者实测：Allegretto(赠送) k3.1-pro 单日 {KIMI_199_USED_TOKENS} ÷ 控制台月总{KIMI_199_MONTHLY_FRACTION:.2%} 直推月池；kimi-allegretto-quota-round2-2026-10-27.json", "19.46亿（2026-10-27换基）：k3.1-pro 单日37.36M ÷ 月总1.92% 直推；同窗7天9.61%得周池3.89亿、月/周=5.005吻合月池=周池×5；替换旧基14.51亿（2026-07 k3-256k混合ccusage 243.74M/84%反推）——模型等效不同（k3.1-pro vs k3-256k混合），非纯池变化；未折算：面板只存合计"),
+    ("kimi_moderato_cn", "Kimi 会员 99", 99, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 4 / 20, 2), "medium", "199档×官方4/20；kimi-allegretto-quota-round2-2026-10-27.json", "旧2.90亿→3.89亿：随199档换基（k3.1-pro实测）；继承模型等效，不是K3 1M纯模型实测"),
     ("kimi_andante_cn", "Kimi 会员 49", 49, "CNY", "kimi-k3", round(kimi_199_monthly_yi() / 20, 2), "medium", "199档×官方1/20", ""),
-    ("kimi_allegro_cn", "Kimi 会员 699", 699, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 60 / 20, 2), "medium", "199档×官方60/20；kimi-adoption-round6-2026-09-08.json", "旧34.83亿→43.53亿：随199档改用周池×5；继承K3-256K为主的混合负载估算，不是K3 1M纯模型实测"),
+    ("kimi_allegro_cn", "Kimi 会员 699", 699, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 60 / 20, 2), "medium", "199档×官方60/20；kimi-allegretto-quota-round2-2026-10-27.json", "旧43.53亿→58.38亿：随199档换基（k3.1-pro实测）；继承模型等效，不是K3 1M纯模型实测"),
     # K2.7 Standard —— ¥199纯模型面板直接按月百分比反推；其余档按官方Code credits 1x/4x/20x/60x
     ("kimi_allegretto_cn", "Kimi 会员 199", 199, "CNY", "kimi-k2.7-code", kimi_k27_199_monthly_yi(), "medium", f"V2EX纯K2.7面板 {KIMI_K27_199_USED_TOKENS}/{KIMI_K27_199_MONTHLY_USED_FRACTION:.2%}=15.68亿；kimi-k27-round7-2026-09-08.json；kimi-k27-adoption-round8-2026-09-08.json", "新增K2.7 Standard独立点：采用直接月%反推15.68亿，不与较弱的699档混合样本取中点；可信范围约15.6~16.7亿。单一纯模型账号证据high，但跨账号/时期采用降为medium；未折算：只有 cache 读＋合计，缺 input/output 分项"),
     ("kimi_moderato_cn", "Kimi 会员 99", 99, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() * 4 / 20, 2), "medium", "199档×官方4/20；kimi-k27-adoption-round8-2026-09-08.json", "新增3.14亿：继承199档15.68亿与官方Code credits倍率；非独立实测"),
     ("kimi_andante_cn", "Kimi 会员 49", 49, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() / 20, 2), "medium", "199档×官方1/20；K2.7 Standard所有会员可用；kimi-k27-adoption-round8-2026-09-08.json", "新增0.78亿：继承199档15.68亿与官方Code credits倍率；非独立实测。该档仅排除K3，不排除K2.7 Standard"),
     ("kimi_allegro_cn", "Kimi 会员 699", 699, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() * 60 / 20, 2), "medium", "199档×官方60/20；kimi-k27-adoption-round8-2026-09-08.json", "新增47.04亿：继承199档15.68亿与官方Code credits倍率；独立699档K2.7占主导混合大样本缩回199档约16.74亿，仅作范围旁证"),
+    # Kimi 新套餐（v2）—— 官方 2026-10-19 页：Go ¥49 / Plus ¥99 / Pro ¥199 / Max ¥699 / Ultra ¥1399，国际版 $19/$39/$99/$199；
+    #   与旧套餐同价一一对应（Andante→Go、Moderato→Plus、Allegretto→Pro、Allegro→Max、Vivace→Ultra），
+    #   取消周限额、只留滚动5h+月度共享池。2026-10-26 维护者裁定：新套餐额度 = 同价旧档 ×1/2。
+    #   Go 档无 Kimi Code（官方「Go 不包含 Kimi Code」），不入点；Ultra 无 v1 对照，按官方 28/14=2× Max 派生。
+    #   证据：kimi-v2-plans-round1-2026-10-26.json
+    ("kimi_plus_cn", "Kimi Plus 99", 99, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 4 / 20 / 2, 2), "medium", "官方新套餐页+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增1.95亿（v2）：Plus ¥99 接 Moderato ¥99 价位＝v1 3.89亿×1/2；取消周限额仅留5h+月池；非独立实测"),
+    ("kimi_pro_cn", "Kimi Pro 199", 199, "CNY", "kimi-k3", round(kimi_199_monthly_yi() / 2, 2), "medium", "官方新套餐页+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增9.73亿（v2）：Pro ¥199 接 Allegretto ¥199 价位＝v1 19.46亿×1/2；取消周限额仅留5h+月池；非独立实测"),
+    ("kimi_max_cn", "Kimi Max 699", 699, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 60 / 20 / 2, 2), "medium", "官方新套餐页+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增29.19亿（v2）：Max ¥699 接 Allegro ¥699 价位＝v1 58.38亿×1/2；取消周限额仅留5h+月池；非独立实测"),
+    ("kimi_ultra_cn", "Kimi Ultra 1399", 1399, "CNY", "kimi-k3", round(kimi_199_monthly_yi() * 60 / 20 / 2 * 2, 2), "medium", "官方新套餐页「Ultra为Max的2倍」+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增58.38亿（v2）：Ultra ¥1399 无 v1 同价对照，按官方 Agent 额度 28/14=2× Max 派生；数值恰同 v1 Allegro；非独立实测"),
+    ("kimi_plus_cn", "Kimi Plus 99", 99, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() * 4 / 20 / 2, 2), "medium", "官方新套餐页+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增1.57亿（v2）：Plus ¥99 接 Moderato ¥99 价位＝v1 3.14亿×1/2；非独立实测"),
+    ("kimi_pro_cn", "Kimi Pro 199", 199, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() / 2, 2), "medium", "官方新套餐页+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增7.84亿（v2）：Pro ¥199 接 Allegretto ¥199 价位＝v1 15.68亿×1/2；非独立实测"),
+    ("kimi_max_cn", "Kimi Max 699", 699, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() * 60 / 20 / 2, 2), "medium", "官方新套餐页+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增23.52亿（v2）：Max ¥699 接 Allegro ¥699 价位＝v1 47.04亿×1/2；非独立实测"),
+    ("kimi_ultra_cn", "Kimi Ultra 1399", 1399, "CNY", "kimi-k2.7-code", round(kimi_k27_199_monthly_yi() * 60 / 20 / 2 * 2, 2), "medium", "官方新套餐页「Ultra为Max的2倍」+维护者裁定v2=v1×1/2；kimi-v2-plans-round1-2026-10-26.json", "新增47.04亿（v2）：Ultra ¥1399 无 v1 同价对照，按官方 Agent 额度 28/14=2× Max 派生；数值恰同 v1 Allegro；非独立实测"),
     # Kimi 海外 —— 不单画：官方 Code credits 倍率 1×/5×/15×/30× 与国内 1/4/20/60× 体系不同，且无绝对 token 证据；
     #   同名档按 KIMI_INTL 并入国内点、按国际版美元标价展示，仅海外档（Vivace $199）仍不画
     # 智谱 —— 官方周积分与三段积分系数按项目统一标准负载换算；忙时与闲时分开按月展示。
@@ -1302,10 +1316,10 @@ METERED = [
 ]
 
 # 精选图只画主流套餐 + 前沿相关点，避免 60 个点挤在一起；全量图画全部
-MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x", "cursor_ultra", "cursor_ultra_fast", "cursor_pro",
+MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x", "claude_team", "cursor_ultra", "cursor_ultra_fast", "cursor_pro",
               "claude_pro_over100k", "claude_pro_mix5050", "claude_max_20x_over100k", "claude_max_20x_mix5050",
               "google_ai_pro_us", "google_ai_pro_student",
-              "supergrok_heavy", "supergrok", "kimi_allegretto_cn", "glm_coding_pro_cn_new_peak", "glm_coding_pro_cn_new_mid", "glm_coding_pro_cn_new_offpeak", "glm_coding_pro_cn_old_peak", "glm_coding_pro_cn_old_mid", "glm_coding_pro_cn_old_offpeak",
+              "supergrok_heavy", "supergrok", "kimi_allegretto_cn", "kimi_pro_cn", "glm_coding_pro_cn_new_peak", "glm_coding_pro_cn_new_mid", "glm_coding_pro_cn_new_offpeak", "glm_coding_pro_cn_old_peak", "glm_coding_pro_cn_old_mid", "glm_coding_pro_cn_old_offpeak",
               "minimax_token_plus_cn", "minimax_token_plus_global", "aliyun_coding_pro_cn", "devin_max", "devin_pro", "droid_max",
               "mimo_token_lite_day", "mimo_token_standard_day", "mimo_token_pro_day", "mimo_token_max_day",
               "mimo_token_lite_night", "mimo_token_standard_night", "mimo_token_pro_night", "mimo_token_max_night",
@@ -1373,7 +1387,8 @@ DATA_DATES = {
     ("cursor_ultra", "grok-4.6"): ("2026-08-26~2026-09-05", "sample"),
     ("cursor_ultra_fast", "grok-4.6"): ("2026-09-05", "sample"),
     ("cursor_pro", "grok-4.6"): ("2026-08-27", "sample"),
-    ("kimi_allegretto_cn", "kimi-k3"): ("2026-07-25~2026-07-26", "sample"),
+    ("cursor_ultra", "claude-opus-5.5"): ("2026-09-14~2026-10-05", "sample"),
+    ("kimi_allegretto_cn", "kimi-k3"): ("2026-10-27", "sample"),
     ("kimi_allegretto_cn", "kimi-k2.7-code"): ("2026-08-20", "sample"),
     ("aliyun_coding_pro_cn", "qwen3.7-plus"): ("2026-07~2026-08", "sample"),
     ("minimax_token_plus_cn", "minimax-m3"): ("2026-06-01", "official"),
@@ -1455,6 +1470,14 @@ DATA_DATE_INHERIT = {
     ("kimi_moderato_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
     ("kimi_andante_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
     ("kimi_allegro_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("kimi_plus_cn", "kimi-k3"): ("kimi_moderato_cn", "kimi-k3"),
+    ("kimi_pro_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_max_cn", "kimi-k3"): ("kimi_allegro_cn", "kimi-k3"),
+    ("kimi_ultra_cn", "kimi-k3"): ("kimi_allegro_cn", "kimi-k3"),
+    ("kimi_plus_cn", "kimi-k2.7-code"): ("kimi_moderato_cn", "kimi-k2.7-code"),
+    ("kimi_pro_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
+    ("kimi_max_cn", "kimi-k2.7-code"): ("kimi_allegro_cn", "kimi-k2.7-code"),
+    ("kimi_ultra_cn", "kimi-k2.7-code"): ("kimi_allegro_cn", "kimi-k2.7-code"),
     ("aliyun_coding_pro_global", "qwen3.7-plus"): ("aliyun_coding_pro_cn", "qwen3.7-plus"),
 }
 
@@ -1481,13 +1504,16 @@ FIELDS = ["plan_id", "plan_name", "plan_name_en", "billing", "price", "currency"
           "plan_gen", "workload", "data_date", "data_date_kind", "data_date_from"]
 
 
+KIMI_V2_PLANS = {"kimi_plus_cn", "kimi_pro_cn", "kimi_max_cn", "kimi_ultra_cn"}
+
+
 def plan_gen_of(pid: str) -> str:
     # 套餐代际标注（2026-09-22 裁定）：GLM Coding 老客档=v2、新客档=v3（与 plot_quotas plan_name 映射一致）；
-    # Kimi 音乐名会员档=v1（新套餐 Plus/Pro/Max 未入库，届时为当前代不标）。其余套餐为当前代不标。
+    # Kimi 音乐名会员档=v1；2026-10-26 裁定新套餐 Go/Plus/Pro/Max/Ultra=v2（维护者口径）。其余套餐为当前代不标。
     if pid.startswith("glm_coding_"):
         return "v2" if "_old_" in pid else "v3"
     if pid.startswith("kimi_"):
-        return "v1"
+        return "v2" if pid in KIMI_V2_PLANS else "v1"
     return ""
 
 
