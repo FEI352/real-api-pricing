@@ -107,9 +107,12 @@ assert all(c["mean_cost_usd_per_task"] is not None for c in open_design)
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.00966
 assert indexed["deepseek_v41_flash_peak::deepseek-v4.1-flash"]["real_usd_per_mtok"] == 0.01932
 assert indexed["deepseek_v41_flash_offpeak::deepseek-v4.1-flash"]["open_design_arena__score"] == 81.2
-# AA v5.0 (2026-10-28) 全量升级：DeepSeek V4.1 Flash 1017 为 32.4896，GPT-6 Astra 为 56.8539。
-assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 32.4896
-assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 31.2
+# AA v5.0 (2026-10-28) 全量升级：DeepSeek V4.1 Flash 1017 历史为 32.4896，2026-11-04 官方微调为 32.5896，GPT-6 Astra 为 56.8539。
+assert indexed["opencode_go::deepseek-v4.1-flash"]["aa_intelligence_index__score"] == 32.5896
+# 2026-10-20 的 terminal-bench4-selfreport-carry 档补了「Claude Code · DeepSeek V4.1 Flash 1017」
+# 自报 42.3，与原有「DeepSeek Harness Minimal 31.2」在同榜并存；highest_archived_reference
+# 口径取高者，故 31.2 → 42.3（configuration_count 1 → 2）。
+assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score"] == 42.3
 assert indexed["opencode_go::deepseek-v4.1-flash"]["terminal_bench_4__score_is_self_reported"] is True
 # AA 快照自 round5 起把 intelligenceIndex 四舍五入到 4 位小数（round6 沿用），
 # 故派生分也是 4 位小数；AA v5.0 下 GPT-6 Astra 为 56.8539。

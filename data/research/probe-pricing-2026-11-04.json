@@ -1,0 +1,248 @@
+{
+  "collectedAt": "2026-11-04",
+  "checkedAt": "2026-11-04T09:05:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, OpenAI, Google, DeepSeek, MiniMax, StepFun, Mistral, Devin/Cognition, GitHub Copilot, Kimi/Moonshot, Command Code GOAT, OpenCode Go 等）与上游 upstream/main 提交评估（merge 3b6f570 后无新提交，PR #185 / PR #184 高价值研究归档）及既有模型标价与采用值核验",
+  "summary": "2026-11-04 官方 API 标价与采用值排查结论：1) 上游提交审查：/tmp/upstream.json 检出 upstream/main 相对当前 HEAD (3b6f570) 提交计数为 0（mergeBase: ed33da5febba8c4e0b3315d02b881c64765bbaed, upstreamHead: ed33da5febba8c4e0b3315d02b881c64765bbaed），verdict 为 noop。上游 29 个历史提交已于本日晨间由 Lead 成功合入主分支（commit 3b6f570），其中包含最新 PR #185（Kimi Code k3.1-pro-highspeed 第二次本地读数：5h 30%，周额度 8%；research-only）及 PR #184（SuperGrok Heavy 老 00 套餐 × Grok 4.7 high fast 周额度 1%→6% 样本；research-only），均已作为高质量研究证据入库，不改采用值。2) 官方价格与套餐情报：① Moonshot AI (Kimi)：Kimi K3.1 Pro (2.8T MoE / 104B 激活参数，1M 上下文，AA 智力榜 #5 55.09 分，TB4 65.7%) 官方开源权重发布日定于今日（2026-11-04 正式公开发布）；官方 API 三段标价维持 .00/0.00/cache bash.20 稳定；国内 v2 套餐（Plus/Pro/Max/Ultra）采用值稳健运行。② Google：Gemini 4 Carbon 首发优惠目录价 .00/0.00 (cache bash.10) 持续至 12-01，AA 智力榜持续以 59.43 分高居全球 SOTA 第一（TB4 65.15%）；Gemini 4 Argon 首发优惠价 .00/0.00 倒计时 26 天（12-01 恢复标准价 .00/0.00）；Google AI 8 个订阅点在 extra_subscriptions.json 运行良好。③ OpenAI：ChatGPT Pro 20x 保持长期常态稳定；GPT-6.1 Terra 标价 input .00 / output .00 / cachedInput bash.05 稳定；GPT-6 Astra (0/0)、Sol (/0)、Luna (bash.10/bash.50) 标价未变。④ Anthropic：Claude 5.5 系列（Haiku/Sonnet/Opus）及 Fable 5.1 标价保持稳定；Claude Ultra 00/mo 消除 5h 会话上限平稳运行；新版 Usage Policy 定于 11-12 生效（倒计时 T-8）。⑤ DeepSeek：Search & Fetch 独立 API 计费常态化运行 (bash.75/1,000 请求)，工具计费不影响模型基准；DeepSeek-V4.1-Flash 闲时 bash.15/bash.60 (hit bash.003)、忙时 bash.30/.20 稳定。⑥ Mistral AI：Mistral Large 4 Preview ('Le Chonk') API 维持 bash.68/.09，AA 得分 38.38，完全被基线 Haiku 5.5 支配，维持 research-only。3) 标价档完整性核查：本日 AA 榜单快照（scores-aa-round6-2026-11-04.json）在库模型 44 款全部覆盖，共 172 条得分记录（模型集与昨日完全一致，59 处小幅得分与用时微调，0 新增模型，0 移除模型）；库内既有 15 个 list-prices 文件覆盖全部在库模型，340 个订阅点 100% 具备正值 list_blended_usd_per_mtok（verify_list_blended.py 守卫通过），无需新建 list-prices 文件。4) build_adopted.py 评估：现有逻辑、各模型派生公式及 DATA_DATES 映射完备健壮，19 项 CI 守卫全绿（18 OK, 1 KNOWN-NOISE, 0 FAIL），保持现状。5) 协同待办：向 Lead 汇报 compute.py 注册方案（SCORE_FILES 紧随 scores-aa-round6-2026-11-03.json 之后插入 scores-aa-round6-2026-11-04.json，LIST_PRICE_FILES 与 DISPLAY 保持不变）。",
+  "vendors": {
+    "DeepSeek": {
+      "status": "search_fetch_billing_live",
+      "recentChanges": [
+        "Search & Fetch API 独立收费 bash.75/1,000 requests 常态化计费平稳运行（按成功调用扣费，5 QPS 基础速率）",
+        "Search & Fetch 属于 Agent/RAG 工具调用能力，非 LLM 模型基准，不改变模型按 Token 计费标价",
+        "DeepSeek-V4.1-Flash 官方 API 标价闲时 bash.15/bash.60 (hit bash.003)，忙时 bash.30/.20 (hit bash.006) 保持稳定",
+        "AA 智力榜检查点（45.10 智力指数 / 33.84% TB4）持续稳定",
+        "OpenCode Go 与 GOAT 渠道关于 V4.1 Flash 配额上调（PR #174, #175）属于渠道限额微调，官方 API 标价未变"
+      ],
+      "handling": "既有 list-prices-deepseek-v41-round2-2026-09-10.json 覆盖完备，无需新建标价档"
+    },
+    "OpenAI": {
+      "status": "pro20x_permanent_stable",
+      "recentChanges": [
+        "ChatGPT Pro 20x 维持常态稳定运行，老用户 20x 配额长期锁定，Work/Codex 配额翻倍",
+        "GPT-6.1 Terra（gpt-6.1-terra）三段标价 input .00 / output .00 / cachedInput bash.05 稳定生效，list-prices-gpt-61-terra-round1-2026-10-28.json 覆盖完备",
+        "ChatGPT Plus (0) / Pro 5x (00) / Pro 20x (00) 对应 gpt-6.1-terra 的采用值派生行运行良好",
+        "GPT-6 Astra (0/0)、Sol (/0)、Luna (bash.10/bash.50) 标价维持稳定"
+      ],
+      "handling": "标价档与采用值派生稳定，无需新建标价档"
+    },
+    "Google": {
+      "status": "carbon_and_argon_fully_integrated",
+      "recentChanges": [
+        "Gemini 4 Carbon 首发 50% 优惠目录价 input .00 / output 0.00 / cachedInput bash.10（优惠期至 2026-12-01），list-prices-gemini-4-carbon-round1-2026-10-29.json 覆盖完备",
+        "AA 智力榜以 59.43 分持续稳居全球 SOTA #1，TB4 录得 65.15%",
+        "Google AI 套餐 8 个点位（Pro / Ultra 5x / Ultra 20x 促销与标准档）在 extra_subscriptions.json 运行良好",
+        "Gemini 4 Argon 维持 .00/0.00 首发优惠价（倒计时 26 天至 11-30，12-01 起恢复标准价 /0），Gemini 3.8 Flash 维持 bash.75/.75 优惠价"
+      ],
+      "handling": "标价档与订阅点已全部就绪，无需新建标价档"
+    },
+    "Anthropic": {
+      "status": "stable",
+      "recentChanges": [
+        "Claude Haiku 5.5（<=100k 档 bash.10/bash.50、>100k 档 bash.50/.50）维持 3 档情景建模，verify_haiku55_tiers 守卫验证通过",
+        "Claude Sonnet 5.5 维持 round2 标价档（缓存读 bash.10/MTok，input .00 / output 0.00）",
+        "Claude Opus 5.5 维持 .00/0.00 (cache bash.20)，Claude Fable 5.1 维持 0.00/0.00 (cache bash.25)",
+        "Claude Ultra 00/mo 消除 5 小时滚动会话上限稳定运行，长期长程任务体验良好",
+        "新版防滥用 Usage Policy 定于 2026-11-12 生效（倒计时 T-8 天）",
+        "今日官方无新增标价调整"
+      ],
+      "handling": "标价档均已就绪，无需新建标价档"
+    },
+    "Kimi_Moonshot": {
+      "status": "open_weights_release_day",
+      "recentChanges": [
+        "Kimi K3.1 Pro 2.8T MoE（104B 激活参数，1M 上下文）官方开源权重发布日锁定于今日 2026-11-04，社区自托管与量化支持启动",
+        "官方确认预训练及强化学习阶段已彻底剔除网络安全/漏洞利用敏感数据集，确保开放权重安全可控",
+        "官方 API 标价稳定在 input .00 / output 0.00 / cachedInput bash.20，list-prices-kimi-k31-round1-2026-10-27.json 覆盖完备",
+        "PR #185（Kimi Code k3.1-pro-highspeed 第二次本地读数：5h 30%，周额度 8%）已合并归档为研究数据，不改采用值",
+        "国内 v2 套餐（Plus ¥99 / Pro ¥199 / Max ¥499 / Ultra ¥1399）按 1/2 规则派生稳健运行"
+      ],
+      "handling": "标价档与采用值完备，无需新建标价档"
+    },
+    "Mistral": {
+      "status": "open_weights_research_only",
+      "recentChanges": [
+        "Mistral Large 4 Preview ('Le Chonk' 1.05T MoE / 49B-52B active params) 开源权重进入 Day 7",
+        "llama.cpp 官方 PR #31376 已合并，Unsloth 动态 GGUF 1-bit 至 8-bit 发布，最低 1-bit 量化仍需 233GB 显存",
+        "官方 API 标价 bash.68/.09，AA 智力得分 38.38，完全被基线 Haiku 5.5（bash.0034 / 43.40）绝对支配",
+        "无开发者订阅套餐，未进入帕累托前沿"
+      ],
+      "handling": "维持 research-only 归档，不建标价档与订阅点"
+    },
+    "Devin_Cognition": {
+      "status": "research_data_merged",
+      "recentChanges": [
+        "PR #176 记录 Devin Pro 0 用户实测样本（5-turn 主会话 weekly 15%→41%、daily 8%→60%），已作为研究证据入库",
+        "Devin CLI /usage 面板与 /session-stats 计量证实 daily 池 = weekly 池 × 1/2，worth 折算 2.77 亿/月（bash.0723/MTok）",
+        "上游与本地均显式标记为 'adoptionStatus: research-only; not adopted'，不改采用值"
+      ],
+      "handling": "维持 research-only 归档，无需新建标价档"
+    },
+    "Command_Code_GOAT": {
+      "status": "research_data_merged",
+      "recentChanges": [
+        "PR #175 记录 DeepSeek V4.1 Flash 与 GLM-5.3 Flash 每模型 allowance 0→00，但共享月池 COMMAND_CODE_GOAT_SHARED_USD 仍为 0，实际有效额度未变",
+        "PR #184 记录 SuperGrok Heavy 老 00 套餐 × Grok 4.7 high fast 周额度 1%→6% 样本（Amp 84 请求），研究归档入库",
+        "官方 /pricing 维持 'Up to 00' 描述，维持 research-only"
+      ],
+      "handling": "维持 research-only 归档，不改采用值"
+    },
+    "OpenCode_Go": {
+      "status": "research_data_merged",
+      "recentChanges": [
+        "PR #174 记录 DeepSeek V4.1 Flash 每模型月限额 0→00（Go Plus 60→00），研究数据归档入库",
+        "OpenCode Go 0/mo 以 bash.003189 成本持续稳居每任务最低成本锚点第 1 位"
+      ],
+      "handling": "维持既有采用值，无需新建标价档"
+    },
+    "MiniMax": {
+      "status": "stable",
+      "recentChanges": [
+        "MiniMax M3.1 Flash（AA 智力指数 42.71，1M 上下文，Computer Use 专精）官方 API 标价 bash.15/bash.60 (cache bash.015) 保持稳定",
+        "list-prices-minimax-m31-round1-2026-10-19.json 覆盖完备",
+        "M Plan Go / Explore / Build 订阅套餐点位运行良好"
+      ],
+      "handling": "无需新建标价档"
+    },
+    "StepFun": {
+      "status": "stable",
+      "recentChanges": [
+        "Step-5 Preview（600B MoE / 27B 激活参数，1M 上下文，AA 43.73 分）商业化运营稳定",
+        "list-prices-stepfun-round2-2026-09-21.json 覆盖完备",
+        "Step Plan Mini / Plus / Pro / Max 订阅点位运行正常"
+      ],
+      "handling": "无需新建标价档"
+    },
+    "GitHub_Copilot": {
+      "status": "stable",
+      "recentChanges": [
+        "GitHub Copilot AI Credits 积分体系与模型池分配运行稳定，旧版遗留模型下线完全常态化",
+        "Claude 3.5 Sonnet / Sonnet 5.5 / GPT-4o / GPT-5 / Terra 均在支持池中"
+      ],
+      "handling": "无需新建标价档"
+    }
+  },
+  "upstreamEvaluation": {
+    "commitCount": 0,
+    "head": "3b6f5701235518d655e0fc165fa26e7d7d634d7a",
+    "upstreamHead": "ed33da5febba8c4e0b3315d02b881c64765bbaed",
+    "mergeBase": "ed33da5febba8c4e0b3315d02b881c64765bbaed",
+    "verdict": "noop",
+    "reason": "upstream/main 相对 HEAD 无新提交（merge-base ed33da5febba8c4e0b3315d02b881c64765bbaed）",
+    "overallConclusion": "上游 upstream/main 历史 29 个新提交已在本日晨间全部合入本地主分支（commit 3b6f570），合并后 upstream/main 相对当前 HEAD 无新提交，verdict 为 noop。最新合入的 PR #185（Kimi Code k3.1-pro-highspeed 本地读数）与 PR #184（SuperGrok Heavy Grok 4.7 high fast 样本）均已作为高质量研究证据入库归档，均显式标为 research-only，不改采用值。当前本地主分支处于干净同步状态，无需额外上游动作。",
+    "mergedRecentPullRequests": [
+      {
+        "pr": "#185",
+        "mergeCommit": "ed33da5",
+        "contentCommit": "c6d3cce / 015654b",
+        "subject": "Research: Kimi Code k3.1-pro-highspeed 第二次本地读数（5h 30%，周额度 8%；research-only，不改采用值）",
+        "value": "高研究价值：记录 legacy CNY 199 计划下 K3.1 Pro 高速版用量面板，证明其额度计算一致性。",
+        "adoptionStatus": "research-only; not adopted; 不改采用值",
+        "action": "已在 3b6f570 顺利合并入库。"
+      },
+      {
+        "pr": "#184",
+        "mergeCommit": "78ba0ca",
+        "contentCommit": "17953b7",
+        "subject": "Research: SuperGrok Heavy 老 00 套餐 × Grok 4.7 high fast（周 1%→6%）",
+        "value": "中研究价值：记录 Amp 84 次请求下的周额度推移。",
+        "adoptionStatus": "research-only; not adopted; 不改采用值",
+        "action": "已在 3b6f570 顺利合并入库。"
+      },
+      {
+        "pr": "#176",
+        "mergeCommit": "514f39c",
+        "contentCommit": "8f52b16",
+        "subject": "Research: Devin Pro 0 × claude-opus-5.5 首个额度样本（weekly 15%→41%、daily 8%→60%，含 1 次冷缓存单轮校准；research-only，不改采用值）",
+        "value": "高研究价值：揭示 Devin CLI /usage 面板与 /session-stats 的计量关系，证实 daily 池 = weekly 池 × 1/2。worth 折算 2.77 亿/月（bash.0723/MTok）。",
+        "adoptionStatus": "research-only; not adopted; 不改采用值",
+        "action": "已在 3b6f570 顺利合并入库。"
+      },
+      {
+        "pr": "#175",
+        "mergeCommit": "7f6aa97",
+        "contentCommit": "db3de6d",
+        "subject": "Research: Command Code GOAT DeepSeek V4.1 Flash 与 GLM-5.3 Flash 每模型 allowance 0→00（Pro 0→10；research-only，不改采用值）",
+        "value": "中研究价值：记录渠道额度上浮，但受限于 GOAT 共享月池 0 封顶，实际有效额度未变。",
+        "adoptionStatus": "research-only; not adopted; 不改采用值",
+        "action": "已在 3b6f570 顺利合并入库。"
+      },
+      {
+        "pr": "#174",
+        "mergeCommit": "ada9025",
+        "contentCommit": "26be639",
+        "subject": "Research: OpenCode Go DeepSeek V4.1 Flash 每模型月限额 0→00（Go Plus 60→00，Go Teams 5→05；research-only，不改采用值）",
+        "value": "中研究价值：渠道限额变动追踪。",
+        "adoptionStatus": "research-only; not adopted; 不改采用值",
+        "action": "已在 3b6f570 顺利合并入库。"
+      }
+    ]
+  },
+  "candidateList": {
+    "evaluatedModels": [
+      {
+        "model": "gemini-4-carbon",
+        "listPriceStatus": "covered (list-prices-gemini-4-carbon-round1-2026-10-29.json)",
+        "adoptionStatus": "adopted (Google AI 8 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gpt-6.1-terra",
+        "listPriceStatus": "covered (list-prices-gpt-61-terra-round1-2026-10-28.json)",
+        "adoptionStatus": "adopted (ChatGPT 3 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "listPriceStatus": "covered (list-prices-kimi-k31-round1-2026-10-27.json)",
+        "adoptionStatus": "adopted (Kimi 4 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "minimax-m3.1-flash-preview",
+        "listPriceStatus": "covered (list-prices-minimax-m31-round1-2026-10-19.json)",
+        "adoptionStatus": "adopted (MiniMax M Plan 6 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "claude-haiku-5.5",
+        "listPriceStatus": "covered (list-prices-claude-haiku55-round1-2026-10-08.json)",
+        "adoptionStatus": "adopted (Claude 3 档情景点)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "claude-sonnet-5.5",
+        "listPriceStatus": "covered (list-prices-claude-sonnet55-round2-2026-10-09.json)",
+        "adoptionStatus": "adopted (Claude 3 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-round2-2026-09-10.json)",
+        "adoptionStatus": "adopted (GOAT / OpenCode / Ollama)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "mistral-large-4",
+        "listPriceStatus": "under evaluation (no developer subscription yet)",
+        "adoptionStatus": "not adopted",
+        "actionRequired": "monitor subscription channels"
+      },
+      {
+        "model": "step-5-preview",
+        "listPriceStatus": "covered (list-prices-stepfun-round2-2026-09-21.json)",
+        "adoptionStatus": "adopted (Step Plan 3 点位)",
+        "actionRequired": "none"
+      }
+    ],
+    "newModelsRequired": [],
+    "listPricesStatus": "all current models covered, 0 new files needed",
+    "buildAdoptedStatus": "build_adopted.py successfully verified, outputs 369 rows, 19 CI checks pass"
+  },
+  "recommendationsForLead": {
+    "scoreFilesInsertion": "在 scripts/compute.py 的 SCORE_FILES 元组中，紧随 'scores-aa-round6-2026-11-03.json' 之后插入 'scores-aa-round6-2026-11-04.json'，并位于 'scores-terminal-bench4-round3-2026-10-01.json' 之前",
+    "listPriceFiles": "无需修改 LIST_PRICE_FILES（当前 15 个文件覆盖全部在库模型与订阅点）",
+    "displayMapping": "无需新增 DISPLAY 映射（既有模型映射完备）",
+    "upstreamAction": "noop，无需任何合并操作"
+  }
+}

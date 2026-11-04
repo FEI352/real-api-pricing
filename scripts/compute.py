@@ -52,6 +52,10 @@ SCORE_FILES = (
     "scores-aa-round6-2026-10-21.json",
     "scores-aa-round6-2026-10-22.json",
     "scores-aa-round6-2026-10-23.json",
+    # 2026-10-20 的 AA supplement（claude-haiku-5.5 五档 + deepseek-v4.1-flash）必须排在
+    # 后续全量快照之前：compute.current_score_records() 按「位置在最新全量快照之前则作废」
+    # 判定 supplement 是否仍生效，排在末尾会被重放成 12 条 (board,model,variant) 重复行。
+    "scores-aa-round6-supplement-2026-10-20.json",
     "scores-aa-round6-2026-10-25.json",
     "scores-aa-round6-2026-10-26.json",
     "scores-gemini-4-argon-round1-2026-10-01.json",
@@ -65,6 +69,7 @@ SCORE_FILES = (
     "scores-aa-round6-2026-11-01.json",
     "scores-aa-round6-2026-11-02.json",
     "scores-aa-round6-2026-11-03.json",
+    "scores-aa-round6-2026-11-04.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
     "scores-code-arena-round2-2026-10-01.json",
@@ -72,7 +77,6 @@ SCORE_FILES = (
     "scores-open-design-round2-2026-10-01.json",
     "scores-hyperqwen-local-2026-10-02.json",
     "scores-gemini-4-carbon-round1-2026-10-29.json",
-    "scores-aa-round6-supplement-2026-10-20.json",
     "scores-terminal-bench4-round4-2026-10-20.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-20.json",
     "scores-code-arena-round3-2026-10-20.json",

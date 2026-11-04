@@ -207,7 +207,10 @@ def label_position(p, board, x, y, tier="main"):
             if board == "arena_code":
                 return x - 90, y - 20, "end"
             if board == "open_design_arena":
-                return x - 4, y - 70, "end"
+                # 默认 x-4 时本标签右缘 995 压住右侧 mimo-v2.6-flash 标签左缘 958
+                # （重叠 37×33px，2026-11-04 verify_front_label_overlap 报出）。
+                # 左移 60px 让出整段横向余量，纵向保持原 -70。
+                return x - 64, y - 70, "end"
     if model == "claude-opus-5.5":
         if tier == "full":
             if board == "aa_terminal_bench_4":

@@ -1387,7 +1387,6 @@ DATA_DATES = {
     ("cursor_ultra", "grok-4.6"): ("2026-08-26~2026-09-05", "sample"),
     ("cursor_ultra_fast", "grok-4.6"): ("2026-09-05", "sample"),
     ("cursor_pro", "grok-4.6"): ("2026-08-27", "sample"),
-    ("cursor_ultra", "claude-opus-5.5"): ("2026-09-14~2026-10-05", "sample"),
     ("kimi_allegretto_cn", "kimi-k3"): ("2026-10-27", "sample"),
     ("kimi_allegretto_cn", "kimi-k2.7-code"): ("2026-08-20", "sample"),
     ("aliyun_coding_pro_cn", "qwen3.7-plus"): ("2026-07~2026-08", "sample"),
@@ -1450,8 +1449,9 @@ DATA_DATE_INHERIT = {
     ("kimi_allegretto_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
     ("kimi_allegro_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
     # Ultra 无国内同名档：额度按官方 credits 倍率从 Max 锚点派生，日期同样沿用。
+    # （upstream 的 kimi-k3.1-pro 增量行已删：其锚点 Max=43.53 亿随 2026-10-27 换基失效，
+    #  现行 v2 账 Ultra=Max×2=Allegro，K3.1 Pro 侧与 kimi_allegro_cn 同值，无需重复一点。）
     ("kimi_ultra_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
-    ("kimi_ultra_cn", "kimi-k3.1-pro"): ("kimi_allegretto_cn", "kimi-k3"),
     # Google Argon 独立额度池（促销价 / 标准价两套口径）：额度由社区 7d $200 基准 × 官方倍率推算，
     # 日期沿用同档 flash 实测点，不另立新日期。
     ("google_ai_pro_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
@@ -1472,8 +1472,8 @@ DATA_DATE_INHERIT = {
     ("kimi_allegro_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
     ("kimi_plus_cn", "kimi-k3"): ("kimi_moderato_cn", "kimi-k3"),
     ("kimi_pro_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
-    ("kimi_max_cn", "kimi-k3"): ("kimi_allegro_cn", "kimi-k3"),
-    ("kimi_ultra_cn", "kimi-k3"): ("kimi_allegro_cn", "kimi-k3"),
+    ("kimi_max_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
+    ("kimi_ultra_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
     ("kimi_plus_cn", "kimi-k2.7-code"): ("kimi_moderato_cn", "kimi-k2.7-code"),
     ("kimi_pro_cn", "kimi-k2.7-code"): ("kimi_allegretto_cn", "kimi-k2.7-code"),
     ("kimi_max_cn", "kimi-k2.7-code"): ("kimi_allegro_cn", "kimi-k2.7-code"),

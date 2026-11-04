@@ -72,30 +72,6 @@
       "note": "新增 65.30 亿：K3 锚点 43.53 亿 × 1.5（blended $0.441→$0.294）。K3 锚点由 199 档 × 官方 60/20 credits 倍率派生，非独立实测；K3.1 Pro 侧沿用同一倍率与价格换算。"
     },
     {
-      "plan_id": "kimi_ultra_cn",
-      "plan_name": "Kimi 会员 Ultra",
-      "plan_name_en": "Kimi Ultra",
-      "price": 199.0,
-      "currency": "USD",
-      "model": "kimi-k3",
-      "monthly_yi": 87.06,
-      "confidence": "medium",
-      "source": "Kimi 官方 API 三段价 https://www.kimi.ai/resources/kimi-k3-1-pro-pricing 与 https://www.kimi.ai/resources/kimi-k3-pricing；会员档位与 credits 倍率 https://www.kimi.ai/membership/pricing；额度以项目既有 K3 实测点为锚点，按 blended 价比换算（项目标准负载 cache 97% / input 2.5% / output 0.5%）",
-      "note": "新增 87.06 亿：官方 membership 页 Ultra 的 agent credits 为 Max 的 2 倍（5× → 10×），按 Max 锚点 43.53 亿 × 2 推算。Ultra 无国内同名档，额度完全派生，无面板实测。"
-    },
-    {
-      "plan_id": "kimi_ultra_cn",
-      "plan_name": "Kimi 会员 Ultra",
-      "plan_name_en": "Kimi Ultra",
-      "price": 199.0,
-      "currency": "USD",
-      "model": "kimi-k3.1-pro",
-      "monthly_yi": 130.59,
-      "confidence": "medium",
-      "source": "Kimi 官方 API 三段价 https://www.kimi.ai/resources/kimi-k3-1-pro-pricing 与 https://www.kimi.ai/resources/kimi-k3-pricing；会员档位与 credits 倍率 https://www.kimi.ai/membership/pricing；额度以项目既有 K3 实测点为锚点，按 blended 价比换算（项目标准负载 cache 97% / input 2.5% / output 0.5%）",
-      "note": "新增 130.59 亿：Ultra 的 K3 派生值 87.06 亿 × 1.5（blended $0.441→$0.294）。两级派生（credits 倍率 × 价格换算），置信度最低；仅作价位与额度量级展示。"
-    },
-    {
       "plan_id": "google_ai_pro_us",
       "plan_name": "Google AI Pro",
       "plan_name_en": "Google AI Pro",
@@ -130,18 +106,6 @@
       "confidence": "low",
       "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Argon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Argon 三段价见 list-prices-gemini-4-argon-round1-2026-10-01.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
       "note": "新增 162.44 亿：7d $200 × 4（20× ÷ 5×）= 7d $800，×4 周 = $3200/月 ÷ $0.197/MTok。纯倍率外推，无任何 20x 侧实测；12-01 后标准价折算降为 81.22 亿。标准价口径见 google_ai_*_std 点。"
-    },
-    {
-      "plan_id": "google_ai_ultra_5x_tr",
-      "plan_name": "Google AI Ultra 5x (土耳其)",
-      "plan_name_en": "Google AI Ultra 5x (Turkey)",
-      "price": 29.73,
-      "currency": "USD",
-      "model": "gemini-4-argon",
-      "monthly_yi": 40.61,
-      "confidence": "low",
-      "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Argon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Argon 三段价见 list-prices-gemini-4-argon-round1-2026-10-01.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
-      "note": "新增 40.61 亿：额度与美国版同池（与地区无关），价格取土耳其官网直购 TRY 1,479.99 ≈ $29.73。real = 29.73 ÷ 4,061 MTok = $0.007321/MTok，为美国版 $99.99 的 29.7%。即土区用 30% 的价格买同样的 Argon 额度，但绝对量仍只有同档 flash 点的 31%。标准价口径另立 google_ai_*_std 点（额度减半），见同批录入。"
     },
     {
       "plan_id": "google_ai_pro_us_std",
@@ -351,6 +315,40 @@
       "date_inherit": [
         "google_ai_pro_us",
         "gemini-4-argon"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_tr",
+      "plan_name": "Google AI Ultra 5x (土耳其)",
+      "price": 29.73,
+      "currency": "USD",
+      "model": "gemini-4-argon",
+      "monthly_yi": 40.61,
+      "confidence": "low",
+      "source": "倍率：Google 官方 Antigravity 说明 Ultra $100 = 5× Pro token worth；额度基准：社区 Keeper 统计 Ultra 5x 的 Gemini 4 Argon 为 5h $50 / 7d $200（非官方数字）；标价：Gemini 4 Argon 首发优惠 $2.00/$10.00（缓存读 $0.10，至 2026-11-30）见 https://ai.google.dev/gemini-api/docs/pricing 与 list-prices-gemini-4-argon-round1-2026-10-01.json；土区价格 TRY 1,479.99 ÷ 49.78 = $29.73 见 probe-pricing-2026-11-03.json",
+      "note": "40.61 亿 = 周池 $200 × 4 周 ÷ blended $0.197/MTok；额度与地区无关，土区只改价格。real = 29.73 ÷ 4,061 MTok = $0.007321/MTok，为美区同档 $0.024622 的 29.7%。此前该行 main=false 只进全量图，本次并入精选主图与同套餐的 3.8 Flash 并列。纯倍率外推、无面板实测 → low。",
+      "main": true,
+      "plan_name_en": "Google AI Ultra 5x (Turkey)",
+      "date_inherit": [
+        "google_gemini4_argon_api",
+        "gemini-4-argon"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_20x_tr_iap",
+      "plan_name": "Google AI Ultra 20x 土耳其（Apple 内购）",
+      "price": 59.24,
+      "currency": "USD",
+      "model": "gemini-3.8-flash",
+      "monthly_yi": 516.2,
+      "confidence": "low",
+      "source": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99；官网直购价参照 Google 土耳其区定价页 https://one.google.com/intl/ALL_tr/about/feeds/pricing_20250909_3c4cbb8a ；3.8 Flash 标价维持引入优惠 $0.75/$3.75 见 probe-pricing-2026-11-03.json",
+      "note": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24，仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版 20x 同池（与地区无关）= 20 × Pro 25.81 = 516.2 亿/月（Gemini 3.8 Flash 折算，纯倍率外推）。real = 59.24 ÷ 51,620 MTok = $0.001148/MTok，为美区 20x 的 $0.003874 的 29.6%。三条风险同其余内购行：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测 → low。",
+      "main": true,
+      "plan_name_en": "Google AI Ultra 20x Turkey (Apple IAP)",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
       ]
     }
   ]
