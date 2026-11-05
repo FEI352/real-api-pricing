@@ -350,6 +350,40 @@
         "google_ai_pro_us",
         "gemini-3.8-flash"
       ]
+    },
+    {
+      "plan_id": "mistral_vibe_pro",
+      "plan_name": "Mistral Vibe Pro",
+      "price": 14.99,
+      "currency": "USD",
+      "model": "mistral-large-4",
+      "monthly_yi": 32.85,
+      "confidence": "low",
+      "source": "模型价：Artificial Analysis 模型页 https://artificialanalysis.ai/models/mistral-large-4 转引 Mistral 官方 API（input 0.70 / output 2.10 / 缓存命中 90% 折扣即 0.07）；订阅额度：维护者提供的 X @AdamHolterer 2026-11-03 截图 https://x.com/AdamHoltererer/status/2117707254908469690（Vibe Pro 账户显示 300 美元/月预算，经 @SSHCodes，Mistral 未公布），留档 data/research/x-adamholterer-vibe-pro-2026-11-03.jpg（另含 15 美元 API 额度）。标价另见 list-prices-mistral-large-4-round1-2026-11-04.json。",
+      "note": "32.85 亿 = 315 美元月预算（Vibe 300 美元额度 + 15 美元 API 额度）÷ 混合价 0.0959 美元/MTok；混合价按项目 97% 缓存标准负载套 Mistral Large 4 官方价（cache hit 0.07 / input 0.70 / output 2.10）。real = 14.99 ÷ 3,285 MTok = 0.004563 美元/MTok，相当于按量价 0.0959 的 4.8%，约 21 倍的用量杠杆。此为美元预算换算而非实测 token 数：Mistral 不公布 Vibe 额度，300 美元来自截图 → low。",
+      "main": true,
+      "plan_name_en": "Mistral Vibe Pro",
+      "date_inherit": [
+        "mistral_large4_api",
+        "mistral-large-4"
+      ]
+    },
+    {
+      "plan_id": "mistral_vibe_pro",
+      "plan_name": "Mistral Vibe Pro",
+      "plan_name_en": "Mistral Vibe Pro",
+      "price": 14.99,
+      "currency": "USD",
+      "model": "glm-5.3",
+      "monthly_yi": 16.34,
+      "confidence": "low",
+      "source": "X @AdamHolterer 2026-11-03 截图 https://x.com/AdamHoltererer/status/2117707254908469690（Real API Pricing 方法）：同一 $14.99 的 Vibe Pro 在 GLM 5.3 上的用量为 Z.ai API 标价的 33.7 倍；同图 Z.ai 三档 Lite 7.3× / Pro 9.6× / Max 11.2×，与本库 glm_coding_*_new_offpeak 行逐条吻合，说明口径同源；截图留档 data/research/x-adamholterer-vibe-pro-2026-11-03.jpg；GLM 5.3 标价见 https://docs.z.ai/guides/overview/pricing 与 list-prices-2026-09.json",
+      "note": "16.34 亿 = 33.7 × 14.99 = 505.16 美元的 GLM 5.3 用量 ÷ 0.3092 美元/MTok 的 97% 缓存混合价。同一口径用在 Z.ai 新客 off-peak 三档复现出图里的 3.5 / 4.6 / 3.0 倍（Pro / Lite / Max 的每美元 token 比），说明倍数可复算。张力：帖内另称 300 美元预算 + 15 美元 API 额度，按 Z.ai 标价只折 10.19 亿（21 倍），与 33.7 倍差 1.60 倍；两者同时成立需要 Mistral 侧 GLM 5.3 费率约为 Z.ai 的 0.62 倍（0.1928 美元/MTok），该费率未公开。本行采 33.7 倍口径，不采 315 美元口径 → low。",
+      "main": true,
+      "date_inherit": [
+        "glm_coding_pro_cn_new_offpeak",
+        "glm-5.3"
+      ]
     }
   ]
 }

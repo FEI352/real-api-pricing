@@ -4,9 +4,11 @@
 
 ## Files
 
-openai, anthropic, claude, xai, cursor.webp, cursor-dark.webp, factory, factory-dark, kimi, kimi-dark, zhipu, minimax, alibaba, opencode, opencode-dark, xai-dark, deepseek, google, command-code, command-code-dark, ollama, ollama-dark.webp, xiaomi, tencent, meta, microsoft, meituan, stepfun, devin, devin-dark.
+openai, anthropic, claude, xai, cursor.webp, cursor-dark.webp, factory, factory-dark, kimi, kimi-dark, zhipu, minimax, alibaba, opencode, opencode-dark, xai-dark, deepseek, google, command-code, command-code-dark, ollama, ollama-dark.webp, xiaomi, tencent, meta, microsoft, meituan, stepfun, devin, devin-dark, mistral.
 
 Alibaba uses the Qwen mark; Tencent uses Hunyuan; Meituan uses LongCat; Google uses the official G. Factory uses its official near-black tile for light theme; factory.ai ships no light tile, so the dark-theme tile is the same favicon with tile and mark colours swapped (#FAFAFA tile, #020202 mark). Cursor uses its official square avatars — dark tile for light theme, light tile for dark theme. Ollama keeps the bare llama mark for light theme and ships the official white tile for dark theme. Muse Spark uses the Meta mark. Step models use the StepFun five-square mark. Devin (channel) and Cognition (SWE models) both use the official Devin mark. Third-party rows show the reseller first, then the model manufacturer.
+
+Mistral uses the official five-band gradient mark (gold #FFD700 → #FFAF00 → #FF8205 → #FA500F → #E10500), taken from lobehub/lobe-icons; no dark variant is needed because the mark is self-coloured.
 
 ## Sources
 

@@ -363,6 +363,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0011476172" data-score="19.09" data-x="1168.866" data-y="622.888" transform="translate(1168.866 622.888)"><title>Gemini 3.8 Flash · Google AI Ultra 20x Turkey (Apple IAP) · $0.00115/MTok · 19.09 · lowmini-SWE-agent - Gemini 3.8 Flash (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0091738066" data-score="41.82" data-x="884.498" data-y="437.913" transform="translate(884.498 437.913)"><title>GLM 5.3 · Mistral Vibe Pro · $0.00917/MTok · 41.82 · lowClaude Code - GLM-5.3 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#8A94A6" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.016785564" data-score="21.52" data-x="801.846" data-y="603.113" transform="translate(801.846 603.113)"><title>GPT 5.6 Terra · Plus · $0.01679/MTok · 21.52 · mediumCodex - GPT-5.6 Terra (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -559,7 +562,7 @@
 <path d="M62 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="76.000" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5×, Droid = 2× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >132 subscription positions / 13 API positions / 4 frontier positions</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >133 subscription positions / 13 API positions / 4 frontier positions</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Highest archived configuration reference; harness and effort shown. Product/quota alignment unverified, not channel measurements.</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >≈$0 = SWE-2 promo: unmetered on Devin Pro/Max/Teams until 2026-10-31, not permanent; TB4 score self-reported by Cognition.</text>
 <text x="56.000" y="964.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>

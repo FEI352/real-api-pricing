@@ -25,6 +25,7 @@ export const filterKeys: FilterKey[] = [
 ];
 export const colors = channelColors;
 export const defaultState = (): State => ({
+  hideOld: true,
   feeBand: "all",
   lang: "en",
   view: "pareto",
@@ -86,6 +87,15 @@ export function options(data: SiteData): Record<FilterKey, string[]> {
 export function scorePresence(r: { score: number | null }): string {
   return r.score === null ? "unscored" : "scored";
 }
+/**
+ * 「旧代」套餐：同一模型下已被新一代取代的档位（Kimi v1 旧套餐、Z.ai v2 老客价）。
+ * 数据仍然保留（历史与对账需要），默认视图隐藏，避免把老价位的绝对 token 量
+ * 和新价位并排比较——2026-11-04 就是因此把 $14.99 的 Vibe 看成"比 Z.ai 少"。
+ */
+export function isOlderGeneration(p: Point): boolean {
+  return p.plan_gen === "v1" || p.plan_gen === "v2";
+}
+
 export function visiblePoints(data: SiteData, s: State): Point[] {
   const chosen = s.selected === null ? null : new Set(s.selected);
   return data.points.filter(
@@ -96,6 +106,7 @@ export function visiblePoints(data: SiteData, s: State): Point[] {
       matches(s.plans, p.plan) &&
       matches(s.billing, p.billing) &&
       matches(s.confidence, p.confidence) &&
+      (!s.hideOld || !isOlderGeneration(p)) &&
       (s.view !== "allowance" && s.view !== "pareto" ||
         (s.view === "allowance"
           ? p.billing !== "metered" && p.monthly_yi !== null && matchesFeeBand(p.price_usd, s.feeBand)
@@ -655,6 +666,7 @@ export function serialize(s: State): string {
   if (s.configuration !== d.configuration) p.set("config", s.configuration);
   if (s.labels !== d.labels) p.set("labels", s.labels);
   if (s.feeBand !== d.feeBand) p.set("fee", s.feeBand);
+  if (s.hideOld !== d.hideOld) p.set("old", "0");
   if (s.xMode !== d.xMode) p.set("xmode", s.xMode);
   if (s.axisSwap) p.set("swap", "1");
   if (s.xMin || s.xMax || s.yMin || s.yMax || s.feeMin || s.feeMax)
@@ -689,6 +701,7 @@ export function restore(
   if (storedLang === "zh") state.lang = "zh";
   if (!hash || hash === "#") return { state, warning: false };
   const params = new URLSearchParams(hash.slice(1));
+  if (params.get("old") === "0") state.hideOld = false;
   const legacy = params.get("s");
   if (legacy !== null) return restoreLegacy(legacy, state, data);
   let warning = false;

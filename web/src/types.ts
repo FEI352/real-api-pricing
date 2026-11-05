@@ -124,6 +124,8 @@ export type FilterKey =
   | "modes"
   | "scoreState";
 export interface State {
+  /** Hide plans superseded by a newer generation (plan_gen v1/v2). Data stays, view filters. */
+  hideOld: boolean;
   feeBand: string;
   lang: Lang;
   view: View;

@@ -29,7 +29,9 @@ for name, row in current_score_records(archives):
     elif row["boardId"] == "aa_intelligence_index":
         source = next(r for r in raw if r["slug"] == secondary["slug"])
         expected = source["intelligenceIndex"]
-        assert secondary["intelligenceIndexIsEstimated"] == source["intelligenceIndexIsEstimated"]
+        # 2026-11-04：部分模型（mistral-large-4）的 AA 载荷不携带该标记位，
+        # 缺失即视为未声明，用 .get() 兜底而不是让守卫 KeyError 崩掉。
+        assert secondary["intelligenceIndexIsEstimated"] == source.get("intelligenceIndexIsEstimated")
         assert row["variantLabel"] == (source.get("shortName") or source["name"])
     else:
         source = next(r for r in raw if r["id"] == secondary["hostConfigId"])

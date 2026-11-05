@@ -876,6 +876,17 @@ function Explorer({
                     </select>
                   </label>
                 )}
+                <label className="toggle" title={t(
+                  "Hide plans superseded by a newer generation (Kimi v1, Z.ai v2 old-customer pricing). The data is still in the export.",
+                  "隐藏已被新一代取代的套餐（Kimi v1、Z.ai v2 老客价）。数据仍在导出里，只是默认不显示。",
+                )}>
+                  <input
+                    type="checkbox"
+                    checked={!state.hideOld}
+                    onChange={(e) => patch({ hideOld: !e.target.checked })}
+                  />
+                  {t("Show older generations", "显示旧代套餐")}
+                </label>
                 {(state.view === "allowance" || state.view === "pareto") && (
                   <div className="fee-bands" role="group" aria-label={t("Monthly subscription fee", "订阅月费分档")}>
                     <span className="fee-label">{t("Monthly fee", "月费")}</span>
@@ -1354,7 +1365,14 @@ function Explorer({
                       selectedIds.has(p.id),
                     ).length;
                     return (
-                      <details key={id} className="model-group">
+                      // 搜索时自动展开：否则按套餐名命中的组（如 "mis" 命中
+                      // GLM 5.3 组里的 Mistral Vibe Pro）只会露出模型名，
+                      // 用户看不到自己找的那一行。
+                      <details
+                        key={id}
+                        className="model-group"
+                        open={modelSearch.trim().length > 0 || undefined}
+                      >
                         <summary>
                           <span onClick={(e) => e.stopPropagation()}>
                             <CheckBox

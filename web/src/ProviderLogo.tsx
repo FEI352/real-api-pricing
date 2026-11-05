@@ -39,6 +39,7 @@ const slugs: Record<string, string> = {
   StepFun: "stepfun",
   Step: "stepfun",
   Devin: "devin",
+  Mistral: "mistral",
 };
 /**
  * Marks drawn in near-black ink. On a dark surface they would vanish, so the

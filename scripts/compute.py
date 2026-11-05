@@ -70,6 +70,7 @@ SCORE_FILES = (
     "scores-aa-round6-2026-11-02.json",
     "scores-aa-round6-2026-11-03.json",
     "scores-aa-round6-2026-11-04.json",
+    "scores-aa-round6-2026-11-05.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
     "scores-code-arena-round2-2026-10-01.json",
@@ -82,6 +83,7 @@ SCORE_FILES = (
     "scores-code-arena-round3-2026-10-20.json",
     "scores-agent-arena-round3-2026-10-20.json",
     "scores-deepswe-selfreport-1017-2026-10-20.json",
+    "scores-mistral-large-4-round1-2026-11-04.json",
 )
 LIST_PRICE_FILES = (
     "list-prices-2026-09.json",
@@ -99,6 +101,7 @@ LIST_PRICE_FILES = (
     "list-prices-kimi-k31-round1-2026-10-27.json",
     "list-prices-gpt-61-terra-round1-2026-10-28.json",
     "list-prices-gemini-4-carbon-round1-2026-10-29.json",
+    "list-prices-mistral-large-4-round1-2026-11-04.json",
 )
 
 
@@ -122,7 +125,7 @@ DISPLAY = {
     "mimo-v2.6-pro-ultraspeed": "MiMo V2.6 Pro UltraSpeed", "longcat-2.0": "LongCat 2.0",
     "muse-spark-1.3": "Muse Spark 1.3", "muse-spark-1.3-contributor": "Muse Spark 1.3 Contributor",
     "muse-spark-1.2": "Muse Spark 1.2", "muse-spark-1.2-contributor": "Muse Spark 1.2 Contributor",
-    "glm-5.2-fast": "GLM 5.2 Fast", "inkling": "Inkling", "inkling-small": "Inkling Small", "mistral-medium-3.5": "Mistral Medium 3.5",
+    "glm-5.2-fast": "GLM 5.2 Fast", "inkling": "Inkling", "inkling-small": "Inkling Small", "mistral-medium-3.5": "Mistral Medium 3.5", "mistral-large-4": "Mistral Large 4",
     "kimi-k2.7-code-highspeed": "Kimi K2.7 Code HighSpeed", "nemotron-3-ultra": "Nemotron 3 Ultra",
     "qwen3.8-27b": "Qwen3.8 27B", "qwen3.8-max-0902": "Qwen3.8 Max 0902",
     "step-3.5-flash": "Step 3.5 Flash", "step-3.7-flash": "Step 3.7 Flash", "step-5-preview": "Step 5 Preview", "jev": "Jev",

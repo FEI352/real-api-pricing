@@ -6,7 +6,7 @@
   "description": "informational（2026-10-08 修正）：前端每任务成本 = cost × real ÷ list，cost ÷ list 是 AA 任务的 token 数，list 必须是 AA 价（benchmark_list_price），换分母即篡改 token 数。比值在 [min, max] 内标 consistent；超界标 data_quality_suspect（提示**项目档价可能错**，人工核实，不改数据）；无项目档价标 no_curated_baseline（保留 AA 价）。"
  },
  "counts": {
-  "consistent": 63,
+  "consistent": 66,
   "data_quality_suspect": 0,
   "no_curated_baseline": 8,
   "cross_model_suspect": 0
@@ -15,7 +15,7 @@
  "cross_model_cells": [],
  "configurations": [
   {
-   "configuration_id": "aa_intelligence_index:72214143fb9fdc8f",
+   "configuration_id": "aa_intelligence_index:e727920ec49c1dd3",
    "board": "aa_intelligence_index",
    "model": "claude-sonnet-5.5",
    "variant": "Claude Sonnet 5.5 (medium with fallback)",
@@ -26,7 +26,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:76aaef37f18dafa9",
+   "configuration_id": "aa_intelligence_index:c898ec532f11864d",
    "board": "aa_intelligence_index",
    "model": "claude-fable-5.1",
    "variant": "Claude Fable 5.1 (low with fallback)",
@@ -37,7 +37,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:7df9d0bf46703d61",
+   "configuration_id": "aa_intelligence_index:a4128a262b71d337",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-sol",
    "variant": "GPT-6.1 Sol (xhigh)",
@@ -48,7 +48,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:7ebc1c053f1df226",
+   "configuration_id": "aa_intelligence_index:39a4550b18288124",
    "board": "aa_intelligence_index",
    "model": "step-5-preview",
    "variant": "Step 5 Preview",
@@ -59,7 +59,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:5e1c59e21be80b44",
+   "configuration_id": "aa_intelligence_index:bd108b94d278fdb5",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-terra",
    "variant": "GPT-6.1 Terra (non-reasoning)",
@@ -70,7 +70,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:78b1f343dec3524b",
+   "configuration_id": "aa_intelligence_index:337cf5ae71986efe",
    "board": "aa_intelligence_index",
    "model": "inkling",
    "variant": "Inkling (xhigh)",
@@ -81,7 +81,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:6612bb730a31f07f",
+   "configuration_id": "aa_intelligence_index:f65129b648816629",
    "board": "aa_intelligence_index",
    "model": "mimo-v2.6-flash",
    "variant": "MiMo-V2.6-Flash",
@@ -92,7 +92,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:42315e799722d8f9",
+   "configuration_id": "aa_intelligence_index:23859ae7ba0ded9e",
    "board": "aa_intelligence_index",
    "model": "glm-5.3-flash",
    "variant": "GLM-5.3-Flash",
@@ -103,7 +103,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:d11a59cf4c89e402",
+   "configuration_id": "aa_intelligence_index:a3cd72e80844df54",
    "board": "aa_intelligence_index",
    "model": "gpt-6-luna",
    "variant": "GPT-6 Luna (xhigh)",
@@ -114,7 +114,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:3bd118a852bd8517",
+   "configuration_id": "aa_intelligence_index:2b0ddfbb196dbcd2",
    "board": "aa_intelligence_index",
    "model": "gpt-6-astra",
    "variant": "GPT-6 Astra (xhigh)",
@@ -125,7 +125,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:94f821fb996dbd85",
+   "configuration_id": "aa_intelligence_index:75486e9e2e88a3cf",
    "board": "aa_intelligence_index",
    "model": "claude-haiku-5.5",
    "variant": "Claude Haiku 5.5 (high)",
@@ -136,7 +136,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:848924edb9fa6bc7",
+   "configuration_id": "aa_intelligence_index:a139a0c2be4e9d59",
    "board": "aa_intelligence_index",
    "model": "mimo-v2.6-pro",
    "variant": "MiMo-V2.6-Pro",
@@ -147,7 +147,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:975643d679b869f0",
+   "configuration_id": "aa_intelligence_index:c408c23572e2af36",
    "board": "aa_intelligence_index",
    "model": "claude-sonnet-5.5",
    "variant": "Claude Sonnet 5.5 (high with fallback)",
@@ -158,7 +158,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:a5e17060238feebc",
+   "configuration_id": "aa_intelligence_index:d759b49efd8ba148",
    "board": "aa_intelligence_index",
    "model": "grok-4.7",
    "variant": "Grok 4.7 (high)",
@@ -169,7 +169,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:82450ebdef95f0df",
+   "configuration_id": "aa_intelligence_index:7559e3fe9d0634ae",
    "board": "aa_intelligence_index",
    "model": "minimax-m3",
    "variant": "MiniMax-M3",
@@ -180,7 +180,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:8b44cc41ae331c45",
+   "configuration_id": "aa_intelligence_index:2d28a169325b5ed4",
    "board": "aa_intelligence_index",
    "model": "gpt-6-astra",
    "variant": "GPT-6 Astra (max)",
@@ -191,7 +191,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:c3a53d135898de8d",
+   "configuration_id": "aa_intelligence_index:58c0dc2785cd538e",
    "board": "aa_intelligence_index",
    "model": "claude-opus-5.5",
    "variant": "Claude Opus 5.5 (max with fallback)",
@@ -202,7 +202,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:27c5d3dfebd2ab95",
+   "configuration_id": "aa_intelligence_index:f506642427a3276b",
    "board": "aa_intelligence_index",
    "model": "qwen3.8-27b",
    "variant": "Qwen3.8 27B (non-reasoning)",
@@ -213,7 +213,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:0789df0e721d76b2",
+   "configuration_id": "aa_intelligence_index:8e2f9e5d263efb99",
    "board": "aa_intelligence_index",
    "model": "gpt-6-luna",
    "variant": "GPT-6 Luna (medium)",
@@ -224,7 +224,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:8e9e9def67c79d40",
+   "configuration_id": "aa_intelligence_index:bc446dcc96a2f59c",
    "board": "aa_intelligence_index",
    "model": "claude-fable-5.1",
    "variant": "Claude Fable 5.1 (medium with fallback)",
@@ -235,7 +235,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:f326f146a40a63ab",
+   "configuration_id": "aa_intelligence_index:0d075fba0eaba725",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-sol",
    "variant": "GPT-6.1 Sol (high)",
@@ -246,7 +246,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:c0f2410a228c25e6",
+   "configuration_id": "aa_intelligence_index:132eeb6598d7e8ac",
    "board": "aa_intelligence_index",
    "model": "claude-fable-5.1",
    "variant": "Claude Fable 5.1 (max with fallback)",
@@ -257,7 +257,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:facf0df3423fc9a7",
+   "configuration_id": "aa_intelligence_index:bc86b20effceed7b",
    "board": "aa_intelligence_index",
    "model": "claude-haiku-5.5",
    "variant": "Claude Haiku 5.5 (xhigh)",
@@ -268,7 +268,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:051d6051ab6219d1",
+   "configuration_id": "aa_intelligence_index:6ef6359c60decf99",
    "board": "aa_intelligence_index",
    "model": "claude-haiku-5.5",
    "variant": "Claude Haiku 5.5 (low)",
@@ -279,7 +279,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:480f2630c2080137",
+   "configuration_id": "aa_intelligence_index:7adae34eff67ff3d",
    "board": "aa_intelligence_index",
    "model": "claude-opus-5.5",
    "variant": "Claude Opus 5.5 (low with fallback)",
@@ -290,7 +290,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:3047f02db54f5d30",
+   "configuration_id": "aa_intelligence_index:cbce280b4a7870e3",
    "board": "aa_intelligence_index",
    "model": "grok-4.7",
    "variant": "Grok 4.7 (xhigh)",
@@ -301,7 +301,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:12e77070d878982b",
+   "configuration_id": "aa_intelligence_index:5fb02b026a25abf5",
    "board": "aa_intelligence_index",
    "model": "nemotron-3-ultra",
    "variant": "Nemotron 3 Ultra",
@@ -312,7 +312,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:56e93d1a3805dd9d",
+   "configuration_id": "aa_intelligence_index:369612a5386e432c",
    "board": "aa_intelligence_index",
    "model": "gpt-6-luna",
    "variant": "GPT-6 Luna (non-reasoning)",
@@ -323,7 +323,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:36d0340a9e2a8ff4",
+   "configuration_id": "aa_intelligence_index:7c610d94f7bd5766",
    "board": "aa_intelligence_index",
    "model": "qwen3.8-27b",
    "variant": "Qwen3.8 27B (medium)",
@@ -334,7 +334,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:6c30c2387790bccb",
+   "configuration_id": "aa_intelligence_index:754e171d69d242b4",
    "board": "aa_intelligence_index",
    "model": "kimi-k3.1-pro",
    "variant": "Kimi K3.1 Pro",
@@ -345,7 +345,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:615c191f21114839",
+   "configuration_id": "aa_intelligence_index:931fecb643d44c35",
    "board": "aa_intelligence_index",
    "model": "gpt-6-luna",
    "variant": "GPT-6 Luna (max)",
@@ -356,7 +356,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:81a83392a5e61458",
+   "configuration_id": "aa_intelligence_index:f646262216ca95f3",
    "board": "aa_intelligence_index",
    "model": "inkling-small",
    "variant": "Inkling Small",
@@ -367,7 +367,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:5d5f1213246b7e20",
+   "configuration_id": "aa_intelligence_index:ad6b974f8c815793",
    "board": "aa_intelligence_index",
    "model": "gemini-3.8-flash",
    "variant": "Gemini 3.8 Flash (medium)",
@@ -378,7 +378,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:98ab84461bb3f365",
+   "configuration_id": "aa_intelligence_index:15f7eb0b293b6004",
    "board": "aa_intelligence_index",
    "model": "claude-haiku-5.5",
    "variant": "Claude Haiku 5.5 (max)",
@@ -389,7 +389,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:fe81f5d50f335c8a",
+   "configuration_id": "aa_intelligence_index:22cc9d94350e0782",
    "board": "aa_intelligence_index",
    "model": "gpt-6-luna",
    "variant": "GPT-6 Luna (high)",
@@ -400,7 +400,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:51edbbfd56f75b82",
+   "configuration_id": "aa_intelligence_index:6808956e37a763e4",
    "board": "aa_intelligence_index",
    "model": "qwen3.8-27b",
    "variant": "Qwen3.8 27B (low)",
@@ -411,7 +411,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:8e46c03a820013e9",
+   "configuration_id": "aa_intelligence_index:b458624484c694fc",
    "board": "aa_intelligence_index",
    "model": "deepseek-v4-pro",
    "variant": "DeepSeek V4 Pro 0813 (max)",
@@ -422,7 +422,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:7088394bb4b53274",
+   "configuration_id": "aa_intelligence_index:a9c18297a8c49a17",
    "board": "aa_intelligence_index",
    "model": "gemini-3.8-flash",
    "variant": "Gemini 3.8 Flash (high)",
@@ -433,7 +433,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:aaf84f34a76a5a45",
+   "configuration_id": "aa_intelligence_index:2ba8189019e9aaf0",
    "board": "aa_intelligence_index",
    "model": "claude-sonnet-5.5",
    "variant": "Claude Sonnet 5.5 (xhigh with fallback)",
@@ -444,7 +444,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:d94be34a268e1ea4",
+   "configuration_id": "aa_intelligence_index:9b20377839040f59",
    "board": "aa_intelligence_index",
    "model": "claude-fable-5.1",
    "variant": "Claude Fable 5.1 (xhigh with fallback)",
@@ -455,7 +455,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:1023f1677c76f117",
+   "configuration_id": "aa_intelligence_index:1c9e9f7aee4650cf",
    "board": "aa_intelligence_index",
    "model": "claude-fable-5.1",
    "variant": "Claude Fable 5.1 (high with fallback)",
@@ -466,7 +466,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:aec3c702fedcc832",
+   "configuration_id": "aa_intelligence_index:0e83e8043bb3ebc6",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-sol",
    "variant": "GPT-6.1 Sol (medium)",
@@ -477,7 +477,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:ab52d20ae2d626e0",
+   "configuration_id": "aa_intelligence_index:d0729d73789f532d",
    "board": "aa_intelligence_index",
    "model": "gpt-6-astra",
    "variant": "GPT-6 Astra (low)",
@@ -488,7 +488,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:3fb37300e92ce9e7",
+   "configuration_id": "aa_intelligence_index:21306473f99b3eff",
    "board": "aa_intelligence_index",
    "model": "claude-haiku-5.5",
    "variant": "Claude Haiku 5.5 (medium)",
@@ -499,7 +499,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:2ee64db8c69c310c",
+   "configuration_id": "aa_intelligence_index:80bdff6f4dbca21a",
    "board": "aa_intelligence_index",
    "model": "qwen3.8-27b",
    "variant": "Qwen3.8 27B (xhigh)",
@@ -510,7 +510,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:d9ce90e75977cf10",
+   "configuration_id": "aa_intelligence_index:89d295d7e4b6df8b",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-terra",
    "variant": "GPT-6.1 Terra (max)",
@@ -521,7 +521,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:19c44dcc3044b075",
+   "configuration_id": "aa_intelligence_index:517371b34dd04457",
    "board": "aa_intelligence_index",
    "model": "qwen3.8-max-0902",
    "variant": "Qwen3.8 Max (0902)",
@@ -532,7 +532,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:48d4efb2a99f6197",
+   "configuration_id": "aa_intelligence_index:2ec090226c44e01c",
    "board": "aa_intelligence_index",
    "model": "claude-sonnet-5.5",
    "variant": "Claude Sonnet 5.5 (max with fallback)",
@@ -543,7 +543,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:37425ccda42689b8",
+   "configuration_id": "aa_intelligence_index:6ed9c17bcef42973",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-sol",
    "variant": "GPT-6.1 Sol (max)",
@@ -554,7 +554,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:4e5b068a88dc07cd",
+   "configuration_id": "aa_intelligence_index:866001311e5cef84",
    "board": "aa_intelligence_index",
    "model": "claude-sonnet-5.5",
    "variant": "Claude Sonnet 5.5 (low with fallback)",
@@ -565,7 +565,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:072b3e8ad9ae8a41",
+   "configuration_id": "aa_intelligence_index:ce4f56320b7a3004",
    "board": "aa_intelligence_index",
    "model": "gpt-6-luna",
    "variant": "GPT-6 Luna (low)",
@@ -576,7 +576,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:3433bc9a2c233bd2",
+   "configuration_id": "aa_intelligence_index:746d0d559ab4fdbb",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-terra",
    "variant": "GPT-6.1 Terra (medium)",
@@ -587,7 +587,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:50878706e91529ee",
+   "configuration_id": "aa_intelligence_index:46191b40328caa5c",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-terra",
    "variant": "GPT-6.1 Terra (low)",
@@ -598,7 +598,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:3f97993a78e9abce",
+   "configuration_id": "aa_intelligence_index:8551851c061986a1",
    "board": "aa_intelligence_index",
    "model": "glm-5.3",
    "variant": "GLM-5.3 (low)",
@@ -609,7 +609,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:886357bb9aadcd52",
+   "configuration_id": "aa_intelligence_index:2feda3cbf0e373a3",
    "board": "aa_intelligence_index",
    "model": "glm-5.3",
    "variant": "GLM-5.3 (max)",
@@ -620,7 +620,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:88bb2fef6eb1d13d",
+   "configuration_id": "aa_intelligence_index:847b0a800996f0b7",
    "board": "aa_intelligence_index",
    "model": "gemini-4-argon",
    "variant": "Gemini 4 Argon (high)",
@@ -631,7 +631,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:de2790bb3c833287",
+   "configuration_id": "aa_intelligence_index:61e8b4db26dfb427",
    "board": "aa_intelligence_index",
    "model": "minimax-m3.1-flash-preview",
    "variant": "MiniMax-M3.1-Flash",
@@ -642,7 +642,29 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:83370ed65fc40a0e",
+   "configuration_id": "aa_intelligence_index:1a0a63319b496ed5",
+   "board": "aa_intelligence_index",
+   "model": "deepseek-v4-pro",
+   "variant": "DeepSeek V4 Pro 0813 (non-reasoning)",
+   "benchmark_list_price": 0.09548,
+   "curated_list_blended": 0.09548,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:a3ea6c17c9d8c6ea",
+   "board": "aa_intelligence_index",
+   "model": "mistral-medium-3.5",
+   "variant": "Mistral Medium 3.5",
+   "benchmark_list_price": 0.2205,
+   "curated_list_blended": 0.2205,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:17713f66becae351",
    "board": "aa_intelligence_index",
    "model": "claude-opus-5.5",
    "variant": "Claude Opus 5.5 (xhigh with fallback)",
@@ -653,7 +675,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:aeba5bf6539fda55",
+   "configuration_id": "aa_intelligence_index:aa19cbcb236f6988",
    "board": "aa_intelligence_index",
    "model": "gpt-6-astra",
    "variant": "GPT-6 Astra (high)",
@@ -664,7 +686,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:e7d1b149ba7989ab",
+   "configuration_id": "aa_intelligence_index:04f77007f1bcd6d3",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-sol",
    "variant": "GPT-6.1 Sol (low)",
@@ -675,7 +697,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:1ad2a3b4dc3a3394",
+   "configuration_id": "aa_intelligence_index:5b009fc3f87308fe",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-terra",
    "variant": "GPT-6.1 Terra (xhigh)",
@@ -686,7 +708,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:9ac3314b3c867886",
+   "configuration_id": "aa_intelligence_index:d03bd3ae2baafbd1",
    "board": "aa_intelligence_index",
    "model": "gpt-6-astra",
    "variant": "GPT-6 Astra (medium)",
@@ -697,7 +719,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:1dfce85d62158090",
+   "configuration_id": "aa_intelligence_index:84828ca2e497c362",
    "board": "aa_intelligence_index",
    "model": "gpt-6.1-terra",
    "variant": "GPT-6.1 Terra (high)",
@@ -708,7 +730,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:d2b64d360e73bfe9",
+   "configuration_id": "aa_intelligence_index:ebb9efef062eba76",
    "board": "aa_intelligence_index",
    "model": "claude-opus-5.5",
    "variant": "Claude Opus 5.5 (medium with fallback)",
@@ -719,7 +741,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:744023f48f0c27e4",
+   "configuration_id": "aa_intelligence_index:a6b9cbce225bdd07",
    "board": "aa_intelligence_index",
    "model": "deepseek-v4.1-flash",
    "variant": "DeepSeek V4.1 Flash 1017 (max)",
@@ -730,7 +752,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:d4c04b8f78ad322b",
+   "configuration_id": "aa_intelligence_index:ca4a615e8f5dfa01",
    "board": "aa_intelligence_index",
    "model": "claude-opus-5.5",
    "variant": "Claude Opus 5.5 (high with fallback)",
@@ -741,7 +763,7 @@
    "affected_point_board_cells": 0
   },
   {
-   "configuration_id": "aa_intelligence_index:72e9b28cc981cc46",
+   "configuration_id": "aa_intelligence_index:8a4f73fde478a188",
    "board": "aa_intelligence_index",
    "model": "gemini-3.8-flash",
    "variant": "Gemini 3.8 Flash (low)",
@@ -792,6 +814,17 @@
    "benchmark_list_price": 0.394,
    "curated_list_blended": 0.197,
    "ratio": 2.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:6338e67ed131b4a3",
+   "board": "aa_intelligence_index",
+   "model": "mistral-large-4",
+   "variant": "Mistral Large 4 (high)",
+   "benchmark_list_price": 0.0959,
+   "curated_list_blended": 0.0959,
+   "ratio": 1.0,
    "status": "consistent",
    "affected_point_board_cells": 0
   }

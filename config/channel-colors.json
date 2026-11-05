@@ -21,7 +21,8 @@
     "Factory": "#0A0ABF",
     "OpenDesign": "#800080",
     "Local": "#4B5563",
-    "Test": "#831843"
+    "Test": "#831843",
+    "Mistral": "#F43DEE"
   },
   "aliases": {
     "Claude": "Anthropic",
@@ -126,8 +127,12 @@
       "Google"
     ],
     [
-      "",
+      "zz_test_",
       "Test"
+    ],
+    [
+      "mistral",
+      "Mistral"
     ]
   ],
   "fallback": "#8A94A6",

@@ -1195,6 +1195,22 @@
       "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = approx $59.24, only 32.8% of the direct Google store price TRY 8999.99 (approx $180.8) and 29.6% of the US $199.99. Quota shares the US 20x pool (region-independent) = 20 x Pro 25.81 = 51.62B per month (Gemini 3.8 Flash basis, pure multiple extrapolation). real = 59.24 / 51,620 MTok = $0.001148/MTok, 29.6% of the US 20x row's $0.003874. Same three risks as the other IAP rows: (a) leftover promo group in Apple's subscription system, possibly fixed or force-migrated at any time; (b) cross-region signup needs a Turkey Apple ID plus TRY gift cards, price excludes Turkish VAT at 20%; (c) the quota is a 20x multiple extrapolation with no 20x-side measurement -> low."
     },
     {
+      "zh": "模型价：Artificial Analysis 模型页 https://artificialanalysis.ai/models/mistral-large-4 转引 Mistral 官方 API（input 0.70 / output 2.10 / 缓存命中 90% 折扣即 0.07）；订阅额度：维护者提供的 X @AdamHolterer 2026-11-03 截图 https://x.com/AdamHoltererer/status/2117707254908469690（Vibe Pro 账户显示 300 美元/月预算，经 @SSHCodes，Mistral 未公布），留档 data/research/x-adamholterer-vibe-pro-2026-11-03.jpg（另含 15 美元 API 额度）。标价另见 list-prices-mistral-large-4-round1-2026-11-04.json。",
+      "en": "Model price: the Artificial Analysis page https://artificialanalysis.ai/models/mistral-large-4 quoting Mistral's official API (input 0.70 / output 2.10 / cache hit at 90% discount = 0.07); subscription quota: the X @AdamHolterer 2026-11-03 screenshot https://x.com/AdamHoltererer/status/2117707254908469690 supplied by the maintainer (a Vibe Pro account showing a 300 dollar monthly budget, via @SSHCodes, unpublished by Mistral), archived at data/research/x-adamholterer-vibe-pro-2026-11-03.jpg (plus 15 dollars of API credits). List prices also in list-prices-mistral-large-4-round1-2026-11-04.json."
+    },
+    {
+      "zh": "32.85 亿 = 315 美元月预算（Vibe 300 美元额度 + 15 美元 API 额度）÷ 混合价 0.0959 美元/MTok；混合价按项目 97% 缓存标准负载套 Mistral Large 4 官方价（cache hit 0.07 / input 0.70 / output 2.10）。real = 14.99 ÷ 3,285 MTok = 0.004563 美元/MTok，相当于按量价 0.0959 的 4.8%，约 21 倍的用量杠杆。此为美元预算换算而非实测 token 数：Mistral 不公布 Vibe 额度，300 美元来自截图 → low。",
+      "en": "3.285B = the 315 dollar monthly budget (a 300 dollar Vibe allowance plus 15 dollars of API credits) / the 0.0959 blended price per MTok; blended applies the project 97%-cached standard workload to Mistral Large 4 official prices (cache hit 0.07 / input 0.70 / output 2.10). real = 14.99 / 3,285 MTok = 0.004563 per MTok, which is 4.8% of the 0.0959 metered price and roughly a 21x usage lever. This is a dollar-budget conversion, not a measured token count: Mistral does not publish the Vibe allowance and the 300 dollar figure comes from the screenshot -> low."
+    },
+    {
+      "zh": "X @AdamHolterer 2026-11-03 截图 https://x.com/AdamHoltererer/status/2117707254908469690（Real API Pricing 方法）：同一 $14.99 的 Vibe Pro 在 GLM 5.3 上的用量为 Z.ai API 标价的 33.7 倍；同图 Z.ai 三档 Lite 7.3× / Pro 9.6× / Max 11.2×，与本库 glm_coding_*_new_offpeak 行逐条吻合，说明口径同源；截图留档 data/research/x-adamholterer-vibe-pro-2026-11-03.jpg；GLM 5.3 标价见 https://docs.z.ai/guides/overview/pricing 与 list-prices-2026-09.json",
+      "en": "X @AdamHolterer 2026-11-03 screenshot https://x.com/AdamHoltererer/status/2117707254908469690 (Real API Pricing method): the same $14.99 Vibe Pro buys 33.7x the GLM 5.3 usage of Z.ai's API list price; the same chart's three Z.ai tiers read Lite 7.3x / Pro 9.6x / Max 11.2x and match this repo's glm_coding_*_new_offpeak rows line by line, so the basis is identical; screenshot archived at data/research/x-adamholterer-vibe-pro-2026-11-03.jpg; GLM 5.3 list price per https://docs.z.ai/guides/overview/pricing and list-prices-2026-09.json"
+    },
+    {
+      "zh": "16.34 亿 = 33.7 × 14.99 = 505.16 美元的 GLM 5.3 用量 ÷ 0.3092 美元/MTok 的 97% 缓存混合价。同一口径用在 Z.ai 新客 off-peak 三档复现出图里的 3.5 / 4.6 / 3.0 倍（Pro / Lite / Max 的每美元 token 比），说明倍数可复算。张力：帖内另称 300 美元预算 + 15 美元 API 额度，按 Z.ai 标价只折 10.19 亿（21 倍），与 33.7 倍差 1.60 倍；两者同时成立需要 Mistral 侧 GLM 5.3 费率约为 Z.ai 的 0.62 倍（0.1928 美元/MTok），该费率未公开。本行采 33.7 倍口径，不采 315 美元口径 → low。",
+      "en": "1.634B = 33.7 x 14.99 = 505.16 dollars of GLM 5.3 usage / the 0.3092 per MTok 97%-cached blended price. The same basis reproduces the chart's 3.5 / 4.6 / 3.0 multiples on Z.ai's new-subscriber off-peak tiers (Pro / Lite / Max per-dollar token ratios), so the multiple is recomputable. Tension: the post also claims a 300 dollar budget plus 15 dollars of API credits, which at Z.ai list prices only folds to 1.019B (21x), a 1.60x gap from 33.7x; both can hold only if Mistral's GLM 5.3 rate is about 0.62x Z.ai's (0.1928 per MTok), and that rate is unpublished. This row uses the 33.7x basis, not the 315 dollar basis -> low."
+    },
+    {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
       "en": "Derived from same-plan gpt-5.6-sol 616M × 1.9342105263157894"
     },
@@ -1765,6 +1781,14 @@
     {
       "zh": "标价 cached 0.2/in 2.0/out 12.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
       "en": "List price cached 0.2/in 2.0/out 12.0 × project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://artificialanalysis.ai/models/mistral-large-4 引 Mistral 官方 API 价：input $0.70/output $2.10/cache hit 90% 折扣 = $0.07，AA 混合价 $0.40；list-prices-mistral-large-4-round1-2026-11-04.json",
+      "en": "https://artificialanalysis.ai/models/mistral-large-4 quoting Mistral's official API pricing: input $0.70 / output $2.10 / cache hit at 90% discount = $0.07, AA blended price $0.40; list-prices-mistral-large-4-round1-2026-11-04.json"
+    },
+    {
+      "zh": "标价 cached 0.07/in 0.7/out 2.1 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.07 / in 0.7 / out 2.1 x project standard workload 97.0% / 2.50% / 0.50%"
     },
     {
       "zh": "标价 cached 0.05/in 1.0/out 5.0 × 项目统一标准负载 97.0%/2.50%/0.50%",

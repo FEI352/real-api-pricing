@@ -1,0 +1,114 @@
+{
+  "collectedAt": "2026-11-04",
+  "supplement": true,
+  "supplementNote": "Mistral Large 4 (high) 于 2026-11-04 从 AA models 榜载荷录入：intelligenceIndex 26.125、Terminal-Bench 4.0 24.7475%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-11-04",
+      "note": "2026-11-04 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-11-04",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "mistral-large-4",
+      "variantLabel": "Mistral Large 4 (high)",
+      "score": 26.125,
+      "secondary": {
+        "configurationRank": 57,
+        "costPerTaskUsd": 2.0615,
+        "scoreRoundedDisplay": 26,
+        "intelligenceIndexIsEstimated": null,
+        "slug": "mistral-large-4",
+        "shortName": "Mistral Large 4 (high)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Mistral",
+        "effort": null,
+        "terminalBench40": 0.247474747474747,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 0.7,
+        "price1mOutputTokens": 2.1,
+        "cacheHitPrice": 0.07,
+        "intelligenceIndex": 26.1249946754784,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-04"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "mistral-large-4",
+      "variantLabel": "Artificial Analysis - Mistral Large 4 (high)",
+      "score": 24.7475,
+      "secondary": {
+        "configurationRank": 57,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "mistral-large-4",
+        "shortName": "Mistral Large 4 (high)",
+        "terminalBench40Fraction": 0.247474747474747
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-04",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "mistral-large-4",
+        "name": "Mistral Large 4 (High)",
+        "shortName": "Mistral Large 4 (high)",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": true,
+        "paramClass": "large",
+        "priceClass": "medium",
+        "modelCreatorName": "Mistral",
+        "modelCreatorColor": "#f32e02",
+        "modelCreatorLogo": "/img/logos/mistral.svg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 26.1249946754784,
+        "omniscience": 5.133333333333334,
+        "scores": {
+          "aa-briefcase": 1348.42,
+          "omniscience-accuracy": 0.26,
+          "omniscience-non-hallucination": 0.718018018018018,
+          "automationbench-aa": 0.5783010541628066,
+          "terminal-bench-science": 0.0428571428571429,
+          "frontiercode-2-0": 0.149581313131313,
+          "hle-diamond": 0.173,
+          "gdp-pdf": 0.176,
+          "terminalbench-4-0": 0.247474747474747,
+          "critpt-v2-hard": 0.27,
+          "critpt": 0.1
+        },
+        "intelligenceIndexCostPerTask": 2.061496607384404,
+        "price1mInputTokens": 0.7,
+        "price1mOutputTokens": 2.1,
+        "cacheHitPrice": 0.07,
+        "cacheWritePrice": 0.7,
+        "medianReasoningTimeSeconds": null,
+        "terminalBench40": 0.247474747474747
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

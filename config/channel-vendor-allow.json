@@ -1,0 +1,9 @@
+{
+  "_doc": "渠道/厂商一致性守卫（scripts/checks/verify_channel_vendor.py）的长期豁免名单。每条都要写清理由——这里只登记「该套餐确实转售别家模型」的事实，不登记录错的数据。",
+  "exemptions": [
+    "mistral_vibe_pro::glm-5.3"
+  ],
+  "reasons": {
+    "mistral_vibe_pro::glm-5.3": "Mistral Vibe Pro 确实转售 Z.ai 的 GLM 5.3（2026-11-03 X @AdamHolterer 的用量图即以此为对象：同一 $14.99 在 Vibe 内跑 GLM 5.3 的用量是 Z.ai API 标价的 33.7 倍）。渠道仍按套餐归属记 Mistral，模型厂牌记 Zhipu，两者都真实。"
+  }
+}

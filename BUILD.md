@@ -32,6 +32,7 @@ python scripts/checks/verify_front_label_overlap.py
 python scripts/checks/verify_four_boards.py
 python scripts/checks/verify_publication.py
 python scripts/checks/verify_palette.py
+python scripts/checks/verify_channel_vendor.py
 python scripts/checks/verify_docs_refs.py
 ```
 

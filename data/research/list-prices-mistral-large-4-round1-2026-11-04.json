@@ -1,0 +1,19 @@
+{
+  "collectedAt": "2026-11-04",
+  "sourceType": "AA model page quoting Mistral official API pricing",
+  "source": "https://artificialanalysis.ai/models/mistral-large-4",
+  "checkedAt": "2026-11-04",
+  "launchAt": "2026-10-29",
+  "scope": "Mistral Large 4 (High) 官方按量价：input $0.70 / output $2.10 / cache hit 折扣 90% → $0.07，供 compute.py 标价混合比与 Vibe 订阅折算。",
+  "models": [
+    {
+      "model": "mistral-large-4",
+      "vendor": "Mistral",
+      "input": 0.7,
+      "cachedInput": 0.07,
+      "output": 2.1,
+      "currency": "USD",
+      "note": "AA 模型页：In $0.70 / Out $2.10 / Cache Discount 90%；混合价（AA 7:2:1 口径）$0.40。开源权重，1.1T 总参 / 52B 激活，1M 上下文。"
+    }
+  ]
+}

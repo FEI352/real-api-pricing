@@ -61,6 +61,7 @@ FALLBACK_CHECKS = [
     "scripts/checks/verify_four_boards.py",
     "scripts/checks/verify_publication.py",
     "scripts/checks/verify_palette.py",
+    "scripts/checks/verify_channel_vendor.py",
     "scripts/checks/verify_docs_refs.py",
 ]
 

@@ -1311,6 +1311,7 @@ METERED = [
     ("hyperqwen_local_qwen38_27b_3090", "Qwen3.8 27B · Single RTX 3080/3090/4090 (HyperQwen 24GB)", "qwen3.8-27b-hyperqwen-3090", 0.001, 0.01, 0.05, "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s"),
     ("hyperqwen_local_qwen38_27b_pro6000", "Qwen3.8 27B · Single RTX PRO 6000 96GB (SGLang + DFlash2)", "qwen3.8-27b-rtx-pro-6000", 0.001, 0.01, 0.05, "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark；经全文校验原厂 README：单卡 RTX PRO 6000 (Blackwell 96GB) 运行 RadixArk NVFP4-BF16-LMHead 与纯注意力 DFlash 2 投机草稿头。草稿 greedy head 折叠进 CUDA 图，单步验证 8 个 tokens，单流解码实测突破 240+ tok/s，AA 基准 Task Time 压降至 11.9s；55GB FP8 KV 池容纳约 1.7M tokens，原生支持 256K~512K 上下文且支持 8 路并发"),
     ("openai_terra_api", "GPT-5.6 Terra API", "gpt-5.6-terra", 0.2, 2.0, 12.0, "developers.openai.com"),
+    ("mistral_large4_api", "Mistral Large 4 API", "mistral-large-4", 0.07, 0.70, 2.10, "https://artificialanalysis.ai/models/mistral-large-4 引 Mistral 官方 API 价：input $0.70/output $2.10/cache hit 90% 折扣 = $0.07，AA 混合价 $0.40；list-prices-mistral-large-4-round1-2026-11-04.json"),
     ("openai_61_terra_api", "GPT-6.1 Terra API", "gpt-6.1-terra", 0.05, 1.0, 5.0, "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier"),
     ("openai_luna_api", "GPT-5.6 Luna API", "gpt-5.6-luna", 0.02, 0.2, 1.2, "developers.openai.com"),
 ]
@@ -1354,6 +1355,10 @@ DATA_DATES = {
     ("openai_61_terra_api", "gpt-6.1-terra"): ("2026-10-26", "official"),
     ("anthropic_haiku55_api", "claude-haiku-5.5"): ("2026-10-07", "official"),
     ("opendesign_go", "deepseek-v4.1-flash"): ("2026-10-10", "official"),
+    # Mistral Vibe Pro：额度来自 X @AdamHolterer 2026-11-03 转述的 Vibe 账户预算，属社区样本日。
+    ("mistral_large4_api", "mistral-large-4"): ("2026-11-04", "official"),
+    ("mistral_vibe_pro", "glm-5.3"): ("2026-11-03", "sample"),
+    ("mistral_vibe_pro", "mistral-large-4"): ("2026-11-04", "sample"),
     ("claude_pro_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
     ("claude_pro_mix5050", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
     ("claude_max_20x_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),
