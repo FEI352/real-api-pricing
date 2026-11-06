@@ -1195,20 +1195,60 @@
       "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = approx $59.24, only 32.8% of the direct Google store price TRY 8999.99 (approx $180.8) and 29.6% of the US $199.99. Quota shares the US 20x pool (region-independent) = 20 x Pro 25.81 = 51.62B per month (Gemini 3.8 Flash basis, pure multiple extrapolation). real = 59.24 / 51,620 MTok = $0.001148/MTok, 29.6% of the US 20x row's $0.003874. Same three risks as the other IAP rows: (a) leftover promo group in Apple's subscription system, possibly fixed or force-migrated at any time; (b) cross-region signup needs a Turkey Apple ID plus TRY gift cards, price excludes Turkish VAT at 20%; (c) the quota is a 20x multiple extrapolation with no 20x-side measurement -> low."
     },
     {
-      "zh": "模型价：Artificial Analysis 模型页 https://artificialanalysis.ai/models/mistral-large-4 转引 Mistral 官方 API（input 0.70 / output 2.10 / 缓存命中 90% 折扣即 0.07）；订阅额度：维护者提供的 X @AdamHolterer 2026-11-03 截图 https://x.com/AdamHoltererer/status/2117707254908469690（Vibe Pro 账户显示 300 美元/月预算，经 @SSHCodes，Mistral 未公布），留档 data/research/x-adamholterer-vibe-pro-2026-11-03.jpg（另含 15 美元 API 额度）。标价另见 list-prices-mistral-large-4-round1-2026-11-04.json。",
-      "en": "Model price: the Artificial Analysis page https://artificialanalysis.ai/models/mistral-large-4 quoting Mistral's official API (input 0.70 / output 2.10 / cache hit at 90% discount = 0.07); subscription quota: the X @AdamHolterer 2026-11-03 screenshot https://x.com/AdamHoltererer/status/2117707254908469690 supplied by the maintainer (a Vibe Pro account showing a 300 dollar monthly budget, via @SSHCodes, unpublished by Mistral), archived at data/research/x-adamholterer-vibe-pro-2026-11-03.jpg (plus 15 dollars of API credits). List prices also in list-prices-mistral-large-4-round1-2026-11-04.json."
+      "zh": "订阅价格与额度：Mistral 官方定价页 https://mistral.ai/pricing（Pro 14.99 美元/月含 25.5 美元/月 API credits；学生教育版为 15 美元/月 API credits，最长 12 个月，仅限未用过 Vibe/Le Chat 的在校生）；Vibe coding 额度池拆分（coding 150 + Studio API 15）来自维护者提供的 X @sahenjpn 2026-11-05 https://x.com/sahenjpn/status/2118299279538426174 与 X @Somme4096 https://x.com/Somme4096/status/2118294746385014796。模型价沿用 list-prices-mistral-large-4-round1-2026-11-04.json。",
+      "en": "Subscription price and credits: Mistral official pricing page https://mistral.ai/pricing (Pro 14.99 USD/mo with 25.5 USD/mo API credits; the education plan lists 15 USD/mo API credits, valid up to 12 months and only for verified students who have not used Vibe or Le Chat before). The Vibe coding allowance split (coding 150 + Studio API 15) comes from the maintainer-supplied X @sahenjpn 2026-11-05 https://x.com/sahenjpn/status/2118299279538426174 and X @Somme4096 https://x.com/Somme4096/status/2118294746385014796. Model pricing reuses list-prices-mistral-large-4-round1-2026-11-04.json."
     },
     {
-      "zh": "32.85 亿 = 315 美元月预算（Vibe 300 美元额度 + 15 美元 API 额度）÷ 混合价 0.0959 美元/MTok；混合价按项目 97% 缓存标准负载套 Mistral Large 4 官方价（cache hit 0.07 / input 0.70 / output 2.10）。real = 14.99 ÷ 3,285 MTok = 0.004563 美元/MTok，相当于按量价 0.0959 的 4.8%，约 21 倍的用量杠杆。此为美元预算换算而非实测 token 数：Mistral 不公布 Vibe 额度，300 美元来自截图 → low。",
-      "en": "3.285B = the 315 dollar monthly budget (a 300 dollar Vibe allowance plus 15 dollars of API credits) / the 0.0959 blended price per MTok; blended applies the project 97%-cached standard workload to Mistral Large 4 official prices (cache hit 0.07 / input 0.70 / output 2.10). real = 14.99 / 3,285 MTok = 0.004563 per MTok, which is 4.8% of the 0.0959 metered price and roughly a 21x usage lever. This is a dollar-budget conversion, not a measured token count: Mistral does not publish the Vibe allowance and the 300 dollar figure comes from the screenshot -> low."
+      "zh": "17.21 亿 = 165 美元额度（coding 150 + Studio API 15）÷ 混合价 0.0959 美元/MTok。学生价 6 美元/月，年付折合 4.79 美元/月。real = 6 ÷ 1.721B MTok = 0.003486 美元/MTok，约为按量价的 3.6%，约 27.5 倍用量杠杆。此为美元预算换算而非实测 token 数 → low。",
+      "en": "1.721B MTok = $165 of allowance (coding 150 + Studio API 15) divided by the 0.0959 USD/MTok blended price. Student price 6 USD/mo; annual billing works out to 4.79 USD/mo. real = 6 / 1.721B MTok = 0.003486 USD/MTok, about 3.6% of the metered rate, roughly 27.5x usage leverage. Dollar-budget conversion, not measured tokens, hence low confidence."
     },
     {
-      "zh": "X @AdamHolterer 2026-11-03 截图 https://x.com/AdamHoltererer/status/2117707254908469690（Real API Pricing 方法）：同一 $14.99 的 Vibe Pro 在 GLM 5.3 上的用量为 Z.ai API 标价的 33.7 倍；同图 Z.ai 三档 Lite 7.3× / Pro 9.6× / Max 11.2×，与本库 glm_coding_*_new_offpeak 行逐条吻合，说明口径同源；截图留档 data/research/x-adamholterer-vibe-pro-2026-11-03.jpg；GLM 5.3 标价见 https://docs.z.ai/guides/overview/pricing 与 list-prices-2026-09.json",
-      "en": "X @AdamHolterer 2026-11-03 screenshot https://x.com/AdamHoltererer/status/2117707254908469690 (Real API Pricing method): the same $14.99 Vibe Pro buys 33.7x the GLM 5.3 usage of Z.ai's API list price; the same chart's three Z.ai tiers read Lite 7.3x / Pro 9.6x / Max 11.2x and match this repo's glm_coding_*_new_offpeak rows line by line, so the basis is identical; screenshot archived at data/research/x-adamholterer-vibe-pro-2026-11-03.jpg; GLM 5.3 list price per https://docs.z.ai/guides/overview/pricing and list-prices-2026-09.json"
+      "zh": "额度拆分：coding 300 + Studio API 25.5，依据维护者对官方定价页 https://mistral.ai/pricing 的核对（Pro 14.99 美元/月）。模型价见 list-prices-mistral-large-4-round1-2026-11-04.json，并与 https://artificialanalysis.ai/models/mistral-large-4 交叉核对（input 0.70 / output 2.10 / 缓存命中 0.07）。Mistral 不公布 Vibe 的 token 池，故以美元预算表达。",
+      "en": "Allowance split: coding 300 + Studio API 25.5, per the maintainer's reading of the official pricing page https://mistral.ai/pricing (Pro 14.99 USD/mo). Model pricing from list-prices-mistral-large-4-round1-2026-11-04.json, cross-checked against https://artificialanalysis.ai/models/mistral-large-4 (input 0.70 / output 2.10 / cache hit 0.07). Mistral does not publish the Vibe token pool, so the pool is expressed as a dollar budget."
     },
     {
-      "zh": "16.34 亿 = 33.7 × 14.99 = 505.16 美元的 GLM 5.3 用量 ÷ 0.3092 美元/MTok 的 97% 缓存混合价。同一口径用在 Z.ai 新客 off-peak 三档复现出图里的 3.5 / 4.6 / 3.0 倍（Pro / Lite / Max 的每美元 token 比），说明倍数可复算。张力：帖内另称 300 美元预算 + 15 美元 API 额度，按 Z.ai 标价只折 10.19 亿（21 倍），与 33.7 倍差 1.60 倍；两者同时成立需要 Mistral 侧 GLM 5.3 费率约为 Z.ai 的 0.62 倍（0.1928 美元/MTok），该费率未公开。本行采 33.7 倍口径，不采 315 美元口径 → low。",
-      "en": "1.634B = 33.7 x 14.99 = 505.16 dollars of GLM 5.3 usage / the 0.3092 per MTok 97%-cached blended price. The same basis reproduces the chart's 3.5 / 4.6 / 3.0 multiples on Z.ai's new-subscriber off-peak tiers (Pro / Lite / Max per-dollar token ratios), so the multiple is recomputable. Tension: the post also claims a 300 dollar budget plus 15 dollars of API credits, which at Z.ai list prices only folds to 1.019B (21x), a 1.60x gap from 33.7x; both can hold only if Mistral's GLM 5.3 rate is about 0.62x Z.ai's (0.1928 per MTok), and that rate is unpublished. This row uses the 33.7x basis, not the 315 dollar basis -> low."
+      "zh": "33.94 亿 = 325.5 美元额度（coding 300 + Studio API 25.5）÷ 混合价 0.0959 美元/MTok。real = 14.99 ÷ 3.394B MTok = 0.004416 美元/MTok，约为按量价的 4.6%，约 21.7 倍用量杠杆。原行按 315 美元建，是把 API credits 误读成 15。此为美元预算换算而非实测 token 数 → low。",
+      "en": "3.394B MTok = $325.5 of allowance (coding 300 + Studio API 25.5) divided by the 0.0959 USD/MTok blended price. real = 14.99 / 3.394B MTok = 0.004416 USD/MTok, about 4.6% of the metered rate, roughly 21.7x usage leverage. The earlier row used 315 USD because the API credits were misread as 15. Dollar-budget conversion, not measured tokens, hence low confidence."
+    },
+    {
+      "zh": "模型价：Mistral 官方 API 定价 https://docs.mistral.ai/inference/pricing（Z.ai GLM 5.3 input 1.4 / cached 0.14 / output 4.4 美元/MTok，2026-11-06 核）。额度：coding 300 + Studio API 25.5，见 https://mistral.ai/pricing。Mistral 不公布 Vibe 的 token 池，故以美元预算表达。",
+      "en": "Model price: Mistral official API pricing https://docs.mistral.ai/inference/pricing (Z.ai GLM 5.3 input 1.4, cached 0.14, output 4.4 USD/MTok, checked 2026-11-06). Allowance: coding 300 + Studio API 25.5 per https://mistral.ai/pricing. Mistral does not publish the Vibe token pool, so the pool is expressed as a dollar budget."
+    },
+    {
+      "zh": "16.88 亿 = 325.5 美元额度 ÷ Mistral 侧 GLM 5.3 混合价 0.1928 美元/MTok（官方 API：input 1.4 / cached 0.14 / output 4.4，套 97 / 2.5 / 0.5 标准负载）。real = 14.99 ÷ 1.688B MTok = 0.008880 美元/MTok，约为按量价的 4.6%，约 21.7 倍杠杆。2026-11-06 更正：原行用 Z.ai 自家标价 0.3092 反推 33.7 倍，但 Vibe 内的 GLM 5.3 按 Mistral 费率计费，约为 Z.ai 的 4.5 倍，故改用美元池口径。",
+      "en": "1.688B MTok = 325.5 USD of allowance divided by the Mistral-side GLM 5.3 blended price 0.1928 USD/MTok (official API: input 1.4 / cached 0.14 / output 4.4, under the 97 / 2.5 / 0.5 standard workload). real = 14.99 / 1.688B MTok = 0.008880 USD/MTok, about 4.6% of the metered rate, roughly 21.7x leverage. Corrected on 2026-11-06: the earlier row back-solved a 33.7x leverage from Z.ai's own list price 0.3092, but GLM 5.3 inside Vibe is billed at Mistral's rate, roughly 4.5x Z.ai's, so the dollar-pool basis is used instead."
+    },
+    {
+      "zh": "模型价 https://docs.mistral.ai/inference/pricing；模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017；额度 https://x.com/sahenjpn/status/2118299279538426174；套餐价 https://mistral.ai/pricing；核对日 2026-11-06。",
+      "en": "Model price https://docs.mistral.ai/inference/pricing; model page https://docs.mistral.ai/models/deepseek-v4-flash-1017; allowance https://x.com/sahenjpn/status/2118299279538426174; plan price https://mistral.ai/pricing; checked 2026-11-06."
+    },
+    {
+      "zh": "85.40 亿 = 165 ÷ 0.01932；real = 0.000703 美元/MTok，约 27.5 倍杠杆。",
+      "en": "8.54B MTok = 165 / 0.01932; real = 0.000703 USD/MTok, about 27.5x leverage."
+    },
+    {
+      "zh": "模型价 https://docs.mistral.ai/inference/pricing；模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017；额度 https://mistral.ai/pricing；核对日 2026-11-06。",
+      "en": "Model price https://docs.mistral.ai/inference/pricing; model page https://docs.mistral.ai/models/deepseek-v4-flash-1017; allowance https://mistral.ai/pricing; checked 2026-11-06."
+    },
+    {
+      "zh": "168.48 亿 = 325.5 ÷ 0.01932；real = 0.000890 美元/MTok，约 21.7 倍杠杆。",
+      "en": "16.848B MTok = 325.5 / 0.01932; real = 0.000890 USD/MTok, about 21.7x leverage."
+    },
+    {
+      "zh": "价格来自 admin.mistral.ai 升级页 2026-11-06 截图（含年付折扣）；模型价 https://docs.mistral.ai/inference/pricing；模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017；额度 https://x.com/sahenjpn/status/2118299279538426174。",
+      "en": "Price from the admin.mistral.ai upgrade page screenshot 2026-11-06 with the annual discount applied; model price https://docs.mistral.ai/inference/pricing; model page https://docs.mistral.ai/models/deepseek-v4-flash-1017; allowance https://x.com/sahenjpn/status/2118299279538426174."
+    },
+    {
+      "zh": "85.40 亿 = 165 ÷ 0.01932；real = 0.000561 美元/MTok，约 34.4 倍杠杆。",
+      "en": "8.54B MTok = 165 / 0.01932; real = 0.000561 USD/MTok, about 34.4x leverage."
+    },
+    {
+      "zh": "价格来自 admin.mistral.ai 升级页 2026-11-06 截图（含年付折扣）；模型价 https://docs.mistral.ai/inference/pricing；模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017；额度 https://mistral.ai/pricing。",
+      "en": "Price from the admin.mistral.ai upgrade page screenshot 2026-11-06 with the annual discount applied; model price https://docs.mistral.ai/inference/pricing; model page https://docs.mistral.ai/models/deepseek-v4-flash-1017; allowance https://mistral.ai/pricing."
+    },
+    {
+      "zh": "168.48 亿 = 325.5 ÷ 0.01932；real = 0.000712 美元/MTok，约 27.1 倍杠杆。",
+      "en": "16.848B MTok = 325.5 / 0.01932; real = 0.000712 USD/MTok, about 27.1x leverage."
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",

@@ -358,7 +358,7 @@ def label_position(p, board, x, y, tier="main"):
         return x + 24, y + 10, "start"
     if model == "gpt-6.1-terra":
         if board == "aa_intelligence_index":
-            return x + 16, y + 25, "start"
+            return x + 16, y - 45, "start"
         if board == "aa_terminal_bench_4":
             return x + 16, y + 30, "start"
     # 几何边界保护兜底：若靠左侧太近，向左 end 会越出画布，自动翻转为 start

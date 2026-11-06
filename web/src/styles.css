@@ -184,6 +184,29 @@ input[type="checkbox"] {
   cursor: pointer;
   flex-shrink: 0;
 }
+/* 2026-11-06: 裸 checkbox 与文字按基线对齐会上下错位（截图里那格方块偏高）。
+   用 inline-flex 把方块与文字拉到同一条中线上，并约束行高不撑高工具栏。 */
+label.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 6px;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--ink-2);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+label.toggle input[type="checkbox"] {
+  display: block;
+  position: relative;
+  top: 0;
+  vertical-align: middle;
+}
+label.toggle:hover {
+  color: var(--ink);
+}
 select {
   min-height: 34px;
   padding: 7px 30px 7px 11px;

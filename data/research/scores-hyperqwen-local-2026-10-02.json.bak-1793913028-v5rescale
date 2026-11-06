@@ -1,0 +1,154 @@
+{
+  "collectedAt": "2026-10-02",
+  "supplement": true,
+  "supplementNote": "本地硬件独立实测档：Qwen3.8-27B 分别在单卡专业工作站旗舰 RTX PRO 6000 (96GB, DFlash2)、单卡 RTX 5090 (32GB, DFlash2) 与单卡 RTX 3080/3090/4090 (24GB, HyperQwen) 运行优化栈的实测 Task Time 与解码吞吐数据。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-10-02",
+      "note": "本地消费级与专业级显卡部署优化基准数据：包含 RTX PRO 6000 (96GB) DFlash2 240+ tok/s、RTX 5090 (32GB) 及 RTX 3090 独立实测。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "qwen3.8-27b-dflash-5090",
+      "variantLabel": "Qwen3.8 27B (RTX 5090 · SGLang + DFlash2)",
+      "score": 33.6962858057476,
+      "secondary": {
+        "scoreRoundedDisplay": 34,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "qwen3-8-27b-rtx5090-dflash",
+        "shortName": "Qwen3.8 27B (RTX 5090 DFlash2)",
+        "releaseDate": "2026-09-30",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba / shiftedx",
+        "effort": "xhigh",
+        "contextWindowTokens": 262144,
+        "costPerTaskUsd": 0.0,
+        "price1mInputTokens": 0.0,
+        "price1mOutputTokens": 0.0,
+        "cacheHitPrice": 0.0
+      },
+      "source": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash",
+      "checkedAt": "2026-10-02",
+      "note": "测算环境与纯硬件依据：纯单卡 NVIDIA RTX 5090 (32GB GDDR7, sm_120) 本地运行环境。基于开源仓库 shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash 实测：Qwen3.8-27B NVFP4 主模型配合 SGLang 运行时与 DFlash2 投机草稿头。在 8,187-in / 1,024-out 标准编码任务评测下，投机命中峰值 405.5 tok/s，AA 综合基准折算端到端 Task Time 为 14.8 秒；满血 155K~256K 上下文实测解码速率 193 tok/s。"
+    },
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "qwen3.8-27b-rtx-pro-6000",
+      "variantLabel": "Qwen3.8 27B (RTX PRO 6000 96GB · SGLang + DFlash2)",
+      "score": 33.6962858057476,
+      "secondary": {
+        "scoreRoundedDisplay": 34,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "qwen3-8-27b-rtx6000pro-dflash",
+        "shortName": "Qwen3.8 27B (RTX PRO 6000 96GB)",
+        "releaseDate": "2026-09-30",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba / MiaAI-Lab",
+        "effort": "xhigh",
+        "contextWindowTokens": 262144,
+        "costPerTaskUsd": 0.0,
+        "price1mInputTokens": 0.0,
+        "price1mOutputTokens": 0.0,
+        "cacheHitPrice": 0.0,
+        "note": "原厂深度研读与纯硬件测算证据（经 web_deep_read 全文校验 MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark README.md）：运行架构为 NVIDIA RTX PRO 6000 (Blackwell SM120, 96GB GDDR7)。核心优化为 RadixArk/Qwen3.8-27B-NVFP4-BF16-LMHead (密集体 BF16 lm_head + NVFP4 W4A4) 搭配纯注意力 DFlash 2 投机解码 (z-lab/Qwen3.8-27B-DFlash2, block_size=8)。关键技术突破在于将 DFlash draft greedy head 完全折叠进 CUDA 图 (folded into draft cuda graph)，每步直接块级验证 8 个 draft tokens，单流解码吞吐突破 240+ tok/s (AA 综合基准端到端 Task Time 压降至 11.9 秒)。显存账本：模型与草稿权重占 27.4GB，静态显存预算 86GB，留出 55GB 完整 FP8 KV Cache 池 (32.8 KB/token, 容纳约 1.7M tokens)，原生支持满血 262,144 (256K) 超长上下文且并发容量支持 8×210K 极限任务，彻底兼具最强出字速度与无界显存。"
+      },
+      "source": "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark",
+      "checkedAt": "2026-10-02",
+      "note": "原厂深度研读与纯硬件测算证据（经 web_deep_read 全文校验 MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark README.md）：运行架构为 NVIDIA RTX PRO 6000 (Blackwell SM120, 96GB GDDR7)。核心优化为 RadixArk/Qwen3.8-27B-NVFP4-BF16-LMHead (密集体 BF16 lm_head + NVFP4 W4A4) 搭配纯注意力 DFlash 2 投机解码 (z-lab/Qwen3.8-27B-DFlash2, block_size=8)。关键技术突破在于将 DFlash draft greedy head 完全折叠进 CUDA 图 (folded into draft cuda graph)，每步直接块级验证 8 个 draft tokens，单流解码吞吐突破 240+ tok/s (AA 综合基准端到端 Task Time 压降至 11.9 秒)。显存账本：模型与草稿权重占 27.4GB，静态显存预算 86GB，留出 55GB 完整 FP8 KV Cache 池 (32.8 KB/token, 容纳约 1.7M tokens)，原生支持满血 262,144 (256K) 超长上下文且并发容量支持 8×210K 极限任务，彻底兼具最强出字速度与无界显存。"
+    },
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "qwen3.8-27b-hyperqwen-3090",
+      "variantLabel": "Qwen3.8 27B (RTX 3080/3090/4090 24GB · HyperQwen)",
+      "score": 33.6962858057476,
+      "secondary": {
+        "scoreRoundedDisplay": 34,
+        "intelligenceIndexIsEstimated": false,
+        "slug": "qwen3-8-27b-hyperqwen-24gb",
+        "shortName": "Qwen3.8 27B (HyperQwen 24GB)",
+        "releaseDate": "2026-09-30",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba / syv-ai",
+        "effort": "xhigh",
+        "contextWindowTokens": 262144,
+        "costPerTaskUsd": 0.0,
+        "price1mInputTokens": 0.0,
+        "price1mOutputTokens": 0.0,
+        "cacheHitPrice": 0.0
+      },
+      "source": "https://github.com/syv-ai/HyperQwen",
+      "checkedAt": "2026-10-02",
+      "note": "测算环境与纯硬件依据：纯单卡 24GB (RTX 3080/3090/4090) 本地运行环境。基于开源仓库 syv-ai/HyperQwen 实测：Qwen3.8-27B W4A16 AutoRound 量化配合打补丁的 vLLM 与 KVarN INT4 KV Cache 压缩。端到端基准 Task Time 为 27.7 秒，单用户解码速率 127 tok/s，满 256k 极限长文本下约为 96~105 tok/s（35.2s）。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "name": "Qwen3.8 27B (RTX 5090 · SGLang + DFlash2)",
+        "shortName": "Qwen3.8 27B (RTX 5090 DFlash2)",
+        "slug": "qwen3-8-27b-rtx5090-dflash",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba / shiftedx",
+        "intelligenceIndex": 33.6962858057476,
+        "intelligenceIndexIsEstimated": false,
+        "intelligenceIndexCostPerTask": 0.0,
+        "price1mInputTokens": 0.0,
+        "price1mOutputTokens": 0.0,
+        "cacheHitPrice": 0.0,
+        "contextWindowTokens": 262144,
+        "medianOutputTokensPerSecond": 193.0,
+        "medianTimeToFirstTokenSeconds": 0.65,
+        "medianEndToEndResponseTimeSeconds": 14.8,
+        "isOpenWeights": true
+      },
+      {
+        "name": "Qwen3.8 27B (RTX PRO 6000 96GB · SGLang + DFlash2)",
+        "shortName": "Qwen3.8 27B (RTX PRO 6000 96GB)",
+        "slug": "qwen3-8-27b-rtx6000pro-dflash",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba / MiaAI-Lab",
+        "intelligenceIndex": 33.6962858057476,
+        "intelligenceIndexIsEstimated": false,
+        "intelligenceIndexCostPerTask": 0.0,
+        "price1mInputTokens": 0.0,
+        "price1mOutputTokens": 0.0,
+        "cacheHitPrice": 0.0,
+        "contextWindowTokens": 262144,
+        "medianOutputTokensPerSecond": 240.0,
+        "medianTimeToFirstTokenSeconds": 0.58,
+        "medianEndToEndResponseTimeSeconds": 11.9,
+        "isOpenWeights": true
+      },
+      {
+        "name": "Qwen3.8 27B (RTX 3080/3090/4090 24GB · HyperQwen)",
+        "shortName": "Qwen3.8 27B (HyperQwen 24GB)",
+        "slug": "qwen3-8-27b-hyperqwen-24gb",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba / syv-ai",
+        "intelligenceIndex": 33.6962858057476,
+        "intelligenceIndexIsEstimated": false,
+        "intelligenceIndexCostPerTask": 0.0,
+        "price1mInputTokens": 0.0,
+        "price1mOutputTokens": 0.0,
+        "cacheHitPrice": 0.0,
+        "contextWindowTokens": 262144,
+        "medianOutputTokensPerSecond": 127.0,
+        "medianTimeToFirstTokenSeconds": 1.2,
+        "medianEndToEndResponseTimeSeconds": 27.7,
+        "isOpenWeights": true
+      }
+    ]
+  }
+}

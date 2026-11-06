@@ -1,9 +1,19 @@
 {
-  "_doc": "渠道/厂商一致性守卫（scripts/checks/verify_channel_vendor.py）的长期豁免名单。每条都要写清理由——这里只登记「该套餐确实转售别家模型」的事实，不登记录错的数据。",
-  "exemptions": [
-    "mistral_vibe_pro::glm-5.3"
-  ],
-  "reasons": {
-    "mistral_vibe_pro::glm-5.3": "Mistral Vibe Pro 确实转售 Z.ai 的 GLM 5.3（2026-11-03 X @AdamHolterer 的用量图即以此为对象：同一 $14.99 在 Vibe 内跑 GLM 5.3 的用量是 Z.ai API 标价的 33.7 倍）。渠道仍按套餐归属记 Mistral，模型厂牌记 Zhipu，两者都真实。"
-  }
+ "_doc": "渠道/厂商一致性守卫（scripts/checks/verify_channel_vendor.py）的长期豁免名单。每条都要写清理由——这里只登记「该套餐确实转售别家模型」的事实，不登记录错的数据。",
+ "exemptions": [
+  "mistral_vibe_pro::glm-5.3",
+  "mistral_vibe_student::glm-5.3",
+  "mistral_vibe_student::deepseek-v4.1-flash",
+  "mistral_vibe_pro::deepseek-v4.1-flash",
+  "mistral_vibe_student_annual::deepseek-v4.1-flash",
+  "mistral_vibe_pro_annual::deepseek-v4.1-flash"
+ ],
+ "reasons": {
+  "mistral_vibe_pro::glm-5.3": "Mistral Vibe Pro 确实转售 Z.ai 的 GLM 5.3（2026-11-03 X @AdamHolterer 的用量图即以此为对象：同一 $14.99 在 Vibe 内跑 GLM 5.3 的用量是 Z.ai API 标价的 33.7 倍）。渠道仍按套餐归属记 Mistral，模型厂牌记 Zhipu，两者都真实。",
+  "mistral_vibe_student::glm-5.3": "Mistral Vibe 学生版与 Pro 同源，同样转售 Z.ai 的 GLM 5.3（Vibe 的 coding 额度池按模型计费，GLM 5.3 在池内可跑）。渠道按套餐归属记 Mistral，模型厂牌记 Zhipu。依据：X @Somme4096 2026-11-05 https://x.com/Somme4096/status/2118294746385014796 与 X @sahenjpn https://x.com/sahenjpn/status/2118299279538426174 均指明学生版可用 DeepSeek 与 GLM-5.3。",
+  "mistral_vibe_student::deepseek-v4.1-flash": "Mistral Vibe 确实转售 DeepSeek V4.1 Flash 1017（官方模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017，API 价 0.3/0.006/1.2 与项目 deepseek-v4.1-flash 档一致）。1017 是快照号，其他渠道只是省略不写。渠道按套餐归属记 Mistral，模型厂牌记 DeepSeek。",
+  "mistral_vibe_pro::deepseek-v4.1-flash": "Mistral Vibe 确实转售 DeepSeek V4.1 Flash 1017（官方模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017，API 价 0.3/0.006/1.2 与项目 deepseek-v4.1-flash 档一致）。1017 是快照号，其他渠道只是省略不写。渠道按套餐归属记 Mistral，模型厂牌记 DeepSeek。",
+  "mistral_vibe_student_annual::deepseek-v4.1-flash": "Mistral Vibe 年付档同样转售 DeepSeek V4.1 Flash 1017（官方模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017，API 价 0.3/0.006/1.2）。年付 = 月付 × 0.8（后台截图 admin.mistral.ai 2026-11-06 实测 -20%）。渠道记 Mistral，厂牌记 DeepSeek。",
+  "mistral_vibe_pro_annual::deepseek-v4.1-flash": "Mistral Vibe 年付档同样转售 DeepSeek V4.1 Flash 1017（官方模型页 https://docs.mistral.ai/models/deepseek-v4-flash-1017，API 价 0.3/0.006/1.2）。年付 = 月付 × 0.8（后台截图 admin.mistral.ai 2026-11-06 实测 -20%）。渠道记 Mistral，厂牌记 DeepSeek。"
+ }
 }
