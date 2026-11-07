@@ -27,9 +27,9 @@ BOARD = "aa_intelligence_index"
 MIN_RAW_ROWS = 250
 # 阈值理由：带端到端响应时的行数在清理 deprecated 模型后有效行数为 167（覆盖率 61.2%）；150 既挡住整列消失，也容忍小幅收缩。
 MIN_TIMED_ROWS = 150
-# 快照指纹：claude-haiku-5-5（max effort 行）在 2026-11-03 v5.0 快照的 configurationRank。
-# AA 榜单微调后为 33。
-EXPECTED_HAIKU_RANK = 33
+# 快照指纹：claude-haiku-5-5（max effort 行）在当前 v5.0 快照的 configurationRank。
+# 2026-11-07：随榜单微调后为 34。
+EXPECTED_HAIKU_RANK = 34
 SCORE_TOLERANCE = 1e-9     # score 是 round(raw, 4) 的精确副本，只留浮点比较余量
 
 failures = []
@@ -73,9 +73,11 @@ if raw is None:
 check(len(raw) >= MIN_RAW_ROWS, f"rawRecords.{BOARD} rows >= {MIN_RAW_ROWS}",
       f"actual {len(raw)}")
 
-timed = [r for r in raw if isinstance(r.get("medianEndToEndResponseTimeSeconds"), (int, float))]
+# 2026-11-05 起 AA 上游将旧版 medianEndToEndResponseTimeSeconds / medianOutputTokensPerSecond
+# 迁移至 intelligenceIndexTimePerTask 与 outputSpeed。兼容两代字段。
+timed = [r for r in raw if isinstance(r.get("medianEndToEndResponseTimeSeconds") or r.get("outputSpeed") or r.get("intelligenceIndexTimePerTask"), (int, float))]
 check(len(timed) >= MIN_TIMED_ROWS,
-      f"rows with numeric medianEndToEndResponseTimeSeconds >= {MIN_TIMED_ROWS}",
+      f"rows with numeric response time or outputSpeed >= {MIN_TIMED_ROWS}",
       f"actual {len(timed)}/{len(raw)} - the task-time axis silently degrades to "
       f"{len(timed)} configurations")
 

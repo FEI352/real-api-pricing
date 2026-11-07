@@ -170,8 +170,8 @@
   "boards": [
     {
       "boardId": "aa_intelligence_index",
-      "name": "Artificial Analysis Intelligence Index v4.3",
-      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "url": "https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index",
       "metric": "Intelligence Index",
       "snapshotDate": "2026-09-09",
       "note": "Same public payload as scores-aa-round2-2026-09-09.json. Live page confirms Intelligence Index v4.3 (announced 2026-09-07). Article: https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3. Methodology: https://artificialanalysis.ai/methodology/intelligence-benchmarking. Scores from public HTML RSC embedded model payload; page UI rounds to integer. No separate explicit leaderboard as-of date beyond live page check."

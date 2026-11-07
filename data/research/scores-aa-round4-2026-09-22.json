@@ -1078,8 +1078,8 @@
   "boards": [
     {
       "boardId": "aa_intelligence_index",
-      "name": "Artificial Analysis Intelligence Index v4.3",
-      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "url": "https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index",
       "metric": "Intelligence Index",
       "snapshotDate": "2026-09-22",
       "note": "Fresh download 2026-09-22. Still Intelligence Index v4.3 (announced 2026-09-07; page notes AutomationBench-AA joined). New coverage since 9/9 snapshot: Claude Fable 5.1 x5 effort rows (top 53.35), GPT-6 Astra x5 (top 52.67), Step 5 Preview (43.73), Qwen3.8 Max 0902 (45.42), DeepSeek V4.1 Flash (39.46), Grok 4.7 (46.45, no adopted plan). Article: https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3. Methodology: https://artificialanalysis.ai/methodology/intelligence-benchmarking. Scores from public HTML RSC embedded model payload; page UI rounds to integer."

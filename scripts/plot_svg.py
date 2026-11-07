@@ -196,6 +196,11 @@ def label_position(p, board, x, y, tier="main"):
             # 三层错开（本行上移 100，DeepSeek 上移 170，Muse 保持默认）。
             return x - 40, y - 100, "end"
         return x + 22, y - 54, "start"
+    if model == "deepseek-v4.1-flash-eco":
+        if board == "arena_agent_mode":
+            # 2026-11-06：Eco 在 AgentArena 榜前沿最左端，默认标签向右延伸 8px 压住 claude-haiku-5.5。
+            # 改右对齐（end）并向左让位，指向线仍指回原点。
+            return x - 26, y - 46, "end"
     if model == "claude-sonnet-5.5":
         if board == "aa_terminal_bench_4":
             return x + 16, y - 80, "start"

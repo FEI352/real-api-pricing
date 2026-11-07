@@ -1,0 +1,18 @@
+{
+  "collectedAt": "2026-11-06",
+  "sourceType": "OpenDesign 官方 pricing + model-credits（Eco 变体与 V4.1 Flash 同价）",
+  "source": "https://open-design.ai/pricing/",
+  "checkedAt": "2026-11-06",
+  "scope": "DeepSeek V4.1 Flash Eco：与 V4.1 Flash 同权重同价，官方定位「非紧急任务」，OpenDesign Go 月额度 $220。",
+  "models": [
+    {
+      "model": "deepseek-v4.1-flash-eco",
+      "vendor": "DeepSeek",
+      "input": 0.15,
+      "cachedInput": 0.003,
+      "output": 0.6,
+      "currency": "USD",
+      "note": "闲时三段价与 deepseek-v4.1-flash 一致；高峰 2× 保留在 research variants。"
+    }
+  ]
+}

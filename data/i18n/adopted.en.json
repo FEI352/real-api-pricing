@@ -627,8 +627,16 @@
       "en": "Official Design Plan and Model credits rules at https://open-design.ai/pricing/ and https://open-design.ai/model-credits/; 100K stars campaign doubles DeepSeek V4.1 Flash credits up to $120/mo"
     },
     {
-      "zh": "新增124.224亿：首月促销$8/常态月费$10（项目按常态$10收录）；基础月额度$60，针对 DeepSeek V4.1 Flash 专项2×翻倍至$120；官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60；按统一标准负载加权价折算；官方预估 145600 请求/7天（582400/月）作为交叉校验。5小时窗口硬顶$10，7天窗口硬顶$30，同套餐各模型额度不可相加",
-      "en": "Added 12.4224B: $8 promo first month / $10 regular monthly fee (recorded at regular $10); base monthly allowance $60, boosted 2x to $120 specifically for DeepSeek V4.1 Flash; official off-peak three-part price cached/input/output=$0.003/$0.15/$0.60; converted via standard workload weighted price; official estimate 145600 req/7d (582400/mo) used as cross-check. 5h window cap $10, 7d window cap $30, allowances across models in the same plan do not add"
+      "zh": "新增124.224亿：首月促销$8/常态月费$10（项目按常态$10收录）；基础月额度$60，针对 DeepSeek V4.1 Flash 专项2×翻倍至$120；**官方 API 通道**（不是自建推理）；官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60；按统一标准负载加权价折算；官方预估 145600 请求/7天（582400/月）作为交叉校验。5小时窗口硬顶$10，7天窗口硬顶$30，同套餐各模型额度不可相加",
+      "en": "Added 12.4224B: $8 promo first month / $10 regular monthly fee (recorded at regular $10); base monthly allowance $60, boosted 2x to $120 specifically for DeepSeek V4.1 Flash; official API channel (not self-hosted inference); official off-peak three-part price cached/input/output=$0.003/$0.15/$0.60; converted via standard workload weighted price; official estimate 145600 req/7d (582400/mo) used as cross-check. 5h window cap $10, 7d window cap $30, allowances across models in the same plan do not add"
+    },
+    {
+      "zh": "OpenDesign 官方 X @OpenDesignDevs 2026-11-06 发布贴（DeepSeek V4.1 Flash Eco on OpenDesign Go：$220 monthly usage credits，首月 $8 之后 $10/mo，明示 27.5× 首月杠杆，定位非紧急任务）；标价与 V4.1 Flash 同档，见 list-prices-deepseek-v41-eco-round1-2026-11-06.json",
+      "en": "Official OpenDesign post on X (@OpenDesignDevs), 2026-11-06 (DeepSeek V4.1 Flash Eco on OpenDesign Go: $220 monthly usage credits, $8 for the first month then $10/mo, an explicit 27.5x first-month leverage, positioned for non-urgent work); list prices match V4.1 Flash, see list-prices-deepseek-v41-eco-round1-2026-11-06.json"
+    },
+    {
+      "zh": "新增227.743亿：月费常态 $10（首月 $8 为促销，不采用）；月额度 $220 为官方明示的 DeepSeek V4.1 Flash Eco 专项额度；按官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60 与项目统一标准负载折算（混合价 $0.00966/MTok）；**自建推理通道**，与同一套餐下的「Official API」是两条并行通道，不是新旧替代关系，两者不可直接比较；Eco 与 V4.1 Flash 同权重同价，差别在推理速度（官方定位非紧急任务），额度更高不等于单位算力更便宜",
+      "en": "Added 22.7743B: regular monthly fee $10 ($8 first month is promo, not adopted); monthly allowance $220 is official explicit DeepSeek V4.1 Flash Eco specific credit; converted via official off-peak three-part price cached/input/output=$0.003/$0.15/$0.60 and project standard workload (blended price $0.00966/MTok); self-hosted inference channel, parallel to \"Official API\" under the same plan, not a replacement, cannot be directly compared; Eco shares weights and price with V4.1 Flash, difference is inference speed (official positioning for non-urgent tasks), higher allowance does not mean cheaper unit compute"
     },
     {
       "zh": "新增0.263亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；官网三段价；credits $70→$20（2026-10-20）。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表",

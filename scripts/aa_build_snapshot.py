@@ -300,7 +300,7 @@ def main() -> int:
             "mappingAdditions": {"intelligenceSlug": new_slugs, "codingHost": new_hosts, "inheritedFiles": inherited},
         },
         "boards": [
-            {"boardId": "aa_intelligence_index", "name": "Artificial Analysis Intelligence Index v4.3",
+            {"boardId": "aa_intelligence_index", "name": "Artificial Analysis Intelligence Index v5.0.1",
              "url": args.models_url, "metric": "Intelligence Index", "snapshotDate": args.collected_at,
              "note": f"Fresh download {args.collected_at}; scores from public HTML RSC embedded model payload; page UI rounds to integer."},
             {"boardId": "aa_coding_agent_index", "name": "Artificial Analysis Coding Agent Index v1.5",

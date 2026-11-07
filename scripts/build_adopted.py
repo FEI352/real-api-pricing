@@ -642,7 +642,7 @@ OPENCODE_GO_MODELS = (
     ("qwen3.8-max", 15, 0.25, 2.0, 6.0, "官网单档"),
     ("qwen3.8-flash", 30, 0.016, 0.15, 0.47, "官网单档"),
     ("qwen3.7-plus", 60, 0.04, 0.4, 1.6, "≤256K 标价；>256K 档保留在 research variants"),
-    ("deepseek-v4.1-flash", 80, 0.003, 0.15, 0.60, "官网 Monthly limit $60→$80（2026-10-20）；Off-Peak；Peak=2×保留在 research variants"),
+    ("deepseek-v4.1-flash", 100, 0.003, 0.15, 0.60, "官网 Monthly limit $80→$100（2026-11-06 用户控制台读数；$10 订阅换 $100 额度＝10×）；Off-Peak；Peak=2×保留在 research variants"),
     ("deepseek-v4-pro", 15, 0.022, 0.66, 1.98, "Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改"),
     ("hy4-preview", 30, 0.042, 0.834, 2.501, "官网单档"),
     ("hy3", 60, 0.035, 0.14, 0.58, "官网单档"),
@@ -703,17 +703,33 @@ OPENDESIGN_GO_DEEPSEEK_SOURCE = (
 )
 OPENDESIGN_GO_DEEPSEEK_NOTE = (
     "新增124.224亿：首月促销$8/常态月费$10（项目按常态$10收录）；基础月额度$60，针对 DeepSeek V4.1 Flash 专项2×翻倍至$120；"
-    "官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60；按统一标准负载加权价折算；"
+    "**官方 API 通道**（不是自建推理）；官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60；按统一标准负载加权价折算；"
     "官方预估 145600 请求/7天（582400/月）作为交叉校验。5小时窗口硬顶$10，7天窗口硬顶$30，同套餐各模型额度不可相加"
+)
+
+
+OPENDESIGN_GO_ECO_SOURCE = (
+    "OpenDesign 官方 X @OpenDesignDevs 2026-11-06 发布贴（DeepSeek V4.1 Flash Eco on OpenDesign Go："
+    "$220 monthly usage credits，首月 $8 之后 $10/mo，明示 27.5× 首月杠杆，定位非紧急任务）；"
+    "标价与 V4.1 Flash 同档，见 list-prices-deepseek-v41-eco-round1-2026-11-06.json"
+)
+OPENDESIGN_GO_ECO_NOTE = (
+    "新增227.743亿：月费常态 $10（首月 $8 为促销，不采用）；月额度 $220 为官方明示的 DeepSeek V4.1 Flash Eco 专项额度；"
+    "按官网闲时三段价 cached/input/output=$0.003/$0.15/$0.60 与项目统一标准负载折算（混合价 $0.00966/MTok）；"
+    "**自建推理通道**，与同一套餐下的「Official API」是两条并行通道，不是新旧替代关系，两者不可直接比较；Eco 与 V4.1 Flash 同权重同价，差别在推理速度（官方定位非紧急任务），额度更高不等于单位算力更便宜"
 )
 
 
 def opendesign_go_rows() -> list[tuple]:
     return [
         (
-            "opendesign_go", "OpenDesign Go", 10, "USD", "deepseek-v4.1-flash", 124.224, "medium",
+            "opendesign_go", "OpenDesign Go (Official API)", 10, "USD", "deepseek-v4.1-flash", 124.224, "medium",
             OPENDESIGN_GO_DEEPSEEK_SOURCE, OPENDESIGN_GO_DEEPSEEK_NOTE,
-        )
+        ),
+        (
+            "opendesign_go", "OpenDesign Go (Self-hosted Eco)", 10, "USD", "deepseek-v4.1-flash-eco", 227.743, "medium",
+            OPENDESIGN_GO_ECO_SOURCE, OPENDESIGN_GO_ECO_NOTE,
+        ),
     ]
 
 
@@ -824,7 +840,9 @@ COMMAND_CODE_GOAT_NOTES = {
 def command_code_goat_rows() -> list[tuple]:
     rows = []
     for model, allowance, cached, inp, out, variant_note in COMMAND_CODE_GOAT_MODELS:
-        effective_usage = min(COMMAND_CODE_GOAT_SHARED_USD, allowance)
+        # 2026-11-06：官方 DEAL 把 deepseek-v4.1-flash 的额度单独抬到 $100，
+        # 这类「模型专项 boosted usage」不被通用 $80 共享池截断，故直接取 allowance。
+        effective_usage = allowance if allowance > COMMAND_CODE_GOAT_SHARED_USD else min(COMMAND_CODE_GOAT_SHARED_USD, allowance)
         yi = round(effective_usage / blended(cached, inp, out) / 100, 3)
         source = COMMAND_CODE_GOAT_DEEPSEEK_SOURCE if model.startswith("deepseek-") else COMMAND_CODE_GOAT_DEFAULT_SOURCE
         note = COMMAND_CODE_GOAT_NOTES.get(
@@ -1359,6 +1377,7 @@ DATA_DATES = {
     ("mistral_large4_api", "mistral-large-4"): ("2026-11-04", "official"),
     ("mistral_vibe_pro", "glm-5.3"): ("2026-11-03", "sample"),
     ("mistral_vibe_pro", "mistral-large-4"): ("2026-11-04", "sample"),
+    ("opendesign_go", "deepseek-v4.1-flash-eco"): ("2026-11-06", "official"),
     ("claude_pro_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
     ("claude_pro_mix5050", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Pro · claude-opus-5.5"),
     ("claude_max_20x_over100k", "claude-haiku-5.5"): ("2026-09-22~2026-09-27", "derived", "Claude Max 20x (9/14+) · claude-opus-5.5"),

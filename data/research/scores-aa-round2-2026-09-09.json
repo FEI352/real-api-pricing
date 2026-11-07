@@ -24,8 +24,8 @@
   "boards": [
     {
       "boardId": "aa_intelligence_index",
-      "name": "Artificial Analysis Intelligence Index v4.3",
-      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "url": "https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index",
       "metric": "Intelligence Index",
       "snapshotDate": "2026-09-09",
       "note": "Live page + homepage confirm Intelligence Index v4.3 (announced 2026-09-07). Components: AA-Briefcase, GDPval-AA v2, AutomationBench-AA, Terminal-Bench v4.0, SciCode, Humanity's Last Exam, GDP.pdf, CritPt, AA-Omniscience, AA-LCR v1.1. Replaces τ³-Banking with AutomationBench-AA; upgrades Terminal-Bench to v4.0 vs prior v4.1.1 archive. Article: https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3. Methodology: https://artificialanalysis.ai/methodology/intelligence-benchmarking. Scores taken from public HTML RSC embedded model payload (644 models); page UI rounds to integer. No separate explicit leaderboard 'as-of' date beyond live page check; do not invent one."

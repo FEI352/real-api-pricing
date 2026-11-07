@@ -94,7 +94,7 @@ def main() -> int:
     if not args.quiet:
         for r in rows:
             if "haiku" in r.get("slug", ""):
-                print(f"  {r['slug']}: idx={r['intelligenceIndex']} est={r['intelligenceIndexIsEstimated']} "
+                print(f"  {r['slug']}: idx={r['intelligenceIndex']} est={r.get('intelligenceIndexIsEstimated')} "
                       f"tb40={r.get('terminalBench40')} in={r.get('price1mInputTokens')} "
                       f"out={r.get('price1mOutputTokens')} cache={r.get('cacheHitPrice')}", file=sys.stderr)
     return 0

@@ -1,0 +1,225 @@
+{
+  "collectedAt": "2026-11-07",
+  "checkedAt": "2026-11-07T09:15:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（OpenDesign, Command Code GOAT, OpenCode Go, DeepSeek, OpenAI, Google, Anthropic, Mistral, MiniMax, Kimi, StepFun 等），上游 upstream/main 提交评估（PR #194 涉及 opencode-go-hy4 与 PR #191 涉及 goat-ling31-flash-1019），新模型标价档完备性核验（deepseek-v4.1-flash-eco），以及采用值派生脚本 build_adopted.py 调整与 20 项守卫核验",
+  "summary": "2026-11-07 官方 API 标价与采用值排查结论：1) 上游提交审查：/tmp/upstream.json 检出 upstream/main 相对当前 HEAD 包含 4 个新提交（涉及 PR #194 opencode-go-hy4 与 PR #191 goat-ling31-flash-1019，作者均为 klarkxy），分别引入 data/research/opencode-go-hy4-round1-2026-11-05.json 与 data/research/goat-ling31-flash-1019-round1-2026-11-04.json。两份文件均明确声明为 'adoptionStatus: research-only; not adopted'。经业务评估：Hy4 与 Ling 3.1 Flash 1019 目前在 Artificial Analysis (AA) 智力榜等基准上均处于 'not yet scored' 状态（无官方基准分数），未生成 adopted 行，未修改任何数据处理脚本，对当前生产采用值与帕累托前沿产生 0 影响。上游变更仅涉及 data/research/ 目录下的纯研究留痕，flags.touchesDataSignificant 为 false，flags.conflictRiskPrefixes 为空，verdict 为 mergeable，无代码级冲突，建议 Lead 作为研究档案合入。2) 标价档完备性核查：核验昨日新增的 data/research/list-prices-deepseek-v41-eco-round1-2026-11-06.json，其必填字段（model, vendor, input, cachedInput, output, currency）完备，输入价 $0.15/MTok、输出价 $0.60/MTok、缓存读 $0.003/MTok，与 DeepSeek 闲时三段价一致，折算标准负载混合价 $0.00966/MTok。全库 17 个 list-prices 文件覆盖全部在库模型，348 个订阅点 100% 具备正值 list_blended_usd_per_mtok（verify_list_blended.py 守卫 100% PASS，0 缺漏，0 兜底常数回退，0 白名单豁免）。本日无任何模型缺失标价档，无需新建 list-prices-*-2026-11-07.json。3) 采用值派生核验与维护：核验 scripts/build_adopted.py 中 OpenDesign Go (Self-hosted Eco) 与 Command Code GOAT 调整：OpenDesign Go 拆分为官方 API 通道（$120 额度，124.224 亿）与自建 Eco 通道（$220 额度，227.743 亿，采用 deepseek-v4.1-flash-eco）；Command Code GOAT 针对 deepseek-v4.1-flash 实施专项 $100 额度不被通用 $80 共享池截断逻辑（effective_usage 取 100，派生 103.52 亿）；OpenCode Go 按官网控制台读数将 deepseek-v4.1-flash 月限额调至 $100（派生 103.52 亿）。运行 build_adopted.py 生成 data/adopted.csv 共 378 行，核验 diff 仅包含预期的 1 个新增行与 3 个调整行，无任何意外漂移。运行守卫检查全链条（verify_list_blended, verify_price_basis, verify_scenario_points, verify_channel_vendor 以及 run_all.py 20 项守卫），全绿 PASS（20/20 PASS, 0 FAIL）。4) 协同待办：向 Lead 汇报 compute.py 配置（LIST_PRICE_FILES 包含 list-prices-deepseek-v41-eco-round1-2026-11-06.json；DISPLAY 包含 'deepseek-v4.1-flash-eco': 'DeepSeek V4.1 Flash Eco'）。",
+  "vendors": {
+    "OpenDesign": {
+      "status": "eco_and_official_dual_channel_live",
+      "recentChanges": [
+        "OpenDesign 官方 X @OpenDesignDevs 于 2026-11-06 宣布 DeepSeek V4.1 Flash Eco 上线 OpenDesign Go 套餐",
+        "套餐常态月费 $10/mo（首月促销 $8，项目按常态 $10 收录），提供 $220 每月 usage credits 专项额度，明示定位非紧急低成本推理任务",
+        "采用自建推理通道，与既有官方 API 通道（$120 额度，124.224 亿）并行提供，互不替代",
+        "按项目标准统一负载折算为 227.743 亿/月（真实单价 $0.000439/MTok）"
+      ],
+      "handling": "已由 list-prices-deepseek-v41-eco-round1-2026-11-06.json 与 build_adopted.py 收录，采用值核验完全通过"
+    },
+    "Command_Code_GOAT": {
+      "status": "boosted_deal_applied_ling1019_research_only",
+      "recentChanges": [
+        "针对 DeepSeek V4.1 Flash 的 $100 Boosted Usage Deal 生效，不再被通用 $80 共享池上限截断，build_adopted.py 调整后额度正确派生为 103.52 亿（真实单价 $0.000966/MTok）",
+        "PR #191 提交研究记录：Ling 3.1 Flash 1019 结束限时免费活动，恢复为付费模型，配发 $100 GOAT / $110 Pro 额度",
+        "Ling 3.1 Flash 1019 在 AA 等主流榜单尚处于 'not yet scored' 状态，保持 research-only 归档，未添加 adopted 行"
+      ],
+      "handling": "GOAT 专项额度逻辑调整完成，无多余 diff，守卫全部通过"
+    },
+    "OpenCode_Go": {
+      "status": "deepseek_limit_100_hy4_research_only",
+      "recentChanges": [
+        "用户控制台与文档显示 DeepSeek V4.1 Flash 独立月限额上调至 $100（$10 订阅换 $100 额度 = 10× 杠杆），build_adopted.py 正确派生为 103.52 亿",
+        "PR #194 提交研究记录：OpenCode Go 新增付费模型 Hy4，标价 input $0.834 / output $2.501 / cache $0.042，Go 月额度 $60",
+        "Hy4 目前尚未被 AA 等榜单收录，保持 research-only 归档，未添加 adopted 行"
+      ],
+      "handling": "采用值与标价保持稳定，PR #194 评估为可安全合入的研究留痕"
+    },
+    "DeepSeek": {
+      "status": "stable_pricing",
+      "recentChanges": [
+        "DeepSeek-V4.1-Flash 官方 API 标价闲时 $0.15/$0.60 (hit $0.003)，忙时 $0.30/$1.20 (hit $0.006) 保持稳定",
+        "Search & Fetch API 独立收费 $0.75/1,000 requests 常态化计费平稳运行",
+        "既有标价档 list-prices-deepseek-v41-round2-2026-09-10.json 与 list-prices-deepseek-v41-eco-round1-2026-11-06.json 覆盖完备"
+      ],
+      "handling": "标价与采用值稳定，无需新建标价档"
+    },
+    "OpenAI": {
+      "status": "pro_tiers_and_terra_stable",
+      "recentChanges": [
+        "ChatGPT Pro 系列配额维持常态稳定运行，Pro 20x 核心锚点稳固",
+        "GPT-6.1 Terra（gpt-6.1-terra）三段标价 input $1.00 / output $5.00 / cachedInput $0.05 稳定生效，list-prices-gpt-61-terra-round1-2026-10-28.json 覆盖完备",
+        "ChatGPT Plus ($20) / Pro 5x ($100) / Pro 20x ($200) 对应 gpt-6.1-terra 派生行运行良好"
+      ],
+      "handling": "标价档与采用值派生稳定，无需新建标价档"
+    },
+    "Google": {
+      "status": "carbon_and_argon_fully_integrated",
+      "recentChanges": [
+        "Gemini 4 Carbon 首发 50% 优惠目录价 input $2.50 / output $10.00 / cachedInput $0.10（优惠期至 2026-12-01），list-prices-gemini-4-carbon-round1-2026-10-29.json 覆盖完备",
+        "Google AI 套餐 8 个点位在 extra_subscriptions.json 运行良好",
+        "Gemini 4 Argon 维持首发优惠价，未见新调价"
+      ],
+      "handling": "标价档与订阅点均已就绪，无需新建标价档"
+    },
+    "Anthropic": {
+      "status": "stable",
+      "recentChanges": [
+        "Claude Haiku 5.5 维持 3 档情景建模，verify_haiku55_tiers 守卫验证通过",
+        "Claude Sonnet 5.5 维持 round2 标价档，各套餐点位正常运行",
+        "未见新的标价与限额调整"
+      ],
+      "handling": "标价档均已就绪，无需新建标价档"
+    },
+    "Mistral": {
+      "status": "large4_and_vibe_integrated",
+      "recentChanges": [
+        "Mistral Large 4 标价与 Mistral Vibe Pro 套餐点位运行良好，list-prices-mistral-large-4-round1-2026-11-04.json 覆盖完备",
+        "未见新的价格或配额变动"
+      ],
+      "handling": "标价档与采用值完备，无需新建标价档"
+    },
+    "MiniMax": {
+      "status": "stable",
+      "recentChanges": [
+        "MiniMax M3.1 Flash Preview 维持专用 96% tokenMix 覆盖，list-prices-minimax-m31-round1-2026-10-19.json 覆盖完备",
+        "M Plan 各档位运行平稳"
+      ],
+      "handling": "标价档与采用值稳定，无需新建标价档"
+    },
+    "StepFun": {
+      "status": "stable",
+      "recentChanges": [
+        "Step-3.5-Flash / Step-3.7-Flash / Step-5-Preview 维持低缓存负载（85%）换算标准",
+        "Step Plan 各档位未见变更"
+      ],
+      "handling": "标价档与采用值稳定，无需新建标价档"
+    },
+    "Kimi_Moonshot": {
+      "status": "stable",
+      "recentChanges": [
+        "Kimi K3.1 Pro 标价与 Kimi 会员/Plus/Pro/Max/Ultra 派生行运行平稳",
+        "list-prices-kimi-k31-round1-2026-10-27.json 覆盖完备"
+      ],
+      "handling": "标价档与采用值完备，无需新建标价档"
+    }
+  },
+  "upstreamCommitsReview": {
+    "totalCommits": 4,
+    "evaluatedCommits": [
+      {
+        "pr": "#194",
+        "mergeCommit": "1392833",
+        "contentCommit": "2ec40bf",
+        "subject": "Research: OpenCode Go adds paid model Hy4 ($60 Go / $240 Go Plus / $65 Go Teams monthly limit, research-only)",
+        "author": "klarkxy",
+        "filesChanged": [
+          "data/research/opencode-go-hy4-round1-2026-11-05.json"
+        ],
+        "scope": "OpenCode Go 官方价格表新增付费模型 'Hy4'（model id hy4），三段价格 input $0.834 / output $2.501 / cached read $0.042；Go 月限额 $60、Go Plus $240、Go Teams $65。",
+        "evaluation": {
+          "adoptionImpact": "无影响。提交文件明确声明 'adoptionStatus: research-only; not adopted'，未修改 build_adopted.py 或 adopted.csv。",
+          "frontierImpact": "无影响。该模型在 AA 智力榜等基准上尚无官方基准分数（unscored），无法进入基准点集与帕累托前沿。",
+          "mergeRecommendation": "建议合入。属于无害且完整的高质量官方变动研究归档，/tmp/upstream.json 判定为 mergeable，conflictRiskPrefixes 与 localOverlap 均为空，无代码冲突风险。"
+        }
+      },
+      {
+        "pr": "#191",
+        "mergeCommit": "ed848df",
+        "contentCommit": "ad75eaf",
+        "subject": "Research: Command Code GOAT Ling 3.1 Flash 1019 free -> paid, $100 GOAT / $110 Pro credits (research-only)",
+        "author": "klarkxy",
+        "filesChanged": [
+          "data/research/goat-ling31-flash-1019-round1-2026-11-04.json"
+        ],
+        "scope": "Command Code GOAT 官方页面：Ling 3.1 Flash 1019 结束限时免费，恢复为付费模型，配发 $100 GOAT / $110 Pro 额度，费率 input $0.30 / output $0.90 / cache $0.06。",
+        "evaluation": {
+          "adoptionImpact": "无影响。提交文件明确声明 'adoptionStatus: research-only; not adopted'，未修改 build_adopted.py 或 adopted.csv。",
+          "frontierImpact": "无影响。该模型在 AA 智力榜等基准上尚无官方基准分数（unscored），无法进入基准点集与帕累托前沿。",
+          "mergeRecommendation": "建议合入。属于无害且完整的高质量官方变动研究归档，/tmp/upstream.json 判定为 mergeable，无代码冲突。"
+        }
+      }
+    ]
+  },
+  "candidateList": {
+    "evaluatedModels": [
+      {
+        "model": "deepseek-v4.1-flash-eco",
+        "source": "OpenDesign 官方 X (@OpenDesignDevs)",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-eco-round1-2026-11-06.json: $0.15 in / $0.60 out / $0.003 cached read)",
+        "adoptionStatus": "adopted (OpenDesign Go (Self-hosted Eco): 227.743 亿)",
+        "actionRequired": "none (build_adopted.py already updated and verified)"
+      },
+      {
+        "model": "hy4",
+        "source": "OpenCode Go (PR #194) / Tencent Cloud",
+        "listPriceStatus": "unscored on AA / research-only ($0.834 in / $2.501 out / $0.042 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "ling-3.1-flash-1019",
+        "source": "Command Code GOAT (PR #191) / InclusionAI",
+        "listPriceStatus": "unscored on AA / research-only ($0.30 in / $0.90 out / $0.06 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "mistral-large-4",
+        "source": "Mistral AI / Artificial Analysis",
+        "listPriceStatus": "covered (list-prices-mistral-large-4-round1-2026-11-04.json)",
+        "adoptionStatus": "adopted (mistral_large4_api & mistral_vibe_pro)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gemini-4-carbon",
+        "source": "Google Cloud Vertex AI",
+        "listPriceStatus": "covered (list-prices-gemini-4-carbon-round1-2026-10-29.json)",
+        "adoptionStatus": "adopted (Google AI 8 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gpt-6.1-terra",
+        "source": "OpenAI",
+        "listPriceStatus": "covered (list-prices-gpt-61-terra-round1-2026-10-28.json)",
+        "adoptionStatus": "adopted (ChatGPT 3 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "source": "Moonshot AI",
+        "listPriceStatus": "covered (list-prices-kimi-k31-round1-2026-10-27.json)",
+        "adoptionStatus": "adopted (Kimi 4 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "minimax-m3.1-flash-preview",
+        "source": "MiniMax",
+        "listPriceStatus": "covered (list-prices-minimax-m31-round1-2026-10-19.json)",
+        "adoptionStatus": "adopted (MiniMax M Plan 6 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "claude-haiku-5.5",
+        "source": "Anthropic",
+        "listPriceStatus": "covered (list-prices-claude-haiku55-round1-2026-10-08.json)",
+        "adoptionStatus": "adopted (Claude 3 档情景点)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "source": "DeepSeek",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-round2-2026-09-10.json)",
+        "adoptionStatus": "adopted (GOAT / OpenCode / Ollama / OpenDesign)",
+        "actionRequired": "none"
+      }
+    ],
+    "newModelsRequired": [],
+    "listPricesStatus": "all current models covered (17 files), 0 new files needed for 2026-11-07",
+    "buildAdoptedStatus": "build_adopted.py successfully verified, outputs 378 rows, diff strictly confined to expected changes, all 20 guard checks pass"
+  },
+  "recommendationsForLead": {
+    "listPriceFiles": "确保 scripts/compute.py 的 LIST_PRICE_FILES 元组包含 'list-prices-deepseek-v41-eco-round1-2026-11-06.json'（置于 list-prices-mistral-large-4-round1-2026-11-04.json 之后）",
+    "displayMapping": "确保 scripts/compute.py 的 DISPLAY 字典包含 'deepseek-v4.1-flash-eco': 'DeepSeek V4.1 Flash Eco'",
+    "upstreamAction": "建议合并 upstream/main 4 个提交（PR #194 与 PR #191 均为 research-only 归档，无代码冲突，对当前采用值与前沿 0 影响）",
+    "buildAdoptedVerification": "build_adopted.py 已生成 378 行 data/adopted.csv，经核验所有变更与守卫均已通过，可直接用于下游阶段 4 计算与图表生成"
+  }
+}

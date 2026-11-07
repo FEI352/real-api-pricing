@@ -78,6 +78,9 @@ OPEN_DESIGN_MODELS = {
 SERVED_MODEL_ALIASES = {
     "muse-spark-1.3-contributor": "muse-spark-1.3",
     "muse-spark-1.2-contributor": "muse-spark-1.2",
+    # 2026-11-06：OpenDesign 的 Eco 是同一组权重（自建推理、速度更慢），能力分与 V4.1 Flash 相同，
+    # 单位价格更低，因此别名到本体，让它在同一张榜上参与前沿比较。
+    "deepseek-v4.1-flash-eco": "deepseek-v4.1-flash",
 }
 ALIAS_BOARDS = {"aa_intelligence_index", "terminal_bench_4", "aa_terminal_bench_4", "arena_code", "arena_agent_mode", "aa_coding_agent_index", "open_design_arena", "deepswe_1_1"}
 
@@ -141,10 +144,10 @@ def configuration(record, archive):
     resp_time = None
     tps = None
     if raw_item:
-        rt = raw_item.get("medianEndToEndResponseTimeSeconds")
+        rt = raw_item.get("medianEndToEndResponseTimeSeconds") or raw_item.get("intelligenceIndexTimePerTask")
         if isinstance(rt, (int, float)):
             resp_time = round(float(rt), 2)
-        sp = raw_item.get("medianOutputTokensPerSecond")
+        sp = raw_item.get("medianOutputTokensPerSecond") or raw_item.get("outputSpeed")
         if isinstance(sp, (int, float)):
             tps = round(float(sp), 1)
     if resp_time is None and secondary.get("slug") in TIME_FALLBACKS:
