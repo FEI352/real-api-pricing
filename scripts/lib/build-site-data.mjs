@@ -16,6 +16,7 @@ export async function buildSiteData({ repo, parseCsv }) {
     channelColors,
     i18n,
     deprecatedModels,
+    hiddenByDefault,
   ] = await Promise.all([
     read("derived/points.json"),
     read("derived/benchmark-configurations.json"),
@@ -26,6 +27,7 @@ export async function buildSiteData({ repo, parseCsv }) {
     read("config/channel-colors.json"),
     read("data/i18n/adopted.en.json"),
     read("config/deprecated-models.json"),
+    read("config/hidden-by-default.json"),
   ]);
   const adopted = new Map(
     parseCsv(adoptedText, { columns: true, skip_empty_lines: true, bom: true }).map(
@@ -110,6 +112,11 @@ export async function buildSiteData({ repo, parseCsv }) {
         plan_id: a.plan_id,
         channel: channel(p),
         deprecated: Boolean((deprecatedModels.models || {})[p.model]),
+        hiddenByDefault:
+          Boolean((deprecatedModels.models || {})[p.model]) ||
+          (hiddenByDefault.modelBilling || []).some(
+            (r) => r.model === p.model && r.billing === (p.billing || "subscription"),
+          ),
         original_price: a.price === "" ? null : Number(a.price),
         currency: a.currency,
         monthly_tokens: a.monthly_tokens === "" ? null : Number(a.monthly_tokens),

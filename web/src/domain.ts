@@ -26,6 +26,7 @@ export const filterKeys: FilterKey[] = [
 export const colors = channelColors;
 export const defaultState = (): State => ({
   hideOld: true,
+  showHidden: false,
   feeBand: "all",
   lang: "en",
   view: "pareto",
@@ -92,6 +93,21 @@ export function scorePresence(r: { score: number | null }): string {
  * 数据仍然保留（历史与对账需要），默认视图隐藏，避免把老价位的绝对 token 量
  * 和新价位并排比较——2026-11-04 就是因此把 $14.99 的 Vibe 看成"比 Z.ai 少"。
  */
+/**
+ * 默认不显示的点（2026-11-07 用户裁定）：
+ *  - deprecated：已被新版本取代的模型（Step 3.5/3.7 等），数据保留供纵向对比；
+ *  - Claude Haiku 5.5 的订阅行：额度全部由 Opus 5.5 按标价比倒推，50/50 档还预设了
+ *    极低 prompt 占比的立场，属情景假设而非实测，放默认榜会顶掉真实额度。
+ * 需要看时用「显示弃用/推算项」开关打开。
+ */
+export function isHiddenByDefault(p: Point): boolean {
+  // 单一口径：构建期由 config/hidden-by-default.json + config/deprecated-models.json
+  // 算出 hiddenByDefault 写进 site.json，前端与守卫读同一份事实，不再各自硬编码模型名。
+  if (typeof p.hiddenByDefault === "boolean") return p.hiddenByDefault;
+  if (p.deprecated) return true;
+  return false;
+}
+
 export function isOlderGeneration(p: Point): boolean {
   return p.plan_gen === "v1" || p.plan_gen === "v2";
 }
@@ -107,6 +123,7 @@ export function visiblePoints(data: SiteData, s: State): Point[] {
       matches(s.billing, p.billing) &&
       matches(s.confidence, p.confidence) &&
       (!s.hideOld || !isOlderGeneration(p)) &&
+      (s.showHidden || !isHiddenByDefault(p)) &&
       (s.view !== "allowance" && s.view !== "pareto" ||
         (s.view === "allowance"
           ? p.billing !== "metered" && p.monthly_yi !== null && matchesFeeBand(p.price_usd, s.feeBand)
@@ -667,6 +684,7 @@ export function serialize(s: State): string {
   if (s.labels !== d.labels) p.set("labels", s.labels);
   if (s.feeBand !== d.feeBand) p.set("fee", s.feeBand);
   if (s.hideOld !== d.hideOld) p.set("old", "0");
+  if (s.showHidden !== d.showHidden) p.set("hidden", "1");
   if (s.xMode !== d.xMode) p.set("xmode", s.xMode);
   if (s.axisSwap) p.set("swap", "1");
   if (s.xMin || s.xMax || s.yMin || s.yMax || s.feeMin || s.feeMax)
@@ -702,6 +720,7 @@ export function restore(
   if (!hash || hash === "#") return { state, warning: false };
   const params = new URLSearchParams(hash.slice(1));
   if (params.get("old") === "0") state.hideOld = false;
+  if (params.get("hidden") === "1") state.showHidden = true;
   const legacy = params.get("s");
   if (legacy !== null) return restoreLegacy(legacy, state, data);
   let warning = false;

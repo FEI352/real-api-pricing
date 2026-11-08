@@ -60,6 +60,8 @@ FALLBACK_CHECKS = [
     "scripts/checks/verify_front_label_overlap.py",
     "scripts/checks/verify_four_boards.py",
     "scripts/checks/verify_publication.py",
+    "scripts/checks/verify_hidden_defaults.py",
+    "scripts/checks/verify_deploy_assets.py",
     "scripts/checks/verify_palette.py",
     "scripts/checks/verify_channel_vendor.py",
     "scripts/checks/verify_docs_refs.py",

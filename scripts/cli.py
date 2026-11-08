@@ -80,7 +80,32 @@ def sync_dist_to_deploy(dist_dir, deploy_dir, protected=("data",), dry_run=False
         raise RuntimeError(f"dist 不完整：{assets} 不存在或为空，拒绝部署以免清空线上资产")
 
     if not dry_run:
-        run_cmd(f"cp -r {dist_dir}/. {deploy_dir}/", cwd=WEB_DIR)
+        # 2026-11-07：改用「临时目录 + 原子换名」，替代 cp -r。
+        # 原实现直接往线上目录覆盖写，构建与拷贝并发时 cp 会以退出码 1 中断，
+        # 且半途失败会留下「新旧资产混在一起」的中间态（本会话已复现两次）。
+        import shutil, tempfile, os
+        deploy_dir.mkdir(parents=True, exist_ok=True)
+        staging = Path(tempfile.mkdtemp(prefix=".deploy-", dir=str(deploy_dir.parent)))
+        try:
+            # 先复制既有内容（保住 data/ 等受保护目录），再用 dist 覆盖
+            shutil.copytree(deploy_dir, staging, dirs_exist_ok=True)
+            for item in dist_dir.iterdir():
+                target = staging / item.name
+                if item.name in protected and target.exists():
+                    continue
+                if item.is_dir():
+                    shutil.copytree(item, target, dirs_exist_ok=True)
+                else:
+                    shutil.copy2(item, target)
+            backup = deploy_dir.with_name(deploy_dir.name + ".prev")
+            if backup.exists():
+                shutil.rmtree(backup)
+            os.replace(deploy_dir, backup)
+            os.replace(staging, deploy_dir)
+            shutil.rmtree(backup, ignore_errors=True)
+        except Exception:
+            shutil.rmtree(staging, ignore_errors=True)
+            raise
 
     removed = []
     for path in sorted(deploy_dir.rglob("*"), key=lambda p: len(p.parts), reverse=True):

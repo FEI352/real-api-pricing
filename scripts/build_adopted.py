@@ -1351,7 +1351,17 @@ MAIN_EXTRA = {
 }
 
 
+# 2026-11-07 用户裁定：Claude Haiku 5.5 的订阅额度全部由 Opus 5.5 的实测值按标价比倒推，
+# 其中 50/50 混合档还预设了「极低 prompt 占比」的立场，属于情景假设而非实测额度。
+# 这类推算值一旦进入默认视图就会顶到榜首（81.855B / 27.285B），把真实额度挤下去。
+# 故一律降为 full 档：数据保留、可查，但默认不显示。
+HAIKU55_DERIVED_HIDDEN = {"claude_pro", "claude_max_20x", "claude_pro_over100k", "claude_pro_mix5050",
+                          "claude_max_20x_over100k", "claude_max_20x_mix5050"}
+
+
 def is_main(pid: str, model: str) -> bool:
+    if model == "claude-haiku-5.5" and pid in HAIKU55_DERIVED_HIDDEN:
+        return False
     return (pid in MAIN_PLANS and model != "gpt-5.6-terra") or (pid, model) in MAIN_EXTRA
 
 
@@ -1620,7 +1630,12 @@ def sub_row(pid, name, price, cur, model, yi, conf, src, note, tier=None) -> dic
     return dict(plan_id=pid, plan_name=name, plan_name_en=name_en, billing="subscription", price=price, currency=cur,
                 price_usd=round(price_usd, 2), served_model=model, monthly_tokens=int(tokens),
                 monthly_yi=monthly_yi, real_usd_per_mtok=sig(price_usd / tokens * 1e6), unmetered="", promo_until="",
-                confidence=conf, chart_tier=tier or ("main" if is_main(pid, model) else "full"), source=src, decision_note=note,
+                confidence=conf,
+                chart_tier=(
+                    "full" if model == "claude-haiku-5.5"  # 2026-11-07 用户裁定：Haiku 5.5 订阅额度全是倒推情景，默认不显示
+                    else (tier or ("main" if is_main(pid, model) else "full"))
+                ),
+                source=src, decision_note=note,
                 plan_gen=plan_gen_of(pid), workload=workload_of(pid, "subscription", model))
 
 

@@ -66,8 +66,14 @@ VARIANT_RE = re.compile(r'"selected":\{"label":"([^"]+)"')
 def extract_meta(html: str) -> tuple[float | None, str | None, str | None]:
     """返回 (分数, releaseName, 当前 variant label)。"""
     joined = rsc_join(html)
-    hits = INDEX_RE.findall(joined)
-    score = float(hits[0]) if hits else None
+    # 必须从 currentModel 严格提取目标模型的 intelligenceIndex，严禁盲目正则抓取页面全局榜单
+    score = None
+    idx = joined.find('"currentModel":')
+    if idx != -1:
+        sub = joined[idx + len('"currentModel":'):idx + 2500]
+        m_score = re.search(r'"intelligenceIndex"\s*:\s*([0-9.]+)', sub)
+        if m_score:
+            score = float(m_score.group(1))
     rel = RELEASE_RE.search(joined)
     var = VARIANT_RE.search(joined)
     return score, (rel.group(1) if rel else None), (var.group(1) if var else None)

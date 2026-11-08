@@ -877,6 +877,17 @@ function Explorer({
                   </label>
                 )}
                 <label className="toggle" title={t(
+                  "Show deprecated models and derived (non-measured) rows, e.g. Step 3.5/3.7 and the Claude Haiku 5.5 subscription tiers.",
+                  "显示已弃用模型与推算项（如 Step 3.5/3.7、Claude Haiku 5.5 订阅档）。默认关闭。",
+                )}>
+                  <input
+                    type="checkbox"
+                    checked={state.showHidden}
+                    onChange={(e) => patch({ showHidden: e.target.checked })}
+                  />
+                  {t("Show deprecated / derived", "显示弃用 / 推算项")}
+                </label>
+                <label className="toggle" title={t(
                   "Hide plans superseded by a newer generation (Kimi v1, Z.ai v2 old-customer pricing). The data is still in the export.",
                   "隐藏已被新一代取代的套餐（Kimi v1、Z.ai v2 老客价）。数据仍在导出里，只是默认不显示。",
                 )}>

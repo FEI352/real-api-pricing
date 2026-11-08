@@ -13,7 +13,9 @@ None，前端每任务成本会退化成常数回退、多 effort 档被压到�
    under=blended(0.01,0.10,0.50)、over=blended(0.05,0.50,2.50)、mix=(under+over)/2；
 3. 主行(≤100k) : over : mix 的 monthly_yi 比例 == 1 : under/over : under/mix；
 4. real_usd_per_mtok == price_usd / (monthly_yi * 100)，8 位有效数字半单位容差；
-5. 4 个情景行的 workload == anthropic、chart_tier == main。
+5. 8 个 Haiku 5.5 订阅行的 workload == anthropic、chart_tier == full
+   （2026-11-07 用户裁定：Haiku 5.5 的订阅额度全部由 Opus 5.5 按标价比倒推，
+    50/50 档还预设了极低 prompt 占比的立场，属情景假设，默认视图不再显示）。
 
 容差说明（当前口径，2026-10-08 数据）：情景行 monthly_yi 由 build_adopted.sub_row()
 统一 round(...,3) 存储（163.711 / 272.852 / 1690.608 / 2817.681），半存储位为 5e-4。
@@ -139,7 +141,7 @@ for plan_id, (base_plan, kind) in SCENARIOS.items():
 
     check(row.get("workload") == "anthropic", f"{plan_id} workload == anthropic",
           f"actual {row.get('workload')!r}")
-    check(row.get("chart_tier") == "main", f"{plan_id} chart_tier == main",
+    check(row.get("chart_tier") == "full", f"{plan_id} chart_tier == full",
           f"actual {row.get('chart_tier')!r}")
 
 if failures:

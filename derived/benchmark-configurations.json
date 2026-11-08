@@ -3353,7 +3353,7 @@
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:168421975dffb33f",
+    "configuration_id": "aa_intelligence_index:1b19ec7448712681",
     "board": "aa_intelligence_index",
     "model": "claude-sonnet-5.5",
     "variant": "Claude Sonnet 5.5 (medium)",
@@ -3368,11 +3368,11 @@
     "mean_cost_usd_per_task": 0.7807,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 214.03,
-    "output_speed_tps": 143.7,
+    "response_time_seconds": 214.57,
+    "output_speed_tps": 143.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_intelligence_index",
@@ -3397,11 +3397,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3bc68efb6a5e41b6",
+    "configuration_id": "aa_intelligence_index:be2c3e59229b764e",
     "board": "aa_intelligence_index",
     "model": "claude-fable-5.1",
     "variant": "Claude Fable 5.1 (low)",
@@ -3416,11 +3416,11 @@
     "mean_cost_usd_per_task": 4.4711,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.7425,
-    "response_time_seconds": 427.63,
-    "output_speed_tps": 88.5,
+    "response_time_seconds": 428.09,
+    "output_speed_tps": 88.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_intelligence_index",
@@ -3445,11 +3445,11 @@
         "cacheHitPrice": 0.25
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:1cba340046be69a4",
+    "configuration_id": "aa_intelligence_index:f73a4bf6cbe8d447",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-sol",
     "variant": "GPT-6.1 Sol (xhigh)",
@@ -3464,11 +3464,11 @@
     "mean_cost_usd_per_task": 0.764,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 588.65,
-    "output_speed_tps": 51.4,
+    "response_time_seconds": 587.56,
+    "output_speed_tps": 51.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_intelligence_index",
@@ -3493,11 +3493,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:9ca9ffb999a398a0",
+    "configuration_id": "aa_intelligence_index:5eaa62b9e962c69a",
     "board": "aa_intelligence_index",
     "model": "step-5-preview",
     "variant": "Step 5 Preview",
@@ -3512,11 +3512,11 @@
     "mean_cost_usd_per_task": 2.3453,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.1355,
-    "response_time_seconds": 842.89,
-    "output_speed_tps": 134.6,
+    "response_time_seconds": 858.45,
+    "output_speed_tps": 132.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "step-5-preview",
       "boardId": "aa_intelligence_index",
@@ -3541,11 +3541,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:a5628fd94105ffef",
+    "configuration_id": "aa_intelligence_index:a7c46e4bc25cb86e",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-terra",
     "variant": "GPT-6.1 Terra (non-reasoning)",
@@ -3560,11 +3560,11 @@
     "mean_cost_usd_per_task": 0.2259,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0985,
-    "response_time_seconds": 133.48,
-    "output_speed_tps": 71.1,
+    "response_time_seconds": 133.35,
+    "output_speed_tps": 71.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_intelligence_index",
@@ -3589,11 +3589,11 @@
         "cacheHitPrice": 0.05
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:f5815ab2a2b10d47",
+    "configuration_id": "aa_intelligence_index:125723819cde0218",
     "board": "aa_intelligence_index",
     "model": "inkling",
     "variant": "Inkling (xhigh)",
@@ -3608,11 +3608,11 @@
     "mean_cost_usd_per_task": 1.352,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.21015,
-    "response_time_seconds": 486.97,
-    "output_speed_tps": 105.3,
+    "response_time_seconds": 478.69,
+    "output_speed_tps": 107.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "inkling",
       "boardId": "aa_intelligence_index",
@@ -3637,11 +3637,11 @@
         "cacheHitPrice": 0.17
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:0ad478a52436e1a1",
+    "configuration_id": "aa_intelligence_index:d54edd5adec0d3ac",
     "board": "aa_intelligence_index",
     "model": "mimo-v2.6-flash",
     "variant": "MiMo-V2.6-Flash",
@@ -3656,11 +3656,11 @@
     "mean_cost_usd_per_task": 0.1285,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.007616,
-    "response_time_seconds": 3842.79,
+    "response_time_seconds": 3841.97,
     "output_speed_tps": 34.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "mimo-v2.6-flash",
       "boardId": "aa_intelligence_index",
@@ -3685,11 +3685,11 @@
         "cacheHitPrice": 0.0028
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:9108fadb1fee3f3c",
+    "configuration_id": "aa_intelligence_index:b036bd0ca27ae747",
     "board": "aa_intelligence_index",
     "model": "glm-5.3-flash",
     "variant": "GLM-5.3-Flash",
@@ -3704,11 +3704,11 @@
     "mean_cost_usd_per_task": 0.5833,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.03535,
-    "response_time_seconds": 2364.02,
-    "output_speed_tps": 56.8,
+    "response_time_seconds": 2369.13,
+    "output_speed_tps": 56.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3-flash",
       "boardId": "aa_intelligence_index",
@@ -3733,11 +3733,11 @@
         "cacheHitPrice": 0.03
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:4cdacfb79034d1a8",
+    "configuration_id": "aa_intelligence_index:cc258965d870de3d",
     "board": "aa_intelligence_index",
     "model": "gpt-6-luna",
     "variant": "GPT-6 Luna (xhigh)",
@@ -3752,11 +3752,11 @@
     "mean_cost_usd_per_task": 0.1041,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 448.5,
-    "output_speed_tps": 97.9,
+    "response_time_seconds": 445.93,
+    "output_speed_tps": 98.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_intelligence_index",
@@ -3781,11 +3781,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:548b71fa49b8aac7",
+    "configuration_id": "aa_intelligence_index:5c774b04d5753607",
     "board": "aa_intelligence_index",
     "model": "gpt-6-astra",
     "variant": "GPT-6 Astra (xhigh)",
@@ -3800,11 +3800,11 @@
     "mean_cost_usd_per_task": 3.6589,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 1.47,
-    "response_time_seconds": 626.94,
-    "output_speed_tps": 42.6,
+    "response_time_seconds": 630.3,
+    "output_speed_tps": 42.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_intelligence_index",
@@ -3829,11 +3829,11 @@
         "cacheHitPrice": 1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:4fa83353b52a909f",
+    "configuration_id": "aa_intelligence_index:1cc0780572cce4e1",
     "board": "aa_intelligence_index",
     "model": "claude-haiku-5.5",
     "variant": "Claude Haiku 5.5 (high)",
@@ -3848,11 +3848,11 @@
     "mean_cost_usd_per_task": 0.1586,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 393.97,
-    "output_speed_tps": 223.5,
+    "response_time_seconds": 394.54,
+    "output_speed_tps": 223.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_intelligence_index",
@@ -3877,11 +3877,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3310c36afb6a4c05",
+    "configuration_id": "aa_intelligence_index:376543894a0112fe",
     "board": "aa_intelligence_index",
     "model": "mimo-v2.6-pro",
     "variant": "MiMo-V2.6-Pro",
@@ -3896,11 +3896,11 @@
     "mean_cost_usd_per_task": 0.2572,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.018717,
-    "response_time_seconds": 2593.23,
-    "output_speed_tps": 46.7,
+    "response_time_seconds": 2571.86,
+    "output_speed_tps": 47.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "mimo-v2.6-pro",
       "boardId": "aa_intelligence_index",
@@ -3925,11 +3925,11 @@
         "cacheHitPrice": 0.0036
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:aaaa3eb9c5459bf1",
+    "configuration_id": "aa_intelligence_index:2ff2feebf002d077",
     "board": "aa_intelligence_index",
     "model": "claude-sonnet-5.5",
     "variant": "Claude Sonnet 5.5 (high)",
@@ -3944,11 +3944,11 @@
     "mean_cost_usd_per_task": 1.6361,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 413.21,
-    "output_speed_tps": 141.4,
+    "response_time_seconds": 414.15,
+    "output_speed_tps": 141.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_intelligence_index",
@@ -3973,11 +3973,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:7f39c879c2bcb6a5",
+    "configuration_id": "aa_intelligence_index:7493abc63b0b1833",
     "board": "aa_intelligence_index",
     "model": "grok-4.7",
     "variant": "Grok 4.7 (high)",
@@ -3992,11 +3992,11 @@
     "mean_cost_usd_per_task": 6.1836,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.565,
-    "response_time_seconds": 1217.45,
-    "output_speed_tps": 73.2,
+    "response_time_seconds": 1223.49,
+    "output_speed_tps": 72.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "grok-4.7",
       "boardId": "aa_intelligence_index",
@@ -4021,11 +4021,11 @@
         "cacheHitPrice": 0.5
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:34ae8013c65e93f7",
+    "configuration_id": "aa_intelligence_index:afbfbbc52e3f9ecf",
     "board": "aa_intelligence_index",
     "model": "minimax-m3",
     "variant": "MiniMax-M3",
@@ -4040,11 +4040,11 @@
     "mean_cost_usd_per_task": 1.2851,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0717,
-    "response_time_seconds": 788.56,
-    "output_speed_tps": 116.0,
+    "response_time_seconds": 773.58,
+    "output_speed_tps": 118.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "minimax-m3",
       "boardId": "aa_intelligence_index",
@@ -4069,11 +4069,11 @@
         "cacheHitPrice": 0.06
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:c30943d5dd8e3e82",
+    "configuration_id": "aa_intelligence_index:182797675c63ed5b",
     "board": "aa_intelligence_index",
     "model": "gpt-6-astra",
     "variant": "GPT-6 Astra (max)",
@@ -4088,11 +4088,11 @@
     "mean_cost_usd_per_task": 6.2447,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 1.47,
-    "response_time_seconds": 1253.66,
-    "output_speed_tps": 41.5,
+    "response_time_seconds": 1260.95,
+    "output_speed_tps": 41.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_intelligence_index",
@@ -4117,11 +4117,11 @@
         "cacheHitPrice": 1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:ee985a51b82174b9",
+    "configuration_id": "aa_intelligence_index:c4f107c762e81ebe",
     "board": "aa_intelligence_index",
     "model": "claude-opus-5.5",
     "variant": "Claude Opus 5.5 (max)",
@@ -4136,11 +4136,11 @@
     "mean_cost_usd_per_task": 10.0364,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.394,
-    "response_time_seconds": 1498.71,
+    "response_time_seconds": 1499.32,
     "output_speed_tps": 115.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_intelligence_index",
@@ -4165,11 +4165,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:f11c39930783bd0a",
+    "configuration_id": "aa_intelligence_index:c7c00c240cb2eb9e",
     "board": "aa_intelligence_index",
     "model": "qwen3.8-27b",
     "variant": "Qwen3.8 27B (non-reasoning)",
@@ -4184,11 +4184,11 @@
     "mean_cost_usd_per_task": 3.7729,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.1245,
-    "response_time_seconds": 1069.82,
-    "output_speed_tps": 41.9,
+    "response_time_seconds": 1092.59,
+    "output_speed_tps": 41.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_intelligence_index",
@@ -4213,11 +4213,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:1f0153dc02c2a498",
+    "configuration_id": "aa_intelligence_index:8081e3a27a097e5d",
     "board": "aa_intelligence_index",
     "model": "gpt-6-luna",
     "variant": "GPT-6 Luna (medium)",
@@ -4232,11 +4232,11 @@
     "mean_cost_usd_per_task": 0.0422,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 213.69,
-    "output_speed_tps": 92.8,
+    "response_time_seconds": 214.36,
+    "output_speed_tps": 92.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_intelligence_index",
@@ -4261,11 +4261,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:a20b6facd96d4c6c",
+    "configuration_id": "aa_intelligence_index:e2470f976ac33c82",
     "board": "aa_intelligence_index",
     "model": "claude-fable-5.1",
     "variant": "Claude Fable 5.1 (medium)",
@@ -4280,11 +4280,11 @@
     "mean_cost_usd_per_task": 5.5643,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.7425,
-    "response_time_seconds": 552.19,
-    "output_speed_tps": 87.9,
+    "response_time_seconds": 553.27,
+    "output_speed_tps": 87.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_intelligence_index",
@@ -4309,11 +4309,11 @@
         "cacheHitPrice": 0.25
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:776680cc70ae9e92",
+    "configuration_id": "aa_intelligence_index:44ebedaeb9c164d4",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-sol",
     "variant": "GPT-6.1 Sol (high)",
@@ -4328,11 +4328,11 @@
     "mean_cost_usd_per_task": 0.591,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 417.86,
-    "output_speed_tps": 54.1,
+    "response_time_seconds": 417.01,
+    "output_speed_tps": 54.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_intelligence_index",
@@ -4357,11 +4357,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:4cbe22e8c4038150",
+    "configuration_id": "aa_intelligence_index:842a6463545e3d19",
     "board": "aa_intelligence_index",
     "model": "claude-fable-5.1",
     "variant": "Claude Fable 5.1 (max)",
@@ -4376,11 +4376,11 @@
     "mean_cost_usd_per_task": 12.994,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.7425,
-    "response_time_seconds": 1329.3,
-    "output_speed_tps": 88.7,
+    "response_time_seconds": 1332.69,
+    "output_speed_tps": 88.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_intelligence_index",
@@ -4405,11 +4405,11 @@
         "cacheHitPrice": 0.25
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3b7abed585e1a189",
+    "configuration_id": "aa_intelligence_index:d456beff4d6edcb8",
     "board": "aa_intelligence_index",
     "model": "claude-haiku-5.5",
     "variant": "Claude Haiku 5.5 (xhigh)",
@@ -4424,11 +4424,11 @@
     "mean_cost_usd_per_task": 0.2484,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 582.1,
-    "output_speed_tps": 233.9,
+    "response_time_seconds": 581.95,
+    "output_speed_tps": 234.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_intelligence_index",
@@ -4453,11 +4453,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:2103e7114c0b20c0",
+    "configuration_id": "aa_intelligence_index:e26d91083ea7c240",
     "board": "aa_intelligence_index",
     "model": "claude-haiku-5.5",
     "variant": "Claude Haiku 5.5 (low)",
@@ -4472,11 +4472,11 @@
     "mean_cost_usd_per_task": 0.0438,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 128.96,
-    "output_speed_tps": 218.4,
+    "response_time_seconds": 129.29,
+    "output_speed_tps": 217.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_intelligence_index",
@@ -4501,11 +4501,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:386c077e3e9c7c0c",
+    "configuration_id": "aa_intelligence_index:6954484f65740388",
     "board": "aa_intelligence_index",
     "model": "claude-opus-5.5",
     "variant": "Claude Opus 5.5 (low)",
@@ -4520,11 +4520,11 @@
     "mean_cost_usd_per_task": 0.9755,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.394,
-    "response_time_seconds": 179.66,
-    "output_speed_tps": 106.1,
+    "response_time_seconds": 180.54,
+    "output_speed_tps": 105.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_intelligence_index",
@@ -4549,11 +4549,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:c519f9a8f0950dba",
+    "configuration_id": "aa_intelligence_index:627cc1550a5739b1",
     "board": "aa_intelligence_index",
     "model": "grok-4.7",
     "variant": "Grok 4.7 (xhigh)",
@@ -4568,11 +4568,11 @@
     "mean_cost_usd_per_task": 7.7715,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.565,
-    "response_time_seconds": 1427.33,
-    "output_speed_tps": 73.2,
+    "response_time_seconds": 1435.13,
+    "output_speed_tps": 72.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "grok-4.7",
       "boardId": "aa_intelligence_index",
@@ -4597,11 +4597,11 @@
         "cacheHitPrice": 0.5
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3340ca425851bb3f",
+    "configuration_id": "aa_intelligence_index:1c9832bd313fdf36",
     "board": "aa_intelligence_index",
     "model": "nemotron-3-ultra",
     "variant": "Nemotron 3 Ultra",
@@ -4616,11 +4616,11 @@
     "mean_cost_usd_per_task": 2.2257,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.1449,
-    "response_time_seconds": 350.57,
-    "output_speed_tps": 146.8,
+    "response_time_seconds": 338.27,
+    "output_speed_tps": 152.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "nemotron-3-ultra",
       "boardId": "aa_intelligence_index",
@@ -4645,11 +4645,11 @@
         "cacheHitPrice": 0.12
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:9cfc934a3d27dbe6",
+    "configuration_id": "aa_intelligence_index:3bf6eec797c4acb8",
     "board": "aa_intelligence_index",
     "model": "gpt-6-luna",
     "variant": "GPT-6 Luna (non-reasoning)",
@@ -4664,11 +4664,11 @@
     "mean_cost_usd_per_task": 0.0714,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 115.82,
-    "output_speed_tps": 86.8,
+    "response_time_seconds": 116.7,
+    "output_speed_tps": 86.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_intelligence_index",
@@ -4693,11 +4693,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:0c4be68e339c3510",
+    "configuration_id": "aa_intelligence_index:3319785e6febc316",
     "board": "aa_intelligence_index",
     "model": "qwen3.8-27b",
     "variant": "Qwen3.8 27B (medium)",
@@ -4712,11 +4712,11 @@
     "mean_cost_usd_per_task": 2.16,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.1245,
-    "response_time_seconds": 1980.5,
-    "output_speed_tps": 43.6,
+    "response_time_seconds": 2007.19,
+    "output_speed_tps": 43.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_intelligence_index",
@@ -4741,11 +4741,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:83a3c679d30ea85f",
+    "configuration_id": "aa_intelligence_index:c60515e59135f7ff",
     "board": "aa_intelligence_index",
     "model": "kimi-k3.1-pro",
     "variant": "Kimi K3.1 Pro",
@@ -4760,11 +4760,11 @@
     "mean_cost_usd_per_task": 3.6812,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.294,
-    "response_time_seconds": 2163.68,
-    "output_speed_tps": 33.4,
+    "response_time_seconds": 2169.06,
+    "output_speed_tps": 33.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "kimi-k3.1-pro",
       "boardId": "aa_intelligence_index",
@@ -4789,11 +4789,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:f016e986f871b3a6",
+    "configuration_id": "aa_intelligence_index:66719c6c0dc86e60",
     "board": "aa_intelligence_index",
     "model": "gpt-6-luna",
     "variant": "GPT-6 Luna (max)",
@@ -4808,11 +4808,11 @@
     "mean_cost_usd_per_task": 0.152,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 750.22,
+    "response_time_seconds": 749.84,
     "output_speed_tps": 100.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_intelligence_index",
@@ -4837,11 +4837,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:cf94a21ba1fe6d02",
+    "configuration_id": "aa_intelligence_index:3961ceb227a4fc5c",
     "board": "aa_intelligence_index",
     "model": "inkling-small",
     "variant": "Inkling Small",
@@ -4856,11 +4856,11 @@
     "mean_cost_usd_per_task": 0.2032,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0717,
-    "response_time_seconds": 338.76,
-    "output_speed_tps": 108.4,
+    "response_time_seconds": 348.38,
+    "output_speed_tps": 105.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "inkling-small",
       "boardId": "aa_intelligence_index",
@@ -4885,11 +4885,11 @@
         "cacheHitPrice": 0.06
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:4b2ae1da1cea90e2",
+    "configuration_id": "aa_intelligence_index:77301dce76acc765",
     "board": "aa_intelligence_index",
     "model": "gemini-3.8-flash",
     "variant": "Gemini 3.8 Flash (medium)",
@@ -4904,11 +4904,11 @@
     "mean_cost_usd_per_task": 6.2586,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.11025,
-    "response_time_seconds": 410.21,
+    "response_time_seconds": 410.48,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_intelligence_index",
@@ -4933,11 +4933,11 @@
         "cacheHitPrice": 0.075
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:66c4bc14a805aef9",
+    "configuration_id": "aa_intelligence_index:bf1a4723ac4b7460",
     "board": "aa_intelligence_index",
     "model": "claude-haiku-5.5",
     "variant": "Claude Haiku 5.5 (max)",
@@ -4952,11 +4952,11 @@
     "mean_cost_usd_per_task": 0.411,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 963.64,
+    "response_time_seconds": 963.6,
     "output_speed_tps": 234.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_intelligence_index",
@@ -4981,11 +4981,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3720e8744992c9f1",
+    "configuration_id": "aa_intelligence_index:6d9f9dc97cdb38ee",
     "board": "aa_intelligence_index",
     "model": "gpt-6-luna",
     "variant": "GPT-6 Luna (high)",
@@ -5000,11 +5000,11 @@
     "mean_cost_usd_per_task": 0.0729,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 340.96,
-    "output_speed_tps": 96.3,
+    "response_time_seconds": 342.03,
+    "output_speed_tps": 96.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_intelligence_index",
@@ -5029,11 +5029,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:c570a632c178ce60",
+    "configuration_id": "aa_intelligence_index:db8163250d922862",
     "board": "aa_intelligence_index",
     "model": "qwen3.8-27b",
     "variant": "Qwen3.8 27B (low)",
@@ -5048,11 +5048,11 @@
     "mean_cost_usd_per_task": 1.9059,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.1245,
-    "response_time_seconds": 1750.66,
-    "output_speed_tps": 45.8,
+    "response_time_seconds": 1771.44,
+    "output_speed_tps": 45.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_intelligence_index",
@@ -5077,11 +5077,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:f94b39eab2f65ca5",
+    "configuration_id": "aa_intelligence_index:63b07a7fd6d6d864",
     "board": "aa_intelligence_index",
     "model": "deepseek-v4-pro",
     "variant": "DeepSeek V4 Pro 0813 (max)",
@@ -5096,11 +5096,11 @@
     "mean_cost_usd_per_task": 1.7691,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.09548,
-    "response_time_seconds": 1399.85,
-    "output_speed_tps": 70.5,
+    "response_time_seconds": 1439.04,
+    "output_speed_tps": 68.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4-pro",
       "boardId": "aa_intelligence_index",
@@ -5125,11 +5125,11 @@
         "cacheHitPrice": 0.044
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:75bc1111d57bddb6",
+    "configuration_id": "aa_intelligence_index:638a6c8c9ce0d643",
     "board": "aa_intelligence_index",
     "model": "gemini-3.8-flash",
     "variant": "Gemini 3.8 Flash (high)",
@@ -5144,11 +5144,11 @@
     "mean_cost_usd_per_task": 7.766,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.11025,
-    "response_time_seconds": 494.8,
+    "response_time_seconds": 494.89,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_intelligence_index",
@@ -5173,11 +5173,11 @@
         "cacheHitPrice": 0.075
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:fec4339607e51df8",
+    "configuration_id": "aa_intelligence_index:0def03620ff2944c",
     "board": "aa_intelligence_index",
     "model": "claude-sonnet-5.5",
     "variant": "Claude Sonnet 5.5 (xhigh)",
@@ -5192,11 +5192,11 @@
     "mean_cost_usd_per_task": 4.092,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 905.69,
-    "output_speed_tps": 134.9,
+    "response_time_seconds": 907.02,
+    "output_speed_tps": 134.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_intelligence_index",
@@ -5221,11 +5221,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:32e2933c35849d5c",
+    "configuration_id": "aa_intelligence_index:20bb7b28bc9ac408",
     "board": "aa_intelligence_index",
     "model": "claude-fable-5.1",
     "variant": "Claude Fable 5.1 (xhigh)",
@@ -5240,11 +5240,11 @@
     "mean_cost_usd_per_task": 10.8475,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.7425,
-    "response_time_seconds": 1097.87,
-    "output_speed_tps": 88.4,
+    "response_time_seconds": 1100.34,
+    "output_speed_tps": 88.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_intelligence_index",
@@ -5269,11 +5269,11 @@
         "cacheHitPrice": 0.25
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:7db97014ece6f691",
+    "configuration_id": "aa_intelligence_index:65f364e66f8d30e6",
     "board": "aa_intelligence_index",
     "model": "claude-fable-5.1",
     "variant": "Claude Fable 5.1 (high)",
@@ -5288,11 +5288,11 @@
     "mean_cost_usd_per_task": 7.54,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.7425,
-    "response_time_seconds": 751.96,
-    "output_speed_tps": 87.8,
+    "response_time_seconds": 755.39,
+    "output_speed_tps": 87.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_intelligence_index",
@@ -5317,11 +5317,11 @@
         "cacheHitPrice": 0.25
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:8423af2db3038a89",
+    "configuration_id": "aa_intelligence_index:7b5afe3562c8737e",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-sol",
     "variant": "GPT-6.1 Sol (medium)",
@@ -5336,11 +5336,11 @@
     "mean_cost_usd_per_task": 0.3594,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 245.96,
-    "output_speed_tps": 55.0,
+    "response_time_seconds": 245.52,
+    "output_speed_tps": 55.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_intelligence_index",
@@ -5365,11 +5365,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:faeba7839570958e",
+    "configuration_id": "aa_intelligence_index:998c78d7d2ded199",
     "board": "aa_intelligence_index",
     "model": "gpt-6-astra",
     "variant": "GPT-6 Astra (low)",
@@ -5384,11 +5384,11 @@
     "mean_cost_usd_per_task": 1.4237,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 1.47,
-    "response_time_seconds": 211.86,
+    "response_time_seconds": 211.92,
     "output_speed_tps": 43.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_intelligence_index",
@@ -5413,11 +5413,11 @@
         "cacheHitPrice": 1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3232450297e78f75",
+    "configuration_id": "aa_intelligence_index:0cd257012f683fed",
     "board": "aa_intelligence_index",
     "model": "claude-haiku-5.5",
     "variant": "Claude Haiku 5.5 (medium)",
@@ -5432,11 +5432,11 @@
     "mean_cost_usd_per_task": 0.0918,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 247.28,
-    "output_speed_tps": 215.7,
+    "response_time_seconds": 247.87,
+    "output_speed_tps": 215.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_intelligence_index",
@@ -5461,11 +5461,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:f2e78d7d58ffffbb",
+    "configuration_id": "aa_intelligence_index:5563505e2e050e83",
     "board": "aa_intelligence_index",
     "model": "qwen3.8-27b",
     "variant": "Qwen3.8 27B (xhigh)",
@@ -5480,11 +5480,11 @@
     "mean_cost_usd_per_task": 3.5295,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.1245,
-    "response_time_seconds": 2613.33,
-    "output_speed_tps": 42.0,
+    "response_time_seconds": 2658.57,
+    "output_speed_tps": 41.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_intelligence_index",
@@ -5509,11 +5509,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:ad971d7922de6265",
+    "configuration_id": "aa_intelligence_index:d255988f25182b17",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-terra",
     "variant": "GPT-6.1 Terra (max)",
@@ -5528,11 +5528,11 @@
     "mean_cost_usd_per_task": 0.9611,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0985,
-    "response_time_seconds": 828.53,
-    "output_speed_tps": 72.3,
+    "response_time_seconds": 825.05,
+    "output_speed_tps": 72.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_intelligence_index",
@@ -5557,11 +5557,11 @@
         "cacheHitPrice": 0.05
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:029f0f2420437bfd",
+    "configuration_id": "aa_intelligence_index:a78df3a628ff0709",
     "board": "aa_intelligence_index",
     "model": "qwen3.8-max-0902",
     "variant": "Qwen3.8 Max (0902)",
@@ -5576,11 +5576,11 @@
     "mean_cost_usd_per_task": 10.0239,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.3225,
-    "response_time_seconds": 3612.68,
+    "response_time_seconds": 3607.65,
     "output_speed_tps": 47.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-max-0902",
       "boardId": "aa_intelligence_index",
@@ -5605,11 +5605,11 @@
         "cacheHitPrice": 0.25
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:3d71c1c58bfc4b8f",
+    "configuration_id": "aa_intelligence_index:5c9289c09c71eb9e",
     "board": "aa_intelligence_index",
     "model": "claude-sonnet-5.5",
     "variant": "Claude Sonnet 5.5 (max)",
@@ -5624,11 +5624,11 @@
     "mean_cost_usd_per_task": 10.0206,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 1886.33,
-    "output_speed_tps": 151.3,
+    "response_time_seconds": 1888.82,
+    "output_speed_tps": 151.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_intelligence_index",
@@ -5653,11 +5653,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:4fc0b07b13f01537",
+    "configuration_id": "aa_intelligence_index:2b619f3cd50a5ba7",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-sol",
     "variant": "GPT-6.1 Sol (max)",
@@ -5672,11 +5672,11 @@
     "mean_cost_usd_per_task": 1.2721,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 1314.55,
-    "output_speed_tps": 51.6,
+    "response_time_seconds": 1302.26,
+    "output_speed_tps": 52.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_intelligence_index",
@@ -5701,11 +5701,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:b41a26a1983a79ba",
+    "configuration_id": "aa_intelligence_index:e44d6df3a79f36e2",
     "board": "aa_intelligence_index",
     "model": "claude-sonnet-5.5",
     "variant": "Claude Sonnet 5.5 (low)",
@@ -5720,11 +5720,11 @@
     "mean_cost_usd_per_task": 0.5113,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 156.71,
-    "output_speed_tps": 133.1,
+    "response_time_seconds": 156.95,
+    "output_speed_tps": 132.9,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_intelligence_index",
@@ -5749,11 +5749,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:b4f9b9aaab3a4381",
+    "configuration_id": "aa_intelligence_index:b4f30639d721ff61",
     "board": "aa_intelligence_index",
     "model": "gpt-6-luna",
     "variant": "GPT-6 Luna (low)",
@@ -5768,11 +5768,11 @@
     "mean_cost_usd_per_task": 0.0051,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0147,
-    "response_time_seconds": 36.36,
-    "output_speed_tps": 90.6,
+    "response_time_seconds": 36.68,
+    "output_speed_tps": 89.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_intelligence_index",
@@ -5797,11 +5797,11 @@
         "cacheHitPrice": 0.01
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:8e2dc8d3dbe15373",
+    "configuration_id": "aa_intelligence_index:f07d545efcbd4bed",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-terra",
     "variant": "GPT-6.1 Terra (medium)",
@@ -5816,11 +5816,11 @@
     "mean_cost_usd_per_task": 0.1688,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0985,
-    "response_time_seconds": 156.01,
-    "output_speed_tps": 69.7,
+    "response_time_seconds": 155.01,
+    "output_speed_tps": 70.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_intelligence_index",
@@ -5845,11 +5845,11 @@
         "cacheHitPrice": 0.05
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:140be7dc17bd6ba5",
+    "configuration_id": "aa_intelligence_index:747810a8357345b0",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-terra",
     "variant": "GPT-6.1 Terra (low)",
@@ -5864,11 +5864,11 @@
     "mean_cost_usd_per_task": 0.0713,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0985,
-    "response_time_seconds": 63.89,
+    "response_time_seconds": 63.86,
     "output_speed_tps": 69.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_intelligence_index",
@@ -5893,11 +5893,11 @@
         "cacheHitPrice": 0.05
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:6107a5a0eb4d01b7",
+    "configuration_id": "aa_intelligence_index:89aed981ac46f1e2",
     "board": "aa_intelligence_index",
     "model": "glm-5.3",
     "variant": "GLM-5.3 (low)",
@@ -5912,11 +5912,11 @@
     "mean_cost_usd_per_task": 1.5749,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.3092,
-    "response_time_seconds": 1085.72,
-    "output_speed_tps": 47.9,
+    "response_time_seconds": 1090.35,
+    "output_speed_tps": 47.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3",
       "boardId": "aa_intelligence_index",
@@ -5941,11 +5941,11 @@
         "cacheHitPrice": 0.26
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:e5f0272685ebee04",
+    "configuration_id": "aa_intelligence_index:1f4244ef53492465",
     "board": "aa_intelligence_index",
     "model": "glm-5.3",
     "variant": "GLM-5.3 (max)",
@@ -5960,11 +5960,11 @@
     "mean_cost_usd_per_task": 5.0093,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.3092,
-    "response_time_seconds": 1891.59,
-    "output_speed_tps": 62.9,
+    "response_time_seconds": 1859.32,
+    "output_speed_tps": 64.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3",
       "boardId": "aa_intelligence_index",
@@ -5989,11 +5989,11 @@
         "cacheHitPrice": 0.26
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:436064fc35438924",
+    "configuration_id": "aa_intelligence_index:4cb36c5b9ae48b76",
     "board": "aa_intelligence_index",
     "model": "gemini-4-argon",
     "variant": "Gemini 4 Argon (high)",
@@ -6008,11 +6008,11 @@
     "mean_cost_usd_per_task": 9.9466,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.394,
-    "response_time_seconds": 1660.4,
-    "output_speed_tps": 70.1,
+    "response_time_seconds": 1664.61,
+    "output_speed_tps": 69.9,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-4-argon",
       "boardId": "aa_intelligence_index",
@@ -6037,11 +6037,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:73652b24cefb6f3e",
+    "configuration_id": "aa_intelligence_index:ae26c64e5bf5290d",
     "board": "aa_intelligence_index",
     "model": "minimax-m3.1-flash-preview",
     "variant": "MiniMax-M3.1-Flash",
@@ -6056,11 +6056,11 @@
     "mean_cost_usd_per_task": 0.491,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0213,
-    "response_time_seconds": 1034.09,
-    "output_speed_tps": 133.6,
+    "response_time_seconds": 1031.28,
+    "output_speed_tps": 134.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "minimax-m3.1-flash-preview",
       "boardId": "aa_intelligence_index",
@@ -6085,11 +6085,11 @@
         "cacheHitPrice": 0.015
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:62920282eeec3d84",
+    "configuration_id": "aa_intelligence_index:a2e950ec2d32b1bc",
     "board": "aa_intelligence_index",
     "model": "deepseek-v4-pro",
     "variant": "DeepSeek V4 Pro 0813 (non-reasoning)",
@@ -6104,11 +6104,11 @@
     "mean_cost_usd_per_task": 0.977,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.09548,
-    "response_time_seconds": 889.43,
-    "output_speed_tps": 80.5,
+    "response_time_seconds": 927.67,
+    "output_speed_tps": 77.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4-pro",
       "boardId": "aa_intelligence_index",
@@ -6133,11 +6133,11 @@
         "cacheHitPrice": 0.044
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:adba9f8f4f24fb61",
+    "configuration_id": "aa_intelligence_index:b476566c93987305",
     "board": "aa_intelligence_index",
     "model": "mistral-medium-3.5",
     "variant": "Mistral Medium 3.5",
@@ -6152,11 +6152,11 @@
     "mean_cost_usd_per_task": 1.0391,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.2205,
-    "response_time_seconds": 288.02,
+    "response_time_seconds": 288.15,
     "output_speed_tps": 137.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "mistral-medium-3.5",
       "boardId": "aa_intelligence_index",
@@ -6181,11 +6181,11 @@
         "cacheHitPrice": 0.15
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:c60dad259736f9d0",
+    "configuration_id": "aa_intelligence_index:2e001c9affb603bc",
     "board": "aa_intelligence_index",
     "model": "claude-opus-5.5",
     "variant": "Claude Opus 5.5 (xhigh)",
@@ -6200,11 +6200,11 @@
     "mean_cost_usd_per_task": 6.0472,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.394,
-    "response_time_seconds": 954.18,
-    "output_speed_tps": 108.4,
+    "response_time_seconds": 952.99,
+    "output_speed_tps": 108.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_intelligence_index",
@@ -6229,11 +6229,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:038da55697faf154",
+    "configuration_id": "aa_intelligence_index:733d043f609a277e",
     "board": "aa_intelligence_index",
     "model": "gpt-6-astra",
     "variant": "GPT-6 Astra (high)",
@@ -6248,11 +6248,11 @@
     "mean_cost_usd_per_task": 3.2386,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 1.47,
-    "response_time_seconds": 544.02,
+    "response_time_seconds": 543.77,
     "output_speed_tps": 42.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_intelligence_index",
@@ -6277,11 +6277,11 @@
         "cacheHitPrice": 1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:f28f1a1fa5592b55",
+    "configuration_id": "aa_intelligence_index:4513c8b5726bba53",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-sol",
     "variant": "GPT-6.1 Sol (low)",
@@ -6296,11 +6296,11 @@
     "mean_cost_usd_per_task": 0.1615,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.197,
-    "response_time_seconds": 109.84,
-    "output_speed_tps": 53.1,
+    "response_time_seconds": 109.2,
+    "output_speed_tps": 53.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_intelligence_index",
@@ -6325,11 +6325,11 @@
         "cacheHitPrice": 0.1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:203e57ef3b76e9cb",
+    "configuration_id": "aa_intelligence_index:2a5d1b7fe7fc509b",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-terra",
     "variant": "GPT-6.1 Terra (xhigh)",
@@ -6344,11 +6344,11 @@
     "mean_cost_usd_per_task": 0.4007,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0985,
-    "response_time_seconds": 372.0,
-    "output_speed_tps": 70.4,
+    "response_time_seconds": 369.96,
+    "output_speed_tps": 70.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_intelligence_index",
@@ -6373,11 +6373,11 @@
         "cacheHitPrice": 0.05
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:cf853af6f084e4b8",
+    "configuration_id": "aa_intelligence_index:d322239dd0403dc8",
     "board": "aa_intelligence_index",
     "model": "gpt-6-astra",
     "variant": "GPT-6 Astra (medium)",
@@ -6392,11 +6392,11 @@
     "mean_cost_usd_per_task": 2.7324,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 1.47,
-    "response_time_seconds": 389.72,
-    "output_speed_tps": 46.3,
+    "response_time_seconds": 391.26,
+    "output_speed_tps": 46.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_intelligence_index",
@@ -6421,11 +6421,11 @@
         "cacheHitPrice": 1
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:bbfa4cd4cbcf8093",
+    "configuration_id": "aa_intelligence_index:0c333374ba48e77d",
     "board": "aa_intelligence_index",
     "model": "gpt-6.1-terra",
     "variant": "GPT-6.1 Terra (high)",
@@ -6440,11 +6440,11 @@
     "mean_cost_usd_per_task": 0.2593,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.0985,
-    "response_time_seconds": 241.73,
-    "output_speed_tps": 69.3,
+    "response_time_seconds": 241.05,
+    "output_speed_tps": 69.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_intelligence_index",
@@ -6469,11 +6469,11 @@
         "cacheHitPrice": 0.05
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:39f93b7487e292cd",
+    "configuration_id": "aa_intelligence_index:c877e3a9641857ab",
     "board": "aa_intelligence_index",
     "model": "claude-opus-5.5",
     "variant": "Claude Opus 5.5 (medium)",
@@ -6488,11 +6488,11 @@
     "mean_cost_usd_per_task": 2.4511,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.394,
-    "response_time_seconds": 406.11,
-    "output_speed_tps": 107.9,
+    "response_time_seconds": 407.44,
+    "output_speed_tps": 107.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_intelligence_index",
@@ -6517,11 +6517,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:cdcdd88f76fd4b35",
+    "configuration_id": "aa_intelligence_index:11995ac6b7249d8e",
     "board": "aa_intelligence_index",
     "model": "deepseek-v4.1-flash",
     "variant": "DeepSeek V4.1 Flash 1017 (max)",
@@ -6536,11 +6536,11 @@
     "mean_cost_usd_per_task": 0.6021,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.01932,
-    "response_time_seconds": 813.49,
-    "output_speed_tps": 170.8,
+    "response_time_seconds": 862.12,
+    "output_speed_tps": 161.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4.1-flash",
       "boardId": "aa_intelligence_index",
@@ -6565,11 +6565,11 @@
         "cacheHitPrice": 0.006
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:75d9a43e5888fded",
+    "configuration_id": "aa_intelligence_index:87c3bb4f758b32fa",
     "board": "aa_intelligence_index",
     "model": "claude-opus-5.5",
     "variant": "Claude Opus 5.5 (high)",
@@ -6584,11 +6584,11 @@
     "mean_cost_usd_per_task": 3.4647,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.394,
-    "response_time_seconds": 551.96,
-    "output_speed_tps": 108.8,
+    "response_time_seconds": 553.12,
+    "output_speed_tps": 108.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_intelligence_index",
@@ -6613,11 +6613,11 @@
         "cacheHitPrice": 0.2
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:7b660f8acc0c1c9c",
+    "configuration_id": "aa_intelligence_index:f4c41ac2cf1c5ab0",
     "board": "aa_intelligence_index",
     "model": "gemini-3.8-flash",
     "variant": "Gemini 3.8 Flash (low)",
@@ -6632,11 +6632,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": 0.11025,
-    "response_time_seconds": 5.33,
+    "response_time_seconds": 5.45,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_intelligence_index",
@@ -6661,11 +6661,11 @@
         "cacheHitPrice": 0.075
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:593ca43a71a1224a",
+    "configuration_id": "aa_terminal_bench_4:6204526fe8eeb381",
     "board": "aa_terminal_bench_4",
     "model": "claude-sonnet-5.5",
     "variant": "Artificial Analysis - Claude Sonnet 5.5 (medium)",
@@ -6680,11 +6680,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 214.03,
-    "output_speed_tps": 143.7,
+    "response_time_seconds": 214.57,
+    "output_speed_tps": 143.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -6699,12 +6699,12 @@
         "terminalBench40Fraction": 0.297979797979798
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:c69322dfe51be456",
+    "configuration_id": "aa_terminal_bench_4:f2c0713295891e33",
     "board": "aa_terminal_bench_4",
     "model": "claude-fable-5.1",
     "variant": "Artificial Analysis - Claude Fable 5.1 (low)",
@@ -6719,11 +6719,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 427.63,
-    "output_speed_tps": 88.5,
+    "response_time_seconds": 428.09,
+    "output_speed_tps": 88.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_terminal_bench_4",
@@ -6738,12 +6738,12 @@
         "terminalBench40Fraction": 0.404040404040404
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:59b5a9cf89216e5c",
+    "configuration_id": "aa_terminal_bench_4:5665f20face2a123",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-sol",
     "variant": "Artificial Analysis - GPT-6.1 Sol (xhigh)",
@@ -6758,11 +6758,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 588.65,
-    "output_speed_tps": 51.4,
+    "response_time_seconds": 587.56,
+    "output_speed_tps": 51.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_terminal_bench_4",
@@ -6777,12 +6777,12 @@
         "terminalBench40Fraction": 0.54040404040404
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:af716b985a9525ec",
+    "configuration_id": "aa_terminal_bench_4:82ca7e0cdde643a6",
     "board": "aa_terminal_bench_4",
     "model": "step-5-preview",
     "variant": "Artificial Analysis - Step 5 Preview",
@@ -6797,11 +6797,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 842.89,
-    "output_speed_tps": 134.6,
+    "response_time_seconds": 858.45,
+    "output_speed_tps": 132.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "step-5-preview",
       "boardId": "aa_terminal_bench_4",
@@ -6816,12 +6816,12 @@
         "terminalBench40Fraction": 0.333333333333333
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:0421a44ad00c1ae1",
+    "configuration_id": "aa_terminal_bench_4:f07e95302c3ea6fc",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-terra",
     "variant": "Artificial Analysis - GPT-6.1 Terra (non-reasoning)",
@@ -6836,11 +6836,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 133.48,
-    "output_speed_tps": 71.1,
+    "response_time_seconds": 133.35,
+    "output_speed_tps": 71.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_terminal_bench_4",
@@ -6855,12 +6855,12 @@
         "terminalBench40Fraction": 0.267676767676768
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:01c973625516017b",
+    "configuration_id": "aa_terminal_bench_4:9aa1db7696b5ee59",
     "board": "aa_terminal_bench_4",
     "model": "inkling",
     "variant": "Artificial Analysis - Inkling (xhigh)",
@@ -6875,11 +6875,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 486.97,
-    "output_speed_tps": 105.3,
+    "response_time_seconds": 478.69,
+    "output_speed_tps": 107.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "inkling",
       "boardId": "aa_terminal_bench_4",
@@ -6894,12 +6894,12 @@
         "terminalBench40Fraction": 0.0101010101010101
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:67ec4f8794396978",
+    "configuration_id": "aa_terminal_bench_4:4a7ef00f2128ca43",
     "board": "aa_terminal_bench_4",
     "model": "mimo-v2.6-flash",
     "variant": "Artificial Analysis - MiMo-V2.6-Flash",
@@ -6914,11 +6914,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 3842.79,
+    "response_time_seconds": 3841.97,
     "output_speed_tps": 34.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "mimo-v2.6-flash",
       "boardId": "aa_terminal_bench_4",
@@ -6933,12 +6933,12 @@
         "terminalBench40Fraction": 0.227272727272727
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:3d1ca5add44150a1",
+    "configuration_id": "aa_terminal_bench_4:8c835835f8952619",
     "board": "aa_terminal_bench_4",
     "model": "glm-5.3-flash",
     "variant": "Artificial Analysis - GLM-5.3-Flash",
@@ -6953,11 +6953,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 2364.02,
-    "output_speed_tps": 56.8,
+    "response_time_seconds": 2369.13,
+    "output_speed_tps": 56.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3-flash",
       "boardId": "aa_terminal_bench_4",
@@ -6972,12 +6972,12 @@
         "terminalBench40Fraction": 0.328282828282828
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:b13f800530ee3aad",
+    "configuration_id": "aa_terminal_bench_4:eed1575dbb61d9d0",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-luna",
     "variant": "Artificial Analysis - GPT-6 Luna (xhigh)",
@@ -6992,11 +6992,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 448.5,
-    "output_speed_tps": 97.9,
+    "response_time_seconds": 445.93,
+    "output_speed_tps": 98.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_terminal_bench_4",
@@ -7011,12 +7011,12 @@
         "terminalBench40Fraction": 0.0808080808080808
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:32e7328b0d6e94ce",
+    "configuration_id": "aa_terminal_bench_4:957ed49d365ade12",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-astra",
     "variant": "Artificial Analysis - GPT-6 Astra (xhigh)",
@@ -7031,11 +7031,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 626.94,
-    "output_speed_tps": 42.6,
+    "response_time_seconds": 630.3,
+    "output_speed_tps": 42.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_terminal_bench_4",
@@ -7050,12 +7050,12 @@
         "terminalBench40Fraction": 0.595959595959596
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:cd8da25a545224c1",
+    "configuration_id": "aa_terminal_bench_4:976cfe5fc1bcc6f8",
     "board": "aa_terminal_bench_4",
     "model": "claude-haiku-5.5",
     "variant": "Artificial Analysis - Claude Haiku 5.5 (high)",
@@ -7070,11 +7070,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 393.97,
-    "output_speed_tps": 223.5,
+    "response_time_seconds": 394.54,
+    "output_speed_tps": 223.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -7089,12 +7089,12 @@
         "terminalBench40Fraction": 0.217171717171717
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:4d81602d88108db9",
+    "configuration_id": "aa_terminal_bench_4:73c17e045e37eb9e",
     "board": "aa_terminal_bench_4",
     "model": "mimo-v2.6-pro",
     "variant": "Artificial Analysis - MiMo-V2.6-Pro",
@@ -7109,11 +7109,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 2593.23,
-    "output_speed_tps": 46.7,
+    "response_time_seconds": 2571.86,
+    "output_speed_tps": 47.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "mimo-v2.6-pro",
       "boardId": "aa_terminal_bench_4",
@@ -7128,12 +7128,12 @@
         "terminalBench40Fraction": 0.348484848484849
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:d30fc8fa57aa5c72",
+    "configuration_id": "aa_terminal_bench_4:937762d3c065835e",
     "board": "aa_terminal_bench_4",
     "model": "claude-sonnet-5.5",
     "variant": "Artificial Analysis - Claude Sonnet 5.5 (high)",
@@ -7148,11 +7148,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 413.21,
-    "output_speed_tps": 141.4,
+    "response_time_seconds": 414.15,
+    "output_speed_tps": 141.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -7167,12 +7167,12 @@
         "terminalBench40Fraction": 0.439393939393939
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:3c0ff30bf80dfd95",
+    "configuration_id": "aa_terminal_bench_4:df1f3a96c25c2892",
     "board": "aa_terminal_bench_4",
     "model": "grok-4.7",
     "variant": "Artificial Analysis - Grok 4.7 (high)",
@@ -7187,11 +7187,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1217.45,
-    "output_speed_tps": 73.2,
+    "response_time_seconds": 1223.49,
+    "output_speed_tps": 72.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "grok-4.7",
       "boardId": "aa_terminal_bench_4",
@@ -7206,12 +7206,12 @@
         "terminalBench40Fraction": 0.247474747474747
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:717bcaa7738f0d7e",
+    "configuration_id": "aa_terminal_bench_4:977da4ab0971193f",
     "board": "aa_terminal_bench_4",
     "model": "minimax-m3",
     "variant": "Artificial Analysis - MiniMax-M3",
@@ -7226,11 +7226,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 788.56,
-    "output_speed_tps": 116.0,
+    "response_time_seconds": 773.58,
+    "output_speed_tps": 118.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "minimax-m3",
       "boardId": "aa_terminal_bench_4",
@@ -7245,12 +7245,12 @@
         "terminalBench40Fraction": 0.0202020202020202
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:473266418e48c3c3",
+    "configuration_id": "aa_terminal_bench_4:4b4fb5864756a772",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-astra",
     "variant": "Artificial Analysis - GPT-6 Astra (max)",
@@ -7265,11 +7265,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1253.66,
-    "output_speed_tps": 41.5,
+    "response_time_seconds": 1260.95,
+    "output_speed_tps": 41.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_terminal_bench_4",
@@ -7284,12 +7284,12 @@
         "terminalBench40Fraction": 0.590909090909091
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:f63420d229ecbd6e",
+    "configuration_id": "aa_terminal_bench_4:25fbc5c040ff6a0b",
     "board": "aa_terminal_bench_4",
     "model": "claude-opus-5.5",
     "variant": "Artificial Analysis - Claude Opus 5.5 (max)",
@@ -7304,11 +7304,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1498.71,
+    "response_time_seconds": 1499.32,
     "output_speed_tps": 115.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -7323,12 +7323,12 @@
         "terminalBench40Fraction": 0.595959595959596
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:94c86eabe7186d13",
+    "configuration_id": "aa_terminal_bench_4:3de400f6bd64d969",
     "board": "aa_terminal_bench_4",
     "model": "qwen3.8-27b",
     "variant": "Artificial Analysis - Qwen3.8 27B (non-reasoning)",
@@ -7343,11 +7343,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1069.82,
-    "output_speed_tps": 41.9,
+    "response_time_seconds": 1092.59,
+    "output_speed_tps": 41.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_terminal_bench_4",
@@ -7362,12 +7362,12 @@
         "terminalBench40Fraction": 0
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:5f585e9afe51ae3d",
+    "configuration_id": "aa_terminal_bench_4:19451844d67d1666",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-luna",
     "variant": "Artificial Analysis - GPT-6 Luna (medium)",
@@ -7382,11 +7382,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 213.69,
-    "output_speed_tps": 92.8,
+    "response_time_seconds": 214.36,
+    "output_speed_tps": 92.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_terminal_bench_4",
@@ -7401,12 +7401,12 @@
         "terminalBench40Fraction": 0.0252525252525253
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:f01e28367ca05d78",
+    "configuration_id": "aa_terminal_bench_4:2682dc134be4081d",
     "board": "aa_terminal_bench_4",
     "model": "claude-fable-5.1",
     "variant": "Artificial Analysis - Claude Fable 5.1 (medium)",
@@ -7421,11 +7421,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 552.19,
-    "output_speed_tps": 87.9,
+    "response_time_seconds": 553.27,
+    "output_speed_tps": 87.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_terminal_bench_4",
@@ -7440,12 +7440,12 @@
         "terminalBench40Fraction": 0.44949494949495
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:2d75af02a3f839c6",
+    "configuration_id": "aa_terminal_bench_4:8e53c62d686137da",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-sol",
     "variant": "Artificial Analysis - GPT-6.1 Sol (high)",
@@ -7460,11 +7460,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 417.86,
-    "output_speed_tps": 54.1,
+    "response_time_seconds": 417.01,
+    "output_speed_tps": 54.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_terminal_bench_4",
@@ -7479,12 +7479,12 @@
         "terminalBench40Fraction": 0.515151515151515
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:15ba7ff4fd643294",
+    "configuration_id": "aa_terminal_bench_4:4692cba2e3bafa11",
     "board": "aa_terminal_bench_4",
     "model": "claude-fable-5.1",
     "variant": "Artificial Analysis - Claude Fable 5.1 (max)",
@@ -7499,11 +7499,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1329.3,
-    "output_speed_tps": 88.7,
+    "response_time_seconds": 1332.69,
+    "output_speed_tps": 88.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_terminal_bench_4",
@@ -7518,12 +7518,12 @@
         "terminalBench40Fraction": 0.52020202020202
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:57cab3461c3a72b0",
+    "configuration_id": "aa_terminal_bench_4:9ab51155129b1154",
     "board": "aa_terminal_bench_4",
     "model": "claude-haiku-5.5",
     "variant": "Artificial Analysis - Claude Haiku 5.5 (xhigh)",
@@ -7538,11 +7538,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 582.1,
-    "output_speed_tps": 233.9,
+    "response_time_seconds": 581.95,
+    "output_speed_tps": 234.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -7557,12 +7557,12 @@
         "terminalBench40Fraction": 0.292929292929293
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:d41a7c319aa13210",
+    "configuration_id": "aa_terminal_bench_4:c0cc9b2f44293ec1",
     "board": "aa_terminal_bench_4",
     "model": "claude-haiku-5.5",
     "variant": "Artificial Analysis - Claude Haiku 5.5 (low)",
@@ -7577,11 +7577,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 128.96,
-    "output_speed_tps": 218.4,
+    "response_time_seconds": 129.29,
+    "output_speed_tps": 217.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -7596,12 +7596,12 @@
         "terminalBench40Fraction": 0.126262626262626
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:331423ffd3e8ce8f",
+    "configuration_id": "aa_terminal_bench_4:cf69522c797f21ea",
     "board": "aa_terminal_bench_4",
     "model": "claude-opus-5.5",
     "variant": "Artificial Analysis - Claude Opus 5.5 (low)",
@@ -7616,11 +7616,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 179.66,
-    "output_speed_tps": 106.1,
+    "response_time_seconds": 180.54,
+    "output_speed_tps": 105.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -7635,12 +7635,12 @@
         "terminalBench40Fraction": 0.313131313131313
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:4c8bc295c3eb0ce1",
+    "configuration_id": "aa_terminal_bench_4:d24f52ed10e8a44a",
     "board": "aa_terminal_bench_4",
     "model": "grok-4.7",
     "variant": "Artificial Analysis - Grok 4.7 (xhigh)",
@@ -7655,11 +7655,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1427.33,
-    "output_speed_tps": 73.2,
+    "response_time_seconds": 1435.13,
+    "output_speed_tps": 72.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "grok-4.7",
       "boardId": "aa_terminal_bench_4",
@@ -7674,12 +7674,12 @@
         "terminalBench40Fraction": 0.257575757575758
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:4edba58d02dea494",
+    "configuration_id": "aa_terminal_bench_4:62cc8bab74d18607",
     "board": "aa_terminal_bench_4",
     "model": "nemotron-3-ultra",
     "variant": "Artificial Analysis - Nemotron 3 Ultra",
@@ -7694,11 +7694,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 350.57,
-    "output_speed_tps": 146.8,
+    "response_time_seconds": 338.27,
+    "output_speed_tps": 152.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "nemotron-3-ultra",
       "boardId": "aa_terminal_bench_4",
@@ -7713,12 +7713,12 @@
         "terminalBench40Fraction": 0.00505050505050505
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:a1517ca2db71d1ad",
+    "configuration_id": "aa_terminal_bench_4:25724fb2e36902cf",
     "board": "aa_terminal_bench_4",
     "model": "longcat-2.0",
     "variant": "Artificial Analysis - LongCat 2.0",
@@ -7734,10 +7734,10 @@
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
     "response_time_seconds": 55.29,
-    "output_speed_tps": 54.3,
+    "output_speed_tps": 55.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "longcat-2.0",
       "boardId": "aa_terminal_bench_4",
@@ -7752,12 +7752,12 @@
         "terminalBench40Fraction": 0
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:272d92f8f52f6d4c",
+    "configuration_id": "aa_terminal_bench_4:f5a9137a7c8801fc",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-luna",
     "variant": "Artificial Analysis - GPT-6 Luna (non-reasoning)",
@@ -7772,11 +7772,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 115.82,
-    "output_speed_tps": 86.8,
+    "response_time_seconds": 116.7,
+    "output_speed_tps": 86.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_terminal_bench_4",
@@ -7791,12 +7791,12 @@
         "terminalBench40Fraction": 0.0151515151515152
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:e113952c68552860",
+    "configuration_id": "aa_terminal_bench_4:e69c94bdcc51907f",
     "board": "aa_terminal_bench_4",
     "model": "qwen3.8-27b",
     "variant": "Artificial Analysis - Qwen3.8 27B (medium)",
@@ -7811,11 +7811,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1980.5,
-    "output_speed_tps": 43.6,
+    "response_time_seconds": 2007.19,
+    "output_speed_tps": 43.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_terminal_bench_4",
@@ -7830,12 +7830,12 @@
         "terminalBench40Fraction": 0.0505050505050505
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:ca60ce69a37397bf",
+    "configuration_id": "aa_terminal_bench_4:a8bf6208e8adf91e",
     "board": "aa_terminal_bench_4",
     "model": "kimi-k3.1-pro",
     "variant": "Artificial Analysis - Kimi K3.1 Pro",
@@ -7850,11 +7850,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 2163.68,
-    "output_speed_tps": 33.4,
+    "response_time_seconds": 2169.06,
+    "output_speed_tps": 33.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "kimi-k3.1-pro",
       "boardId": "aa_terminal_bench_4",
@@ -7869,12 +7869,12 @@
         "terminalBench40Fraction": 0.671717171717172
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:b0d90c5f80a9dfc3",
+    "configuration_id": "aa_terminal_bench_4:1a4907ea30424df1",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-luna",
     "variant": "Artificial Analysis - GPT-6 Luna (max)",
@@ -7889,11 +7889,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 750.22,
+    "response_time_seconds": 749.84,
     "output_speed_tps": 100.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_terminal_bench_4",
@@ -7908,12 +7908,12 @@
         "terminalBench40Fraction": 0.126262626262626
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:5f65a92b8e421212",
+    "configuration_id": "aa_terminal_bench_4:02e4e6464fb62e5b",
     "board": "aa_terminal_bench_4",
     "model": "inkling-small",
     "variant": "Artificial Analysis - Inkling Small",
@@ -7928,11 +7928,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 338.76,
-    "output_speed_tps": 108.4,
+    "response_time_seconds": 348.38,
+    "output_speed_tps": 105.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "inkling-small",
       "boardId": "aa_terminal_bench_4",
@@ -7947,12 +7947,12 @@
         "terminalBench40Fraction": 0.0101010101010101
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:bed46c0df639387f",
+    "configuration_id": "aa_terminal_bench_4:c3a802d92f4bfe37",
     "board": "aa_terminal_bench_4",
     "model": "gemini-3.8-flash",
     "variant": "Artificial Analysis - Gemini 3.8 Flash (medium)",
@@ -7967,11 +7967,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 410.21,
+    "response_time_seconds": 410.48,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_terminal_bench_4",
@@ -7986,12 +7986,12 @@
         "terminalBench40Fraction": 0.196969696969697
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:19df4d51c0dfe172",
+    "configuration_id": "aa_terminal_bench_4:7adfff9b34dd3d96",
     "board": "aa_terminal_bench_4",
     "model": "deepseek-v4-flash-vision-exp",
     "variant": "Artificial Analysis - DeepSeek V4 Flash Vision (max)",
@@ -8007,10 +8007,10 @@
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
     "response_time_seconds": null,
-    "output_speed_tps": 160.4,
+    "output_speed_tps": 158.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4-flash-vision-exp",
       "boardId": "aa_terminal_bench_4",
@@ -8025,12 +8025,12 @@
         "terminalBench40Fraction": 0.121212121212121
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:82d2daa2e5b218e5",
+    "configuration_id": "aa_terminal_bench_4:b618599b1f4c6ff8",
     "board": "aa_terminal_bench_4",
     "model": "claude-haiku-5.5",
     "variant": "Artificial Analysis - Claude Haiku 5.5 (max)",
@@ -8045,11 +8045,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 963.64,
+    "response_time_seconds": 963.6,
     "output_speed_tps": 234.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -8064,12 +8064,12 @@
         "terminalBench40Fraction": 0.328282828282828
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:2c95c35acd659d90",
+    "configuration_id": "aa_terminal_bench_4:75bb1e3b53251066",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-luna",
     "variant": "Artificial Analysis - GPT-6 Luna (high)",
@@ -8084,11 +8084,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 340.96,
-    "output_speed_tps": 96.3,
+    "response_time_seconds": 342.03,
+    "output_speed_tps": 96.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_terminal_bench_4",
@@ -8103,12 +8103,12 @@
         "terminalBench40Fraction": 0.0454545454545455
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:8748e1a47b0d1774",
+    "configuration_id": "aa_terminal_bench_4:6aa8713bd7eac41c",
     "board": "aa_terminal_bench_4",
     "model": "qwen3.8-27b",
     "variant": "Artificial Analysis - Qwen3.8 27B (low)",
@@ -8123,11 +8123,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1750.66,
-    "output_speed_tps": 45.8,
+    "response_time_seconds": 1771.44,
+    "output_speed_tps": 45.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_terminal_bench_4",
@@ -8142,12 +8142,12 @@
         "terminalBench40Fraction": 0.0252525252525253
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:b2973afc920cb529",
+    "configuration_id": "aa_terminal_bench_4:cdc11dc77aacd306",
     "board": "aa_terminal_bench_4",
     "model": "deepseek-v4-pro",
     "variant": "Artificial Analysis - DeepSeek V4 Pro 0813 (max)",
@@ -8162,11 +8162,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1399.85,
-    "output_speed_tps": 70.5,
+    "response_time_seconds": 1439.04,
+    "output_speed_tps": 68.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4-pro",
       "boardId": "aa_terminal_bench_4",
@@ -8181,12 +8181,12 @@
         "terminalBench40Fraction": 0.141414141414141
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:1449b369f462df3e",
+    "configuration_id": "aa_terminal_bench_4:100a891e01230421",
     "board": "aa_terminal_bench_4",
     "model": "gemini-3.8-flash",
     "variant": "Artificial Analysis - Gemini 3.8 Flash (high)",
@@ -8201,11 +8201,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 494.8,
+    "response_time_seconds": 494.89,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_terminal_bench_4",
@@ -8220,12 +8220,12 @@
         "terminalBench40Fraction": 0.196969696969697
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:33753f6e788659b3",
+    "configuration_id": "aa_terminal_bench_4:ea2363073627adde",
     "board": "aa_terminal_bench_4",
     "model": "kimi-k2.7-code",
     "variant": "Artificial Analysis - Kimi K2.7 Code",
@@ -8241,10 +8241,10 @@
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
     "response_time_seconds": null,
-    "output_speed_tps": 48.4,
+    "output_speed_tps": 48.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "kimi-k2.7-code",
       "boardId": "aa_terminal_bench_4",
@@ -8259,12 +8259,12 @@
         "terminalBench40Fraction": 0.0101010101010101
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:ed964e18d117c1d0",
+    "configuration_id": "aa_terminal_bench_4:62af5534ce49091a",
     "board": "aa_terminal_bench_4",
     "model": "claude-sonnet-5.5",
     "variant": "Artificial Analysis - Claude Sonnet 5.5 (xhigh)",
@@ -8279,11 +8279,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 905.69,
-    "output_speed_tps": 134.9,
+    "response_time_seconds": 907.02,
+    "output_speed_tps": 134.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -8298,12 +8298,12 @@
         "terminalBench40Fraction": 0.570707070707071
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:1222c1ecabe399a2",
+    "configuration_id": "aa_terminal_bench_4:42d8bd2e0507b91d",
     "board": "aa_terminal_bench_4",
     "model": "claude-fable-5.1",
     "variant": "Artificial Analysis - Claude Fable 5.1 (xhigh)",
@@ -8318,11 +8318,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1097.87,
-    "output_speed_tps": 88.4,
+    "response_time_seconds": 1100.34,
+    "output_speed_tps": 88.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_terminal_bench_4",
@@ -8337,12 +8337,12 @@
         "terminalBench40Fraction": 0.55050505050505
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:7abcb0443d8606aa",
+    "configuration_id": "aa_terminal_bench_4:04b278d363cd1537",
     "board": "aa_terminal_bench_4",
     "model": "claude-fable-5.1",
     "variant": "Artificial Analysis - Claude Fable 5.1 (high)",
@@ -8357,11 +8357,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 751.96,
-    "output_speed_tps": 87.8,
+    "response_time_seconds": 755.39,
+    "output_speed_tps": 87.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_terminal_bench_4",
@@ -8376,12 +8376,12 @@
         "terminalBench40Fraction": 0.52020202020202
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:af0fad4e734bf4cf",
+    "configuration_id": "aa_terminal_bench_4:48512db310ff4188",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-sol",
     "variant": "Artificial Analysis - GPT-6.1 Sol (medium)",
@@ -8396,11 +8396,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 245.96,
-    "output_speed_tps": 55.0,
+    "response_time_seconds": 245.52,
+    "output_speed_tps": 55.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_terminal_bench_4",
@@ -8415,12 +8415,12 @@
         "terminalBench40Fraction": 0.47979797979798
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:ddb3d17037dd1cd8",
+    "configuration_id": "aa_terminal_bench_4:cf6c8be6031cff0c",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-astra",
     "variant": "Artificial Analysis - GPT-6 Astra (low)",
@@ -8435,11 +8435,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 211.86,
+    "response_time_seconds": 211.92,
     "output_speed_tps": 43.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_terminal_bench_4",
@@ -8454,12 +8454,12 @@
         "terminalBench40Fraction": 0.419191919191919
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:77d0466e961ca34d",
+    "configuration_id": "aa_terminal_bench_4:1ecffabeede7ed0f",
     "board": "aa_terminal_bench_4",
     "model": "qwen3.7-plus",
     "variant": "Artificial Analysis - Qwen3.7 Plus",
@@ -8477,8 +8477,8 @@
     "response_time_seconds": null,
     "output_speed_tps": 55.4,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.7-plus",
       "boardId": "aa_terminal_bench_4",
@@ -8493,12 +8493,12 @@
         "terminalBench40Fraction": 0.0101010101010101
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:7b7127adca0fe6fe",
+    "configuration_id": "aa_terminal_bench_4:75a96daadb7cf43a",
     "board": "aa_terminal_bench_4",
     "model": "claude-haiku-5.5",
     "variant": "Artificial Analysis - Claude Haiku 5.5 (medium)",
@@ -8513,11 +8513,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 247.28,
-    "output_speed_tps": 215.7,
+    "response_time_seconds": 247.87,
+    "output_speed_tps": 215.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -8532,12 +8532,12 @@
         "terminalBench40Fraction": 0.151515151515152
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:7d1621e41fb89726",
+    "configuration_id": "aa_terminal_bench_4:5f6e0a7ba0c9ba7d",
     "board": "aa_terminal_bench_4",
     "model": "qwen3.8-27b",
     "variant": "Artificial Analysis - Qwen3.8 27B (xhigh)",
@@ -8552,11 +8552,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 2613.33,
-    "output_speed_tps": 42.0,
+    "response_time_seconds": 2658.57,
+    "output_speed_tps": 41.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-27b",
       "boardId": "aa_terminal_bench_4",
@@ -8571,12 +8571,12 @@
         "terminalBench40Fraction": 0.0555555555555556
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:8af2acd95932768c",
+    "configuration_id": "aa_terminal_bench_4:aa429f44a5d29b98",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-terra",
     "variant": "Artificial Analysis - GPT-6.1 Terra (max)",
@@ -8591,11 +8591,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 828.53,
-    "output_speed_tps": 72.3,
+    "response_time_seconds": 825.05,
+    "output_speed_tps": 72.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_terminal_bench_4",
@@ -8610,12 +8610,12 @@
         "terminalBench40Fraction": 0.555555555555556
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:e94830cede046678",
+    "configuration_id": "aa_terminal_bench_4:0a6c0f06fc4902a2",
     "board": "aa_terminal_bench_4",
     "model": "qwen3.8-max-0902",
     "variant": "Artificial Analysis - Qwen3.8 Max (0902)",
@@ -8630,11 +8630,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 3612.68,
+    "response_time_seconds": 3607.65,
     "output_speed_tps": 47.3,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-max-0902",
       "boardId": "aa_terminal_bench_4",
@@ -8649,12 +8649,12 @@
         "terminalBench40Fraction": 0.388888888888889
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:6ec862a2d4cd8bbe",
+    "configuration_id": "aa_terminal_bench_4:60ba95310e434f59",
     "board": "aa_terminal_bench_4",
     "model": "claude-sonnet-5.5",
     "variant": "Artificial Analysis - Claude Sonnet 5.5 (max)",
@@ -8669,11 +8669,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1886.33,
-    "output_speed_tps": 151.3,
+    "response_time_seconds": 1888.82,
+    "output_speed_tps": 151.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -8688,12 +8688,12 @@
         "terminalBench40Fraction": 0.636363636363636
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:0dc081db2332364b",
+    "configuration_id": "aa_terminal_bench_4:eb400122b7b361a8",
     "board": "aa_terminal_bench_4",
     "model": "hy3",
     "variant": "Artificial Analysis - Hy3",
@@ -8709,10 +8709,10 @@
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
     "response_time_seconds": null,
-    "output_speed_tps": 68.0,
+    "output_speed_tps": 67.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "hy3",
       "boardId": "aa_terminal_bench_4",
@@ -8727,12 +8727,12 @@
         "terminalBench40Fraction": 0.00505050505050505
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:2bfd54d15b23a5ca",
+    "configuration_id": "aa_terminal_bench_4:ac5da86eb10dfb1f",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-sol",
     "variant": "Artificial Analysis - GPT-6.1 Sol (max)",
@@ -8747,11 +8747,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1314.55,
-    "output_speed_tps": 51.6,
+    "response_time_seconds": 1302.26,
+    "output_speed_tps": 52.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_terminal_bench_4",
@@ -8766,12 +8766,12 @@
         "terminalBench40Fraction": 0.560606060606061
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:7c1eb0a540c8256d",
+    "configuration_id": "aa_terminal_bench_4:ff7fbf12e498bfb0",
     "board": "aa_terminal_bench_4",
     "model": "claude-sonnet-5.5",
     "variant": "Artificial Analysis - Claude Sonnet 5.5 (low)",
@@ -8786,11 +8786,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 156.71,
-    "output_speed_tps": 133.1,
+    "response_time_seconds": 156.95,
+    "output_speed_tps": 132.9,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -8805,12 +8805,12 @@
         "terminalBench40Fraction": 0.207070707070707
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:23f1cf8af065b36f",
+    "configuration_id": "aa_terminal_bench_4:4c76bc075f8f4fc1",
     "board": "aa_terminal_bench_4",
     "model": "gemini-3.1-pro",
     "variant": "Artificial Analysis - Gemini 3.1 Pro Preview",
@@ -8826,10 +8826,10 @@
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
     "response_time_seconds": null,
-    "output_speed_tps": 122.0,
+    "output_speed_tps": 120.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.1-pro",
       "boardId": "aa_terminal_bench_4",
@@ -8844,12 +8844,12 @@
         "terminalBench40Fraction": 0.0404040404040404
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:52d5dc91b0b888ba",
+    "configuration_id": "aa_terminal_bench_4:807def1bf9b6f75d",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-luna",
     "variant": "Artificial Analysis - GPT-6 Luna (low)",
@@ -8864,11 +8864,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 36.36,
-    "output_speed_tps": 90.6,
+    "response_time_seconds": 36.68,
+    "output_speed_tps": 89.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_terminal_bench_4",
@@ -8883,12 +8883,12 @@
         "terminalBench40Fraction": 0
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:3b5b6614c7d2759a",
+    "configuration_id": "aa_terminal_bench_4:c33bcf39b8cd5196",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-terra",
     "variant": "Artificial Analysis - GPT-6.1 Terra (medium)",
@@ -8903,11 +8903,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 156.01,
-    "output_speed_tps": 69.7,
+    "response_time_seconds": 155.01,
+    "output_speed_tps": 70.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_terminal_bench_4",
@@ -8922,12 +8922,12 @@
         "terminalBench40Fraction": 0.323232323232323
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:38c533cd6b51d3ea",
+    "configuration_id": "aa_terminal_bench_4:91ce406afb8175c0",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-terra",
     "variant": "Artificial Analysis - GPT-6.1 Terra (low)",
@@ -8942,11 +8942,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 63.89,
+    "response_time_seconds": 63.86,
     "output_speed_tps": 69.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_terminal_bench_4",
@@ -8961,12 +8961,12 @@
         "terminalBench40Fraction": 0.151515151515152
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:30da768dd8b5f510",
+    "configuration_id": "aa_terminal_bench_4:a60a84c05c5ae6cc",
     "board": "aa_terminal_bench_4",
     "model": "glm-5.3",
     "variant": "Artificial Analysis - GLM-5.3 (low)",
@@ -8981,11 +8981,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1085.72,
-    "output_speed_tps": 47.9,
+    "response_time_seconds": 1090.35,
+    "output_speed_tps": 47.7,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3",
       "boardId": "aa_terminal_bench_4",
@@ -9000,12 +9000,12 @@
         "terminalBench40Fraction": 0.348484848484849
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:7d4fec8e472b668c",
+    "configuration_id": "aa_terminal_bench_4:366424256df0b7fb",
     "board": "aa_terminal_bench_4",
     "model": "glm-5.3",
     "variant": "Artificial Analysis - GLM-5.3 (max)",
@@ -9020,11 +9020,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1891.59,
-    "output_speed_tps": 62.9,
+    "response_time_seconds": 1859.32,
+    "output_speed_tps": 64.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3",
       "boardId": "aa_terminal_bench_4",
@@ -9039,12 +9039,12 @@
         "terminalBench40Fraction": 0.419191919191919
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:5a9f25bbea3791e7",
+    "configuration_id": "aa_terminal_bench_4:f079732815476541",
     "board": "aa_terminal_bench_4",
     "model": "gemini-4-argon",
     "variant": "Artificial Analysis - Gemini 4 Argon (high)",
@@ -9059,11 +9059,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1660.4,
-    "output_speed_tps": 70.1,
+    "response_time_seconds": 1664.61,
+    "output_speed_tps": 69.9,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-4-argon",
       "boardId": "aa_terminal_bench_4",
@@ -9078,12 +9078,12 @@
         "terminalBench40Fraction": 0.570707070707071
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:1a4fcd7382588456",
+    "configuration_id": "aa_terminal_bench_4:6dd536cb96e9e336",
     "board": "aa_terminal_bench_4",
     "model": "minimax-m3.1-flash-preview",
     "variant": "Artificial Analysis - MiniMax-M3.1-Flash",
@@ -9098,11 +9098,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1034.09,
-    "output_speed_tps": 133.6,
+    "response_time_seconds": 1031.28,
+    "output_speed_tps": 134.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "minimax-m3.1-flash-preview",
       "boardId": "aa_terminal_bench_4",
@@ -9117,12 +9117,12 @@
         "terminalBench40Fraction": 0.257575757575758
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:b6b7b34b1bd7c123",
+    "configuration_id": "aa_terminal_bench_4:120956e8375d75ba",
     "board": "aa_terminal_bench_4",
     "model": "deepseek-v4-pro",
     "variant": "Artificial Analysis - DeepSeek V4 Pro 0813 (non-reasoning)",
@@ -9137,11 +9137,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 889.43,
-    "output_speed_tps": 80.5,
+    "response_time_seconds": 927.67,
+    "output_speed_tps": 77.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4-pro",
       "boardId": "aa_terminal_bench_4",
@@ -9156,12 +9156,12 @@
         "terminalBench40Fraction": 0.0151515151515152
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:f77f20ae23eace8f",
+    "configuration_id": "aa_terminal_bench_4:e2e85673a81ddbf9",
     "board": "aa_terminal_bench_4",
     "model": "mistral-medium-3.5",
     "variant": "Artificial Analysis - Mistral Medium 3.5",
@@ -9176,11 +9176,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 288.02,
+    "response_time_seconds": 288.15,
     "output_speed_tps": 137.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "mistral-medium-3.5",
       "boardId": "aa_terminal_bench_4",
@@ -9195,12 +9195,12 @@
         "terminalBench40Fraction": 0
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:5d342753d1f7a159",
+    "configuration_id": "aa_terminal_bench_4:efde898ad4c69732",
     "board": "aa_terminal_bench_4",
     "model": "claude-opus-5.5",
     "variant": "Artificial Analysis - Claude Opus 5.5 (xhigh)",
@@ -9215,11 +9215,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 954.18,
-    "output_speed_tps": 108.4,
+    "response_time_seconds": 952.99,
+    "output_speed_tps": 108.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -9234,12 +9234,12 @@
         "terminalBench40Fraction": 0.595959595959596
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:cf0e84da6fd34adf",
+    "configuration_id": "aa_terminal_bench_4:e0de11d012ec2313",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-astra",
     "variant": "Artificial Analysis - GPT-6 Astra (high)",
@@ -9254,11 +9254,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 544.02,
+    "response_time_seconds": 543.77,
     "output_speed_tps": 42.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_terminal_bench_4",
@@ -9273,12 +9273,12 @@
         "terminalBench40Fraction": 0.54040404040404
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:905f032451780d0c",
+    "configuration_id": "aa_terminal_bench_4:cf21a2b8378a0afb",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-sol",
     "variant": "Artificial Analysis - GPT-6.1 Sol (low)",
@@ -9293,11 +9293,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 109.84,
-    "output_speed_tps": 53.1,
+    "response_time_seconds": 109.2,
+    "output_speed_tps": 53.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_terminal_bench_4",
@@ -9312,12 +9312,12 @@
         "terminalBench40Fraction": 0.308080808080808
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:aa1456c41a6c56a2",
+    "configuration_id": "aa_terminal_bench_4:ef9391b43d1a6f6e",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-terra",
     "variant": "Artificial Analysis - GPT-6.1 Terra (xhigh)",
@@ -9332,11 +9332,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 372.0,
-    "output_speed_tps": 70.4,
+    "response_time_seconds": 369.96,
+    "output_speed_tps": 70.8,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_terminal_bench_4",
@@ -9351,12 +9351,12 @@
         "terminalBench40Fraction": 0.464646464646465
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:f2182ac9206d5db8",
+    "configuration_id": "aa_terminal_bench_4:7c13d06266590946",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6-astra",
     "variant": "Artificial Analysis - GPT-6 Astra (medium)",
@@ -9371,11 +9371,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 389.72,
-    "output_speed_tps": 46.3,
+    "response_time_seconds": 391.26,
+    "output_speed_tps": 46.1,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_terminal_bench_4",
@@ -9390,12 +9390,12 @@
         "terminalBench40Fraction": 0.494949494949495
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:92bf470af8df5678",
+    "configuration_id": "aa_terminal_bench_4:99dc60508f590449",
     "board": "aa_terminal_bench_4",
     "model": "gpt-6.1-terra",
     "variant": "Artificial Analysis - GPT-6.1 Terra (high)",
@@ -9410,11 +9410,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 241.73,
-    "output_speed_tps": 69.3,
+    "response_time_seconds": 241.05,
+    "output_speed_tps": 69.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-terra",
       "boardId": "aa_terminal_bench_4",
@@ -9429,12 +9429,12 @@
         "terminalBench40Fraction": 0.419191919191919
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:254961d1df452966",
+    "configuration_id": "aa_terminal_bench_4:1ca5e41c9f435664",
     "board": "aa_terminal_bench_4",
     "model": "claude-opus-5.5",
     "variant": "Artificial Analysis - Claude Opus 5.5 (medium)",
@@ -9449,11 +9449,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 406.11,
-    "output_speed_tps": 107.9,
+    "response_time_seconds": 407.44,
+    "output_speed_tps": 107.5,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -9468,12 +9468,12 @@
         "terminalBench40Fraction": 0.525252525252525
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:2c5133bf1133ca13",
+    "configuration_id": "aa_terminal_bench_4:b3c79447af1e8ac2",
     "board": "aa_terminal_bench_4",
     "model": "deepseek-v4.1-flash",
     "variant": "Artificial Analysis - DeepSeek V4.1 Flash 1017 (max)",
@@ -9488,11 +9488,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 813.49,
-    "output_speed_tps": 170.8,
+    "response_time_seconds": 862.12,
+    "output_speed_tps": 161.2,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4.1-flash",
       "boardId": "aa_terminal_bench_4",
@@ -9507,12 +9507,12 @@
         "terminalBench40Fraction": 0.338383838383838
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:b9fe5a1a92ba33db",
+    "configuration_id": "aa_terminal_bench_4:e9ec85fb369b15ab",
     "board": "aa_terminal_bench_4",
     "model": "claude-opus-5.5",
     "variant": "Artificial Analysis - Claude Opus 5.5 (high)",
@@ -9527,11 +9527,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 551.96,
-    "output_speed_tps": 108.8,
+    "response_time_seconds": 553.12,
+    "output_speed_tps": 108.6,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_terminal_bench_4",
@@ -9546,12 +9546,12 @@
         "terminalBench40Fraction": 0.565656565656566
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_terminal_bench_4:254d8cb2e724ee92",
+    "configuration_id": "aa_terminal_bench_4:90e9891207e9ede2",
     "board": "aa_terminal_bench_4",
     "model": "gemini-3.8-flash",
     "variant": "Artificial Analysis - Gemini 3.8 Flash (low)",
@@ -9566,11 +9566,11 @@
     "mean_cost_usd_per_task": null,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 5.33,
+    "response_time_seconds": 5.45,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_terminal_bench_4",
@@ -9585,12 +9585,12 @@
         "terminalBench40Fraction": 0.101010101010101
       },
       "source": "https://artificialanalysis.ai/leaderboards/models",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:4c2e2ac3b91913cc",
+    "configuration_id": "aa_coding_agent_index:6dff3680861cd81b",
     "board": "aa_coding_agent_index",
     "model": "gpt-6-astra",
     "variant": "Codex - GPT-6 Astra (Max)",
@@ -9605,11 +9605,11 @@
     "mean_cost_usd_per_task": 7.03615822479963,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1253.66,
-    "output_speed_tps": 41.5,
+    "response_time_seconds": 1260.95,
+    "output_speed_tps": 41.2,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_coding_agent_index",
@@ -9664,11 +9664,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:3eda82b52ce22c54",
+    "configuration_id": "aa_coding_agent_index:d43511d945175c9d",
     "board": "aa_coding_agent_index",
     "model": "gpt-6.1-sol",
     "variant": "Codex - GPT-6.1 Sol (Max)",
@@ -9683,11 +9683,11 @@
     "mean_cost_usd_per_task": 1.5046389983744,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1314.55,
-    "output_speed_tps": 51.6,
+    "response_time_seconds": 1302.26,
+    "output_speed_tps": 52.1,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6.1-sol",
       "boardId": "aa_coding_agent_index",
@@ -9742,11 +9742,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:56c6d2b86b20db77",
+    "configuration_id": "aa_coding_agent_index:42734dacb43178e1",
     "board": "aa_coding_agent_index",
     "model": "claude-sonnet-5.5",
     "variant": "Claude Code - Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -9761,11 +9761,11 @@
     "mean_cost_usd_per_task": 13.3015082635468,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1886.33,
-    "output_speed_tps": 151.3,
+    "response_time_seconds": 1888.82,
+    "output_speed_tps": 151.1,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-sonnet-5.5",
       "boardId": "aa_coding_agent_index",
@@ -9820,11 +9820,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:4f6b2ea79702e21d",
+    "configuration_id": "aa_coding_agent_index:96c3df0becbb3cc3",
     "board": "aa_coding_agent_index",
     "model": "grok-4.7",
     "variant": "Grok Build - Grok 4.7 (Xhigh)",
@@ -9839,11 +9839,11 @@
     "mean_cost_usd_per_task": 9.47935653344195,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1427.33,
-    "output_speed_tps": 73.2,
+    "response_time_seconds": 1435.13,
+    "output_speed_tps": 72.8,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "grok-4.7",
       "boardId": "aa_coding_agent_index",
@@ -9898,11 +9898,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:081989f7be6d8ca1",
+    "configuration_id": "aa_coding_agent_index:f37d8d00151c442d",
     "board": "aa_coding_agent_index",
     "model": "claude-opus-5.5",
     "variant": "Claude Code - Claude Opus 5.5 (Max, Default Fallback)",
@@ -9917,11 +9917,11 @@
     "mean_cost_usd_per_task": 11.4227202144224,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1498.71,
+    "response_time_seconds": 1499.32,
     "output_speed_tps": 115.6,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_coding_agent_index",
@@ -9976,11 +9976,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:8b07a95c23a75b57",
+    "configuration_id": "aa_coding_agent_index:bbc861e8ce23ac4b",
     "board": "aa_coding_agent_index",
     "model": "claude-haiku-5.5",
     "variant": "Claude Code - Claude Haiku 5.5 (Max)",
@@ -9995,11 +9995,11 @@
     "mean_cost_usd_per_task": 2.67388407176395,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 963.64,
+    "response_time_seconds": 963.6,
     "output_speed_tps": 234.5,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-haiku-5.5",
       "boardId": "aa_coding_agent_index",
@@ -10054,11 +10054,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:d738eb1ad3ccf83c",
+    "configuration_id": "aa_coding_agent_index:544501b18c9bb0d6",
     "board": "aa_coding_agent_index",
     "model": "claude-fable-5.1",
     "variant": "Devin Fusion CLI - Claude Fable 5.1 XHigh + SWE-2 Medium",
@@ -10073,11 +10073,11 @@
     "mean_cost_usd_per_task": 8.19825160322711,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1329.3,
-    "output_speed_tps": 88.7,
+    "response_time_seconds": 1332.69,
+    "output_speed_tps": 88.5,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_coding_agent_index",
@@ -10132,11 +10132,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:c87b7a6589d31ded",
+    "configuration_id": "aa_coding_agent_index:ffcb7c7a6a48b3d2",
     "board": "aa_coding_agent_index",
     "model": "claude-opus-5.5",
     "variant": "Devin Fusion CLI - Claude Opus 5.5 Max + GPT-6 Luna High",
@@ -10151,11 +10151,11 @@
     "mean_cost_usd_per_task": 7.99768820548534,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1498.71,
+    "response_time_seconds": 1499.32,
     "output_speed_tps": 115.6,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-opus-5.5",
       "boardId": "aa_coding_agent_index",
@@ -10210,11 +10210,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:15e3bacd3ab5ea04",
+    "configuration_id": "aa_coding_agent_index:411ca7ff8bedd40d",
     "board": "aa_coding_agent_index",
     "model": "qwen3.8-max",
     "variant": "Claude Code - Qwen3.8 Max",
@@ -10229,11 +10229,11 @@
     "mean_cost_usd_per_task": 3.79584401482699,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 3612.68,
+    "response_time_seconds": 3607.65,
     "output_speed_tps": 47.3,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "qwen3.8-max",
       "boardId": "aa_coding_agent_index",
@@ -10288,11 +10288,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:a9517da1bb22d29b",
+    "configuration_id": "aa_coding_agent_index:f84fcb0b688f7189",
     "board": "aa_coding_agent_index",
     "model": "gpt-6-astra",
     "variant": "Devin Fusion CLI - GPT-6 Astra XHigh + SWE-2 Medium",
@@ -10307,11 +10307,11 @@
     "mean_cost_usd_per_task": 4.33822148437056,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1253.66,
-    "output_speed_tps": 41.5,
+    "response_time_seconds": 1260.95,
+    "output_speed_tps": 41.2,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-astra",
       "boardId": "aa_coding_agent_index",
@@ -10366,11 +10366,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:e7cf27823f3e929c",
+    "configuration_id": "aa_coding_agent_index:eb34e4b15ed3fbe9",
     "board": "aa_coding_agent_index",
     "model": "gemini-4-argon",
     "variant": "Antigravity CLI - Gemini 4 Argon (High)",
@@ -10385,11 +10385,11 @@
     "mean_cost_usd_per_task": 11.7318632341125,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1660.4,
-    "output_speed_tps": 70.1,
+    "response_time_seconds": 1664.61,
+    "output_speed_tps": 69.9,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-4-argon",
       "boardId": "aa_coding_agent_index",
@@ -10444,11 +10444,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:f878dac4007f9d7a",
+    "configuration_id": "aa_coding_agent_index:f96e6f65e40de7ed",
     "board": "aa_coding_agent_index",
     "model": "deepseek-v4.1-flash",
     "variant": "DeepSeek Harness - DeepSeek V4.1 Flash 1017 (Max)",
@@ -10466,8 +10466,8 @@
     "response_time_seconds": 12.9,
     "output_speed_tps": 208.9,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4.1-flash",
       "boardId": "aa_coding_agent_index",
@@ -10522,11 +10522,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:2f237871012a2fce",
+    "configuration_id": "aa_coding_agent_index:01333457af9ee01a",
     "board": "aa_coding_agent_index",
     "model": "gemini-3.8-flash",
     "variant": "Antigravity SDK - Gemini 3.8 Flash (High)",
@@ -10541,11 +10541,11 @@
     "mean_cost_usd_per_task": 2.51071545979138,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 494.8,
+    "response_time_seconds": 494.89,
     "output_speed_tps": 200.0,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gemini-3.8-flash",
       "boardId": "aa_coding_agent_index",
@@ -10600,11 +10600,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:df8fff928ef6adca",
+    "configuration_id": "aa_coding_agent_index:81e34a898579685c",
     "board": "aa_coding_agent_index",
     "model": "deepseek-v4.1-flash",
     "variant": "Codex - DeepSeek V4.1 Flash (Max)",
@@ -10622,8 +10622,8 @@
     "response_time_seconds": 12.9,
     "output_speed_tps": 208.9,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "deepseek-v4.1-flash",
       "boardId": "aa_coding_agent_index",
@@ -10678,11 +10678,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:8621770b1c41498f",
+    "configuration_id": "aa_coding_agent_index:04d9991fd2e345e8",
     "board": "aa_coding_agent_index",
     "model": "step-5-preview",
     "variant": "Claude Code - Step 5 Preview",
@@ -10697,11 +10697,11 @@
     "mean_cost_usd_per_task": 1.84006320525524,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 842.89,
-    "output_speed_tps": 134.6,
+    "response_time_seconds": 858.45,
+    "output_speed_tps": 132.2,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "step-5-preview",
       "boardId": "aa_coding_agent_index",
@@ -10756,11 +10756,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:5ceb4c2b506121e3",
+    "configuration_id": "aa_coding_agent_index:e16ad2543099c247",
     "board": "aa_coding_agent_index",
     "model": "gpt-6-luna",
     "variant": "Codex - GPT-6 Luna (Max)",
@@ -10775,11 +10775,11 @@
     "mean_cost_usd_per_task": 0.159155559086193,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 750.22,
+    "response_time_seconds": 749.84,
     "output_speed_tps": 100.4,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "gpt-6-luna",
       "boardId": "aa_coding_agent_index",
@@ -10834,11 +10834,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:6d3f09b6e8bc06e9",
+    "configuration_id": "aa_coding_agent_index:71f75bf59dae2b7b",
     "board": "aa_coding_agent_index",
     "model": "muse-spark-1.3",
     "variant": "Muse Code - Muse Spark 1.3 (Max)",
@@ -10856,8 +10856,8 @@
     "response_time_seconds": null,
     "output_speed_tps": null,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "muse-spark-1.3",
       "boardId": "aa_coding_agent_index",
@@ -10912,11 +10912,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:52121c1ff79c3868",
+    "configuration_id": "aa_coding_agent_index:24333177417ce70b",
     "board": "aa_coding_agent_index",
     "model": "kimi-k3",
     "variant": "Kimi Code CLI - Kimi K3 (Max)",
@@ -10931,11 +10931,11 @@
     "mean_cost_usd_per_task": 5.16526976917945,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
+    "response_time_seconds": 72.86,
+    "output_speed_tps": 36.3,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "kimi-k3",
       "boardId": "aa_coding_agent_index",
@@ -10990,11 +10990,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:ff38421aa8b7763c",
+    "configuration_id": "aa_coding_agent_index:9bfa7e609a33533f",
     "board": "aa_coding_agent_index",
     "model": "claude-fable-5.1",
     "variant": "Claude Code - Claude Fable 5.1 (Max, Default Fallback)",
@@ -11009,11 +11009,11 @@
     "mean_cost_usd_per_task": 11.5301045391259,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1329.3,
-    "output_speed_tps": 88.7,
+    "response_time_seconds": 1332.69,
+    "output_speed_tps": 88.5,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "claude-fable-5.1",
       "boardId": "aa_coding_agent_index",
@@ -11068,11 +11068,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_coding_agent_index:c183fbc5e060b15f",
+    "configuration_id": "aa_coding_agent_index:e86c827da86eb7a1",
     "board": "aa_coding_agent_index",
     "model": "glm-5.3",
     "variant": "Opencode - GLM-5.3 (Max)",
@@ -11087,11 +11087,11 @@
     "mean_cost_usd_per_task": 5.23102713863476,
     "median_cost_usd_per_task": null,
     "benchmark_list_price": null,
-    "response_time_seconds": 1891.59,
-    "output_speed_tps": 62.9,
+    "response_time_seconds": 1859.32,
+    "output_speed_tps": 64.0,
     "source": "https://artificialanalysis.ai/agents/coding-agents",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "model": "glm-5.3",
       "boardId": "aa_coding_agent_index",
@@ -11146,11 +11146,11 @@
         }
       },
       "source": "https://artificialanalysis.ai/agents/coding-agents",
-      "checkedAt": "2026-11-07"
+      "checkedAt": "2026-11-08"
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:70c73537b9f1e3c7",
+    "configuration_id": "aa_intelligence_index:1c8e6917f002d6e2",
     "board": "aa_intelligence_index",
     "model": "gpt-5.6-terra",
     "variant": "GPT-5.6 Terra (max)",
@@ -11168,15 +11168,15 @@
     "response_time_seconds": null,
     "output_speed_tps": null,
     "source": "https://artificialanalysis.ai/models/gpt-5-6-terra",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "boardId": "aa_intelligence_index",
       "model": "gpt-5.6-terra",
       "variantLabel": "GPT-5.6 Terra (max)",
       "score": 32.3434,
       "source": "https://artificialanalysis.ai/models/gpt-5-6-terra",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "secondary": {
         "slug": "gpt-5-6-terra",
         "intelligenceIndexIsEstimated": false,
@@ -11186,223 +11186,7 @@
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:0464cb97d69da82f",
-    "board": "aa_intelligence_index",
-    "model": "gpt-5.6-terra-high",
-    "variant": "GPT-5.6 Terra (high)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": "high",
-    "service_mode": null,
-    "score": 30.8196,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-high",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "gpt-5.6-terra-high",
-      "variantLabel": "GPT-5.6 Terra (high)",
-      "score": 30.8196,
-      "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-high",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "gpt-5-6-terra-high",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/gpt-5-6-terra-high",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:2420b9dcc0168c6c",
-    "board": "aa_intelligence_index",
-    "model": "gpt-5.6-terra-low",
-    "variant": "GPT-5.6 Terra (low)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": "low",
-    "service_mode": null,
-    "score": 30.8196,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-low",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "gpt-5.6-terra-low",
-      "variantLabel": "GPT-5.6 Terra (low)",
-      "score": 30.8196,
-      "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-low",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "gpt-5-6-terra-low",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/gpt-5-6-terra-low",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:2a4985c51476e91d",
-    "board": "aa_intelligence_index",
-    "model": "gpt-5.6-terra-medium",
-    "variant": "GPT-5.6 Terra (medium)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": "medium",
-    "service_mode": null,
-    "score": 60.0257,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-medium",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "gpt-5.6-terra-medium",
-      "variantLabel": "GPT-5.6 Terra (medium)",
-      "score": 60.0257,
-      "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-medium",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "gpt-5-6-terra-medium",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/gpt-5-6-terra-medium",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:30a9ee45ef0d7bcb",
-    "board": "aa_intelligence_index",
-    "model": "gpt-5.6-terra-non-reasoning",
-    "variant": "GPT-5.6 Terra (non-reasoning)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": null,
-    "service_mode": null,
-    "score": 30.8196,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-non-reasoning",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "gpt-5.6-terra-non-reasoning",
-      "variantLabel": "GPT-5.6 Terra (non-reasoning)",
-      "score": 30.8196,
-      "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-non-reasoning",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "gpt-5-6-terra-non-reasoning",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/gpt-5-6-terra-non-reasoning",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:6b7bee395666f7dc",
-    "board": "aa_intelligence_index",
-    "model": "gpt-5.6-terra-xhigh",
-    "variant": "GPT-5.6 Terra (xhigh)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": "xhigh",
-    "service_mode": null,
-    "score": 60.0257,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-xhigh",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "gpt-5.6-terra-xhigh",
-      "variantLabel": "GPT-5.6 Terra (xhigh)",
-      "score": 60.0257,
-      "source": "https://artificialanalysis.ai/models/gpt-5-6-terra-xhigh",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "gpt-5-6-terra-xhigh",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/gpt-5-6-terra-xhigh",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:d7d24f9e530d95ae",
-    "board": "aa_intelligence_index",
-    "model": "kimi-k3",
-    "variant": "Kimi K3 (max)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": "max",
-    "service_mode": null,
-    "score": 30.8196,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/kimi-k3",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "kimi-k3",
-      "variantLabel": "Kimi K3 (max)",
-      "score": 30.8196,
-      "source": "https://artificialanalysis.ai/models/kimi-k3",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "kimi-k3",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/kimi-k3",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:20301fc6b6647b76",
+    "configuration_id": "aa_intelligence_index:8f2a09cebdfb9fa6",
     "board": "aa_intelligence_index",
     "model": "kimi-k3-low",
     "variant": "Kimi K3 (low)",
@@ -11420,15 +11204,15 @@
     "response_time_seconds": null,
     "output_speed_tps": null,
     "source": "https://artificialanalysis.ai/models/kimi-k3-low",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "boardId": "aa_intelligence_index",
       "model": "kimi-k3-low",
       "variantLabel": "Kimi K3 (low)",
       "score": 17.4192,
       "source": "https://artificialanalysis.ai/models/kimi-k3-low",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "secondary": {
         "slug": "kimi-k3-low",
         "intelligenceIndexIsEstimated": false,
@@ -11438,7 +11222,7 @@
     }
   },
   {
-    "configuration_id": "aa_intelligence_index:484e5f433824be78",
+    "configuration_id": "aa_intelligence_index:a1fbc8dbc5f4eb60",
     "board": "aa_intelligence_index",
     "model": "muse-spark-1.3",
     "variant": "Muse Spark 1.3 (max)",
@@ -11456,55 +11240,19 @@
     "response_time_seconds": null,
     "output_speed_tps": null,
     "source": "https://artificialanalysis.ai/models/muse-spark-1-3",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
+    "checked_at": "2026-11-08",
+    "archive": "scores-aa-round6-2026-11-08.json",
     "raw_record": {
       "boardId": "aa_intelligence_index",
       "model": "muse-spark-1.3",
       "variantLabel": "Muse Spark 1.3 (max)",
       "score": 36.6172,
       "source": "https://artificialanalysis.ai/models/muse-spark-1-3",
-      "checkedAt": "2026-11-07",
+      "checkedAt": "2026-11-08",
       "secondary": {
         "slug": "muse-spark-1-3",
         "intelligenceIndexIsEstimated": false,
         "recoveredFrom": "https://artificialanalysis.ai/models/muse-spark-1-3",
-        "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-      }
-    }
-  },
-  {
-    "configuration_id": "aa_intelligence_index:6d7d49cbeb6ecdc3",
-    "board": "aa_intelligence_index",
-    "model": "muse-spark-1.3-xhigh",
-    "variant": "Muse Spark 1.3 (xhigh)",
-    "score_is_estimated": false,
-    "score_is_self_reported": false,
-    "agent_harness": null,
-    "reasoning_effort": "xhigh",
-    "service_mode": null,
-    "score": 30.8196,
-    "score_low": null,
-    "score_high": null,
-    "mean_cost_usd_per_task": null,
-    "median_cost_usd_per_task": null,
-    "benchmark_list_price": null,
-    "response_time_seconds": null,
-    "output_speed_tps": null,
-    "source": "https://artificialanalysis.ai/models/muse-spark-1-3-xhigh",
-    "checked_at": "2026-11-07",
-    "archive": "scores-aa-round6-2026-11-07.json",
-    "raw_record": {
-      "boardId": "aa_intelligence_index",
-      "model": "muse-spark-1.3-xhigh",
-      "variantLabel": "Muse Spark 1.3 (xhigh)",
-      "score": 30.8196,
-      "source": "https://artificialanalysis.ai/models/muse-spark-1-3-xhigh",
-      "checkedAt": "2026-11-07",
-      "secondary": {
-        "slug": "muse-spark-1-3-xhigh",
-        "intelligenceIndexIsEstimated": false,
-        "recoveredFrom": "https://artificialanalysis.ai/models/muse-spark-1-3-xhigh",
         "recoveryNote": "AA /leaderboards/models 不再收录（多为 deprecated），但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
       }
     }

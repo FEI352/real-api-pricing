@@ -19,6 +19,8 @@ export interface Point {
   confidence: string;
   /** Retired model: the site leaves these points unselected by default; the model panel can tick them back. */
   deprecated?: boolean;
+  /** 默认视图不显示（弃用模型或倒推/情景行），由 config/hidden-by-default.json 驱动。 */
+  hiddenByDefault?: boolean;
   price_usd: number | null;
   original_price: number | null;
   currency: string;
@@ -126,6 +128,8 @@ export type FilterKey =
 export interface State {
   /** Hide plans superseded by a newer generation (plan_gen v1/v2). Data stays, view filters. */
   hideOld: boolean;
+  /** Show deprecated models and derived (non-measured) rows. Default false: they are excluded. */
+  showHidden: boolean;
   feeBand: string;
   lang: Lang;
   view: View;
