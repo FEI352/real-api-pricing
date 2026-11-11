@@ -18,7 +18,25 @@ DATA_DIR = REPO_ROOT / "data"
 DERIVED_DIR = REPO_ROOT / "derived"
 WEB_DIR = REPO_ROOT / "web"
 DEPLOY_DIR = Path("/var/www/real-plan")
-DEFAULT_RECIPIENT = "jaupuihing@ching.icu"
+# 收件人不再硬编码：公开仓库里明文邮箱等于把用户主邮箱长期挂在公网。
+# 解析顺序：环境变量 REAL_PLAN_RECIPIENT → /etc/real-api-pricing/recipient → 空。
+# 解析为空时 send_report_email 会显式报错，绝不静默发往错误地址。
+def _load_recipient():
+    v = os.environ.get("REAL_PLAN_RECIPIENT", "").strip()
+    if v:
+        return v
+    try:
+        p = Path("/etc/real-api-pricing/recipient")
+        if p.is_file():
+            v = p.read_text(encoding="utf-8").strip()
+            if v:
+                return v
+    except OSError:
+        pass
+    return ""
+
+
+DEFAULT_RECIPIENT = _load_recipient()
 SCREENSHOT_PATH = Path("/tmp/real-plan-cost-per-task.png")
 SCREENSHOT_URL = "https://ching.icu/downloads/cost-per-task-latest.png"
 # 通知通道定稿（2026-10-08）：页脚文案由纯文本 / HTML 双通道共用，语义必须一致
@@ -736,8 +754,13 @@ def attach_email_analysis_notes(diff):
     notes.append("【候选但未采用的模型及原因】1) Alibaba Qwen 4: 官方于 11-06 晚发布神秘预告 'The becoming begins'，开启 Qwen 4 矩阵发布倒计时（含 Max/Plus/Flash/27B 权重开源），目前 API 与权重未正式释出，列入 P1 重点前瞻监控；2) OpenAI: 估值 1.25 万亿美元完成 110 亿美元融资交割，GPT-6 Cyber 仅面向 Daybreak Red 受控测试不入通用前沿，ChatGPT Pro 20x 翻倍容量平稳运行进入第 9 天；3) Google: Gemini Omni 1.2 Flash 视频生成商用 GA 降价 30%，属独立多模态计费不影响 LLM 前沿；Gemini 4 Carbon (High) 持续以 59.43 分霸榜全球第一统治最高智力峰值；4) Anthropic: Inference Hooks GA 发布，美区开放 Personal Finance 直连，内部 90%+ 代码由模型生成，新 Usage Policy 倒计时 T-5 天（11-12 生效），Claude Max 20x 稳居单价前沿第一；5) Moonshot Kimi K3.1 Pro (55.09分): 权重开源第 4 天正式上架 AWS Bedrock，官方 API 维持 $1.00/$1.00，本地推理需 8x B300 (2.3TB 显存)，各会员档被现有前沿包络绝对支配；6) DeepSeek: 官方明确澄清目前无 V5 发布计划，主线 V4.1 Flash 价格坚挺，Search/Fetch 独立商业计费稳定；7) 上游 4 个新提交评估: PR #194 (Hy4) 与 PR #191 (Ling 3.1 Flash 1019) 均为 research-only 证据归档，未出基准分，对生产采用值与前沿影响为 0。")
 
 
-def send_report_email(to=DEFAULT_RECIPIENT, report=None):
+def send_report_email(to=None, report=None):
     """生成并发送最新报告（可传入已算好的 report，避免重复解析）"""
+    to = to or DEFAULT_RECIPIENT
+    if not to:
+        raise SystemExit(
+            "收件人未配置：请设置环境变量 REAL_PLAN_RECIPIENT，"
+            "或写入 /etc/real-api-pricing/recipient。")
     if report is None:
         _info(f"正在生成简报数据...")
         report = generate_report()
@@ -794,10 +817,10 @@ def main():
                              help="显式声明纯 JSON 输出：连 stderr 的进度提示也压制（告警仍保留）")
     
     send_parser = subparsers.add_parser("send-email", help="发送最新报告邮件")
-    send_parser.add_argument("--to", default=DEFAULT_RECIPIENT, help="收件邮箱")
+    send_parser.add_argument("--to", default=None, help="收件邮箱（缺省读环境变量或配置文件）")
 
     cron_parser = subparsers.add_parser("cron-run", help="执行自动化巡检：更新部署 → 比对前沿 → 有变动才发信")
-    cron_parser.add_argument("--to", default=DEFAULT_RECIPIENT, help="收件邮箱")
+    cron_parser.add_argument("--to", default=None, help="收件邮箱（缺省读环境变量或配置文件）")
     cron_parser.add_argument("--force", action="store_true", help="无论有无变动都发信（旧周报行为）")
 
     add_plan_parser = subparsers.add_parser("add-plan", help="一键录入/更新套餐订阅并同步构建、校验与部署上线")

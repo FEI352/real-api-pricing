@@ -21,7 +21,7 @@ real-api-pricing-cli --help
 | `real-api-pricing-cli update` | 全量更新与部署 | 1. 运行 `scripts/build_adopted.py`<br/>2. 运行 `scripts/compute.py`<br/>3. 执行 `npm run data && npm run build`<br/>4. 将产物部署至 `/var/www/real-plan/` |
 | `real-api-pricing-cli chart` | 图表自动截图与图床分发 | 1. 启动无头 Chromium 渲染 `https://real-plan.fja.su/#lang=zh&config=summary&xmode=cost`<br/>2. 生成高分辨率 PNG 截图至 `/tmp/real-plan-cost-per-task.png`<br/>3. 通过 `hermes-share` 同步至图床并生成直链 `https://ching.icu/downloads/cost-per-task-latest.png` |
 | `real-api-pricing-cli report` | 终端生成最新前沿报表 | 解析 `site.json`，计算并打印：<br/>- Cost per Task 帕累托前沿<br/>- 真实单价前沿 |
-| `real-api-pricing-cli send-email` | 发送简报邮件 | 将格式化好的 HTML+Markdown 双通道邮件通过 Hermes 邮件安全通道发送至指定邮箱（默认 `jaupuihing@ching.icu`） |
+| `real-api-pricing-cli send-email` | 发送简报邮件 | 将格式化好的 HTML+Markdown 双通道邮件通过 Hermes 邮件安全通道发送至指定邮箱（默认 `<recipient>`） |
 | `real-api-pricing-cli cron-run` | 一键执行自动化巡检 | `update` → 比对前沿 → **有变动才** `chart` + `send-email`（`--force` 无条件发信） |
 
 ---
