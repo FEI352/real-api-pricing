@@ -1,0 +1,1072 @@
+{
+  "date": "2026-11-12",
+  "probeDate": "2026-11-12",
+  "checkedDate": "2026-11-12",
+  "checkedAt": "2026-11-12T09:12:00+08:00",
+  "collectedAt": "2026-11-12T09:12:00+08:00",
+  "scannedAt": "2026-11-12T09:12:00+08:00",
+  "collector": "Worker-Search (real-api-pricing automated daily sync agent team)",
+  "sourcesChecked": [
+    "OpenAI Official Announcement & Platform Pricing (GPT-6 Cyber follow-up, Daybreak Red program, $11B funding first close at $1.25T valuation, ChatGPT Remix rollout, ChatGPT Pro 20x 200/100/500 steady-state Day 14 / T+13, GPT-6.1 Terra/Sol, unified Chat/Work tab prep)",
+    "Anthropic Pricing Page & Releases (Personal Finance in Claude beta via Plaid, Enterprise Security & Inference Hooks GA, METR Safety Report, Agent Memory Dreaming paper, Nasdaq IPO valuation adjustment to $1.1T-$1.3T, New Usage Policy officially takes effect today Nov 12)",
+    "Google Cloud Vertex AI & Google AI Plans (Gemini 4 Carbon High SOTA 59.43 SOTA #1, Gemini 4 Carbon General Availability expansion Nov 10, Gemini 4 Argon Fairwind promo countdown T-18 to Nov 30, Gemini Omni 1.2 Flash video GA and 30% price cut, K-12 Guided Learning, native Office/ODF ingestion)",
+    "DeepSeek Official API Pricing (Search API & Fetch API commercial rate Day 12 at $0.75/1k requests, DAU surging past 1.55M and 92T daily tokens, official clarification on no V5 release, V4.1 Flash/Pro steady-state, OpenCode Go / GOAT channel stability)",
+    "Moonshot AI (Kimi K3.1 Pro 2.8T MoE open-weights Day 9 / T+8: AWS Bedrock launch Nov 6, Microsoft Foundry, NVIDIA NIM, Japan ai& deployment, 2.3TB VRAM hardware hurdle confirmed on r/LocalLLaMA)",
+    "Alibaba Cloud Qwen Announcement (Qwen 4 official teaser 'The becoming begins' Day 7, Apsara 1M context reveal, upcoming Qwen4-Max/Plus/Flash/27B open weights expectation)",
+    "Tencent Hunyuan (Hy4 770B MoE native multimodal, OpenRouter listing $0.834/$1.501, Day 9 / T+8)",
+    "Mistral AI (Mistral Large 4 Preview Le Chonk 1.05T MoE weights absorption Day 15 / T+14, 133-agent exploit patching demo, $1.68/$5.09)",
+    "MiniMax (M3.1 Flash 428B MoE / 23B active, $0.15/$0.60, 3x faster inference, 70% agentic cost cut; H3-Image 16.8MP in 10-20s)",
+    "StepFun (Step-5 Preview 600B MoE $0.70/$1.40 steady state Day 18 / T+18, STEPX Neo infrastructure)",
+    "Cursor / Anysphere (Cursor IDE Grok Voice 2-way real-time voice chat & Build Live Apps 1-click web deployment)",
+    "GitHub Copilot (Code Review REST/GraphQL API GA, Nov 16 legacy model retirement countdown T-4)",
+    "OpenRouter (Catalog >600 models, 5.5% deposit fee, LiquidAI LFM3-1.7B listing at $0.08/$0.20)",
+    "Artificial Analysis (AA Intelligence Index v5.0.1, Coding Agent Index, Terminal-Bench 4.0, Gemini 4 Carbon High #1 SOTA at 59.43)",
+    "Zhipu AI (GLM-5.3 & GLM-5.3-Flash API, GLM Coding Plan ¥5/mo concurrency tracking)",
+    "LiquidAI (LFM3-1.7B non-transformer liquid neural network on OpenRouter)",
+    "Community Dispatches (Reddit r/LocalLLaMA, r/OpenAI, r/ClaudeAI, LINUX DO, V2EX, X/Twitter, Hacker News)"
+  ],
+  "searchScope": [
+    "OpenAI Official Announcements & Cybersecurity Model Launch (OpenAI 于 11-05 推出 GPT-6 Cyber 专精网络安全模型并在 ExploitGym 夺冠，Daybreak Red 审核准入；11-06 确认以 1.25 万亿美元估值完成约 110 亿美元首轮融资交割；CFO 确认不受政治周期影响全力推进全球超大规模数据中心建设；ChatGPT 推出 Remix 协作功能；ChatGPT Pro 20x 翻倍额度稳态运行进入 Day 14 / T+13；筹备 12 月合并 Chat 与 Work 选项卡)",
+    "Anthropic Official Releases & Ecosystem (Anthropic 全新 Usage Policy 今日 2026-11-12 正式生效，确立通用禁止项、高危行业与 Agentic 规范，不影响既有 API 与订阅定价；推出 Personal Finance in Claude 只读金融洞察 Beta；企业级 Inference Hooks 与安全中心 GA；METR 驻场报告证实内部 90%+ 代码由模型自主研发加速；科技股回调导致 IPO 估值预期微调至 1.1-1.3 万亿美元，Hyperliquid 推出 24/7 Anthropic 期权合约；微软宣布 Claude 入驻 Copilot 欧盟数据边界；Claude Max 20x 保持单价前沿绝对统治)",
+    "Google Official Releases & AI Plans (Google Gemini 4 Carbon High 持续以 59.43 分领跑 AA 智力总榜 SOTA #1，成本与单价前沿天花板稳固；Gemini 4 Carbon 于 11-10 扩大 GA 商用覆盖并维持 $2/$10 优惠至 11-30 [T-18 倒计时]；Gemini Omni 1.2 Flash 视频生成 GA 且 720p 降价 30% 至 ~$0.07/秒；K-12 校园账号推出 Guided Learning；Gemini API 支持 Office/ODF 直接摄入；Gemini 4 Argon Fairwind 优惠截止进入倒计时 T-18 天 [至 11-30])",
+    "DeepSeek Official Pricing & Tool Promotion (DeepSeek Search API & Fetch API 商业计费进入第 12 天平稳运行 [$0.75/1k requests]；DAU 稳健超过 155 万，日消耗 92 万亿 Token；官方澄清目前无 V5 发布，主线仍为 V4-Pro 与 V4.1-Flash；V5 规划 2027 年；OpenCode Go / GOAT 渠道采用值稳居单价前沿 #2)",
+    "Moonshot AI / Kimi (Kimi K3.1 Pro 2.8T MoE 权重开源进入第 9 天 [Day 9 / T+8]；AWS 官方宣布 Kimi K3.1 Pro Highspeed 正式上线 Amazon Bedrock；微软 Foundry、NVIDIA NIM 与日本 ai& 平台同步纳管；r/LocalLLaMA 确认 8x B300 / 2.3TB 显存硬件壁垒；官方 API $1.00/$3.00 维持现有包络，暂无破坏性超低价托管)",
+    "Alibaba Cloud Qwen 4 Teaser Tracking (阿里巴巴 Qwen 团队官方预热 'The becoming begins' 进入第 7 天；Apsara 确认 Qwen 4 涵盖 Qwen4-Max/Plus/Flash/27B 阵容及 1M 上下文；开源社区 vLLM 与生态 PR 紧密跟进，权重与标价仍未公开，列为 P1 核心变量密切盯防)",
+    "Tencent Hunyuan Hy4 (混元 Hy4 770B MoE 旗舰平稳运行第 9 天 [Day 9 / T+8]；1M 上下文，原生视觉理解与 Computer-Use；OpenRouter 标价 $0.834/$1.501；AA 录得约 35 分，性价比在现有前沿包络之内)",
+    "Mistral Large 4 Preview (Le Chonk 1.05T MoE 全量开源权重平稳运行进入第 15 天 [Day 15 / T+14]；133-agent 协作修复漏洞演示；AA 智力 38.38 分；官方 API $1.68/$5.09 被基线王者严格支配)",
+    "MiniMax M3.1 Flash (428B MoE / 23B 激活，1M 上下文，推理提速 3 倍，智能体支出降低 70%，标价 $0.15/$0.60；专精长程代码与 Computer Use，落入现有包络内；H3-Image 16.8MP 图像生成展现多模态实力)",
+    "StepFun Step-5 Preview (阶跃星辰 600B MoE 商业化平稳运行第 18 天 [Day 18 / T+18]；标价 $0.70/$1.40；AA 智力 43.73，STEPX Neo 算力生态演进)",
+    "Cursor IDE Innovation (Cursor 推出由 Grok Voice 驱动的实时双向语音通话；推出 Build Live Apps 功能在 IDE 内直接部署并在公网一键分享运行演示)",
+    "GitHub Copilot Platform Governance (GitHub GA 发布 Copilot 代码评审 API；通告 11-16 退役旧版 Claude Opus 4.8/5 与 GPT-5.6 Terra 端点，倒计时进入 T-4 天)",
+    "LiquidAI LFM3-1.7B on OpenRouter (LiquidAI 最新微型非 Transformer 架构模型上线 OpenRouter；标价 $0.08/$0.20 per Mtok，参数较小不入前沿)",
+    "Artificial Analysis Index v5.0.1 (AA 智力总榜 Gemini 4 Carbon High 59.43 分独占 SOTA #1，Claude Opus 5.5 57.62 分紧随其后；基线前沿模型占据绝对前沿包络)",
+    "Zhipu AI GLM-5.3 & Coding Plan (智谱 GLM-5.3 $0.40/$0.40 与 Flash 版本稳定运行；GLM Coding Plan ¥5/月高吸引力)",
+    "Command Code GOAT (官方定价维持 Up to $200/mo 额度口径，研究隔离稳定)",
+    "Community Dispatches (Reddit r/LocalLLaMA、r/OpenAI、r/ClaudeAI、LINUX DO、V2EX 热烈关注 Qwen 4 预热进展、Anthropic 全新 Usage Policy 正式生效、Kimi 2.3TB 显存壁垒、DeepSeek 打假无 V5、OpenAI 融资算力布局)"
+  ],
+  "summary": "2026-11-12 调研全网最新大模型发布、标价调整、订阅变动与评测基准演进：\n1) Alibaba Qwen 4 预热进入第 7 天，开源生态与社区高度期待：阿里巴巴 Qwen 团队发布 \"The becoming begins\" 预告进入第 7 天，社区与开源生态持续高度热议；vLLM、SGLang 与主流推理框架加紧针对 1M 上下文以及 Qwen4-Max/Plus/Flash/27B 矩阵进行预研适配；官方重申全量开源策略，目前仍在预热期，尚未公开权重与标价，列为未来核心潜在颠覆变量跟踪；\n2) OpenAI 巨额融资与算力扩张持续深化：110 亿美元首轮交割（1.25 万亿美元估值）后效应持续发酵，OpenAI 进一步锁定全球大规模算力资本开支；GPT-6 Cyber 网络安全攻防模型在 Daybreak Red 受控框架下开展针对 0-day 与高危漏洞的防御性验证，不向普通 API / ChatGPT 开放；ChatGPT Pro 20x 翻倍配额稳态运行进入 Day 14 / T+13，chatgpt_pro_20x 节点稳如泰山；\n3) Anthropic 全新 Usage Policy 今日（2026-11-12）正式生效（Effective Today）：涵盖 Claude.ai、Claude Code、API 与企业端，确立三层治理框架（通用禁止项、高危 Agentic/关键服务准则与额外规范），未对模型标价与订阅额度造成任何变动；企业级 Inference Hooks 全面 GA 落地，Personal Finance in Claude (Beta) 用户范围逐步扩大；微软将 Claude 全面纳入 Copilot 欧盟数据边界；基线 Claude Max 20x 牢牢占据单价前沿 #1；\n4) Google Gemini 4 Carbon High 持续统治 SOTA：Gemini 4 Carbon (High) 以 59.43 分持续独占 AA 智力总榜全球第 1，扩大 GA 商用覆盖（优惠期 $2/$10 维持至 11-30，倒计时进入 T-18 天），牢固锁定成本与单价前沿终极天花板；Gemini Omni 1.2 Flash 视频生成 GA 商用且 720p 降价 30%（~$0.07/秒）平稳运行；Gemini 4 Argon Fairwind 优惠截止进入倒计时 T-18 天（至 11-30）；\n5) 月之暗面 Kimi K3.1 Pro 权重开源稳态推进：2.8T MoE 开源权重进入 Day 9 / T+8，在 Amazon Bedrock、微软 Foundry、NVIDIA NIM 持续扩大企业覆盖；8x B300 / 2.3TB 显存硬件壁垒让自建门槛高耸，官方 API $1.00/$3.00 维持在基线包络内被绝对支配，未出现破坏性低价；\n6) DeepSeek 底座高并发平稳运行：日活稳健超过 155 万与日耗 92 万亿 Token 持续保持高位，官方明确澄清暂无 V5 发布（规划 2027 年），主线坚守 V4-Pro 与 V4.1-Flash；Search & Fetch 独立计费商业运行进入第 12 天（$0.75/1k requests），完全不影响模型 Token 标价；OpenCode Go 稳健捍卫单价前沿 #2；\n7) 腾讯混元 Hy4 与 Mistral Large 4 稳态运行：Tencent Hy4 770B MoE（OpenRouter $0.834/$1.501，AA 约 35 分）运行进入 Day 9 / T+8，Mistral Large 4 Preview Le Chonk 1.05T MoE（$1.68/$5.09，AA 38.38 分）运行进入 Day 15 / T+14，均未突破基线前沿；\n8) 前沿威胁评估结论：全网主流厂商发布、资本动作、合规政策生效与开源动态均未对基线 Pareto 前沿形成突破或实质性冲击，前沿威胁评估为 NO_IMMEDIATE_THREAT，基线 Pareto 前沿安如泰山，建议 Lead 保持既有采用行配置。",
+  "frontierThreatEvaluation": "NO_IMMEDIATE_THREAT (今日全网主流厂商发布、资本变动、政策生效与开源生态均未对基线 Pareto 前沿形成突破或实质性冲击。Alibaba Qwen 4 预热进入第 7 天但权重与标价未发；Anthropic 全新 Usage Policy 今日 11-12 正式生效但未变动模型定价；OpenAI ChatGPT Pro 20x 稳态运行进入第 14 天 [T+13]；Kimi K3.1 Pro 权重开源稳步推进进入第 9 天；Google Gemini 4 Carbon High 59.43 分独占智力总榜 SOTA #1；成本前沿 3 点与单价前沿 4 点结构完好，无需调整任何采用值。)",
+  "frontierThreatAssessment": {
+    "assessmentDate": "2026-11-12",
+    "verdict": "NO_IMMEDIATE_THREAT",
+    "rationale": "今日全网态势保持极高稳定性与健康演进，各项新模型发布、巨额融资、云平台集成、政策生效与预热均未对基线 Pareto 前沿形成任何下穿或外推冲击：\n1) 阿里巴巴 Qwen 团队官方预热 \"The becoming begins\" 进入第 7 天，确认 Qwen 4 四级阶梯矩阵（Max/Plus/Flash/27B）与 1M 上下文，官方承诺坚持全量开源权重；目前权重尚未公开下载，API 标价未定，处于前沿雷达 P1 密切监控中，暂无即时前沿冲击；\n2) OpenAI 敲定 110 亿美元融资首轮交割（1.25 万亿美元估值）后，算力资本开支持续加码；GPT-6 Cyber 专精攻防但受控于 Daybreak Red，非通用公开 API，不影响通用智力与编程评测；ChatGPT Pro 20x 配额稳态运行进入第 14 天（Day 14 / T+13），chatgpt_pro_20x 节点稳若泰山；\n3) Anthropic 全新 Usage Policy 今日（2026-11-12）正式生效（Effective Today），确立三层治理框架，未对模型标价与订阅额度产生任何影响；推出 Inference Hooks 全面 GA 与 Personal Finance Beta 稳步扩圈，METR 报告证实内部 90%+ 代码由模型自主研发加速；Claude Max 20x 牢牢统治单价前沿；\n4) Google Gemini 4 Carbon (High) 以 59.43 分持续占据 AA 智力总榜 SOTA #1，扩大 GA 商用覆盖（优惠期 $2/$10 维持至 11-30，倒计时进入 T-18 天），成本与单价前沿终极天花板极其稳固；Gemini Omni 1.2 Flash 视频生成降价属于独立多模态计费，不涉及基线长程代码与通用任务；Argon Fairwind 优惠截止进入 T-18 天倒计时（至 11-30）；\n5) DeepSeek DAU 稳健超过 155 万与日耗 92 万亿 Token，官方明确澄清暂无 V5 计划，主线 V4-Pro 与 V4.1-Flash 极速低耗；Search & Fetch 独立计费商业平稳运行进入第 12 天（$0.75/1k requests），完全不影响模型 Token 标价；OpenCode Go 采用值稳定保持单价前沿 #2；\n6) Moonshot Kimi K3.1 Pro 权重开源运行进入第 9 天（Day 9 / T+8），AWS Amazon Bedrock、微软 Foundry 与 NVIDIA NIM 同步纳管；8x B300 / 2.3TB 显存硬件壁垒让自建门槛高耸，官方 API 标价 $1.00/$3.00 在现有前沿包络内被基线王者绝对支配，暂无超低价第三方托管；\n7) 腾讯混元 Hy4 770B MoE（OpenRouter $0.834/$1.501，AA 约 35 分）平稳运行第 9 天（Day 9 / T+8），Mistral Large 4 Preview Le Chonk 1.05T MoE（$1.68/$5.09，AA 38.38 分）平稳运行第 15 天（Day 15 / T+14），均在现有前沿包络之内被支配；\n8) 开发者生态中 Cursor（Grok Voice 实时语音、Live Apps 一键发布）与 GitHub Copilot（代码评审 API GA、11-16 旧模型退役 T-4 倒计时）均未改变基础模型定价与订阅采用规则；\n综合评估，基线前沿（成本前沿 3 点、单价前沿 4 点）结构完好，无任何被击穿或劣后替代的迹象，维持 NO_IMMEDIATE_THREAT 判定。",
+    "costFrontierStatus": "STABLE_NO_CHANGE (成本前沿牢不可破：低成本区间由 DeepSeek-V4.1-Flash 与 Claude-Haiku-5.5 稳稳守护，中间层由 GPT-6-Luna 与 Claude-Sonnet-5.5 覆盖，高智能巅峰由 Google Gemini 4 Carbon High 59.43 分终极统治。新进入的 Tencent Hy4、Mistral Large 4 与 Kimi K3.1 Pro 均未越过前沿包络。)",
+    "priceFrontierStatus": "STABLE_NO_CHANGE (单价前沿牢不可破：Claude-Max-20x 保持绝对支配地位，DeepSeek OpenDesign/OpenCode Go 稳坐 #2，ChatGPT-Pro-20x 节点额度未减完全稳固，无任何新入局者能够撼动。)",
+    "criticalRisksAndCountdowns": [
+      {
+        "risk": "Alibaba Qwen 4 官方预热进入第 7 天与发布窗口监测 ('The becoming begins' Nov 6 预热进入第 7 天)",
+        "deadline": "2026-11-06 官方发布预告，预估 11 月中上旬正式释出",
+        "consequence": "Qwen 4 确认四阶梯矩阵 (Max/Plus/Flash/27B) 与 1M 上下文，官方承诺保持全量开源权重；若 Qwen4-Flash 或 Qwen4-27B 展现出超越 DeepSeek V4.1 Flash 的吞吐与智力，或 Qwen4-Max 展现出超越 Gemini 4 Carbon 的长程能力并给出激进定价，将可能对成本前沿发起挑战；目前处于预热状态，维持 P1 重点雷达盯防。"
+      },
+      {
+        "risk": "OpenAI 110 亿美元巨额融资首轮交割与 GPT-6 Cyber 受控准入追踪",
+        "deadline": "2026-11-06 融资首轮交割，GPT-6 Cyber 准入审核中",
+        "consequence": "1.25 万亿美元估值支撑 OpenAI 继续在全球范围内推进大规模算力中心扩张；GPT-6 Cyber 在 ExploitGym 夺冠并协助修复 81 个 Firefox 0-day 与 948 个内核漏洞，作为受限准入的安全攻防专精模型，不进入通用智力与编程评测，对基线通用 Pareto 前沿无威胁。"
+      },
+      {
+        "risk": "Anthropic 全新 Usage Policy 今日正式生效 (Effective Today)",
+        "deadline": "2026-11-12 (今日正式生效 / Effective Today)",
+        "consequence": "今日起正式执行全新 Usage Policy，确立通用禁止项、高危行业人机协同与 Agentic 规范，不影响基线 API 定价与订阅采用行；个人财务 Personal Finance Beta 上线与 Inference Hooks GA 强化企业粘性，Claude Max 20x 牢牢统治单价前沿。"
+      },
+      {
+        "risk": "Google Gemini 4 Argon Fairwind 优惠截止 (0/0 -> 0/60) (T-18 天倒计时)",
+        "deadline": "2026-11-30 (T-18 天倒计时)",
+        "consequence": "标准价恢复后每任务成本翻倍，继续维持订阅行下架状态；Gemini 4 Carbon High 59.43 分持续占据智力与成本前沿终极天花板。"
+      },
+      {
+        "risk": "Moonshot Kimi K3.1 Pro 登陆 Amazon Bedrock 与开源权重落地第 9 天 (Day 9 / T+8)",
+        "deadline": "2026-11-06 官宣登陆 Amazon Bedrock，权重已在 HF / Foundry 上线",
+        "consequence": "2.8T MoE / 104B active 跨平台云服务加速推进，但 8x B300 / 2.3TB 显存硬件壁垒阻碍普通自建，官方 API 标价 $1.00/$3.00 在现有前沿包络内被基线王者绝对支配，暂无破坏性超低价托管，维持 P1 跟踪。"
+      },
+      {
+        "risk": "DeepSeek Search & Fetch API 商业计费平稳运行 (运行第 12 天)",
+        "deadline": "2026-11-01 已正式生效，进入商业收费稳态运行第 12 天",
+        "consequence": "Search/Fetch API 正式执行 $0.75/1k requests 成功调用计费；该计费属于独立外部工具调用，完全不计入模型上下文 Token 消耗，模型主线端点定价保持稳定，DAU 突破 155 万创新高，OpenDesign/OpenCode Go 采用值不受任何影响。"
+      },
+      {
+        "risk": "GitHub Copilot 旧模型端点退役倒计时 (T-4 天倒计时)",
+        "deadline": "2026-11-16 (T-4 天倒计时)",
+        "consequence": "GitHub 官方将正式下线旧版 Claude Opus 4.8/5 与 GPT-5.6 Terra 端点，推行 Copilot Fusion 多模型路由与新版模型，采用 Copilot 订阅的开发者需注意模型自动迁移。"
+      },
+      {
+        "risk": "Tencent Hy4 旗舰 MoE 全新发布与评测跟踪 (Day 9 / T+8)",
+        "deadline": "2026-11-04 官方发布，OpenRouter 已上线，AA 智力录得约 35 分",
+        "consequence": "770B MoE / 49B active，API 标价 $0.834/$1.501，内部 TB4 44.4，具备原生视觉理解与 Computer-Use，性价比在现有前沿包络之内，不构成前沿威胁，维持 P2 常规观察。"
+      },
+      {
+        "risk": "ChatGPT Pro 200 额度腰斩危机彻底解除 (稳态运行第 14 天 / T+13)",
+        "deadline": "2026-10-29 官方正式撤回削减计划，2026-11-12 稳态运行第 14 天",
+        "consequence": "保留 20x 容量并翻倍 Work/Codex 额度；chatgpt_pro_20x 节点完全免于退出前沿，基线安然无虞。"
+      },
+      {
+        "risk": "Mistral Large 4 Preview (Le Chonk 1.05T MoE) 权重开源吸收 (运行平稳第 15 天 / T+14)",
+        "deadline": "2026-10-29 官方在 Hugging Face 释放权重，vLLM / Unsloth GGUF 已上线",
+        "consequence": "开源权重展示 133-agent 协作修复漏洞，但 AA 智力 38.38 分且官方 API $1.68/$5.09，被基线低价王者绝对支配，未进前沿。"
+      },
+      {
+        "risk": "StepFun Step-5 Preview 商业化平稳运行 (运行第 18 天 / T+18)",
+        "deadline": "2026-10-25 商业化上线，2026-11-12 稳态运行第 18 天",
+        "consequence": "600B MoE，标价 $0.70/$1.40，AA 智力 43.73 分，在成本前沿上被 DeepSeek V4.1 Flash 严格支配，不构成前沿破防。"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Alibaba Qwen 4 (阿里巴巴官方社交账号神秘预告 \"The becoming begins\" 进入第 7 天; Apsara 确认 Max/Plus/Flash/27B 阵容与 1M 上下文; 重申全量开源权重)",
+      "vendor": "Alibaba Qwen",
+      "eventType": "frontier_model_official_teaser_and_lineup_reveal",
+      "priceOrQuota": "预热阶段 (定价与配额尚未正式公开)",
+      "status": "Official Teaser & Architecture Preview / Upcoming Major Release",
+      "impactAssessment": "阿里巴巴 Qwen 团队发布 \"The becoming begins\" 进入第 7 天，Qwen 4 进入发布窗口。Apsara 峰会与开源工具链 PR 披露其包含 Qwen4-Max、Plus、Flash 与 27B 四级阶梯，支持 1M 上下文与低/中/高思维档位。官方重申开源承诺。目前权重与 API 尚未正式落盘，对当前前沿无即时影响，但属于未来最核心的潜在冲击变量，列为 P1 重点观察。",
+      "model": "alibaba-qwen-4-preview",
+      "provider": "Alibaba Cloud / Qwen",
+      "modelOrPlan": "alibaba-qwen-4-family",
+      "category": "frontier_model_official_teaser_and_lineup_reveal",
+      "event_type": "frontier_model_official_teaser_and_lineup_reveal",
+      "publishedPrice": "待发布 (待定)",
+      "quotaOrLimits": "待官方正式发布后公布",
+      "activeStatus": "官方预热中，发布窗口临近",
+      "satisfiesInclusion": false,
+      "rejectionReason": "目前处于官方预热与架构披露阶段，尚未公开可调用的 API 标价或可下载的开源权重，不满足基线收录条件。",
+      "sourceUrl": "https://qwenlm.github.io/blog/qwen4-teaser",
+      "source_url": "https://qwenlm.github.io/blog/qwen4-teaser",
+      "impactOnFrontier": "未来潜在重大变量，当前无即时冲击。",
+      "impact_on_frontier": "暂无即时冲击。",
+      "factSummary": "Qwen 4 预热进入第 7 天，四层模型矩阵与 1M 上下文确认，生态预研加速，开源承诺不变，密切跟踪发布窗口。",
+      "currentRepoState": "research-only; upcoming flagship model family under radar tracking.",
+      "recommendation": "track_as_p1_upcoming_frontier",
+      "priority": "P1 (最核心潜在前沿变量跟踪)",
+      "rationale": "若 Qwen 4 延续 Qwen 系列的高性能与超低定价/完全开源特性，一旦发布将对前沿成本形成巨大震荡，需在发布首日即刻评估。"
+    },
+    {
+      "name": "OpenAI 1B Funding Tranche at .25T Valuation & Infrastructure Commitments (OpenAI 敲定 110 亿美元融资首轮交割; 估值 1.25 万亿美元; 坚决推进全球数据中心扩张)",
+      "vendor": "OpenAI",
+      "eventType": "corporate_financing_and_infrastructure_commitment",
+      "priceOrQuota": "1B First Close / .25T Valuation",
+      "status": "Funding Closed / Active Capital Expansion",
+      "impactAssessment": "OpenAI 成功交割约 110 亿美元巨额融资，由 Coatue、T. Rowe Price、软银、红杉等参投，估值达到 1.25 万亿美元。CFO 确认在全球持续激进投资建设大规模数据中心集群，为 GPT-6 后续演进提供不可动摇的算力底座。资本注入确保了 API 服务的长期可用性与基础设施规模优势，不涉及即刻价格变动，对前沿无即时冲击。",
+      "model": "openai-capital-expansion-nov2026",
+      "provider": "OpenAI",
+      "modelOrPlan": "openai-infrastructure-scaling",
+      "category": "corporate_financing_and_infrastructure_commitment",
+      "event_type": "corporate_financing_and_infrastructure_commitment",
+      "publishedPrice": "N/A (企业资本事件)",
+      "quotaOrLimits": "N/A",
+      "activeStatus": "第一期资金交割完毕",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于企业资本与基础设施事件，不属于具体模型 API 端点或订阅定价，不进入基线计算。",
+      "sourceUrl": "https://openai.com/news",
+      "source_url": "https://openai.com/news",
+      "impactOnFrontier": "无价格与前沿冲击，保障中长期算力充足。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "OpenAI 获得 110 亿美元新资金注入，强化全球数据中心资本开支，模型定价稳定。",
+      "currentRepoState": "research-only; macro industry ecosystem tracking.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P2 (宏观产业背景)",
+      "rationale": "体现顶级巨头算力军备竞赛的可持续性，排除了短期资金链与算力缩水断供风险。"
+    },
+    {
+      "name": "OpenAI ChatGPT \"Remix\" Feature Rollout (ChatGPT 面向 Business 与 Enterprise 用户推出 Remix 协同编辑功能; 团队协同生成与改版)",
+      "vendor": "OpenAI",
+      "eventType": "subscription_feature_enhancement",
+      "priceOrQuota": "包含在 ChatGPT Business (0/mo) 与 Enterprise 订阅中",
+      "status": "Active Feature Rollout",
+      "impactAssessment": "OpenAI 开始向企业用户推送 Remix 功能，支持团队成员基于现有 ChatGPT Site 或项目产物直接在对话中派生新版本。功能增强了团队订阅的协同价值，但基础订阅价格与底层 Token 消耗计费口径未变，对前沿无冲击。",
+      "model": "chatgpt-business-remix",
+      "provider": "OpenAI",
+      "modelOrPlan": "chatgpt-enterprise-feature",
+      "category": "subscription_feature_enhancement",
+      "event_type": "subscription_feature_enhancement",
+      "publishedPrice": "标准订阅费包干",
+      "quotaOrLimits": "企业与商业席位独享",
+      "activeStatus": "灰度向全量推送中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于 Web 端交互协作功能升级，未改变 API 或独立个人订阅点采用值。",
+      "sourceUrl": "https://help.openai.com/en/articles/chatgpt-remix",
+      "source_url": "https://help.openai.com/en/articles/chatgpt-remix",
+      "impactOnFrontier": "功能性增强，对前沿无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "ChatGPT 推出 Remix 协同分支编辑功能，赋能企业用户，订阅与 API 计费规则不变。",
+      "currentRepoState": "research-only; product feature tracking.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P3 (日常产品更新)",
+      "rationale": "纯产品体验层升级，不影响项目核心计算口径。"
+    },
+    {
+      "name": "Anthropic Inference Hooks GA & Security Center Beta (Anthropic 全面推出企业级推理钩子与安全中心; 统一配置 Chat / Code / Cowork)",
+      "vendor": "Anthropic",
+      "eventType": "enterprise_security_and_api_feature_ga",
+      "priceOrQuota": "面向 Enterprise 与 Claude Workspaces 提供，无额外推理附加费",
+      "status": "General Availability (GA)",
+      "impactAssessment": "Anthropic 宣布 Inference Hooks 正式 GA，允许企业 IT 管理员通过服务端单点配置对所有 Claude 对话、Claude Code 与 Cowork 会话施加合规审计与指令守卫，无需终端安装本地 Agent。同时推进 Claude Security Center 与集中管理控制台。此功能增强了 Anthropic 在大企业客户中的粘性与合规壁垒，不影响 API 标价或基线 Claude Max 20x 订阅点，对前沿无冲击。",
+      "model": "anthropic-inference-hooks-ga",
+      "provider": "Anthropic",
+      "modelOrPlan": "anthropic-enterprise-hooks",
+      "category": "enterprise_security_and_api_feature_ga",
+      "event_type": "enterprise_security_and_api_feature_ga",
+      "publishedPrice": "包含于 Enterprise 协议中",
+      "quotaOrLimits": "组织级全局策略配置",
+      "activeStatus": "GA 全面上线",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于企业治理与基础设施安全功能，不属于独立模型端点或新标价档。",
+      "sourceUrl": "https://www.anthropic.com/news/enterprise-inference-hooks",
+      "source_url": "https://www.anthropic.com/news/enterprise-inference-hooks",
+      "impactOnFrontier": "企业级功能，对前沿无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Anthropic Inference Hooks GA，支持服务端统一安全守卫，巩固企业市场。",
+      "currentRepoState": "research-only; enterprise governance feature tracking.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P3 (企业功能更新)",
+      "rationale": "增强合规性与企业吸引力，但不改变每百万 Token 标价与任务基准。"
+    },
+    {
+      "name": "Anthropic Agent Memory \"Dreaming\" Technical Paper (Anthropic 发布智能体空闲记忆整合研究; 模拟睡眠重组日志与纠错)",
+      "vendor": "Anthropic",
+      "eventType": "technical_research_paper",
+      "priceOrQuota": "N/A (学术与技术洞察论文)",
+      "status": "Published Research Paper",
+      "impactAssessment": "Anthropic 深入阐述了长程智能体如何利用人机交互间歇的空闲计算时间（类比人类睡眠海马体记忆重组的 \"Dreaming\" 机制）自主整理历史任务日志、归纳错误模式并更新长期表征。这揭示了未来自主智能体架构（包括 Claude Code 后续演进）的演进方向。该成果属于算法研究，尚未落入公开商用 API 的独立计费点，对前沿无即时冲击。",
+      "model": "anthropic-agent-memory-dreaming",
+      "provider": "Anthropic",
+      "modelOrPlan": "anthropic-research-paper",
+      "category": "technical_research_paper",
+      "event_type": "technical_research_paper",
+      "publishedPrice": "N/A",
+      "quotaOrLimits": "N/A",
+      "activeStatus": "论文与技术博客公开发表",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于基础架构前沿技术论文，非商业化模型或订阅。",
+      "sourceUrl": "https://www.anthropic.com/research/agent-memory",
+      "source_url": "https://www.anthropic.com/research/agent-memory",
+      "impactOnFrontier": "技术探索，对前沿无即时冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Anthropic 提出智能体 \"Dreaming\" 闲暇记忆整合架构，启发未来长任务自愈设计。",
+      "currentRepoState": "research-only; architectural research paper tracking.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P3 (学术研究跟踪)",
+      "rationale": "前瞻性技术洞察，有助于理解未来 Agent 在空闲时间产生的隐藏 Token 消耗演变。"
+    },
+    {
+      "name": "Moonshot Kimi K3.1 Pro (Highspeed) Launch on Amazon Bedrock (月之暗面 Kimi K3.1 Pro 权重开源稳态推进进入 Day 8 / T+7; 亚马逊 AWS Bedrock 与微软 Foundry 纳管)",
+      "vendor": "Moonshot AI / AWS Bedrock",
+      "eventType": "cloud_hyperscaler_platform_launch",
+      "priceOrQuota": "AWS Bedrock 标准按量计费 (按 Token 计费，与官方标价大体对齐)",
+      "status": "Available on Amazon Bedrock (Nov 6, 2026)",
+      "impactAssessment": "月之暗面 Kimi K3.1 Pro (2.8T MoE / 104B active, 1M 上下文) 权重开源进入第 9 天 (Day 9 / T+8)。AWS Bedrock、微软 Foundry 与 NVIDIA NIM 同步纳管；社区实测 8x B300 / 2.3TB 显存自建门槛高，官方 API $1.00/$3.00 在现有包络内被基线王者绝对支配，未破防前沿。",
+      "model": "moonshot-kimi-k3.1-pro-bedrock",
+      "provider": "AWS Bedrock / Moonshot AI",
+      "modelOrPlan": "moonshot.kimi-k3.1-pro",
+      "category": "cloud_hyperscaler_platform_launch",
+      "event_type": "cloud_hyperscaler_platform_launch",
+      "publishedPrice": "AWS Bedrock 标准价 (.00/.00/Mtok 级别)",
+      "quotaOrLimits": "依据 AWS 账户配额管理",
+      "activeStatus": "正式上线可用",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于既有模型 Kimi K3.1 Pro 的第三方云渠道扩展，标价未优于官方 API，且智力/成本在基线前沿包络之内。",
+      "sourceUrl": "https://aws.amazon.com/blogs/aws/kimi-k3-1-pro-now-available-on-amazon-bedrock",
+      "source_url": "https://aws.amazon.com/blogs/aws/kimi-k3-1-pro-now-available-on-amazon-bedrock",
+      "impactOnFrontier": "渠道扩展，定价在包络内，对前沿无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Kimi K3.1 Pro 权重开源稳步运行第 9 天，多云托管加速落地，硬件门槛锁定，官方定价落入基线包络内被支配。",
+      "currentRepoState": "research-only; hyperscaler cloud distribution tracking.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P2 (顶级云厂商分发监测)",
+      "rationale": "证明 Kimi K3.1 Pro 快速获得主流西方云巨头采纳，但由于标价不低，未重构价格前沿。"
+    },
+    {
+      "name": "DeepSeek API Daily Active Users Surpass 1.55M & Clarification on V5 (DeepSeek API 日活突破 155 万与日耗 92 万亿 Token; 官方重申暂无 V5 发布，主线坚不可摧)",
+      "vendor": "DeepSeek",
+      "eventType": "platform_scale_milestone_and_roadmap_clarification",
+      "priceOrQuota": "官方标价稳定 (bash.14/bash.28 per Mtok, Cache bash.014)",
+      "status": "Active Platform Scaling & Official Clarification",
+      "impactAssessment": "DeepSeek Harness 官方数据公布，API 日活跃用户达 155 万，单日 Token 消耗达到 92 万亿。面对社交平台对 DeepSeek V5 的热炒，官方与行业分析澄清目前并无 V5 上线，当前前沿与轻量旗舰分别为 DeepSeek-V4-Pro 与 DeepSeek-V4.1-Flash；V5 规划在 2027 年。主线模型低成本、高并发优势极其稳固，不涉及新端点或标价调整，对前沿无冲击。",
+      "model": "deepseek-api-growth-nov2026",
+      "provider": "DeepSeek",
+      "modelOrPlan": "deepseek-platform-operations",
+      "category": "platform_scale_milestone_and_roadmap_clarification",
+      "event_type": "platform_scale_milestone_and_roadmap_clarification",
+      "publishedPrice": "bash.14/bash.28 (标准 API)",
+      "quotaOrLimits": "高并发弹性吞吐",
+      "activeStatus": "稳态运行创历史新高",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于平台运营规模通报与路线图澄清，主线模型定价已在基线收录。",
+      "sourceUrl": "https://platform.deepseek.com/news",
+      "source_url": "https://platform.deepseek.com/news",
+      "impactOnFrontier": "基座极其稳固，无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "DeepSeek 官方数据证实日活突破 155 万与日耗 92 万亿 Token，重申暂无 V5 发布，主线稳定捍卫单价前沿 #2。",
+      "currentRepoState": "research-only; vendor telemetry and roadmap verification.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P2 (核心供应商底座监控)",
+      "rationale": "澄清了所谓 V5 即将突袭的虚假谣言，确认基线采用的 V4.1 Flash 仍是当前主力版本。"
+    },
+    {
+      "name": "OpenAI GPT-6 Cyber (网络安全攻防专用前沿模型 11-05 正式发布进入稳态测试; Daybreak Red 计划受控开放; ExploitGym 跃升; 挖掘 81 个 Firefox 0-day 与复现 1724 个内核漏洞)",
+      "vendor": "OpenAI",
+      "eventType": "specialized_frontier_model_release",
+      "priceOrQuota": "受限准入 (Daybreak Red 审核制 API & Codex 接入，官方定制计费)",
+      "status": "Active Restricted Release / Daybreak Red Program",
+      "impactAssessment": "OpenAI 于 11-05 推出 GPT-6 Cyber，基于 GPT-6 Astra 架构深度训练对齐。在 ExploitGym 基准测试中大幅跃升，成功挖掘 81 个未公开高危 Firefox 漏洞并复现 1724 个 Linux 内核漏洞。该模型仅开放给经审核的防御人员，非通用商业 API，不进入通用智力与编程 Pareto 前沿，无前沿威胁。",
+      "model": "openai-gpt-6-cyber",
+      "provider": "OpenAI",
+      "modelOrPlan": "openai-gpt-6-cyber",
+      "category": "specialized_frontier_model_release",
+      "event_type": "specialized_frontier_model_release",
+      "publishedPrice": "受限准入 (Daybreak Red 审核制 API & Codex 接入)",
+      "quotaOrLimits": "专向授权企业与防守研究员，严格边界限制 (99.9% 守规)",
+      "activeStatus": "官方正式推出，面向审核防御者与安全团队开放",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于垂直攻防安全专精模型，受控准入，未公开通用定价，不计入通用智力与编程 Pareto 评测基准。",
+      "sourceUrl": "https://openai.com/index/gpt-6-cyber",
+      "source_url": "https://openai.com/index/gpt-6-cyber",
+      "impactOnFrontier": "垂类受限模型，未进前沿，不构成威胁。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "GPT-6 Cyber 网络安全攻防模型在 Daybreak Red 框架下稳态运行，不向普通 API / ChatGPT 开放，不影响通用基线前沿。",
+      "currentRepoState": "research-only; specialized security model excluded from general benchmarks.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P1 (重大垂类模型监测)",
+      "rationale": "网络安全领域突破性进展，但属于审核准入的专用攻防模型，不计入通用任务与编程基准。"
+    },
+    {
+      "name": "Google Gemini Omni 1.2 Flash (多模态视频生成与编辑模型正式 GA 11-05; 生成时长延至 15s; 720p 降价 30% 至 ~bash.07/s)",
+      "vendor": "Google",
+      "eventType": "multimodal_model_ga_and_price_cut",
+      "priceOrQuota": "~bash.07 / 秒生成 (15s 视频约 .05)",
+      "status": "General Availability (GA)",
+      "impactAssessment": "Google 官方宣布 Gemini Omni 1.2 Flash 正式商用，生成视频时长提升至 15 秒并支持对话式局部精确修改；720p 视频生成降价 30% 至约 bash.07/秒。该模型属于专用多模态视频生成计费，与基线文本、推理及长程代码前沿完全正交，对 Pareto 前沿无冲击。",
+      "model": "google-gemini-omni-1.2-flash",
+      "provider": "Google Cloud Vertex AI",
+      "modelOrPlan": "google-gemini-omni-1.2-flash",
+      "category": "multimodal_model_ga_and_price_cut",
+      "event_type": "multimodal_model_ga_and_price_cut",
+      "publishedPrice": "bash.07 / second video generation",
+      "quotaOrLimits": "Vertex AI 区域限额",
+      "activeStatus": "GA 商用",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于多模态视频专用生成模型，按秒计费，非通用文本与代码任务基准。",
+      "sourceUrl": "https://blog.google/technology/ai/gemini-omni-flash-ga",
+      "source_url": "https://blog.google/technology/ai/gemini-omni-flash-ga",
+      "impactOnFrontier": "多模态独立计费，对文本/代码前沿无影响。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Gemini Omni 1.2 Flash 视频生成 GA 并降价 30%，属于多模态垂直赛道。",
+      "currentRepoState": "research-only; specialized multimodal model excluded from core task suite.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P2 (多模态赛道跟踪)",
+      "rationale": "多模态视频生成独立核算，不影响基线以 Token 为核心的代码与文本前沿。"
+    },
+    {
+      "name": "Anthropic Personal Finance in Claude (个人财务洞察 Beta 11-05 上线; METR 驻场安全报告披露内部研发提速超 90% 写码; 全新 Usage Policy 今日 11-12 正式生效)",
+      "vendor": "Anthropic",
+      "eventType": "subscription_feature_beta_and_safety_disclosure",
+      "priceOrQuota": "美区 Pro (0/mo) / Max (00/mo) / Ultra (00/mo) 订阅内包含",
+      "status": "Active Beta / Enterprise Governance",
+      "impactAssessment": "Anthropic 推出只读银行账户直连的财务洞察功能；独立安全评估机构 METR 发布驻场审计报告，证实内部模型自主研发编写超 90% 内部代码；全新 Usage Policy 今日 2026-11-12 正式生效。Claude Max 20x 保持单价前沿支配地位。",
+      "model": "anthropic-claude-personal-finance",
+      "provider": "Anthropic",
+      "modelOrPlan": "anthropic-claude-personal-finance",
+      "category": "subscription_feature_beta_and_safety_disclosure",
+      "event_type": "subscription_feature_beta_and_safety_disclosure",
+      "publishedPrice": "包含于既有订阅中",
+      "quotaOrLimits": "美区高级订阅用户独占",
+      "activeStatus": "Beta 灰度测试",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于订阅层增值功能与公司治理事件，未改变模型 API 标价或订阅核心采用值。",
+      "sourceUrl": "https://www.anthropic.com/news/personal-finance-beta",
+      "source_url": "https://www.anthropic.com/news/personal-finance-beta",
+      "impactOnFrontier": "增强美区订阅吸引力，前沿保持稳固。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Personal Finance in Claude 稳步扩圈，METR 安全报告展现智能体自主写码提速，全新 Usage Policy 今日 11-12 正式生效。",
+      "currentRepoState": "research-only; consumer subscription add-on feature.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P2 (订阅增值与合规监测)",
+      "rationale": "属于个人消费端附加特性，不改变基线订阅额度换算公式。"
+    },
+    {
+      "name": "DeepSeek Search & Fetch API Commercial Steady-State Day 12 (商业计费平稳运行第 12 天; 独立工具调用 $0.75/1k requests; 不影响基线模型定价)",
+      "vendor": "DeepSeek",
+      "eventType": "tool_api_commercial_billing_active",
+      "priceOrQuota": "bash.75 / 1k successful requests",
+      "status": "Active Commercial Production (Day 9)",
+      "impactAssessment": "DeepSeek Search API 与 Fetch API 商业化计费平稳运行进入第 12 天。该费用仅向独立工具调用请求计量，完全不计入模型端点 Token 费用，模型主线端点定价保持稳定，DAU 突破 155 万与日耗 92 万亿 Token 创新高，基线采用值完全不受影响。",
+      "model": "deepseek-search-and-fetch-api",
+      "provider": "DeepSeek",
+      "modelOrPlan": "deepseek-search-and-fetch-api",
+      "category": "tool_api_commercial_billing_active",
+      "event_type": "tool_api_commercial_billing_active",
+      "publishedPrice": "bash.75 / 1,000 requests",
+      "quotaOrLimits": "按需调用",
+      "activeStatus": "商业收费稳态",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于外部 Web 检索工具调用计费，非 LLM Token 标价，不计入模型 benchmark_list_price。",
+      "sourceUrl": "https://api-docs.deepseek.com/guides/search",
+      "source_url": "https://api-docs.deepseek.com/guides/search",
+      "impactOnFrontier": "独立工具计费，对模型前沿无影响。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "DeepSeek Search & Fetch API 独立工具计费稳态运行第 12 天，模型 Token 定价不变，OpenDesign/OpenCode Go 稳固。",
+      "currentRepoState": "research-only; external tool API pricing.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P2 (工具计费跟踪)",
+      "rationale": "工具调用与模型计算分离，不计入模型每任务 Token 成本。"
+    },
+    {
+      "name": "Tencent Hy4 (混元 770B MoE 旗舰正式发布进入 Day 9 / T+8; 1M 上下文; 原生视觉与 Computer-Use; OpenRouter 标价 $0.834/$1.501; AA 约 35 分)",
+      "vendor": "Tencent",
+      "eventType": "frontier_model_official_launch_and_evaluation",
+      "priceOrQuota": "OpenRouter: bash.834 input / .501 output; TokenHub: bash.417 / bash.751",
+      "status": "Official Production Release & OpenRouter Live",
+      "impactAssessment": "腾讯混元 Hy4 770B MoE 旗舰运行进入第 9 天 (Day 9 / T+8)。原生视觉与多模态长程代码能力稳健，OpenRouter 标价 $0.834/$1.501，内部 TB4 44.4，AA 综合智力录得约 35 分，在现有基线前沿包络之内被支配，不构成前沿威胁。",
+      "model": "tencent-hy4",
+      "provider": "Tencent Cloud / OpenRouter",
+      "modelOrPlan": "tencent-hy4",
+      "category": "frontier_model_official_launch_and_evaluation",
+      "event_type": "frontier_model_official_launch_and_evaluation",
+      "publishedPrice": "bash.834 / .501 (OpenRouter), bash.417 / bash.751 (TokenHub)",
+      "quotaOrLimits": "标准企业与开发者配额",
+      "activeStatus": "全渠道开放使用",
+      "satisfiesInclusion": false,
+      "rejectionReason": "其性价比与智力水平完全落入现有 Pareto 前沿包络之内，无法提供比 DeepSeek 或 Haiku 更优的权衡，不纳入采用行。",
+      "sourceUrl": "https://cloud.tencent.com/product/hunyuan",
+      "source_url": "https://cloud.tencent.com/product/hunyuan",
+      "impactOnFrontier": "处于前沿包络内，不构成威胁。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "混元 Hy4 770B MoE 稳态运行第 9 天，具备原生多模态与长程能力，性价比在现有前沿包络内被支配。",
+      "currentRepoState": "research-only; evaluated candidate under P2 tracking.",
+      "recommendation": "maintain_p2_tracking",
+      "priority": "P2 (核心国产 MoE 旗舰跟踪)",
+      "rationale": "旗舰级发布，但标价与评测无法撼动 DeepSeek V4.1 Flash 的支配地位。"
+    },
+    {
+      "name": "Mistral Large 4 Preview (Le Chonk 1.05T MoE 开源权重吸收进入 Day 15 / T+14; 133-agent 协作修复漏洞演示; 标价 $1.68/$5.09; AA 38.38 分)",
+      "vendor": "Mistral AI",
+      "eventType": "open_weights_absorption_and_evaluation",
+      "priceOrQuota": "官方 API: .68 input / .09 output",
+      "status": "Open Weights Active & vLLM/Unsloth Ecosystem Supported",
+      "impactAssessment": "Mistral Large 4 Preview (Le Chonk 1.05T MoE) 运行进入第 15 天 (Day 15 / T+14)。开源权重展示 133-agent 协作修复漏洞，但 AA 智力 38.38 分且官方 API $1.68/$5.09，被基线王者绝对支配，未进前沿。",
+      "model": "mistral-large-4-preview",
+      "provider": "Mistral AI",
+      "modelOrPlan": "mistral-large-4-preview",
+      "category": "open_weights_absorption_and_evaluation",
+      "event_type": "open_weights_absorption_and_evaluation",
+      "publishedPrice": ".68 / .09 per Mtok",
+      "quotaOrLimits": "La Plateforme 标准配额",
+      "activeStatus": "开源权重已开放，API 运行中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "AA 智力 38.38 分且标价偏高，在相同成本下被 Haiku 5.5 和 DeepSeek V4.1 彻底支配，不构成帕累托改进。",
+      "sourceUrl": "https://mistral.ai/news/mistral-large-4",
+      "source_url": "https://mistral.ai/news/mistral-large-4",
+      "impactOnFrontier": "处于现有包络内部，不构成威胁。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Mistral Large 4 权重开源运行第 15 天，多 Agent 协同代码与安全能力亮眼，但性价比落入包络之内。",
+      "currentRepoState": "research-only; evaluated candidate archived.",
+      "recommendation": "maintain_p2_tracking",
+      "priority": "P2 (欧洲开源旗舰跟踪)",
+      "rationale": "虽然模型规模突破 1T，但实测智力与性价比未达前沿门槛。"
+    },
+    {
+      "name": "MiniMax M3.1 Flash (428B MoE / 23B 激活; 1M 上下文; 推理提速 3x; 智能体支出降低 70%; 标价 bash.15/bash.60; 专精 Computer Use)",
+      "vendor": "MiniMax",
+      "eventType": "efficient_agentic_model_evaluation",
+      "priceOrQuota": "官方 API: bash.15 input / bash.60 output; M Plan 订阅",
+      "status": "Commercial Production & ModelScope Live",
+      "impactAssessment": "MiniMax M3.1 Flash 深度优化长程代码、安全分析与 Computer Use，推理速度提升 3 倍，智能体成本削减 70%，标价 bash.15/bash.60。在 AA 智力榜上录得 42.71 分。尽管极具性价比，但在综合任务上仍被 DeepSeek V4.1 Flash (bash.14/bash.28, AA 45.10) 与 Claude Haiku 5.5 压制，不改变现有基线前沿。",
+      "model": "minimax-m3.1-flash",
+      "provider": "MiniMax",
+      "modelOrPlan": "minimax-m3.1-flash",
+      "category": "efficient_agentic_model_evaluation",
+      "event_type": "efficient_agentic_model_evaluation",
+      "publishedPrice": "bash.15 / bash.60 per Mtok",
+      "quotaOrLimits": "按量计费与 M Plan 订阅",
+      "activeStatus": "开放可用",
+      "satisfiesInclusion": false,
+      "rejectionReason": "表现落入 DeepSeek V4.1 Flash 与 Haiku 5.5 构筑的包络线内，无法形成更优单价或每任务成本。",
+      "sourceUrl": "https://www.minimaxi.com/news/m3-1-flash",
+      "source_url": "https://www.minimaxi.com/news/m3-1-flash",
+      "impactOnFrontier": "处于现有包络内部，不构成威胁。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "MiniMax M3.1 Flash 专精 Computer Use 与 70% 降本，综合表现仍落入包络内。",
+      "currentRepoState": "research-only; evaluated candidate.",
+      "recommendation": "maintain_p2_tracking",
+      "priority": "P2 (高性价比 Agent 模型跟踪)",
+      "rationale": "优秀模型，但在基线前沿图中被 DeepSeek 和 Anthropic 同级别王者紧密覆盖。"
+    },
+    {
+      "name": "Cursor Real-Time Two-Way Voice Chat & Build Live Apps (Cursor 推出基于 Grok Voice 的实时双向语音; IDE 内一键生成并分享公网 Live Apps)",
+      "vendor": "Cursor",
+      "eventType": "developer_tool_major_feature_upgrade",
+      "priceOrQuota": "包含在 Cursor Pro (0/mo) / Business (0/mo) 订阅中",
+      "status": "Active Production Rollout",
+      "impactAssessment": "Cursor 推出由 Grok Voice 驱动的实时双向语音通话，支持在 Agents 窗口、网页与 iOS 客户端语音指导智能体写码；并新增 Build Live Apps 功能，支持在 IDE 内直接部署并在公网分享演示。属于 IDE 工具链体验革新，未引入破坏性 Token 定价或改变采用行，对前沿无冲击。",
+      "model": "cursor-ide-features-nov2026",
+      "provider": "Cursor / Anysphere",
+      "modelOrPlan": "cursor-tooling-ecosystem",
+      "category": "developer_tool_major_feature_upgrade",
+      "event_type": "developer_tool_major_feature_upgrade",
+      "publishedPrice": "0 / 0 per user month",
+      "quotaOrLimits": "Pro 快速请求池与额度",
+      "activeStatus": "全量上线",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于前端 IDE 交互功能，未改变基线计算所依据的 API 标价或订阅等效折算值。",
+      "sourceUrl": "https://www.cursor.com/changelog",
+      "source_url": "https://www.cursor.com/changelog",
+      "impactOnFrontier": "工具体验升级，对前沿无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Cursor 推出实时语音写码与 Live Apps 一键分享，订阅与模型计费口径稳定。",
+      "currentRepoState": "research-only; IDE tooling telemetry.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P3 (IDE 生态跟踪)",
+      "rationale": "强化了智能体交互便利度，但底座模型依然依赖主流供应商。"
+    },
+    {
+      "name": "GitHub Copilot Code Review API GA & Model Retirement Notice (Copilot 代码评审 REST/GraphQL API 正式 GA; 通告 11-16 退役旧版端点进入 T-4 倒计时)",
+      "vendor": "GitHub / Microsoft",
+      "eventType": "developer_platform_api_ga_and_lifecycle_management",
+      "priceOrQuota": "包含于 GitHub Copilot Enterprise 订阅",
+      "status": "Active GA & Notice Issued",
+      "impactAssessment": "GitHub 官方正式推出 Copilot 代码评审 API；同时通告将于 11-16 正式退役旧版 Claude Opus 4.8/5 与 GPT-5.6 Terra 端点，倒计时进入 T-4 天。GitHub Copilot 订阅与模型计费口径稳定，不构成前沿威胁。",
+      "model": "github-copilot-code-review-api",
+      "provider": "GitHub / Microsoft",
+      "modelOrPlan": "github-copilot-enterprise-api",
+      "category": "developer_platform_api_ga_and_lifecycle_management",
+      "event_type": "developer_platform_api_ga_and_lifecycle_management",
+      "publishedPrice": "Copilot Enterprise 席位费",
+      "quotaOrLimits": "组织级 API 速率配额",
+      "activeStatus": "GA 上线",
+      "satisfiesInclusion": false,
+      "rejectionReason": "属于平台集成管理 API，不构成独立模型标价或计费点。",
+      "sourceUrl": "https://github.blog/changelog",
+      "source_url": "https://github.blog/changelog",
+      "impactOnFrontier": "平台生命周期维护，对前沿无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Copilot 代码评审 API GA，通告 11-16 旧模型退役进入 T-4 倒计时，Copilot 采用规则稳定。",
+      "currentRepoState": "research-only; platform API and retirement tracking.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P3 (平台治理跟踪)",
+      "rationale": "常规生命周期迭代，验证了前沿模型向 GPT-6 与 Claude 5.5 世代迁移的不可逆趋势。"
+    },
+    {
+      "name": "LiquidAI LFM3-1.7B on OpenRouter (LiquidAI 最新微型非 Transformer 架构模型上线 OpenRouter; 标价 bash.08/bash.20 per Mtok)",
+      "vendor": "LiquidAI / OpenRouter",
+      "eventType": "niche_model_openrouter_listing",
+      "priceOrQuota": "OpenRouter: bash.08 input / bash.20 output per Mtok",
+      "status": "Active on OpenRouter",
+      "impactAssessment": "LiquidAI 推出的 LFM3-1.7B 模型正式收录于 OpenRouter 目录。该模型采用 Liquid 神经网络架构，标价极低（bash.08/bash.20）。但由于其参数规模仅 1.7B，在复杂推理与全功能编程基准上得分极低，无法与基线前沿通用模型抗衡，对前沿无冲击。",
+      "model": "liquid-lfm3-1.7b",
+      "provider": "OpenRouter / LiquidAI",
+      "modelOrPlan": "liquidai/lfm3-1.7b",
+      "category": "niche_model_openrouter_listing",
+      "event_type": "niche_model_openrouter_listing",
+      "publishedPrice": "bash.08 / bash.20 per Mtok",
+      "quotaOrLimits": "OpenRouter 弹性配额",
+      "activeStatus": "开放调用",
+      "satisfiesInclusion": false,
+      "rejectionReason": "微型垂类非 Transformer 模型，智力与编程能力远低于前沿基准线，无法满足项目核心评估门槛。",
+      "sourceUrl": "https://openrouter.ai/models/liquidai/lfm3-1.7b",
+      "source_url": "https://openrouter.ai/models/liquidai/lfm3-1.7b",
+      "impactOnFrontier": "微型模型，对前沿无冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "LiquidAI LFM3-1.7B 上线 OpenRouter，架构新颖但参数太小，无法撼动前沿。",
+      "currentRepoState": "research-only; niche small model.",
+      "recommendation": "archive_as_research_only",
+      "priority": "P3 (架构探索小模型)",
+      "rationale": "参数量过小，不属于通用智力与前沿软件工程评测范畴。"
+    },
+    {
+      "name": "StepFun Step-5 Preview (阶跃星辰 600B MoE 商用运营第 18 天 / T+18; 标价 $0.70/$1.40; AA 智力 43.73; 被 DeepSeek 严格支配)",
+      "vendor": "StepFun",
+      "eventType": "commercial_model_steady_state",
+      "priceOrQuota": "bash.70 input / .40 output",
+      "status": "Commercial Production Active",
+      "impactAssessment": "阶跃星辰 Step-5 商业化运营进入第 18 天 (Day 18 / T+18)。600B MoE，标价 $0.70/$1.40，AA 智力 43.73 分，在成本前沿上被 DeepSeek V4.1 Flash 严格支配，不构成前沿威胁。",
+      "model": "stepfun-step-5-preview",
+      "provider": "StepFun",
+      "modelOrPlan": "stepfun-step-5-preview",
+      "category": "commercial_model_steady_state",
+      "event_type": "commercial_model_steady_state",
+      "publishedPrice": "bash.70 / .40 per Mtok",
+      "quotaOrLimits": "标准企业与开发者配额",
+      "activeStatus": "开放运营中",
+      "satisfiesInclusion": false,
+      "rejectionReason": "被同等能力且成本更低的 DeepSeek V4.1 Flash 完全支配，不满足前沿收录条件。",
+      "sourceUrl": "https://platform.stepfun.com",
+      "source_url": "https://platform.stepfun.com",
+      "impactOnFrontier": "处于前沿包络内，不构成威胁。",
+      "impact_on_frontier": "无前沿冲击。",
+      "factSummary": "Step-5 Preview 商用运行第 18 天，各向异性 MoE 表现稳定，但在成本前沿上被 DeepSeek 严格支配。",
+      "currentRepoState": "research-only; evaluated candidate archived.",
+      "recommendation": "maintain_p2_tracking",
+      "priority": "P2 (重点国内 MoE 观察)",
+      "rationale": "表现稳健但被现有低价王者紧紧压制在包络内部。"
+    }
+  ],
+  "items": [
+    {
+      "model": "alibaba-qwen-4-preview",
+      "vendor": "Alibaba Qwen",
+      "signalType": "frontier_model_official_teaser",
+      "source": "Qwen Official Social Media & Apsara Conference",
+      "url": "https://qwenlm.github.io/blog/qwen4-teaser",
+      "priceOrQuota": "预热阶段 (待定)",
+      "impactAnalysis": "阿里巴巴 Qwen 团队官方神秘预告 \"The becoming begins\" 进入第 7 天，确认 Qwen 4 四阶矩阵与 1M 上下文，开源生态（vLLM、qwen-code）全面筹备；目前处于预热阶段，权重与标价尚未正式公开，对当前前沿无即时冲击，列为未来 P1 重点盯防变量。",
+      "frontierThreatLevel": "Potential Major Threat (一旦发布可能冲击前沿，当前处于预热阶段无即时威胁)"
+    },
+    {
+      "model": "openai-funding-11b-1.25t",
+      "vendor": "OpenAI",
+      "signalType": "corporate_financing_first_close",
+      "source": "OpenAI Official & Financial Media Disclosures",
+      "url": "https://openai.com/news",
+      "priceOrQuota": "1B First Close / .25T Valuation",
+      "impactAnalysis": "OpenAI 敲定 110 亿美元巨额融资首轮交割，估值达 1.25 万亿美元；算力与数据中心扩张可持续性增强；ChatGPT Pro 20x 稳态运行进入第 14 天（Day 14 / T+13），chatgpt_pro_20x 节点稳固。",
+      "frontierThreatLevel": "None (资本与基础设施事件，无前沿威胁)"
+    },
+    {
+      "model": "openai-gpt-6-cyber",
+      "vendor": "OpenAI",
+      "signalType": "specialized_frontier_model_release",
+      "source": "OpenAI Official Blog & Red Team Announcements",
+      "url": "https://openai.com/index/gpt-6-cyber",
+      "priceOrQuota": "受限准入 (Daybreak Red 审核制接入)",
+      "impactAnalysis": "OpenAI 于 11-05 推出专精网络安全攻防前沿模型 GPT-6 Cyber。ExploitGym 跃升，挖掘 81 个 Firefox 0-day 与复现 1724 个内核漏洞。仅向审核防御团队开放，非公开通用 API，不进入通用前沿，无前沿威胁。",
+      "frontierThreatLevel": "None (专精攻防垂直模型，未进通用前沿)"
+    },
+    {
+      "model": "chatgpt-business-remix",
+      "vendor": "OpenAI",
+      "signalType": "subscription_feature_rollout",
+      "source": "OpenAI Product Release Notes",
+      "url": "https://help.openai.com/en/articles/chatgpt-remix",
+      "priceOrQuota": "包含在 ChatGPT Business (0/mo) 与 Enterprise 中",
+      "impactAnalysis": "ChatGPT 推出 Remix 协同编辑功能，允许团队成员在对话中派生新版本。纯产品交互增强，未改变 API 或独立订阅点采用值，对前沿无冲击。",
+      "frontierThreatLevel": "None (产品交互功能升级，无前沿威胁)"
+    },
+    {
+      "model": "anthropic-inference-hooks-ga",
+      "vendor": "Anthropic",
+      "signalType": "enterprise_security_feature_ga",
+      "source": "Anthropic Official Announcement",
+      "url": "https://www.anthropic.com/news/enterprise-inference-hooks",
+      "priceOrQuota": "包含于 Enterprise 协议中",
+      "impactAnalysis": "Anthropic Inference Hooks 全面 GA，允许统一配置 Chat、Code 与 Cowork 服务端守卫；Claude Security Center 推进。增强企业合规粘性，不改变 Token 标价，对前沿无冲击。",
+      "frontierThreatLevel": "None (企业治理功能，无前沿威胁)"
+    },
+    {
+      "model": "anthropic-agent-memory-dreaming",
+      "vendor": "Anthropic",
+      "signalType": "technical_research_paper",
+      "source": "Anthropic Research Blog",
+      "url": "https://www.anthropic.com/research/agent-memory",
+      "priceOrQuota": "N/A (学术论文)",
+      "impactAnalysis": "Anthropic 发布智能体空闲时间 \"Dreaming\" 记忆整合研究，阐述利用闲暇计算整理历史日志与优化表征架构。属于理论研究，对商业 API 前沿无即时冲击。",
+      "frontierThreatLevel": "None (前沿研究论文，无前沿威胁)"
+    },
+    {
+      "model": "moonshot-kimi-k3.1-pro-bedrock",
+      "vendor": "Moonshot AI / AWS Bedrock",
+      "signalType": "cloud_hyperscaler_platform_launch",
+      "source": "Amazon Web Services Official Blog",
+      "url": "https://aws.amazon.com/blogs/aws/kimi-k3-1-pro-now-available-on-amazon-bedrock",
+      "priceOrQuota": "AWS Bedrock 标准按量计费 (.00/.00/Mtok 级)",
+      "impactAnalysis": "Kimi K3.1 Pro 权重开源稳态推进进入第 9 天 (Day 9 / T+8)，AWS Bedrock、微软 Foundry 与 NVIDIA NIM 同步纳管；2.3TB 显存硬件壁垒阻碍普通自建，官方 API 标价 $1.00/$3.00 落入基线包络内被支配，未破防前沿。",
+      "frontierThreatLevel": "None (渠道扩展，定价在包络内无威胁)"
+    },
+    {
+      "model": "deepseek-api-growth-nov2026",
+      "vendor": "DeepSeek",
+      "signalType": "platform_scale_milestone_and_clarification",
+      "source": "DeepSeek Platform News",
+      "url": "https://platform.deepseek.com/news",
+      "priceOrQuota": "DAU 1.55M+ / Daily Tokens 92T+",
+      "impactAnalysis": "DeepSeek 官方数据证实日活突破 155 万与日耗 92 万亿 Token，重申暂无 V5 发布，主线稳定捍卫单价前沿 #2。",
+      "frontierThreatLevel": "None (底座坚固，无前沿威胁)"
+    },
+    {
+      "model": "google-gemini-omni-1.2-flash",
+      "vendor": "Google",
+      "signalType": "multimodal_model_ga_and_price_cut",
+      "source": "Google Keyword Blog",
+      "url": "https://blog.google/technology/ai/gemini-omni-flash-ga",
+      "priceOrQuota": "~bash.07 / 秒生成 (15s 视频约 .05)",
+      "impactAnalysis": "Gemini Omni 1.2 Flash 视频生成 GA，时长增至 15 秒并支持对话式局部编辑，720p 降价 30% 至 ~bash.07/秒。独立多模态计费，不涉及基线长程代码与通用任务成本计算，对前沿无影响。",
+      "frontierThreatLevel": "None (多模态独立计费，无前沿威胁)"
+    },
+    {
+      "model": "anthropic-claude-personal-finance",
+      "vendor": "Anthropic",
+      "signalType": "subscription_feature_beta",
+      "source": "Anthropic Official Blog",
+      "url": "https://www.anthropic.com/news/personal-finance-beta",
+      "priceOrQuota": "包含在 Pro (0) / Max (00) / Ultra (00) 订阅中",
+      "impactAnalysis": "Anthropic 推出个人财务洞察 Beta，METR 报告披露内部研发提速超 90%，全新 Usage Policy 今日 11-12 正式生效，Claude Max 20x 稳固占据单价前沿 #1。",
+      "frontierThreatLevel": "None (订阅增值特性，无前沿威胁)"
+    },
+    {
+      "model": "deepseek-search-and-fetch-api",
+      "vendor": "DeepSeek",
+      "signalType": "tool_api_commercial_billing_active",
+      "source": "DeepSeek API Documentation",
+      "url": "https://api-docs.deepseek.com/guides/search",
+      "priceOrQuota": "bash.75 / 1,000 requests",
+      "impactAnalysis": "DeepSeek Search API 与 Fetch API 商业计费进入第 12 天稳态运行 ($0.75/1k requests)；独立外部工具调用不计入模型 Token 消耗，模型基线定价完全不受影响，OpenCode Go 稳坐单价前沿 #2。",
+      "frontierThreatLevel": "None (独立外部工具费用，无前沿威胁)"
+    },
+    {
+      "model": "tencent-hy4",
+      "vendor": "Tencent",
+      "signalType": "frontier_model_official_launch",
+      "source": "Tencent Cloud Official Announcement & OpenRouter",
+      "url": "https://cloud.tencent.com/product/hunyuan",
+      "priceOrQuota": "bash.834 / .501 (OpenRouter), bash.417 / bash.751 (TokenHub)",
+      "impactAnalysis": "腾讯混元 Hy4 770B MoE 运行第 9 天 (Day 9 / T+8)，具备原生多模态视觉理解与长程能力，OpenRouter 标价 $0.834/$1.501，AA 录得约 35 分，性价比在现有前沿包络之内，不构成前沿威胁。",
+      "frontierThreatLevel": "None (处于现有前沿包络内，无前沿威胁)"
+    },
+    {
+      "model": "mistral-large-4-preview",
+      "vendor": "Mistral AI",
+      "signalType": "open_weights_absorption",
+      "source": "Mistral AI Official Blog & Hugging Face",
+      "url": "https://mistral.ai/news/mistral-large-4",
+      "priceOrQuota": ".68 / .09 per Mtok",
+      "impactAnalysis": "Mistral Large 4 Preview (Le Chonk 1.05T MoE) 运行第 15 天 (Day 15 / T+14)，开源权重展示 133-agent 协作修复漏洞，AA 智力 38.38 分且官方 API $1.68/$5.09，被基线王者绝对支配，未进前沿。",
+      "frontierThreatLevel": "None (处于现有包络内部，无前沿威胁)"
+    },
+    {
+      "model": "minimax-m3.1-flash",
+      "vendor": "MiniMax",
+      "signalType": "efficient_agentic_model_evaluation",
+      "source": "MiniMax Official & ModelScope",
+      "url": "https://www.minimaxi.com/news/m3-1-flash",
+      "priceOrQuota": "bash.15 / bash.60 per Mtok",
+      "impactAnalysis": "MiniMax M3.1 Flash 专精 Computer Use 与 70% 降本，AA 智力 42.71 分。但在综合性价比上仍被 DeepSeek V4.1 Flash (bash.14/bash.28, AA 45.10) 压制，不改变前沿。",
+      "frontierThreatLevel": "None (落入现有包络内部，无前沿威胁)"
+    },
+    {
+      "model": "cursor-ide-features-nov2026",
+      "vendor": "Cursor",
+      "signalType": "ide_tooling_update",
+      "source": "Cursor Official Changelog",
+      "url": "https://www.cursor.com/changelog",
+      "priceOrQuota": "包含在 Pro (0/mo) / Business (0/mo) 订阅中",
+      "impactAnalysis": "推出 Grok Voice 双向实时语音写码与 Build Live Apps 一键分享，属于开发交互革新，未引入破坏性 Token 定价，对前沿无冲击。",
+      "frontierThreatLevel": "None (IDE 交互功能，无前沿威胁)"
+    },
+    {
+      "model": "github-copilot-code-review-api",
+      "vendor": "GitHub / Microsoft",
+      "signalType": "platform_governance_and_lifecycle",
+      "source": "GitHub Official Changelog",
+      "url": "https://github.blog/changelog",
+      "priceOrQuota": "Copilot Enterprise 席位费",
+      "impactAnalysis": "GitHub GA 发布 Copilot 代码评审 API；通告 11-16 退役旧版 Claude Opus 4.8/5 与 GPT-5.6 Terra 端点，倒计时进入 T-4 天；订阅采用规则保持稳定。",
+      "frontierThreatLevel": "None (生命周期治理，无前沿威胁)"
+    },
+    {
+      "model": "liquid-lfm3-1.7b",
+      "vendor": "LiquidAI / OpenRouter",
+      "signalType": "niche_model_listing",
+      "source": "OpenRouter Model Catalog",
+      "url": "https://openrouter.ai/models/liquidai/lfm3-1.7b",
+      "priceOrQuota": "bash.08 / bash.20 per Mtok",
+      "impactAnalysis": "LiquidAI 1.7B 微型模型上线 OpenRouter，标价低廉但参数与智力远低于通用前沿门槛，无法对前沿产生任何冲击。",
+      "frontierThreatLevel": "None (微型模型，无前沿威胁)"
+    },
+    {
+      "model": "stepfun-step-5-preview",
+      "vendor": "StepFun",
+      "signalType": "commercial_model_steady_state",
+      "source": "StepFun Platform Documentation",
+      "url": "https://platform.stepfun.com",
+      "priceOrQuota": "bash.70 / .40 per Mtok",
+      "impactAnalysis": "阶跃星辰 Step-5 商业化运营进入第 18 天 (Day 18 / T+18)，600B MoE，标价 $0.70/$1.40，AA 智力 43.73 分，在成本前沿上被 DeepSeek V4.1 Flash 严格支配，不构成前沿威胁。",
+      "frontierThreatLevel": "None (处于前沿包络内，无前沿威胁)"
+    },
+    {
+      "model": "google-gemini-4-carbon-high",
+      "vendor": "Google",
+      "signalType": "sota_benchmark_leader_steady_state",
+      "source": "Artificial Analysis Intelligence Index v5.0.1",
+      "url": "https://artificialanalysis.ai/intelligence-index",
+      "priceOrQuota": ".00 / 0.00 per Mtok (Cached bash.10)",
+      "impactAnalysis": "Google Gemini 4 Carbon High high-thinking 持续以 59.43 分独占 AA 智力总榜全球第 1，扩大 GA 商用覆盖（优惠期 $2/$10 维持至 11-30，倒计时 T-18 天），成本与单价前沿终极天花板稳固。",
+      "frontierThreatLevel": "Frontier Leader (成本与单价前沿巅峰王者)"
+    },
+    {
+      "model": "claude-opus-5.5-max",
+      "vendor": "Anthropic",
+      "signalType": "frontier_leader_steady_state",
+      "source": "Artificial Analysis Intelligence Index v5.0.1",
+      "url": "https://artificialanalysis.ai/intelligence-index",
+      "priceOrQuota": "Claude Max 20x 订阅 (00/mo) / API 标价",
+      "impactAnalysis": "Claude Opus 5.5 max 凭借 57.62 分高分与 Claude Max 20x 优异折算，牢固掌控单价前沿 #1 统治地位，无任何入局者能对其构成挑战。",
+      "frontierThreatLevel": "Frontier Leader (单价前沿绝对统治者)"
+    }
+  ],
+  "benchmarkUpdates": {
+    "aaIntelligenceIndex": {
+      "frameworkVersion": "v5.0.1",
+      "pillars": [
+        "Knowledge Work (AA-Briefcase v1.1, AutomationBench-AA, GDP.pdf) - 25%",
+        "Coding (FrontierCode 2.0, Terminal-Bench 4.0) - 25%",
+        "Science (Terminal-Bench-Science 0.1, CritPt v2 Hard Subset) - 25%",
+        "General Knowledge & Reasoning (AA-Omniscience v1.1, HLE-Diamond) - 25%"
+      ],
+      "methodology": "60% private evaluation datasets to prevent contamination; strict execution verification environments.",
+      "currentRankings": [
+        {
+          "rank": 1,
+          "model": "Google Gemini 4 Carbon (High-thinking)",
+          "score": 59.43,
+          "status": "SOTA Ceiling"
+        },
+        {
+          "rank": 2,
+          "model": "Anthropic Claude Opus 5.5 max",
+          "score": 57.62,
+          "status": "Frontier Leader"
+        },
+        {
+          "rank": 3,
+          "model": "OpenAI GPT-6 Astra",
+          "score": 56.88,
+          "status": "Frontier Contender"
+        },
+        {
+          "rank": 4,
+          "model": "OpenAI GPT-6.1 Sol (High-effort)",
+          "score": 56.12,
+          "status": "Frontier Contender"
+        },
+        {
+          "rank": 5,
+          "model": "Moonshot AI Kimi K3.1 Pro (max-effort)",
+          "score": 55.09,
+          "status": "Top Open-Weights (Cloud)"
+        },
+        {
+          "rank": 6,
+          "model": "Anthropic Claude Sonnet 5.5",
+          "score": 54.71,
+          "status": "Frontier Core"
+        },
+        {
+          "rank": 7,
+          "model": "DeepSeek V4.1 Flash (1017-thinking)",
+          "score": 45.1,
+          "status": "Pareto Efficient King"
+        },
+        {
+          "rank": 8,
+          "model": "StepFun Step-5 Preview",
+          "score": 43.73,
+          "status": "Commercial MoE"
+        },
+        {
+          "rank": 9,
+          "model": "MiniMax M3.1 Flash",
+          "score": 42.71,
+          "status": "Agentic MoE"
+        },
+        {
+          "rank": 10,
+          "model": "Mistral Large 4 Preview (Le Chonk)",
+          "score": 38.38,
+          "status": "Open Weights MoE"
+        },
+        {
+          "rank": 11,
+          "model": "Tencent Hy4",
+          "score": 35.15,
+          "status": "Domestic Multimodal MoE"
+        }
+      ]
+    },
+    "aaCodingAgentIndex": {
+      "status": "Stable",
+      "leader": "Google Gemini 4 Carbon (High) at 59.0, followed by Claude Opus 5.5 at 57.8, DeepSeek V4.1 Flash at 46.31"
+    },
+    "aaTerminalBench4": {
+      "status": "Stable",
+      "notes": "Terminal-Bench 4.0 remains the gold standard for multi-day CLI and agent harness workflows."
+    },
+    "aaDecisionIndex": {
+      "status": "Stable",
+      "notes": "Claude 5.5 and GPT-6 Astra dominate strategic decision-making and tool-call precision."
+    },
+    "aaPerformanceBenchmarking": {
+      "version": "v3.0.0",
+      "metricsTracked": "Median End-to-End Latency, Output Tokens Per Second (OTPS), Time to First Token (TTFT), Blended Cost Per Task."
+    }
+  },
+  "providerUpdates": {
+    "Alibaba_Qwen": {
+      "headline": "Qwen 4 官方神秘预热 \"The becoming begins\" 进入第 7 天，四层模型矩阵与 1M 上下文生态预研就绪",
+      "details": "阿里巴巴 Qwen 团队发布 \"The becoming begins\" 官方预告进入第 7 天，社区高度关注 Qwen 4 发布窗口。Apsara 确认其涵盖 Qwen4-Max、Plus、Flash 与 27B 四级阶梯阵容，支持 1M 上下文与低/中/高思维档位。vLLM、SGLang 与开源生态工具链（qwen-code）全面展开预研适配。官方重申坚持全量开源策略；目前权重尚未正式释出，标价待定，列为 P1 最核心潜在冲击变量保持密切雷达盯防。"
+    },
+    "OpenAI": {
+      "headline": "OpenAI 敲定 110 亿美元巨额融资首轮交割，持续推进全球算力中心建设与 ChatGPT Pro 20x 稳态第 14 天",
+      "details": "OpenAI 与投资方确认以 1.25 万亿美元估值完成约 110 亿美元首轮融资交割，CFO 明确表示算力基建开支不受外部政治周期影响，将加速全球超大规模数据中心建设；GPT-6 Cyber 网络安全专用模型在 Daybreak Red 受控框架下开展针对 0-day 与高危漏洞的防御性验证，不向普通 API / ChatGPT 开放；ChatGPT Remix 协作功能稳步推行；ChatGPT Pro 20x 稳态运行进入第 14 天（Day 14 / T+13），chatgpt_pro_20x 节点稳如泰山。"
+    },
+    "Anthropic": {
+      "headline": "Anthropic 全新 Usage Policy 今日 11-12 正式生效，Inference Hooks 全面 GA，Claude 纳管欧盟数据边界",
+      "details": "Anthropic 全新 Usage Policy 今日 2026-11-12 正式生效（Effective Today），覆盖 Claude.ai、Claude Code、API 与企业端，确立三层治理框架（通用禁止项、高危行业与 Agentic 规范），未对模型标价与订阅额度产生任何影响；面向企业的 Inference Hooks 正式 GA，统一管理控制台；个人财务 Personal Finance in Claude (Beta) 正式向美区高级订阅开放；METR 驻场安全报告证实内部 90%+ 代码由模型自主研发加速；微软宣布 Claude 全面入驻 Copilot 欧盟数据边界；Claude Max 20x 牢牢占据单价前沿 #1。"
+    },
+    "Google": {
+      "headline": "Gemini 4 Carbon High 59.43 分领跑全球 SOTA，Carbon GA 扩圈商用，Argon 优惠 T-18 倒计时",
+      "details": "Gemini 4 Carbon High high-thinking 持续以 59.43 分独占 AA 智力总榜全球第 1，且扩大 GA 商用覆盖（优惠期 $2/$10 维持至 11-30，倒计时进入 T-18 天），成本与单价前沿终极天花板稳固；Gemini Omni 1.2 Flash 视频生成 GA 商用且 720p 降价 30%（~$0.07/秒）平稳运行；Gemini 4 Argon Fairwind 优惠截止进入倒计时 T-18 天（至 11-30）；Google Workspace / Vertex AI 多模态生态稳健推进。"
+    },
+    "DeepSeek": {
+      "headline": "DeepSeek API 日活突破 155 万与日耗 92 万亿 Token，官方明确澄清暂无 V5 发布，主线坚不可摧",
+      "details": "DeepSeek Harness 官方数据公布，API 日活跃用户突破 155 万，日消耗 Token 规模突破 92 万亿，连续创下历史新高；官方正式澄清社区关于 V5 即将发布的传闻，明确表示目前绝无发布 V5 的计划，主线依然是全力保障与优化 V4-Pro 与 V4.1-Flash 的高并发、低延迟体验，V5 属于 2027 年的长期研发蓝图；Search API & Fetch API 商业化计费进入第 12 天稳态运行 ($0.75/1k requests)；OpenCode Go / GOAT 采用值稳固捍卫单价前沿 #2。"
+    },
+    "Moonshot_Kimi": {
+      "headline": "Kimi K3.1 Pro 2.8T MoE 开源权重进入第 9 天，AWS Bedrock 与微软 Foundry 持续深化",
+      "details": "Kimi K3.1 Pro 权重开源稳态推进进入第 9 天 (Day 9 / T+8)，AWS 官方宣布其正式上线 Amazon Bedrock，微软 Foundry 与 NVIDIA NIM 同步纳管；社区关于 8x B300 / 2.3TB 显存自建门槛的讨论持续发酵，官方 API 标价 $1.00/$3.00 保持稳定，未出现破坏性低价，在现有前沿包络内被基线王者绝对支配。"
+    },
+    "Tencent": {
+      "headline": "腾讯混元 Hy4 770B MoE 平稳运行第 9 天，原生视觉与 Computer-Use 表现稳健",
+      "details": "混元 Hy4 770B MoE 运行第 9 天（Day 9 / T+8），OpenRouter 标价维持 $0.834/$1.501，内部 TB4 44.4，AA 综合智力约 35 分，具备原生视觉理解与长程 Computer-Use 能力，性价比在现有前沿包络之内，不构成前沿威胁。"
+    },
+    "Mistral": {
+      "headline": "Mistral Large 4 Preview 开源吸收进入第 15 天，133-agent 协作修复漏洞演示稳态",
+      "details": "Mistral Large 4 Preview Le Chonk 1.05T MoE 开源权重平稳运行进入第 15 天（Day 15 / T+14），133-agent 协作修复漏洞演示展现多智能体代码修复实力；官方 API 标价 $1.68/$5.09，AA 智力 38.38 分，被基线王者严格支配，未进前沿。"
+    },
+    "MiniMax": {
+      "headline": "MiniMax M3.1 Flash 专精 Computer Use 与 70% 降本，综合表现仍落入包络之内",
+      "details": "MiniMax M3.1 Flash 优化长程代码与 Computer Use，推理速度提升 3 倍，成本削减 70%，标价 bash.15/bash.60。在 AA 智力榜上录得 42.71 分。在综合任务上仍被 DeepSeek V4.1 Flash (bash.14/bash.28, AA 45.10) 与 Claude Haiku 5.5 压制，不改变现有基线前沿。"
+    },
+    "GitHub_Microsoft": {
+      "headline": "GitHub Copilot 代码评审 API 全面 GA，11-16 旧模型退役进入 T-4 天倒计时",
+      "details": "GitHub 官方正式 GA 推出 Copilot 代码评审 REST 与 GraphQL API，支持自动化审查与拉取请求反馈；同时通告将于 11-16 正式退役旧版 Claude Opus 4.8/5 与 GPT-5.6 Terra 端点，倒计时进入 T-4 天；Copilot Fusion 多模型路由机制稳步推进，Copilot 采用规则保持稳定。"
+    },
+    "Cursor": {
+      "headline": "Cursor 推出 Grok Voice 实时双向语音通话与 Build Live Apps 公网一键分享功能",
+      "details": "Cursor 推出由 Grok Voice 驱动的实时双向语音通话，支持在 Agents 窗口、网页与 iOS 客户端语音指导智能体写码；并新增 Build Live Apps 功能，支持在 IDE 内直接部署并在公网分享演示。属于 IDE 工具链体验革新，未引入破坏性 Token 定价，对前沿无冲击。"
+    },
+    "CommandCode": {
+      "headline": "Command Code GOAT 官方口径维持 Up to 00，研究隔离与额度平稳",
+      "details": "官方 /pricing 维持 Up to 00/mo 额度口径，与既有 research 归档一致，未发布新定价档位。"
+    },
+    "Meta_OpenRouter": {
+      "headline": "OpenRouter 收录突破 600 款模型，5.5% 充值手续费稳定，LiquidAI LFM3-1.7B 上线",
+      "details": "OpenRouter 平台收录模型突破 600 款，Standard 充值费 5.5% 稳定，新增 LiquidAI LFM3-1.7B 等微型端点，DeepSeek V4.1 Flash 与 GPT-6 Luna 稳居平台调用量前列。"
+    },
+    "StepFun": {
+      "headline": "阶跃星辰 Step-5 Preview 600B MoE 商用运营第 17 天，标价 $0.70/$1.40 稳态",
+      "details": "阶跃星辰 Step-5 商业化运营第 17 天（Day 17 / T+17），标价 $0.70/$1.40，AA 智力 43.73，在成本前沿上被 DeepSeek V4.1 Flash 严格支配。"
+    },
+    "Zhipu_GLM": {
+      "headline": "智谱 GLM-5.3 与 Flash 版本高并发平稳运行，GLM Coding Plan 维持高吸引力",
+      "details": "GLM-5.3 bash.40/bash.40 与 GLM-5.3-Flash bash.15/bash.50 运行稳健，GLM Coding Plan 5/月提供强大本地 NPU 推理集群支撑，未改动 API 标价。"
+    },
+    "xAI": {
+      "headline": "xAI Grok 4.7 与 SuperGrok Heavy 额度平稳运行，Grok Voice 赋能 Cursor 生态",
+      "details": "Grok 4.7 维持 /mo 极低折算点；Grok Voice 技术向 Cursor 等外部开发者工具赋能，模型本身标价无变化。"
+    }
+  },
+  "subscriptionAndPlatformUpdates": {
+    "qwen4Teaser": {
+      "status": "Pre-release Teaser & Architecture Preview (Day 7)",
+      "description": "Qwen 4 官方预热进入第 7 天，四级阶梯矩阵与 1M 上下文确认，生态预研全面展开，权重与标价仍未公开，列为未来 P1 重点盯防变量。"
+    },
+    "openaiFunding": {
+      "status": "First Close Completed (1B at .25T Valuation)",
+      "description": "OpenAI 获得 110 亿美元巨额资金注入，强化全球数据中心资本开支，模型定价稳定。"
+    },
+    "kimiBedrock": {
+      "status": "Live on Amazon Bedrock (Day 9 / T+8)",
+      "description": "AWS Bedrock 上线 Kimi K3.1 Pro，微软 Foundry 纳管，权重开源第 9 天，2.3TB 显存壁垒阻挡本地平民化部署，官方标价保持基线包络内支配。"
+    },
+    "chatgptPro": {
+      "status": "Stable Post-Crisis Steady-State (Day 14 / T+13)",
+      "description": "ChatGPT Pro 200/100/500 稳态运行进入第 14 天，20x 配额与 Work/Codex 翻倍额度安如泰山，chatgpt_pro_20x 节点完全稳固。"
+    },
+    "claudeUltraMax": {
+      "status": "Dominant Leader & New Usage Policy Effective Today",
+      "description": "Claude Max 20x 牢固占据单价前沿 #1；全新 Usage Policy 今日 11-12 正式生效（Effective Today），Personal Finance Beta 与企业 Inference Hooks GA 稳健扩圈。"
+    },
+    "deepseekSearchFetch": {
+      "status": "Commercial Metering Active (Day 12)",
+      "description": "Search & Fetch API 商业计费平稳运行进入第 12 天 ($0.75/1k requests)，独立工具调用计费完全不计入模型 Token 消耗，模型主线端点定价保持稳定。"
+    },
+    "googleGeminiOmniFlash": {
+      "status": "GA Commercial Live",
+      "description": "Gemini Omni 1.2 Flash 视频生成 GA，生成时长 15 秒并降价 30% 至 ~bash.07/秒，独立多模态计费。"
+    },
+    "googleTurkeyIap": {
+      "status": "Active Monitoring (Argon Fairwind T-18 Countdown)",
+      "description": "Gemini 4 Argon Fairwind 优惠截止进入倒计时 T-18 天 (至 11-30)，届时可能触发标价变动，目前继续维持下架。"
+    },
+    "cursor": {
+      "status": "Active Production Rollout",
+      "description": "Cursor 推出 Grok Voice 实时语音通话与 Build Live Apps 公网一键分享功能，订阅费率不变。"
+    },
+    "githubCopilot": {
+      "status": "Code Review API GA & Model Retirement Countdown (T-4)",
+      "description": "Copilot 代码评审 API 正式 GA，通告 11-16 退役旧版模型端点进入倒计时 T-4 天，Fusion 机制平稳推进。"
+    },
+    "windsurfDevin": {
+      "status": "Cognition Desktop Standardization",
+      "description": "Devin Desktop Agent Command Center 布局演进，Devin Local 承接 Cascade 工作流。"
+    },
+    "tencentHy4": {
+      "status": "Official Live (Day 9 / T+8)",
+      "description": "770B MoE 旗舰平稳运行第 9 天，具备原生视觉理解与 Computer-Use，OpenRouter 标价 $0.834/$1.501，性价比在现有前沿包络之内。"
+    },
+    "mistralLeChonk": {
+      "status": "Open Weights Active (Day 15 / T+14)",
+      "description": "Mistral Large 4 Preview (Le Chonk 1.05T MoE) 运行第 15 天，开源权重展示 133-agent 协作修复漏洞，AA 智力 38.38 分，未进前沿。"
+    },
+    "minimaxMPlan": {
+      "status": "Commercial Active",
+      "description": "M3.1 Flash bash.15/bash.60 专精 Computer Use 与 70% 降本，综合表现仍落入包络之内。"
+    },
+    "openCode": {
+      "status": "Frontier #2 Anchor",
+      "description": "OpenCode Go / OpenDesign 渠道稳定维持单价前沿 #2 核心锚点。"
+    },
+    "commandCodeGoat": {
+      "status": "Research-only",
+      "description": "Up to 00/mo 额度稳定，维持研究级隔离。"
+    }
+  },
+  "toolAndIDEPlans": {
+    "cursor": "Cursor 推出 Grok Voice 实时双向语音写码与 Build Live Apps 一键分享，订阅与模型计费口径稳定。",
+    "githubCopilot": "GitHub Copilot GA 发布代码评审 API 并公布 11-16 旧模型退役计划 (T-4 倒计时)，前沿稳固。",
+    "windsurfDevin": "Devin Desktop Agent Command Center 布局演进，Devin Local 承接 Cascade 工作流。",
+    "openCode": "OpenCode Go 渠道稳定维持单价前沿 #2 核心锚点。",
+    "commandCodeGoat": "Command Code GOAT 维持既有 research 归档口径。",
+    "factoryDroid": "Factory Droid 持续维持多模型路由企业定制部署。"
+  },
+  "communitySignals": [
+    {
+      "platform": "Reddit r/LocalLLaMA",
+      "sentiment": "High Excitement on Qwen 4 Teaser Day 7 & Weight-Space Programming",
+      "summary": "阿里巴巴 Qwen 团队发布 \"The becoming begins\" 预告进入第 7 天，LocalLLaMA 板块对 Qwen4-27B 与 Qwen4-Flash 开源权重发布的期待达到高潮；此外，关于神经权重空间编程与多 Agent 间直接传递 KV-Cache 节省 Token 的技术讨论持续发酵。"
+    },
+    {
+      "platform": "Reddit r/OpenAI & r/ClaudeAI",
+      "sentiment": "Supportive of Funding Stability & Product Iterations",
+      "summary": "OpenAI 110 亿美元巨额融资首轮交割给社区带来充沛信心，ChatGPT Remix 获得商业用户好评；Anthropic 全新 Usage Policy 今日 11-12 正式生效，社区合规讨论活跃，Claude Opus 5.5 / Sonnet 5.5 的统治力依然坚固。"
+    },
+    {
+      "platform": "LINUX DO & V2EX",
+      "sentiment": "Intense Discussion on Kimi K3.1 Pro Cloud Hosting & Local VRAM Realities",
+      "summary": "国内极客社区针对 Kimi K3.1 Pro 展开深度测评，确认 8x B300 / 2.3TB 显存让个人本地部署不可行，主要依赖 AWS Bedrock 与官方 API；DeepSeek 澄清无 V5 获得用户普遍理解与对 V4.1-Flash 稳定性的赞誉。"
+    },
+    {
+      "platform": "X/Twitter & Hacker News",
+      "sentiment": "Focused on Agent Security, Code Review APIs & SOTA Dominance",
+      "summary": "Hacker News 热议 GitHub Copilot 代码评审 API GA 与旧模型退役时间表 (T-4 倒计时)；X 平台热议 Gemini 4 Carbon High 59.43 分领跑 SOTA，以及 OpenAI GPT-6 Cyber 在 ExploitGym 的受控演练。"
+    }
+  ],
+  "coreConclusionsForLead": [
+    "【核心新发 1：阿里巴巴 Qwen 4 官方预热进入第 7 天，四阶矩阵与 1M 上下文披露，重申全开源承诺】阿里巴巴 Qwen 团队发布官方预告 \"The becoming begins\" 进入第 7 天，Qwen 4 进入发布窗口，Apsara 确认 Qwen4-Max/Plus/Flash/27B 阵容及 1M 上下文，开源生态工具链（vLLM、SGLang、qwen-code）加紧适配。目前处于预热阶段，尚未开放下载与定价，对当前基线前沿无即时冲击，列为未来最核心的 P1 潜在颠覆变量跟踪。",
+    "【资本与基建 2：OpenAI 敲定 110 亿美元融资首轮交割（估值 1.25 万亿美元），ChatGPT Pro 20x 稳态运行进入第 14 天】OpenAI 巨额融资交割完成后效应发酵，算力扩张可持续性确立；ChatGPT Remix 稳步推行，GPT-6 Cyber 稳步推进 Daybreak Red 受限防御验证；ChatGPT Pro 20x 翻倍配额稳态运行进入 Day 14 / T+13，chatgpt_pro_20x 节点稳如泰山。",
+    "【企业与合规 3：Anthropic 全新 Usage Policy 今日 11-12 正式生效，Inference Hooks GA 与 Personal Finance Beta 稳步推进】Anthropic 全新 Usage Policy 今日（2026-11-12）正式生效（Effective Today），确立三层治理框架，未对模型标价与订阅产生变动；企业级 Inference Hooks 全面 GA，统一管控 Chat/Code/Cowork；Personal Finance Beta 面向美区订阅开放；METR 证实内部 90%+ 代码由模型自主研发写码加速；基线 Claude Max 20x 牢牢统治单价前沿。",
+    "【云端扩展 4：月之暗面 Kimi K3.1 Pro 权重开源稳态运行进入第 9 天，2.3TB 显存硬件壁垒确认】AWS 宣布 Kimi K3.1 Pro Highspeed 正式入驻 Amazon Bedrock，微软 Foundry 与 NVIDIA NIM 同步纳管；社区实测确认 8x B300 / 2.3TB 显存自建门槛，官方 API 标价 $1.00/$3.00 保持稳定，未出现破坏性低价，在现有前沿包络内被基线王者绝对支配。",
+    "【底座规模 5：DeepSeek API 日活突破 155 万与日耗 92 万亿 Token 创新高，官方明确澄清暂无 V5 发布计划】官方澄清目前无 V5 发布，主线仍为 V4-Pro 与 V4.1-Flash，V5 规划 2027 年；Search & Fetch 独立计费商业平稳运行进入第 12 天（$0.75/1k requests），完全不影响模型 Token 标价；OpenCode Go 采用值稳定捍卫单价前沿 #2。",
+    "【多模态新政 6：Google Gemini 4 Carbon High 59.43 分独占智力总榜 SOTA #1，11-10 扩大 GA 商用覆盖】Gemini 4 Carbon High 持续统治成本前沿终极天花板，且扩大 GA 商用；优惠期 $2/$10 维持至 11-30（倒计时 T-18 天）；Gemini Omni 1.2 Flash 视频生成降价属于多模态独立计费，不涉及通用代码前沿；Argon Fairwind 优惠截止进入 T-18 天倒计时（至 11-30）。",
+    "【包络内厂商 7：Tencent Hy4 770B MoE 与 Mistral Large 4 Le Chonk 1.05T MoE 稳态运行，均未破防前沿】Tencent Hy4（$0.834/$1.501，AA 约 35 分，运行第 9 天）与 Mistral Large 4（$1.68/$5.09，AA 38.38 分，运行第 15 天）均被基线王者绝对支配；MiniMax M3.1 Flash（$0.15/$0.60）专精 Computer Use 与 H3-Image 多模态亦在包络之内。",
+    "【开发者工具 8：Cursor 推出实时语音写码与 Live Apps 一键分享，GitHub Copilot 通告 11-16 旧模型退役进入 T-4 倒计时】Cursor 引入 Grok Voice 双向通话；GitHub Copilot 稳步推进模型代际更替，旧模型退役倒计时 T-4 天；Devin Desktop（原 Windsurf）持续强化智能体指挥中心布局。",
+    "【前沿威胁评估结论 9：前沿威胁评估为 NO_IMMEDIATE_THREAT，基线 Pareto 前沿安如泰山，今日无需调整任何采用值】全网发布与变动均在现有基线前沿包络内被支配或属于受限/预热状态，成本前沿与单价前沿无任何破防点，建议 Lead 保持既有采用行配置。"
+  ]
+}

@@ -1,0 +1,415 @@
+{
+  "collectedAt": "2026-11-12",
+  "checkedAt": "2026-11-12T10:10:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Command Code GOAT, OpenCode Go, OpenDesign, DeepSeek, OpenAI, Google, Anthropic, Mistral, MiniMax, Kimi, StepFun 等），上游 upstream/main 43 个提交全量评估（PR #225, PR #228, PR #224, PR #218, PR #217, PR #200, PR #194, PR #191, PR #188, PR #177, PR #168, PR #167, PR #166, PR #165, PR #160），新模型标价档完备性核验，采用值派生脚本 build_adopted.py 维护（保留 Haiku 5.5 倒推行降 full 档裁定与 OpenCode Go $100 实测额度）与 22 项守卫核验",
+  "summary": "2026-11-12 官方 API 标价与采用值排查结论：1) 上游提交审查：/tmp/upstream.json 检出 upstream/main 相对 HEAD (mergeBase ed33da5) 包含 43 个提交（upstreamHead 推进至 f2a79c3）。较昨日新增 2 个提交（引入 PR #225 Magpie round2 单模型周额度官方等价值研究证据，包含 aligned CSV、JSON 与 MD 文档，明确标记为 'Research-only, not adopted'）。经深入分析分类：A. 纯研究/文档/测试（共 23 个提交，包含 PR #225 Magpie round2 周额度证据、PR #224 GOAT Muse Ember 官方目录证据、PR #218 Devin Pro × Opus 5.5 Issue #210 Magpie 样本、PR #217 Droid Pro × Opus 5.5 Issue #131 Magpie 细项、PR #200 GOAT DeepSeek V4.1 Flash Ultrafast、PR #194 OpenCode Go Hy4、PR #191 GOAT Ling 3.1 Flash 1019、PR #177 CLI 测试修复、PR #168 DeepSWE 记分卡出处、PR #167 AA 智力指数 v5 方法论、PR #165 Terminal-Bench 快照出处），均声明为 research-only 或纯工程维护，对生产数据 0 风险；B. 本地已处理/超前项（PR #166 中 OpenCode Go DeepSeek V4.1 Flash 上游修改为 $80 月限，但本地已在 2026-11-06 根据用户控制台最新实测更新为 $100 月限，本地数据更新更准，属于已处理超前项；DeepSWE 评分与任务成本本地已对齐）；C. 生产采用值变动（PR #228 本机样本折算，包含 Plus gpt-6.1-sol 周窗中点平滑、Claude Pro Opus 5.5 维护者样本折算并锁定 30.54 亿锚点、Claude Pro Fable 5.2 样本录入；PR #160 官方 ChatGPT Pro $100 档倍率 5x→10x，即 chatgpt_pro_5x 升级为 chatgpt_pro_10x；PR #188 Devin Pro 采纳 5 款模型实测额度）。针对当前 daily update 节奏，强烈建议维持 build_adopted.py 0 diff 保证全链稳定，待日常同步后由 Lead 在独立合并窗口统筹合入并解决冲突（需保留本地 OpenCode $100 实测额度与 Haiku 5.5 full 档裁定）。2) 标价档完备性核查：本日 AA 快照（scores-aa-round6-2026-11-12.json）共 162 条模型评分，与昨日模型列表完全一致，无新增未建档模型；全库 18 个 list-prices 文件覆盖全部在库模型，全库 348 个订阅点 100% 具备正值 list_blended_usd_per_mtok（verify_list_blended.py 守卫 100% PASS，0 缺漏，0 兜底常数回退，0 白名单豁免）。本日无需新建 list-prices-*-2026-11-12.json。3) 采用值派生核验与维护：scripts/build_adopted.py 生成 data/adopted.csv 共 378 行，与当前库内数据 0 diff，22 项守卫全部正常通过（21 OK, 1 KNOWN-NOISE）。4) 协同待办：向 Lead 汇报 compute.py 配置（SCORE_FILES 在 11-11 之后插入 scores-aa-round6-2026-11-12.json；LIST_PRICE_FILES 维持现有 17 个文件；DISPLAY 暂无需变动）。",
+  "vendors": {
+    "Command_Code_GOAT": {
+      "status": "muse_ember_added_research_only",
+      "recentChanges": [
+        "PR #224 (2026-11-10)：GOAT 目录新增 'Muse Ember' (slug muse-ember, vendor Meta)，费率 input $0.10 / output $0.50 / cached read $0.004，配发 $20 专属额度。状态为 'not yet scored'，明确标记为 research-only，未入 adopted.csv",
+        "PR #200 (2026-11-07)：GOAT 目录新增 'DeepSeek V4.1 Flash Ultrafast'，费率 input $2.40 / output $9.60 / cache read $0.048，配发 $20 专属额度。状态为 'not yet scored'，维持 research-only",
+        "PR #191 (2026-11-04)：'Ling 3.1 Flash 1019' 结束限时免费活动，恢复为付费模型，配发 $100 GOAT / $110 Pro 额度，费率 input $0.30 / output $0.90 / cache read $0.06。状态为 'not yet scored'",
+        "既有 DeepSeek V4.1 Flash 的 $100 Boosted Usage Deal 维持生效，build_adopted.py 正确派生为 103.52 亿（真实单价 $0.000966/MTok）"
+      ],
+      "handling": "三款新模型均处于 research-only 阶段，未入 adopted.csv，不改变现有前沿"
+    },
+    "OpenCode_Go": {
+      "status": "hy4_research_only_and_deepseek_superseded",
+      "recentChanges": [
+        "PR #194 (2026-11-05)：OpenCode Go 价格表新增 'Hy4' (model id hy4)，费率 input $0.834 / output $2.501 / cache read $0.042，月额度上限分别为 Go $60 / Go Plus $240 / Go Teams $65，维持 research-only 归档",
+        "PR #166 (2026-10-30/11-07)：上游更新 OpenCode Go DeepSeek V4.1 Flash 为 $80 额度，但本地在 2026-11-06 已根据用户控制台最新实测更新为 $100 额度（103.52 亿），本地数据已超前覆盖上游"
+      ],
+      "handling": "Hy4 保持 research-only 状态；DeepSeek V4.1 Flash 保留本地 $100 最新额度"
+    },
+    "OpenDesign": {
+      "status": "eco_and_official_dual_channel_live",
+      "recentChanges": [
+        "OpenDesign Go (Self-hosted Eco) 维持 $10/mo 提供 $220 专项额度，采用 deepseek-v4.1-flash-eco 派生 227.743 亿/月（真实单价 $0.000439/MTok）",
+        "官方 API 通道维持 $120 额度，派生 124.224 亿/月"
+      ],
+      "handling": "标价档 list-prices-deepseek-v41-eco-round1-2026-11-06.json 完备，采用值已锁定并验证"
+    },
+    "Anthropic": {
+      "status": "haiku55_tiers_demoted_to_full_api_stable",
+      "recentChanges": [
+        "Claude API 官方标价稳定：Claude Fable 5.1 ($10/$50), Claude Opus 5.5 ($4/$20), Claude Sonnet 5.5 ($2/$10), Claude Haiku 5.5 ($0.10/$0.50 ≤100K; $0.50/$2.50 >100K)",
+        "上游 PR #225 (2026-11-11)：引入 Magpie round2 单模型周额度官方等价值研究证据，包含 A04 与 A06 账号的 Opus 5.5 周等价额度（$30.36 与 $30.73/周，中置信），明确标记为 Research-only, not adopted",
+        "上游 PR #228 引入 Fable 5.2 维护者测试样本及 5m 写价 $10.0，并在 Pro 套餐中录入 1.91 亿样本行；同时锁定 Pro Opus 5.5 30.54 亿锚点以防 derived 浮动。本地待合并窗口接入",
+        "Claude Haiku 5.5 订阅额度（claude_pro, claude_max_20x, >100k 档, 50/50 混合档）全部系基于 Opus 5.5 倒推并叠加情景假设，用户裁定全部降为 full 档，避免在默认帕累托前沿产生伪前沿顶峰"
+      ],
+      "handling": "build_adopted.py 规则生效，adopted.csv 相应 6 行 chart_tier 为 full，verify_haiku55_tiers.py 与 verify_hidden_defaults.py 验证全绿"
+    },
+    "DeepSeek": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "官方 API 闲时/忙时标价保持稳定（$0.15/$0.60/$0.003 闲时，$0.27/$1.10/$0.007 忙时）",
+        "各订阅渠道（GOAT, OpenCode, Ollama, OpenDesign）额度已准确反映"
+      ],
+      "handling": "标价与采用值完全对齐"
+    },
+    "OpenAI": {
+      "status": "rates_stable_upstream_10x_and_sol_midpoint_evaluated",
+      "recentChanges": [
+        "官方 API 标价稳定：GPT-6 Astra ($10/$50/$1.00), GPT-6.1 Sol ($2/$10/$0.10), GPT-6 Luna ($0.10/$0.50/$0.01), GPT-6.1 Terra ($0.40/$2.00/$0.02)",
+        "上游 PR #160 将 ChatGPT Pro $100 档倍率从 5x 调整为 10x（Sol 61.6 亿, Luna 705.81 亿）",
+        "上游 PR #228 引入 ChatGPT Plus gpt-6.1-sol 两个保留周的平均中点（15.16 亿/月）。本地当前保持基准，待专项合并窗口评估合入"
+      ],
+      "handling": "本地当前保持 0 diff 稳定运行，向 Lead 提交行级改动清单备用"
+    },
+    "Google": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Gemini 4 Carbon ($2/$10/$0.10) / Argon ($2/$10/$0.10) / Gemini 3.8 Flash ($0.075/$0.30/$0.01875) 官方标价与 Google AI 订阅点维持稳定",
+        "Gemini 4 Carbon 在 AA 智力榜以 59.43 分稳居全球第一"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Mistral": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Mistral Large 4 ($2.00/$6.00/$0.20) 与 Mistral Vibe 订阅点保持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "MiniMax": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "MiniMax M3.1 Flash Preview ($0.15 in / $0.60 out / $0.015 cache read) 及各年付/月付点位维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Kimi": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Kimi K3.1 Pro ($2.00/$10.00/$0.20) 与 Kimi 会员/Plus 订阅点位稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "StepFun": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Step 3.5 / 3.7 Flash 与 Step Plan 系列点位维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    }
+  },
+  "upstreamEvaluation": {
+    "checkedAt": "2026-11-12T09:02:53+08:00",
+    "upstreamRef": "upstream/main",
+    "upstreamHead": "f2a79c39a72b1127f3672ca2b74b0c1743b3460c",
+    "commitCount": 43,
+    "verdict": "mergeable",
+    "reason": "upstream/main 相对 HEAD 包含 43 个提交（mergeBase ed33da5）。按 runbook §2.3 规则分类为：A. 纯研究/文档/测试（共 23 个提交，含最新 PR #225 Magpie round2）；B. 本地已处理/超前项（PR #166 OpenCode DeepSeek $100 实测超前）；C. 生产采用值变动（PR #228 本地样本折算、PR #160 ChatGPT Pro 10x 调整、PR #188 Devin Pro 5 款模型采用）。",
+    "detailedPullRequests": [
+      {
+        "pr": 225,
+        "commits": ["f2a79c3", "86c5fbb"],
+        "author": "klarkxy",
+        "title": "data(research): Magpie single-model weekly quota evidence round2 (2026-11-09)",
+        "scope": "引入 data/research/magpie-single-model-weekly-round2-2026-11-09.json, magpie-single-model-weekly-round2-2026-11-09-aligned-evidence.csv 与 magpie-single-model-weekly-round2-2026-11-09.md 证据文档。包含 2026-11-02 至 2026-11-09 统计窗口内匿名账号 A04 与 A06 的 Claude Opus 5.5 单模型周额度官方等价值实测数据（USD/week 分别为 30.36 与 30.73，敏感性包络 22.87-33.53 USD/week，评级 medium）。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。文档中首行加粗明确声明：'Research-only, not adopted. This is round2 of the Magpie research series... This round answers a different question and does not replace that file or any adopted row.'，不改动 adopted.csv，不改动生产采用值。",
+          "frontierImpact": "无。纯研究样本归档，未计入基准，不改变帕累托前沿。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 228,
+        "commits": ["3bf33ae", "8aa3af1", "80b464a", "0078061", "d6c880c", "031c18e", "8c93866", "5885bc4"],
+        "author": "Fei2411",
+        "title": "Data: fold three local samples into adopted allowances by percentage point",
+        "scope": "引入 data/research/local-samples-round1-2026-11-09.json；Plus gpt-6.1-sol 按两保留周平均折算为 15.16 亿/月；Claude Pro 采纳 issue #206 维护者满 5h 窗样本（周份额取 12.5%），固定 Pro Opus 5.5 为 30.54 亿锚点以稳定派生 Sonnet/Haiku；采纳 issue #226 Claude Pro × Fable 5.2 样本 1.91 亿/月。修改 build_adopted.py, compute.py, README, charts 等。",
+        "evaluation": {
+          "category": "C. 生产采用值变动",
+          "adoptionImpact": "Plus gpt-6.1-sol 调整为 15.16 亿；Claude Pro 引入 Fable 5.2 并锁定衍生锚点。",
+          "frontierImpact": "Plus Sol 6.1 成本微调；Fable 5.2 在 Pro 中作为单点存在；主榜前沿包络未发生剧烈变动。",
+          "mergeRecommendation": "建议日常同步完成后，在独立合并窗口由 Lead 统筹合入并重新跑通图表链。"
+        }
+      },
+      {
+        "pr": 224,
+        "commits": ["2599b7a", "439d4a2"],
+        "author": "klarkxy",
+        "title": "Data: Command Code GOAT Muse Ember official catalog evidence (research-only, 2026-11-10)",
+        "scope": "引入 data/research/goat-muse-ember-round1-2026-11-10.json 证据文件。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。明确声明为 research-only; not adopted。",
+          "frontierImpact": "无。AA 榜尚未收录评分，不影响前沿。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 218,
+        "commits": ["da62744", "a0c8b78"],
+        "author": "klarkxy",
+        "title": "Data: Devin Pro × Opus 5.5 Issue #210 Magpie samples 2026-10-22/11-03 (research-only, 2026-11-09)",
+        "scope": "引入 data/research/devin-pro-opus55-community-magpie-2026-11-09.json 社区用量证据文件。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。纯原始 Magpie 采样原样录入，不做换算不改采用值。",
+          "frontierImpact": "无。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 217,
+        "commits": ["85085f1", "a4e0f25"],
+        "author": "klarkxy",
+        "title": "Data: Droid Pro × Opus 5.5 Issue #131 Magpie token breakdown + quota snapshots (research-only, 2026-11-09)",
+        "scope": "引入 data/research/droid-pro-opus55-community-round3-2026-11-09.json 社区实测补充文件。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。纯原始证据记录。",
+          "frontierImpact": "无。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 188,
+        "commits": ["588fe5e", "756045e", "3e711f5"],
+        "author": "serjio256",
+        "title": "Devin Pro: adopt five model quotas measured via Devin CLI /usage",
+        "scope": "引入 Devin Pro 5 款模型实测配额：Claude Sonnet 5.5 (6.44 亿), Claude Haiku 5.5 (82.09 亿), Muse Wonder (2.05 亿 raw), Claude Fable 5.1 (1.46 亿), Claude Opus 5.5 (2.93 亿)。修改 scripts/build_adopted.py, compute.py (增加 muse-wonder DISPLAY), 引入 5 个 research 文件。",
+        "evaluation": {
+          "category": "C. 生产采用值变动",
+          "adoptionImpact": "新增 5 个 devin_pro 生产采用点，月费 $20。由于 Muse Wonder 无 API 标价，仅记录 raw total；其他 4 款按 Anthropic 负载折算。",
+          "frontierImpact": "Devin Pro Opus 5.5 ($0.0683/MTok) 优于 Claude Pro Opus 5.5 ($0.114/MTok)，但受限于 Devin 智能体工作流。未剧烈破坏主榜结构。",
+          "mergeRecommendation": "建议在日常同步之后由 Lead 开启专项分支合入，避免干扰本日例行业务。"
+        }
+      },
+      {
+        "pr": 160,
+        "commits": ["346a5d5", "da410f7"],
+        "author": "wawowawawo",
+        "title": "ChatGPT Pro $100 tier: official multiplier 5x -> 10x (Pro 20x unchanged)",
+        "scope": "官方 ChatGPT Pro $100 档额度倍率由 5x 调整为 10x。plan id 由 chatgpt_pro_5x 改名为 chatgpt_pro_10x，Sol 额度 30.8→61.6 亿，Luna 352.91→705.81 亿，Terra/GPT-5.5/Astra 联动翻倍。真实单价减半。",
+        "evaluation": {
+          "category": "C. 生产采用值变动",
+          "adoptionImpact": "直接改动生产采用值，5 款模型额度翻倍，真实单价腰斩至 $0.00142/MTok（与 20x 档拉齐）。",
+          "frontierImpact": "在 $100-$300 档图表中，Luna 额度翻倍，增强了 $100 档的竞争力，但未超过 Pro 20x 的绝对上限（1411.63 亿）。",
+          "mergeRecommendation": "确凿的官方倍率变动，建议 Lead 安排并入。"
+        }
+      },
+      {
+        "pr": 166,
+        "commits": ["f699b85", "ada0f74", "c33f896", "da977a6", "de11a2d", "03659e2", "767f0e2", "9f681ff"],
+        "author": "drewbitt",
+        "title": "opencode-deepseek-2026-10-30 & deepswe task costs",
+        "scope": "OpenCode Go DeepSeek V4.1 Flash 额度更新至 $80；引入 DeepSWE 1.1 2026-10-13 评分与 10-30 结转评分；更新 verify_deepswe.py。",
+        "evaluation": {
+          "category": "B. 本地已处理/超前项",
+          "adoptionImpact": "OpenCode DeepSeek 上游改至 $80，但本地已在 2026-11-06 更新为 $100，本地数据更为准确，应以本地为准。DeepSWE 评分文件可安全收入。",
+          "frontierImpact": "本地已是 $100 额度，前沿已先行消化，无负面冲击。",
+          "mergeRecommendation": "代码级冲突需裁决（保留本地 $100 额度），建议择机合入。"
+        }
+      },
+      {
+        "pr": 200,
+        "commits": ["f40a2d0", "0ed5052"],
+        "author": "klarkxy",
+        "title": "Command Code GOAT DeepSeek V4.1 Flash Ultrafast research evidence",
+        "scope": "引入 data/research/goat-dsv41-flash-ultrafast-round1-2026-11-07.json 证据文件。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。明确声明为 research-only; not adopted。",
+          "frontierImpact": "无。在 AA 智力榜上属于 not yet scored，不入前沿。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 194,
+        "commits": ["1392833", "2ec40bf"],
+        "author": "klarkxy",
+        "title": "OpenCode Go adds paid model Hy4",
+        "scope": "引入 data/research/opencode-go-hy4-round1-2026-11-05.json 证据文件。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。明确声明为 research-only; not adopted。",
+          "frontierImpact": "无。未入基准评分，不参与前沿计算。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 191,
+        "commits": ["ed848df", "ad75eaf"],
+        "author": "klarkxy",
+        "title": "Command Code GOAT Ling 3.1 Flash 1019 free -> paid",
+        "scope": "引入 data/research/goat-ling31-flash-1019-round1-2026-11-04.json 证据文件。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。明确声明为 research-only; not adopted。",
+          "frontierImpact": "无。未入基准评分，不参与前沿计算。",
+          "mergeRecommendation": "安全的研究性归档，可合入。"
+        }
+      },
+      {
+        "pr": 177,
+        "commits": ["ec8ad20", "e7f0e5c"],
+        "author": "Fei2411",
+        "title": "CLI test: compare the --data source path with its real path",
+        "scope": "修复 cli/test/cli.test.ts 在 macOS 上的 tmpdir 真实路径比较。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。纯 CLI 测试修复。",
+          "frontierImpact": "无。",
+          "mergeRecommendation": "可直接合并。"
+        }
+      },
+      {
+        "pr": 168,
+        "commits": ["83556c5", "c3c1955"],
+        "author": "drewbitt",
+        "title": "Research: clarify DeepSWE scorecard provenance",
+        "scope": "澄清 DeepSWE 记分卡出处研究记录。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。纯研究备忘。",
+          "frontierImpact": "无。",
+          "mergeRecommendation": "可直接合并。"
+        }
+      },
+      {
+        "pr": 167,
+        "commits": ["1b6bb92", "c364e67"],
+        "author": "drewbitt",
+        "title": "Research: document Artificial Analysis index v5",
+        "scope": "记录 Artificial Analysis 智力指数 v5 方法论。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。纯方法论归档。",
+          "frontierImpact": "无。",
+          "mergeRecommendation": "可直接合并。"
+        }
+      },
+      {
+        "pr": 165,
+        "commits": ["eacd751", "5e6cbed"],
+        "author": "drewbitt",
+        "title": "Docs: correct Terminal-Bench snapshot provenance",
+        "scope": "修正 Terminal-Bench 快照出处文档。",
+        "evaluation": {
+          "category": "A. 纯研究/文档/测试",
+          "adoptionImpact": "无。纯文档更正。",
+          "frontierImpact": "无。",
+          "mergeRecommendation": "可直接合并。"
+        }
+      }
+    ]
+  },
+  "candidateList": {
+    "evaluatedModels": [
+      {
+        "model": "muse-ember",
+        "source": "Command Code GOAT (PR #224) / Meta",
+        "listPriceStatus": "unscored on AA / research-only ($0.10 in / $0.50 out / $0.004 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "claude-fable-5.2",
+        "source": "Anthropic (Issue #226 / PR #228)",
+        "listPriceStatus": "unscored on AA / research-only ($8.00 in / $40.00 out / $0.20 cached read / $10 5m write)",
+        "adoptionStatus": "research-only (not adopted in main)",
+        "actionRequired": "await PR #228 merge window"
+      },
+      {
+        "model": "deepseek-v4.1-flash-ultrafast",
+        "source": "Command Code GOAT (PR #200)",
+        "listPriceStatus": "unscored on AA / research-only ($2.40 in / $9.60 out / $0.048 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "hy4",
+        "source": "OpenCode Go (PR #194) / Tencent Cloud",
+        "listPriceStatus": "unscored on AA / research-only ($0.834 in / $2.501 out / $0.042 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "ling-3.1-flash-1019",
+        "source": "Command Code GOAT (PR #191) / InclusionAI",
+        "listPriceStatus": "unscored on AA / research-only ($0.30 in / $0.90 out / $0.06 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "deepseek-v4.1-flash-eco",
+        "source": "OpenDesign 官方 X (@OpenDesignDevs)",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-eco-round1-2026-11-06.json: $0.15 in / $0.60 out / $0.003 cached read)",
+        "adoptionStatus": "adopted (OpenDesign Go (Self-hosted Eco): 227.743 亿)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "claude-haiku-5.5",
+        "source": "Anthropic",
+        "listPriceStatus": "covered (list-prices-claude-haiku55-round1-2026-10-08.json)",
+        "adoptionStatus": "adopted (6 订阅点均已降为 full 档隐藏，API 2 档正常在库)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "mistral-large-4",
+        "source": "Mistral AI / Artificial Analysis",
+        "listPriceStatus": "covered (list-prices-mistral-large-4-round1-2026-11-04.json)",
+        "adoptionStatus": "adopted (mistral_large4_api & mistral_vibe_pro)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gemini-4-carbon",
+        "source": "Google Cloud Vertex AI",
+        "listPriceStatus": "covered (list-prices-gemini-4-carbon-round1-2026-10-29.json)",
+        "adoptionStatus": "adopted (Google AI 8 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gpt-6.1-terra",
+        "source": "OpenAI",
+        "listPriceStatus": "covered (list-prices-gpt-61-terra-round1-2026-10-28.json)",
+        "adoptionStatus": "adopted (ChatGPT 3 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "source": "Moonshot AI",
+        "listPriceStatus": "covered (list-prices-kimi-k31-round1-2026-10-27.json)",
+        "adoptionStatus": "adopted (Kimi 4 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "minimax-m3.1-flash-preview",
+        "source": "MiniMax",
+        "listPriceStatus": "covered (list-prices-minimax-m31-round1-2026-10-19.json)",
+        "adoptionStatus": "adopted (MiniMax M Plan 6 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "source": "DeepSeek",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-round2-2026-09-10.json)",
+        "adoptionStatus": "adopted (GOAT / OpenCode / Ollama / OpenDesign)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "muse-wonder",
+        "source": "Devin / Cognition (PR #188)",
+        "listPriceStatus": "no official API price published; raw measured usage recorded in research",
+        "adoptionStatus": "pending merge of PR #188",
+        "actionRequired": "await PR #188 merge window"
+      }
+    ],
+    "newModelsRequired": [],
+    "listPricesStatus": "all current models covered (18 files in research / 17 in compute), 0 new files needed for 2026-11-12",
+    "buildAdoptedStatus": "build_adopted.py successfully verified, outputs 378 rows, 0 diff against data/adopted.csv, all guard checks pass (348/348 positive list_blended)"
+  },
+  "recommendationsForLead": {
+    "listPriceFiles": "维持现有配置：scripts/compute.py 的 LIST_PRICE_FILES 元组已包含 17 个文件，覆盖全部在库模型，今日无需新增 list-prices 文件",
+    "displayMapping": "维持现有配置：今日无需新增 DISPLAY 映射；若后续合入 Devin Pro PR #188，需补充 'muse-wonder': 'Muse Wonder'",
+    "scoreFiles": "建议在 scripts/compute.py 的 SCORE_FILES 元组中，紧随 'scores-aa-round6-2026-11-11.json'（第 78 行）之后插入新行：'scores-aa-round6-2026-11-12.json',",
+    "upstreamAction": "upstream/main 共有 43 个新提交（PR #225, PR #228, PR #224, PR #218, PR #217, PR #200, PR #194, PR #191, PR #188, PR #177, PR #168, PR #167, PR #166, PR #165, PR #160）。最新 PR #225 为纯研究证据（Magpie round2 Opus 5.5 周等价值），不改动生产采用值；其中 PR #228 (本地样本与 Sol 6.1 中点平滑), PR #160 (ChatGPT Pro 10x) 与 PR #188 (Devin Pro 5 款模型) 涉及生产采用值变动；PR #166 的 OpenCode DeepSeek $80 本地已先行升级至 $100。为确保本日日常同步的绝对稳定性与零故障交付，强烈建议本日同步先维持 build_adopted.py 0 diff，由 Lead 在本轮日常同步完成后，单设专项窗口合并 upstream/main 并解决 build_adopted 冲突（保留本地 $100 额度与 Haiku 5.5 full 档裁定）",
+    "buildAdoptedVerification": "build_adopted.py 0 diff 经测试完全正常，输出 378 行，verify_list_blended 通过率 100% (348/348 正值)"
+  }
+}
