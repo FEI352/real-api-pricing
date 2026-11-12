@@ -1,19 +1,19 @@
 # 模型 × 榜 可见性矩阵 / Model-by-board visibility
 
 > 由 `python scripts/visibility_matrix.py --write-docs` 生成，请勿手改。
-> 生成时间：2026-11-11 09:17 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-11-04）。
+> 生成时间：2026-11-12 10:36 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-11-04）。
 > 口径：mappings 与 configurations 的 join 与 `web/src/loadData.ts` 的 `unpackData()` 完全一致；可见性判据与 `web/src/domain.ts` 一致。
 
 ## 1. 榜覆盖统计
 
 | 榜 | 名称 | 快照 | 配置数 | 映射数 | 有分模型 | 最高分 |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| `aa_intelligence_index` | Artificial Analysis Intelligence Index v5.0.1 | 2026-11-11 | 72 | 419 | 34 | 59.4257 · `gemini-4-carbon` |
+| `aa_intelligence_index` | Artificial Analysis Intelligence Index v5.0.1 | 2026-11-12 | 72 | 419 | 34 | 59.4257 · `gemini-4-carbon` |
 | `terminal_bench_4` | Terminal-Bench 4.0 | 2026-10-06 | 38 | 229 | 25 | 64.85 · `claude-opus-5.5` |
-| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-11-11 | 71 | 425 | 33 | 67.1717 · `kimi-k3.1-pro` |
+| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-11-12 | 71 | 425 | 33 | 67.1717 · `kimi-k3.1-pro` |
 | `arena_code` | Code Arena \| WebDev Overall | 2026-10-19 | 66 | 354 | 55 | 1807 · `claude-opus-5.5` |
 | `arena_agent_mode` | Agent Arena · Overall (Ranking / Pareto) | 2026-10-19 | 46 | 280 | 42 | 20.35 · `claude-opus-5.5` |
-| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-11-11 | 20 | 150 | 16 | 61.6529 · `claude-opus-5.5` |
+| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-11-12 | 20 | 150 | 16 | 61.6529 · `claude-opus-5.5` |
 | `open_design_arena` | OpenDesign Arena · Quality ranking | 2026-10-01 | 16 | 88 | 16 | 90.1 · `gpt-6.1-sol` |
 | `deepswe_1_1` | DeepSWE v1.1 | 2026-09-03 | 71 | 441 | 28 | 77 · `deepseek-v4.1-flash` |
 
