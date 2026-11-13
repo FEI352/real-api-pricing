@@ -284,40 +284,6 @@
       ]
     },
     {
-      "plan_id": "google_ai_ultra_20x_tr_iap",
-      "plan_name": "Google AI Ultra 20x 土耳其（Apple 内购）",
-      "price": 59.24,
-      "currency": "USD",
-      "model": "gemini-4-carbon",
-      "monthly_yi": 162.44,
-      "confidence": "low",
-      "source": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99。官网直购价参照 Google 土耳其区定价 feed（https://one.google.com/intl/ALL_tr/about/feeds/pricing_2026_07_28.json），汇率沿用本项目 Ultra 5x 土区口径（TRY 1479.99 ≈ $29.73，即 49.78 TRY/USD）。",
-      "note": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24（约合人民币 410 元），仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版同池（与地区无关）= 162.44 亿/月（gemini-4-carbon 折算，纯倍率外推）。real = 59.24 ÷ 16244 MTok = $0.003647/MTok，为美国版 $0.024623/MTok 的 14.8%。⚠️ 三条风险：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测。置信度 low。",
-      "main": true,
-      "plan_name_en": "Google AI Ultra 20x Turkey (Apple IAP)",
-      "date_inherit": [
-        "google_ai_pro_us",
-        "gemini-4-carbon"
-      ]
-    },
-    {
-      "plan_id": "google_ai_ultra_20x_tr_iap",
-      "plan_name": "Google AI Ultra 20x 土耳其（Apple 内购）",
-      "price": 59.24,
-      "currency": "USD",
-      "model": "gemini-4-argon",
-      "monthly_yi": 162.44,
-      "confidence": "low",
-      "source": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99。官网直购价参照 Google 土耳其区定价 feed（https://one.google.com/intl/ALL_tr/about/feeds/pricing_2026_07_28.json），汇率沿用本项目 Ultra 5x 土区口径（TRY 1479.99 ≈ $29.73，即 49.78 TRY/USD）。",
-      "note": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24（约合人民币 410 元），仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版同池（与地区无关）= 162.44 亿/月（gemini-4-argon 折算，纯倍率外推）。real = 59.24 ÷ 16244 MTok = $0.003647/MTok，为美国版 $0.012312/MTok 的 29.6%。⚠️ 三条风险：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测。置信度 low。",
-      "main": true,
-      "plan_name_en": "Google AI Ultra 20x Turkey (Apple IAP)",
-      "date_inherit": [
-        "google_ai_pro_us",
-        "gemini-4-argon"
-      ]
-    },
-    {
       "plan_id": "google_ai_ultra_5x_tr",
       "plan_name": "Google AI Ultra 5x (土耳其)",
       "price": 29.73,
@@ -332,23 +298,6 @@
       "date_inherit": [
         "google_gemini4_argon_api",
         "gemini-4-argon"
-      ]
-    },
-    {
-      "plan_id": "google_ai_ultra_20x_tr_iap",
-      "plan_name": "Google AI Ultra 20x 土耳其（Apple 内购）",
-      "price": 59.24,
-      "currency": "USD",
-      "model": "gemini-3.8-flash",
-      "monthly_yi": 516.2,
-      "confidence": "low",
-      "source": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99；官网直购价参照 Google 土耳其区定价页 https://one.google.com/intl/ALL_tr/about/feeds/pricing_20250909_3c4cbb8a ；3.8 Flash 标价维持引入优惠 $0.75/$3.75 见 probe-pricing-2026-11-03.json",
-      "note": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24，仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版 20x 同池（与地区无关）= 20 × Pro 25.81 = 516.2 亿/月（Gemini 3.8 Flash 折算，纯倍率外推）。real = 59.24 ÷ 51,620 MTok = $0.001148/MTok，为美区 20x 的 $0.003874 的 29.6%。三条风险同其余内购行：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测 → low。",
-      "main": true,
-      "plan_name_en": "Google AI Ultra 20x Turkey (Apple IAP)",
-      "date_inherit": [
-        "google_ai_pro_us",
-        "gemini-3.8-flash"
       ]
     },
     {
@@ -469,6 +418,140 @@
         "command_code_goat",
         "deepseek-v4.1-flash"
       ]
+    },
+    {
+      "plan_id": "google_ai_pro_us",
+      "plan_name": "Google AI Pro",
+      "plan_name_en": "Google AI Pro",
+      "price": 19.99,
+      "currency": "USD",
+      "model": "gemini-4-hydrogen",
+      "monthly_yi": 25.81,
+      "confidence": "low",
+      "source": "Google Cloud Model Garden 价格页（https://cloud.google.com/model-garden/pricing）：Gemini 3.8 Flash 的 $0.75/$3.75 是 2026-12-31 前的初次体验价，2027-01-01 起恢复标准价 $1.50/$7.50；Gemini 4 Hydrogen 的 $1.50/$7.50 就是这一标准价（无促销）。订阅侧 Antigravity 实测两者额度同为 20 亿/月，故按同额度录入。",
+      "note": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 25.81 亿）；19.99 美元/月 ÷ 2581 MTok → real = $0.007745/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_us",
+      "plan_name": "Google AI Ultra 5x",
+      "plan_name_en": "Google AI Ultra 5x",
+      "price": 99.99,
+      "currency": "USD",
+      "model": "gemini-4-hydrogen",
+      "monthly_yi": 129.05,
+      "confidence": "low",
+      "source": "Google Cloud Model Garden 价格页（https://cloud.google.com/model-garden/pricing）：Gemini 3.8 Flash 的 $0.75/$3.75 是 2026-12-31 前的初次体验价，2027-01-01 起恢复标准价 $1.50/$7.50；Gemini 4 Hydrogen 的 $1.50/$7.50 就是这一标准价（无促销）。订阅侧 Antigravity 实测两者额度同为 20 亿/月，故按同额度录入。",
+      "note": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 129.05 亿）；99.99 美元/月 ÷ 12905 MTok → real = $0.007748/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_20x_us",
+      "plan_name": "Google AI Ultra 20x",
+      "plan_name_en": "Google AI Ultra 20x",
+      "price": 199.99,
+      "currency": "USD",
+      "model": "gemini-4-hydrogen",
+      "monthly_yi": 516.2,
+      "confidence": "low",
+      "source": "Google Cloud Model Garden 价格页（https://cloud.google.com/model-garden/pricing）：Gemini 3.8 Flash 的 $0.75/$3.75 是 2026-12-31 前的初次体验价，2027-01-01 起恢复标准价 $1.50/$7.50；Gemini 4 Hydrogen 的 $1.50/$7.50 就是这一标准价（无促销）。订阅侧 Antigravity 实测两者额度同为 20 亿/月，故按同额度录入。",
+      "note": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 516.2 亿）；199.99 美元/月 ÷ 51620 MTok → real = $0.003874/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_ultra_5x_tr",
+      "plan_name": "Google AI Ultra 5x (土耳其)",
+      "plan_name_en": "Google AI Ultra 5x (Turkey)",
+      "price": 29.73,
+      "currency": "USD",
+      "model": "gemini-4-hydrogen",
+      "monthly_yi": 129.05,
+      "confidence": "low",
+      "source": "Google Cloud Model Garden 价格页（https://cloud.google.com/model-garden/pricing）：Gemini 3.8 Flash 的 $0.75/$3.75 是 2026-12-31 前的初次体验价，2027-01-01 起恢复标准价 $1.50/$7.50；Gemini 4 Hydrogen 的 $1.50/$7.50 就是这一标准价（无促销）。订阅侧 Antigravity 实测两者额度同为 20 亿/月，故按同额度录入。",
+      "note": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 129.05 亿）；29.73 美元/月 ÷ 12905 MTok → real = $0.002304/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-3.8-flash"
+      ]
+    },
+    {
+      "plan_id": "google_ai_pro_student",
+      "plan_name": "Google AI Pro 学生版",
+      "price": 5.0,
+      "currency": "USD",
+      "model": "gemini-4-hydrogen",
+      "monthly_yi": 25.81,
+      "confidence": "medium",
+      "source": "Google Cloud Model Garden 价格页（https://cloud.google.com/model-garden/pricing）：Gemini 3.8 Flash 的 $0.75/$3.75 是 2026-12-31 前的初次体验价，2027-01-01 起恢复标准价 $1.50/$7.50；Gemini 4 Hydrogen 的 $1.50/$7.50 就是这一标准价（无促销）。订阅侧 Antigravity 实测两者额度同为 20 亿/月，故按同额度录入。",
+      "note": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 25.81 亿）；5 美元/月 ÷ 2581 MTok → real = $0.001937/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "main": true,
+      "plan_name_en": "Google AI Pro (Student)",
+      "date_inherit": [
+        "google_ai_pro_us",
+        "gemini-4-hydrogen"
+      ]
+    },
+    {
+      "plan_id": "claude_max_20x",
+      "plan_name": "Claude Max 20x (9/14+)",
+      "price": 200.0,
+      "currency": "USD",
+      "model": "claude-fable-5.2",
+      "monthly_yi": 17.28,
+      "confidence": "medium",
+      "source": "Anthropic 官方定价沿用 Claude Fable 5.1 同档（输入 $10 / 输出 $50 每百万 token，cache 读 $0.25）；额度与 5.1 同价同池，沿用其实测口径 claude-fable51-round1-2026-09-13.json。",
+      "note": "额度沿用 5.1 的 17.28 亿：200 美元/月 ÷ 1728 MTok → real = $0.115741/MTok，与 5.1 完全一致（同价同池，无新增实测）。",
+      "main": true,
+      "plan_name_en": "Claude Max 20x (9/14+)",
+      "date_inherit": [
+        "claude_max_20x",
+        "claude-fable-5.1"
+      ]
+    },
+    {
+      "plan_id": "claude_max_5x",
+      "plan_name": "Claude Max 5x (9/14+)",
+      "price": 100.0,
+      "currency": "USD",
+      "model": "claude-fable-5.2",
+      "monthly_yi": 8.639,
+      "confidence": "medium",
+      "source": "Anthropic 官方定价沿用 Claude Fable 5.1 同档（输入 $10 / 输出 $50 每百万 token，cache 读 $0.25）；额度与 5.1 同价同池，沿用其实测口径 claude-fable51-round1-2026-09-13.json。",
+      "note": "额度沿用 5.1 的 8.639 亿：100 美元/月 ÷ 863.9 MTok → real = $0.115754/MTok，与 5.1 完全一致（同价同池，无新增实测）。",
+      "main": true,
+      "plan_name_en": "Claude Max 5x (9/14+)",
+      "date_inherit": [
+        "claude_max_5x",
+        "claude-fable-5.1"
+      ],
+      "price_usd": 100.0
+    },
+    {
+      "plan_id": "droid_max",
+      "plan_name": "Droid Max",
+      "price": 200.0,
+      "currency": "USD",
+      "model": "claude-fable-5.2",
+      "monthly_yi": 10.104,
+      "confidence": "medium",
+      "source": "Factory Droid Max 沿用 Claude Fable 5.1 同档价格与额度口径（claude-adoption-round7-2026-09-14.json）；新模型同价，故额度不变。",
+      "note": "额度沿用 5.1 的 10.104 亿：200 美元/月 ÷ 1010.4 MTok → real = $0.197941/MTok，与 5.1 完全一致（同价同池，无新增实测）。",
+      "main": true,
+      "plan_name_en": "Droid Max",
+      "date_inherit": [
+        "claude_max_5x",
+        "claude-fable-5.1"
+      ],
+      "price_usd": 200.0
     }
   ]
 }

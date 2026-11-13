@@ -921,7 +921,7 @@ z
      <g id="line2d_31"/>
      <g id="text_5">
       <!-- 01. Claude Max 20x (9/14+) -->
-      <g transform="translate(297.769375 199.508011) scale(0.12 -0.12)">
+      <g transform="translate(297.769375 176.960846) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-f6b1" d="M 1779 -83 
 C 2688 -83 3238 768 3238 2298 
@@ -1202,7 +1202,7 @@ z
        <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1198.125 0)"/>
       </g>
       <!-- Artificial Analysis - Claude Haiku 5.5 (max) -->
-      <g transform="translate(212.858125 212.419261) scale(0.12 -0.12)">
+      <g transform="translate(212.858125 189.872096) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-22" d="M 26 0 
 L 621 0 
@@ -1443,7 +1443,7 @@ z
      <g id="line2d_32"/>
      <g id="text_6">
       <!-- 02. OpenDesign Go (Self-hosted Eco) -->
-      <g transform="translate(242.843125 279.038182) scale(0.12 -0.12)">
+      <g transform="translate(242.843125 228.307059) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-30" d="M 2374 -83 
 C 3552 -83 4378 858 4378 2362 
@@ -1655,7 +1655,7 @@ z
        <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1655.84375 0)"/>
       </g>
       <!-- Artificial Analysis - DeepSeek V4.1 Flash 1017 (max) -->
-      <g transform="translate(162.5875 292.598182) scale(0.12 -0.12)">
+      <g transform="translate(162.5875 241.867059) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-37" d="M 1504 0 
 L 2189 0 
@@ -1751,8 +1751,8 @@ z
     <g id="ytick_3">
      <g id="line2d_33"/>
      <g id="text_7">
-      <!-- 03. ChatGPT Pro 20x -->
-      <g transform="translate(333.4225 359.672727) scale(0.12 -0.12)">
+      <!-- 03. Google AI Pro 学生版 -->
+      <g transform="translate(312.349375 279.977647) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-f6b4" d="M 1683 -83 
 C 2522 -83 3194 403 3194 1216 
@@ -1773,6 +1773,13 @@ L 186 563
 C 493 224 954 -83 1683 -83 
 z
 " transform="scale(0.015625)"/>
+        <path id="NotoSansCJKsc-Regular-2a" d="M 646 0 
+L 1235 0 
+L 1235 4691 
+L 646 4691 
+L 646 0 
+z
+" transform="scale(0.015625)"/>
         <path id="NotoSansCJKsc-Regular-31" d="M 646 0 
 L 1235 0 
 L 1235 1869 
@@ -1790,6 +1797,217 @@ C 3149 2643 2758 2349 1933 2349
 L 1235 2349 
 z
 " transform="scale(0.015625)"/>
+        <path id="NotoSansCJKsc-Regular-3c23" d="M 2944 2221 
+L 2944 1760 
+L 384 1760 
+L 384 1306 
+L 2944 1306 
+L 2944 90 
+C 2944 -6 2912 -32 2784 -45 
+C 2650 -51 2221 -51 1722 -38 
+C 1805 -166 1894 -365 1933 -499 
+C 2515 -499 2880 -493 3117 -416 
+C 3354 -352 3430 -211 3430 83 
+L 3430 1306 
+L 6048 1306 
+L 6048 1760 
+L 3430 1760 
+L 3430 2016 
+C 4013 2266 4602 2630 5018 3002 
+L 4704 3238 
+L 4602 3213 
+L 1459 3213 
+L 1459 2790 
+L 4064 2790 
+C 3731 2573 3322 2355 2944 2221 
+z
+M 2714 5274 
+C 2906 4979 3110 4582 3200 4314 
+L 1792 4314 
+L 2035 4435 
+C 1926 4685 1658 5043 1414 5312 
+L 1018 5133 
+C 1222 4890 1453 4557 1574 4314 
+L 512 4314 
+L 512 3040 
+L 973 3040 
+L 973 3878 
+L 5459 3878 
+L 5459 3040 
+L 5939 3040 
+L 5939 4314 
+L 4883 4314 
+C 5094 4570 5318 4883 5510 5171 
+L 5024 5338 
+C 4877 5024 4608 4614 4371 4314 
+L 3328 4314 
+L 3661 4442 
+C 3578 4717 3354 5126 3136 5434 
+L 2714 5274 
+z
+" transform="scale(0.015625)"/>
+        <path id="NotoSansCJKsc-Regular-699f" d="M 1530 5274 
+C 1286 4358 870 3469 346 2899 
+C 467 2835 678 2694 774 2611 
+C 1018 2899 1242 3264 1446 3667 
+L 2963 3667 
+L 2963 2253 
+L 1056 2253 
+L 1056 1792 
+L 2963 1792 
+L 2963 160 
+L 352 160 
+L 352 -307 
+L 6074 -307 
+L 6074 160 
+L 3462 160 
+L 3462 1792 
+L 5536 1792 
+L 5536 2253 
+L 3462 2253 
+L 3462 3667 
+L 5766 3667 
+L 5766 4134 
+L 3462 4134 
+L 3462 5376 
+L 2963 5376 
+L 2963 4134 
+L 1658 4134 
+C 1798 4461 1920 4813 2016 5165 
+L 1530 5274 
+z
+" transform="scale(0.015625)"/>
+        <path id="NotoSansCJKsc-Regular-64b7" d="M 672 5248 
+L 672 2701 
+C 672 1734 614 582 192 -237 
+C 301 -301 461 -442 538 -531 
+C 915 128 1050 966 1094 1811 
+L 1978 1811 
+L 1978 -506 
+L 2419 -506 
+L 2419 2246 
+L 1107 2246 
+L 1114 2707 
+L 1114 3174 
+L 2810 3174 
+L 2810 3603 
+L 2246 3603 
+L 2246 5389 
+L 1805 5389 
+L 1805 3603 
+L 1114 3603 
+L 1114 5248 
+L 672 5248 
+z
+M 5453 3066 
+C 5312 2336 5069 1715 4755 1203 
+C 4442 1741 4218 2374 4070 3066 
+L 5453 3066 
+z
+M 3091 4941 
+L 3091 2733 
+C 3091 1779 3034 576 2541 -275 
+C 2656 -333 2842 -461 2925 -544 
+C 3475 371 3552 1658 3552 2733 
+L 3552 3066 
+L 3686 3066 
+C 3853 2208 4109 1446 4480 819 
+C 4134 390 3731 70 3290 -134 
+C 3392 -224 3514 -410 3578 -525 
+C 4013 -301 4410 13 4749 416 
+C 5050 19 5408 -294 5837 -525 
+C 5907 -403 6054 -230 6163 -141 
+C 5715 70 5338 384 5030 787 
+C 5485 1459 5811 2336 5965 3450 
+L 5677 3526 
+L 5600 3507 
+L 3552 3507 
+L 3552 4557 
+C 4429 4627 5382 4749 6067 4915 
+L 5766 5325 
+C 5120 5158 4032 5018 3091 4941 
+z
+" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b1"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(55.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(138.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-28" transform="translate(161.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-50" transform="translate(230.109375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-50" transform="translate(290.703125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-48" transform="translate(351.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(407.703125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(436.109375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(491.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(513.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-2a" transform="translate(574.71875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(604.015625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-31" transform="translate(626.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(689.71875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-50" transform="translate(727.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(788.015625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-3c23" transform="translate(810.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-699f" transform="translate(910.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-64b7" transform="translate(1010.421875 0)"/>
+      </g>
+      <!-- Artificial Analysis - Gemini 4 Hydrogen (xhigh) -->
+      <g transform="translate(193.11625 293.537647) scale(0.12 -0.12)">
+       <use xlink:href="#NotoSansCJKsc-Regular-22"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(60.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-55" transform="translate(99.59375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(137.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-e65f" transform="translate(164.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-44" transform="translate(224.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(275.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(303.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(359.59375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(388 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(410.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(471.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(532.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(588.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-5a" transform="translate(616.90625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-54" transform="translate(669 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(715.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-54" transform="translate(743.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(790.09375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-e" transform="translate(812.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(847.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-28" transform="translate(869.609375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(938.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4e" transform="translate(993.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(1086.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(1114.015625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(1175.015625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1202.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(1224.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1280.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-29" transform="translate(1302.828125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-5a" transform="translate(1375.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-45" transform="translate(1427.3125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(1489.3125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-50" transform="translate(1527.015625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-48" transform="translate(1587.609375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(1642.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(1697.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1758.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-9" transform="translate(1781.328125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(1815.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-49" transform="translate(1864.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(1925.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-48" transform="translate(1953.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-49" transform="translate(2009.53125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(2070.234375 0)"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_34"/>
+     <g id="text_8">
+      <!-- 04. ChatGPT Pro 20x -->
+      <g transform="translate(333.4225 332.428235) scale(0.12 -0.12)">
+       <defs>
         <path id="NotoSansCJKsc-Regular-35" d="M 1619 0 
 L 2214 0 
 L 2214 4192 
@@ -1803,7 +2021,7 @@ z
 " transform="scale(0.015625)"/>
        </defs>
        <use xlink:href="#NotoSansCJKsc-Regular-f6b1"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(55.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(55.5 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(138.796875 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-24" transform="translate(161.203125 0)"/>
@@ -1823,7 +2041,7 @@ z
        <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(885.015625 0)"/>
       </g>
       <!-- Artificial Analysis - GPT-6.1 Terra (max) -->
-      <g transform="translate(232.646875 371.672727) scale(0.12 -0.12)">
+      <g transform="translate(232.646875 344.428235) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-f6b7" d="M 1920 -83 
 C 2650 -83 3264 506 3264 1376 
@@ -1887,19 +2105,173 @@ z
       </g>
      </g>
     </g>
-    <g id="ytick_4">
-     <g id="line2d_34"/>
-     <g id="text_8">
-      <!-- 04. Google AI Ultra 20x 土耳其（Apple 内购） -->
-      <g transform="translate(199.163125 438.747273) scale(0.12 -0.12)">
+    <g id="ytick_5">
+     <g id="line2d_35"/>
+     <g id="text_9">
+      <!-- 05. Claude Max 20x (9/14+) -->
+      <g transform="translate(297.769375 383.643199) scale(0.12 -0.12)">
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b1"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(55.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(138.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-24" transform="translate(161.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(225 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(253.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-56" transform="translate(309.703125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-45" transform="translate(370.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(432.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(487.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-2e" transform="translate(510.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(591.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(647.71875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(697.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b3" transform="translate(719.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(775.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(830.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(880.71875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-9" transform="translate(903.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6ba" transform="translate(936.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-10" transform="translate(992.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b2" transform="translate(1031.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(1087.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-c" transform="translate(1142.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1198.125 0)"/>
+      </g>
+      <!-- Artificial Analysis - Claude Sonnet 5.5 (max) -->
+      <g transform="translate(205.27375 396.554449) scale(0.12 -0.12)">
+       <use xlink:href="#NotoSansCJKsc-Regular-22"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(60.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-55" transform="translate(99.59375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(137.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-e65f" transform="translate(164.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-44" transform="translate(224.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(275.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(303.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(359.59375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(388 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(410.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(471.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(532.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(588.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-5a" transform="translate(616.90625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-54" transform="translate(669 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(715.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-54" transform="translate(743.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(790.09375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-e" transform="translate(812.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(847.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-24" transform="translate(869.609375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(933.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(961.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-56" transform="translate(1018.109375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-45" transform="translate(1078.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(1140.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1196.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-34" transform="translate(1218.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-50" transform="translate(1278.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(1338.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(1399.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(1460.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-55" transform="translate(1515.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1552.828125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(1575.234375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(1630.734375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(1658.53125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1714.03125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-9" transform="translate(1736.4375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4e" transform="translate(1770.234375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(1862.828125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(1919.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1968.921875 0)"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_36"/>
+     <g id="text_10">
+      <!-- 06. Claude Max 5x (9/14+) -->
+      <g transform="translate(304.429375 435.313787) scale(0.12 -0.12)">
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b1"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b7" transform="translate(55.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(138.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-24" transform="translate(161.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(225 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(253.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-56" transform="translate(309.703125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-45" transform="translate(370.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(432.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(487.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-2e" transform="translate(510.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(591.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(647.71875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(697.515625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(719.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(775.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(825.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-9" transform="translate(847.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6ba" transform="translate(881.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-10" transform="translate(936.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b2" transform="translate(976.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(1031.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-c" transform="translate(1087.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1142.625 0)"/>
+      </g>
+      <!-- Artificial Analysis - Claude Sonnet 5.5 (max) -->
+      <g transform="translate(205.27375 448.225037) scale(0.12 -0.12)">
+       <use xlink:href="#NotoSansCJKsc-Regular-22"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(60.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-55" transform="translate(99.59375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(137.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-e65f" transform="translate(164.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-44" transform="translate(224.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(275.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(303.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(359.59375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(388 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(410.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(471.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(532.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(588.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-5a" transform="translate(616.90625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-54" transform="translate(669 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(715.796875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-54" transform="translate(743.296875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(790.09375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-e" transform="translate(812.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(847.203125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-24" transform="translate(869.609375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(933.40625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(961.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-56" transform="translate(1018.109375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-45" transform="translate(1078.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(1140.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1196.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-34" transform="translate(1218.625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-50" transform="translate(1278.21875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(1338.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(1399.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(1460.8125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-55" transform="translate(1515.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1552.828125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(1575.234375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(1630.734375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(1658.53125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1714.03125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-9" transform="translate(1736.4375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-4e" transform="translate(1770.234375 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(1862.828125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(1919.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1968.921875 0)"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_37"/>
+     <g id="text_11">
+      <!-- 07. Google AI Ultra 5x (土耳其) -->
+      <g transform="translate(280.63375 486.66) scale(0.12 -0.12)">
        <defs>
-        <path id="NotoSansCJKsc-Regular-2a" d="M 646 0 
-L 1235 0 
-L 1235 4691 
-L 646 4691 
-L 646 0 
-z
-" transform="scale(0.015625)"/>
         <path id="NotoSansCJKsc-Regular-36" d="M 2310 -83 
 C 3264 -83 3994 429 3994 1933 
 L 3994 4691 
@@ -2022,92 +2394,9 @@ L 2003 2426
 L 2003 3123 
 z
 " transform="scale(0.015625)"/>
-        <path id="NotoSansCJKsc-Regular-2ac2" d="M 634 4282 
-L 634 -525 
-L 1107 -525 
-L 1107 3808 
-L 2957 3808 
-C 2925 2963 2688 1907 1274 1146 
-C 1389 1062 1549 883 1619 781 
-C 2483 1286 2944 1894 3187 2509 
-C 3776 1965 4422 1299 4749 864 
-L 5146 1178 
-C 4749 1658 3968 2406 3334 2970 
-C 3398 3258 3430 3539 3443 3808 
-L 5306 3808 
-L 5306 128 
-C 5306 13 5274 -26 5146 -32 
-C 5018 -32 4582 -38 4128 -19 
-C 4198 -154 4275 -371 4294 -506 
-C 4870 -506 5267 -506 5491 -429 
-C 5709 -346 5779 -192 5779 122 
-L 5779 4282 
-L 3450 4282 
-L 3450 5376 
-L 2963 5376 
-L 2963 4282 
-L 634 4282 
-z
-" transform="scale(0.015625)"/>
-        <path id="NotoSansCJKsc-Regular-9854" d="M 1376 4051 
-L 1376 2374 
-C 1376 1574 1312 454 243 -198 
-C 333 -269 454 -403 512 -493 
-C 1632 262 1773 1466 1773 2374 
-L 1773 4051 
-L 1376 4051 
-z
-M 1664 742 
-C 1984 390 2362 -96 2541 -397 
-L 2880 -128 
-C 2694 160 2304 627 1990 966 
-L 1664 742 
-z
-M 512 4998 
-L 512 1120 
-L 896 1120 
-L 896 4557 
-L 2234 4557 
-L 2234 1139 
-L 2630 1139 
-L 2630 4998 
-L 512 4998 
-z
-M 3654 5376 
-C 3450 4563 3098 3750 2662 3219 
-C 2771 3155 2963 3002 3046 2931 
-C 3258 3200 3456 3546 3629 3923 
-L 5504 3923 
-C 5427 1254 5338 275 5152 58 
-C 5088 -32 5024 -51 4915 -45 
-C 4781 -45 4480 -45 4134 -19 
-C 4224 -147 4275 -358 4282 -493 
-C 4595 -512 4909 -518 5101 -493 
-C 5306 -467 5440 -416 5568 -230 
-C 5805 70 5882 1075 5965 4115 
-C 5965 4179 5965 4365 5965 4365 
-L 3814 4365 
-C 3930 4659 4032 4966 4115 5280 
-L 3654 5376 
-z
-M 4288 2451 
-C 4397 2202 4506 1907 4602 1626 
-L 3552 1434 
-C 3802 1971 4038 2650 4198 3296 
-L 3757 3424 
-C 3622 2688 3328 1882 3232 1677 
-C 3136 1459 3053 1312 2963 1280 
-C 3021 1171 3078 960 3104 864 
-C 3226 934 3418 992 4710 1267 
-C 4755 1114 4794 973 4813 858 
-L 5184 1005 
-C 5094 1395 4864 2054 4634 2560 
-L 4288 2451 
-z
-" transform="scale(0.015625)"/>
        </defs>
        <use xlink:href="#NotoSansCJKsc-Regular-f6b1"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(55.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b8" transform="translate(55.5 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(138.796875 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-28" transform="translate(161.203125 0)"/>
@@ -2126,26 +2415,17 @@ z
        <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(764.625 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-42" transform="translate(800.71875 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(857.015625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-f6b3" transform="translate(879.421875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(934.921875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(990.421875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1040.21875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-33bb" transform="translate(1062.625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-7e70" transform="translate(1162.625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-2aad" transform="translate(1262.625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-e6ae" transform="translate(1362.625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(1462.625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-51" transform="translate(1523.421875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-51" transform="translate(1585.421875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-4d" transform="translate(1647.421875 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-46" transform="translate(1675.828125 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(1731.234375 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-2ac2" transform="translate(1753.640625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-9854" transform="translate(1853.640625 0)"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-e6af" transform="translate(1953.640625 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(879.421875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-59" transform="translate(934.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(984.71875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-9" transform="translate(1007.125 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-33bb" transform="translate(1040.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-7e70" transform="translate(1140.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-2aad" transform="translate(1240.921875 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-a" transform="translate(1340.921875 0)"/>
       </g>
       <!-- Artificial Analysis - Gemini 4 Carbon (high) -->
-      <g transform="translate(212.749375 452.307273) scale(0.12 -0.12)">
+      <g transform="translate(212.749375 500.22) scale(0.12 -0.12)">
        <defs>
         <path id="NotoSansCJKsc-Regular-43" d="M 2118 -83 
 C 2912 -83 3629 602 3629 1792 
@@ -2215,12 +2495,37 @@ z
       </g>
      </g>
     </g>
-    <g id="ytick_5">
-     <g id="line2d_35"/>
-     <g id="text_9">
-      <!-- 05. Kimi 会员 699 (v1) † -->
-      <g transform="translate(313.035625 518.926193) scale(0.12 -0.12)">
+    <g id="ytick_8">
+     <g id="line2d_38"/>
+     <g id="text_12">
+      <!-- 08. Kimi 会员 699 (v1) † -->
+      <g transform="translate(313.035625 538.654963) scale(0.12 -0.12)">
        <defs>
+        <path id="NotoSansCJKsc-Regular-f6b9" d="M 1792 -83 
+C 2669 -83 3258 448 3258 1126 
+C 3258 1741 2874 2067 2470 2310 
+L 2470 2336 
+C 2746 2547 3091 2957 3091 3437 
+C 3091 4141 2605 4646 1805 4646 
+C 1075 4646 518 4179 518 3482 
+C 518 3002 813 2662 1152 2426 
+L 1152 2400 
+C 730 2170 294 1760 294 1165 
+C 294 442 922 -83 1792 -83 
+z
+M 2112 2483 
+C 1562 2701 1050 2931 1050 3482 
+C 1050 3923 1363 4211 1798 4211 
+C 2298 4211 2592 3853 2592 3405 
+C 2592 3066 2419 2765 2112 2483 
+z
+M 1798 352 
+C 1235 352 813 717 813 1216 
+C 813 1645 1088 1978 1459 2214 
+C 2118 1946 2701 1747 2701 1146 
+C 2701 678 2342 352 1798 352 
+z
+" transform="scale(0.015625)"/>
         <path id="NotoSansCJKsc-Regular-2c" d="M 646 0 
 L 1235 0 
 L 1235 1485 
@@ -2375,7 +2680,7 @@ z
 " transform="scale(0.015625)"/>
        </defs>
        <use xlink:href="#NotoSansCJKsc-Regular-f6b1"/>
-       <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(55.5 0)"/>
+       <use xlink:href="#NotoSansCJKsc-Regular-f6b9" transform="translate(55.5 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(138.796875 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-2c" transform="translate(161.203125 0)"/>
@@ -2398,7 +2703,7 @@ z
        <use xlink:href="#NotoSansCJKsc-Regular-2db" transform="translate(1004.703125 0)"/>
       </g>
       <!-- Artificial Analysis - Kimi K3.1 Pro -->
-      <g transform="translate(266.60875 531.837443) scale(0.12 -0.12)">
+      <g transform="translate(266.60875 551.566213) scale(0.12 -0.12)">
        <use xlink:href="#NotoSansCJKsc-Regular-22"/>
        <use xlink:href="#NotoSansCJKsc-Regular-53" transform="translate(60.796875 0)"/>
        <use xlink:href="#NotoSansCJKsc-Regular-55" transform="translate(99.59375 0)"/>
@@ -2438,61 +2743,85 @@ z
     </g>
    </g>
    <g id="patch_3">
-    <path d="M 453.6 173.932364 
-L 515.385478 173.932364 
-L 515.385478 227.434909 
-L 453.6 227.434909 
+    <path d="M 453.6 160.826824 
+L 515.385478 160.826824 
+L 515.385478 195.446118 
+L 453.6 195.446118 
 z
 " clip-path="url(#p6354b7e420)" style="fill: #cc5a2e"/>
    </g>
    <g id="patch_4">
-    <path d="M 453.6 253.786909 
-L 590.174039 253.786909 
-L 590.174039 307.289455 
-L 453.6 307.289455 
+    <path d="M 453.6 212.497412 
+L 590.174039 212.497412 
+L 590.174039 247.116706 
+L 453.6 247.116706 
 z
 " clip-path="url(#p6354b7e420)" style="fill: #800080"/>
    </g>
    <g id="patch_5">
-    <path d="M 453.6 333.641455 
-L 805.143918 333.641455 
-L 805.143918 387.144 
-L 453.6 387.144 
-z
-" clip-path="url(#p6354b7e420)" style="fill: #16a34a"/>
-   </g>
-   <g id="patch_6">
-    <path d="M 453.6 413.496 
-L 846.22027 413.496 
-L 846.22027 466.998545 
-L 453.6 466.998545 
+    <path d="M 453.6 264.168 
+L 769.704414 264.168 
+L 769.704414 298.787294 
+L 453.6 298.787294 
 z
 " clip-path="url(#p6354b7e420)" style="fill: #84cc16"/>
    </g>
+   <g id="patch_6">
+    <path d="M 453.6 315.838588 
+L 805.143918 315.838588 
+L 805.143918 350.457882 
+L 453.6 350.457882 
+z
+" clip-path="url(#p6354b7e420)" style="fill: #16a34a"/>
+   </g>
    <g id="patch_7">
-    <path d="M 453.6 493.350545 
-L 1018.566991 493.350545 
-L 1018.566991 546.853091 
-L 453.6 546.853091 
+    <path d="M 453.6 367.509176 
+L 877.725889 367.509176 
+L 877.725889 402.128471 
+L 453.6 402.128471 
+z
+" clip-path="url(#p6354b7e420)" style="fill: #cc5a2e"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 453.6 419.179765 
+L 877.725889 419.179765 
+L 877.725889 453.799059 
+L 453.6 453.799059 
+z
+" clip-path="url(#p6354b7e420)" style="fill: #cc5a2e"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 453.6 470.850353 
+L 930.506288 470.850353 
+L 930.506288 505.469647 
+L 453.6 505.469647 
+z
+" clip-path="url(#p6354b7e420)" style="fill: #84cc16"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 453.6 522.520941 
+L 1018.566991 522.520941 
+L 1018.566991 557.140235 
+L 453.6 557.140235 
 z
 " clip-path="url(#p6354b7e420)" style="fill: #0ea5e9"/>
    </g>
-   <g id="patch_8">
+   <g id="patch_11">
     <path d="M 453.6 576 
 L 1270.08 576 
 " style="fill: none; stroke: #c3c9ce; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="text_10">
-    <g id="patch_9">
-     <path d="M 517.97068 212.948636 
-L 604.145367 212.948636 
-L 604.145367 188.418636 
-L 517.97068 188.418636 
+   <g id="text_13">
+    <g id="patch_12">
+     <path d="M 517.97068 190.401471 
+L 604.145367 190.401471 
+L 604.145367 165.871471 
+L 517.97068 165.871471 
 z
 " style="fill: #ffffff; opacity: 0.72"/>
     </g>
     <!-- $0.00024  AN [M] -->
-    <g style="fill: #20252b" transform="translate(518.96068 199.088636) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(518.96068 176.541471) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-5" d="M 1594 -787 
 L 2016 -787 
@@ -2575,7 +2904,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(731.609375 0)"/>
     </g>
     <!-- 得分: +32.8283% -->
-    <g style="fill: #20252b" transform="translate(518.96068 210.638636) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(518.96068 188.091471) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-4402" d="M 3085 3949 
 L 5203 3949 
@@ -2754,17 +3083,17 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
     </g>
    </g>
-   <g id="text_11">
-    <g id="patch_10">
-     <path d="M 592.759241 292.803182 
-L 680.023616 292.803182 
-L 680.023616 268.273182 
-L 592.759241 268.273182 
+   <g id="text_14">
+    <g id="patch_13">
+     <path d="M 592.759241 242.072059 
+L 680.023616 242.072059 
+L 680.023616 217.542059 
+L 592.759241 217.542059 
 z
 " style="fill: #ffffff; opacity: 0.72"/>
     </g>
     <!-- $0.00044  OD [M] -->
-    <g style="fill: #20252b" transform="translate(593.749241 278.943182) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(593.749241 228.212059) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-5"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(55.5 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
@@ -2783,7 +3112,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(741.515625 0)"/>
     </g>
     <!-- 得分: +33.8384% -->
-    <g style="fill: #20252b" transform="translate(593.749241 290.493182) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(593.749241 239.762059) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-15" d="M 2176 0 
 L 2726 0 
@@ -2823,35 +3152,36 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
     </g>
    </g>
-   <g id="text_12">
-    <g id="patch_11">
-     <path d="M 807.72912 372.657727 
-L 893.154432 372.657727 
-L 893.154432 348.127727 
-L 807.72912 348.127727 
+   <g id="text_15">
+    <g id="patch_14">
+     <path d="M 772.289616 293.742647 
+L 857.883366 293.742647 
+L 857.883366 269.212647 
+L 772.289616 269.212647 
 z
 " style="fill: #ffffff; opacity: 0.72"/>
     </g>
-    <!-- $0.0026  OA [M] -->
-    <g style="fill: #20252b" transform="translate(808.71912 358.797727) scale(0.11 -0.11)">
+    <!-- $0.00194  GE [M] -->
+    <g style="fill: #20252b" transform="translate(773.279616 279.882647) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-5"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(55.5 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(138.796875 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(194.296875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-f6b3" transform="translate(249.796875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-f6b7" transform="translate(305.296875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(360.796875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(383.203125 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-30" transform="translate(405.609375 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(478.71875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(539.515625 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-3c" transform="translate(561.921875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-2e" transform="translate(595.71875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(676.921875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b2" transform="translate(249.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6ba" transform="translate(305.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(360.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(416.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(438.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-28" transform="translate(461.109375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-26" transform="translate(530.015625 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(588.921875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3c" transform="translate(611.328125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2e" transform="translate(645.125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(726.328125 0)"/>
     </g>
-    <!-- 得分: +55.5556% -->
-    <g style="fill: #20252b" transform="translate(808.71912 370.347727) scale(0.11 -0.11)">
+    <!-- 得分: +53.5354% -->
+    <g style="fill: #20252b" transform="translate(773.279616 291.432647) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-16" d="M 1677 -83 
 C 2464 -83 3213 499 3213 1523 
@@ -2878,6 +3208,50 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(227.796875 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-c" transform="translate(250.203125 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(305.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-14" transform="translate(361.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(416.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(444.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-14" transform="translate(500 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(555.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-15" transform="translate(611 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
+    </g>
+   </g>
+   <g id="text_16">
+    <g id="patch_15">
+     <path d="M 807.72912 345.413235 
+L 893.154432 345.413235 
+L 893.154432 320.883235 
+L 807.72912 320.883235 
+z
+" style="fill: #ffffff; opacity: 0.72"/>
+    </g>
+    <!-- $0.0026  OA [M] -->
+    <g style="fill: #20252b" transform="translate(808.71912 331.553235) scale(0.11 -0.11)">
+     <use xlink:href="#NotoSansCJKsc-Regular-5"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(55.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(138.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(194.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b3" transform="translate(249.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b7" transform="translate(305.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(360.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(383.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-30" transform="translate(405.609375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(478.71875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(539.515625 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3c" transform="translate(561.921875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2e" transform="translate(595.71875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(676.921875 0)"/>
+    </g>
+    <!-- 得分: +55.5556% -->
+    <g style="fill: #20252b" transform="translate(808.71912 343.103235) scale(0.11 -0.11)">
+     <use xlink:href="#NotoSansCJKsc-Regular-4402"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2b87" transform="translate(100 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1b" transform="translate(200 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(227.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-c" transform="translate(250.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(305.703125 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(361.203125 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(416.703125 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(444.5 0)"/>
@@ -2887,17 +3261,17 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
     </g>
    </g>
-   <g id="text_13">
-    <g id="patch_12">
-     <path d="M 848.805472 452.512273 
-L 934.230784 452.512273 
-L 934.230784 427.982273 
-L 848.805472 427.982273 
+   <g id="text_17">
+    <g id="patch_16">
+     <path d="M 880.31109 397.083824 
+L 965.736403 397.083824 
+L 965.736403 372.553824 
+L 880.31109 372.553824 
 z
 " style="fill: #ffffff; opacity: 0.72"/>
     </g>
-    <!-- $0.00365  GE [L] -->
-    <g style="fill: #20252b" transform="translate(849.795472 438.652273) scale(0.11 -0.11)">
+    <!-- $0.00473  AN [L] -->
+    <g style="fill: #20252b" transform="translate(881.30109 383.223824) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-2d" d="M 646 0 
 L 3290 0 
@@ -2914,9 +3288,99 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(138.796875 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(194.296875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(249.796875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-f6b7" transform="translate(305.296875 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-f6b6" transform="translate(360.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(249.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b8" transform="translate(305.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(360.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(416.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(438.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(461.109375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2f" transform="translate(521.90625 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(594.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3c" transform="translate(616.609375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2d" transform="translate(650.40625 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(704.703125 0)"/>
+    </g>
+    <!-- 得分: +63.6364% -->
+    <g style="fill: #20252b" transform="translate(881.30109 394.773824) scale(0.11 -0.11)">
+     <use xlink:href="#NotoSansCJKsc-Regular-4402"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2b87" transform="translate(100 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1b" transform="translate(200 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(227.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-c" transform="translate(250.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-17" transform="translate(305.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-14" transform="translate(361.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(416.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-17" transform="translate(444.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-14" transform="translate(500 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-17" transform="translate(555.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-15" transform="translate(611 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
+    </g>
+   </g>
+   <g id="text_18">
+    <g id="patch_17">
+     <path d="M 880.31109 448.754412 
+L 965.736403 448.754412 
+L 965.736403 424.224412 
+L 880.31109 424.224412 
+z
+" style="fill: #ffffff; opacity: 0.72"/>
+    </g>
+    <!-- $0.00473  AN [L] -->
+    <g style="fill: #20252b" transform="translate(881.30109 434.894412) scale(0.11 -0.11)">
+     <use xlink:href="#NotoSansCJKsc-Regular-5"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(55.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(138.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(194.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b5" transform="translate(249.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b8" transform="translate(305.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(360.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(416.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(438.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-22" transform="translate(461.109375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2f" transform="translate(521.90625 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(594.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3c" transform="translate(616.609375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2d" transform="translate(650.40625 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(704.703125 0)"/>
+    </g>
+    <!-- 得分: +63.6364% -->
+    <g style="fill: #20252b" transform="translate(881.30109 446.444412) scale(0.11 -0.11)">
+     <use xlink:href="#NotoSansCJKsc-Regular-4402"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-2b87" transform="translate(100 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1b" transform="translate(200 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(227.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-c" transform="translate(250.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-17" transform="translate(305.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-14" transform="translate(361.203125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(416.703125 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-17" transform="translate(444.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-14" transform="translate(500 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-17" transform="translate(555.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-15" transform="translate(611 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
+    </g>
+   </g>
+   <g id="text_19">
+    <g id="patch_18">
+     <path d="M 933.09149 500.425 
+L 1018.516802 500.425 
+L 1018.516802 475.895 
+L 933.09149 475.895 
+z
+" style="fill: #ffffff; opacity: 0.72"/>
+    </g>
+    <!-- $0.00732  GE [L] -->
+    <g style="fill: #20252b" transform="translate(934.08149 486.565) scale(0.11 -0.11)">
+     <use xlink:href="#NotoSansCJKsc-Regular-5"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(55.5 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(138.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(194.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b8" transform="translate(249.796875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(305.296875 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-f6b3" transform="translate(360.796875 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(416.296875 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(438.703125 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-28" transform="translate(461.109375 0)"/>
@@ -2927,7 +3391,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(699.421875 0)"/>
     </g>
     <!-- 得分: +65.1515% -->
-    <g style="fill: #20252b" transform="translate(849.795472 450.202273) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(934.08149 498.115) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-4402"/>
      <use xlink:href="#NotoSansCJKsc-Regular-2b87" transform="translate(100 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-1b" transform="translate(200 0)"/>
@@ -2943,17 +3407,17 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
     </g>
    </g>
-   <g id="text_14">
-    <g id="patch_13">
-     <path d="M 1021.152193 532.366818 
-L 1106.577505 532.366818 
-L 1106.577505 507.836818 
-L 1021.152193 507.836818 
+   <g id="text_20">
+    <g id="patch_19">
+     <path d="M 1021.152193 552.095588 
+L 1106.577505 552.095588 
+L 1106.577505 527.565588 
+L 1021.152193 527.565588 
 z
 " style="fill: #ffffff; opacity: 0.72"/>
     </g>
     <!-- $0.01516  KI [M] -->
-    <g style="fill: #20252b" transform="translate(1022.142193 518.506818) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(1022.142193 538.235588) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-5"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f6b1" transform="translate(55.5 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-f" transform="translate(111 0)"/>
@@ -2972,7 +3436,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-3e" transform="translate(692.40625 0)"/>
     </g>
     <!-- 得分: +67.1717% -->
-    <g style="fill: #20252b" transform="translate(1022.142193 530.056818) scale(0.11 -0.11)">
+    <g style="fill: #20252b" transform="translate(1022.142193 549.785588) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-18" d="M 1267 0 
 L 1875 0 
@@ -3000,8 +3464,8 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-6" transform="translate(666.5 0)"/>
     </g>
    </g>
-   <g id="text_15">
-    <!-- 01–05  |  单价从低到高 -->
+   <g id="text_21">
+    <!-- 01–08  |  单价从低到高 -->
     <g transform="translate(453.6 122.8) scale(0.11 -0.11)">
      <defs>
       <path id="NotoSansCJKsc-Regular-2d1" d="M 294 1600 
@@ -3194,7 +3658,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-12" transform="translate(55.5 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-2d1" transform="translate(111 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-11" transform="translate(164.59375 0)"/>
-     <use xlink:href="#NotoSansCJKsc-Regular-16" transform="translate(220.09375 0)"/>
+     <use xlink:href="#NotoSansCJKsc-Regular-19" transform="translate(220.09375 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(275.59375 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-1" transform="translate(298 0)"/>
      <use xlink:href="#NotoSansCJKsc-Regular-5d" transform="translate(320.40625 0)"/>
@@ -3209,7 +3673,7 @@ z
     </g>
    </g>
   </g>
-  <g id="text_16">
+  <g id="text_22">
    <!-- 最高配置参考前沿 · 真实单价总览 · 订阅与 API 统一对比 -->
    <g transform="translate(413.998594 31.68) scale(0.18 -0.18)">
     <defs>
@@ -4344,8 +4808,8 @@ z
     <use xlink:href="#NotoSansCJKsc-Bold-5943" transform="translate(2500.015625 0)"/>
    </g>
   </g>
-  <g id="text_17">
-   <!-- Terminal-Bench 4.0 (AA) | Resolution Rate % | 2026-11-12 -->
+  <g id="text_23">
+   <!-- Terminal-Bench 4.0 (AA) | Resolution Rate % | 2026-11-13 -->
    <g style="fill: #505a64" transform="translate(517.117188 54) scale(0.1 -0.1)">
     <defs>
      <path id="NotoSansCJKsc-Regular-23" d="M 646 0 
@@ -4449,10 +4913,10 @@ z
     <use xlink:href="#NotoSansCJKsc-Regular-f6b2" transform="translate(2416.453125 0)"/>
     <use xlink:href="#NotoSansCJKsc-Regular-e" transform="translate(2471.953125 0)"/>
     <use xlink:href="#NotoSansCJKsc-Regular-f6b2" transform="translate(2506.65625 0)"/>
-    <use xlink:href="#NotoSansCJKsc-Regular-f6b3" transform="translate(2562.15625 0)"/>
+    <use xlink:href="#NotoSansCJKsc-Regular-f6b4" transform="translate(2562.15625 0)"/>
    </g>
   </g>
-  <g id="text_18">
+  <g id="text_24">
    <!-- 前沿按全量订阅/API（含不计额度的 ≈$0 促销点，与帕累托图一致）的单价与得分筛选，非额度排名；同价同分套餐均保留；缺分模型不参与，估算不确定性未纳入筛选。 -->
    <g style="fill: #505a64" transform="translate(346.06375 637.2) scale(0.08 -0.08)">
     <defs>
@@ -6982,7 +7446,7 @@ z
     <use xlink:href="#NotoSansCJKsc-Regular-576" transform="translate(7448.40625 0)"/>
    </g>
   </g>
-  <g id="text_19">
+  <g id="text_25">
    <!-- 同套餐各模型额度不可相加。Claude Max (9/14+)：2026-09-14起永久额度估算，非当前活动期上限。数据：adopted.csv。 -->
    <g style="fill: #505a64" transform="translate(429.20375 658.8) scale(0.08 -0.08)">
     <defs>
@@ -7699,7 +8163,7 @@ z
     <use xlink:href="#NotoSansCJKsc-Regular-576" transform="translate(5369.90625 0)"/>
    </g>
   </g>
-  <g id="text_20">
+  <g id="text_26">
    <!-- 颜色 = 套餐/API 提供方；置信度 [H] 高 / [M] 中 / [L] 低；编号为排序序号，同值依次列出，不代表模型能力排名。 -->
    <g style="fill: #505a64" transform="translate(448.638125 680.4) scale(0.08 -0.08)">
     <defs>
@@ -8787,7 +9251,7 @@ z
     <use xlink:href="#NotoSansCJKsc-Regular-576" transform="translate(4884.046875 0)"/>
    </g>
   </g>
-  <g id="text_21">
+  <g id="text_27">
    <!-- 汇率：1 USD = 6.7787 CNY（2026-09-04，中国外汇交易中心中间价，新华社转载）；人民币月费 ÷ 汇率换算美元（Kimi 同名并点档除外，按国际版美元标价）。 -->
    <g style="fill: #505a64" transform="translate(360.5075 702) scale(0.08 -0.08)">
     <defs>
@@ -8887,31 +9351,6 @@ L 6022 4800
 L 3642 4800 
 C 3552 4986 3398 5235 3251 5421 
 L 2784 5299 
-z
-" transform="scale(0.015625)"/>
-     <path id="NotoSansCJKsc-Regular-f6b9" d="M 1792 -83 
-C 2669 -83 3258 448 3258 1126 
-C 3258 1741 2874 2067 2470 2310 
-L 2470 2336 
-C 2746 2547 3091 2957 3091 3437 
-C 3091 4141 2605 4646 1805 4646 
-C 1075 4646 518 4179 518 3482 
-C 518 3002 813 2662 1152 2426 
-L 1152 2400 
-C 730 2170 294 1760 294 1165 
-C 294 442 922 -83 1792 -83 
-z
-M 2112 2483 
-C 1562 2701 1050 2931 1050 3482 
-C 1050 3923 1363 4211 1798 4211 
-C 2298 4211 2592 3853 2592 3405 
-C 2592 3066 2419 2765 2112 2483 
-z
-M 1798 352 
-C 1235 352 813 717 813 1216 
-C 813 1645 1088 1978 1459 2214 
-C 2118 1946 2701 1747 2701 1146 
-C 2701 678 2342 352 1798 352 
 z
 " transform="scale(0.015625)"/>
      <path id="NotoSansCJKsc-Regular-3a" d="M 1402 0 
@@ -9954,57 +10393,6 @@ L 6099 3360
 L 2682 3360 
 z
 " transform="scale(0.015625)"/>
-     <path id="NotoSansCJKsc-Regular-64b7" d="M 672 5248 
-L 672 2701 
-C 672 1734 614 582 192 -237 
-C 301 -301 461 -442 538 -531 
-C 915 128 1050 966 1094 1811 
-L 1978 1811 
-L 1978 -506 
-L 2419 -506 
-L 2419 2246 
-L 1107 2246 
-L 1114 2707 
-L 1114 3174 
-L 2810 3174 
-L 2810 3603 
-L 2246 3603 
-L 2246 5389 
-L 1805 5389 
-L 1805 3603 
-L 1114 3603 
-L 1114 5248 
-L 672 5248 
-z
-M 5453 3066 
-C 5312 2336 5069 1715 4755 1203 
-C 4442 1741 4218 2374 4070 3066 
-L 5453 3066 
-z
-M 3091 4941 
-L 3091 2733 
-C 3091 1779 3034 576 2541 -275 
-C 2656 -333 2842 -461 2925 -544 
-C 3475 371 3552 1658 3552 2733 
-L 3552 3066 
-L 3686 3066 
-C 3853 2208 4109 1446 4480 819 
-C 4134 390 3731 70 3290 -134 
-C 3392 -224 3514 -410 3578 -525 
-C 4013 -301 4410 13 4749 416 
-C 5050 19 5408 -294 5837 -525 
-C 5907 -403 6054 -230 6163 -141 
-C 5715 70 5338 384 5030 787 
-C 5485 1459 5811 2336 5965 3450 
-L 5677 3526 
-L 5600 3507 
-L 3552 3507 
-L 3552 4557 
-C 4429 4627 5382 4749 6067 4915 
-L 5766 5325 
-C 5120 5158 4032 5018 3091 4941 
-z
-" transform="scale(0.015625)"/>
      <path id="NotoSansCJKsc-Regular-525d" d="M 2982 4890 
 L 2982 4435 
 L 5773 4435 
@@ -10153,7 +10541,7 @@ z
    </g>
   </g>
   <g id="legend_1">
-   <g id="patch_14">
+   <g id="patch_20">
     <path d="M 389.990703 88.15 
 L 407.590703 88.15 
 L 407.590703 80.45 
@@ -10161,7 +10549,7 @@ L 389.990703 80.45
 z
 " style="fill: #16a34a; stroke: #16a34a; stroke-linejoin: miter"/>
    </g>
-   <g id="text_22">
+   <g id="text_28">
     <!-- OA  OpenAI -->
     <g transform="translate(416.390703 88.15) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-30"/>
@@ -10176,7 +10564,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-2a" transform="translate(492.125 0)"/>
     </g>
    </g>
-   <g id="patch_15">
+   <g id="patch_21">
     <path d="M 493.547109 88.15 
 L 511.147109 88.15 
 L 511.147109 80.45 
@@ -10184,7 +10572,7 @@ L 493.547109 80.45
 z
 " style="fill: #cc5a2e; stroke: #cc5a2e; stroke-linejoin: miter"/>
    </g>
-   <g id="text_23">
+   <g id="text_29">
     <!-- AN  Anthropic -->
     <g transform="translate(519.947109 88.15) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-22"/>
@@ -10202,7 +10590,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-44" transform="translate(585.90625 0)"/>
     </g>
    </g>
-   <g id="patch_16">
+   <g id="patch_22">
     <path d="M 609.806797 88.15 
 L 627.406797 88.15 
 L 627.406797 80.45 
@@ -10210,7 +10598,7 @@ L 609.806797 80.45
 z
 " style="fill: #0ea5e9; stroke: #0ea5e9; stroke-linejoin: miter"/>
    </g>
-   <g id="text_24">
+   <g id="text_30">
     <!-- KI  Kimi -->
     <g transform="translate(636.206797 88.15) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-2c"/>
@@ -10223,7 +10611,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-4a" transform="translate(323.390625 0)"/>
     </g>
    </g>
-   <g id="patch_17">
+   <g id="patch_23">
     <path d="M 694.604766 88.15 
 L 712.204766 88.15 
 L 712.204766 80.45 
@@ -10231,7 +10619,7 @@ L 694.604766 80.45
 z
 " style="fill: #800080; stroke: #800080; stroke-linejoin: miter"/>
    </g>
-   <g id="text_25">
+   <g id="text_31">
     <!-- OD  OpenDesign -->
     <g transform="translate(721.004766 88.15) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-30"/>
@@ -10250,7 +10638,7 @@ z
      <use xlink:href="#NotoSansCJKsc-Regular-4f" transform="translate(695.328125 0)"/>
     </g>
    </g>
-   <g id="patch_18">
+   <g id="patch_24">
     <path d="M 824.000859 88.15 
 L 841.600859 88.15 
 L 841.600859 80.45 
@@ -10258,7 +10646,7 @@ L 824.000859 80.45
 z
 " style="fill: #84cc16; stroke: #84cc16; stroke-linejoin: miter"/>
    </g>
-   <g id="text_26">
+   <g id="text_32">
     <!-- GE  Gemini -->
     <g transform="translate(850.400859 88.15) scale(0.11 -0.11)">
      <use xlink:href="#NotoSansCJKsc-Regular-28"/>

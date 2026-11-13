@@ -1,0 +1,129 @@
+{
+  "collectedAt": "2026-11-13",
+  "supplement": true,
+  "supplementNote": "Claude Fable 5.2 (max) 于 2026-11-13 从 AA models 榜载荷录入：intelligenceIndex 64.5636、Terminal-Bench 4.0 59.5960%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-11-13",
+      "note": "2026-11-13 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-11-13",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "claude-fable-5.2",
+      "variantLabel": "Claude Fable 5.2 (max)",
+      "score": 64.5636,
+      "secondary": {
+        "configurationRank": 1,
+        "costPerTaskUsd": 26.5386,
+        "scoreRoundedDisplay": 65,
+        "intelligenceIndexIsEstimated": null,
+        "slug": "claude-fable-5-2",
+        "shortName": "Claude Fable 5.2 (max)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Anthropic",
+        "effort": null,
+        "terminalBench40": 0.595959595959596,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 8,
+        "price1mOutputTokens": 40,
+        "cacheHitPrice": 0.2,
+        "intelligenceIndex": 64.563595756626,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-13"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "claude-fable-5.2",
+      "variantLabel": "Artificial Analysis - Claude Fable 5.2 (max)",
+      "score": 59.596,
+      "secondary": {
+        "configurationRank": 1,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "claude-fable-5-2",
+        "shortName": "Claude Fable 5.2 (max)",
+        "terminalBench40Fraction": 0.595959595959596
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-13",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "claude-fable-5-2",
+        "name": "Claude Fable 5.2 (Max, Default Fallback)",
+        "shortName": "Claude Fable 5.2 (max)",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "high",
+        "modelCreatorName": "Anthropic",
+        "modelCreatorColor": "#cc785c",
+        "modelCreatorLogo": "/img/logos/anthropic.svg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 64.563595756626,
+        "omniscience": 66.76666666666667,
+        "scores": {
+          "aa-briefcase": 1784.66,
+          "omniscience-accuracy": 0.7913333333333333,
+          "omniscience-non-hallucination": 0.4073482428115016,
+          "automationbench-aa": 0.7642233832611831,
+          "terminal-bench-science": 0.733333333333333,
+          "frontiercode-2-0": 0.487597222222222,
+          "hle-diamond": 0.802,
+          "gdp-pdf": 0.242,
+          "terminalbench-4-0": 0.595959595959596,
+          "critpt-v2-hard": 0.765,
+          "harvey-lab-aa": 0.07222222222222222,
+          "gdpval-aa-normalized": 1831.33,
+          "aa-3d": 1271.4151,
+          "mlcr-aa": 0.438888888888889,
+          "frontiercode": 0.562128333333333,
+          "healthbench": 0.5955742028993666,
+          "healthbench-professional": 0.6765943696339888,
+          "vials-aa": 0.6708074534161491,
+          "mka": 0.565604258363361,
+          "humanitys-last-exam": 0.742817423540315,
+          "artificial-analysis-long-context-reasoning": 0.833333333333333,
+          "scicode": 0.677083333333333,
+          "critpt": 0.354285714285714
+        },
+        "intelligenceIndexCostPerTask": 26.53855780398091,
+        "intelligenceIndexTimePerTask": 2803.052671537577,
+        "price1mInputTokens": 8,
+        "price1mOutputTokens": 40,
+        "cacheHitPrice": 0.2,
+        "cacheWritePrice": 10,
+        "outputSpeed": 97.67064426588735,
+        "timeToFirstToken": 262.2905190026164,
+        "timeToFirstAnswerToken": 262.2905190026164,
+        "terminalBench40": 0.595959595959596
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

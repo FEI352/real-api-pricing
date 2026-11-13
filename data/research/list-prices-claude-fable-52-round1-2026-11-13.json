@@ -1,0 +1,27 @@
+{
+  "collectedAt": "2026-11-13",
+  "sourceType": "official pricing page + launch coverage",
+  "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "checkedAt": "2026-11-13",
+  "launchAt": "2026-11-13",
+  "scope": "Anthropic Claude Fable 5.2（2026-11-13 发布，API id claude-fable-5-2）按量三段价与缓存价，供 compute.py 标价混合比。input $8/MTok，output $40/MTok，cache read $0.20/MTok，5m 缓存写 $10.0/MTok。",
+  "models": [
+    {
+      "model": "claude-fable-5.2",
+      "vendor": "Anthropic",
+      "input": 8.0,
+      "cachedInput": 0.2,
+      "output": 40.0,
+      "currency": "USD",
+      "variants": {
+        "cacheWrite5m": {
+          "input": 10.0
+        }
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-13",
+      "note": "2026-11-13 发布：$8.0/MTok input、$40.0/MTok output、缓存读 $0.20/MTok、5m 缓存写 $10.0/MTok。项目模型 id 为 claude-fable-5.2。"
+    }
+  ],
+  "notFound": []
+}

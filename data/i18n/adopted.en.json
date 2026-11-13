@@ -1175,32 +1175,12 @@
       "en": "Community estimate baseline: Keeper reports the Ultra 5x Gemini 4 Carbon allowance as 5h $50 / 7d $200 (unofficial figures); official tier multipliers Pro 1x / Ultra 5x 5x / Ultra 20x 20x ( https://one.google.com/about/google-ai-plans/ ); Carbon three-part prices in list-prices-gemini-4-carbon-round1-2026-10-29.json; converted under the project standard workload cache 97% / input 2.5% / output 0.5%, monthly pool counted as 4 weeks"
     },
     {
-      "zh": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99。官网直购价参照 Google 土耳其区定价 feed（https://one.google.com/intl/ALL_tr/about/feeds/pricing_2026_07_28.json），汇率沿用本项目 Ultra 5x 土区口径（TRY 1479.99 ≈ $29.73，即 49.78 TRY/USD）。",
-      "en": "Linux.do intel thread, 2026-11-03: a Turkish-region Apple ID still shows an unretired intro offer group; in iOS Settings > Apple ID > Subscriptions > Google subscription > see all plans, the same 30TB Ultra 20X appears twice: current price TRY 8999.99 and historical promo TRY 2949.99. Direct-purchase reference from the Google Turkey pricing feed (https://one.google.com/intl/ALL_tr/about/feeds/pricing_2026_07_28.json ); FX reuses this project Ultra 5x Turkey basis (TRY 1479.99 = $29.73, i.e. 49.78 TRY/USD)."
-    },
-    {
-      "zh": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24（约合人民币 410 元），仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版同池（与地区无关）= 162.44 亿/月（gemini-4-carbon 折算，纯倍率外推）。real = 59.24 ÷ 16244 MTok = $0.003647/MTok，为美国版 $0.024623/MTok 的 14.8%。⚠️ 三条风险：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测。置信度 low。",
-      "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = $59.24 (about CNY 410), only 32.8% of the direct-purchase TRY 8999.99 (about $180.8) and 29.6% of the US $199.99. Quota shares the US pool (region-independent) = 16.244B/month (gemini-4-carbon basis, pure multiplier extrapolation). real = 59.24 / 16244 MTok = $0.003647/MTok, 14.8% of the US $0.024623/MTok. Risks: first, a leftover promo group in Apple's subscription system, which Google or Apple may retire or force-migrate at any time; second, requires a Turkish Apple ID plus TR gift-card top-up, and the list price excludes 20% TR VAT; third, quota is a 20x multiplier extrapolation with no 20x-side measurement. Confidence low."
-    },
-    {
-      "zh": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24（约合人民币 410 元），仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版同池（与地区无关）= 162.44 亿/月（gemini-4-argon 折算，纯倍率外推）。real = 59.24 ÷ 16244 MTok = $0.003647/MTok，为美国版 $0.012312/MTok 的 29.6%。⚠️ 三条风险：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测。置信度 low。",
-      "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = $59.24 (about CNY 410), only 32.8% of the direct-purchase TRY 8999.99 (about $180.8) and 29.6% of the US $199.99. Quota shares the US pool (region-independent) = 16.244B/month (gemini-4-argon basis, pure multiplier extrapolation). real = 59.24 / 16244 MTok = $0.003647/MTok, 29.6% of the US $0.012312/MTok. Risks: first, a leftover promo group in Apple's subscription system, which Google or Apple may retire or force-migrate at any time; second, requires a Turkish Apple ID plus TR gift-card top-up, and the list price excludes 20% TR VAT; third, quota is a 20x multiplier extrapolation with no 20x-side measurement. Confidence low."
-    },
-    {
       "zh": "倍率：Google 官方 Antigravity 说明 Ultra $100 = 5× Pro token worth；额度基准：社区 Keeper 统计 Ultra 5x 的 Gemini 4 Argon 为 5h $50 / 7d $200（非官方数字）；标价：Gemini 4 Argon 首发优惠 $2.00/$10.00（缓存读 $0.10，至 2026-11-30）见 https://ai.google.dev/gemini-api/docs/pricing 与 list-prices-gemini-4-argon-round1-2026-10-01.json；土区价格 TRY 1,479.99 ÷ 49.78 = $29.73 见 probe-pricing-2026-11-03.json",
       "en": "Multiple: Google's official Antigravity note (Ultra $100 = 5x Pro token worth); quota basis is the community Keeper count for Ultra 5x Gemini 4 Argon at 5h $50 / 7d $200 (unofficial); list price is the Gemini 4 Argon intro rate $2.00/$10.00 (cached read $0.10 until 2026-11-30) per https://ai.google.dev/gemini-api/docs/pricing and list-prices-gemini-4-argon-round1-2026-10-01.json; Turkey price TRY 1,479.99 ÷ 49.78 = $29.73 per probe-pricing-2026-11-03.json"
     },
     {
       "zh": "40.61 亿 = 周池 $200 × 4 周 ÷ blended $0.197/MTok；额度与地区无关，土区只改价格。real = 29.73 ÷ 4,061 MTok = $0.007321/MTok，为美区同档 $0.024622 的 29.7%。此前该行 main=false 只进全量图，本次并入精选主图与同套餐的 3.8 Flash 并列。纯倍率外推、无面板实测 → low。",
       "en": "4.061B = weekly pool $200 x 4 weeks / blended $0.197 per MTok; the quota is region-independent, Turkey only changes the price. real = 29.73 / 4,061 MTok = $0.007321/MTok, 29.7% of the US row's $0.024622. This row was main=false (full chart only); it is now promoted to the curated chart alongside the same plan's 3.8 Flash point. Pure multiple extrapolation, no panel measurement -> low."
-    },
-    {
-      "zh": "Linux.do 2026-11-03 情报帖：土区 Apple ID 订阅页残留未下架的 intro offer group，可在 iOS 设置 → Apple ID → 订阅 → Google 订阅 → see all plans 中看到同一 30TB Ultra 20X 并列两价：现价 TRY 8999.99 与历史促销价 TRY 2949.99；官网直购价参照 Google 土耳其区定价页 https://one.google.com/intl/ALL_tr/about/feeds/pricing_20250909_3c4cbb8a ；3.8 Flash 标价维持引入优惠 $0.75/$3.75 见 probe-pricing-2026-11-03.json",
-      "en": "linux.do intelligence thread 2026-11-03: the Turkey Apple ID subscription page still lists an un-retired intro-offer group — iOS Settings -> Apple ID -> Subscriptions -> Google -> see all plans shows the same 30TB Ultra 20X with two prices, current TRY 8999.99 and the legacy promo TRY 2949.99; the direct Google Turkey price list is at https://one.google.com/intl/ALL_tr/about/feeds/pricing_20250909_3c4cbb8a ; the 3.8 Flash list price is still the intro rate $0.75/$3.75 per probe-pricing-2026-11-03.json"
-    },
-    {
-      "zh": "Apple 内购漏洞价：TRY 2949.99 ÷ 49.78 ≈ $59.24，仅为官网直购 TRY 8999.99（≈$180.8）的 32.8%、美区 $199.99 的 29.6%。额度与美国版 20x 同池（与地区无关）= 20 × Pro 25.81 = 516.2 亿/月（Gemini 3.8 Flash 折算，纯倍率外推）。real = 59.24 ÷ 51,620 MTok = $0.001148/MTok，为美区 20x 的 $0.003874 的 29.6%。三条风险同其余内购行：① 属 Apple 订阅系统历史促销组残留，随时可能被 Google/Apple 修复或强制迁移；② 跨区开通需土耳其 Apple ID + 土区礼品卡充值，标价不含 VAT（土区 20%）；③ 额度为 20x 倍率外推值，无 20x 侧实测 → low。",
-      "en": "Apple IAP loophole price: TRY 2949.99 / 49.78 = approx $59.24, only 32.8% of the direct Google store price TRY 8999.99 (approx $180.8) and 29.6% of the US $199.99. Quota shares the US 20x pool (region-independent) = 20 x Pro 25.81 = 51.62B per month (Gemini 3.8 Flash basis, pure multiple extrapolation). real = 59.24 / 51,620 MTok = $0.001148/MTok, 29.6% of the US 20x row's $0.003874. Same three risks as the other IAP rows: (a) leftover promo group in Apple's subscription system, possibly fixed or force-migrated at any time; (b) cross-region signup needs a Turkey Apple ID plus TRY gift cards, price excludes Turkish VAT at 20%; (c) the quota is a 20x multiple extrapolation with no 20x-side measurement -> low."
     },
     {
       "zh": "订阅价格与额度：Mistral 官方定价页 https://mistral.ai/pricing（Pro 14.99 美元/月含 25.5 美元/月 API credits；学生教育版为 15 美元/月 API credits，最长 12 个月，仅限未用过 Vibe/Le Chat 的在校生）；Vibe coding 额度池拆分（coding 150 + Studio API 15）来自维护者提供的 X @sahenjpn 2026-11-05 https://x.com/sahenjpn/status/2118299279538426174 与 X @Somme4096 https://x.com/Somme4096/status/2118294746385014796。模型价沿用 list-prices-mistral-large-4-round1-2026-11-04.json。",
@@ -1257,6 +1237,50 @@
     {
       "zh": "168.48 亿 = 325.5 ÷ 0.01932；real = 0.000712 美元/MTok，约 27.1 倍杠杆。",
       "en": "16.848B MTok = 325.5 / 0.01932; real = 0.000712 USD/MTok, about 27.1x leverage."
+    },
+    {
+      "zh": "Google Cloud Model Garden 价格页（https://cloud.google.com/model-garden/pricing）：Gemini 3.8 Flash 的 $0.75/$3.75 是 2026-12-31 前的初次体验价，2027-01-01 起恢复标准价 $1.50/$7.50；Gemini 4 Hydrogen 的 $1.50/$7.50 就是这一标准价（无促销）。订阅侧 Antigravity 实测两者额度同为 20 亿/月，故按同额度录入。",
+      "en": "Google Cloud Model Garden pricing: https://cloud.google.com/model-garden/pricing — the $0.75/$3.75 for Gemini 3.8 Flash is an introductory rate until 2026-12-31, reverting to the standard $1.50/$7.50 on 2027-01-01; Gemini 4 Hydrogen's $1.50/$7.50 is that standard rate (no promo). In Antigravity both tiers measure the same 2B/month, so the allowance is recorded as equal."
+    },
+    {
+      "zh": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 25.81 亿）；19.99 美元/月 ÷ 2581 MTok → real = $0.007745/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "en": "Allowance matches the 3.8 Flash tier (Antigravity measures the same 2B/month, so 2.581B is reused); $19.99/mo over 2581 MTok gives real = $0.007745/MTok. During the promo Flash costs half of Hydrogen; from 2027-01-01 both are the same price."
+    },
+    {
+      "zh": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 129.05 亿）；99.99 美元/月 ÷ 12905 MTok → real = $0.007748/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "en": "Allowance matches the 3.8 Flash tier (Antigravity measures the same 2B/month, so 12.905B is reused); $99.99/mo over 12905 MTok gives real = $0.007748/MTok. During the promo Flash costs half of Hydrogen; from 2027-01-01 both are the same price."
+    },
+    {
+      "zh": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 516.2 亿）；199.99 美元/月 ÷ 51620 MTok → real = $0.003874/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "en": "Allowance matches the 3.8 Flash tier (Antigravity measures the same 2B/month, so 51.62B is reused); $199.99/mo over 51620 MTok gives real = $0.003874/MTok. During the promo Flash costs half of Hydrogen; from 2027-01-01 both are the same price."
+    },
+    {
+      "zh": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 129.05 亿）；29.73 美元/月 ÷ 12905 MTok → real = $0.002304/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "en": "Allowance matches the 3.8 Flash tier (Antigravity measures the same 2B/month, so 12.905B is reused); $29.73/mo over 12905 MTok gives real = $0.002304/MTok. During the promo Flash costs half of Hydrogen; from 2027-01-01 both are the same price."
+    },
+    {
+      "zh": "额度与 3.8 Flash 同档（Antigravity 实测同为 20 亿/月，故沿用 25.81 亿）；5 美元/月 ÷ 2581 MTok → real = $0.001937/MTok。促销期内 Flash 现价只有氢的一半，2027-01-01 起两者同价。",
+      "en": "Allowance matches the 3.8 Flash tier (Antigravity measures the same 2B/month, so 2.581B is reused); $5/mo over 2581 MTok gives real = $0.001937/MTok. During the promo Flash costs half of Hydrogen; from 2027-01-01 both are the same price."
+    },
+    {
+      "zh": "Anthropic 官方定价沿用 Claude Fable 5.1 同档（输入 $10 / 输出 $50 每百万 token，cache 读 $0.25）；额度与 5.1 同价同池，沿用其实测口径 claude-fable51-round1-2026-09-13.json。",
+      "en": "Anthropic list pricing follows the Claude Fable 5.1 tier (input $10 / output $50 per million tokens, cache read $0.25); the allowance shares the same pool at the same 5.1 price, so the measured basis in claude-fable51-round1-2026-09-13.json carries over."
+    },
+    {
+      "zh": "额度沿用 5.1 的 17.28 亿：200 美元/月 ÷ 1728 MTok → real = $0.115741/MTok，与 5.1 完全一致（同价同池，无新增实测）。",
+      "en": "Allowance reuses the 5.1 figure of 1.728B: $200/mo over 1728 MTok gives real = $0.115741/MTok, identical to 5.1 (same price, same pool, no new measurement)."
+    },
+    {
+      "zh": "额度沿用 5.1 的 8.639 亿：100 美元/月 ÷ 863.9 MTok → real = $0.115754/MTok，与 5.1 完全一致（同价同池，无新增实测）。",
+      "en": "Allowance reuses the 5.1 figure of 0.8639B: $100/mo over 863.9 MTok gives real = $0.115754/MTok, identical to 5.1 (same price, same pool, no new measurement)."
+    },
+    {
+      "zh": "Factory Droid Max 沿用 Claude Fable 5.1 同档价格与额度口径（claude-adoption-round7-2026-09-14.json）；新模型同价，故额度不变。",
+      "en": "Factory Droid Max keeps the Claude Fable 5.1 price and allowance basis (claude-adoption-round7-2026-09-14.json); the new model costs the same, so the allowance is unchanged."
+    },
+    {
+      "zh": "额度沿用 5.1 的 10.104 亿：200 美元/月 ÷ 1010.4 MTok → real = $0.197941/MTok，与 5.1 完全一致（同价同池，无新增实测）。",
+      "en": "Allowance reuses the 5.1 figure of 1.0104B: $200/mo over 1010.4 MTok gives real = $0.197941/MTok, identical to 5.1 (same price, same pool, no new measurement)."
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",

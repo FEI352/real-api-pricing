@@ -1,0 +1,116 @@
+{
+  "collectedAt": "2026-11-13",
+  "supplement": true,
+  "supplementNote": "Gemini 4 Hydrogen (xhigh) 于 2026-11-13 从 AA models 榜载荷录入：intelligenceIndex 53.9192、Terminal-Bench 4.0 53.5354%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-11-13",
+      "note": "2026-11-13 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-11-13",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "gemini-4-hydrogen",
+      "variantLabel": "Gemini 4 Hydrogen (xhigh)",
+      "score": 53.9192,
+      "secondary": {
+        "configurationRank": 16,
+        "costPerTaskUsd": 3.1602,
+        "scoreRoundedDisplay": 54,
+        "intelligenceIndexIsEstimated": null,
+        "slug": "gemini-4-hydrogen",
+        "shortName": "Gemini 4 Hydrogen (xhigh)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Google",
+        "effort": null,
+        "terminalBench40": 0.535353535353535,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 1.5,
+        "price1mOutputTokens": 7.5,
+        "cacheHitPrice": 0.075,
+        "intelligenceIndex": 53.9192287317542,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-13"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "gemini-4-hydrogen",
+      "variantLabel": "Artificial Analysis - Gemini 4 Hydrogen (xhigh)",
+      "score": 53.5354,
+      "secondary": {
+        "configurationRank": 16,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "gemini-4-hydrogen",
+        "shortName": "Gemini 4 Hydrogen (xhigh)",
+        "terminalBench40Fraction": 0.535353535353535
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-13",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "slug": "gemini-4-hydrogen",
+        "name": "Gemini 4 Hydrogen (Xhigh)",
+        "shortName": "Gemini 4 Hydrogen (xhigh)",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "high",
+        "modelCreatorName": "Google",
+        "modelCreatorColor": "#34A853",
+        "modelCreatorLogo": "/img/logos/google.svg",
+        "contextWindowTokens": 1000000,
+        "intelligenceIndex": 53.9192287317542,
+        "omniscience": 46.266666666666666,
+        "scores": {
+          "aa-briefcase": 1566.85,
+          "omniscience-accuracy": 0.5046666666666667,
+          "omniscience-non-hallucination": 0.9152086137281292,
+          "automationbench-aa": 0.7614416852922641,
+          "terminal-bench-science": 0.495238095238095,
+          "frontiercode-2-0": 0.389591919191919,
+          "hle-diamond": 0.588,
+          "gdp-pdf": 0.276,
+          "terminalbench-4-0": 0.535353535353535,
+          "critpt-v2-hard": 0.66
+        },
+        "intelligenceIndexCostPerTask": 3.1601590757006157,
+        "intelligenceIndexTimePerTask": 779.21217837177,
+        "price1mInputTokens": 1.5,
+        "price1mOutputTokens": 7.5,
+        "cacheHitPrice": 0.075,
+        "cacheWritePrice": null,
+        "outputSpeed": 198.15605224277715,
+        "timeToFirstToken": 41.113529580779996,
+        "timeToFirstAnswerToken": 41.113529580779996,
+        "terminalBench40": 0.535353535353535
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

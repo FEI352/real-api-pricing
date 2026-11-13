@@ -157,7 +157,7 @@ FULL_TIER_LABEL_OFFSETS = {
     ("claude-haiku-5.5", "aa_intelligence_index"): (-8, -60, "middle"),
     ("deepseek-v4.1-flash", "aa_terminal_bench_4"): (-32, -20, "end"),
     ("claude-haiku-5.5", "aa_terminal_bench_4"): (-8, 40, "end"),
-    ("claude-sonnet-5.5", "arena_agent_mode"): (-8, 20, "end"),
+    ("claude-sonnet-5.5", "arena_agent_mode"): (-220, 20, "end"),  # 2026-11-13: 上移避开 Muse Spark 1.2 Contributor（93×32px 重叠）
     ("deepseek-v4.1-flash", "arena_agent_mode"): (40, 60, "middle"),
     ("claude-haiku-5.5", "arena_agent_mode"): (-8, -60, "middle"),
     ("claude-sonnet-5.5", "arena_code"): (-8, 20, "end"),
@@ -268,6 +268,14 @@ def label_position(p, board, x, y, tier="main"):
     if model == "gemini-3.8-flash":
         if board == "aa_coding_agent_index":
             return x - 30, y - 30, "end"
+    if model == "gemini-4-hydrogen":
+        # 2026-11-13：氢在 AA 智力榜与 Terminal-Bench 4 上同时进入前沿（学生档 $0.00194）。
+        # 默认的左上标签（x-20, y-52）分别压住 Claude Opus 5.5 / Sonnet 5.5；改到点左侧
+        # 略下方并保持 end 锚点，两榜各自让开相邻标签，数据点不动。
+        if board == "aa_intelligence_index":
+            return x - 20, y + 8, "end"
+        if board == "aa_terminal_bench_4":
+            return x - 20, y + 20, "end"
     if model == "glm-5.3":
         if board == "aa_intelligence_index":
             return x + 24, y - 108, "start"

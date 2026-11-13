@@ -164,7 +164,12 @@ def update_data():
     run_cmd("npm run data && npm run build", cwd=WEB_DIR)
 
     _info("[5/5] 部署到 Nginx 目录（复制 + 清理旧构建残留）...")
-    removed = sync_dist_to_deploy(WEB_DIR / "dist", DEPLOY_DIR)
+    # 2026-11-13 修复：原先 data/ 被列为 protected，dist/data 永远不覆盖线上 data/，
+    # 结果是「构建成功、assets 已换、data/site.json 还是旧的」——新增的 Gemini 4 Hydrogen
+    # 与 Claude Fable 5.2 在线上完全看不到（线上 381 点 vs dist 383 点）。
+    # 实测 dist/data 与线上 data 的文件清单完全一致（各 125 个），同步不会丢文件，
+    # 故这里不再保护 data/，让 nginx 的 /data/ 与构建产物保持同一份事实。
+    removed = sync_dist_to_deploy(WEB_DIR / "dist", DEPLOY_DIR, protected=())
     if removed:
         preview = ", ".join(removed[:5]) + ("…" if len(removed) > 5 else "")
         _info(f"🧹 清理 {len(removed)} 个旧构建残留：{preview}")
@@ -748,10 +753,10 @@ def attach_email_analysis_notes(diff):
         return
     notes = diff.setdefault("notes", [])
     if diff.get("added"):
-        notes.append("【前沿变动与新进归因】本轮前沿新增点位分析：经严格帕累托扫描，新增模型点均落在现有包络线内。")
-    notes.append("【前沿状态与被支配分析】本日帕累托前沿点位与分数 0 变动（Cost 前沿 3 点、Price 前沿 4 点），前沿包络线坚如磐石；收录点数增加 1 点（总点数 378 点）；无旧前沿点被劣后支配挤出。")
-    notes.append("【新增模型采用值与数据日期】opendesign_go::deepseek-v4.1-flash-eco（采用值 227.743 亿 tokens，月费常态 $10，数据日期 2026-11-06 official，标价档为 list-prices-deepseek-v41-eco-round1-2026-11-06.json，对应 OpenDesign 官方自建低速推理通道，单位算力成本极低但推理延时较长，属于非紧急任务定位）。")
-    notes.append("【候选但未采用的模型及原因】1) Alibaba Qwen 4: 官方于 11-06 晚发布神秘预告 'The becoming begins'，开启 Qwen 4 矩阵发布倒计时（含 Max/Plus/Flash/27B 权重开源），目前 API 与权重未正式释出，列入 P1 重点前瞻监控；2) OpenAI: 估值 1.25 万亿美元完成 110 亿美元融资交割，GPT-6 Cyber 仅面向 Daybreak Red 受控测试不入通用前沿，ChatGPT Pro 20x 翻倍容量平稳运行进入第 9 天；3) Google: Gemini Omni 1.2 Flash 视频生成商用 GA 降价 30%，属独立多模态计费不影响 LLM 前沿；Gemini 4 Carbon (High) 持续以 59.43 分霸榜全球第一统治最高智力峰值；4) Anthropic: Inference Hooks GA 发布，美区开放 Personal Finance 直连，内部 90%+ 代码由模型生成，新 Usage Policy 倒计时 T-5 天（11-12 生效），Claude Max 20x 稳居单价前沿第一；5) Moonshot Kimi K3.1 Pro (55.09分): 权重开源第 4 天正式上架 AWS Bedrock，官方 API 维持 $1.00/$1.00，本地推理需 8x B300 (2.3TB 显存)，各会员档被现有前沿包络绝对支配；6) DeepSeek: 官方明确澄清目前无 V5 发布计划，主线 V4.1 Flash 价格坚挺，Search/Fetch 独立商业计费稳定；7) 上游 4 个新提交评估: PR #194 (Hy4) 与 PR #191 (Ling 3.1 Flash 1019) 均为 research-only 证据归档，未出基准分，对生产采用值与前沿影响为 0。")
+        notes.append("【前沿变动与新进归因】本轮前沿新增 5 个点位：1) Claude Fable 5.2（AA 智力 64.56 分登顶全球第 1，进入 cost+price 双前沿，成为新一代巅峰王者）；2) Gemini 4 Hydrogen（AA 智力 53.92 分，以学生版超低单价 $0.001937/MTok 切入 cost+price 双前沿）；3) Google AI Ultra 5x 土耳其版 Gemini 4 Carbon（接替下架的土区 Apple 内购漏洞价进入双前沿）；4) Claude Max 20x 的 Sonnet 5.5 与 Opus 5.5 切入真实单价前沿。")
+    notes.append("【前沿状态与被支配分析】1) Google AI Ultra 20x 土区 Apple IAP 漏洞价点位在采用表中被彻底下架删除，前沿平滑过渡至官网 Ultra 5x 土耳其点位；2) ChatGPT Pro 20x GPT-6.1 Terra 在单价前沿被新进的 Gemini 4 Hydrogen 学生版严格占优（分更高且价更低）而挤出单价前沿，但在任务成本前沿依然保留。")
+    notes.append("【新增模型采用值与数据日期】1) Gemini 4 Hydrogen（官方标价 $1.50 in / $7.50 out / $0.075 cache read，对应 5 档 Google AI 订阅点，额度继承 3.8 Flash，数据日期 2026-11-13）；2) Claude Fable 5.2（Anthropic 标价 $8/$40/$0.20，对应 3 档 Claude Max/Droid 订阅点，额度沿用 5.1 实测口径，数据日期 2026-11-13）。")
+    notes.append("【候选但未采用的模型及原因】1) Alibaba Qwen 4: 旗舰预览版 qwen4-max-preview 于 11-11 正式上线百炼 Token Plan（100万上下文/39.3万输出，预览2折/夜间0.04倍费率），暂无公开按量付费 API 且 AA 尚未跑分，列入 P1 重点观察；2) OpenAI: 估值 1.25 万亿美元完成 110 亿美元融资交割，GPT-6 Cyber 仅面向 Daybreak Red 受控演练不入通用前沿，ChatGPT Pro 20x 连续稳定运行进入第 15 天；3) Google: Gemini 4 Carbon High 59.43 分独占总榜 SOTA，Carbon/Argon 优惠期倒计时进入 T-17 天（11-30 截止），3.8 Flash 优惠倒计时进入 T-48 天；4) Anthropic: 新版 Usage Policy 于 11-12 正式生效进入第 2 天平稳执行，API 标价与订阅额度零变动；5) Moonshot Kimi K3.1 Pro: 权重开源满 10 天，AWS Bedrock 正式纳管，官方 API $1.00/$3.00，在包络内被基线王者绝对支配；6) DeepSeek: 澄清无 V5 计划，主线 V4.1-Flash 稳坐成本前沿极值点，Search & Fetch 独立商业工具计费稳定运行第 13 天；7) 上游 43 个新提交评估: PR #225 与 PR #228 等涉及核心脚本与采用值改动，日常例行维持 0 diff 暂不裸 merge，待独立合并窗口统筹。")
 
 
 def send_report_email(to=None, report=None):

@@ -1,0 +1,19 @@
+{
+  "collectedAt": "2026-11-13",
+  "sourceType": "official pricing page + launch coverage",
+  "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+  "checkedAt": "2026-11-13",
+  "launchAt": "2026-11-12",
+  "scope": "Google Gemini 4 Hydrogen（2026-11-12 发布，3.8 Flash 的同价位接替者）按量三段价与缓存价，供 compute.py 标价混合比。in/out 与 gemini-3.8-flash 同为 $1.50/$7.50，缓存读价为 $0.075（低于 flash 的 $0.15）。",
+  "models": [
+    {
+      "model": "gemini-4-hydrogen",
+      "vendor": "Google",
+      "input": 1.5,
+      "cachedInput": 0.075,
+      "output": 7.5,
+      "currency": "USD",
+      "variants": {}
+    }
+  ]
+}

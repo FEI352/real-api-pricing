@@ -1,0 +1,244 @@
+{
+  "collectedAt": "2026-11-13",
+  "checkedAt": "2026-11-13T09:30:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "主流供应商官方 API 标价与套餐变更排查（Anthropic, Google, OpenAI, DeepSeek, Mistral, MiniMax, Kimi, StepFun, Command Code GOAT, OpenCode Go 等），上游 upstream/main 43 个提交全量评估（PR #225, PR #228, PR #224, PR #218, PR #217, PR #200, PR #194, PR #191, PR #188, PR #177, PR #168, PR #167, PR #166, PR #165, PR #160），今日新增模型（Gemini 4 Hydrogen, Claude Fable 5.2）标价档完备性核验与采用值派生，采用值派生脚本 build_adopted.py 维护及 22 项守卫核验",
+  "summary": "2026-11-13 官方 API 标价与采用值排查结论：1) 今日新增模型与标价档：A. Google Gemini 4 Hydrogen（2026-11-12 发布，接替 3.8 Flash 标准价，in $1.50 / out $7.50 / cached $0.075），已建标价档 data/research/list-prices-gemini-4-hydrogen-round1-2026-11-13.json，必填键完备；B. Anthropic Claude Fable 5.2（2026-11-13 录入，AA 智力榜 64.56 分登顶全球第一，in $8.00 / out $40.00 / cached $0.20 / 5m write $10.00），已新建标价档 data/research/list-prices-claude-fable-52-round1-2026-11-13.json，必填键完备。两档均已就绪。2) 采用值派生核验：两模型已通过 data/extra_subscriptions.json 配置订阅派生（Gemini 4 Hydrogen: 5 档点位沿用 3.8 Flash 标准额度池；Claude Fable 5.2: 3 档点位沿用 Fable 5.1 额度池），scripts/build_adopted.py 运行生成 data/adopted.csv 成功（383 行），全库订阅点 list_blended_usd_per_mtok 100% 正值，build_adopted.py 脚本本体维持 0 diff 稳定运行。3) 上游提交审查：/tmp/upstream.json 检出 upstream/main 相对 HEAD 包含 43 个提交（upstreamHead f2a79c3）。flags.conflictRiskPrefixes 包含 scripts/compute.py 与 scripts/plot_svg.py，flags.touchesDataSignificant 为 True，localOverlap 涉及核心构建与图表文件。本地存在关键超前项（OpenCode DeepSeek $100 实测额度、Haiku 5.5 降 full 档防假前沿、Gemini 4 Hydrogen / Claude Fable 5.2 支持）。结论：日常例行维持 0 diff 暂不裸 merge，待日常同步后由 Lead 在独立合并窗口统筹。4) 协同待办：向 Lead 汇报 compute.py 配置（SCORE_FILES 紧随 11-12 插入 scores-aa-round6-2026-11-13.json；LIST_PRICE_FILES 追加 list-prices-gemini-4-hydrogen-round1-2026-11-13.json 与 list-prices-claude-fable-52-round1-2026-11-13.json；DISPLAY 追加 Gemini 4 Hydrogen 与 Claude Fable 5.2 映射）。",
+  "vendors": {
+    "Anthropic": {
+      "status": "claude_fable_52_entered",
+      "recentChanges": [
+        "Claude Fable 5.2 (max) 于 2026-11-13 录入：AA 智力指数 64.5636 分登顶全球第 1（超越 Gemini 4 Carbon 的 59.43 分），Terminal-Bench 4.0 59.5960%",
+        "官方 API 标价：input $8.00 / output $40.00 / cache read $0.20 / 5m cache write $10.00（每 MTok），成本为每任务 $26.54",
+        "已新建标价档 data/research/list-prices-claude-fable-52-round1-2026-11-13.json",
+        "既有模型官方标价稳定：Claude Fable 5.1 ($10/$50), Claude Opus 5.5 ($4/$20), Claude Sonnet 5.5 ($2/$10), Claude Haiku 5.5 ($0.10/$0.50 ≤100K; $0.50/$2.50 >100K)",
+        "Claude Haiku 5.5 订阅额度维持全量降 full 档裁定，杜绝前沿失真"
+      ],
+      "handling": "新建标价档完备；订阅点位沿用 Fable 5.1 同价同池额度，已在 adopted.csv 就绪"
+    },
+    "Google": {
+      "status": "gemini_4_hydrogen_entered",
+      "recentChanges": [
+        "Gemini 4 Hydrogen 于 2026-11-12 正式发布，定位为 3.8 Flash 标准价位的同价接替者",
+        "官方 API 标价：input $1.50 / output $7.50 / cache read $0.075（低于 Flash 的 $0.15）",
+        "AA 智力指数 53.9192（全球第 16），Terminal-Bench 4.0 53.5354%",
+        "已存在标价档 data/research/list-prices-gemini-4-hydrogen-round1-2026-11-13.json，必填键经核对 100% 完备",
+        "Gemini 4 Carbon ($2/$10/$0.10) 与 Argon ($2/$10/$0.10) 及 Google AI 订阅点维持稳定"
+      ],
+      "handling": "标价档与采用值完备；订阅点位沿用 3.8 Flash 同额度录入"
+    },
+    "OpenAI": {
+      "status": "rates_stable_upstream_10x_and_sol_midpoint_evaluated",
+      "recentChanges": [
+        "官方 API 标价稳定：GPT-6 Astra ($10/$50/$1.00), GPT-6.1 Sol ($2/$10/$0.10), GPT-6 Luna ($0.10/$0.50/$0.01), GPT-6.1 Terra ($0.40/$2.00/$0.02)",
+        "上游 PR #160 将 ChatGPT Pro $100 档倍率从 5x 调整为 10x（Sol 61.6 亿, Luna 705.81 亿）",
+        "上游 PR #228 引入 ChatGPT Plus gpt-6.1-sol 两个保留周的平均中点（15.16 亿/月）。本地保持基准，待独立合并窗口统筹"
+      ],
+      "handling": "本地当前保持稳定运行，向 Lead 提交行级改动清单备用"
+    },
+    "DeepSeek": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "官方 API 闲时/忙时标价保持稳定（$0.15/$0.60/$0.003 闲时，$0.27/$1.10/$0.007 忙时）",
+        "各订阅渠道（GOAT, OpenCode, Ollama, OpenDesign）额度反映准确",
+        "商业工具调用计费独立平稳运行，无 V5 计划"
+      ],
+      "handling": "标价与采用值完全对齐"
+    },
+    "Mistral": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Mistral Large 4 ($2.00/$6.00/$0.20) 与 Mistral Vibe 订阅点保持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "MiniMax": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "MiniMax M3.1 Flash Preview ($0.15 in / $0.60 out / $0.015 cache read) 及各年付/月付点位维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Kimi": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Kimi K3.1 Pro ($2.00/$10.00/$0.20) 与 Kimi 会员/Plus 订阅点位稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "StepFun": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Step 3.5 / 3.7 Flash 与 Step Plan 系列点位维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Command_Code_GOAT": {
+      "status": "research_only_models_monitored",
+      "recentChanges": [
+        "PR #224: 'Muse Ember' ($0.10 in / $0.50 out / $0.004 cached read, $20 专属额度)，维持 research-only",
+        "PR #200: 'DeepSeek V4.1 Flash Ultrafast' ($2.40 / $9.60 / $0.048)，维持 research-only",
+        "PR #191: 'Ling 3.1 Flash 1019' 恢复付费 ($0.30 / $0.90 / $0.06)，维持 research-only"
+      ],
+      "handling": "三款模型未在基准榜收录，未入 adopted.csv，不改变现有前沿"
+    },
+    "OpenCode_Go": {
+      "status": "hy4_research_only_and_deepseek_superseded",
+      "recentChanges": [
+        "PR #194: 'Hy4' ($0.834 in / $2.501 out / $0.042 cached read)，维持 research-only",
+        "PR #166: 上游更新 OpenCode Go DeepSeek 为 $80，本地已于 2026-11-06 实测更新为 $100（103.52 亿），超前覆盖上游"
+      ],
+      "handling": "Hy4 维持归档；DeepSeek V4.1 Flash 保留本地 $100 实测额度"
+    }
+  },
+  "upstreamEvaluation": {
+    "checkedAt": "2026-11-13T09:06:41+08:00",
+    "upstreamRef": "upstream/main",
+    "upstreamHead": "f2a79c39a72b1127f3672ca2b74b0c1743b3460c",
+    "commitCount": 43,
+    "verdict": "review",
+    "flags": {
+      "touchesData": true,
+      "touchesDataSignificant": true,
+      "touchesGeneratedOutputs": true,
+      "conflictRiskPrefixes": [
+        "scripts/compute.py",
+        "scripts/plot_svg.py"
+      ],
+      "riskTouchedUpstream": [
+        "scripts/build_adopted.py",
+        "scripts/checks/verify_deepswe.py",
+        "scripts/compute.py",
+        "scripts/plot_svg.py",
+        "web/src/domain.test.ts"
+      ],
+      "localOverlap": [
+        "data/adopted.csv",
+        "derived/points.json",
+        "derived/benchmark-points.json",
+        "charts/*"
+      ]
+    },
+    "reason": "upstream/main 相对 HEAD 包含 43 个提交。虽然包含 PR #225 等 23 个纯研究证据提交，但 PR #228, PR #160, PR #188 涉及核心流水线脚本（compute.py, build_adopted.py）与生产采用值变动；PR #166 的 $80 额度滞后于本地 $100 实测。裸 merge 会触发多处代码与数据冲突，破坏本地高精度实测与 Haiku 5.5 full 档裁定。",
+    "conclusion": "日常例行同步维持 0 diff 暂不裸 merge，待日常同步全部闭环后，由 Lead 在独立合并窗口统筹处理。"
+  },
+  "candidateList": {
+    "evaluatedModels": [
+      {
+        "model": "gemini-4-hydrogen",
+        "source": "Google Cloud Model Garden / Official Blog (2026-11-12)",
+        "listPriceStatus": "covered (data/research/list-prices-gemini-4-hydrogen-round1-2026-11-13.json: in $1.50, out $7.50, cache $0.075)",
+        "adoptionStatus": "adopted in 5 Google AI subscription tiers (adopted.csv)",
+        "actionRequired": "LIST_PRICE_FILES & DISPLAY addition in compute.py (by Lead)"
+      },
+      {
+        "model": "claude-fable-5.2",
+        "source": "Anthropic / Artificial Analysis (2026-11-13)",
+        "listPriceStatus": "covered (data/research/list-prices-claude-fable-52-round1-2026-11-13.json: in $8.00, out $40.00, cache $0.20, 5m write $10.00)",
+        "adoptionStatus": "adopted in 3 Claude Max/Droid subscription tiers (adopted.csv)",
+        "actionRequired": "LIST_PRICE_FILES & DISPLAY addition in compute.py (by Lead)"
+      },
+      {
+        "model": "muse-ember",
+        "source": "Command Code GOAT (PR #224) / Meta",
+        "listPriceStatus": "unscored on AA / research-only ($0.10 in / $0.50 out / $0.004 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "deepseek-v4.1-flash-ultrafast",
+        "source": "Command Code GOAT (PR #200)",
+        "listPriceStatus": "unscored on AA / research-only ($2.40 in / $9.60 out / $0.048 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "hy4",
+        "source": "OpenCode Go (PR #194) / Tencent Cloud",
+        "listPriceStatus": "unscored on AA / research-only ($0.834 in / $2.501 out / $0.042 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "ling-3.1-flash-1019",
+        "source": "Command Code GOAT (PR #191) / InclusionAI",
+        "listPriceStatus": "unscored on AA / research-only ($0.30 in / $0.90 out / $0.06 cached read)",
+        "adoptionStatus": "research-only (not adopted)",
+        "actionRequired": "none (await leaderboard evaluation)"
+      },
+      {
+        "model": "deepseek-v4.1-flash-eco",
+        "source": "OpenDesign 官方 X (@OpenDesignDevs)",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-eco-round1-2026-11-06.json)",
+        "adoptionStatus": "adopted (OpenDesign Go Eco: 227.743 亿)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "claude-haiku-5.5",
+        "source": "Anthropic",
+        "listPriceStatus": "covered (list-prices-claude-haiku55-round1-2026-10-08.json)",
+        "adoptionStatus": "adopted (6 订阅点降为 full 档，API 2 档在库)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "mistral-large-4",
+        "source": "Mistral AI / Artificial Analysis",
+        "listPriceStatus": "covered (list-prices-mistral-large-4-round1-2026-11-04.json)",
+        "adoptionStatus": "adopted (mistral_large4_api & mistral_vibe_pro)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gemini-4-carbon",
+        "source": "Google Cloud Vertex AI",
+        "listPriceStatus": "covered (list-prices-gemini-4-carbon-round1-2026-10-29.json)",
+        "adoptionStatus": "adopted (Google AI 8 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "gpt-6.1-terra",
+        "source": "OpenAI",
+        "listPriceStatus": "covered (list-prices-gpt-61-terra-round1-2026-10-28.json)",
+        "adoptionStatus": "adopted (ChatGPT 3 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "source": "Moonshot AI",
+        "listPriceStatus": "covered (list-prices-kimi-k31-round1-2026-10-27.json)",
+        "adoptionStatus": "adopted (Kimi 4 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "minimax-m3.1-flash-preview",
+        "source": "MiniMax",
+        "listPriceStatus": "covered (list-prices-minimax-m31-round1-2026-10-19.json)",
+        "adoptionStatus": "adopted (MiniMax M Plan 6 点位)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "source": "DeepSeek",
+        "listPriceStatus": "covered (list-prices-deepseek-v41-round2-2026-09-10.json)",
+        "adoptionStatus": "adopted (GOAT / OpenCode / Ollama / OpenDesign)",
+        "actionRequired": "none"
+      },
+      {
+        "model": "muse-wonder",
+        "source": "Devin / Cognition (PR #188)",
+        "listPriceStatus": "no official API price published; raw measured usage in research",
+        "adoptionStatus": "pending merge of PR #188",
+        "actionRequired": "await PR #188 merge window"
+      }
+    ],
+    "newModelsRequired": [],
+    "listPricesStatus": "all current models covered (19 files in research: added list-prices-claude-fable-52-round1-2026-11-13.json; 17 currently in compute.py, 2 to be registered by Lead)",
+    "buildAdoptedStatus": "build_adopted.py successfully verified, outputs 383 rows, generates data/adopted.csv cleanly, 0 diff in build_adopted.py code, all guard checks pass (353/353 positive list_blended)"
+  },
+  "recommendationsForLead": {
+    "listPriceFiles": "建议在 scripts/compute.py 的 LIST_PRICE_FILES 元组末尾（'list-prices-deepseek-v41-eco-round1-2026-11-06.json' 之后）追加两行：\n    \"list-prices-gemini-4-hydrogen-round1-2026-11-13.json\",\n    \"list-prices-claude-fable-52-round1-2026-11-13.json\",",
+    "displayMapping": "建议在 scripts/compute.py 的 DISPLAY 映射字典中追加两行：\n    \"gemini-4-hydrogen\": \"Gemini 4 Hydrogen\",\n    \"claude-fable-5.2\": \"Claude Fable 5.2\",",
+    "scoreFiles": "建议在 scripts/compute.py 的 SCORE_FILES 元组中：\n1) 紧随 'scores-aa-round6-2026-11-12.json' 之后插入：\n    \"scores-aa-round6-2026-11-13.json\",\n2) 检查是否已包含今日补充评分档（当前已有）：\n    \"scores-gemini-4-hydrogen-round1-2026-11-13.json\",\n    \"scores-claude-fable-52-round1-2026-11-13.json\",",
+    "upstreamAction": "upstream/main 共有 43 个提交（flags.conflictRiskPrefixes=['scripts/compute.py', 'scripts/plot_svg.py'], flags.touchesDataSignificant=True, localOverlap 包含 core 数据与图表）。鉴于本地拥有最新实测数据（OpenCode $100 额度、Haiku 5.5 降 full 档裁定、Gemini 4 Hydrogen / Claude Fable 5.2 订阅支持），日常例行同步务必维持 build_adopted.py 0 diff，坚决不裸 merge，待日常同步部署完成后由 Lead 单设窗口合并统筹",
+    "buildAdoptedVerification": "build_adopted.py 测试通过，生成 383 行，已覆盖 Hydrogen (5 点位) 与 Fable 5.2 (3 点位)，所有订阅点 list_blended 100% 为正值"
+  }
+}

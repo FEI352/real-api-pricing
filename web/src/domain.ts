@@ -218,7 +218,14 @@ function mappingCost(m: Mapping | null, data: SiteData): number | null {
   if (!m) return null;
   if (m.mean_cost_usd_per_task !== undefined && m.mean_cost_usd_per_task !== null)
     return m.mean_cost_usd_per_task;
-  return configIndex(data).get(m.configuration_id)?.mean_cost_usd_per_task ?? null;
+  const cfg = configIndex(data).get(m.configuration_id);
+  if (cfg?.mean_cost_usd_per_task !== undefined && cfg.mean_cost_usd_per_task !== null)
+    return cfg.mean_cost_usd_per_task;
+  // Arena boards publish a P50 task cost (not a mean): use it rather than falling
+  // through to the synthetic MEDIAN_AA_TASK_MTOK constant, which assumes an AA task.
+  if (cfg?.median_cost_usd_per_task !== undefined && cfg.median_cost_usd_per_task !== null)
+    return cfg.median_cost_usd_per_task;
+  return null;
 }
 /**
  * Subscription-adjusted cost per AA task: the AA task cost is API-priced, so the

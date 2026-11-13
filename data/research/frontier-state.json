@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-12",
-  "total_points": 378,
+  "date": "2026-11-04",
+  "total_points": 383,
   "cost_frontier": [
     {
       "id": "opencode_go::muse-spark-1.3-contributor",
@@ -13,9 +13,19 @@
       "cost": 0.025338
     },
     {
-      "id": "google_ai_ultra_20x_tr_iap::gemini-4-carbon",
+      "id": "google_ai_pro_student::gemini-4-hydrogen",
+      "score": 53.9192,
+      "cost": 0.041435
+    },
+    {
+      "id": "google_ai_ultra_5x_tr::gemini-4-carbon",
       "score": 59.4257,
-      "cost": 0.071785
+      "cost": 0.144104
+    },
+    {
+      "id": "claude_max_20x::claude-fable-5.2",
+      "score": 64.5636,
+      "cost": 5.171039
     }
   ],
   "price_frontier": [
@@ -30,14 +40,29 @@
       "real_price": 0.00090666763
     },
     {
-      "id": "chatgpt_pro_20x::gpt-6.1-terra",
-      "score": 51.3265,
-      "real_price": 0.0025967618
+      "id": "google_ai_pro_student::gemini-4-hydrogen",
+      "score": 53.9192,
+      "real_price": 0.0019372336
     },
     {
-      "id": "google_ai_ultra_20x_tr_iap::gemini-4-carbon",
+      "id": "claude_max_20x::claude-sonnet-5.5",
+      "score": 54.5413,
+      "real_price": 0.0047320254
+    },
+    {
+      "id": "claude_max_20x::claude-opus-5.5",
+      "score": 59.106,
+      "real_price": 0.0063415562
+    },
+    {
+      "id": "google_ai_ultra_5x_tr::gemini-4-carbon",
       "score": 59.4257,
-      "real_price": 0.003646885
+      "real_price": 0.0073208569
+    },
+    {
+      "id": "claude_max_20x::claude-fable-5.2",
+      "score": 64.5636,
+      "real_price": 0.11574074
     }
   ]
 }
