@@ -6,7 +6,7 @@ AI 编程订阅只标月费，不标每 token 多少钱。本项目把每个套�
 
 **真实单价 = 订阅月费 ÷ 每月实际能用掉的 token。**
 
-**[打开交互网站 →](https://realapipricing.com)** 自选模型、筛选渠道，对比单价和额度，支持中英文。
+**[打开交互网站 →](https://real-plan.fja.su)** 自选模型、筛选渠道，对比单价和额度，支持中英文。
 
 ![真实单价 × AA 智力榜 帕累托前沿](charts/zh/pareto/帕累托_AA智力榜.svg)
 
@@ -43,7 +43,7 @@ node cli/dist/main.js allowance --company Anthropic --fee-band 0-30
 - **置信度**：每行标 high / medium / low。high 是面板反推、受控实测或官方表；medium 是官方倍率乘一个 high 基准，或多个独立来源量级一致；low 是单一口述或跨档位假设。推算值不会当成实测来写。
 - **一个套餐多个模型**：同一套餐下每个模型各占一个点，这些额度是「选一个用」，不能相加。
 - **分数**直接取自各榜单，不同榜单不混用。静态图取每个模型存档里的最高配置。
-- **促销期不计额度**：套餐临时不计额度的模型画在右端 ≈$0 的专用刻度上。目前有 <!-- stat:points_unmetered -->1<!-- /stat --> 个这样的点：Devin Pro 的 SWE-2，促销到 2026-10-31。
+- **永久不计额度**：官方明示为永久权益、不占额度的模型画在右端 ≈$0 的专用刻度上。目前有 <!-- stat:points_unmetered -->1<!-- /stat --> 个这样的点：Devin Pro 的 SWE-2，限 Devin Desktop 与 CLI，Cognition 已确认是 Teams、Pro、Max 的永久权益。
 
 每个采用值的证据和取舍理由见 [DECISIONS.md](DECISIONS.md)，以及 [adopted.csv](data/adopted.csv) 的 `decision_note` 列。
 
@@ -145,7 +145,7 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 |---|---:|
 | 全部「套餐 × 模型」点 | <!-- stat:points_total -->383<!-- /stat --> |
 | 有月额度的订阅 | <!-- stat:points_allowance -->353<!-- /stat --> |
-| 促销期不计额度（≈$0） | <!-- stat:points_unmetered -->1<!-- /stat --> |
+| 永久不计额度（≈$0） | <!-- stat:points_unmetered -->1<!-- /stat --> |
 | 按量 API（标价） | <!-- stat:points_metered -->29<!-- /stat --> |
 
 | 榜单 | 有分点 |
@@ -172,7 +172,7 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 - 分数区间已保留（交互图悬停可见），但暂不参与前沿判定。置信度是定性标签，不是误差范围。
 - 来源里的任务成本单独保留，不等于在订阅里跑同一任务的成本。
 - 不同厂商分词器的差异没有校正。
-- ≈$0 的促销点在促销结束后要重新核对。
+- ≈$0 的不计额度点，若厂商恢复计费或缩小免费范围，要重新核对。
 
 ## 复现、贡献与致谢
 

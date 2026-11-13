@@ -6,7 +6,7 @@ AI coding subscriptions sell a monthly fee, not a per-token price. This project 
 
 **Real price = monthly fee ÷ tokens you can actually use in a month.**
 
-**[Open the interactive site →](https://realapipricing.com)** Pick models, filter channels, compare prices and allowances. English / 中文.
+**[Open the interactive site →](https://real-plan.fja.su)** Pick models, filter channels, compare prices and allowances. English / 中文.
 
 ![Real price vs. AA Intelligence Index, Pareto frontier](charts/en/pareto/pareto-aa-intelligence.svg)
 
@@ -51,7 +51,7 @@ guides price, allowance and plan comparisons with this CLI. In Codex, invoke
 - **Confidence.** Every row is rated high, medium or low. High means a dashboard back-calculation, a controlled test or an official table. Medium means an official multiplier applied to a high-confidence anchor, or several consistent independent sources. Low means a single report or a cross-plan assumption. Derived values are never presented as measurements.
 - **One plan, several models.** Each model on a plan gets its own point. Those allowances are alternatives and do not add up.
 - **Scores** are copied from each leaderboard and never mixed across boards. Static charts use each model's highest archived configuration.
-- **Free during a promotion.** A model that a plan temporarily doesn't meter is drawn at ≈$0 on a dedicated slot at the right edge. There are <!-- stat:points_unmetered -->1<!-- /stat --> such points at the moment: SWE-2 on Devin Pro, until 2026-10-31.
+- **Free without a meter.** A model a plan permanently doesn't meter is drawn at ≈$0 on a dedicated slot at the right edge. There is <!-- stat:points_unmetered -->1<!-- /stat --> such point at the moment: SWE-2 in Devin Desktop and CLI on Devin Pro, a permanent Teams/Pro/Max benefit confirmed by Cognition.
 
 Every adopted value, its evidence and the reason for the choice: [DECISIONS.md](DECISIONS.md) and the `decision_note` column of [adopted.csv](data/adopted.csv).
 
