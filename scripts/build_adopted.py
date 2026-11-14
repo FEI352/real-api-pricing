@@ -1177,12 +1177,12 @@ SUBS = [
 ]
 
 # ---- 不计额度（unmetered）订阅点：月费 ÷ 无界可用量 → $0/MTok。无 token 分母，图上用专用刻度位，不进对数换算。
-#   元组：(id, name, price, cur, model, conf, src, note)。促销口径，促销结束必须复核；见 conventions.promotions。
-SWE2_PROMO = CONVENTIONS["promotions"]["devin_swe2"]
+#   元组：(id, name, price, cur, model, conf, src, note)。2026-11-12 起为官方永久权益，见 conventions.permanentUnmetered。
+SWE2_PERMANENT = CONVENTIONS["permanentUnmetered"]["devin_swe2"]
 UNMETERED = [
-    ("devin_pro", f"Devin Pro (促销至 {SWE2_PROMO['endDate'][5:].replace('-', '/')})", 20, "USD", "swe-2", "medium",
-     "官推2026-09-10：SWE-2 free for all Pro, Max & Teams subscribers for the next month；维护者面板同段swe-2 45.5M tokens不计额度；docs.devin.ai/admin/billing/usage 无并发上限；devin-swe2-round1-2026-09-12.json",
-     f"新增≈$0/MTok（记0）：SWE-2 促销期对 Pro/Max/Teams 不占额度、不计费，无并发上限→分母无界；裁定按促销价进前沿并改变前沿，截止 {SWE2_PROMO['endDate']}（裁定；官推仅写 for the next month）；取最便宜可得档 Pro $20，Max 同 Y 更贵不重复画；促销结束后必须复核计费权重，定价页永久免费口径为 SWE 1.7 不是 SWE-2"),
+    ("devin_pro", "Devin Pro", 20, "USD", "swe-2", "medium",
+     "Cognition 官方公告：free SWE-2 in Devin Desktop and CLI 成为 Teams、Pro、Max 的永久权益，https://devin.ai/blog/devin-teams-plan；定价页 Pro 档列 Free use of SWE-2 且无截止日，https://devin.ai/pricing；维护者面板 SWE-2 用量不计额度；桌面模型页仍留旧促销表，未随公告同步，不采；证据 devin-swe2-permanent-2026-11-12.json",
+     "≈$0/MTok（记0）：官方公告把 Devin Desktop 与 CLI 里的免费 SWE-2 定为 Teams、Pro、Max 永久权益，取代旧的一次性促销裁定；SWE-2 不占额度、不计费、无并发上限→分母无界，取消截止日，继续按 ≈$0 进前沿；取最便宜可得档 Pro，Max 同 Y 更贵不重复画；范围仅限 Desktop 与 CLI，不覆盖 Devin Cloud；厂商恢复计费时须复核；该榜分数仍为 Cognition 自报"),
 ]
 
 # ---- 同一套餐内推更多模型：(基准 plan_id, 基准模型, 新模型, token 倍率, 置信度, 依据, 是否进精选图)
@@ -1357,6 +1357,13 @@ MAIN_EXTRA = {
 # 故一律降为 full 档：数据保留、可查，但默认不显示。
 HAIKU55_DERIVED_HIDDEN = {"claude_pro", "claude_max_20x", "claude_pro_over100k", "claude_pro_mix5050",
                           "claude_max_20x_over100k", "claude_max_20x_mix5050"}
+# 2026-11-13 用户裁定：本地单卡硬件吞吐参考点不是可购 API 服务，默认视图收起、数据保留。
+# 与 config/hidden-by-default.json 的 modelBilling 同一组 (model, billing)。
+LOCAL_HARDWARE_HIDDEN = {
+    ("qwen3.8-27b-dflash-5090", "metered"),
+    ("qwen3.8-27b-hyperqwen-3090", "metered"),
+    ("qwen3.8-27b-rtx-pro-6000", "metered"),
+}
 
 
 def is_main(pid: str, model: str) -> bool:
@@ -1430,7 +1437,7 @@ DATA_DATES = {
     ("minimax_token_plus_global", "minimax-m3"): ("2026-06-01", "official"),
     ("minimax_token_max_global", "minimax-m3"): ("2026-06-01", "official"),
     ("minimax_token_ultra_global", "minimax-m3"): ("2026-06-01", "official"),
-    ("devin_pro", "swe-2"): ("2026-09-10", "official"),
+    ("devin_pro", "swe-2"): ("2026-11-12", "official"),
     # 按量 API 标价
     ("deepseek_v41_flash_offpeak", "deepseek-v4.1-flash"): ("2026-09-10", "official"),
     ("deepseek_v41_flash_peak", "deepseek-v4.1-flash"): ("2026-09-10", "official"),
@@ -1648,7 +1655,7 @@ def sig(value: float, digits: int = 8) -> float:
 def unmetered_row(pid, name, price, cur, model, conf, src, note) -> dict:
     return dict(plan_id=pid, plan_name=name, plan_name_en="", billing="subscription", price=price, currency=cur,
                 price_usd=round(price / USD_PER_CNY if cur == "CNY" else price, 2), served_model=model,
-                monthly_tokens="", monthly_yi="", real_usd_per_mtok=0, unmetered="true", promo_until=SWE2_PROMO["endDate"],
+                monthly_tokens="", monthly_yi="", real_usd_per_mtok=0, unmetered="true", promo_until="",
                 confidence=conf, chart_tier="main" if is_main(pid, model) else "full", source=src, decision_note=note)
 
 
@@ -1693,7 +1700,10 @@ def main() -> None:
         else:
             mix_price = blended(cached, inp, out)
             default_note = f"标价 cached {cached}/in {inp}/out {out} × 项目统一标准负载 {STANDARD_MIX['cache']:.1%}/{STANDARD_MIX['input']:.2%}/{STANDARD_MIX['output']:.2%}"
-        tier = "full" if pid == "anthropic_haiku55_api" else "main"
+        if (model, "metered") in LOCAL_HARDWARE_HIDDEN:
+            tier = "full"  # 本地硬件参考点默认隐藏；hiddenByDefault 由 config 驱动
+        else:
+            tier = "full" if pid == "anthropic_haiku55_api" else "main"
         rows.append(dict(plan_id=pid, plan_name=name, plan_name_en="", billing="metered", price="", currency="USD", price_usd="",
                          served_model=model, monthly_tokens="", monthly_yi="", real_usd_per_mtok=sig(mix_price),
                          unmetered="", promo_until="", confidence="high", chart_tier=tier, source=src,

@@ -17,7 +17,7 @@ AI 编程订阅只标月费，不标每 token 多少钱。本项目把每个套�
 - 黑线是帕累托前沿：线上的每个点，都找不到另一个点比它更便宜、分数又更高。
 - 订阅单价按用满额度计算。只用掉一半，实际单价就翻倍。
 
-快照日期 <!-- stat:snapshot -->2026-11-04<!-- /stat --> · 共 <!-- stat:points_total -->383<!-- /stat --> 个「套餐 × 模型」点 · [全部图表（中英文、SVG / PNG）](charts/README.md)
+快照日期 <!-- stat:snapshot -->2026-11-13<!-- /stat --> · 共 <!-- stat:points_total -->383<!-- /stat --> 个「套餐 × 模型」点 · [全部图表（中英文、SVG / PNG）](charts/README.md)
 
 ## 命令行查询
 
@@ -151,7 +151,7 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 | 榜单 | 有分点 |
 |---|---:|
 | AA 智力榜 | <!-- stat:scored_aa_intelligence_index -->216<!-- /stat --> |
-| AA 编程 Agent 榜 | <!-- stat:scored_aa_coding_agent_index -->119<!-- /stat --> |
+| AA 编程 Agent 榜 | <!-- stat:scored_aa_coding_agent_index -->100<!-- /stat --> |
 | Code Arena | <!-- stat:scored_arena_code -->299<!-- /stat --> |
 | Agent Arena | <!-- stat:scored_arena_agent_mode -->274<!-- /stat --> |
 | OpenDesign 设计榜 | <!-- stat:scored_open_design_arena -->87<!-- /stat --> |
@@ -163,7 +163,7 @@ Stanford、Harbor 和 Laude Institute 维护的 66 题官方榜（快照 2026-09
 
 **下载：** [采用值 CSV](data/adopted.csv) · [计算结果 CSV](derived/points.csv) / [JSON](derived/points.json) · [数据说明](data/README.md) · [分日期原始证据](data/research/)
 
-**全部评测配置**（不只每个模型的最高分）：[评测配置存档](derived/benchmark-configurations.json)（[CSV](derived/benchmark-configurations.csv)）完整保留 <!-- stat:configs_total -->425<!-- /stat --> 条记录，含原始标签、harness、effort、分数区间和任务成本。[套餐与配置的映射](derived/benchmark-points.json)（[CSV](derived/benchmark-points.csv)）有 <!-- stat:refs_total -->2408<!-- /stat --> 条明确对应。不知道的 harness、effort 和区间一律留空，不猜。[全配置交互图](charts/zh/pareto/帕累托交互图.html)可以切换配置和思考强度；需下载后本地打开，Plotly 要联网。
+**全部评测配置**（不只每个模型的最高分）：[评测配置存档](derived/benchmark-configurations.json)（[CSV](derived/benchmark-configurations.csv)）完整保留 <!-- stat:configs_total -->420<!-- /stat --> 条记录，含原始标签、harness、effort、分数区间和任务成本。[套餐与配置的映射](derived/benchmark-points.json)（[CSV](derived/benchmark-points.csv)）有 <!-- stat:refs_total -->2367<!-- /stat --> 条明确对应。不知道的 harness、effort 和区间一律留空，不猜。[全配置交互图](charts/zh/pareto/帕累托交互图.html)可以切换配置和思考强度；需下载后本地打开，Plotly 要联网。
 
 ## 已知局限
 

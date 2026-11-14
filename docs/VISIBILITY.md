@@ -1,19 +1,19 @@
 # 模型 × 榜 可见性矩阵 / Model-by-board visibility
 
 > 由 `python scripts/visibility_matrix.py --write-docs` 生成，请勿手改。
-> 生成时间：2026-11-13 10:02 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-11-04）。
+> 生成时间：2026-11-14 09:22 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-11-13）。
 > 口径：mappings 与 configurations 的 join 与 `web/src/loadData.ts` 的 `unpackData()` 完全一致；可见性判据与 `web/src/domain.ts` 一致。
 
 ## 1. 榜覆盖统计
 
 | 榜 | 名称 | 快照 | 配置数 | 映射数 | 有分模型 | 最高分 |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| `aa_intelligence_index` | Artificial Analysis Intelligence Index v5.0.1 | 2026-11-13 | 74 | 422 | 36 | 64.5636 · `claude-fable-5.2` |
+| `aa_intelligence_index` | Artificial Analysis Intelligence Index v5.0.1 | 2026-11-14 | 74 | 422 | 36 | 64.5636 · `claude-fable-5.2` |
 | `terminal_bench_4` | Terminal-Bench 4.0 | 2026-10-06 | 38 | 228 | 25 | 64.85 · `claude-opus-5.5` |
-| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-11-13 | 73 | 428 | 35 | 67.1717 · `kimi-k3.1-pro` |
+| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-11-14 | 73 | 428 | 35 | 67.1717 · `kimi-k3.1-pro` |
 | `arena_code` | Code Arena \| WebDev Overall | 2026-10-19 | 66 | 353 | 55 | 1807 · `claude-opus-5.5` |
 | `arena_agent_mode` | Agent Arena · Overall (Ranking / Pareto) | 2026-11-12 | 55 | 303 | 47 | 30.48 · `claude-fable-5.2` |
-| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-11-13 | 20 | 148 | 16 | 61.6529 · `claude-opus-5.5` |
+| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-11-14 | 15 | 107 | 14 | 58.4031 · `claude-opus-5.5` |
 | `open_design_arena` | OpenDesign Arena · Quality ranking | 2026-10-01 | 16 | 87 | 16 | 90.1 · `gpt-6.1-sol` |
 | `deepswe_1_1` | DeepSWE v1.1 | 2026-09-03 | 71 | 439 | 28 | 77 · `deepseek-v4.1-flash` |
 
@@ -42,7 +42,7 @@
 | `deepseek-v4.1-flash-fast` | — | — | — | — | — | — | — | — | 0 |
 | `gemini-3.6-flash` | — | — | — | ✓ | — | — | — | ✓ | 2 |
 | `gemini-3.7-flash` | — | ✓ | — | ✓ | ✓ | — | — | ✓ | 4 |
-| `gemini-3.8-flash` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
+| `gemini-3.8-flash` | ✓ | ✓ | ✓ | ✓ | ✓ | — | ✓ | ✓ | 7 |
 | `gemini-4-argon` | ✓ | — | ✓ | — | ✓ | ✓ | — | — | 4 |
 | `gemini-4-carbon` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
 | `gemini-4-hydrogen` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
@@ -73,7 +73,7 @@
 | `kimi-k2.6` | — | — | — | ✓ | — | — | — | — | 1 |
 | `kimi-k2.7-code` | — | — | ✓ | ✓ | — | — | — | ✓ | 3 |
 | `kimi-k2.7-code-highspeed` | — | — | — | — | — | — | — | — | 0 |
-| `kimi-k3` | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
+| `kimi-k3` | — | — | — | ✓ | ✓ | — | ✓ | ✓ | 4 |
 | `kimi-k3.1-pro` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
 | `longcat-2.0` | — | — | ✓ | — | — | — | — | — | 1 |
 | `mimo-v2.5` | — | — | — | ✓ | — | — | — | — | 1 |
@@ -141,4 +141,4 @@
 python3 -c "import json;d=json.load(open('web/public/data/site.json'));c={x['configuration_id']:x for x in d['configurations']};print(sorted({c[m['configuration_id']]['board'] for m in d['mappings'] if c[m['configuration_id']]['model']=='claude-haiku-5.5' and c[m['configuration_id']]['score'] is not None}))"
 ```
 
-（当前快照：86 个模型 / 8 个榜 / 2408 条映射；其中 13 个模型在所有榜均无分。）
+（当前快照：86 个模型 / 8 个榜 / 2367 条映射；其中 13 个模型在所有榜均无分。）

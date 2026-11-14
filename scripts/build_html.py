@@ -67,7 +67,7 @@ const symbolOf=(p,base)=>channel(p)==="Devin"?"hexagon":base;
 const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const locVariant=s=>String(s).replaceAll("[vendor self-report]","[厂商自报]").replaceAll("[AA estimate]","[AA 估计值]");
 const priceLabel=x=>x===0?"≈$0":"$"+Number(x.toPrecision(5)).toString();
-const promoText=p=>p.promo_until?`促销至 ${p.promo_until}，不计额度`:"不计额度";
+const promoText=p=>p.promo_until?`促销至 ${p.promo_until}，不计额度`:"永久不计额度";
 const sel=document.getElementById("board");
 for(const [id,b] of Object.entries(DATA.boards)){const o=document.createElement("option");o.value=id;o.textContent=b.name;sel.appendChild(o);}
 const effortSel=document.getElementById("effort");
@@ -83,7 +83,7 @@ function pareto(pts,yk){let best=-Infinity,f=[];for(const p of [...pts].sort((a,
 function fmt(v){return v==null?"—":v;}
 function hover(p,yk,vk){
   const board=yk.replace(/__score$/, ""),field=k=>p[board+"__"+k];
-  const price=p.unmetered?`$${p.price_usd} ÷ 无界（${promoText(p)}）→ ≈$0 促销价，非永久口径`:p.billing==="metered"?"按量 API（标价 × 项目标准负载）":p.local_price?`${p.local_price} / 国际 $${p.price_usd} ÷ ${p.monthly_yi} 亿 token`:`$${p.price_usd} ÷ ${p.monthly_yi} 亿 token`;
+  const price=p.unmetered?`$${p.price_usd} ÷ 无界（${promoText(p)}）→ ≈$0，永久不计额度口径`:p.billing==="metered"?"按量 API（标价 × 项目标准负载）":p.local_price?`${p.local_price} / 国际 $${p.price_usd} ÷ ${p.monthly_yi} 亿 token`:`$${p.price_usd} ÷ ${p.monthly_yi} 亿 token`;
   return `<b>${p.label}</b><br>真实单价 <b>${priceLabel(p.real_usd_per_mtok)}/MTok</b><br>${price}`
    +(p.d!=null?`<br>标价混合 $${p.list_blended_usd_per_mtok}/MTok → d = ${(p.d*100).toFixed(1)}%`:"")
    +`<br>Y：${fmt(p[yk])}（${escapeHtml(locVariant(fmt(p[vk])))}）`
@@ -179,7 +179,7 @@ function draw(){
   const tickvals=hasZero?[...ticks,zeroX]:ticks,ticktext=hasZero?[...ticks.map(x=>"$"+x),"≈$0<br>不计额度"]:ticks.map(x=>"$"+x);
   const shapes=hasZero?[{type:"line",xref:"x",yref:"paper",x0:Math.log10(zeroX*1.8),x1:Math.log10(zeroX*1.8),y0:0,y1:1,line:{color:"#cfd4cf",width:1,dash:"dot"}}]:[];
   const layout={
-    title:{text:`${meta.name}  ·  快照 ${meta.snapshot} · 配置参考，非渠道实测`+(hasZero?" · ≈$0 为促销价（不计额度），非永久口径":""),x:0.04,y:0.98,font:{size:13}},
+    title:{text:`${meta.name}  ·  快照 ${meta.snapshot} · 配置参考，非渠道实测`+(hasZero?" · ≈$0 为永久不计额度权益":""),x:0.04,y:0.98,font:{size:13}},
     shapes,
     xaxis:{type:"log",range:xrange,title:{text:"真实单价 $ / MTok    → 越右越便宜",standoff:18},tickvals,ticktext,gridcolor:"#ececec",griddash:"dash",zeroline:false},
     yaxis:{range:yrange,title:{text:meta.metric,standoff:12},gridcolor:"#ececec",griddash:"dash",zeroline:false,ticksuffix:meta.metric.includes("%")?"%":""},

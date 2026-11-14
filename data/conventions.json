@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04",
+  "updatedAt": "2026-11-13",
   "project": "真实API定价",
   "role": "定义当前采用、计算、绘图和公开发布共用的项目口径",
   "formula": "订阅价 ÷ 用户实际能用到的月 token = 真实混合单价",
@@ -16,15 +16,22 @@
     "previousRate": 7.2,
     "note": "2026-09-05为周六，采用最近交易日9月4日中间价；非银行卡实际结算价。100美元=677.87人民币。"
   },
-  "unmeteredPolicy": "订阅内明确不占额度、无并发上限的模型：真实单价记 0、显示为 ≈$0/MTok（分母无界，趋于 0 而非精确 0），X 轴以专用‘不计额度’刻度位表示、不进对数换算；参与前沿。促销口径必须标截止日并在到期后复核。",
-  "promotions": {
+  "unmeteredPolicy": "订阅内明确不占额度、无并发上限的模型：真实单价记 0、显示为 ≈$0/MTok（分母无界，趋于 0 而非精确 0），X 轴以专用‘不计额度’刻度位表示、不进对数换算；参与前沿。限时促销必须标截止日并在到期后复核；官方明示为永久权益的不标截止日，但计费口径变更时仍须复核。",
+  "permanentUnmetered": {
     "devin_swe2": {
       "startDate": "2026-09-10",
-      "endDate": "2026-10-31",
-      "labelZh": "SWE-2 促销：Pro/Max/Teams 不计额度",
-      "labelEn": "SWE-2 promo: unmetered on Pro/Max/Teams",
-      "endDateBasis": "2026-09-12 给定；官推仅写 for the next month",
-      "evidence": "data/research/devin-swe2-round1-2026-09-12.json"
+      "confirmedDate": "2026-11-12",
+      "labelZh": "SWE-2 永久权益：Desktop 与 CLI 不计额度",
+      "labelEn": "SWE-2 permanent: unmetered in Desktop and CLI",
+      "scope": "Devin Desktop 与 Devin CLI 中的 SWE-2，覆盖 Teams、Pro、Max；不覆盖 Devin Cloud 会话",
+      "scopeEn": "SWE-2 in Devin Desktop and Devin CLI for Teams, Pro and Max; Devin Cloud sessions are not covered",
+      "evidence": "data/research/devin-swe2-permanent-2026-11-12.json",
+      "officialSources": [
+        "https://devin.ai/blog/devin-teams-plan",
+        "https://devin.ai/pricing"
+      ],
+      "supersedes": "promotions.devin_swe2 旧促销口径，截止 2026-10-31",
+      "recheckTrigger": "厂商恢复对 Desktop 或 CLI 的 SWE-2 计费，或把免费范围缩回限时限量"
     }
   },
   "monthWeeks": 4,

@@ -197,12 +197,12 @@ test("Step Plan CN uses official Credit pools and CNY list prices", () => {
   assert.equal(max37.monthly_yi, 858.83);
   assert.equal(accessLine(mini35), "StepFun");
 });
-test("Devin Pro SWE-2 is an unmetered $0 promo point that joins and leads the TB4 frontier on a dedicated slot", () => {
+test("Devin Pro SWE-2 is a permanent unmetered $0 point that joins and leads the TB4 frontier on a dedicated slot", () => {
   const p = data.points.find((p) => p.id === "devin_pro::swe-2")!;
   assert.ok(p);
   assert.equal(p.real_usd_per_mtok, 0);
   assert.equal(p.unmetered, true);
-  assert.equal(p.promo_until, "2026-10-31");
+  assert.equal(p.promo_until, null);
   assert.equal(p.monthly_yi, null);
   assert.equal(p.channel, "Devin");
   assert.equal(accessLine(p), "Devin");

@@ -160,7 +160,7 @@ function coreTable(rows: QueryRow[], ranking = false, exactPrice = false): strin
     appendRow(result, continuationCells[i]!);
     appendRow(result, [{ colSpan: headers.length, content: `Point ID: ${rows[i]!.point.id}` }]);
     const promo = unmeteredNote(rows[i]!.point, "en");
-    if (promo) appendRow(result, [{ colSpan: headers.length, content: `Promotion: ${promo} · ${price(rows[i]!.point.price_usd)} / mo` }]);
+    if (promo) appendRow(result, [{ colSpan: headers.length, content: `${promo.startsWith("permanent") ? "Permanent" : "Promotion"}: ${promo} · ${price(rows[i]!.point.price_usd)} / mo` }]);
   }
   return result.toString();
 }

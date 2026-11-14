@@ -128,7 +128,7 @@ export type FilterKey =
 export interface State {
   /** Hide plans superseded by a newer generation (plan_gen v1/v2). Data stays, view filters. */
   hideOld: boolean;
-  /** Show deprecated models and derived (non-measured) rows. Default false: they are excluded. */
+  /** Show hidden reference rows: deprecated models, derived rows and local hardware references. Default false. */
   showHidden: boolean;
   feeBand: string;
   lang: Lang;

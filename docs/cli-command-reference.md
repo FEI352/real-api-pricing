@@ -120,7 +120,7 @@ Total: 1 | Returned: 1 | Truncated: false
 Order: USD/MTok ascending; ties by Point ID.
 ```
 
-不计额度促销点没有月 token 分母，额度列显示 —；促销说明在该记录的续行：
+永久不计额度点没有月 token 分母，额度列显示 —；口径说明在该记录的续行：
 
 ```sh
 rap price --plan devin_pro --model swe-2
@@ -130,13 +130,13 @@ rap price --plan devin_pro --model swe-2
 
 | Rank | Model | Company | Channel | Plan | USD/MTok | Monthly tokens | Monthly fee USD | Billing | Confidence | Point ID |
 | ---: | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | SWE-2 | Devin | Devin | Devin Pro (promo until 10/31) | ≈$0 | — | $20 | Subscription | Medium | devin_pro::swe-2 |
+| 1 | SWE-2 | Devin | Devin | Devin Pro | ≈$0 | — | $20 | Subscription | Medium | devin_pro::swe-2 |
 
 该行之后的续行字段：
 
 ```text
 Point ID: devin_pro::swe-2
-Promotion: promo until 2026-10-31, unmetered · $20 / mo
+Permanent: permanent unmetered · $20 / mo
 ```
 
 **stderr**：

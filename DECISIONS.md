@@ -3,6 +3,13 @@
 本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-11-13 · Devin Pro × SWE-2 由限时促销改为永久不计额度
+
+- **采用**：`devin_pro::swe-2` 仍为 ≈$0/MTok、unmetered、进前沿；删除 `promo_until=2026-10-31`，套餐名由「Devin Pro (促销至 10/31)」改回「Devin Pro」，数据日期改 2026-11-12 official。Cognition 在 Devin's new Teams plan 公告里写明 free SWE-2 in Devin Desktop and CLI 是 Teams、Pro、Max 的永久权益；定价页 Pro $20 档列 Free use of SWE-2 且无截止日。范围仅限 Desktop 与 CLI，不覆盖 Devin Cloud；TB4 自报分性质不变。
+- **未采**：`docs.devin.ai/desktop/models` 仍写 free through November 30, 2026 与后续 list pricing，那是模型价目表未随公告同步的旧促销表，留作冲突记录，不作当前口径。
+- **口径**：`conventions.json` 的 `promotions.devin_swe2` 换成 `permanentUnmetered.devin_swe2`；网页 Behind the number、静态图表、CLI、README 一律去掉「促销价、非永久」，改「永久不计额度」。厂商恢复计费或缩小免费范围时重新复核。
+- 证据：`data/research/devin-swe2-permanent-2026-11-12.json`；历史促销裁定 `data/research/devin-swe2-round1-2026-09-12.json` 保留作对照。
+
 ## 2026-10-27 · Kimi 会员 199（Allegretto）k3 换基 14.51 → 19.46 亿（维护者实测）
 
 - **采用**：`kimi_allegretto_cn × kimi-k3` = **19.46 亿/月 medium**。维护者 Allegretto（赠送）账号截图：k3.1-pro 单日用量 37,362,656 raw token ↔ 控制台「本月用量 1.92%」直推月池 19.46 亿；同窗「7天用量 9.61%」反推周池 3.89 亿，月/周 = 5.005 与月池=周池×5 吻合，同一笔消耗两口径互证。替换旧基 14.51 亿（2026-07 ccusage 243.74M/84% k3-256k 混合负载反推）——两次样本的模型等效不同（k3.1-pro vs k3-256k 混合），差距是模型换率而非纯池变化。k2.7-code 15.68 亿为独立纯模型面板实测，不随本次换基。

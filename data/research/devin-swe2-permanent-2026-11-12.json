@@ -1,0 +1,38 @@
+{
+  "scopeNote": "2026-11-12 Cognition 官方公告把 Devin Desktop 与 CLI 里的免费 SWE-2 升级为 Teams、Pro、Max 的永久权益；取代 2026-09-12 那份『一次性促销、截止 2026-10-31』的历史裁定。原 research 文件 devin-swe2-round1-2026-09-12.json 保留作历史对照，不再作为当前采用口径。",
+  "collectedAt": "2026-11-13",
+  "decision": "devin_pro::swe-2 维持 ≈$0/MTok（数据记 0、unmetered=true），去掉 promo_until 截止日；套餐名去掉旧限时后缀，恢复为『Devin Pro』；数据日期改 2026-11-12 official；继续参与前沿。",
+  "officialSources": [
+    {
+      "url": "https://devin.ai/blog/devin-teams-plan",
+      "title": "Devin's new Teams plan",
+      "publisher": "Cognition",
+      "date": "2026-11-12",
+      "quote": "We're also making free SWE-2 in Devin Desktop and CLI a permanent part of our Teams, Pro, and Max plans.",
+      "quoteZh": "我们也把 Devin Desktop 与 CLI 中的免费 SWE-2 作为 Teams、Pro、Max 套餐的永久权益。",
+      "status": "verified 200"
+    },
+    {
+      "url": "https://devin.ai/pricing",
+      "title": "Devin Plans and Pricing",
+      "publisher": "Cognition",
+      "date": "2026-11-13",
+      "quote": "Pro $20 per month ... Full model availability / Free use of SWE-2 / Access to cloud agents (Devin Cloud). Compare Plans: Premium models — Free SWE-2.",
+      "quoteZh": "Pro 档每月 20 美元，套餐权益列明『免费使用 SWE-2』，对比表同样列 Free SWE-2，页面不再标注任何截止日。",
+      "status": "verified 200"
+    }
+  ],
+  "conflictingStaleSource": {
+    "url": "https://docs.devin.ai/desktop/models",
+    "quote": "SWE-2 is free for self-serve plans in Devin Desktop and Devin CLI through November 30, 2026; it does not apply to Devin cloud sessions. List pricing ($3.00/1M input, $15.00/1M output, $0.30/1M cache input) applies afterward.",
+    "resolution": "该页为模型价目表，仍留着 11-30 的旧促销表，未随 11-12 公告同步。以官方公告与定价页的永久口径为准；若厂商后续恢复计费，再重新复核计费权重。",
+    "status": "stale table, not adopted"
+  },
+  "scopeBoundary": [
+    "永久免费仅限 Devin Desktop 与 Devin CLI 中的 SWE-2，不覆盖 Devin Cloud 会话。",
+    "Teams 的 Free mode 另有每人 2 个并发免费会话，属于另一项权益，不改变本条 unmetered 口径。",
+    "TB4 27.3 分仍为 Cognition 自报，不因计费口径变更而变成第三方实测。"
+  ],
+  "supersedes": "data/research/devin-swe2-round1-2026-09-12.json",
+  "adoptionStatus": "adopted"
+}

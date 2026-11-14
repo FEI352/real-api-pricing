@@ -94,11 +94,12 @@ export function scorePresence(r: { score: number | null }): string {
  * 和新价位并排比较——2026-11-04 就是因此把 $14.99 的 Vibe 看成"比 Z.ai 少"。
  */
 /**
- * 默认不显示的点（2026-11-07 用户裁定）：
+ * 默认不显示的点（2026-11-07 用户裁定，2026-11-13 扩充）：
  *  - deprecated：已被新版本取代的模型（Step 3.5/3.7 等），数据保留供纵向对比；
  *  - Claude Haiku 5.5 的订阅行：额度全部由 Opus 5.5 按标价比倒推，50/50 档还预设了
- *    极低 prompt 占比的立场，属情景假设而非实测，放默认榜会顶掉真实额度。
- * 需要看时用「显示弃用/推算项」开关打开。
+ *    极低 prompt 占比的立场，属情景假设而非实测，放默认榜会顶掉真实额度；
+ *  - Qwen3.8 27B 三条 Local 单卡硬件参考点：吞吐实测有意义，但不是可购买的 API 报价。
+ * 需要看时用「显示隐藏参考项」开关打开。
  */
 export function isHiddenByDefault(p: Point): boolean {
   // 单一口径：构建期由 config/hidden-by-default.json + config/deprecated-models.json
@@ -1024,7 +1025,7 @@ export const manufacturer = (vendor: string) =>
 export function unmeteredNote(p: Point, lang: string): string {
   if (!isUnmetered(p)) return "";
   const until = p.promo_until;
-  if (!until) return lang === "zh" ? "不计额度" : "unmetered";
+  if (!until) return lang === "zh" ? "永久不计额度" : "permanent unmetered";
   return lang === "zh"
     ? `促销至 ${until}，不计额度`
     : `promo until ${until}, unmetered`;

@@ -877,15 +877,15 @@ function Explorer({
                   </label>
                 )}
                 <label className="toggle" title={t(
-                  "Show deprecated models and derived (non-measured) rows, e.g. Step 3.5/3.7 and the Claude Haiku 5.5 subscription tiers.",
-                  "显示已弃用模型与推算项（如 Step 3.5/3.7、Claude Haiku 5.5 订阅档）。默认关闭。",
+                  "Show hidden reference rows: deprecated models and derived (non-measured) rows, e.g. Step 3.5/3.7 and the Claude Haiku 5.5 subscription tiers, plus local single-GPU hardware reference points. Default off.",
+                  "显示隐藏参考项：已弃用模型与推算项（如 Step 3.5/3.7、Claude Haiku 5.5 订阅档），以及本地单卡硬件参考点。默认关闭。",
                 )}>
                   <input
                     type="checkbox"
                     checked={state.showHidden}
                     onChange={(e) => patch({ showHidden: e.target.checked })}
                   />
-                  {t("Show deprecated / derived", "显示弃用 / 推算项")}
+                  {t("Show hidden reference rows", "显示隐藏参考项")}
                 </label>
                 <label className="toggle" title={t(
                   "Hide plans superseded by a newer generation (Kimi v1, Z.ai v2 old-customer pricing). The data is still in the export.",
@@ -1800,8 +1800,8 @@ function Details({
                 {t("unbounded usage", "无界可用量")} → ≈$0 / MTok ·{" "}
                 {unmeteredNote(p, lang)} ·{" "}
                 {t(
-                  "promotional price, not a permanent allowance",
-                  "促销价，非永久口径",
+                  "permanent unmetered benefit in Devin Desktop and CLI",
+                  "Devin Desktop 与 CLI 的永久不计额度权益",
                 )}
               </>
             ) : (

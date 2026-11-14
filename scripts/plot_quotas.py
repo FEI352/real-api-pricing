@@ -332,7 +332,7 @@ def unmetered_label(row: dict, language: str, with_dollar: bool) -> str:
     if md:
         return (f"{price} · promo until {md}, unmetered" if language == "en"
                 else f"{price} · 促销至{md}，不计额度")
-    return f"{price} · unmetered" if language == "en" else f"{price} · 不计额度"
+    return f"{price} · permanent unmetered" if language == "en" else f"{price} · 永久不计额度"
 
 
 def annotation_of(row: dict, value: float, view: str, language: str,
@@ -342,9 +342,9 @@ def annotation_of(row: dict, value: float, view: str, language: str,
         if view == "prices":
             value_label = unmetered_label(row, language, with_dollar=True)
         elif language == "zh":
-            value_label = f"不计额度 · 促销至{md}" if md else "不计额度"
+            value_label = "永久不计额度"
         else:
-            value_label = f"unmetered · promo until {md}" if md else "unmetered"
+            value_label = f"unmetered · promo until {md}" if md else "permanent unmetered"
     else:
         value_label = f"{value:g}" if view == "quotas" else f"${price_text(value)}"
     confidence = row["confidence"][0].upper()

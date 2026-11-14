@@ -52,7 +52,8 @@
 - **Step Plan**：按阶跃国内站官方月度 Credit 池（1M Credit = ¥1）经人民币三段价折算，用低缓存档 `lowCacheTokenMix`；国际站美元牌价不同，不采用；旧 Coding Plan 的 Prompt/5h 口径仅留作证据。
 - **Google**：Antigravity 额度按 API worth 合池扣减（官方机制，段内已实证）。实测样本按 Gemini 标价折 worth 后用低缓存档换算（实测缓存 82~84%，打不到标准档；2026-09-30 裁定，取代 2026-09-21 的 raw 口径）；Ultra 5x/20x 按官方 worth 倍率派生，置信度 low。
 - **汇率**：取 `conventions.json` 的 `usdPerCny`（历史字段名，实际方向为 CNY/USD），来源日期在 `exchangeRate`。不改历史 research 文件里的旧汇率。
-- **促销**：促销口径必须标截止日，到期后复核。订阅内明确不计额度的模型，真实单价记为 ≈$0，用专用刻度位表示。
+- **促销与永久免费**：限时促销口径必须标截止日，到期后复核。订阅内明确不计额度的模型，真实单价记为 ≈$0，用专用刻度位表示；官方明示为永久权益的不标截止日，图表与网页须写明「永久不计额度」，并留证据与复核触发条件。
+- **默认视图准入**：倒推/情景假设、已弃用模型、本地单卡硬件参考点不进默认榜，数据保留、降 full 档，并由 `config/hidden-by-default.json` 与 `config/deprecated-models.json` 驱动站点 `hiddenByDefault` 标记；用户用「显示隐藏参考项」开关勾回。本地硬件点不是可购 API 报价，不与常规 API 或订阅档在同一默认榜里并排比较。
 - **数据快照日期**：`data/conventions.json` 的 `updatedAt` 是网页与 README 显示的快照日期（经 compute.py 写入 `derived/points.json` 的 generatedAt）；改采用值或口径时同步改为当天；CI 会在 adopted.csv 变化而 updatedAt 未推进过 base 分支时报错；base 已是当天时，updatedAt 与 base 相同且为今天（UTC 或 UTC+8 任一）也算通过（`scripts/checks/verify_snapshot_date.py`）。
 
 ## 5. 出图规则
@@ -66,5 +67,5 @@
 - **配色**：用明亮、干净的高饱和色，不用深灰或脏色。OpenAI 绿、Claude 橙（深陶土橙）、SpaceXAI（原 xAI）紫、Cursor 黄、Kimi 天蓝、GLM 黑、MiniMax 粉、Alibaba 红、OpenCode 青、DeepSeek 蓝、小米橙（亮橙，与 Claude 深陶土靠明度区分）、StepFun 电青 #00F4E5；Gemini 若入库用黄绿。前沿线用近黑色。具体色值只在 [`config/channel-colors.json`](config/channel-colors.json) 维护（网站与全部 Python 图共用），同文件 `channels` 数组也是唯一的 id 前缀 → 渠道映射；未指定色相的渠道中 Command Code、Ollama 用浅色调区分，Devin 用中性灰 #A1A1AA（指定；中灰，不是深灰）。Factory（Droid）用群青 #0A0ABF。改色后跑 `scripts/checks/verify_palette.py`：数据中出现的渠道两两 CIEDE2000 色差须 ≥ 15，不为品牌色开例外（确需例外时登记在 `brandPairs`）。
 - **单价精度**：`real_usd_per_mtok` 存 8 位有效数字，排序与前沿判定都用原值；图表、排名、表格按至多 5 位小数的短格式显示，网页详情弹窗显示 6 位有效数字完整值。不要为了显示好看在数据里截短单价。
 - **额度/单价总览**：双栏对数轴，不分量级面板；中文额度用"亿"，英文用 billion；每行数值旁加渠道缩写，图例置顶。
-- **按榜前沿精简版**：从全量订阅/API（含不计额度的 ≈$0 促销点，与帕累托图一致）中按"单价越低、分数越高"筛选，至少一项严格更好才算支配；同价同分的不同套餐都保留。
+- **按榜前沿精简版**：从全量订阅/API（含不计额度的 ≈$0 点，与帕累托图一致）中按"单价越低、分数越高"筛选，至少一项严格更好才算支配；同价同分的不同套餐都保留。
 - **英文套餐名同步点（前端 / 静态图 / 数据）**：套餐英文名有四处独立来源，新增或改名时四处都要检查，否则出现「前端英文、静态图中文」的半截翻译（2026-10-08 Haiku 5.5 输入长度分档情景行实际发生过）：① 前端 `web/src/domain.ts` 的 `displayPlan()` 词表（zh 分支原样返回，en 分支整段替换）；② 额度/单价总览图 `scripts/plot_quotas.py` 的 `plan_name()` en 替换表（`plan_name_en` 非空时优先取它）；③ 数据侧 `data/adopted.csv` 的 `plan_name_en`（多数为空，仅同名并点等少数档显式填写，靠 ①② 兜底）；④ 帕累托/前沿图 `scripts/plot_svg.py` 的 `plan_name(plan, language)`（独立词表，同样必须同步；2026-10-08 实测未收录 Haiku 分档映射，其 SVG `<title>` 仍为中文）。①② 的英文措辞必须逐字一致，且按整段替换（连全角括号一起换），实例：`（Haiku >100k 档）`→` (>100k tier)`、`（Haiku 50/50 混合档）`→` (50/50 mixed tier)`；④ 沿用同一译名，但按其 ` · ` 分隔风格拼接。自检：`grep -l '[一-龥]' charts/en/overview/*.txt` 应为空（退出码 1）；文本表格之外还要查矢量图的 `<title>`：`grep -rl --include='*.txt' --include='*.svg' '[一-龥]' charts/en/` 也应无输出；PNG 是二进制，`grep -r` 会按字节误报，别拿它判定。

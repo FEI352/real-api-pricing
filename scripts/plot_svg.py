@@ -61,12 +61,12 @@ def fmt_price(x):
 
 
 def promo_text(p, language):
-    """不计额度点的价格行：$0 + 促销截止；无促销日期时只写 unmetered。"""
+    """不计额度点的价格行：有截止日时标促销；无截止日时为官方永久权益。"""
     until = p.get("promo_until")
     if until:
         mm, dd = until[5:7].lstrip("0"), until[8:10].lstrip("0")
         return f"≈$0 · promo until {mm}/{dd}, unmetered" if language == "en" else f"≈$0 · 促销至{mm}/{dd}，不计额度"
-    return "≈$0 · unmetered" if language == "en" else "≈$0 · 不计额度"
+    return "≈$0 · permanent unmetered" if language == "en" else "≈$0 · 永久不计额度"
 
 
 def text_width(content, size):
@@ -539,9 +539,9 @@ def draw(board, meta, points, tier, language="zh"):
         if board in ("aa_coding_agent_index", "terminal_bench_4", "aa_terminal_bench_4", "deepswe_1_1") else
         "Claude Max：9/14 起永久额度估算；Pro：Opus 5 周池面板反推。Y 取同模型存档最高分变体。"
     ))
-    promo = ("≈$0 = SWE-2 promo: unmetered on Devin Pro/Max/Teams until 2026-10-31, not permanent" +
+    promo = ("≈$0 = free SWE-2 in Devin Desktop and CLI: a permanent unmetered benefit on Teams, Pro and Max" +
              ("; TB4 score self-reported by Cognition" if board == "terminal_bench_4" else "") + "." if language == "en" else
-             "≈$0 为 SWE-2 促销价：Devin Pro/Max/Teams 至 2026-10-31 不计额度，非永久口径" +
+             "≈$0 为 SWE-2 永久免费权益：Devin Desktop 与 CLI 中，Teams、Pro、Max 不计额度" +
              ("；TB4 分数为 Cognition 自报" if board == "terminal_bench_4" else "") + "。")
     y = legend_base + 40
     s += [text(56, y, f"Default month = 4 weeks; Kimi pool = 5×, Droid = 2× weekly · Dollar/credit: {STD_MIX['cache']:.0%} cache / {STD_MIX['input']:.1%} input / {STD_MIX['output']:.1%} output · Direct totals unchanged" if language == "en" else f"默认月=4周；Kimi月池=周池×5，Droid月=周×2 · 美元/credits换算：缓存{STD_MIX['cache']:.0%} / 输入{STD_MIX['input']:.1%} / 输出{STD_MIX['output']:.1%} · 直接total实测不重算", 12, "#727B72"),
