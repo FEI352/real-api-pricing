@@ -55,7 +55,7 @@ def biggest_models_array(text: str) -> list[dict]:
             continue
         if not isinstance(arr, list) or not arr or not isinstance(arr[0], dict):
             continue
-        if not {"name", "slug", "intelligenceIndex"} <= set(arr[0]):
+        if not ({"name", "intelligenceIndex"} <= set(arr[0]) and ("slug" in arr[0] or "release" in arr[0])):
             continue
         if len(arr) > len(best):
             best = arr
@@ -81,7 +81,30 @@ def main() -> int:
         print(f"ERROR: {src} 里找不到含 name/slug/intelligenceIndex 的载荷数组（页面结构可能变了）。", file=sys.stderr)
         return 1
 
+    # Load historical name -> slug mappings from data/research/scores-aa-round6-*.json
+    prior_map: dict[str, str] = {}
+    research_dir = Path(__file__).resolve().parents[1] / "data" / "research"
+    for pf in sorted(research_dir.glob("scores-aa-round6-*.json")):
+        try:
+            d = json.loads(pf.read_text(encoding="utf-8"))
+            for item in d.get("rawRecords", {}).get("aa_intelligence_index", []):
+                if item.get("name") and item.get("slug"):
+                    prior_map[item["name"]] = item["slug"]
+        except Exception:
+            continue
+
     for r in rows:
+        if not r.get("slug"):
+            if r.get("name") in prior_map:
+                r["slug"] = prior_map[r["name"]]
+            else:
+                rel = r.get("release", {}).get("slug", "") if isinstance(r.get("release"), dict) else ""
+                suf = r.get("suffix")
+                if suf:
+                    clean_suf = re.sub(r"[^a-zA-Z0-9]+", "-", suf.strip().lower()).strip("-")
+                    r["slug"] = f"{rel}-{clean_suf}" if rel else clean_suf
+                else:
+                    r["slug"] = rel
         if r.get("terminalBench40") is None and isinstance(r.get("scores"), dict):
             if "terminalbench-4-0" in r["scores"]:
                 r["terminalBench40"] = r["scores"]["terminalbench-4-0"]

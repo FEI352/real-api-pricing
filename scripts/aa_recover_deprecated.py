@@ -63,7 +63,7 @@ RELEASE_RE = re.compile(r'"releaseName":"([^"]+)"')
 VARIANT_RE = re.compile(r'"selected":\{"label":"([^"]+)"')
 
 
-def extract_meta(html: str) -> tuple[float | None, str | None, str | None]:
+def extract_meta(html: str, slug: str = "") -> tuple[float | None, str | None, str | None]:
     """返回 (分数, releaseName, 当前 variant label)。"""
     joined = rsc_join(html)
     # 必须从 currentModel 严格提取目标模型的 intelligenceIndex，严禁盲目正则抓取页面全局榜单
@@ -76,7 +76,54 @@ def extract_meta(html: str) -> tuple[float | None, str | None, str | None]:
             score = float(m_score.group(1))
     rel = RELEASE_RE.search(joined)
     var = VARIANT_RE.search(joined)
-    return score, (rel.group(1) if rel else None), (var.group(1) if var else None)
+    rel_name = rel.group(1) if rel else None
+    var_label = var.group(1) if var else None
+
+    if score is None:
+        # 兼容 AA 2026-11-15 重构：从模型对象数组中按 slug 或 suffix/effort 精准匹配
+        candidates = []
+        for m in re.finditer(r'\{"[^"]*name":', joined):
+            try:
+                obj, _ = json.JSONDecoder().raw_decode(joined[m.start():])
+            except Exception:
+                continue
+            if isinstance(obj, dict) and "intelligenceIndex" in obj and obj.get("intelligenceIndex") is not None:
+                candidates.append(obj)
+
+        if candidates:
+            effort = None
+            for ef in ["xhigh", "high", "medium", "low", "max"]:
+                if slug.endswith(f"-{ef}"):
+                    effort = ef
+                    break
+
+            matched_obj = None
+            if effort:
+                for c in candidates:
+                    cname = c.get("name", "").lower()
+                    if f"({effort}" in cname:
+                        matched_obj = c
+                        break
+            else:
+                for c in candidates:
+                    cname = c.get("name", "").lower()
+                    if "(max" in cname or "default" in cname:
+                        matched_obj = c
+                        break
+                if not matched_obj and len(candidates) == 1:
+                    matched_obj = candidates[0]
+
+            if matched_obj:
+                score = float(matched_obj["intelligenceIndex"])
+                cname = matched_obj.get("name", "")
+                m_var = re.search(r"\(([^,)]+)", cname)
+                if m_var:
+                    var_label = m_var.group(1).strip().lower()
+                    rel_name = re.sub(r"\s*\(.*$", "", cname).strip()
+                else:
+                    rel_name = cname
+
+    return score, rel_name, var_label
 
 
 def model_slugs(archive: dict) -> set[str]:
@@ -154,7 +201,7 @@ def main() -> int:
             dead.append((slug, status))
             print(f"  × {slug}: HTTP {status} → 判定真下线", file=sys.stderr)
             continue
-        score, release, variant = extract_meta(html)
+        score, release, variant = extract_meta(html, slug=slug)
         if score is None:
             dead.append((slug, "200-but-no-index"))
             print(f"  ? {slug}: 详情页 200 但解不出 intelligenceIndex", file=sys.stderr)
