@@ -158,20 +158,20 @@ Chinese charts count tokens in 亿 (100 million): 77.37 亿 = 7.737 billion.
 
 | Leaderboard | Scored points |
 |---|---:|
-| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->216<!-- /stat --> |
+| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->208<!-- /stat --> |
 | AA Coding Agent | <!-- stat:scored_aa_coding_agent_index -->100<!-- /stat --> |
 | Code Arena | <!-- stat:scored_arena_code -->299<!-- /stat --> |
 | Agent Arena | <!-- stat:scored_arena_agent_mode -->274<!-- /stat --> |
 | OpenDesign Arena | <!-- stat:scored_open_design_arena -->87<!-- /stat --> |
 | Terminal-Bench 4.0 | <!-- stat:scored_terminal_bench_4 -->159<!-- /stat --> |
-| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->222<!-- /stat --> |
+| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->211<!-- /stat --> |
 | DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->212<!-- /stat --> |
 
 The largest plan families are Command Code GOAT (<!-- stat:plans_command_code_goat -->59<!-- /stat --> points), MiMo Token Plan (<!-- stat:plans_mimo_token -->32<!-- /stat -->), OpenCode Go (<!-- stat:plans_opencode_go -->24<!-- /stat -->), Droid Max (<!-- stat:plans_droid_max -->28<!-- /stat -->), Ollama (<!-- stat:plans_ollama -->22<!-- /stat -->) and Step Plan (<!-- stat:plans_step_plan -->12<!-- /stat -->).
 
 **Downloads:** [adopted values (CSV)](data/adopted.csv) · [computed points (CSV)](derived/points.csv) / [JSON](derived/points.json) · [data notes](data/README.md) · [dated evidence](data/research/)
 
-**Every benchmark configuration**, not just the highest per model: the [configuration archive](derived/benchmark-configurations.json) ([CSV](derived/benchmark-configurations.csv)) keeps all <!-- stat:configs_total -->420<!-- /stat --> records with their original labels, harness, effort, score intervals and task costs. The [plan-to-configuration mappings](derived/benchmark-points.json) ([CSV](derived/benchmark-points.csv)) hold <!-- stat:refs_total -->2367<!-- /stat --> explicit references. Unknown harnesses, efforts and intervals stay empty instead of being guessed. The [all-configuration interactive chart](charts/zh/pareto/帕累托交互图.html) (Chinese; download and open locally, needs network access for Plotly) lets you switch between configurations and effort levels.
+**Every benchmark configuration**, not just the highest per model: the [configuration archive](derived/benchmark-configurations.json) ([CSV](derived/benchmark-configurations.csv)) keeps all <!-- stat:configs_total -->413<!-- /stat --> records with their original labels, harness, effort, score intervals and task costs. The [plan-to-configuration mappings](derived/benchmark-points.json) ([CSV](derived/benchmark-points.csv)) hold <!-- stat:refs_total -->2320<!-- /stat --> explicit references. Unknown harnesses, efforts and intervals stay empty instead of being guessed. The [all-configuration interactive chart](charts/zh/pareto/帕累托交互图.html) (Chinese; download and open locally, needs network access for Plotly) lets you switch between configurations and effort levels.
 
 ## Known limitations
 

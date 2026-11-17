@@ -9,7 +9,7 @@
 <text x="56.000" y="146.000" font-size="44" fill="#35483E" text-anchor="start" font-weight="400" class="serif" font-style="italic">Pareto frontier</text>
 <text x="384.000" y="143.000" font-size="16" fill="#858B81" text-anchor="start" font-weight="300" >Pareto frontier · Full</text>
 <text x="1388.000" y="76.000" font-size="31" fill="#343A33" text-anchor="end" font-weight="400" class="serif">Artificial Analysis</text>
-<text x="1388.000" y="107.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >Leaderboard snapshot  2026-11-16</text>
+<text x="1388.000" y="107.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >Leaderboard snapshot  2026-11-17</text>
 <text x="1388.000" y="136.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >Intelligence Index v5.0.1</text>
 <rect x="40" y="184" width="1360" height="612" rx="20" fill="#FFFFFF"/>
 <path d="M1089.719 233V705" stroke="#E8EBE7" stroke-dasharray="2 7" opacity=".8"/>
@@ -299,9 +299,6 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0073502389" data-score="27.8552" data-x="819.593" data-y="504.711" transform="translate(819.593 504.711)"><title>GPT-6 Luna · Command Code GOAT · $0.00735/MTok · 27.8552 · mediumGPT-6 Luna (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
-</g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.16129032" data-score="33.6546" data-x="401.353" data-y="464.456" transform="translate(401.353 464.456)"><title>Qwen3.8 Max 0902 · Command Code GOAT · $0.16129/MTok · 33.6546 · mediumQwen3.8 Max (0902) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.15455951" data-score="31.6534" data-x="407.126" data-y="478.347" transform="translate(407.126 478.347)"><title>GLM 5.3 · Command Code GOAT · $0.15456/MTok · 31.6534 · mediumGLM-5.3 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -755,7 +752,7 @@
 <path d="M231.39999999999998 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="245.400" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5×, Droid = 2× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >184 subscription positions / 18 API positions / 7 frontier positions</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >183 subscription positions / 18 API positions / 7 frontier positions</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max: permanent allowance estimate from Sep 14; Pro: historical Opus 4.8 measurement. Y uses the top archived variant per model.</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>

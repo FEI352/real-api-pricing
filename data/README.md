@@ -10,13 +10,13 @@ These files are the public redacted edition. Original local evidence is backed u
 
 | Board / 榜单 | Scored rows / 有分行 | Unscored rows / 缺分行 |
 |---|---:|---:|
-| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->216<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_aa_intelligence_index -->167<!-- /stat --> |
+| AA Intelligence | <!-- stat:scored_aa_intelligence_index -->208<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_aa_intelligence_index -->175<!-- /stat --> |
 | AA Coding Agent | <!-- stat:scored_aa_coding_agent_index -->100<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_aa_coding_agent_index -->283<!-- /stat --> |
 | Code Arena | <!-- stat:scored_arena_code -->299<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_arena_code -->84<!-- /stat --> |
 | Agent Arena | <!-- stat:scored_arena_agent_mode -->274<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_arena_agent_mode -->109<!-- /stat --> |
 | OpenDesign Arena | <!-- stat:scored_open_design_arena -->87<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_open_design_arena -->296<!-- /stat --> |
 | Terminal-Bench 4.0 | <!-- stat:scored_terminal_bench_4 -->159<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_terminal_bench_4 -->224<!-- /stat --> |
-| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->222<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_aa_terminal_bench_4 -->161<!-- /stat --> |
+| Terminal-Bench 4.0 (AA) | <!-- stat:scored_aa_terminal_bench_4 -->211<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_aa_terminal_bench_4 -->172<!-- /stat --> |
 | DeepSWE v1.1 | <!-- stat:scored_deepswe_1_1 -->212<!-- /stat --> / <!-- stat:points_total -->383<!-- /stat --> | <!-- stat:unscored_deepswe_1_1 -->171<!-- /stat --> |
 
 具体缺分模型以 [`points.csv`](../derived/points.csv) / [`points.json`](../derived/points.json) 的空分数字段为准；不为缺失模型补造分数。
