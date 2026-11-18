@@ -158,13 +158,27 @@ Task Prompt 只写编排与门禁，所有"具体怎么做"都在这里；改口
 顺序照 `BUILD.md`，全部用 `.venv/bin/python`：
 
 ```
-build_adopted.py → compute.py → checks/verify_i18n.py → readme_stats.py
+or_tasktime.py → build_adopted.py → compute.py → checks/verify_i18n.py → readme_stats.py
 → checks/verify_benchmark_configs.py → checks/verify_aa_snapshot.py → checks/verify_deepswe.py
 → plot_svg.py → node scripts/render_svg.cjs → build_html.py → node scripts/checks/verify_configuration_html.cjs
 → plot_quotas.py → checks/verify_fee_bands.py → checks/verify_chart_labels.py → publish_charts.py
 → checks/verify_svg.py → checks/verify_label_overlap.py → checks/verify_four_boards.py
 → checks/verify_publication.py → checks/verify_palette.py → readme_stats.py --check
 ```
+
+**🔴 `or_tasktime.py`（2026-11-17 新增，不可省）**：AA 自 2026-11-05 的快照起不再发布
+`medianEndToEndResponseTimeSeconds` / `medianOutputTokensPerSecond`，任务用时轴改由 OpenRouter
+每任务 token 数取自 AA 模型页的 `intelligenceIndexOutputTokensPerTask`，吞吐与延迟取自 OpenRouter
+模型页**同一 provider 行**的 `p50_throughput` / `p50_latency`（见 SKILL §2.5）。
+它必须在 `compute.py` **之前**跑完，否则 `benchmark_configs.or_tasktime()` 读到的是昨天的映射。
+
+```bash
+$R/.venv/bin/python scripts/or_tasktime.py        # 抓 OpenRouter → data/research/or-tasktime-<date>.json
+```
+
+- 页抓取结果缓存在 `_build/or-tasktime-cache/`，模型页统计变了要删掉缓存重抓；
+- 项目 86 个模型命中 69 个，未命中的多是本地硬件点，保留手工实测值；
+- 抓不到（OpenRouter 全站不可达）时**不要中断整条流水线**：旧映射仍在，`compute` 会沿用上一份。
 
 **已知噪声（不是回归，不要为它改数据）**：
 - `verify_label_overlap.py` 在本机必红（约 130~160 项）：本机没有 Microsoft YaHei，字形度量与图表不一致。判定方法：违规数与"未改动基线"相当即放过。

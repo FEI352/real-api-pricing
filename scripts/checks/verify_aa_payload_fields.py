@@ -28,8 +28,8 @@ MIN_RAW_ROWS = 250
 # 阈值理由：带端到端响应时的行数在清理 deprecated 模型后有效行数为 167（覆盖率 61.2%）；150 既挡住整列消失，也容忍小幅收缩。
 MIN_TIMED_ROWS = 150
 # 快照指纹：claude-haiku-5-5（max effort 行）在当前 v5.0 快照的 configurationRank。
-# 2026-11-17：随榜单微调后为 39。
-EXPECTED_HAIKU_RANK = 39
+# 2026-11-18：新增 GPT-6.2 Astra / Sol 各 effort 档后顺移至 40。
+EXPECTED_HAIKU_RANK = 40
 SCORE_TOLERANCE = 1e-9     # score 是 round(raw, 4) 的精确副本，只留浮点比较余量
 
 failures = []

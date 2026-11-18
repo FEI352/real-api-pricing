@@ -1,0 +1,54 @@
+{
+  "collectedAt": "2026-11-18",
+  "sourceType": "official pricing page + launch announcement",
+  "source": "https://developers.openai.com/api/docs/pricing",
+  "sourceZh": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+  "checkedAt": "2026-11-18",
+  "launchAt": "2026-11-17",
+  "scope": "OpenAI GPT-6.2 Astra 与 GPT-6.2 Sol（2026-11-17 发布，API id gpt-6.2-astra / gpt-6.2-sol）官方标准上下文按量三段价：Astra 为 $8/$40/缓存读 $0.40（较 GPT-6 Astra 降价 20%，缓存读降 60%）；Sol 沿用 GPT-6.1 Sol 的 $2/$10/缓存读 $0.10。",
+  "models": [
+    {
+      "model": "gpt-6.2-astra",
+      "officialApiName": "gpt-6.2-astra",
+      "modelVersion": "GPT-6.2-Astra",
+      "vendor": "OpenAI",
+      "input": 8.0,
+      "cachedInput": 0.4,
+      "output": 40.0,
+      "currency": "USD",
+      "variants": {
+        "cacheWrite30m": {
+          "input": 10.0
+        },
+        "cacheWrite12h": {
+          "input": 20.0
+        }
+      },
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "checkedAt": "2026-11-18",
+      "note": "2026-11-17 发布：短上下文（≤272K）输入 $8.00/MTok、输出 $40.00/MTok、缓存读 $0.40/MTok（较 GPT-6 Astra 输入输出降 20%，缓存读降 60%）；项目标准负载混合价 $0.788/MTok。"
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "officialApiName": "gpt-6.2-sol",
+      "modelVersion": "GPT-6.2-Sol",
+      "vendor": "OpenAI",
+      "input": 2.0,
+      "cachedInput": 0.1,
+      "output": 10.0,
+      "currency": "USD",
+      "variants": {
+        "cacheWrite30m": {
+          "input": 2.5
+        },
+        "cacheWrite12h": {
+          "input": 5.0
+        }
+      },
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "checkedAt": "2026-11-18",
+      "note": "2026-11-17 发布：短上下文（≤272K）沿用 GPT-6.1 Sol 标价，输入 $2.00/MTok、输出 $10.00/MTok、缓存读 $0.10/MTok；项目标准负载混合价 $0.197/MTok。"
+    }
+  ],
+  "notFound": []
+}

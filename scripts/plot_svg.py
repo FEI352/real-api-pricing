@@ -109,6 +109,9 @@ def plan_name(plan, language):
                 .replace("中间值", "midpoint")
                 .replace("忙时", "peak")
                 .replace("学生版", "(Student)")
+                # 2026-11-17：印度区点位上线，四处改名点同步（domain.ts / plot_quotas.py / plot_svg.py / adopted.csv）
+                .replace(" (印度)", " (India)")
+                .replace("印度", "India")
                 # Haiku 5.5 输入长度分档（2026-10-08）：本表用 " · " 分隔风格，
                 # 与 domain.ts / plot_quotas.py 的 " (>100k tier)" 写法不同，改名时四处都要同步
                 .replace("（Haiku >100k 档）", " · >100k tier")

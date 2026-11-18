@@ -663,6 +663,15 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.19794141" data-score="30.48" data-x="438.043" data-y="313.985" transform="translate(438.043 313.985)"><title>Claude Fable 5.2 · Droid Max · $0.19794/MTok · 30.48 · mediumClaude Fable 5.2 (Max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.016956415" data-score="16.9" data-x="748.584" data-y="482.663" transform="translate(748.584 482.663)"><title>Gemini 4 Carbon · Google AI Ultra 5x (India) · $0.01696/MTok · 16.9 · highGemini 4 Carbon (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.016956415" data-score="10.72" data-x="748.584" data-y="559.425" transform="translate(748.584 559.425)"><title>Gemini 4 Argon · Google AI Ultra 5x (India) · $0.01696/MTok · 10.72 · highGemini 4 Argon (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0053359163" data-score="14.8" data-x="894.696" data-y="508.747" transform="translate(894.696 508.747)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x (India) · $0.00534/MTok · 14.8 · highGemini 4 Hydrogen (High) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.016785564" data-score="1.86" data-x="749.864" data-y="669.476" transform="translate(749.864 669.476)"><title>GPT 5.6 Terra · Plus · $0.01679/MTok · 1.86 · mediumGPT-5.6 Terra (xHigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -920,7 +929,7 @@
 <path d="M400.91999999999996 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="414.920" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5×, Droid = 2× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >239 subscription positions / 20 API positions / 7 frontier positions</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >242 subscription positions / 20 API positions / 7 frontier positions</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max: permanent allowance estimate from Sep 14; Pro: historical Opus 4.8 measurement. Y uses the top archived variant per model.</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >arena.ai/leaderboard/agent</text>

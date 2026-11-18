@@ -23,6 +23,7 @@ import {
 } from "@phosphor-icons/react";
 import { ThemeContext, type Theme } from "./theme";
 import Chart from "./Chart";
+import Chart3D from "./Chart3D";
 import HeaderActions from "./HeaderActions";
 import { unpackData } from "./loadData";
 import Ranking from "./Ranking";
@@ -133,6 +134,10 @@ function storedTheme(): Theme | null {
   }
 }
 function localTheme(): Theme {
+  if (typeof window !== "undefined") {
+    const hashTheme = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("theme");
+    if (hashTheme === "dark" || hashTheme === "light") return hashTheme;
+  }
   const stored = storedTheme();
   if (stored) return stored;
   return typeof matchMedia !== "undefined" &&
@@ -955,6 +960,12 @@ function Explorer({
                       >
                         {t("Task time", "任务用时")}
                       </button>
+                      <button
+                        aria-pressed={state.xMode === "terrain3d"}
+                        onClick={() => patch({ xMode: "terrain3d", axisSwap: false })}
+                      >
+                        {t("3D Terrain", "3D 地形曲面")}
+                      </button>
                     </div>
                     {state.xMode === "time" && (
                       <button
@@ -1096,6 +1107,18 @@ function Explorer({
                   onSelect={setDetail}
                   handle={chart}
                   onQuery={(query) => patch({ query })}
+                />
+              ) : state.xMode === "terrain3d" ? (
+                <Chart3D
+                  rows={rows}
+                  state={state}
+                  data={data}
+                  theme={theme}
+                  highlight={highlight}
+                  onSelect={setDetail}
+                  onSearch={(find, lock) => patch({ find, lock })}
+                  handle={chart}
+                  toolsSlot={chartSlot}
                 />
               ) : (
                 <Chart

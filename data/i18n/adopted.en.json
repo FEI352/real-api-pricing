@@ -1283,6 +1283,46 @@
       "en": "Allowance reuses the 5.1 figure of 1.0104B: $200/mo over 1010.4 MTok gives real = $0.197941/MTok, identical to 5.1 (same price, same pool, no new measurement)."
     },
     {
+      "zh": "Google 官方印度区定价 feed：PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500（即 5x 档，与美国 $99.99 同档），按 2026-11-13 USD/INR 94.4 折算 USD 68.86；额度沿用美国版口径，与地区无关。来源 https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json",
+      "en": "Google official India pricing feed: PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500 (the 5x tier, same tier as the US $99.99 plan), converted to USD 68.86 at the 2026-11-13 USD/INR rate of 94.4; allowance follows the US definition and is region-independent. Source: https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json"
+    },
+    {
+      "zh": "印度区 Ultra 5x：官方 feed 的 PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500，按 2026-11-13 USD/INR 94.4 折 USD 68.86，为美国版 $99.99 的 68.9%（便宜 31%），但仍为土耳其版 $29.73 的 2.32 倍。印度标价含 18% GST，土区标价不含 VAT，计入税后实际差距比标价更大。额度沿用美国版口径（与地区无关），real = 68.86 ÷ 4,061 MTok = $0.016956/MTok。印度 Ultra 20x（₹19,500 约 $206.57）与 AI Pro（₹1,950 约 $20.66）均高于美国同档，故不录入。",
+      "en": "India Ultra 5x: the official feed's PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500, i.e. USD 68.86 at the 2026-11-13 USD/INR rate of 94.4 — 68.9% of the US $99.99 (31% cheaper), but still 2.32x Turkey's $29.73. India's sticker price includes 18% GST while Turkey's excludes VAT, so the gap after tax is wider than the sticker suggests. Allowance follows the US definition and is region-independent; real = 68.86 / 4,061 MTok = $0.016956/MTok. India's Ultra 20x (₹19,500, about $206.57) and AI Pro (₹1,950, about $20.66) both cost more than their US counterparts, so they are not recorded."
+    },
+    {
+      "zh": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_plus::gpt-6-astra 实测值 1.59 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "OpenAI official pricing and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Astra credit rates 200/10/1000 ($8/$0.40/$40 per MTok) vs. GPT-6 Astra 250/25/1250 ($10/$1/$50), giving a project standard-workload blended ratio of $1.47/$0.788 = 1.865482x, derived from the same-plan chatgpt_plus::gpt-6-astra measured value 159M; list-prices-gpt-62-round1-2026-11-18.json"
+    },
+    {
+      "zh": "新增 2.966 亿：由 ChatGPT Plus 的 GPT-6 Astra 实测基准 1.59 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.067431/MTok；非独立实测。",
+      "en": "Added 296.6M: derived from ChatGPT Plus GPT-6 Astra measured baseline 159M x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.067431/MTok; not independently measured."
+    },
+    {
+      "zh": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_5x::gpt-6-astra 9.1 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "OpenAI official pricing and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Astra credit rates 200/10/1000 ($8/$0.40/$40 per MTok) vs. GPT-6 Astra 250/25/1250 ($10/$1/$50), giving a project standard-workload blended ratio of $1.47/$0.788 = 1.865482x, derived from the same-plan chatgpt_pro_5x::gpt-6-astra 910M; list-prices-gpt-62-round1-2026-11-18.json"
+    },
+    {
+      "zh": "新增 16.976 亿：由 ChatGPT Pro 5x 的 GPT-6 Astra 9.1 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.058907/MTok；非独立实测。",
+      "en": "Added 1.6976B: derived from ChatGPT Pro 5x GPT-6 Astra 910M x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.058907/MTok; not independently measured."
+    },
+    {
+      "zh": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_20x::gpt-6-astra 加权实测值 38.12 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "OpenAI official pricing and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Astra credit rates 200/10/1000 ($8/$0.40/$40 per MTok) vs. GPT-6 Astra 250/25/1250 ($10/$1/$50), giving a project standard-workload blended ratio of $1.47/$0.788 = 1.865482x, derived from the same-plan chatgpt_pro_20x::gpt-6-astra weighted measured value 3.812B; list-prices-gpt-62-round1-2026-11-18.json"
+    },
+    {
+      "zh": "新增 71.112 亿：由 ChatGPT Pro 20x 的 GPT-6 Astra 38.12 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.028125/MTok；非独立实测。",
+      "en": "Added 7.1112B: derived from ChatGPT Pro 20x GPT-6 Astra 3.812B x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.028125/MTok; not independently measured."
+    },
+    {
+      "zh": "OpenAI 官方发布说明 https://openai.com/index/introducing-gpt-6-2-astra-sol/ 与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Sol 沿用 GPT-6.1 Sol 完全相同的积分与 API 费率（50/2.5/250 credits，即 $2/$0.10/$10 per MTok），沿用 chatgpt_plus::gpt-6.1-sol 实测口径 8.7 亿；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "OpenAI official announcement https://openai.com/index/introducing-gpt-6-2-astra-sol/ and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Sol retains the exact same credit and API rates as GPT-6.1 Sol (50/2.5/250 credits, i.e. $2/$0.10/$10 per MTok), carrying over the chatgpt_plus::gpt-6.1-sol measured basis 870M; list-prices-gpt-62-round1-2026-11-18.json"
+    },
+    {
+      "zh": "新增 8.7 亿：GPT-6.2 Sol 与 GPT-6.1 Sol 积分与三段费率完全一致，沿用 ChatGPT Plus 实测基准 8.7 亿，real = $0.022989/MTok；Pro 5x/20x 沿 Sol 裁定不派生。",
+      "en": "Added 870M: GPT-6.2 Sol shares identical credit and three-part API rates with GPT-6.1 Sol, carrying over the ChatGPT Plus measured baseline 870M, real = $0.022989/MTok; Pro 5x/20x not derived per Sol ruling."
+    },
+    {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
       "en": "Derived from same-plan gpt-5.6-sol 616M × 1.9342105263157894"
     },
@@ -1865,6 +1905,18 @@
     {
       "zh": "标价 cached 0.05/in 1.0/out 5.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
       "en": "List price cached 0.05/in 1.0/out 5.0 x project unified standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://developers.openai.com/api/docs/pricing ；2026-11-17 发布，输入/输出较 GPT-6 Astra 降 20%、缓存读降 60%；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "https://developers.openai.com/api/docs/pricing ; released 2026-11-17, input/output 20% below GPT-6 Astra and cached reads 60% lower; list-prices-gpt-62-round1-2026-11-18.json"
+    },
+    {
+      "zh": "标价 cached 0.4/in 8.0/out 40.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.4/in 8.0/out 40.0 x project standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://developers.openai.com/api/docs/pricing ；2026-11-17 发布，沿用 GPT-6.1 Sol 三段标价；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "https://developers.openai.com/api/docs/pricing ; released 2026-11-17, keeping GPT-6.1 Sol three-part list prices; list-prices-gpt-62-round1-2026-11-18.json"
     },
     {
       "zh": "标价 cached 0.02/in 0.2/out 1.2 × 项目统一标准负载 97.0%/2.50%/0.50%",

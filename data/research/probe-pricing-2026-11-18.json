@@ -1,0 +1,288 @@
+{
+  "collectedAt": "2026-11-18",
+  "checkedAt": "2026-11-18T09:07:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "2026-11-18 每日标价与采用值核查：1) 核验 05:00 新增的 OpenAI GPT-6.2 Astra / GPT-6.2 Sol 标价档 (list-prices-gpt-62-round1-2026-11-18.json)、build_adopted.py 与 extra_subscriptions.json 派生计算、compute.py 只读核验（SCORE_FILES / LIST_PRICE_FILES / DISPLAY）及全量守卫脚本；2) 评估 /tmp/upstream.json 51 个上游新提交（重点 PR #241 Command Code GOAT Qwen 4 Max & Tencent Hy4 Flash、PR #238 Magpie round3、PR #236、PR #235 等）；3) 联网核查主流供应商（OpenAI, Anthropic, Google, DeepSeek, Mistral, MiniMax, Kimi, StepFun, Qwen, Command Code GOAT, OpenCode Go, Factory Droid, Devin）最新标价与套餐额度变化，并对照今日 AA 快照 scores-aa-round6-2026-11-18.json 识别新候选模型。",
+  "summary": "2026-11-18 官方 API 标价与采用值核验结论：1) GPT-6.2 Astra / Sol 核验全部通过：data/research/list-prices-gpt-62-round1-2026-11-18.json 的 schema、项目模型 id（gpt-6.2-astra / gpt-6.2-sol）、三段价（Astra $8/$0.40/$40 混合 $0.788；Sol $2/$0.10/$10 混合 $0.197）与官方定价及 AA 快照完全一致，derived/list-price-divergence.json 中 10 个 GPT-6.2 配置均为 ratio=1.0 (consistent)。2) build_adopted.py 与 adopted.csv 完全一致：05:00 在 scripts/build_adopted.py 加入 2 条 METERED 行、2 条 DATA_DATES、1 处 workload_of 分支，并在 data/extra_subscriptions.json 加入 4 条订阅派生行（chatgpt_plus/pro_5x/pro_20x × gpt-6.2-astra 与 chatgpt_plus × gpt-6.2-sol），生成 393 行 data/adopted.csv 字节级一致；verify_list_blended.py (361/361)、verify_haiku55_tiers.py、verify_scenario_points.py、verify_hidden_defaults.py、verify_benchmark_configs.py、verify_i18n.py、verify_aa_snapshot.py、verify_aa_payload_fields.py 全部 PASS；本轮无需再改 build_adopted.py。3) compute.py 只读核验通过：SCORE_FILES 第 85 行已紧跟 scores-aa-round6-2026-11-17.json 之后、位于所有 supplement 之前插入 scores-aa-round6-2026-11-18.json；LIST_PRICE_FILES 第 123 行已登记 list-prices-gpt-62-round1-2026-11-18.json；DISPLAY 第 133 行已登记 gpt-6.2-astra 与 gpt-6.2-sol。4) 上游 51 提交评估：昨日 commit bcd8961 已安全导入此前 23 份研究文件；今日新增 PR #241（Command Code GOAT Qwen 4 Max + Hy4 Flash）与 PR #238（Magpie round3）均为纯 research-only（5 个纯新增文件，零脚本冲突），核心源码仍有 8 处真冲突（含 Devin SWE-2 永久权益、LOCAL_HARDWARE_HIDDEN、Haiku 5.5 降 full 档等定制），维持严禁裸 merge。5) 新候选提示：AA rawRecords 中已出现 qwen4-max（42.8915 分）、tencent-hy4（34.5552 分）、muse-ember（36.0213 分）、ling-3.1-flash-1019（29.5701 分），且 PR #241 与 OpenCode Go 已公开 Qwen4 Max 月额度（GOAT $15 / OpenCode Go $15, Go Plus $60），另搜索发现 Factory Droid 文档已将 claude-fable-5.2 列为 3.2x 倍率，均列入候选清单交 Lead 后续窗口决策（本轮不直接改采用值）。",
+  "listPricesInventory": {
+    "diskFilesCount": 21,
+    "registeredInComputePyCount": 20,
+    "unregisteredDraftFile": "data/research/list-prices-claude55-round1-2026-10-08.json (历史草稿，已被 list-prices-claude-sonnet55-round2-2026-10-09.json 与 list-prices-claude-haiku55-round1-2026-10-08.json 替代)",
+    "gpt62Verification": {
+      "file": "data/research/list-prices-gpt-62-round1-2026-11-18.json",
+      "schemaValid": true,
+      "models": [
+        {
+          "model": "gpt-6.2-astra",
+          "input": 8.0,
+          "cachedInput": 0.4,
+          "output": 40.0,
+          "currency": "USD",
+          "standardBlendedUsdPerMtok": 0.788,
+          "aaSnapshotMatch": "exact (in=8, out=40, cache=0.4)",
+          "divergenceStatus": "consistent (ratio=1.0 across all 5 configurations)"
+        },
+        {
+          "model": "gpt-6.2-sol",
+          "input": 2.0,
+          "cachedInput": 0.1,
+          "output": 10.0,
+          "currency": "USD",
+          "standardBlendedUsdPerMtok": 0.197,
+          "aaSnapshotMatch": "exact (in=2, out=10, cache=0.1)",
+          "divergenceStatus": "consistent (ratio=1.0 across all 5 configurations)"
+        }
+      ]
+    }
+  },
+  "vendors": {
+    "OpenAI": {
+      "status": "gpt_62_released_and_adopted",
+      "recentChanges": [
+        "2026-11-17 正式发布 GPT-6.2 Astra 与 GPT-6.2 Sol（1,050,000 上下文窗口，922K 输入 / 128K 输出，支持 Ultrafast 模式）",
+        "GPT-6.2 Astra 官方 API 标价：$8.00 输入 / $0.40 缓存读 / $40.00 输出（较 GPT-6 Astra 输入输出降 20%、缓存读降 60%，标准负载混合价 $0.788/MTok）",
+        "GPT-6.2 Sol 官方 API 标价：$2.00 输入 / $0.10 缓存读 / $10.00 输出（沿用 GPT-6.1 Sol 费率与 Codex 积分 50/2.5/250，标准负载混合价 $0.197/MTok）",
+        "两模型均已覆盖 ChatGPT Plus / Pro（Work 与 Codex）、API 及 GitHub Copilot / Amazon Bedrock；GPT-6.1 Terra / GPT-6 Luna 等既有标价保持稳定"
+      ],
+      "handling": "已完成 list-prices 建档、API 按量行与 4 条 ChatGPT 订阅派生行录入，全量守卫通过"
+    },
+    "Anthropic": {
+      "status": "rates_stable_droid_fable52_observed",
+      "recentChanges": [
+        "Claude Fable 5.2 ($8/$40/$0.20)、Fable 5.1 ($10/$50/$0.25)、Opus 5.5 ($4/$20/$0.20)、Sonnet 5.5 ($2/$10/$0.20)、Haiku 5.5 ($0.10/$0.50/$0.01 ≤100K) 官方 API 标价稳定",
+        "搜索核查 Factory 文档（docs.factory.ai/docs/models）显示已收录 claude-fable-5.2 倍率 3.2×（Opus 5.5 为 1.6×，即 0.5× Opus 5.5），当前本地 DROID_MULTIPLIERS 尚未录入"
+      ],
+      "handling": "官方 API 与 Claude Max 订阅点完备；Factory Droid Fable 5.2 3.2× 倍率列入候选观察"
+    },
+    "Google": {
+      "status": "rates_stable_hydrogen_active",
+      "recentChanges": [
+        "Gemini 4 Hydrogen ($1.50/$7.50/$0.075)、Gemini 4 Carbon（首发优惠 $2/$10 至 2026-11-30，12-01 起恢复 $4/$20）、Gemini 4 Argon ($2/$10/$0.10)、Gemini 3.8 Flash（优惠 $0.75/$3.75 至 2026-12-31）保持不变",
+        "2026-11-17 本地已将 Google 各模型日期锚点统一至同模型 Pro 池"
+      ],
+      "handling": "标价档与采用值完备；注意 2026-11-30 到期的 Carbon 首发优惠窗口"
+    },
+    "DeepSeek": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "V4.1 Flash（闲时 $0.15/$0.60/$0.003，忙时 $0.30/$1.20/$0.006）与 V4 Pro 保持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Qwen": {
+      "status": "qwen4_max_scored_and_quotas_published",
+      "recentChanges": [
+        "Qwen 4 Max 已出现在今日 AA 快照 scores-aa-round6-2026-11-18.json 的 rawRecords（intelligenceIndex=42.8915，标价 $1.50 in / $4.50 out / $0.075 cached read）",
+        "上游 PR #241（2026-11-17）与搜索核查显示 Command Code GOAT 与 OpenCode Go 均已公开 Qwen4 Max 月度美元额度（GOAT $15 / Go $6 / Pro $25；OpenCode Go $15 / Go Plus $60）"
+      ],
+      "handling": "正式升级为高优先级待采用候选，提交 Lead 下一窗口决策"
+    },
+    "Command_Code_GOAT": {
+      "status": "pr241_new_models_observed",
+      "recentChanges": [
+        "PR #241 (2026-11-17): 新增两款付费模型——Qwen 4 Max ($1.50/$4.50/$0.075/write $1.875，GOAT $15 / Go $6 / Pro $25) 与 Tencent Hy4 Flash ($0.07/$0.281/$0.003，GOAT $15 / Go $6 / Pro $25，1M 上下文)",
+        "PR #235 GLM-5.3 boosted credits $70 维持不变；PR #224 Muse Ember 在 AA rawRecords 已得 36.0213 分（$0.10/$0.50/$0.004）；PR #191 Ling 3.1 Flash 1019 在 AA rawRecords 已得 29.5701 分（$0.30/$0.90/$0.06）"
+      ],
+      "handling": "Qwen 4 Max 列入高优先级候选；Hy4 Flash 尚未上 AA 榜，继续观察；Muse Ember / Ling 3.1 Flash 1019 保持候选监控"
+    },
+    "OpenCode_Go": {
+      "status": "qwen4max_quota_and_hy4_observed",
+      "recentChanges": [
+        "搜索结果（opencode.ai/docs/go）显示 Qwen4 Max 已公布月度额度：Go $15（~463 req/5h）、Go Plus $60（~1,850 映射档），配合 AA 已出分（42.8915），具备建档与采纳条件",
+        "Tencent Hy4（tencent-hy4）在 AA rawRecords 已得 34.5552 分（$0.834/$2.501/$0.042），OpenCode Go 额度为 Go $60 / Go Plus $240 / Go Teams $65",
+        "DeepSeek V4.1 Flash 维持本地实测 $100 额度"
+      ],
+      "handling": "Qwen4 Max 与 Hy4 列入待评估采用候选（本轮暂不动 adopted.csv）"
+    },
+    "Mistral": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Mistral Large 4 ($0.70/$2.10/$0.07) 与 Mistral Medium 3.5 ($1.50/$7.50) 维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "MiniMax": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "MiniMax M3.1 Flash Preview ($0.15/$0.60/$0.015) 与 M3 维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Kimi": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Kimi K3.1 Pro ($2.00/$10.00/$0.20) 与 K3 维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "StepFun": {
+      "status": "rates_stable",
+      "recentChanges": [
+        "Step 3.5 / 3.7 Flash 与 Step 5 Preview 维持稳定"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Devin_Cognition": {
+      "status": "permanent_swe2_maintained",
+      "recentChanges": [
+        "本地维持 Cognition 2026-11-12 官方永久权益定制（permanentUnmetered.devin_swe2）",
+        "上游 PR #238 (Magpie round3) 记录 Opus 5.5 三账号周额度研究证据，并注记 docs.devin.ai/desktop/models 显示 SWE-2 自助免费期延至 2026-11-30"
+      ],
+      "handling": "维持本地 permanent unmetered 定制；PR #238 仅作研究证据"
+    }
+  },
+  "upstreamEvaluation": {
+    "checkedAt": "2026-11-18T09:00:35+08:00",
+    "upstreamRef": "upstream/main",
+    "head": "5b822e6c58fa2d04dac1f50e05831fecde5a4376",
+    "upstreamHead": "b8117804ff9cce7a5f4eecb1f0f5fbcb3ef80ab5",
+    "mergeBase": "ed33da5febba8c4e0b3315d02b881c64765bbaed",
+    "commitCount": 51,
+    "newCommitsSince20261117": 4,
+    "verdict": "review",
+    "newPRsEvaluated": [
+      {
+        "pr": "#241",
+        "commits": ["b811780", "79f9bfc"],
+        "date": "2026-11-17",
+        "files": [
+          "data/research/goat-hy4-flash-round1-2026-11-17.json",
+          "data/research/goat-qwen4-max-round1-2026-11-17.json"
+        ],
+        "classification": "research-only",
+        "conflict": false,
+        "summary": "Command Code GOAT 新增 Qwen 4 Max ($1.50/$4.50/$0.075, GOAT $15) 与 Tencent Hy4 Flash ($0.07/$0.281/$0.003, GOAT $15)，无源码/采用值改动"
+      },
+      {
+        "pr": "#238",
+        "commits": ["07ccd31", "cf60957"],
+        "date": "2026-11-16..2026-11-17",
+        "files": [
+          "data/research/magpie-single-model-weekly-round3-2026-11-16-aligned-evidence.csv",
+          "data/research/magpie-single-model-weekly-round3-2026-11-16.json",
+          "data/research/magpie-single-model-weekly-round3-2026-11-16.md"
+        ],
+        "classification": "research-only",
+        "conflict": false,
+        "summary": "Magpie 单模型周额度第三轮研究证据（2026-11-09..16 Devin Opus 5.5 匿名账号 A05/A06/A07），无源码/采用值改动"
+      },
+      {
+        "pr": "#236 & #235",
+        "commits": ["057882f", "3d1be6c"],
+        "date": "2026-11-13..2026-11-16",
+        "classification": "research-only (already imported locally via bcd8961)",
+        "conflict": false
+      }
+    ],
+    "sourceConflictFiles": [
+      "scripts/build_adopted.py",
+      "scripts/compute.py",
+      "scripts/plot_svg.py",
+      "scripts/checks/verify_deepswe.py",
+      "web/src/domain.test.ts",
+      "data/conventions.json",
+      "data/README.md",
+      "data/i18n/adopted.en.json",
+      "DECISIONS.md",
+      "README.md",
+      "README.zh.md"
+    ],
+    "conclusion": "严禁直接 merge upstream/main（8 处源码级真冲突，会破坏本地 SWE-2 永久权益、LOCAL_HARDWARE_HIDDEN、Haiku 5.5 full 档、OpenCode DeepSeek $100、Hydrogen / Fable 5.2 / GPT-6.2 定制）。PR #241 与 PR #238 新增的 5 个 research-only 文件无冲突，可由 Lead 在独立窗口择机单独导入。"
+  },
+  "candidateList": {
+    "adoptedToday": [
+      {
+        "model": "gpt-6.2-astra",
+        "listPricesFile": "data/research/list-prices-gpt-62-round1-2026-11-18.json",
+        "rates": {"input": 8.0, "cachedInput": 0.4, "output": 40.0, "blended": 0.788},
+        "adoptedRows": [
+          "openai_62_astra_api (metered, $0.788/MTok)",
+          "chatgpt_plus (2.966 亿, derived from gpt-6-astra × 1.865482)",
+          "chatgpt_pro_5x (16.976 亿, derived from gpt-6-astra × 1.865482, full)",
+          "chatgpt_pro_20x (71.112 亿, derived from gpt-6-astra × 1.865482)"
+        ]
+      },
+      {
+        "model": "gpt-6.2-sol",
+        "listPricesFile": "data/research/list-prices-gpt-62-round1-2026-11-18.json",
+        "rates": {"input": 2.0, "cachedInput": 0.1, "output": 10.0, "blended": 0.197},
+        "adoptedRows": [
+          "openai_62_sol_api (metered, $0.197/MTok)",
+          "chatgpt_plus (8.7 亿, carried over from gpt-6.1-sol; Pro 5x/20x not derived per Sol ruling)"
+        ]
+      }
+    ],
+    "watchlistAndCandidates": [
+      {
+        "model": "qwen4-max",
+        "priority": "high",
+        "aaRawScore": "42.8915 (aa_intelligence_index, slug=qwen4-max in scores-aa-round6-2026-11-18.json rawRecords, unmapped)",
+        "rates": {"input": 1.5, "cachedInput": 0.075, "output": 4.5, "cacheWrite5m": 1.875},
+        "quotas": "Command Code GOAT: $15 GOAT / $6 Go / $25 Pro (PR #241); OpenCode Go: $15 Go / $60 Go Plus",
+        "actionRecommended": "待 Lead 下一轮决定是否纳入正式点位（需建 list-prices 档 + AA slug-map + adopted 订阅/按量行）"
+      },
+      {
+        "model": "tencent-hy4",
+        "priority": "medium",
+        "aaRawScore": "34.5552 (aa_intelligence_index, slug=tencent-hy4 in rawRecords, unmapped)",
+        "rates": {"input": 0.834, "cachedInput": 0.042, "output": 2.501},
+        "quotas": "OpenCode Go: $60 Go / $240 Go Plus / $65 Go Teams (opencode-go-hy4-round1-2026-11-05.json)",
+        "actionRecommended": "待 Lead 评估是否纳入正式点位"
+      },
+      {
+        "model": "hy4-flash",
+        "priority": "low (unscored)",
+        "aaRawScore": null,
+        "rates": {"input": 0.07, "cachedInput": 0.003, "output": 0.281},
+        "quotas": "Command Code GOAT: $15 GOAT / $6 Go / $25 Pro (PR #241)",
+        "actionRecommended": "AA 尚未评测，继续保持 research-only 观察"
+      },
+      {
+        "model": "claude-fable-5.2 (droid_max)",
+        "priority": "medium",
+        "aaRawScore": "64.5636 (已入榜)",
+        "rates": {"input": 8.0, "cachedInput": 0.2, "output": 40.0},
+        "quotas": "docs.factory.ai/docs/models 显示倍率为 3.2×（Opus 5.5 为 1.6×）",
+        "actionRecommended": "待核实 Factory Droid 官方页面后决定是否补入 DROID_MULTIPLIERS"
+      },
+      {
+        "model": "muse-ember",
+        "priority": "low",
+        "aaRawScore": "36.0213 (slug=muse-ember in rawRecords, unmapped)",
+        "rates": {"input": 0.1, "cachedInput": 0.004, "output": 0.5},
+        "quotas": "Command Code GOAT: $20",
+        "actionRecommended": "待评估是否纳入"
+      },
+      {
+        "model": "ling-3.1-flash-1019",
+        "priority": "low",
+        "aaRawScore": "29.5701 (slug=ling-3-1-flash-1019 in rawRecords, unmapped)",
+        "rates": {"input": 0.3, "cachedInput": 0.06, "output": 0.9},
+        "quotas": "Command Code GOAT: $100 GOAT / $110 Pro (PR #191)",
+        "actionRecommended": "维持观察"
+      },
+      {
+        "model": "muse-wonder",
+        "priority": "low (pending PR #188)",
+        "aaRawScore": "43.5748 (slug=muse-wonder in rawRecords, unmapped)",
+        "rates": {"input": 4.0, "cachedInput": 0.2, "output": 20.0},
+        "quotas": "Devin Pro (PR #188)",
+        "actionRecommended": "随 PR #188 合并窗口处理"
+      },
+      {
+        "model": "deepseek-v4.1-flash-ultrafast",
+        "priority": "low (unscored)",
+        "aaRawScore": null,
+        "rates": {"input": 2.4, "cachedInput": 0.048, "output": 9.6},
+        "quotas": "Command Code GOAT (PR #200)",
+        "actionRecommended": "AA 尚未评测，继续观察"
+      }
+    ]
+  },
+  "recommendationsForLead": {
+    "scoreFiles": "scripts/compute.py 第 85 行已紧跟第 84 行 'scores-aa-round6-2026-11-17.json' 之后、位于第 91 行起 supplement 档案之前正确插入 'scores-aa-round6-2026-11-18.json'。",
+    "listPriceFiles": "scripts/compute.py 第 123 行已正确登记 'list-prices-gpt-62-round1-2026-11-18.json'。",
+    "displayMapping": "scripts/compute.py 第 133 行已正确加入 'gpt-6.2-astra': 'GPT-6.2 Astra', 'gpt-6.2-sol': 'GPT-6.2 Sol'。",
+    "buildAdoptedStatus": "05:00 已在 scripts/build_adopted.py 与 data/extra_subscriptions.json 完备写入 GPT-6.2 Astra / Sol 改动，生成 393 行 data/adopted.csv 字节级一致，全部价格与配置守卫 PASS；Worker-Pricing 本轮保持 0 新增源码改动。"
+  }
+}

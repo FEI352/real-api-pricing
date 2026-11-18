@@ -53,6 +53,32 @@ TIME_FALLBACKS = {
     "longcat-2-0": 55.29,
 }
 
+# AA 从 2026-11-05 起不再发布 medianEndToEndResponseTimeSeconds / medianOutputTokensPerSecond
+# （最后一份带这两个字段的快照是 scores-aa-round6-2026-11-04.json）。空档由 OpenRouter 的
+# 模型页统计补上：每页内嵌按 provider 分组的 p50_latency(ms) 与 p50_throughput(tok/s)，
+# 换算成端到端任务用时只需要一个输出长度常数 L —— 见 scripts/or_tasktime.py。
+_OR_TASKTIME_CACHE = {}
+
+
+def or_tasktime():
+    """Latest OpenRouter task-time map, keyed by project model id. Cached by file mtime."""
+    files = sorted(RESEARCH.glob("or-tasktime-*.json"))
+    if not files:
+        return {}
+    path = files[-1]
+    stamp = path.stat().st_mtime
+    if _OR_TASKTIME_CACHE.get("path") != path:
+        _OR_TASKTIME_CACHE.clear()
+        _OR_TASKTIME_CACHE["path"] = path
+        _OR_TASKTIME_CACHE["stamp"] = None
+    if _OR_TASKTIME_CACHE.get("stamp") != stamp:
+        try:
+            _OR_TASKTIME_CACHE["data"] = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            _OR_TASKTIME_CACHE["data"] = {}
+        _OR_TASKTIME_CACHE["stamp"] = stamp
+    return _OR_TASKTIME_CACHE.get("data", {})
+
 # AA 自家 harness（agentHarness=Artificial Analysis）跑的 TB4 与 tbench.ai 官方榜分开计分：
 # 同一套题、不同 agent 配置，两边分数不可互换（实测对拍中位差 ~2.6 分，Grok 4.7 差 11.8）。
 AA_TB4_BOARD = "aa_terminal_bench_4"
@@ -153,9 +179,23 @@ def configuration(record, archive):
     if resp_time is None and secondary.get("slug") in TIME_FALLBACKS:
         resp_time = TIME_FALLBACKS[secondary["slug"]]
 
+    # AA 自 2026-11-05 停更 medianEndToEndResponseTimeSeconds，但旧快照仍在
+    # get_raw_record 的归档链里（round5-2026-09-30 兜底），命中就会返回过期数字。
+    # 因此只要 OpenRouter 侧有这个模型的当前映射，就以它为准 ——
+    # 它自带 AA 的每任务 token 数与 OpenRouter 的当前吞吐，是唯一「今天还成立」的口径。
+    from_or = False
+    or_map = or_tasktime()
+    or_row = (or_map.get("byModelSlug", {}) or {}).get(f"{model}::{secondary.get('slug')}") \
+        or (or_map.get("byModel", {}) or {}).get(model)
+    if isinstance(or_row, dict) and isinstance(or_row.get("task_time_s"), (int, float)):
+        resp_time = round(float(or_row["task_time_s"]), 2)
+        if isinstance(or_row.get("p50_throughput_tps"), (int, float)):
+            tps = round(float(or_row["p50_throughput_tps"]), 1)
+        from_or = True
+
     # 用户 2026-10-18 裁决：Antigravity 环境实测 Gemini 3.8 约为 OpenRouter 测速的两倍，
     # 暂不抓 OpenRouter 数据，统一修正为 200.0 tok/s，用时按比例折算
-    if model == "gemini-3.8-flash":
+    if model == "gemini-3.8-flash" and not from_or:
         old_tps = tps or 145.4
         tps = 200.0
         if resp_time is not None:

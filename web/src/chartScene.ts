@@ -143,10 +143,20 @@ export function formatTickPrice(value: number): string {
 }
 
 export function formatTickTime(value: number): string {
-  if (value < 1) return `${value.toFixed(1)}s`;
+  if (value <= 0) return "0s";
+  if (value < 0.001) return `${(value * 1e6).toFixed(0)}µs`;
+  if (value < 1) {
+    const ms = Math.round(value * 1000);
+    return ms >= 1 ? `${ms}ms` : `${value.toFixed(2)}s`;
+  }
   if (value < 60) return `${Math.round(value)}s`;
-  const m = Math.floor(value / 60);
-  const s = Math.round(value % 60);
+  const totalSec = Math.round(value);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  if (h > 0) {
+    return m > 0 ? (s > 0 ? `${h}h${m}m${s}s` : `${h}h${m}m`) : (s > 0 ? `${h}h${s}s` : `${h}h`);
+  }
   return s > 0 ? `${m}m${s}s` : `${m}m`;
 }
 
@@ -175,7 +185,13 @@ export function timeTicks(
         });
       }
     }
-    return out.sort((a, c) => a.pos - c.pos);
+    const sorted = out.sort((a, c) => a.pos - c.pos);
+    const seen = new Set<string>();
+    return sorted.filter((t) => {
+      if (seen.has(t.label)) return false;
+      seen.add(t.label);
+      return true;
+    });
   };
   let best = build([1]);
   for (const m of MANTISSAS) {

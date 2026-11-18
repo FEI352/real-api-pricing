@@ -192,9 +192,9 @@ function ChartScene(p: SceneProps) {
         {yTicks.map((t, i) => (
           <line key={`gy${i}`} x1={box.left} x2={box.right} y1={t.pos} y2={t.pos} stroke={c.grid} />
         ))}
-        {xTicks.map((t) => (
+        {xTicks.map((t, idx) => (
           <line
-            key={`gx${t.label}`}
+            key={`gx-${idx}-${t.label}`}
             x1={t.pos}
             x2={t.pos}
             y1={box.top}
@@ -222,8 +222,8 @@ function ChartScene(p: SceneProps) {
               </text>
             ) : null,
           )}
-          {xTicks.map((t) => (
-            <text key={`tx${t.label}`} x={t.pos} y={box.bottom + 18} textAnchor="middle">
+          {xTicks.map((t, idx) => (
+            <text key={`tx-${idx}-${t.label}`} x={t.pos} y={box.bottom + 18} textAnchor="middle">
               {t.label}
             </text>
           ))}

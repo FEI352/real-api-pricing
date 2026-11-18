@@ -227,43 +227,95 @@ def main() -> int:
     snap.setdefault("scores", [])
     raw = (snap.setdefault("rawRecords", {})
                .setdefault("aa_intelligence_index", []))
-    # 去重必须按 (board, model)：同一模型可能在别的榜已有记录
-    # （muse-spark-1.3 在 aa_coding_agent_index 有分，但 aa_intelligence_index 没有）。
-    # 只看 model 会把要补的那条误判为「已存在」而跳过。
-    existing_keys = {(s.get("boardId"), s.get("model")) for s in snap["scores"]}
+    # 按 (board, slug) 去重（多 effort 变体共用同一个 model，不能按 (board, model) 误杀）。
+    existing_keys = {
+        (s.get("boardId"), (s.get("secondary") or {}).get("slug") or s.get("model"))
+        for s in snap["scores"]
+    }
+    raw_slugs = {r.get("slug") for r in raw if r.get("slug")}
+
+    prior_int_by_slug = {
+        (s.get("secondary") or {}).get("slug"): s
+        for s in (prior.get("scores") or [])
+        if s.get("boardId") == "aa_intelligence_index" and (s.get("secondary") or {}).get("slug")
+    }
+    prior_tb4_by_slug = {
+        (s.get("secondary") or {}).get("slug"): s
+        for s in (prior.get("scores") or [])
+        if s.get("boardId") == "aa_terminal_bench_4" and (s.get("secondary") or {}).get("slug")
+    }
+    prior_raw_by_slug = {
+        r.get("slug"): r
+        for r in ((prior.get("rawRecords") or {}).get("aa_intelligence_index") or [])
+        if r.get("slug")
+    }
+    checked_at = snap.get("collectedAt") or __import__("datetime").datetime.now().strftime("%Y-%m-%d")
 
     added = 0
     for slug, score, release, variant in recovered:
-        model_id = slug_to_model_id(slug)
-        if ("aa_intelligence_index", model_id) in existing_keys:
+        p_int = prior_int_by_slug.get(slug)
+        p_raw = prior_raw_by_slug.get(slug) or {}
+        model_id = (p_int.get("model") if p_int else None) or slug_to_model_id(slug)
+        if ("aa_intelligence_index", slug) in existing_keys:
             continue
-        label = (f"{release} ({variant})" if release and variant
-                 else slug.replace("-", " ").title())
+        p_sec = (p_int.get("secondary") or {}) if p_int else {}
+        label = (
+            p_raw.get("shortName")
+            or p_raw.get("name")
+            or (p_int.get("variantLabel") if p_int else None)
+            or (f"{release} ({variant})" if release and variant else slug.replace("-", " ").title())
+        )
+        sec = {
+            "slug": slug,
+            "shortName": label,
+            "intelligenceIndexIsEstimated": p_raw.get("intelligenceIndexIsEstimated", False),
+            "recoveredFrom": MODEL_URL.format(slug=slug),
+            "recoveryNote": (
+                "AA /leaderboards/models 不再收录（多为 deprecated），"
+                "但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
+            ),
+        }
+        for k in ("effort", "costPerTaskUsd", "price1mInputTokens", "price1mOutputTokens", "cacheHitPrice", "terminalBench40"):
+            if p_sec.get(k) is not None:
+                sec[k] = p_sec[k]
         snap["scores"].append({
             "boardId": "aa_intelligence_index",
             "model": model_id,
             "variantLabel": label,
             "score": score,
             "source": MODEL_URL.format(slug=slug),
-            "checkedAt": __import__("datetime").datetime.now().strftime("%Y-%m-%d"),
-            "secondary": {
+            "checkedAt": checked_at,
+            "secondary": sec,
+        })
+        existing_keys.add(("aa_intelligence_index", slug))
+        if slug not in raw_slugs:
+            raw_entry = {
                 "slug": slug,
-                "intelligenceIndexIsEstimated": False,
-                "recoveredFrom": MODEL_URL.format(slug=slug),
-                "recoveryNote": (
-                    "AA /leaderboards/models 不再收录（多为 deprecated），"
-                    "但详情页仍保留 Intelligence 分数；由 aa_recover_deprecated.py 补回。"
-                ),
-            },
-        })
-        raw.append({
-            "slug": slug,
-            "name": label,
-            "shortName": label,
-            "intelligenceIndex": score,
-            "intelligenceIndexIsEstimated": False,
-            "recovered": True,
-        })
+                "name": p_raw.get("name") or label,
+                "shortName": label,
+                "intelligenceIndex": score,
+                "intelligenceIndexIsEstimated": p_raw.get("intelligenceIndexIsEstimated", False),
+                "recovered": True,
+            }
+            for k in ("terminalBench40", "intelligenceIndexCostPerTask", "price1mInputTokens", "price1mOutputTokens", "cacheHitPrice"):
+                if p_raw.get(k) is not None:
+                    raw_entry[k] = p_raw[k]
+            raw.append(raw_entry)
+            raw_slugs.add(slug)
+        p_tb4 = prior_tb4_by_slug.get(slug)
+        tb4_val = p_raw.get("terminalBench40")
+        if p_tb4 and tb4_val is not None and ("aa_terminal_bench_4", slug) not in existing_keys:
+            snap["scores"].append({
+                "model": model_id,
+                "boardId": "aa_terminal_bench_4",
+                "variantLabel": "Artificial Analysis - " + label,
+                "score": round(tb4_val * 100, 4),
+                "secondary": dict(p_tb4.get("secondary") or {}),
+                "source": MODEL_URL.format(slug=slug),
+                "checkedAt": checked_at,
+                "note": p_tb4.get("note") or "AA 自家 harness 独立实测的 Terminal-Bench 4.0（fraction×100）；由 aa_recover_deprecated.py 沿用上期载荷补回。",
+            })
+            existing_keys.add(("aa_terminal_bench_4", slug))
         added += 1
 
     if added:

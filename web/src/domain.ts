@@ -243,7 +243,7 @@ const MEDIAN_AA_TASK_MTOK = 3.51759;
  */
 export const isLocalHardware = (p: Point) => p.plan_id.startsWith("hyperqwen_local_");
 
-function costPerTaskX(p: Point, m: Mapping | null, data: SiteData): number | null {
+export function costPerTaskX(p: Point, m: Mapping | null, data: SiteData): number | null {
   if (isLocalHardware(p)) return null;
   const cost = mappingCost(m, data);
   const cfg = m ? configIndex(data).get(m.configuration_id) : null;
@@ -256,17 +256,24 @@ function costPerTaskX(p: Point, m: Mapping | null, data: SiteData): number | nul
   }
   return null;
 }
-function mappingTime(m: Mapping | null, data: SiteData): number | null {
+export function mappingTime(m: Mapping | null, data: SiteData): number | null {
   if (!m) return null;
   if (typeof m.response_time_seconds === "number") return m.response_time_seconds;
   const cfg = configIndex(data).get(m.configuration_id);
   if (typeof cfg?.response_time_seconds === "number") return cfg.response_time_seconds;
   return null;
 }
+export function mappingSpeed(m: Mapping | null, data: SiteData): number | null {
+  if (!m) return null;
+  if (typeof m.output_speed_tps === "number") return m.output_speed_tps;
+  const cfg = configIndex(data).get(m.configuration_id);
+  if (typeof cfg?.output_speed_tps === "number") return cfg.output_speed_tps;
+  return null;
+}
 
 /** Capability-chart X value for a row under the current xMode. */
 export function rowX(r: Row, s: State, data: SiteData): number | null {
-  if (s.xMode === "cost") return costPerTaskX(r.point, r.mapping, data);
+  if (s.xMode === "cost" || s.xMode === "terrain3d") return costPerTaskX(r.point, r.mapping, data);
   if (s.xMode === "time") return mappingTime(r.mapping, data);
   return r.point.real_usd_per_mtok;
 }
@@ -306,7 +313,7 @@ export function rowsFor(data: SiteData, s: State): Row[] {
     return built.map((r) => ({
       ...r,
       x:
-        s.xMode === "cost"
+        s.xMode === "cost" || s.xMode === "terrain3d"
           ? costPerTaskX(p, r.mapping, data)
           : s.xMode === "time"
             ? mappingTime(r.mapping, data)
@@ -315,9 +322,11 @@ export function rowsFor(data: SiteData, s: State): Row[] {
   });
   // Cost or time mode plots only rows whose X value is defined.
   const plotRows =
-    s.view === "pareto" && (s.xMode === "cost" || s.xMode === "time")
-      ? rows.filter((r) => r.x !== null)
-      : rows;
+    s.view === "pareto" && s.xMode === "terrain3d"
+      ? rows.filter((r) => r.x !== null && mappingTime(r.mapping, data) !== null)
+      : s.view === "pareto" && (s.xMode === "cost" || s.xMode === "time")
+        ? rows.filter((r) => r.x !== null)
+        : rows;
   // Score-presence filter: "scored" keeps only rows with a score on the
   // current board (kills unscored hitchhikers in every view incl. allowance).
   const scoredRows = s.scoreState.length
@@ -371,7 +380,7 @@ export function zeroSlot(prices: number[]): number {
 }
 export function groups(rows: Row[], s?: State): Group[] {
   const map = new Map<string, Group>();
-  const costMode = s?.xMode === "cost";
+  const costMode = s?.xMode === "cost" || s?.xMode === "terrain3d";
   for (const r of rows) {
     // Rows built before xMode existed (tests, legacy fixtures) fall back to price.
     const x = r.x === undefined ? r.point.real_usd_per_mtok : r.x;
@@ -395,7 +404,7 @@ export function groups(rows: Row[], s?: State): Group[] {
     }
   }
   const out = [...map.values()];
-  if (!costMode) {
+  if (s?.xMode === "price" || !s?.xMode) {
     const slot = zeroSlot(out.map((g) => g.price));
     for (const g of out) if (g.price === 0) g.plotPrice = slot;
   }
@@ -738,7 +747,7 @@ export function restore(
     config: ["configuration", ["all", "summary"]],
     labels: ["labels", ["frontier", "all", "none"]],
     fee: ["feeBand", ["all", ...feeBands.map((b) => b.id)]],
-    xmode: ["xMode", ["price", "cost", "time"]],
+    xmode: ["xMode", ["price", "cost", "time", "terrain3d"]],
     sort: ["sort", ["price", "model", "plan", "score", "allowance", "fee"]],
     dir: ["direction", ["asc", "desc"]],
   };
@@ -1073,7 +1082,9 @@ export function displayPlan(plan: string, lang: string): string {
     "（Haiku 50/50 混合档）": " (50/50 mixed tier)",
     "（标准价）": " (Standard)",
     " (土耳其)": " (Turkey)",
+    " (印度)": " (India)",
     土耳其: "Turkey",
+    印度: "India",
     标准价: "Standard",
   };
   return Object.entries(words).reduce(

@@ -164,8 +164,8 @@ export interface State {
   /** Custom monthly-fee window (USD/month); subscriptions only, blank = off. */
   feeMin: string;
   feeMax: string;
-  /** Capability-chart X axis: real price per MTok, subscription-adjusted cost per AA task, or task completion time. */
-  xMode: "price" | "cost" | "time";
+  /** Capability-chart X axis: real price per MTok, subscription-adjusted cost per AA task, task completion time, or 3D capability terrain. */
+  xMode: "price" | "cost" | "time" | "terrain3d";
   /** In time mode, swap X and Y axes so Y is task time and X is intelligence score. */
   axisSwap?: boolean;
 }

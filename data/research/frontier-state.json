@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-17",
-  "total_points": 383,
+  "date": "2026-11-18",
+  "total_points": 393,
   "cost_frontier": [
     {
       "id": "opencode_go::muse-spark-1.3-contributor",
@@ -18,9 +18,14 @@
       "cost": 0.041435
     },
     {
-      "id": "google_ai_ultra_5x_tr::gemini-4-carbon",
-      "score": 59.4257,
-      "cost": 0.144104
+      "id": "chatgpt_plus::gpt-6.2-sol",
+      "score": 57.2576,
+      "cost": 0.118373
+    },
+    {
+      "id": "chatgpt_pro_20x::gpt-6.2-astra",
+      "score": 62.1388,
+      "cost": 0.14269
     },
     {
       "id": "claude_max_20x::claude-fable-5.2",
@@ -58,6 +63,11 @@
       "id": "google_ai_ultra_5x_tr::gemini-4-carbon",
       "score": 59.4257,
       "real_price": 0.0073208569
+    },
+    {
+      "id": "chatgpt_pro_20x::gpt-6.2-astra",
+      "score": 62.1388,
+      "real_price": 0.028124648
     },
     {
       "id": "claude_max_20x::claude-fable-5.2",

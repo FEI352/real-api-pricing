@@ -1331,6 +1331,8 @@ METERED = [
     ("openai_terra_api", "GPT-5.6 Terra API", "gpt-5.6-terra", 0.2, 2.0, 12.0, "developers.openai.com"),
     ("mistral_large4_api", "Mistral Large 4 API", "mistral-large-4", 0.07, 0.70, 2.10, "https://artificialanalysis.ai/models/mistral-large-4 引 Mistral 官方 API 价：input $0.70/output $2.10/cache hit 90% 折扣 = $0.07，AA 混合价 $0.40；list-prices-mistral-large-4-round1-2026-11-04.json"),
     ("openai_61_terra_api", "GPT-6.1 Terra API", "gpt-6.1-terra", 0.05, 1.0, 5.0, "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier"),
+    ("openai_62_astra_api", "GPT-6.2 Astra API", "gpt-6.2-astra", 0.4, 8.0, 40.0, "https://developers.openai.com/api/docs/pricing ；2026-11-17 发布，输入/输出较 GPT-6 Astra 降 20%、缓存读降 60%；list-prices-gpt-62-round1-2026-11-18.json"),
+    ("openai_62_sol_api", "GPT-6.2 Sol API", "gpt-6.2-sol", 0.1, 2.0, 10.0, "https://developers.openai.com/api/docs/pricing ；2026-11-17 发布，沿用 GPT-6.1 Sol 三段标价；list-prices-gpt-62-round1-2026-11-18.json"),
     ("openai_luna_api", "GPT-5.6 Luna API", "gpt-5.6-luna", 0.02, 0.2, 1.2, "developers.openai.com"),
 ]
 
@@ -1382,12 +1384,18 @@ EXCLUDED_SUBSCRIPTIONS = {
 # official=官方页面/公告：有发布日的博文或公告取发布日，否则取项目核对该页的日期；
 # derived=由锚点按倍率/档间比例派生，沿用锚点日期，data_date_from 记锚点。
 DATA_DATES = {
-    # ("google_ai_pro_us", "gemini-4-argon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro · gemini-3.8-flash"),
+    ("google_ai_pro_us", "gemini-4-argon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
+    ("google_ai_pro_us", "gemini-4-carbon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
+    ("google_ai_pro_us", "gemini-4-hydrogen"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
+    # 2026-11-17：Carbon / Argon / Hydrogen 的额度各自来自同一条 Pro 池，不再由 3.8-flash 派生，
+    # 所以日期锚点写「Google AI Pro」本身，不再点出与额度无关的具体模型。
     ("google_gemini4_argon_api", "gemini-4-argon"): ("2026-09-30", "official"),
     ("google_gemini4_carbon_api", "gemini-4-carbon"): ("2026-10-28", "official"),
     ("google_gemini4_carbon_api_std", "gemini-4-carbon"): ("2026-10-28", "official"),
     ("anthropic_sonnet55_api", "claude-sonnet-5.5"): ("2026-09-28", "official"),
     ("openai_61_terra_api", "gpt-6.1-terra"): ("2026-10-26", "official"),
+    ("openai_62_astra_api", "gpt-6.2-astra"): ("2026-11-17", "official"),
+    ("openai_62_sol_api", "gpt-6.2-sol"): ("2026-11-17", "official"),
     ("anthropic_haiku55_api", "claude-haiku-5.5"): ("2026-10-07", "official"),
     ("opendesign_go", "deepseek-v4.1-flash"): ("2026-10-10", "official"),
     # Mistral Vibe Pro：额度来自 X @AdamHolterer 2026-11-03 转述的 Vibe 账户预算，属社区样本日。
@@ -1493,16 +1501,27 @@ DATA_DATE_INHERIT = {
     # （upstream 的 kimi-k3.1-pro 增量行已删：其锚点 Max=43.53 亿随 2026-10-27 换基失效，
     #  现行 v2 账 Ultra=Max×2=Allegro，K3.1 Pro 侧与 kimi_allegro_cn 同值，无需重复一点。）
     ("kimi_ultra_cn", "kimi-k3"): ("kimi_allegretto_cn", "kimi-k3"),
-    # Google Argon 独立额度池（促销价 / 标准价两套口径）：额度由社区 7d $200 基准 × 官方倍率推算，
-    # 日期沿用同档 flash 实测点，不另立新日期。
-    ("google_ai_pro_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_ultra_5x_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_ultra_20x_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_ultra_5x_tr", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_pro_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_ultra_5x_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_ultra_20x_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
-    ("google_ai_ultra_5x_tr_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-3.8-flash"),
+    # Google 各模型独立额度池：日期锚点指向同模型的 Pro 行，根节点只写「Google AI Pro」。
+    ("google_ai_pro_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_ultra_20x_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_ultra_20x_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_ultra_5x_tr", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_ultra_5x_tr_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_ultra_5x_us", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_ultra_5x_us_std", "gemini-4-argon"): ("google_ai_pro_us", "gemini-4-argon"),
+    ("google_ai_pro_us_std", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_20x_us", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_20x_us_std", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_5x_in", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_5x_tr", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_5x_tr_std", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_5x_us", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_ultra_5x_us_std", "gemini-4-carbon"): ("google_ai_pro_us", "gemini-4-carbon"),
+    ("google_ai_pro_student", "gemini-4-hydrogen"): ("google_ai_pro_us", "gemini-4-hydrogen"),
+    ("google_ai_ultra_20x_us", "gemini-4-hydrogen"): ("google_ai_pro_us", "gemini-4-hydrogen"),
+    ("google_ai_ultra_5x_tr", "gemini-4-hydrogen"): ("google_ai_pro_us", "gemini-4-hydrogen"),
+    ("google_ai_ultra_5x_us", "gemini-4-hydrogen"): ("google_ai_pro_us", "gemini-4-hydrogen"),
+    ("google_ai_ultra_20x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("google_ai_ultra_20x_us", "gemini-3.8-flash"): ("google_ai_pro_us", "gemini-3.8-flash"),
     ("claude_max_5x", "claude-opus-5"): ("claude_max_20x", "claude-opus-5"),
     ("cursor_pro_plus", "grok-4.6"): ("cursor_ultra", "grok-4.6"),
@@ -1577,7 +1596,7 @@ def workload_of(pid: str, billing: str, model: str = "") -> str:
         return "standard"
     if (pid, model) == ("devin_max", "gpt-6-astra"):
         return "standard"
-    if (pid == "chatgpt_plus" and model in ("gpt-6-sol", "gpt-6-luna", "gpt-6.1-sol", "gpt-5.6-luna")) \
+    if (pid == "chatgpt_plus" and model in ("gpt-6-sol", "gpt-6-luna", "gpt-6.1-sol", "gpt-6.2-sol", "gpt-5.6-luna")) \
             or (pid in ("chatgpt_pro_5x", "chatgpt_pro_20x") and model == "gpt-5.6-luna"):
         return "standard"
     if pid.startswith(("opencode_", "command_code_", "ollama_", "glm_coding_", "mimo_token_", "opendesign_")):
