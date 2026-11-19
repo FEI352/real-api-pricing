@@ -688,6 +688,108 @@
     "chatgpt_plus",
     "gpt-6.1-sol"
    ]
+  },
+  {
+   "plan_id": "google_ai_pro_us",
+   "plan_name": "Google AI Pro",
+   "plan_name_en": "Google AI Pro",
+   "price": 19.99,
+   "currency": "USD",
+   "model": "gemini-4-neon",
+   "monthly_yi": 12.905,
+   "confidence": "low",
+   "source": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+   "note": "新增 12.905 亿：与 Hydrogen 同池按等额美元反推（25.81 亿 ÷ 2 = 12.905 亿，三段标价均为 2×）；19.99 美元/月 ÷ 1,290.5 MTok → real = $0.015490/MTok；无首发促销，非独立实测。",
+   "main": true,
+   "date_inherit": [
+    "google_ai_pro_us",
+    "gemini-4-neon"
+   ]
+  },
+  {
+   "plan_id": "google_ai_ultra_5x_us",
+   "plan_name": "Google AI Ultra 5x",
+   "plan_name_en": "Google AI Ultra 5x",
+   "price": 99.99,
+   "currency": "USD",
+   "model": "gemini-4-neon",
+   "monthly_yi": 64.525,
+   "confidence": "low",
+   "source": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+   "note": "新增 64.525 亿：与 Hydrogen 同池按等额美元反推（129.05 亿 ÷ 2 = 64.525 亿，三段标价均为 2×）；99.99 美元/月 ÷ 6,452.5 MTok → real = $0.015496/MTok；无首发促销，非独立实测。",
+   "main": false,
+   "date_inherit": [
+    "google_ai_pro_us",
+    "gemini-4-neon"
+   ]
+  },
+  {
+   "plan_id": "google_ai_ultra_20x_us",
+   "plan_name": "Google AI Ultra 20x",
+   "plan_name_en": "Google AI Ultra 20x",
+   "price": 199.99,
+   "currency": "USD",
+   "model": "gemini-4-neon",
+   "monthly_yi": 258.1,
+   "confidence": "low",
+   "source": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+   "note": "新增 258.1 亿：与 Hydrogen 同池按等额美元反推（516.2 亿 ÷ 2 = 258.1 亿，三段标价均为 2×）；199.99 美元/月 ÷ 25,810 MTok → real = $0.007749/MTok；无首发促销，非独立实测。",
+   "main": false,
+   "date_inherit": [
+    "google_ai_pro_us",
+    "gemini-4-neon"
+   ]
+  },
+  {
+   "plan_id": "google_ai_ultra_5x_tr",
+   "plan_name": "Google AI Ultra 5x (土耳其)",
+   "plan_name_en": "Google AI Ultra 5x (Turkey)",
+   "price": 29.73,
+   "currency": "USD",
+   "model": "gemini-4-neon",
+   "monthly_yi": 64.525,
+   "confidence": "low",
+   "source": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+   "note": "新增 64.525 亿：土耳其区 Ultra 5x（TRY 1,479.99 ≈ $29.73）与美国版同池，按 Hydrogen 129.05 亿 ÷ 2 反推；29.73 美元/月 ÷ 6,452.5 MTok → real = $0.004608/MTok；标价不含土区 20% VAT，非独立实测。",
+   "main": true,
+   "date_inherit": [
+    "google_ai_pro_us",
+    "gemini-4-neon"
+   ]
+  },
+  {
+   "plan_id": "google_ai_pro_student",
+   "plan_name": "Google AI Pro 学生版",
+   "plan_name_en": "Google AI Pro (Student)",
+   "price": 5.0,
+   "currency": "USD",
+   "model": "gemini-4-neon",
+   "monthly_yi": 12.905,
+   "confidence": "medium",
+   "source": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+   "note": "新增 12.905 亿：$5 学生版与标准 Pro 同池，按 Hydrogen 25.81 亿 ÷ 2 反推；5 美元/月 ÷ 1,290.5 MTok → real = $0.003874/MTok；学生资质限制，非独立实测。",
+   "main": true,
+   "date_inherit": [
+    "google_ai_pro_us",
+    "gemini-4-neon"
+   ]
+  },
+  {
+   "plan_id": "google_ai_ultra_5x_in",
+   "plan_name": "Google AI Ultra 5x (印度)",
+   "plan_name_en": "Google AI Ultra 5x (India)",
+   "price": 68.86,
+   "currency": "USD",
+   "model": "gemini-4-neon",
+   "monthly_yi": 64.525,
+   "confidence": "medium",
+   "source": "Google 官方印度区定价 feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json （PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500，按 2026-11-13 USD/INR 94.4 折 USD 68.86）；Neon 官方目录价 https://ai.google.dev/gemini-api/docs/pricing （$3.00/$15.00/$0.15，为 Hydrogen 的 2×），按同美元池 ÷ 2× 标价折算；list-prices-gemini-4-neon-round1-2026-11-19.json",
+   "note": "新增 64.525 亿：印度区 Ultra 5x（₹6,500 ≈ $68.86，含 18% GST）与美国版同池，按 Hydrogen 129.05 亿 ÷ 2 反推；68.86 美元/月 ÷ 6,452.5 MTok → real = $0.010672/MTok；非独立实测。",
+   "main": true,
+   "date_inherit": [
+    "google_ai_pro_us",
+    "gemini-4-neon"
+   ]
   }
  ]
 }

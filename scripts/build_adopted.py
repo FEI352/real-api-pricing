@@ -627,7 +627,7 @@ OPENCODE_GO_MODELS = (
     ("claude-haiku-5.5", 15, 0.01, 0.1, 0.5, "new official row; <=100K list price; >100K band kept in research variants; goat-opencode-catalogs-round4-2026-10-20.json"),
     ("gpt-6-luna", 15, 0.01, 0.1, 0.5, "new official row; <=272K list price; >272K band kept in research variants; goat-opencode-catalogs-round3-2026-09-30.json"),
     ("glm-5.3-flash", 60, 0.03, 0.15, 0.5, "official Usage $15->$60 (reverified 2026-09-30); goat-opencode-catalogs-round3-2026-09-30.json"),
-    ("glm-5.3", 15, 0.26, 1.4, 4.4, "官网单档"),
+    ("glm-5.3", 500, 0.26, 1.4, 4.4, "官网单档；限时促销至 2026-11-22（$15→$500）"),
     ("glm-5.2", 60, 0.26, 1.4, 4.4, "官网单档"),
     ("kimi-k3", 15, 0.3, 3.0, 15.0, "官网单档"),
     ("kimi-k2.7-code", 60, 0.19, 0.95, 4.0, "官网单档"),
@@ -663,12 +663,23 @@ OPENCODE_GO_DEEPSEEK_SOURCE = (
     "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；"
     "opencode-go-deepseek-round7-2026-09-30.json"
 )
+OPENCODE_GO_GLM53_SOURCE = (
+    "https://opencode.ai/docs/go/ 与 https://opencode.ai/inference/go/v1/models 官方每模型 Usage 与三段价；"
+    "https://x.com/opencode/status/2122969474571583885 （2026-11-18 宣布 $10 得 $500 GLM 5.3，官网标注限时至 2026-11-22）；"
+    "opencode-go-glm53-boost-round1-2026-11-19.json"
+)
 OPENCODE_GO_NOTES = {
     "deepseek-v4.1-flash": (
         "62.112→82.816亿：模型月Usage $80 ÷ 统一标准负载加权价（2026-10-20 官网 Monthly limit $60→$80，"
         "共享月池$60已从文档移除，每模型月额度单独计）；"
         "官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。估算请求173,330/月。"
         "官网 Model ID 为 deepseek-v4.1-flash。官方请求数仅作交叉检查，不作为额度主值；同套餐各模型额度不可相加"
+    ),
+    "glm-5.3": (
+        "旧0.485亿（$15）→16.171亿：模型月Usage $500 ÷ 统一标准负载加权价 $0.3092（限时促销至 2026-11-22，到期须复核；原常态 $15）；"
+        "三段价不变 cached/input/output=$0.26/$1.40/$4.40；"
+        "官网 Go 预估 6,600 请求/5h（5h=20%/$100、周=50%/$250，Go Plus $1,000、Go Teams $505）。"
+        "官方请求数仅作交叉检查，不作为额度主值；同套餐各模型共享额度池，不可相加"
     ),
 }
 
@@ -680,7 +691,12 @@ def opencode_go_rows() -> list[tuple]:
         yi = round(effective_usage / blended(cached, inp, out) / 100, 3)
         old = OPENCODE_GO_OLD_YI.get(model)
         change = f"旧{old:g}亿（请求估算）→{yi:g}亿" if old is not None else f"新增{yi:g}亿"
-        source = OPENCODE_GO_DEEPSEEK_SOURCE if model.startswith("deepseek-") else OPENCODE_GO_DEFAULT_SOURCE
+        if model == "glm-5.3":
+            source = OPENCODE_GO_GLM53_SOURCE
+        elif model.startswith("deepseek-"):
+            source = OPENCODE_GO_DEEPSEEK_SOURCE
+        else:
+            source = OPENCODE_GO_DEFAULT_SOURCE
         note = OPENCODE_GO_NOTES.get(
             model,
             f"{change}：模型月Usage ${usage:g} ÷ 统一标准负载加权价；{variant_note}。"
@@ -1325,6 +1341,7 @@ METERED = [
     ("google_gemini4_argon_api", "Gemini 4 Argon API (Intro)", "gemini-4-argon", 0.10, 2.0, 10.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json"),
     ("google_gemini4_carbon_api", "Gemini 4 Carbon API (Intro)", "gemini-4-carbon", 0.10, 2.0, 10.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ 官方首发优惠目录价；list-prices-gemini-4-carbon-round1-2026-10-29.json"),
     ("google_gemini4_carbon_api_std", "Gemini 4 Carbon API (Standard)", "gemini-4-carbon", 0.20, 4.0, 20.0, "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ 官方标准目录价；list-prices-gemini-4-carbon-round1-2026-10-29.json"),
+    ("google_gemini4_neon_api", "Gemini 4 Neon API", "gemini-4-neon", 0.15, 3.0, 15.0, "https://ai.google.dev/gemini-api/docs/pricing 官方目录价（2026-11-18 发布，无首发促销）；list-prices-gemini-4-neon-round1-2026-11-19.json"),
     ("hyperqwen_local_qwen38_27b", "Qwen3.8 27B · Single RTX 5090 (SGLang + DFlash2)", "qwen3.8-27b-dflash-5090", 0.001, 0.01, 0.05, "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s"),
     ("hyperqwen_local_qwen38_27b_3090", "Qwen3.8 27B · Single RTX 3080/3090/4090 (HyperQwen 24GB)", "qwen3.8-27b-hyperqwen-3090", 0.001, 0.01, 0.05, "https://github.com/syv-ai/HyperQwen；单卡 24GB 本地实测：Qwen3.8-27B W4A16 AutoRound 配合打补丁 vLLM 与 KVarN INT4 KV Cache 压缩，端到端 Task Time 27.7s，单用户吞吐 127 tok/s，满 256k 长文本约为 96~105 tok/s"),
     ("hyperqwen_local_qwen38_27b_pro6000", "Qwen3.8 27B · Single RTX PRO 6000 96GB (SGLang + DFlash2)", "qwen3.8-27b-rtx-pro-6000", 0.001, 0.01, 0.05, "https://github.com/MiaAI-Lab/Qwen3.8-27B-RTX-6000-PRO-SGLang-DSpark；经全文校验原厂 README：单卡 RTX PRO 6000 (Blackwell 96GB) 运行 RadixArk NVFP4-BF16-LMHead 与纯注意力 DFlash 2 投机草稿头。草稿 greedy head 折叠进 CUDA 图，单步验证 8 个 tokens，单流解码实测突破 240+ tok/s，AA 基准 Task Time 压降至 11.9s；55GB FP8 KV 池容纳约 1.7M tokens，原生支持 256K~512K 上下文且支持 8 路并发"),
@@ -1348,6 +1365,7 @@ MAIN_PLANS = {"chatgpt_plus", "chatgpt_pro_20x", "claude_pro", "claude_max_20x",
 MAIN_EXTRA = {
     ("opencode_go", "deepseek-v4.1-flash"),
     ("opencode_go", "glm-5.3-flash"),
+    ("opencode_go", "glm-5.3"),
     ("opendesign_go", "deepseek-v4.1-flash"),
     ("command_code_goat", "deepseek-v4.1-flash"),
 }
@@ -1387,17 +1405,20 @@ DATA_DATES = {
     ("google_ai_pro_us", "gemini-4-argon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
     ("google_ai_pro_us", "gemini-4-carbon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
     ("google_ai_pro_us", "gemini-4-hydrogen"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
+    ("google_ai_pro_us", "gemini-4-neon"): ("2026-09-12~2026-09-27", "derived", "Google AI Pro"),
     # 2026-11-17：Carbon / Argon / Hydrogen 的额度各自来自同一条 Pro 池，不再由 3.8-flash 派生，
     # 所以日期锚点写「Google AI Pro」本身，不再点出与额度无关的具体模型。
     ("google_gemini4_argon_api", "gemini-4-argon"): ("2026-09-30", "official"),
     ("google_gemini4_carbon_api", "gemini-4-carbon"): ("2026-10-28", "official"),
     ("google_gemini4_carbon_api_std", "gemini-4-carbon"): ("2026-10-28", "official"),
+    ("google_gemini4_neon_api", "gemini-4-neon"): ("2026-11-18", "official"),
     ("anthropic_sonnet55_api", "claude-sonnet-5.5"): ("2026-09-28", "official"),
     ("openai_61_terra_api", "gpt-6.1-terra"): ("2026-10-26", "official"),
     ("openai_62_astra_api", "gpt-6.2-astra"): ("2026-11-17", "official"),
     ("openai_62_sol_api", "gpt-6.2-sol"): ("2026-11-17", "official"),
     ("anthropic_haiku55_api", "claude-haiku-5.5"): ("2026-10-07", "official"),
     ("opendesign_go", "deepseek-v4.1-flash"): ("2026-10-10", "official"),
+    ("opencode_go", "glm-5.3"): ("2026-11-18", "official"),
     # Mistral Vibe Pro：额度来自 X @AdamHolterer 2026-11-03 转述的 Vibe 账户预算，属社区样本日。
     ("mistral_large4_api", "mistral-large-4"): ("2026-11-04", "official"),
     ("mistral_vibe_pro", "glm-5.3"): ("2026-11-03", "sample"),

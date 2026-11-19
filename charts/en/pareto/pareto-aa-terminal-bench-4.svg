@@ -66,7 +66,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Resolution Rate %</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >Real price · USD per million tokens</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >Cheaper →</text>
-<path id="frontier" d="M120.000,264.219 L720.075,264.219 L818.903,277.281 L878.138,287.077 L959.595,339.325 L999.368,352.388 L1200.850,479.743 L1284.784,486.275 L1338.000,486.275" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,264.219 L720.075,264.219 L818.903,277.281 L905.279,287.077 L959.595,339.325 L999.368,352.388 L1200.850,479.743 L1284.784,486.275 L1338.000,486.275" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.12578616" data-score="59.596" data-x="432.874" data-y="313.201" transform="translate(432.874 313.201)"><title>GPT-6 Astra · Plus · $0.12579/MTok · 59.596 · highArtificial Analysis - GPT-6 Astra (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -283,7 +283,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0058917104" data-score="32.8283" data-x="848.384" data-y="486.275" transform="translate(848.384 486.275)"><title>GLM 5.3 Flash · OpenCode Go · $0.00589/MTok · 32.8283 · mediumArtificial Analysis - GLM-5.3-Flash · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.20618557" data-score="41.9192" data-x="365.791" data-y="427.495" transform="translate(365.791 427.495)"><title>GLM 5.3 · OpenCode Go · $0.20619/MTok · 41.9192 · mediumArtificial Analysis - GLM-5.3 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0061839095" data-score="41.9192" data-x="841.814" data-y="427.495" transform="translate(841.814 427.495)"><title>GLM 5.3 · OpenCode Go · $0.00618/MTok · 41.9192 · mediumArtificial Analysis - GLM-5.3 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.038008362" data-score="1.0101" data-x="595.326" data-y="692.003" transform="translate(595.326 692.003)"><title>Kimi K2.7 Code · OpenCode Go / Kimi K2.7 Code · Command Code GOAT · $0.03801/MTok · 1.0101 · mediumArtificial Analysis - Kimi K2.7 Code · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Kimi K2.7 Code · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
@@ -602,6 +602,25 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.022988506" data-score="60.101" data-x="663.579" data-y="309.936" transform="translate(663.579 309.936)"><title>GPT-6.2 Sol · ChatGPT Plus · $0.02299/MTok · 60.101 · mediumArtificial Analysis - GPT-6.2 Sol (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.01549012" data-score="63.6364" data-x="717.168" data-y="287.077" transform="translate(717.168 287.077)"><title>Gemini 4 Neon · Google AI Pro · $0.01549/MTok · 63.6364 · lowArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.015496319" data-score="63.6364" data-x="717.114" data-y="287.077" transform="translate(717.114 287.077)"><title>Gemini 4 Neon · Google AI Ultra 5x · $0.0155/MTok · 63.6364 · lowArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0077485471" data-score="63.6364" data-x="811.196" data-y="287.077" transform="translate(811.196 287.077)"><title>Gemini 4 Neon · Google AI Ultra 20x · $0.00775/MTok · 63.6364 · lowArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0046075165" data-score="63.6364" data-x="881.757" data-y="287.077" transform="translate(881.757 287.077)"><title>Gemini 4 Neon · Google AI Ultra 5x (Turkey) · $0.00461/MTok · 63.6364 · lowArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0038744673" data-score="63.6364" data-x="905.279" data-y="287.077" transform="translate(905.279 287.077)"><title>Gemini 4 Neon · Google AI Pro (Student) · $0.00387/MTok · 63.6364 · mediumArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#84CC16" stroke-width="1.35"/>
+<circle r="4" fill="#84CC16"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.010671833" data-score="63.6364" data-x="767.745" data-y="287.077" transform="translate(767.745 287.077)"><title>Gemini 4 Neon · Google AI Ultra 5x (India) · $0.01067/MTok · 63.6364 · mediumArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0054389209" data-score="55.5556" data-x="859.239" data-y="339.325" transform="translate(859.239 339.325)"><title>GPT-6.1 Terra · Plus · $0.00544/MTok · 55.5556 · mediumArtificial Analysis - GPT-6.1 Terra (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -615,9 +634,8 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0048866302" data-score="63.6364" data-x="873.774" data-y="287.077" transform="translate(873.774 287.077)"><title>Claude Sonnet 5.5 · Pro · $0.00489/MTok · 63.6364 · lowArtificial Analysis - Claude Sonnet 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0047320254" data-score="63.6364" data-x="878.138" data-y="287.077" transform="translate(878.138 287.077)"><title>Claude Sonnet 5.5 · Max 20x · from Sep 14 / Claude Sonnet 5.5 · Max 5x · from Sep 14 · $0.00473/MTok · 63.6364 · lowArtificial Analysis - Claude Sonnet 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Claude Sonnet 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
-<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
-<circle r="4" fill="#CC5A2E"/>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0047320254" data-score="63.6364" data-x="878.138" data-y="287.077" transform="translate(878.138 287.077)"><title>Claude Sonnet 5.5 · Max 20x · from Sep 14 / Claude Sonnet 5.5 · Max 5x · from Sep 14 · $0.00473/MTok · 63.6364 · lowArtificial Analysis - Claude Sonnet 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Claude Sonnet 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.000244333" data-score="32.8283" data-x="1280.419" data-y="486.275" transform="translate(1280.419 486.275)"><title>Claude Haiku 5.5 · Pro · $0.00024/MTok · 32.8283 · mediumArtificial Analysis - Claude Haiku 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
@@ -698,6 +716,9 @@
 <g class="point" data-billing="metered" data-frontier="false" data-price="0.394" data-score="65.1515" data-x="277.888" data-y="277.281" transform="translate(277.888 277.281)"><title>Gemini 4 Carbon · Gemini 4 Carbon API (Standard) · $0.394/MTok · 65.1515 · highArtificial Analysis - Gemini 4 Carbon (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#84CC16" stroke-width="1.5" opacity=".68"/>
 </g>
+<g class="point" data-billing="metered" data-frontier="false" data-price="0.2955" data-score="63.6364" data-x="316.939" data-y="287.077" transform="translate(316.939 287.077)"><title>Gemini 4 Neon · Gemini 4 Neon API · $0.2955/MTok · 63.6364 · highArtificial Analysis - Gemini 4 Neon (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#84CC16" stroke-width="1.5" opacity=".68"/>
+</g>
 <g class="point" data-billing="metered" data-frontier="false" data-price="0.0959" data-score="24.7475" data-x="469.697" data-y="538.523" transform="translate(469.697 538.523)"><title>Mistral Large 4 · Mistral Large 4 API · $0.0959/MTok · 24.7475 · highArtificial Analysis - Mistral Large 4 (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#8A94A6" stroke-width="1.5" opacity=".68"/>
 </g>
@@ -722,11 +743,11 @@
 <text x="798.903" y="337.281" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Google AI Ultra 5x (Turkey)</text>
 <text x="798.903" y="357.281" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00732</text>
 </g>
-<g class="front-label" data-model="claude-sonnet-5.5">
-<path d="M880.564,272.275Q880.564,226.077 888.138,226.077" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="894.138" y="207.077" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Artificial Analysis · Claude Sonnet 5.5 · max</text>
-<text x="894.138" y="227.077" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Max 5x / 20x · from Sep 14</text>
-<text x="894.138" y="247.077" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00473</text>
+<g class="front-label" data-model="gemini-4-neon">
+<path d="M911.137,273.268Q911.137,254.077 919.279,254.077" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="925.279" y="235.077" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Artificial Analysis · Gemini 4 Neon · xhigh</text>
+<text x="925.279" y="255.077" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Google AI Pro (Student)</text>
+<text x="925.279" y="275.077" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00387</text>
 </g>
 <g class="front-label" data-model="gpt-6.1-terra">
 <path d="M967.200,352.254Q967.200,356.325 969.595,356.325" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
@@ -789,7 +810,7 @@
 <path d="M323.12 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="337.120" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Metered API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >Default month = 4 weeks; Kimi pool = 5×, Droid = 2× weekly · Dollar/credit: 97% cache / 2.5% input / 0.5% output · Direct totals unchanged</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >195 subscription positions / 17 API positions / 7 frontier positions</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >201 subscription positions / 18 API positions / 7 frontier positions</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Highest archived configuration reference; harness and effort shown. Product/quota alignment unverified, not channel measurements.</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Subscriptions and metered APIs share one frontier; line segments are visual guides, not purchasable plans.</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>

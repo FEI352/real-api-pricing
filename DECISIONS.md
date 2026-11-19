@@ -3,6 +3,19 @@
 本地 `AGENTS.md`（不入库）只放 Agent 工作流程；口径与规则见 [`CONVENTIONS.md`](CONVENTIONS.md)；本文件记录每条采用值的取舍（旧值 → 新值 → 依据 → 未采来源）。
 最权威的表述仍在 `scripts/build_adopted.py` 的 `decision_note` 和 `data/research/` 证据文件里；本文件是按时间的索引摘要。改数只能改 `build_adopted.py`，改完在这里同步记一笔。
 
+## 2026-11-19 · 新增 Gemini 4 Neon（API 目录价 + Google AI 6 档订阅 + AA 4 思考档）
+
+- **官方标价与 API 基线**：2026-11-18 发布（`https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/`），官方目录价输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15（`https://ai.google.dev/gemini-api/docs/pricing`，无首发促销，1M 上下文），三段恰好均为 Gemini 4 Hydrogen（$1.50/$7.50/$0.075）的 2×；标准负载混合价 **$0.2955/MTok**（低缓存负载 $0.6375/MTok）。新增按量行 `google_gemini4_neon_api`（`2026-11-18 official`）。
+- **订阅额度（与 Hydrogen / 3.8 Flash 同池按等额 API worth 反推，ratio = 0.5）**：维护者确认 Antigravity 内 Neon 与 Hydrogen 同池；按 `CONVENTIONS.md` Antigravity 等额美元池扣减机制 ÷ 2× 标价（标准档与低缓存档比值均为精确 2.0），6 档订阅额度均为 Hydrogen 锚点的一半——Pro $19.99 **12.905 亿**（$0.015490/MTok）、Pro 学生版 $5.00 **12.905 亿**（$0.003874/MTok）、Ultra 5x 美区 $99.99 / 土区 $29.73 / 印度 $68.86 **64.525 亿**（$0.015496 / $0.004608 / $0.010672）、Ultra 20x 美区 $199.99 **258.1 亿**（$0.007749/MTok）。日期沿用 Google AI Pro 锚点（`2026-09-12~2026-09-27 derived`）。
+- **AA 实时榜分**：从 AA `leaderboards/models` 实时载荷录入全部 4 个思考档——`xhigh` 智力 **61.3982**（TB4 63.64%，单任务成本 $6.4448）、`high` **59.6189**（TB4 61.62%，$3.7427）、`medium` **54.8623**（TB4 54.55%，$1.9046）、`low` **44.0832**（TB4 32.83%，$0.7452）。
+- 证据：`data/research/list-prices-gemini-4-neon-round1-2026-11-19.json`、`data/research/scores-gemini-4-neon-round1-2026-11-19.json`。
+
+## 2026-11-19 · OpenCode Go × GLM 5.3 限时额度提升 $15 → $500（至 2026-11-22）
+
+- **采用**：`opencode_go::glm-5.3` 月额度由 $15（0.485 亿/月，$0.20619/MTok）更新为 **$500（16.171 亿/月，$0.00618391/MTok，medium）**，并并入精选图（`MAIN_EXTRA`），数据日期记 `2026-11-18 official`。三段价不变（cached $0.26 / input $1.40 / output $4.40，标准负载混合价 $0.3092/MTok）；$500 ÷ $0.3092 = 16.171 亿。
+- **依据与限时标注**：2026-11-18 OpenCode 官方 X 公告（`https://x.com/opencode/status/2122969474571583885`：「$10 for $500 GLM 5.3 till end of the week」），官网模型列表 API（`https://opencode.ai/inference/go/v1/models`）与落地页（`https://opencode.ai/go`）已生效（Go $500 / 6,600 req per 5h；Go Plus $1,000；Go Teams $505），官网文档（`https://opencode.ai/docs/go/`）明确标注 `Higher usage limits apply through November 22, 2026`。**到期后（2026-11-23 起）须复核并回落至促销后常态额度**。
+- 证据：`data/research/opencode-go-glm53-boost-round1-2026-11-19.json`。
+
 ## 2026-11-13 · Devin Pro × SWE-2 由限时促销改为永久不计额度
 
 - **采用**：`devin_pro::swe-2` 仍为 ≈$0/MTok、unmetered、进前沿；删除 `promo_until=2026-10-31`，套餐名由「Devin Pro (促销至 10/31)」改回「Devin Pro」，数据日期改 2026-11-12 official。Cognition 在 Devin's new Teams plan 公告里写明 free SWE-2 in Devin Desktop and CLI 是 Teams、Pro、Max 的永久权益；定价页 Pro $20 档列 Free use of SWE-2 且无截止日。范围仅限 Desktop 与 CLI，不覆盖 Devin Cloud；TB4 自报分性质不变。

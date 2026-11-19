@@ -1,0 +1,79 @@
+{
+  "collectedAt": "2026-11-19",
+  "collectionMethod": "Direct capture of the official OpenCode announcement on X (https://x.com/opencode/status/2122969474571583885, posted 2026-11-18T08:25:40Z, quoting phase 2 post 2122763721923559595 from 2026-11-17T18:48:05Z), the official OpenCode Go models API (https://opencode.ai/inference/go/v1/models), the official OpenCode Go documentation page (https://opencode.ai/docs/go/), and the official OpenCode Go landing page (https://opencode.ai/go) on 2026-11-19.",
+  "sources": [
+    "https://x.com/opencode/status/2122969474571583885",
+    "https://x.com/opencode/status/2122763721923559595",
+    "https://opencode.ai/docs/go/",
+    "https://opencode.ai/go",
+    "https://opencode.ai/inference/go/v1/models"
+  ],
+  "scope": "OpenCode Go official per-model monthly allowance boost for GLM-5.3 (model id 'glm-5.3', canonical_id 'zhipuai/glm-5.3'). Following the 2026-11-17 phase 2 boost ($200 for $10), OpenCode announced on 2026-11-18 '$10 for $500 GLM 5.3 till end of the week'. The official models API and landing page reflect Go monthly usage $500 (Go Plus $1,000, Go Teams $505) with three-part token pricing unchanged (input $1.40 / output $4.40 / cached read $0.26 per 1M tokens). The official docs explicitly state: 'GLM-5.3: Higher usage limits apply through November 22, 2026.'",
+  "adoptionStatus": "adopted (maintainer-requested promo update on 2026-11-19); opencode_go::glm-5.3 updated from $15 (0.485 亿/月) to $500 (16.171 亿/月, real $0.00618391/MTok) in scripts/build_adopted.py OPENCODE_GO_MODELS, with explicit promo expiry 2026-11-22 and recheck required after expiry",
+  "promoEndDate": "2026-11-22",
+  "recheckTrigger": "After 2026-11-22 (end of the week), re-verify https://opencode.ai/inference/go/v1/models and https://opencode.ai/docs/go/ and revert or update opencode_go::glm-5.3 to its post-promo monthly allowance.",
+  "previous": {
+    "monthlyLimitUsd": {
+      "go": 15
+    },
+    "monthlyYi": 0.485,
+    "realUsdPerMTok": 0.20618557
+  },
+  "observed": {
+    "model": "GLM-5.3",
+    "officialApiId": "glm-5.3",
+    "canonicalId": "zhipuai/glm-5.3",
+    "threePartPricePer1MUsd": {
+      "input": 1.4,
+      "output": 4.4,
+      "cachedRead": 0.26,
+      "cachedWrite": null,
+      "changed": false,
+      "standardBlendedUsdPerMTok": 0.3092
+    },
+    "monthlyLimitUsd": {
+      "go": 500,
+      "goPlus": 1000,
+      "goTeams": 505
+    },
+    "windowLimits": {
+      "fiveHourShare": 0.2,
+      "fiveHourGoUsd": 100,
+      "weeklyShare": 0.5,
+      "weeklyGoUsd": 250,
+      "monthlyShare": 1.0,
+      "monthlyGoUsd": 500,
+      "sharedPoolNote": "Paid models on Go share one allowance pool; switching models draws from the same allowance."
+    },
+    "officialRequestEstimates": {
+      "goPer5h": 6600,
+      "goPlusPer5h": 13200,
+      "source": "https://opencode.ai/go"
+    },
+    "docsPromoNote": "GLM-5.3: Higher usage limits apply through November 22, 2026.",
+    "officialAnnouncements": [
+      {
+        "account": "@opencode",
+        "postedAt": "2026-11-18T08:25:40Z",
+        "url": "https://x.com/opencode/status/2122969474571583885",
+        "quote": "F*CK IT\n\n$10 for $500 GLM 5.3 till end of the week"
+      },
+      {
+        "account": "@opencode",
+        "postedAt": "2026-11-17T18:48:05Z",
+        "url": "https://x.com/opencode/status/2122763721923559595",
+        "quote": "we're bored we're just gonna do phase 2 now\n\n$200 of GLM 5.3 usage for $10\n\nhave fun"
+      }
+    ],
+    "derivedUnderStandardMix": {
+      "standardMix": "97% cache read / 2.5% input / 0.5% output",
+      "blendedUsdPerMTok": 0.3092,
+      "monthlyYi": 16.171,
+      "monthlyTokens": 1617100000,
+      "planPriceUsd": 10.0,
+      "realUsdPerMTok": 0.0061839095
+    }
+  },
+  "confidence": "medium",
+  "basis": "official"
+}

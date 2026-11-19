@@ -22,6 +22,12 @@
   · `charts/` 与 `data/i18n/`：Worker-Verify。
   · `data/adopted.csv`：由 `scripts/build_adopted.py` 生成（Worker-Pricing 改生成器，Lead 跑）——任何情况下不许手改。
 
+■ 阶段 0-前 · 周一上游周同步与人工校对（仅每周一执行，Lead 独占）
+先检查星期：`date +%u`；仅当结果为 `1`（周一）时执行：
+1) 运行 `bash /usr/local/bin/sync-real-api-pricing.sh`（自动执行：清理遗留 MERGE_HEAD → `git fetch upstream main` → 安全检出新增的 `data/research/*` 证据文件 → 生成提交审查与采用值冲突分析报告并邮件发送至维护者人工校对 → `gitpush` 入库）；
+2) 读取 `/var/log/real-api-pricing-sync.log` 确认 exit code 为 0 及邮件送达状态（`jaupuihing@ching.icu`），并在本轮汇报与 `daily-log` 中记录本次吸纳的 research 文件清单与关键上游 PR；若非 0 则明确记录告警并确保工作区无 `MERGE_HEAD` 挂起后，再继续阶段 0。
+非周一直接跳过，进入阶段 0。
+
 ■ 阶段 0 · 预检（Lead 亲自做，≤1 分钟）
 照 runbook §0 做四件事（git 状态 / 上游检查 / AA 两个页面与 sha256 / 上一版快照基线），结论写 `/tmp/preflight.json`，schema：
 ```

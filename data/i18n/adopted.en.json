@@ -547,8 +547,12 @@
       "en": "Old: 444M (request estimate)→1.6973B: model monthly Usage $60 ÷ project standard-workload weighted price; official Usage $15->$60 (reverified 2026-09-30); goat-opencode-catalogs-round3-2026-09-30.json. The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
     },
     {
-      "zh": "旧0.571亿（请求估算）→0.485亿：模型月Usage $15 ÷ 统一标准负载加权价；官网单档。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
-      "en": "Old: 57.1M (request estimate)→48.5M: model monthly Usage $15 ÷ project standard-workload weighted price; single official tier. The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
+      "zh": "https://opencode.ai/docs/go/ 与 https://opencode.ai/inference/go/v1/models 官方每模型 Usage 与三段价；https://x.com/opencode/status/2122969474571583885 （2026-11-18 宣布 $10 得 $500 GLM 5.3，官网标注限时至 2026-11-22）；opencode-go-glm53-boost-round1-2026-11-19.json",
+      "en": "Official per-model Usage and three-part pricing from https://opencode.ai/docs/go/ and https://opencode.ai/inference/go/v1/models ; https://x.com/opencode/status/2122969474571583885 (announced 2026-11-18: $10 for $500 GLM 5.3; docs state higher limits apply through 2026-11-22); opencode-go-glm53-boost-round1-2026-11-19.json"
+    },
+    {
+      "zh": "旧0.485亿（$15）→16.171亿：模型月Usage $500 ÷ 统一标准负载加权价 $0.3092（限时促销至 2026-11-22，到期须复核；原常态 $15）；三段价不变 cached/input/output=$0.26/$1.40/$4.40；官网 Go 预估 6,600 请求/5h（5h=20%/$100、周=50%/$250，Go Plus $1,000、Go Teams $505）。官方请求数仅作交叉检查，不作为额度主值；同套餐各模型共享额度池，不可相加",
+      "en": "Old 48.5M ($15) -> 1.6171B: model monthly Usage $500 / project standard-workload blended price $0.3092 (limited-time promo through 2026-11-22, recheck after expiry; prior regular tier $15); three-part pricing unchanged at cached/input/output=$0.26/$1.40/$4.40; official Go estimate 6,600 requests/5h (5h=20%/$100, week=50%/$250; Go Plus $1,000, Go Teams $505). Official request counts serve only as a cross-check, not the primary allowance figure; models on the same plan share one allowance pool and are not additive"
     },
     {
       "zh": "新增1.94亿：模型月Usage $60 ÷ 统一标准负载加权价；官网单档。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
@@ -1323,6 +1327,38 @@
       "en": "Added 870M: GPT-6.2 Sol shares identical credit and three-part API rates with GPT-6.1 Sol, carrying over the ChatGPT Plus measured baseline 870M, real = $0.022989/MTok; Pro 5x/20x not derived per Sol ruling."
     },
     {
+      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and launch announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (launched 2026-11-18: input $3.00 / output $15.00 / implicit cached read $0.15, exactly 2x Gemini 4 Hydrogen $1.50/$7.50/$0.075 across all three tiers); maintainer confirmed Neon shares the same Antigravity pool as Hydrogen, derived via equal USD pool / 2x list price (standard mix $0.2955 vs $0.14775, low-cache mix $0.6375 vs $0.31875, ratio 2.0 in both); list-prices-gemini-4-neon-round1-2026-11-19.json"
+    },
+    {
+      "zh": "新增 12.905 亿：与 Hydrogen 同池按等额美元反推（25.81 亿 ÷ 2 = 12.905 亿，三段标价均为 2×）；19.99 美元/月 ÷ 1,290.5 MTok → real = $0.015490/MTok；无首发促销，非独立实测。",
+      "en": "Added 1.2905B: derived from the shared Hydrogen USD pool (2.581B / 2 = 1.2905B, 2x list price across all three tiers); $19.99/mo / 1,290.5 MTok -> real = $0.015490/MTok; no intro promo, not independently measured."
+    },
+    {
+      "zh": "新增 64.525 亿：与 Hydrogen 同池按等额美元反推（129.05 亿 ÷ 2 = 64.525 亿，三段标价均为 2×）；99.99 美元/月 ÷ 6,452.5 MTok → real = $0.015496/MTok；无首发促销，非独立实测。",
+      "en": "Added 6.4525B: derived from the shared Hydrogen USD pool (12.905B / 2 = 6.4525B, 2x list price across all three tiers); $99.99/mo / 6,452.5 MTok -> real = $0.015496/MTok; no intro promo, not independently measured."
+    },
+    {
+      "zh": "新增 258.1 亿：与 Hydrogen 同池按等额美元反推（516.2 亿 ÷ 2 = 258.1 亿，三段标价均为 2×）；199.99 美元/月 ÷ 25,810 MTok → real = $0.007749/MTok；无首发促销，非独立实测。",
+      "en": "Added 25.81B: derived from the shared Hydrogen USD pool (51.62B / 2 = 25.81B, 2x list price across all three tiers); $199.99/mo / 25,810 MTok -> real = $0.007749/MTok; no intro promo, not independently measured."
+    },
+    {
+      "zh": "新增 64.525 亿：土耳其区 Ultra 5x（TRY 1,479.99 ≈ $29.73）与美国版同池，按 Hydrogen 129.05 亿 ÷ 2 反推；29.73 美元/月 ÷ 6,452.5 MTok → real = $0.004608/MTok；标价不含土区 20% VAT，非独立实测。",
+      "en": "Added 6.4525B: Turkey Ultra 5x (TRY 1,479.99 ~ $29.73) shares the US quota pool, derived as Hydrogen 12.905B / 2; $29.73/mo / 6,452.5 MTok -> real = $0.004608/MTok; list price excludes Turkey 20% VAT, not independently measured."
+    },
+    {
+      "zh": "新增 12.905 亿：$5 学生版与标准 Pro 同池，按 Hydrogen 25.81 亿 ÷ 2 反推；5 美元/月 ÷ 1,290.5 MTok → real = $0.003874/MTok；学生资质限制，非独立实测。",
+      "en": "Added 1.2905B: $5 student tier shares the standard Pro pool, derived as Hydrogen 2.581B / 2; $5/mo / 1,290.5 MTok -> real = $0.003874/MTok; student eligibility required, not independently measured."
+    },
+    {
+      "zh": "Google 官方印度区定价 feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json （PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500，按 2026-11-13 USD/INR 94.4 折 USD 68.86）；Neon 官方目录价 https://ai.google.dev/gemini-api/docs/pricing （$3.00/$15.00/$0.15，为 Hydrogen 的 2×），按同美元池 ÷ 2× 标价折算；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official India pricing feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json (PRICE_GEN_AI_ULTRA_100_MONTHLY = INR 6,500, converted at 2026-11-13 USD/INR 94.4 to USD 68.86); Neon official list price https://ai.google.dev/gemini-api/docs/pricing ($3.00/$15.00/$0.15, 2x Hydrogen), derived via equal USD pool / 2x list price; list-prices-gemini-4-neon-round1-2026-11-19.json"
+    },
+    {
+      "zh": "新增 64.525 亿：印度区 Ultra 5x（₹6,500 ≈ $68.86，含 18% GST）与美国版同池，按 Hydrogen 129.05 亿 ÷ 2 反推；68.86 美元/月 ÷ 6,452.5 MTok → real = $0.010672/MTok；非独立实测。",
+      "en": "Added 6.4525B: India Ultra 5x (INR 6,500 ~ $68.86, includes 18% GST) shares the US quota pool, derived as Hydrogen 12.905B / 2; $68.86/mo / 6,452.5 MTok -> real = $0.010672/MTok; not independently measured."
+    },
+    {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
       "en": "Derived from same-plan gpt-5.6-sol 616M × 1.9342105263157894"
     },
@@ -1873,6 +1909,14 @@
     {
       "zh": "标价 cached 0.2/in 4.0/out 20.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
       "en": "List price cached 0.2/in 4.0/out 20.0 x project unified standard workload 97.0%/2.50%/0.50%"
+    },
+    {
+      "zh": "https://ai.google.dev/gemini-api/docs/pricing 官方目录价（2026-11-18 发布，无首发促销）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Official list price from https://ai.google.dev/gemini-api/docs/pricing (launched 2026-11-18, no intro promo); list-prices-gemini-4-neon-round1-2026-11-19.json"
+    },
+    {
+      "zh": "标价 cached 0.15/in 3.0/out 15.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
+      "en": "List price cached 0.15/in 3.0/out 15.0 x project standard workload 97.0%/2.50%/0.50%"
     },
     {
       "zh": "https://github.com/shiftedx/Qwen3.8-27B-RTX5090-SGLang-DFlash；单卡 RTX 5090 (32GB) 本地实测：Qwen3.8-27B NVFP4 配合 SGLang 运行时与 DFlash2 投机加速，端到端 Task Time 14.8s，满血 155K~256K 上下文实测吞吐 193 tok/s",

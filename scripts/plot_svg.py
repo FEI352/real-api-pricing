@@ -372,6 +372,11 @@ def label_position(p, board, x, y, tier="main"):
         if board == "aa_intelligence_index":
             return x + 16, y - 80, "start"
         return x + 24, y + 10, "start"
+    if model == "gemini-4-neon":
+        if board == "aa_terminal_bench_4":
+            # 2026-11-19：Neon (xhigh) 在 TB4·AA 进入前沿（学生档 $0.00387），默认左上 end 标签
+            # 与左侧 kimi-k3.1-pro 压字；改为向右上 start，右侧为空白走廊，数据点不动。
+            return x + 20, y - 52, "start"
     if model == "gpt-6.1-terra":
         if board == "aa_intelligence_index":
             return x + 16, y - 45, "start"

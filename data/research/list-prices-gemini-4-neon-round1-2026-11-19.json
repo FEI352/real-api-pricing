@@ -1,0 +1,30 @@
+{
+  "collectedAt": "2026-11-19",
+  "sourceType": "official pricing page + launch announcement",
+  "source": "https://ai.google.dev/gemini-api/docs/pricing",
+  "checkedAt": "2026-11-19",
+  "launchAt": "2026-11-18",
+  "scope": "Google Gemini 4 Neon（2026-11-18 发布，定位于 Hydrogen 与 Carbon 之间）按量标准目录三段价，供 compute.py 标价混合比与按量基线。输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15（三段恰好均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×），无首发折扣，1M 上下文窗口。",
+  "models": [
+    {
+      "model": "gemini-4-neon",
+      "vendor": "Google",
+      "input": 3.0,
+      "cachedInput": 0.15,
+      "output": 15.0,
+      "currency": "USD",
+      "variants": {
+        "batch_or_flex": {
+          "input": 1.5,
+          "cachedInput": 0.075,
+          "output": 7.5
+        },
+        "priority": {
+          "input": 5.4,
+          "cachedInput": 0.27,
+          "output": 27.0
+        }
+      }
+    }
+  ]
+}

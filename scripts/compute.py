@@ -99,6 +99,7 @@ SCORE_FILES = (
     "scores-mistral-large-4-round1-2026-11-04.json",
     "scores-gemini-4-hydrogen-round1-2026-11-13.json",
     "scores-claude-fable-52-round1-2026-11-13.json",
+    "scores-gemini-4-neon-round1-2026-11-19.json",
 )
 LIST_PRICE_FILES = (
     "list-prices-2026-09.json",
@@ -121,6 +122,7 @@ LIST_PRICE_FILES = (
     "list-prices-gemini-4-hydrogen-round1-2026-11-13.json",
     "list-prices-claude-fable-52-round1-2026-11-13.json",
     "list-prices-gpt-62-round1-2026-11-18.json",
+    "list-prices-gemini-4-neon-round1-2026-11-19.json",
 )
 
 
@@ -139,7 +141,7 @@ DISPLAY = {
     "qwen3.7-plus": "Qwen3.7 Plus", "qwen3.7-flash": "Qwen3.7 Flash", "qwen3.6-plus": "Qwen3.6 Plus", "qwen3.6-max-preview": "Qwen3.6 Max Preview",
     "deepseek-v4.1-flash": "DeepSeek V4.1 Flash", "deepseek-v4.1-flash-eco": "DeepSeek V4.1 Flash Eco", "deepseek-v4.1-flash-fast": "DeepSeek V4.1 Flash Fast", "deepseek-v4-flash": "DeepSeek V4 Flash", "deepseek-v4-flash-fast": "DeepSeek V4 Flash Fast", "deepseek-v4-pro": "DeepSeek V4 Pro",
     "deepseek-v4-flash-vision-exp": "DeepSeek V4 Flash Vision Exp",
-    "gemini-3.1-pro": "Gemini 3.1 Pro", "gemini-3.6-flash": "Gemini 3.6 Flash", "gemini-3.7-flash": "Gemini 3.7 Flash", "gemini-3.8-flash": "Gemini 3.8 Flash", "gemini-4-argon": "Gemini 4 Argon", "gemini-4-carbon": "Gemini 4 Carbon", "gemini-4-hydrogen": "Gemini 4 Hydrogen",
+    "gemini-3.1-pro": "Gemini 3.1 Pro", "gemini-3.6-flash": "Gemini 3.6 Flash", "gemini-3.7-flash": "Gemini 3.7 Flash", "gemini-3.8-flash": "Gemini 3.8 Flash", "gemini-4-argon": "Gemini 4 Argon", "gemini-4-carbon": "Gemini 4 Carbon", "gemini-4-hydrogen": "Gemini 4 Hydrogen", "gemini-4-neon": "Gemini 4 Neon",
     "mimo-v2.5": "MiMo V2.5", "mimo-v2.5-pro": "MiMo V2.5 Pro", "mimo-v2.6-pro": "MiMo V2.6 Pro", "mimo-v2.6-flash": "MiMo V2.6 Flash",
     "mimo-v2.6-pro-ultraspeed": "MiMo V2.6 Pro UltraSpeed", "longcat-2.0": "LongCat 2.0",
     "muse-spark-1.3": "Muse Spark 1.3", "muse-spark-1.3-contributor": "Muse Spark 1.3 Contributor",
