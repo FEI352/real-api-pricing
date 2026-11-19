@@ -9,7 +9,7 @@
 <text x="56.000" y="146.000" font-size="44" fill="#35483E" text-anchor="start" font-weight="400" class="serif" font-style="italic">Pareto frontier</text>
 <text x="384.000" y="143.000" font-size="16" fill="#858B81" text-anchor="start" font-weight="300" >帕累托前沿 · 全量</text>
 <text x="1388.000" y="76.000" font-size="31" fill="#343A33" text-anchor="end" font-weight="400" class="serif">Artificial Analysis</text>
-<text x="1388.000" y="107.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >榜单快照  2026-11-18</text>
+<text x="1388.000" y="107.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >榜单快照  2026-11-19</text>
 <text x="1388.000" y="136.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >Intelligence Index v5.0.1</text>
 <rect x="40" y="184" width="1360" height="612" rx="20" fill="#FFFFFF"/>
 <path d="M1089.719 233V705" stroke="#E8EBE7" stroke-dasharray="2 7" opacity=".8"/>
@@ -64,14 +64,14 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Intelligence Index</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >真实单价 · 美元 / 百万 token</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >越右越便宜 →</text>
-<path id="frontier" d="M120.000,249.911 L446.293,249.911 L637.872,266.742 L906.305,271.883 L1000.171,323.796 L1102.987,443.892 L1284.910,444.813 L1338.000,444.813" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,249.911 L650.738,249.911 L906.305,271.883 L1000.171,323.796 L1102.987,443.892 L1284.910,444.813 L1338.000,444.813" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.12578616" data-score="56.8539" data-x="435.022" data-y="303.426" transform="translate(435.022 303.426)"><title>GPT-6 Astra · Plus · $0.12579/MTok · 56.8539 · highGPT-6 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0021732044" data-score="27.8552" data-x="984.606" data-y="504.711" transform="translate(984.606 504.711)"><title>GPT-6 Luna · Plus · $0.00217/MTok · 27.8552 · highGPT-6 Luna (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.022988506" data-score="54.6087" data-x="665.179" data-y="319.010" transform="translate(665.179 319.010)"><title>GPT-6.1 Sol · Plus · $0.02299/MTok · 54.6087 · highGPT-6.1 Sol (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.013192612" data-score="54.6087" data-x="740.383" data-y="319.010" transform="translate(740.383 319.010)"><title>GPT-6.1 Sol · Plus · $0.01319/MTok · 54.6087 · highGPT-6.1 Sol (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.052465897" data-score="56.8539" data-x="553.435" data-y="303.426" transform="translate(553.435 303.426)"><title>GPT-6 Astra · Pro 20x · $0.05247/MTok · 56.8539 · mediumGPT-6 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -83,16 +83,31 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.029895366" data-score="59.106" data-x="629.603" data-y="287.794" transform="translate(629.603 287.794)"><title>Claude Opus 5.5 · Devin Max · $0.0299/MTok · 59.106 · mediumClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.031055901" data-score="54.5413" data-x="624.446" data-y="319.478" transform="translate(624.446 319.478)"><title>Claude Sonnet 5.5 · Devin Pro · $0.03106/MTok · 54.5413 · mediumClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0024363503" data-score="36.4845" data-x="969.128" data-y="444.813" transform="translate(969.128 444.813)"><title>Claude Haiku 5.5 · Devin Pro · $0.00244/MTok · 36.4845 · lowClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.097560976" data-score="43.5748" data-x="469.432" data-y="395.598" transform="translate(469.432 395.598)"><title>Muse Wonder · Devin Pro · $0.09756/MTok · 43.5748 · mediumMuse Wonder (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.1369863" data-score="49.1602" data-x="423.471" data-y="356.829" transform="translate(423.471 356.829)"><title>Claude Fable 5.1 · Devin Pro · $0.13699/MTok · 49.1602 · mediumClaude Fable 5.1 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.068259386" data-score="59.106" data-x="517.799" data-y="287.794" transform="translate(517.799 287.794)"><title>Claude Opus 5.5 · Devin Pro · $0.06826/MTok · 59.106 · highClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<path transform="translate(-4.46 -5.23) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="0.68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.079176564" data-score="59.106" data-x="497.708" data-y="287.794" transform="translate(497.708 287.794)"><title>Claude Opus 5.5 · Droid Max · $0.07918/MTok · 59.106 · mediumClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.093023256" data-score="59.106" data-x="475.882" data-y="287.794" transform="translate(475.882 287.794)"><title>Claude Opus 5.5 · Droid Pro · $0.09302/MTok · 59.106 · lowClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.001221665" data-score="36.4845" data-x="1062.606" data-y="444.813" transform="translate(1062.606 444.813)"><title>Claude Haiku 5.5 · Pro（Haiku &gt;100k 档） · $0.00122/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0012248748" data-score="36.4845" data-x="1062.251" data-y="444.813" transform="translate(1062.251 444.813)"><title>Claude Haiku 5.5 · Pro（Haiku &gt;100k 档） · $0.00122/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.00073299811" data-score="36.4845" data-x="1131.782" data-y="444.813" transform="translate(1131.782 444.813)"><title>Claude Haiku 5.5 · Pro（Haiku 50/50 混合档） · $0.00073/MTok · 36.4845 · lowClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.00073492395" data-score="36.4845" data-x="1131.426" data-y="444.813" transform="translate(1131.426 444.813)"><title>Claude Haiku 5.5 · Pro（Haiku 50/50 混合档） · $0.00073/MTok · 36.4845 · lowClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0011830064" data-score="36.4845" data-x="1066.960" data-y="444.813" transform="translate(1066.960 444.813)"><title>Claude Haiku 5.5 · Max 20x · 9/14+（Haiku &gt;100k 档） · $0.00118/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -107,8 +122,12 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0063415562" data-score="59.106" data-x="839.582" data-y="287.794" transform="translate(839.582 287.794)"><title>Claude Opus 5.5 · Max 20x · 9/14+ / Claude Opus 5.5 · Max 5x · 9/14+ · $0.00634/MTok · 59.106 · mediumClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified. / Claude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0065487885" data-score="59.106" data-x="835.227" data-y="287.794" transform="translate(835.227 287.794)"><title>Claude Opus 5.5 · Pro · $0.00655/MTok · 59.106 · highClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0065659882" data-score="59.106" data-x="834.872" data-y="287.794" transform="translate(834.872 287.794)"><title>Claude Opus 5.5 · Pro · $0.00657/MTok · 59.106 · highClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.025575448" data-score="64.5636" data-x="650.738" data-y="249.911" transform="translate(650.738 249.911)"><title>Claude Fable 5.2 · Pro · $0.02558/MTok · 64.5636 · mediumClaude Fable 5.2 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
+<circle r="4" fill="#CC5A2E"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.052447552" data-score="35.485" data-x="553.482" data-y="451.751" transform="translate(553.482 451.751)"><title>Grok 4.7 · SuperGrok / Grok 4.7 · SuperGrok Heavy · $0.05245/MTok · 35.485 · mediumGrok 4.7 (xhigh) · Exact served-model reference; quota-measurement effort is unverified. / Grok 4.7 (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#9333EA" opacity=".68"/>
@@ -257,6 +276,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0061839095" data-score="31.6534" data-x="842.991" data-y="478.347" transform="translate(842.991 478.347)"><title>GLM 5.3 · OpenCode Go · $0.00618/MTok · 31.6534 · mediumGLM-5.3 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.19607843" data-score="46.4526" data-x="374.905" data-y="375.623" transform="translate(374.905 375.623)"><title>Kimi K3.1 Pro · OpenCode Go · $0.19608/MTok · 46.4526 · mediumKimi K3.1 Pro · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0012693255" data-score="26.7277" data-x="1057.423" data-y="512.537" transform="translate(1057.423 512.537)"><title>MiMo V2.6 Flash · OpenCode Go · $0.00127/MTok · 26.7277 · mediumMiMo-V2.6-Flash · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
@@ -274,6 +296,12 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.031826862" data-score="23.0633" data-x="621.125" data-y="537.972" transform="translate(621.125 537.972)"><title>DeepSeek V4 Pro · OpenCode Go · $0.03183/MTok · 23.0633 · mediumDeepSeek V4 Pro 0813 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.012348728" data-score="34.5552" data-x="749.335" data-y="458.205" transform="translate(749.335 458.205)"><title>Hy4 · OpenCode Go · $0.01235/MTok · 34.5552 · mediumTencent Hy4 · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.088495575" data-score="42.8915" data-x="482.639" data-y="400.341" transform="translate(482.639 400.341)"><title>Qwen4 Max · OpenCode Go · $0.0885/MTok · 42.8915 · mediumQwen4 Max · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.00080499742" data-score="32.5896" data-x="1119.094" data-y="471.849" transform="translate(1119.094 471.849)"><title>DeepSeek V4.1 Flash · OpenDesign Go (Official API) · $0.0008/MTok · 32.5896 · mediumDeepSeek V4.1 Flash 1017 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -298,6 +326,12 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0073502389" data-score="27.8552" data-x="819.593" data-y="504.711" transform="translate(819.593 504.711)"><title>GPT-6 Luna · Command Code GOAT · $0.00735/MTok · 27.8552 · mediumGPT-6 Luna (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.03705076" data-score="34.5552" data-x="600.544" data-y="458.205" transform="translate(600.544 458.205)"><title>Hy4 · Command Code GOAT · $0.03705/MTok · 34.5552 · mediumTencent Hy4 · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.066357001" data-score="42.8915" data-x="521.627" data-y="400.341" transform="translate(521.627 400.341)"><title>Qwen4 Max · Command Code GOAT · $0.06636/MTok · 42.8915 · mediumQwen4 Max · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.15455951" data-score="31.6534" data-x="407.126" data-y="478.347" transform="translate(407.126 478.347)"><title>GLM 5.3 · Command Code GOAT · $0.15456/MTok · 31.6534 · mediumGLM-5.3 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -468,9 +502,6 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.01464532" data-score="50.4122" data-x="726.236" data-y="348.139" transform="translate(726.236 348.139)"><title>Gemini 4 Argon · Google AI Ultra 5x 土耳其（标准价） · $0.01465/MTok · 50.4122 · lowGemini 4 Argon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.024618227" data-score="59.4257" data-x="655.904" data-y="285.575" transform="translate(655.904 285.575)"><title>Gemini 4 Carbon · Google AI Pro · $0.02462/MTok · 59.4257 · lowGemini 4 Carbon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
-</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.024622014" data-score="59.4257" data-x="655.883" data-y="285.575" transform="translate(655.883 285.575)"><title>Gemini 4 Carbon · Google AI Ultra 5x · $0.02462/MTok · 59.4257 · lowGemini 4 Carbon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
@@ -478,9 +509,6 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0073208569" data-score="59.4257" data-x="820.135" data-y="285.575" transform="translate(820.135 285.575)"><title>Gemini 4 Carbon · Google AI Ultra 5x (土耳其) · $0.00732/MTok · 59.4257 · lowGemini 4 Carbon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
-</g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.049236453" data-score="59.4257" data-x="562.038" data-y="285.575" transform="translate(562.038 285.575)"><title>Gemini 4 Carbon · Google AI Pro（标准价） · $0.04924/MTok · 59.4257 · lowGemini 4 Carbon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.049256158" data-score="59.4257" data-x="561.984" data-y="285.575" transform="translate(561.984 285.575)"><title>Gemini 4 Carbon · Google AI Ultra 5x（标准价） · $0.04926/MTok · 59.4257 · lowGemini 4 Carbon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -532,9 +560,8 @@
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#84CC16" stroke-width="1.35"/>
 <circle r="4" fill="#84CC16"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.11574074" data-score="64.5636" data-x="446.293" data-y="249.911" transform="translate(446.293 249.911)"><title>Claude Fable 5.2 · Max 20x · 9/14+ · $0.11574/MTok · 64.5636 · mediumClaude Fable 5.2 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
-<circle r="4" fill="#CC5A2E"/>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.11574074" data-score="64.5636" data-x="446.293" data-y="249.911" transform="translate(446.293 249.911)"><title>Claude Fable 5.2 · Max 20x · 9/14+ · $0.11574/MTok · 64.5636 · mediumClaude Fable 5.2 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.11575414" data-score="64.5636" data-x="446.277" data-y="249.911" transform="translate(446.277 249.911)"><title>Claude Fable 5.2 · Max 5x · 9/14+ · $0.11575/MTok · 64.5636 · mediumClaude Fable 5.2 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
@@ -554,14 +581,13 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.067430883" data-score="62.1388" data-x="519.453" data-y="266.742" transform="translate(519.453 266.742)"><title>GPT-6.2 Astra · Plus · $0.06743/MTok · 62.1388 · mediumGPT-6.2 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.058906692" data-score="62.1388" data-x="537.755" data-y="266.742" transform="translate(537.755 266.742)"><title>GPT-6.2 Astra · Pro 5x · $0.05891/MTok · 62.1388 · lowGPT-6.2 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.029453346" data-score="62.1388" data-x="631.620" data-y="266.742" transform="translate(631.620 266.742)"><title>GPT-6.2 Astra · Pro 10x · $0.02945/MTok · 62.1388 · lowGPT-6.2 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.028124648" data-score="62.1388" data-x="637.872" data-y="266.742" transform="translate(637.872 266.742)"><title>GPT-6.2 Astra · Pro 20x · $0.02812/MTok · 62.1388 · mediumGPT-6.2 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#16A34A" stroke-width="1.35"/>
-<circle r="4" fill="#16A34A"/>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.028124648" data-score="62.1388" data-x="637.872" data-y="266.742" transform="translate(637.872 266.742)"><title>GPT-6.2 Astra · Pro 20x · $0.02812/MTok · 62.1388 · mediumGPT-6.2 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.022988506" data-score="57.2576" data-x="665.179" data-y="300.624" transform="translate(665.179 300.624)"><title>GPT-6.2 Sol · Plus · $0.02299/MTok · 57.2576 · mediumGPT-6.2 Sol (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.013192612" data-score="57.2576" data-x="740.383" data-y="300.624" transform="translate(740.383 300.624)"><title>GPT-6.2 Sol · Plus · $0.01319/MTok · 57.2576 · mediumGPT-6.2 Sol (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.01549012" data-score="61.3982" data-x="718.642" data-y="271.883" transform="translate(718.642 271.883)"><title>Gemini 4 Neon · Google AI Pro · $0.01549/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -583,10 +609,28 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.010671833" data-score="61.3982" data-x="769.098" data-y="271.883" transform="translate(769.098 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x (印度) · $0.01067/MTok · 61.3982 · mediumGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.027227348" data-score="42.8915" data-x="642.262" data-y="400.341" transform="translate(642.262 400.341)"><title>Qwen4 Max · Qwen Token Plan Standard · $0.02723/MTok · 42.8915 · lowQwen4 Max · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#C0142F" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.081018519" data-score="34.5552" data-x="494.593" data-y="458.205" transform="translate(494.593 458.205)"><title>Hy4 · Tencent Token Plan Lite · $0.08102/MTok · 34.5552 · mediumTencent Hy4 · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#22D3EE" opacity=".68" stroke="#178FA2" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.075690116" data-score="34.5552" data-x="503.806" data-y="458.205" transform="translate(503.806 458.205)"><title>Hy4 · Tencent Token Plan Standard · $0.07569/MTok · 34.5552 · mediumTencent Hy4 · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#22D3EE" opacity=".68" stroke="#178FA2" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.074747179" data-score="34.5552" data-x="505.504" data-y="458.205" transform="translate(505.504 458.205)"><title>Hy4 · Tencent Token Plan Pro · $0.07475/MTok · 34.5552 · mediumTencent Hy4 · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#22D3EE" opacity=".68" stroke="#178FA2" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.07500182" data-score="34.5552" data-x="505.043" data-y="458.205" transform="translate(505.043 458.205)"><title>Hy4 · Tencent Token Plan Max · $0.075/MTok · 34.5552 · mediumTencent Hy4 · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#22D3EE" opacity=".68" stroke="#178FA2" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.26267402" data-score="43.5748" data-x="335.308" data-y="395.598" transform="translate(335.308 395.598)"><title>Muse Wonder · Command Code Max 10× · $0.26267/MTok · 43.5748 · mediumMuse Wonder (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.016785564" data-score="32.3434" data-x="707.765" data-y="473.558" transform="translate(707.765 473.558)"><title>GPT 5.6 Terra · Plus · $0.01679/MTok · 32.3434 · mediumGPT-5.6 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.016785846" data-score="32.3434" data-x="707.763" data-y="473.558" transform="translate(707.763 473.558)"><title>GPT 5.6 Terra · Pro 5x · $0.01679/MTok · 32.3434 · mediumGPT-5.6 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0083929935" data-score="32.3434" data-x="801.628" data-y="473.558" transform="translate(801.628 473.558)"><title>GPT 5.6 Terra · Pro 10x · $0.00839/MTok · 32.3434 · mediumGPT-5.6 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0080143617" data-score="32.3434" data-x="807.879" data-y="473.558" transform="translate(807.879 473.558)"><title>GPT 5.6 Terra · Pro 20x · $0.00801/MTok · 32.3434 · mediumGPT-5.6 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -595,7 +639,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0054389209" data-score="51.3265" data-x="860.375" data-y="341.793" transform="translate(860.375 341.793)"><title>GPT-6.1 Terra · Plus · $0.00544/MTok · 51.3265 · mediumGPT-6.1 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0054388618" data-score="51.3265" data-x="860.376" data-y="341.793" transform="translate(860.376 341.793)"><title>GPT-6.1 Terra · Pro 5x · $0.00544/MTok · 51.3265 · mediumGPT-6.1 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0027194309" data-score="51.3265" data-x="954.242" data-y="341.793" transform="translate(954.242 341.793)"><title>GPT-6.1 Terra · Pro 10x · $0.00272/MTok · 51.3265 · mediumGPT-6.1 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0025967618" data-score="51.3265" data-x="960.493" data-y="341.793" transform="translate(960.493 341.793)"><title>GPT-6.1 Terra · Pro 20x · $0.0026/MTok · 51.3265 · mediumGPT-6.1 Terra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -607,7 +651,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0047320254" data-score="54.5413" data-x="879.229" data-y="319.478" transform="translate(879.229 319.478)"><title>Claude Sonnet 5.5 · Max 20x · 9/14+ / Claude Sonnet 5.5 · Max 5x · 9/14+ · $0.00473/MTok · 54.5413 · lowClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified. / Claude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.000244333" data-score="36.4845" data-x="1280.555" data-y="444.813" transform="translate(1280.555 444.813)"><title>Claude Haiku 5.5 · Pro · $0.00024/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.00024497465" data-score="36.4845" data-x="1280.200" data-y="444.813" transform="translate(1280.200 444.813)"><title>Claude Haiku 5.5 · Pro · $0.00024/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="true" data-price="0.00023660121" data-score="36.4845" data-x="1284.910" data-y="444.813" transform="translate(1284.910 444.813)"><title>Claude Haiku 5.5 · Max 20x · 9/14+ · $0.00024/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -617,7 +661,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.11575414" data-score="49.1602" data-x="446.277" data-y="356.829" transform="translate(446.277 356.829)"><title>Claude Fable 5.1 · Max 5x · 9/14+ · $0.11575/MTok · 49.1602 · lowClaude Fable 5.1 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.10989011" data-score="56.8539" data-x="453.317" data-y="303.426" transform="translate(453.317 303.426)"><title>GPT-6 Astra · Pro 5x · $0.10989/MTok · 56.8539 · lowGPT-6 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.054945055" data-score="56.8539" data-x="547.183" data-y="303.426" transform="translate(547.183 303.426)"><title>GPT-6 Astra · Pro 10x · $0.05495/MTok · 56.8539 · lowGPT-6 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.19794141" data-score="49.1602" data-x="373.624" data-y="356.829" transform="translate(373.624 356.829)"><title>Claude Fable 5.1 · Droid Max · $0.19794/MTok · 49.1602 · mediumClaude Fable 5.1 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -686,10 +730,10 @@
 <g class="point" data-billing="metered" data-frontier="false" data-price="0.419" data-score="59.106" data-x="272.073" data-y="287.794" transform="translate(272.073 287.794)"><title>Claude Opus 5.5 · Opus 5.5 API · $0.419/MTok · 59.106 · highClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#CC5A2E" stroke-width="1.5" opacity=".68"/>
 </g>
-<g class="point" data-billing="metered" data-frontier="false" data-price="0.294" data-score="54.5413" data-x="320.051" data-y="319.478" transform="translate(320.051 319.478)"><title>Claude Sonnet 5.5 · Sonnet 5.5 API · $0.294/MTok · 54.5413 · highClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="metered" data-frontier="false" data-price="0.3065" data-score="54.5413" data-x="314.412" data-y="319.478" transform="translate(314.412 319.478)"><title>Claude Sonnet 5.5 · Sonnet 5.5 API · $0.3065/MTok · 54.5413 · highClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#CC5A2E" stroke-width="1.5" opacity=".68"/>
 </g>
-<g class="point" data-billing="metered" data-frontier="false" data-price="0.0147" data-score="36.4845" data-x="725.732" data-y="444.813" transform="translate(725.732 444.813)"><title>Claude Haiku 5.5 · Haiku 5.5 API · $0.0147/MTok · 36.4845 · highClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="metered" data-frontier="false" data-price="0.015325" data-score="36.4845" data-x="720.093" data-y="444.813" transform="translate(720.093 444.813)"><title>Claude Haiku 5.5 · Haiku 5.5 API · $0.01533/MTok · 36.4845 · highClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#CC5A2E" stroke-width="1.5" opacity=".68"/>
 </g>
 <g class="point" data-billing="metered" data-frontier="false" data-price="0.197" data-score="50.4122" data-x="374.270" data-y="348.139" transform="translate(374.270 348.139)"><title>Gemini 4 Argon · Gemini 4 Argon API (Intro) · $0.197/MTok · 50.4122 · highGemini 4 Argon (high) · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -723,16 +767,10 @@
 <path d="M0 -5.5L5.5 0 0 5.5 -5.5 0Z" fill="white" stroke="#16A34A" stroke-width="1.5" opacity=".68"/>
 </g>
 <g class="front-label" data-model="claude-fable-5.2">
-<path d="M440.434,236.103Q440.434,216.911 432.293,216.911" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="426.293" y="197.911" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Claude Fable 5.2 · max</text>
-<text x="426.293" y="217.911" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Max 20x · 9/14+</text>
-<text x="426.293" y="237.911" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.11574</text>
-</g>
-<g class="front-label" data-model="gpt-6.2-astra">
-<path d="M632.013,252.934Q632.013,233.742 623.872,233.742" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="617.872" y="214.742" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">GPT-6.2 Astra · max</text>
-<text x="617.872" y="234.742" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Pro 20x</text>
-<text x="617.872" y="254.742" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.02812</text>
+<path d="M644.880,236.103Q644.880,216.911 636.738,216.911" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="630.738" y="197.911" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Claude Fable 5.2 · max</text>
+<text x="630.738" y="217.911" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Pro</text>
+<text x="630.738" y="237.911" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.02558</text>
 </g>
 <g class="front-label" data-model="gemini-4-neon">
 <path d="M900.447,258.074Q900.447,238.883 892.305,238.883" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
@@ -770,30 +808,34 @@
 <text x="413.040" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >GLM</text>
 <rect x="459.91999999999996" y="826" width="8" height="8" fill="#E2167E"/>
 <text x="476.920" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >MiniMax</text>
-<rect x="551.64" y="826" width="8" height="8" fill="#0F766E"/>
-<text x="568.640" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenCode</text>
-<rect x="650.3199999999999" y="826" width="8" height="8" fill="#DBA6FA"/>
-<text x="667.320" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Command Code</text>
-<rect x="776.8399999999999" y="826" width="8" height="8" fill="#FC8EA7"/>
-<text x="793.840" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Ollama</text>
-<rect x="861.5999999999999" y="826" width="8" height="8" fill="#4D6BFE"/>
-<text x="878.600" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >DeepSeek</text>
-<rect x="960.2799999999999" y="826" width="8" height="8" fill="#84CC16"/>
-<text x="977.280" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Google</text>
-<rect x="1045.04" y="826" width="8" height="8" fill="#FF8A00"/>
-<text x="1062.040" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Xiaomi</text>
-<rect x="1129.8" y="826" width="8" height="8" fill="#00F4E5"/>
-<text x="1146.800" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >StepFun</text>
-<path transform="translate(1221.06 824.77) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="1.0"/>
-<text x="1238.520" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Devin</text>
-<rect x="1299.32" y="826" width="8" height="8" fill="#0A0ABF"/>
-<text x="1316.320" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Factory</text>
-<path d="M66 854h22" stroke="#303630" stroke-width="1.65"/>
-<text x="96.000" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >帕累托前沿</text>
-<path d="M187 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
-<text x="201.000" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
+<rect x="551.64" y="826" width="8" height="8" fill="#C0142F"/>
+<text x="568.640" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Alibaba</text>
+<rect x="643.36" y="826" width="8" height="8" fill="#0F766E"/>
+<text x="660.360" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >OpenCode</text>
+<rect x="742.04" y="826" width="8" height="8" fill="#DBA6FA"/>
+<text x="759.040" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Command Code</text>
+<rect x="868.56" y="826" width="8" height="8" fill="#FC8EA7"/>
+<text x="885.560" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Ollama</text>
+<rect x="953.3199999999999" y="826" width="8" height="8" fill="#4D6BFE"/>
+<text x="970.320" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >DeepSeek</text>
+<rect x="1052.0" y="826" width="8" height="8" fill="#84CC16"/>
+<text x="1069.000" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Google</text>
+<rect x="1136.76" y="826" width="8" height="8" fill="#FF8A00"/>
+<text x="1153.760" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Xiaomi</text>
+<rect x="1221.52" y="826" width="8" height="8" fill="#22D3EE"/>
+<text x="1238.520" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Tencent</text>
+<rect x="1313.24" y="826" width="8" height="8" fill="#00F4E5"/>
+<text x="1330.240" y="834.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >StepFun</text>
+<path transform="translate(56.54 848.77) scale(0.0910)" d="M0 38.6518V14.8349C7.06768e-06 13.7882 0.545676 12.821 1.43146 12.2977L21.5811 0.392519C22.4669 -0.13084 23.5583 -0.13084 24.444 0.392519L44.5937 12.2977C45.4795 12.821 46.0252 13.7882 46.0252 14.835V26.9983C46.1136 31.0401 48.201 34.9385 51.8723 37.1076C55.5435 39.2767 59.8863 39.1775 63.3509 37.2349L73.6442 31.1533C74.53 30.6299 75.6213 30.6299 76.5071 31.1533L96.6568 43.0584C97.5426 43.5818 98.0882 44.549 98.0882 45.5957V69.406C98.0882 70.4527 97.5426 71.4199 96.6568 71.9433L76.5071 83.8485C75.6213 84.3718 74.53 84.3718 73.6442 83.8485L63.4342 77.816C59.9562 75.8284 55.5738 75.7095 51.8732 77.8959C48.202 80.065 46.1146 83.9633 46.0262 88.005V100.165C46.0262 101.212 45.4805 102.179 44.5947 102.702L24.445 114.607C23.5592 115.131 22.4679 115.131 21.5821 114.607L1.43243 102.702C0.546645 102.179 0.000975341 101.212 0.000975341 100.165V76.3547C0.000982408 75.308 0.546652 74.3408 1.43244 73.8175L21.5821 61.9123C22.4679 61.3889 23.5592 61.3889 24.445 61.9123L34.7616 68.0077C38.2221 69.9367 42.5526 70.0305 46.215 67.8666C49.9155 65.6802 52.0061 61.7367 52.063 57.6605C51.9747 53.6187 49.8872 49.3025 46.216 47.1334C42.5447 44.9643 38.202 45.0635 34.7374 47.0061L24.3967 53.1502C23.5071 53.6788 22.4087 53.6783 21.5196 53.1489L1.42323 41.1841C0.542079 40.6595 -7.06754e-06 39.695 0 38.6518Z" fill="#A1A1AA" opacity="1.0"/>
+<text x="74.000" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Devin</text>
+<rect x="134.8" y="850" width="8" height="8" fill="#0A0ABF"/>
+<text x="151.800" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >Factory</text>
+<path d="M235.52 854h22" stroke="#303630" stroke-width="1.65"/>
+<text x="265.520" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >帕累托前沿</text>
+<path d="M356.52 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
+<text x="370.520" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5，Droid月=周×2 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >196 个订阅位置 / 21 个 API 位置 / 6 个前沿位置</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >211 个订阅位置 / 21 个 API 位置 / 5 个前沿位置</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max：9/14 起永久额度估算；Pro：Opus 5 周池面板反推。Y 取同模型存档最高分变体。</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>

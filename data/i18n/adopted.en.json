@@ -11,12 +11,12 @@
       "en": "Not workload-normalized: the sample has no token breakdown (the 2026-07-30 measurement reports only total); kept raw"
     },
     {
-      "zh": "Plus × 官方 5x",
-      "en": "Plus × official 5x"
+      "zh": "Plus × 官方 10x；chatgpt-pro-10x-round1-2026-10-30.json",
+      "en": "Plus × official 10x; chatgpt-pro-10x-round1-2026-10-30.json"
     },
     {
-      "zh": "flat.json 写 38.9 与官方 5x 不符，改 30.8",
-      "en": "flat.json stated 38.9, inconsistent with official 5x; changed to 30.8"
+      "zh": "30.8→61.6亿：官方 $100 档倍率 5x→10x（2026-10-30 复核），Plus Sol 6.16×10；$200 档 20x 与 Pro 20x 各行不变；旧链 flat.json 写 38.9 与官方 5x 不符改 30.8，现随档位翻倍",
+      "en": "3.08B→6.16B: official $100 tier multiplier 5x→10x (re-checked 2026-10-30), Plus Sol 6.16×10; the $200 tier keeps 20x and every Pro 20x row is unchanged; older chain: flat.json's 38.9 disagreed with the official 5x and was replaced by 30.8, which now doubles with the tier"
     },
     {
       "zh": "五源实测加权：Observatory 143.6×3 + 《财经》109×3 + 网关 139.5×2 + 健康周 131.2×2 + imon139 120×1；chatgpt-quotas-round5 / caijing-2026-08 / chatgpt-pro20x-gateway-measurement-2026-09-06",
@@ -35,12 +35,12 @@
       "en": "7.511B→7.058B (2026-09-30 decision: uniform workload-normalization for measured samples with token breakdown): segment worth $3.2185 (cache 109.36M×$0.02 + input 2.94M×$0.2 + output 0.37M×$1.2) ÷6%×4 weeks = $214.57 ÷ standard-tier blended price $0.0304/MTok; the raw-basis 75.11 is kept for comparison. Original adoption decision — old 12.012B (Sol baseline × unified credits price ratio 19.5) → 7.511B: 112,666,769÷6%×4 weeks (original raw basis); if 6% is a rounded integer, the normalized-basis range is about 6.52B~7.70B/month (raw basis 69.33~81.94); measured token mix: cache read 97.06%, regular input 2.61%, output 0.33%"
     },
     {
-      "zh": "Plus Luna实测×官方5x；chatgpt-luna-adoption-round6-2026-09-08.json",
-      "en": "Plus Luna measurement × official 5x; chatgpt-luna-adoption-round6-2026-09-08.json"
+      "zh": "Plus Luna实测×官方10x；chatgpt-luna-adoption-round6-2026-09-08.json；chatgpt-pro-10x-round1-2026-10-30.json",
+      "en": "Plus Luna measurement × official 10x; chatgpt-luna-adoption-round6-2026-09-08.json; chatgpt-pro-10x-round1-2026-10-30.json"
     },
     {
-      "zh": "旧600.6亿→375.56亿→352.91亿：Plus Luna实测×官方5x（2026-09-30 折算口径 75.11→70.58 随动）；非Pro 5x账号独立实测",
-      "en": "Old 60.06B→37.556B→35.291B: Plus Luna measurement × official 5x (the 2026-09-30 normalization basis 75.11→70.58 carries over); independently measured on a non-Pro 5x account"
+      "zh": "352.91→705.81亿：官方 $100 档倍率 5x→10x（2026-10-30），Plus Luna实测×10（2026-09-30 折算口径 70.58 随动）；非Pro 10x账号独立实测；更早旧链 600.6→375.56→352.91 为 5x 时期值",
+      "en": "35.291B→70.581B: official $100 tier multiplier 5x→10x (2026-10-30), Plus Luna measurement ×10 (the 2026-09-30 normalization basis 70.58 carries over); not an independent measurement on a Pro 10x account; the older chain 600.6→375.56→352.91 was from the 5x era"
     },
     {
       "zh": "Plus Luna实测×官方20x；GitHub #8社区美元等效旁证；chatgpt-luna-adoption-round6-2026-09-08.json",
@@ -75,12 +75,12 @@
       "en": "9.177B→9.203B (2026-09-30 decision: uniform workload-normalization for measured samples with token breakdown): segment worth $2.0293 (cache 133.76M×$0.01 + input 3.13M×$0.1 + output 0.76M×$0.5) ÷6%×4 weeks = $135.28 ÷ standard-tier blended price $0.0147/MTok; the raw-basis 91.77 is kept for comparison. Original adoption decision — 4.405B→9.177B: 137,648,446÷6%×4 weeks (original raw basis); panel integer-% readings Δpp 5~7 map to 7.888B~11.044B normalized (raw basis 78.66~110.12); this week's 22.94M tok/pp ≈ 2.08× round1's merged sample of 11.01M (2.25× of the standard tier's 10.20M); the rounding intervals on the two sides do not overlap — judged to be weekly-pool enlargement or an effort-weighting change (max this week; round1 did not record effort, and the two causal chains cannot be distinguished), not noise; ruled the new week is recorded separately — round1's 4.405B stays as comparison, not merged or averaged; within the segment gpt-5.6-luna accumulated 205,934,189 while 6sol/astra did not move, so all 6pp go to 6-luna; Pro 5x/20x not derived (follows the Sol ruling); score reuses scores-gpt6luna-round1-2026-09-26.json"
     },
     {
-      "zh": "维护者本机Codex实测：周窗剩余81%→50%（31pp）整段 gpt-6.1-sol total 55,532,850 tokens（input 2,742,389/cache_read 52,536,064/cache_write 0/output 254,397含reasoning 72,105，hit 95.04%）；chatgpt-gpt61sol-plus-round1/round2/round3-2026-09-30.json；workload-conversion-round1-2026-09-30.json",
-      "en": "Maintainer's local Codex measurement: weekly-window remaining 81%→50% (31pp); the whole segment is gpt-6.1-sol total 55,532,850 tokens (input 2,742,389 / cache_read 52,536,064 / cache_write 0 / output 254,397 incl. reasoning 72,105, hit 95.04%); chatgpt-gpt61sol-plus-round1/round2/round3-2026-09-30.json; workload-conversion-round1-2026-09-30.json"
+      "zh": "维护者本机 Codex，2026-11-09 周窗两条标准负载读数等权中点（旧 31pp / 8.70 亿不入权；整周 67% used 外推 2.151 亿、$38.47 已丢弃、不作输入）：日志 6 点 65%→71% 标准负载 4.08 亿、$73.17；7 点下降标准负载 3.50 亿、$62.71；local-samples-round1-2026-11-09.json",
+      "en": "Maintainer's local Codex, equal-weight midpoint of two 2026-11-09 standard-load weekly readings (the old 31pp / 870M sample is not in the weight; the full-week extrapolation at 67% used, 215.1M and $38.47, was discarded and is not an input): 6 logged points 65%→71%, standard-load 408M, $73.17; the 7-point drop, standard-load 350M, $62.71; local-samples-round1-2026-11-09.json"
     },
     {
-      "zh": "7.75→8.7亿（2026-09-30 裁定带分项实测统一折算，并入第三段60%→50%后整体重算）：段 worth $13.2824（cache 52.54M×$0.10＋入2.74M×$2＋出0.25M×$10）÷31%×4周＝$171.39 ÷标准档混合价$0.197/MTok；GPT-6.1 Sol 官方价 $0.10/$2/$10（learn.chatgpt.com credits 2.5/50/250 ÷25，cached=输入5%，取代先按 6-Sol $0.2 假设的 8.96亿；若仍按 6-Sol 价为 8.14亿留作对照）；raw 口径 7.17 留作对照。；疑点（2026-10-01 裁定先记录、按整段 81%→50% 采用）：第三段 60%→50% 每 1% $0.330，比前两段 $0.476/$0.473 低约 30%，10pp 整数读数取整（约 ±10%）不足以解释，原因未明。缓存读价经2026-10-01 确认：GPT-6.1 Sol $0.10、GPT-6 Sol $0.20。原采用决策——新增7.17亿：整段55,532,850÷31%×4周（=81%→65%段30,109,568÷16pp + 65%→60%段10,562,908÷5pp + 60%→50%段14,860,374÷10pp，三段边界拼合且分量逐项吻合）；面板整数%读数Δpp30~32折算口径对应8.43~8.99亿；截图标题82%/32pp起始读数经更正为81%；按6.1官方credits档反推周池1,071cr（$42.85），linux.do观察Plus约3,426cr/周与Pro20x同池Sol-worth÷20更接近5.6等价费率下的$119.6/周——订阅内计费率或池口径差异记入不确定性；分段密度（6.1价）：seg1 $0.476/pp、seg2 $0.473/pp、seg3 $0.330/pp；Pro 5x/20x不派生（沿Sol裁定）；暂无榜分，有分后补supplement",
-      "en": "775M→870M (2026-09-30 decision: uniform workload-normalization for measured samples with token breakdown, recomputed as a whole after folding in the third segment 60%→50%): segment worth $13.2824 (cache 52.54M×$0.10 + input 2.74M×$2 + output 0.25M×$10) ÷31%×4 weeks = $171.39 ÷ standard-tier blended price $0.197/MTok; GPT-6.1 Sol official prices $0.10/$2/$10 (learn.chatgpt.com credits 2.5/50/250 ÷25, cached = 5% of input — replacing the 896M that first assumed the 6-Sol $0.2 price; if the 6-Sol price still applied the result would be 814M, kept for comparison); the raw-basis 7.17 is kept for comparison. Doubts (2026-10-01 decision: record first, adopt per the whole segment 81%→50%): the third segment 60%→50% yields $0.330 per 1%, about 30% below the first two segments' $0.476/$0.473, which the 10pp integer-reading rounding (about ±10%) cannot explain — cause unknown. The cache-read price was confirmed on 2026-10-01: GPT-6.1 Sol $0.10, GPT-6 Sol $0.20. Original adoption decision — new 717M: whole segment 55,532,850÷31%×4 weeks (= 81%→65% segment 30,109,568÷16pp + 65%→60% segment 10,562,908÷5pp + 60%→50% segment 14,860,374÷10pp — the three segment boundaries join and the component sums match item by item); panel integer-% readings Δpp 30~32 map to 843M~899M normalized; the screenshot title's 82%/32pp starting reading was corrected to 81%; back-deriving the weekly pool from the 6.1 official credits tier gives 1,071cr ($42.85), while linux.do observes Plus at about 3,426cr/week and the Pro 20x same-pool Sol-worth÷20 is closer to $119.6/week at a 5.6 equivalent rate — a possible difference in in-subscription metering rate or pool basis is recorded as uncertainty; segment densities (6.1 prices): seg1 $0.476/pp, seg2 $0.473/pp, seg3 $0.330/pp; Pro 5x/20x not derived (follows the Sol ruling); no benchmark score yet — a supplement will be added once one exists"
+      "zh": "8.70→15.16亿（2026-11-10）：两条标准负载周读数等权中点。旧 31pp / 8.70 亿不入权。整周按 67% used 外推的 2.151 亿、$38.47 已丢弃，不是输入。日志 6 点 65%→71%：4.08 亿、$73.17；7 点下降：3.50 亿、$62.71。中点周池 3.79 亿、$67.94 ×4周＝15.16 亿/月。不采：旧 31pp 与 $25.77/67pp 合并的 8.09 亿，以及把 2.151 亿算进中点的 12.48 亿。Pro 10x/20x 不派生。证据：local-samples-round1-2026-11-09.json。",
+      "en": "870M→1.516B (2026-11-10): equal-weight midpoint of two standard-load weekly readings. Old 31pp / 870M excluded from weight. The full-week 67% used extrapolation of 215.1M / $38.47 was discarded and is not an input. 6 logged points 65%→71%: 408M, $73.17; 7-point drop: 350M, $62.71. Midpoint weekly pool 379M, $67.94 ×4 weeks = 1.516B/month. Not adopted: 809M from merging old 31pp with $25.77/67pp, and 1.248B including 215.1M in the midpoint. Pro 10x/20x not derived. Evidence: local-samples-round1-2026-11-09.json."
     },
     {
       "zh": "8条实测源加权：Observatory 8.53、round10截图13.8、round13同框7.52、round14维护者面板10.0、msg7086 8.07、round14图4(2/3周)8.18、图2自述9.25、图3后台10.3亿/周；chatgpt-astra-round12/13/14",
@@ -105,6 +105,46 @@
     {
       "zh": "43.78→66.9亿（2026-09-24裁定按统一负载折算）：本段实测负载 cache读91.97%/cache写7.67%/输入0.001%/输出0.365% 偏离标准档；按Opus 5.5标价 cached$0.2/写5m $5/in$4/out$20 折段 worth $336.37 ÷48%×4周＝月$2803.06 list-worth ÷ Anthropic档混合价$0.419/MTok；面板%取整区间约65.53~68.32亿；cache写按1h $8敏感性77.12亿不采；原始total口径525,333,756÷48%×4周＝43.78亿（取整42.88~44.71）留作对照；裁定48pp全归Opus 5.5（若段内有其他计费模型消耗，Opus实际所占pp更少、周池更大，本值偏保守）；swe-2等免费不占额度；worth对账：恒定池口径Opus5.5按约0.6×标价计（与Astra周池3.12×张力指向共享池模型加权）；仅本行与同面板Astra行折算；effort仅影响速率；Pro $20档无数据不派生",
       "en": "4.378B→6.69B (2026-09-24 decision: normalized to the unified workload): this segment's measured mix — cache read 91.97% / cache write 7.67% / input 0.001% / output 0.365% — deviates from the standard tier; converted at Opus 5.5 list prices cached $0.2 / 5m write $5 / in $4 / out $20, segment worth $336.37 ÷48%×4 weeks = $2,803.06/month list-worth ÷ Anthropic-tier blended price $0.419/MTok; the panel-% rounding interval is about 6.553B~6.832B; the cache-write-at-1h-$8 sensitivity value 7.712B was not adopted; the raw-total basis 525,333,756÷48%×4 weeks = 4.378B (rounded interval 42.88~44.71) is kept for comparison; the ruling assigned all 48pp to Opus 5.5 (if other billable models also consumed within the segment, Opus's true pp share is smaller and the weekly pool larger, so this value is conservative); swe-2 and other free models do not draw quota; worth reconciliation: under a constant-pool basis Opus 5.5 counts at about 0.6× list price (in tension with Astra's weekly-pool 3.12× — pointing to shared-pool model weighting); only this row and the same-panel Astra row are normalized; effort only affects rate; the Pro $20 tier has no data and is not derived"
+    },
+    {
+      "zh": "维护者 Devin CLI /usage + /session-stats 双检查点（2026-10-31）：会话开始 Daily 0%/Weekly 47%，结束 Daily 13%/Weekly 53%；同一会话 in 321,872/out 41,557/cache_read 8,035,217 = 8,398,646 tok（8.4M，100% claude-sonnet-5.5 High）；devin-sonnet55-round1-2026-10-31.json；https://docs.devin.ai/admin/billing/self-serve Pro $20/月",
+      "en": "Maintainer's Devin CLI /usage + /session-stats double checkpoint (2026-10-31): start Daily 0% / Weekly 47%, end Daily 13% / Weekly 53%; same session in 321,872 / out 41,557 / cache_read 8,035,217 = 8,398,646 tok (8.4M, 100% claude-sonnet-5.5 High); devin-sonnet55-round1-2026-10-31.json; https://docs.devin.ai/admin/billing/self-serve Pro $20/month"
+    },
+    {
+      "zh": "新增6.44亿（2026-10-31，Anthropic 档；首个 Devin Pro 档 token+% 同框样本）：段 worth $2.0238÷6%×4周÷Anthropic档混合价$0.2095/MTok；raw 口径 5.6亿留作对照；n=1单会话 → medium",
+      "en": "Added 644M (2026-10-31, Anthropic tier; first Devin Pro tier token+% same-frame sample): segment worth $2.0238÷6%×4 weeks÷Anthropic-tier blended price $0.2095/MTok; raw basis 560M kept for comparison; n=1 single session → medium"
+    },
+    {
+      "zh": "维护者 Devin CLI /usage + /session-stats 双检查点（2026-10-31，紧接 Sonnet 5.5 段）：开始 Daily 13%/Weekly 53%，结束 Daily 17%/Weekly 55%；同一会话 24,455,396 tok（Haiku 5.5 Max 24M 98%）；devin-haiku55-round1-2026-10-31.json；https://docs.devin.ai/admin/billing/self-serve Pro $20/月",
+      "en": "Maintainer's Devin CLI /usage + /session-stats double checkpoint (2026-10-31, immediately after the Sonnet 5.5 segment): start Daily 13% / Weekly 53%, end Daily 17% / Weekly 55%; same session 24,455,396 tok (Haiku 5.5 Max 24M 98%); devin-haiku55-round1-2026-10-31.json; https://docs.devin.ai/admin/billing/self-serve Pro $20/month"
+    },
+    {
+      "zh": "新增82.09亿（2026-10-31，Anthropic 档；Haiku 5.5 首个 token+% 同框样本）：段 worth $0.6290÷2%×4周÷Anthropic档混合价$0.015325/MTok；2pp 分辨率粗 → low",
+      "en": "Added 8.209B (2026-10-31, Anthropic tier; first Haiku 5.5 token+% same-frame sample): segment worth $0.6290÷2%×4 weeks÷Anthropic-tier blended price $0.015325/MTok; coarse 2pp resolution → low"
+    },
+    {
+      "zh": "维护者 Devin CLI /usage + /session-stats 双检查点（2026-10-31，紧接 Haiku 5.5 段）：开始 Daily 17%/Weekly 55%，结束 Daily 47%/Weekly 70%；同一会话 7,687,745 tok（Muse Wonder High 100%）；devin-muse-wonder-round1-2026-10-31.json；https://docs.devin.ai/admin/billing/self-serve Pro $20/月",
+      "en": "Maintainer's Devin CLI /usage + /session-stats double checkpoint (2026-10-31, immediately after the Haiku 5.5 segment): start Daily 17% / Weekly 55%, end Daily 47% / Weekly 70%; same session 7,687,745 tok (Muse Wonder High 100%); devin-muse-wonder-round1-2026-10-31.json; https://docs.devin.ai/admin/billing/self-serve Pro $20/month"
+    },
+    {
+      "zh": "新增2.05亿（2026-10-31，未折算/raw total）：7,687,745÷15%×4周＝2.05亿 raw；15pp信号强 → medium",
+      "en": "Added 205M (2026-10-31, not workload-normalized / raw total): 7,687,745÷15%×4 weeks = 205M raw; strong 15pp signal → medium"
+    },
+    {
+      "zh": "维护者 Devin CLI /usage + /session-stats 双检查点（2026-10-31，紧接 Muse Wonder 段）：开始 Daily 47%/Weekly 70%，结束 Daily 72%/Weekly 83%；同一会话 4,466,768 tok（Fable 5.1 High 98%）；devin-fable51-round1-2026-10-31.json；https://docs.devin.ai/admin/billing/self-serve Pro $20/月；https://platform.claude.com/docs/en/about-claude/pricing",
+      "en": "Maintainer's Devin CLI /usage + /session-stats double checkpoint (2026-10-31, immediately after the Muse Wonder segment): start Daily 47% / Weekly 70%, end Daily 72% / Weekly 83%; same session 4,466,768 tok (Fable 5.1 High 98%); devin-fable51-round1-2026-10-31.json; https://docs.devin.ai/admin/billing/self-serve Pro $20/month; https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "zh": "新增1.46亿（2026-10-31，Anthropic 档；Fable 5.1 首个 token+% 同框样本）：段 worth $3.8270÷13%×4周÷Anthropic档混合价$0.805/MTok；n=1单会话 → medium",
+      "en": "Added 146M (2026-10-31, Anthropic tier; first Fable 5.1 token+% same-frame sample): segment worth $3.8270÷13%×4 weeks÷Anthropic-tier blended price $0.805/MTok; n=1 single session → medium"
+    },
+    {
+      "zh": "维护者 Devin CLI /usage + /session-stats 双检查点（2026-11-01，新周窗）：开始 Daily 0%/Weekly 0%，结束 Daily 56%/Weekly 28%；同一会话 14,307,644 tok（Opus 5.5 High 100%）；devin-pro-opus55-round1-2026-11-01.json；https://docs.devin.ai/admin/billing/self-serve Pro $20/月；https://platform.claude.com/docs/en/about-claude/pricing",
+      "en": "Maintainer's Devin CLI /usage + /session-stats double checkpoint (2026-11-01, new weekly window): start Daily 0% / Weekly 0%, end Daily 56% / Weekly 28%; same session 14,307,644 tok (Opus 5.5 High 100%); devin-pro-opus55-round1-2026-11-01.json; https://docs.devin.ai/admin/billing/self-serve Pro $20/month; https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "zh": "新增2.93亿（2026-11-01，Anthropic 档；Devin Pro × Opus 5.5 首个零起点样本）：段 worth $8.5825÷28%×4周÷Anthropic档混合价$0.419/MTok；零起点、100% 单模型、28pp → high",
+      "en": "Added 293M (2026-11-01, Anthropic tier; first Devin Pro × Opus 5.5 zero-start sample): segment worth $8.5825÷28%×4 weeks÷Anthropic-tier blended price $0.419/MTok; zero start, 100% single model, 28pp → high"
     },
     {
       "zh": "维护者Factory Droid本机实测：周额度（7-day rolling）已用1%→5%段（xhigh）+35,598,616 tok、5%@08:13→9%@12:40段（high，新会话47f9711d）+36,567,946 tok，合计+72,166,562 tok全为claude-opus-5-5（auto 0增量；glm-5.3-flash +50,317 属Droid Core免费池不计）；合计分拆 in 793,017/out 375,172/cache_create 3,640,056/cache_read 67,311,924/thinking 46,393；droid-opus55-max-round1-2026-09-29.json；https://factory.ai/pricing Max $200/月",
@@ -183,12 +223,12 @@
       "en": "https://www.anthropic.com/claude-haiku-5-5; tiered prices in list-prices-claude-haiku55-round1-2026-10-08.json"
     },
     {
-      "zh": "新增163.711亿：基准 claude_pro×opus-5.5 采用值30.54亿 × Opus5.5/Haiku5.5(>100k 档) 标价混合比5.360544（blended(0.2,4,20)/blended(0.05,0.50,2.50)＝$0.394/$0.0735）；>100k 档三段价均为 ≤100k 档 5×，故本档额度恰为主行 1/5；情景点与主行并列展示、不可相加；2026-10-08 套算，无订阅实测样本",
-      "en": "New 16.3711B: base claude_pro×opus-5.5 adopted value 3.054B × Opus 5.5/Haiku 5.5 (>100k tier) list-price blended ratio 5.360544 (blended(0.2,4,20)/blended(0.05,0.50,2.50) = $0.394/$0.0735); all three prices of the >100k tier are 5× the ≤100k tier, so this tier's allowance is exactly 1/5 of the main row; scenario points are shown alongside the main row and must not be summed; computed 2026-10-08, no in-subscription measurement"
+      "zh": "新增163.282亿：基准 claude_pro×opus-5.5 采用值30.46亿 × Opus5.5/Haiku5.5(>100k 档) 标价混合比5.360544（blended(0.2,4,20)/blended(0.05,0.50,2.50)＝$0.394/$0.0735）；>100k 档三段价均为 ≤100k 档 5×，故本档额度恰为主行 1/5；情景点与主行并列展示、不可相加；2026-10-08 套算，无订阅实测样本",
+      "en": "Added 16.3282B: baseline claude_pro×opus-5.5 adopted value 3.046B × Opus5.5/Haiku5.5 (>100k tier) list-price blended ratio 5.360544 (blended(0.2,4,20)/blended(0.05,0.50,2.50) = $0.394/$0.0735); all three >100k tier rates are 5× the ≤100k tier, so this tier's quota is exactly 1/5 of the main row; scenario point is displayed alongside the main row and is not additive; derived 2026-10-08 without subscription measurement samples"
     },
     {
-      "zh": "新增272.852亿：基准同上 × 混合档比8.934240（两档混合价取算术平均 $0.0441 再取比，非两个比值的平均）；假定一半用量落在 >100k 档，是情景假设而非实测分布（官方称约 90% 请求落在 ≤100k 档）→ low；情景点不可与主行相加",
-      "en": "New 27.2852B: same base × mixed-tier ratio 8.934240 (the two tiers' blended prices are averaged arithmetically to $0.0441 and then divided, not the average of the two ratios); assuming half of the usage falls in the >100k tier is a scenario assumption, not a measured distribution (the vendor states about 90% of requests land in the ≤100k tier) → low; scenario points must not be summed with the main row"
+      "zh": "新增272.137亿：基准同上 × 混合档比8.934240（两档混合价取算术平均 $0.0441 再取比，非两个比值的平均）；假定一半用量落在 >100k 档，是情景假设而非实测分布（官方称约 90% 请求落在 ≤100k 档）→ low；情景点不可与主行相加",
+      "en": "Added 27.2137B: same baseline × mixed-tier ratio 8.934240 (arithmetic mean $0.0441 of the two tiers' blended prices before taking the ratio, not the mean of two ratios); assumes half of usage falls in the >100k tier, a scenario assumption rather than measured distribution (Anthropic states ~90% of requests fall in the ≤100k tier) → low; scenario point is not additive with the main row"
     },
     {
       "zh": "新增1690.608亿：基准 claude_max_20x×opus-5.5 采用值315.38亿 × 同 >100k 档比5.360544；口径与 claude_pro >100k 行一致；2026-10-08 套算，无订阅实测样本",
@@ -215,12 +255,20 @@
       "en": "30.17B→31.538B (2026-09-30 decision, Anthropic tier): each path converted to Max 20x weekly-quota percentage points, then merged per pp — (i) the MiaAI window worth $471.10 (write at 5m; closes against the tweet's $482.63) = 75% of a window ÷ 5.5 windows/week = 13.636 weekly pp, 32.981B alone; (ii) the Pro × Opus 5.5 merged worth $628.00 / 196.333 Pro pp ÷ Max 20x weekly quota = Pro×10 → 19.633 weekly pp, 30.536B alone; the two paths differ by 8%. Not adopted: Pro 5h/week 13.333% (7.5 windows) applied directly to Max 20x gives 44.97B (Max 20x windows 20×, week 10× — the window/week ratio differs from Pro's); the official-multiplier derivation with 3.75 windows/week gives 22.49B (the MiaAI window is only 15.5× a Pro window, not 20× — inconsistent with both multipliers at once); equal-weight mean 31.758B; the #65 mixed sample not yet handled. Original 301.7 decision text — new 30.17B: 5h pool 1.0305B÷~75% = 1.374B raw (the 9/22 release had already raised Pro/Max/Team 5h caps, so the window pool reflects release-period basis); implied weight 7.15/13.74 = 0.5204×Opus5 → monthly pool 157÷0.5204; the list-price blend ratio 0.5143 independently corroborates (alternative 30.528B differs by 1.2%); the sample closes at the new price $471.1≈tweet $482.63 (+2.4%); n=1 tweet with no panel, ~75% rounded reading (monthly interval about 28.3B~32.2B), effort only affects rate; if official weights deviate from the price ratio (Fable 6.5× precedent) it must be re-derived; direct weekly-pool panel measurement or post-reset controlled saturation could raise it to high"
     },
     {
-      "zh": "issue #52（NTRYourWaifu）：两个 Pro 账号轮询 /api/oauth/usage seven_day %、按 message.id 去重，Opus 5.5 ≥95% 区段 1,396.81M raw = 周 +183pp；community-issues-round1-2026-09-29.json；另与 Reddit r/ClaudeCode 帖满窗段（grok_report 条目#1：151,193,723 raw = 周 13.333%）按百分点合并；claude-adoption-round10-2026-09-25.json",
-      "en": "issue #52 (NTRYourWaifu): two Pro accounts polling /api/oauth/usage seven_day %, deduplicated by message.id — Opus 5.5 ≥95% segments 1,396.81M raw = +183pp of the week; community-issues-round1-2026-09-29.json; merged per percentage point with the Reddit r/ClaudeCode full-window segment (grok_report item #1: 151,193,723 raw = 13.333% of the week); claude-adoption-round10-2026-09-25.json"
+      "zh": "issue #52（NTRYourWaifu）：两个 Pro 账号轮询 /api/oauth/usage seven_day %、按 message.id 去重，Opus 5.5 ≥95% 区段 1,396.81M raw = 周 +183pp；community-issues-round1-2026-09-29.json；另与 Reddit r/ClaudeCode 帖满窗段（grok_report 条目#1：151,193,723 raw = 周 13.333%）及维护者 2026-11-07 满 5h 窗（508 次，周份额 12.5%）按百分点合并；claude-adoption-round10-2026-09-25.json；local-samples-round1-2026-11-09.json",
+      "en": "issue #52 (NTRYourWaifu): two Pro accounts polling /api/oauth/usage seven_day %, deduplicated by message.id — Opus 5.5 ≥95% segments 1,396.81M raw = +183pp of the week; community-issues-round1-2026-09-29.json; merged per percentage point with the Reddit r/ClaudeCode full-window segment (grok_report item #1: 151,193,723 raw = 13.333% of the week) and the maintainer's full 5h window on 2026-11-07 (508 calls, week share 12.5%); claude-adoption-round10-2026-09-25.json; local-samples-round1-2026-11-09.json"
     },
     {
-      "zh": "28.99→30.54亿，2026-09-29 裁定：issue #52（两个 Pro 账号，每 5 分钟轮询 seven_day %，按 message.id 去重，只计 Opus 5.5 占 95% 以上区段）1,396.81M raw = 周 +183 个百分点，标价 worth $587.52（读 $0.2 / 1h 写 $8 / 5m 写 $5 / 入 $4 / 出 $20）；与原 Reddit 5h 段（worth $40.48 / 周 13.333%）按百分点合并：($40.48+$587.52)÷(13.333+183)＝$3.19865/pp → 月 $1,279.46 ÷ Anthropic 档 $0.419/MTok＝30.54亿。单看 #52 为 30.65、Reddit 段 28.98；raw total 口径 30.53，写全按 5m 价 27.39 不采。high/xhigh 每 1% 标价美元均约 $3.2，effort 只影响速率。互证（仅记录不入权，2026-09-30 裁定关闭 PR #77）：X @kanzakichiya ccusage 两周 478.15M raw＝周 22%+47%（口述），缓存写全为 1h，按实际写价 worth $208.25 → $3.018/pp → 28.81 亿，与 #52 $3.210/pp、Reddit 段 $3.036/pp 差 <7%；三源按百分点合并为 30.09 亿、写按 5m 为 24.52 亿，均不采（claude-adoption-round11-2026-09-30.json）。证据：community-issues-round1-2026-09-29.json。",
-      "en": "2.899B→3.054B, 2026-09-29 decision: issue #52 (two Pro accounts polling seven_day % every 5 minutes, deduplicated by message.id, only segments where Opus 5.5 exceeds 95%) 1,396.81M raw = +183 weekly percentage points, list-price worth $587.52 (read $0.2 / 1h write $8 / 5m write $5 / in $4 / out $20); merged per percentage point with the original Reddit 5h segment (worth $40.48 / 13.333% of the week): ($40.48+$587.52)÷(13.333+183) = $3.19865/pp → $1,279.46/month ÷ Anthropic tier $0.419/MTok = 3.054B. #52 alone gives 30.65, the Reddit segment 28.98; raw-total basis 30.53 — writes fully at the 5m price would be 27.39, not adopted. Both high and xhigh show about $3.2 list dollars per 1%; effort only affects rate. Corroboration (recorded only, not weighted — 2026-09-30 decision closing PR #77): X @kanzakichiya ccusage two weeks 478.15M raw = 22%+47% of weeks (verbal), cache writes all 1h, worth at actual write prices $208.25 → $3.018/pp → 2.881B, within <7% of #52's $3.210/pp and the Reddit segment's $3.036/pp; the three sources merged per pp give 3.009B, and 2.452B with writes at 5m — neither adopted (claude-adoption-round11-2026-09-30.json). Evidence: community-issues-round1-2026-09-29.json."
+      "zh": "30.54→30.46亿（2026-11-10，Anthropic 档）：维护者满 5h 窗 worth $38.424÷12.5pp 与 #52 $587.52/183pp、Reddit 段 $40.48/13.333pp 按百分点合并 → 月 ÷$0.419/MTok；证据：local-samples-round1-2026-11-09.json。",
+      "en": "3.054B→3.046B (2026-11-10, Anthropic tier): maintainer's full 5h window worth $38.424÷12.5pp merged per percentage point with #52 $587.52/183pp and Reddit segment $40.48/13.333pp → monthly ÷$0.419/MTok; evidence: local-samples-round1-2026-11-09.json."
+    },
+    {
+      "zh": "维护者本机 Claude Code：2026-11-09 19:56–20:19 PT，44 次 claude-fable-5-2（入 89 / 出 60,022 / 缓存读 9,410,355 / 1h 缓存写 282,950）；同一 5h 窗 15%→64%（+49pp）、同一周条 22%→29%（+7pp）；local-samples-round1-2026-11-09.json；https://platform.claude.com/docs/en/about-claude/pricing",
+      "en": "Maintainer's local Claude Code: 2026-11-09 19:56-20:19 PT, 44 claude-fable-5-2 calls (input 89 / output 60,022 / cache read 9,410,355 / 1h cache write 282,950); the same 5h window 15%→64% (+49pp) and the same weekly bar 22%→29% (+7pp); local-samples-round1-2026-11-09.json; https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "zh": "新增7.82亿（2026-11-10，Anthropic 档，medium）：段 worth $8.8109÷7pp×4周÷Anthropic档$0.644/MTok；raw 口径 5.57亿留作对照；n=1、整数读数 → medium。",
+      "en": "Added 782M (2026-11-10, Anthropic tier, medium): segment worth $8.8109÷7pp×4 weeks÷Anthropic tier $0.644/MTok; raw basis 557M kept for comparison; n=1, integer reading → medium."
     },
     {
       "zh": "V2EX受控打满127,272,629 token=整周100%，与 issue #56（Grok Build _x.ai/billing 轮询）两平常周223.1M=+193pp 按百分点合并→周池128,937,168；community-issues-round1-2026-09-29.json；workload-conversion-round1-2026-09-30.json",
@@ -619,12 +667,20 @@
       "en": "Old: 431.8M (request estimate)→314.2M: model monthly Usage $15 ÷ project standard-workload weighted price; Off-Peak; the Peak allowance is half, kept in research variants; OpenCode's price list unchanged. The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
     },
     {
+      "zh": "新增8.098亿：模型月Usage $60 ÷ 统一标准负载加权价；官网单档（2026-11-19 models API monthly_usage $60）。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
+      "en": "Added 809.8M: model monthly Usage $60 ÷ project standard-workload weighted price; single official tier (2026-11-19 models API monthly_usage $60). The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
+    },
+    {
       "zh": "旧4.917亿（请求估算）→4.049亿：模型月Usage $30 ÷ 统一标准负载加权价；官网单档。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
       "en": "Old: 491.7M (request estimate)→404.9M: model monthly Usage $30 ÷ project standard-workload weighted price; single official tier. The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
     },
     {
       "zh": "新增14.87亿：模型月Usage $60 ÷ 统一标准负载加权价；官网单档。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
       "en": "Added 1.487B: model monthly Usage $60 ÷ project standard-workload weighted price; single official tier. The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
+    },
+    {
+      "zh": "新增1.13亿：模型月Usage $15 ÷ 统一标准负载加权价；官网单档（2026-11-19 models API monthly_usage $15）。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加",
+      "en": "Added 113M: model monthly Usage $15 ÷ project standard-workload weighted price; single official tier (2026-11-19 models API monthly_usage $15). The official request counts serve only as a cross-check and are no longer the primary allowance figure; allowances of different models in the same plan are not additive"
     },
     {
       "zh": "https://open-design.ai/pricing/ 与 https://open-design.ai/model-credits/ 官方 Design Plan 与 Model credits 规则；100K stars 活动宣布 DeepSeek V4.1 Flash 额度翻倍至每月最高 $120",
@@ -735,8 +791,16 @@
       "en": "Added 62M: min(shared monthly pool $70, model allowance $20) ÷ project standard-workload weighted price; official three-part pricing; New models default $20. Processing fee ignored; allowances of different models in the same plan are not additive; no usage-panel token+% screenshot — computed from official absolute credits and the price list"
     },
     {
+      "zh": "新增2.699亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；official three-part price; $20 credits; goat-hy4-round1-2026-11-18.json。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表",
+      "en": "Added 269.9M: min(shared monthly pool $70, model allowance $20) ÷ project standard-workload weighted price; official three-part price; $20 credits; goat-hy4-round1-2026-11-18.json. Processing fee ignored; allowances of different models in the same plan are not additive; no usage-panel token+% screenshot — computed from official absolute credits and the price list"
+    },
+    {
       "zh": "新增2.699亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；官网三段价；New models 默认$20。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表",
       "en": "Added 269.9M: min(shared monthly pool $70, model allowance $20) ÷ project standard-workload weighted price; official three-part pricing; New models default $20. Processing fee ignored; allowances of different models in the same plan are not additive; no usage-panel token+% screenshot — computed from official absolute credits and the price list"
+    },
+    {
+      "zh": "新增1.507亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；official three-part price; $20 credits; goat-qwen4-max-round1-2026-11-17.json。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表",
+      "en": "Added 150.7M: min(shared monthly pool $70, model allowance $20) ÷ project standard-workload weighted price; official three-part price; $20 credits; goat-qwen4-max-round1-2026-11-17.json. Processing fee ignored; allowances of different models in the same plan are not additive; no usage-panel token+% screenshot — computed from official absolute credits and the price list"
     },
     {
       "zh": "新增9.145亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；官网三段价（本渠道 input=$0.16）；New models 默认$20。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表",
@@ -1163,10 +1227,6 @@
       "en": "Community estimate baseline: Keeper reports the Ultra 5x Gemini 4 Carbon allowance as 5h $50 / 7d $200 (unofficial figures); official tier multipliers Pro 1x / Ultra 5x 5x / Ultra 20x 20x ( https://one.google.com/about/google-ai-plans/ ); Carbon three-part prices in list-prices-gemini-4-carbon-round1-2026-10-29.json (promo $2/$10/$0.1, standard $4/$20/$0.2 after 12-01); converted under the project standard workload cache 97% / input 2.5% / output 0.5%, monthly pool counted as 4 weeks"
     },
     {
-      "zh": "新增 8.12 亿：7d $200 ÷ 官方 5× = 7d $40，×4 周 = $160/月，÷ 促销 blended $0.197/MTok。与同档 flash 点（25.81 亿）不冲突：Carbon 是独立小额度池，两者是不同模型口径。12-01 促销结束后按标准价 $0.394/MTok 折算只剩 4.06 亿，除非 Google 同步上调 credits。标准价口径见 google_ai_*_std 点。",
-      "en": "New 0.812B tokens: 7d $200 / official 5x = 7d $40, x4 weeks = $160/month, / promo blended $0.197/MTok. Does not conflict with the same-tier flash point (2.581B): Carbon is a separate small allowance pool, a different model basis. After the 12-01 promo ends, standard price $0.394/MTok leaves only 0.406B unless Google raises credits. Standard-price basis is filed as the google_ai_*_std points."
-    },
-    {
       "zh": "新增 40.61 亿：7d $200（Keeper 基准）×4 周 = $800/月 ÷ $0.197/MTok。同档 flash 点 129.05 亿，Carbon 口径只有其 31%，这就是「Carbon 额度少」的量化结果。12-01 后标准价折算降为 20.30 亿。标准价口径见 google_ai_*_std 点。",
       "en": "New 4.061B tokens: 7d $200 (Keeper baseline) x4 weeks = $800/month / $0.197/MTok. The same-tier flash point is 12.905B, so the Carbon basis is only 31% of it, which quantifies the complaint that the Carbon allowance is small. After 12-01 the standard price cuts it to 2.03B. Standard basis is filed as the google_ai_*_std points."
     },
@@ -1303,12 +1363,12 @@
       "en": "Added 296.6M: derived from ChatGPT Plus GPT-6 Astra measured baseline 159M x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.067431/MTok; not independently measured."
     },
     {
-      "zh": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_5x::gpt-6-astra 9.1 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
-      "en": "OpenAI official pricing and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Astra credit rates 200/10/1000 ($8/$0.40/$40 per MTok) vs. GPT-6 Astra 250/25/1250 ($10/$1/$50), giving a project standard-workload blended ratio of $1.47/$0.788 = 1.865482x, derived from the same-plan chatgpt_pro_5x::gpt-6-astra 910M; list-prices-gpt-62-round1-2026-11-18.json"
+      "zh": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_10x::gpt-6-astra 18.2 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "OpenAI official pricing and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Astra credit rates 200/10/1000 ($8/$0.40/$40 per MTok) vs. GPT-6 Astra 250/25/1250 ($10/$1/$50), giving a project standard-workload blended ratio of $1.47/$0.788 = 1.865482x, derived from the same-plan chatgpt_pro_10x::gpt-6-astra 1.82B; list-prices-gpt-62-round1-2026-11-18.json"
     },
     {
-      "zh": "新增 16.976 亿：由 ChatGPT Pro 5x 的 GPT-6 Astra 9.1 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.058907/MTok；非独立实测。",
-      "en": "Added 1.6976B: derived from ChatGPT Pro 5x GPT-6 Astra 910M x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.058907/MTok; not independently measured."
+      "zh": "新增 33.952 亿：由 ChatGPT Pro 10x 的 GPT-6 Astra 18.2 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.029453/MTok；非独立实测。",
+      "en": "Added 3.3952B: derived from ChatGPT Pro 10x GPT-6 Astra 1.82B x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.029453/MTok; not independently measured."
     },
     {
       "zh": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_20x::gpt-6-astra 加权实测值 38.12 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
@@ -1319,12 +1379,12 @@
       "en": "Added 7.1112B: derived from ChatGPT Pro 20x GPT-6 Astra 3.812B x official credit blended ratio 1.865482 ($1.47/$0.788), real = $0.028125/MTok; not independently measured."
     },
     {
-      "zh": "OpenAI 官方发布说明 https://openai.com/index/introducing-gpt-6-2-astra-sol/ 与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Sol 沿用 GPT-6.1 Sol 完全相同的积分与 API 费率（50/2.5/250 credits，即 $2/$0.10/$10 per MTok），沿用 chatgpt_plus::gpt-6.1-sol 实测口径 8.7 亿；list-prices-gpt-62-round1-2026-11-18.json",
-      "en": "OpenAI official announcement https://openai.com/index/introducing-gpt-6-2-astra-sol/ and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Sol retains the exact same credit and API rates as GPT-6.1 Sol (50/2.5/250 credits, i.e. $2/$0.10/$10 per MTok), carrying over the chatgpt_plus::gpt-6.1-sol measured basis 870M; list-prices-gpt-62-round1-2026-11-18.json"
+      "zh": "OpenAI 官方发布说明 https://openai.com/index/introducing-gpt-6-2-astra-sol/ 与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Sol 沿用 GPT-6.1 Sol 完全相同的积分与 API 费率（50/2.5/250 credits，即 $2/$0.10/$10 per MTok），沿用 chatgpt_plus::gpt-6.1-sol 实测口径 15.16 亿；list-prices-gpt-62-round1-2026-11-18.json",
+      "en": "OpenAI official announcement https://openai.com/index/introducing-gpt-6-2-astra-sol/ and Codex credit table https://learn.chatgpt.com/docs/pricing ; GPT-6.2 Sol uses the exact same credit and API rates as GPT-6.1 Sol (50/2.5/250 credits, i.e., $2/$0.10/$10 per MTok), carrying over the chatgpt_plus::gpt-6.1-sol measured basis of 1.516B; list-prices-gpt-62-round1-2026-11-18.json"
     },
     {
-      "zh": "新增 8.7 亿：GPT-6.2 Sol 与 GPT-6.1 Sol 积分与三段费率完全一致，沿用 ChatGPT Plus 实测基准 8.7 亿，real = $0.022989/MTok；Pro 5x/20x 沿 Sol 裁定不派生。",
-      "en": "Added 870M: GPT-6.2 Sol shares identical credit and three-part API rates with GPT-6.1 Sol, carrying over the ChatGPT Plus measured baseline 870M, real = $0.022989/MTok; Pro 5x/20x not derived per Sol ruling."
+      "zh": "新增 15.16 亿：GPT-6.2 Sol 与 GPT-6.1 Sol 积分与三段费率完全一致，沿用 ChatGPT Plus 最新周中点实测基准 15.16 亿，real = $0.013193/MTok；Pro 10x/20x 沿 Sol 裁定不派生。",
+      "en": "Added 1.516B: GPT-6.2 Sol shares identical credits and three-part rates with GPT-6.1 Sol, carrying over ChatGPT Plus's latest weekly-midpoint measured baseline 1.516B, real = $0.013193/MTok; Pro 10x/20x not derived per the Sol ruling."
     },
     {
       "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
@@ -1359,6 +1419,58 @@
       "en": "Added 6.4525B: India Ultra 5x (INR 6,500 ~ $68.86, includes 18% GST) shares the US quota pool, derived as Hydrogen 12.905B / 2; $68.86/mo / 6,452.5 MTok -> real = $0.010672/MTok; not independently measured."
     },
     {
+      "zh": "阿里云 Model Studio Token Plan 概览 https://help.aliyun.com/en/model-studio/token-plan-personal-overview 与 X @SSHCodes 2026-11-18 满月消耗实测 https://x.com/SSHCodes/status/2123184045572096137 （T3 Code 2,094 次响应耗尽 $18 档全部 80,000 credits，749M tokens 折合 API 价值 $87.76）；qwen-token-plan-standard-round1-2026-11-19.json",
+      "en": "Alibaba Cloud Model Studio Token Plan overview https://help.aliyun.com/en/model-studio/token-plan-personal-overview and X @SSHCodes 2026-11-18 full-month consumption measurement https://x.com/SSHCodes/status/2123184045572096137 (T3 Code exhausted all 80,000 credits of the $18 tier over 2,094 responses, 749M tokens worth $87.76 at API rates); qwen-token-plan-standard-round1-2026-11-19.json"
+    },
+    {
+      "zh": "新增 6.611 亿：@SSHCodes 耗尽 Standard 档（$18/月、80,000 credits）全月额度折合 API 价值 $87.76，按项目标准负载混合价 $0.13275/MTok（$0.075/$1.50/$4.50）折算月池 6.611 亿 tokens（real = $0.027227/MTok，4.88× 补贴）；单用户实测 n=1（preliminary）→ low。",
+      "en": "Added 661.1M: @SSHCodes exhausted the Standard tier ($18/month, 80,000 credits) full-month quota worth $87.76 at API rates, normalized at the project standard-workload blended price $0.13275/MTok ($0.075/$1.50/$4.50) to a 661.1M-token monthly pool (real = $0.027227/MTok, 4.88x subsidy); single-user measurement n=1 (preliminary) → low."
+    },
+    {
+      "zh": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+      "en": "Tencent Cloud International TokenHub personal Token Plan pricing and credit deduction rules https://intl.cloud.tencent.com/document/product/1300/81315 and https://intl.cloud.tencent.com/document/product/1300/81316 ; tencent-token-plan-round1-2026-11-19.json"
+    },
+    {
+      "zh": "新增 0.864 亿：月费 $7 含 1,000 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.081019/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+      "en": "Added 86.4M: $7/month includes 1,000 credits, normalized at Hy4 regular deduction rates (cached 6.563 / input 130.313 / output 390.781 credits/MTok, standard-workload blended 11.5778 credits/MTok), real = $0.081019/MTok; the Hy4 launch promo ended 2026-11-17 12:00."
+    },
+    {
+      "zh": "新增 1.17 亿：月费 $7 含 1,000 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+      "en": "Added 117M: $7/month includes 1,000 credits, normalized at Hy4 preview limited-time promo deduction rates (cached 5 / input 105 / output 215 credits/MTok, valid until 2026-11-30 12:00 CST, sunset 2026-12-07); must re-verify on expiry."
+    },
+    {
+      "zh": "新增 2.246 亿：月费 $17 含 2,600 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.075690/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+      "en": "Added 224.6M: $17/month includes 2,600 credits, normalized at Hy4 regular deduction rates (cached 6.563 / input 130.313 / output 390.781 credits/MTok, standard-workload blended 11.5778 credits/MTok), real = $0.075690/MTok; the Hy4 launch promo ended 2026-11-17 12:00."
+    },
+    {
+      "zh": "新增 3.041 亿：月费 $17 含 2,600 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+      "en": "Added 304.1M: $17/month includes 2,600 credits, normalized at Hy4 preview limited-time promo deduction rates (cached 5 / input 105 / output 215 credits/MTok, valid until 2026-11-30 12:00 CST, sunset 2026-12-07); must re-verify on expiry."
+    },
+    {
+      "zh": "新增 6.823 亿：月费 $51 含 7,900 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.074747/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+      "en": "Added 682.3M: $51/month includes 7,900 credits, normalized at Hy4 regular deduction rates (cached 6.563 / input 130.313 / output 390.781 credits/MTok, standard-workload blended 11.5778 credits/MTok), real = $0.074747/MTok; the Hy4 launch promo ended 2026-11-17 12:00."
+    },
+    {
+      "zh": "新增 9.24 亿：月费 $51 含 7,900 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+      "en": "Added 924M: $51/month includes 7,900 credits, normalized at Hy4 preview limited-time promo deduction rates (cached 5 / input 105 / output 215 credits/MTok, valid until 2026-11-30 12:00 CST, sunset 2026-12-07); must re-verify on expiry."
+    },
+    {
+      "zh": "新增 13.733 亿：月费 $103 含 15,900 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.075002/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+      "en": "Added 1.3733B: $103/month includes 15,900 credits, normalized at Hy4 regular deduction rates (cached 6.563 / input 130.313 / output 390.781 credits/MTok, standard-workload blended 11.5778 credits/MTok), real = $0.075002/MTok; the Hy4 launch promo ended 2026-11-17 12:00."
+    },
+    {
+      "zh": "新增 18.596 亿：月费 $103 含 15,900 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+      "en": "Added 1.8596B: $103/month includes 15,900 credits, normalized at Hy4 preview limited-time promo deduction rates (cached 5 / input 105 / output 215 credits/MTok, valid until 2026-11-30 12:00 CST, sunset 2026-12-07); must re-verify on expiry."
+    },
+    {
+      "zh": "Command Code 官方定价页 https://commandcode.ai/pricing （Max 10× 月费 $100 含 $150 零加价通用 credits，可使用全部高级与开源模型）；Muse Wonder 官方/AA 标价 $0.20/$4.00/$20.00 per MTok；list-prices-qwen4-hy4-round1-2026-11-19.json",
+      "en": "Command Code official pricing page https://commandcode.ai/pricing (Max 10x at $100/month includes $150 zero-markup universal credits, usable across all frontier and open-source models); Muse Wonder official/AA list price $0.20/$4.00/$20.00 per MTok; list-prices-qwen4-hy4-round1-2026-11-19.json"
+    },
+    {
+      "zh": "新增 3.807 亿：Max 10× 月费 $100 含 $150 零加价 credits，按 Muse Wonder 标准负载混合价 $0.394/MTok（$0.20/$4.00/$20.00）折算月池 3.807 亿 tokens（real = $0.262674/MTok，1.5× 补贴）；无面板 token+% 截图，按官方绝对 credits + 价表计算 → medium。",
+      "en": "Added 380.7M: Max 10x at $100/month includes $150 zero-markup credits, normalized at Muse Wonder standard-workload blended price $0.394/MTok ($0.20/$4.00/$20.00) to a 380.7M-token monthly pool (real = $0.262674/MTok, 1.5x subsidy); no usage-panel token+% screenshot — computed from official absolute credits + price list → medium."
+    },
+    {
       "zh": "由同套餐 gpt-5.6-sol 6.16 亿 × 1.9342105263157894",
       "en": "Derived from same-plan gpt-5.6-sol 616M × 1.9342105263157894"
     },
@@ -1375,20 +1487,20 @@
       "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (12.5, 125, 750); old multiplier 0.8, old monthly allowance 492.8M voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
     },
     {
-      "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 1.9342105263157894",
-      "en": "Derived from same-plan gpt-5.6-sol 3.08B × 1.9342105263157894"
+      "zh": "由同套餐 gpt-5.6-sol 61.6 亿 × 1.9342105263157894",
+      "en": "Derived from same-plan gpt-5.6-sol 6.16B × 1.9342105263157894"
     },
     {
-      "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(5, 50, 300)；旧倍率2、旧月额度61.6亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (5, 50, 300); old multiplier 2, old monthly allowance 6.16B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(5, 50, 300)；旧倍率2、旧月额度123.2亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
+      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (5, 50, 300); old multiplier 2, old monthly allowance 12.32B voided; the Sol baseline is kept, recomputed under the project's unified standard workload; see audit-round4-2026-09-05.json"
     },
     {
-      "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 0.7736842105263158",
-      "en": "Derived from same-plan gpt-5.6-sol 3.08B × 0.7736842105263158"
+      "zh": "由同套餐 gpt-5.6-sol 61.6 亿 × 0.7736842105263158",
+      "en": "Derived from same-plan gpt-5.6-sol 6.16B × 0.7736842105263158"
     },
     {
-      "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(12.5, 125, 750)；旧倍率0.8、旧月额度24.64亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
-      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (12.5, 125, 750); old multiplier 0.8, old monthly allowance 2.464B voided; the Sol baseline is kept, recomputed under the project standard workload; see audit-round4-2026-09-05.json"
+      "zh": "https://learn.chatgpt.com/docs/pricing 三段credits（cache/input/output）Sol=10/100/500，对比(12.5, 125, 750)；旧倍率0.8、旧月额度49.28亿作废；保留Sol基准，按项目统一标准负载重算；见audit-round4-2026-09-05.json",
+      "en": "https://learn.chatgpt.com/docs/pricing three-part credits (cache/input/output) Sol=10/100/500, vs (12.5, 125, 750); old multiplier 0.8, old monthly allowance 4.928B voided; the Sol baseline is kept, recomputed under the project's unified standard workload; see audit-round4-2026-09-05.json"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 129.02 亿 × 1.9342105263157894",
@@ -1411,8 +1523,8 @@
       "en": "Derived from gpt-5.6-sol 616M tokens under the same plan x 5.969543147208121"
     },
     {
-      "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 5.969543147208121",
-      "en": "Derived from gpt-5.6-sol 3.08B tokens under the same plan x 5.969543147208121"
+      "zh": "由同套餐 gpt-5.6-sol 61.6 亿 × 5.969543147208121",
+      "en": "Derived from same-plan gpt-5.6-sol 6.16B × 5.969543147208121"
     },
     {
       "zh": "由同套餐 gpt-5.6-sol 129.02 亿 × 5.969543147208121",
@@ -1471,8 +1583,8 @@
       "en": "From same plan claude-opus-5.5 3.054B x 1.3401360544217689"
     },
     {
-      "zh": "新增40.928亿：基准 claude_pro×opus-5.5 采用值30.54亿（low）×Opus5.5/Sonnet5.5 标价混合比1.340136（blended(0.2,4,20)/blended(0.2,2,10)＝0.394/0.294：cache read 同为$0.2、占标准负载97%权重，input/output 仅2×，故非简单 in/out 比2.0、亦非 Opus5 代2.5）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
-      "en": "New 4.0928B: base claude_pro x opus-5.5 adopted 3.054B (low) x Opus 5.5 / Sonnet 5.5 list-price blend ratio 1.340136 (blended(0.2,4,20)/blended(0.2,2,10) = 0.394/0.294: same $0.2 cache read at 97% of the standard workload, input/output only 2x, so neither the plain in/out 2.0 nor the Opus 5 generation 2.5); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
+      "zh": "新增40.928亿：基准 claude_pro×opus-5.5 锚点 30.54亿（low）×Opus5.5/Sonnet5.5 标价混合比1.340136（blended(0.2,4,20)/blended(0.2,2,10)＝0.394/0.294：cache read 同为$0.2、占标准负载97%权重，input/output 仅2×，故非简单 in/out 比2.0、亦非 Opus5 代2.5）；派生非实测→low；list-prices-claude-sonnet55-round1-2026-09-30.json",
+      "en": "Added 4.0928B: baseline claude_pro×opus-5.5 anchor 3.054B (low) × Opus5.5/Sonnet5.5 list-price blended ratio 1.340136 (blended(0.2,4,20)/blended(0.2,2,10) = 0.394/0.294: cache read is $0.2 for both and carries 97% standard-workload weight, while input/output is only 2×, so it is neither the naive in/out ratio 2.0 nor the Opus 5 era's 2.5); derived, not measured → low; list-prices-claude-sonnet55-round1-2026-09-30.json"
     },
     {
       "zh": "由同套餐 claude-opus-5.5 315.38 亿 × 1.3401360544217689",
@@ -1491,12 +1603,12 @@
       "en": "New 21.1326B: base claude_max_5x x opus-5 adopted 7.85B x tier ratio 2.008790 (same as the 5x x opus-5.5 row 301.7/157) x Opus 5.5 / Sonnet 5.5 list-price blend ratio 1.340136; equals the 20x Sonnet 5.5 derived value 422.652 / 2 (maintainer confirmed the 20x weekly pool is 2x the 5x pool, same as Opus 5.5 row 301.7/2); derived, not measured -> low; list-prices-claude-sonnet55-round1-2026-09-30.json"
     },
     {
-      "zh": "由同套餐 claude-opus-5.5 30.54 亿 × 26.802721088435373",
-      "en": "Derived from same-plan claude-opus-5.5 3.054B × 26.802721088435373"
+      "zh": "由同套餐 claude-opus-5.5 30.46 亿 × 26.802721088435373",
+      "en": "Derived from same-plan claude-opus-5.5 3.046B × 26.802721088435373"
     },
     {
-      "zh": "新增818.555亿：基准 claude_pro×opus-5.5 采用值30.54亿（high）×Opus5.5/Haiku5.5 标价混合比26.802721（blended(0.2,4,20)/blended(0.01,0.10,0.50)＝$0.394/$0.0147）；即 Claude Pro 额度改按 Haiku 5.5 结算时的理论可套量；灵敏度：套餐 worth 若按含 cache write 的 $0.419 计价（≈$1,279.6/月）÷$0.0147 = 870.49 亿，高 6.3%；2026-10-08 套算，无订阅实测样本；https://www.anthropic.com/claude-haiku-5-5",
-      "en": "New 81.8555B: base claude_pro×opus-5.5 adopted value 3.054B (high) × Opus 5.5/Haiku 5.5 list-price blended ratio 26.802721 (blended(0.2,4,20)/blended(0.01,0.10,0.50) = $0.394/$0.0147); the theoretical allowance if all of Claude Pro's quota were settled on Haiku 5.5; sensitivity: valuing the plan worth at the cache-write-inclusive $0.419 (about $1,279.6/month) ÷ $0.0147 = 87.049B, 6.3% higher; computed 2026-10-08, no in-subscription measurement; https://www.anthropic.com/claude-haiku-5-5"
+      "zh": "新增818.555亿：基准 claude_pro×opus-5.5 锚点 30.54亿（high）×Opus5.5/Haiku5.5 标价混合比26.802721（blended(0.2,4,20)/blended(0.01,0.10,0.50)＝$0.394/$0.0147）；即 Claude Pro 额度改按 Haiku 5.5 结算时的理论可套量；灵敏度：套餐 worth 若按含 cache write 的 $0.419 计价（≈$1,279.6/月）÷$0.0147 = 870.49 亿，高 6.3%；2026-10-08 套算，无订阅实测样本；https://www.anthropic.com/claude-haiku-5-5",
+      "en": "Added 81.8555B: baseline claude_pro×opus-5.5 anchor 3.054B (high) × Opus5.5/Haiku5.5 list-price blended ratio 26.802721 (blended(0.2,4,20)/blended(0.01,0.10,0.50) = $0.394/$0.0147); theoretical convertible volume if Claude Pro quota were billed at Haiku 5.5 rates; sensitivity: if plan worth uses cache-write-inclusive $0.419 (≈$1,279.6/month) ÷$0.0147 = 87.049B, 6.3% higher; derived 2026-10-08 without subscription measurement samples; https://www.anthropic.com/claude-haiku-5-5"
     },
     {
       "zh": "由同套餐 claude-opus-5.5 315.38 亿 × 26.802721088435373",
@@ -1531,12 +1643,12 @@
       "en": "Derived from the 20x adopted value 31.538B÷2 (confirmed the 20x weekly pool = 2× the 5x pool, same as the Opus 5 row's 157÷2; from 2026-09-30 the 20x value is the weighted MiaAI window ×5.5 windows/week and Pro×10, so old 20x 301.7 → this row 150.85); the old value 78.5×1/W = 15.0852B differs from 20x/2 only by the 301.7 rounding — the ruled on 2026-09-27 to merge them into the same point; the list-price method gives 15.264B, 1.2% off; claude-opus55-round1-2026-09-23.json"
     },
     {
-      "zh": "由同套餐 gpt-5.6-sol 30.8 亿 × 0.295458068516509",
-      "en": "Derived from same-plan gpt-5.6-sol 3.08B × 0.295458068516509"
+      "zh": "由同套餐 gpt-5.6-sol 61.6 亿 × 0.295458068516509",
+      "en": "Derived from same-plan gpt-5.6-sol 6.16B × 0.295458068516509"
     },
     {
-      "zh": "9.53→9.10011亿：38.12×30.8/129.02（沿用Sol 20x→5x档间比例，基准随Sol 20x加权值联动4.19×）；round12 codex#45085 prolite同框2.31亿/周≈9.2亿/月量级接近但为多代理Astra High放大样本，不直接采；chatgpt-astra-sameframe-round13-2026-09-20.json",
-      "en": "953M→910.011M: 38.12×30.8/129.02 (reusing the Sol 20x→5x inter-tier ratio; the baseline moves with the Sol 20x weighted value 4.19×); round12 codex#45085 prolite same-frame 231M/week ≈ 920M/month is close in magnitude but is a multi-agent Astra-High amplified sample — not directly adopted; chatgpt-astra-sameframe-round13-2026-09-20.json"
+      "zh": "9.10→18.2002亿：38.12×61.6/129.02（沿用Sol 20x→10x档间比例，2026-10-30 起 $100 档 5x→10x、比例4×→2×）；chatgpt-astra-sameframe-round13-2026-09-20.json；chatgpt-pro-10x-round1-2026-10-30.json",
+      "en": "910M→1.82002B: 38.12×61.6/129.02 (following the Sol 20x→10x tier ratio; from 2026-10-30 the $100 tier moved 5x→10x, ratio 4×→2×); chatgpt-astra-sameframe-round13-2026-09-20.json; chatgpt-pro-10x-round1-2026-10-30.json"
     },
     {
       "zh": "由同套餐 grok-4.6 77.37 亿 × 2.5799086757990866",
@@ -1879,16 +1991,12 @@
       "en": "platform.claude.com/docs/en/about-claude/pricing; launched 2026-09-28 keeping Sonnet 5 pricing $2/$10 (cache read 0.1x), cache write $2.5/5m $4/1h, Batch $1/$5; list-prices-claude-sonnet55-round1-2026-09-30.json"
     },
     {
-      "zh": "标价 cached 0.2/in 2.0/out 10.0 × 项目统一标准负载 97.0%/2.50%/0.50%",
-      "en": "List price cached 0.2/in 2.0/out 10.0 x project standard workload 97.0%/2.50%/0.50%"
-    },
-    {
       "zh": "https://www.anthropic.com/claude-haiku-5-5；2026-10-07发布，≤100k 档 cache read $0.01(输入0.1×)/cache write $0.125(输入1.25×)/输入 $0.10/输出 $0.50；官方称 90% 请求落在 ≤100k 档，>100k 档为 5×($0.05/$0.50/$2.50、写$0.625)；较 Haiku 4.5 降 90%",
       "en": "https://www.anthropic.com/claude-haiku-5-5; released 2026-10-07; ≤100k tier: cache read $0.01 (0.1× input) / cache write $0.125 (1.25× input) / input $0.10 / output $0.50; Anthropic says 90% of requests fall in the ≤100k tier, the >100k tier is 5× ($0.05 / $0.50 / $2.50, write $0.625); 90% cheaper than Haiku 4.5"
     },
     {
-      "zh": "标价 cached 0.01/in 0.1/out 0.5 × 项目统一标准负载 97.0%/2.50%/0.50%",
-      "en": "List price cached 0.01/in 0.1/out 0.5 × project standard workload 97.0%/2.50%/0.50%"
+      "zh": "标价 cached 0.01/in 0.1/out 0.5、缓存写(5m) $0.125 × Anthropic 统一负载 97.0%/2.50%/0.50%（普通输入份额按5分钟缓存写入价计）",
+      "en": "List price cached 0.01/in 0.1/out 0.5, cache write (5m) $0.125 × Anthropic unified workload 97.0%/2.50%/0.50% (the regular-input share is billed at the 5-minute cache-write price)"
     },
     {
       "zh": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/ 官方首发50%优惠目录价；list-prices-gemini-4-argon-round1-2026-10-01.json",

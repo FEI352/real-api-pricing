@@ -1,20 +1,20 @@
 # 模型 × 榜 可见性矩阵 / Model-by-board visibility
 
 > 由 `python scripts/visibility_matrix.py --write-docs` 生成，请勿手改。
-> 生成时间：2026-11-18 09:14 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-11-18）。
+> 生成时间：2026-11-19 09:20 UTC+08:00；数据：`web/public/data/site.json`（generatedAt=2026-11-19）。
 > 口径：mappings 与 configurations 的 join 与 `web/src/loadData.ts` 的 `unpackData()` 完全一致；可见性判据与 `web/src/domain.ts` 一致。
 
 ## 1. 榜覆盖统计
 
 | 榜 | 名称 | 快照 | 配置数 | 映射数 | 有分模型 | 最高分 |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| `aa_intelligence_index` | Artificial Analysis Intelligence Index v5.0.1 | 2026-11-18 | 80 | 433 | 36 | 64.5636 · `claude-fable-5.2` |
-| `terminal_bench_4` | Terminal-Bench 4.0 | 2026-10-06 | 38 | 229 | 25 | 64.85 · `claude-opus-5.5` |
-| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-11-18 | 77 | 436 | 33 | 67.1717 · `kimi-k3.1-pro` |
-| `arena_code` | Code Arena \| WebDev Overall | 2026-10-19 | 66 | 354 | 55 | 1807 · `claude-opus-5.5` |
-| `arena_agent_mode` | Agent Arena · Overall (Ranking / Pareto) | 2026-11-12 | 55 | 307 | 47 | 30.48 · `claude-fable-5.2` |
-| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-11-18 | 25 | 138 | 16 | 58.4031 · `claude-opus-5.5` |
-| `open_design_arena` | OpenDesign Arena · Quality ranking | 2026-10-01 | 16 | 88 | 16 | 90.1 · `gpt-6.1-sol` |
+| `aa_intelligence_index` | Artificial Analysis Intelligence Index v5.0.1 | 2026-11-19 | 88 | 490 | 40 | 64.5636 · `claude-fable-5.2` |
+| `terminal_bench_4` | Terminal-Bench 4.0 | 2026-10-06 | 38 | 236 | 25 | 64.85 · `claude-opus-5.5` |
+| `aa_terminal_bench_4` | Terminal-Bench 4.0 (AA) | 2026-11-19 | 85 | 492 | 37 | 67.1717 · `kimi-k3.1-pro` |
+| `arena_code` | Code Arena \| WebDev Overall | 2026-10-19 | 66 | 363 | 55 | 1807 · `claude-opus-5.5` |
+| `arena_agent_mode` | Agent Arena · Overall (Ranking / Pareto) | 2026-11-12 | 55 | 321 | 47 | 30.48 · `claude-fable-5.2` |
+| `aa_coding_agent_index` | Artificial Analysis Coding Agent Index v1.5 | 2026-11-19 | 26 | 150 | 17 | 58.6396 · `gemini-4-neon` |
+| `open_design_arena` | OpenDesign Arena · Quality ranking | 2026-10-01 | 16 | 94 | 16 | 90.1 · `gpt-6.1-sol` |
 | `deepswe_1_1` | DeepSWE v1.1 | 2026-09-03 | 71 | 441 | 28 | 77 · `deepseek-v4.1-flash` |
 
 ## 2. 全模型 × 榜 可见性总表
@@ -46,6 +46,7 @@
 | `gemini-4-argon` | ✓ | — | ✓ | — | ✓ | ✓ | — | — | 4 |
 | `gemini-4-carbon` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
 | `gemini-4-hydrogen` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
+| `gemini-4-neon` | ✓ | — | ✓ | — | — | ✓ | — | — | 3 |
 | `glm-5` | — | — | — | ✓ | — | — | — | — | 1 |
 | `glm-5.1` | — | — | — | ✓ | — | — | — | — | 1 |
 | `glm-5.2` | — | — | — | ✓ | ✓ | — | — | ✓ | 3 |
@@ -68,6 +69,7 @@
 | `grok-4.6` | — | ✓ | — | ✓ | ✓ | — | — | ✓ | 4 |
 | `grok-4.7` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 8 |
 | `hy3` | — | — | — | ✓ | ✓ | — | — | — | 2 |
+| `hy4` | ✓ | — | ✓ | — | — | — | — | — | 2 |
 | `hy4-preview` | — | — | — | ✓ | ✓ | — | ✓ | — | 3 |
 | `inkling` | ✓ | — | ✓ | ✓ | ✓ | — | — | — | 4 |
 | `inkling-small` | ✓ | — | — | ✓ | ✓ | — | — | — | 3 |
@@ -86,6 +88,7 @@
 | `minimax-m2.5` | — | — | — | ✓ | — | — | — | — | 1 |
 | `minimax-m2.7` | — | — | — | ✓ | — | — | — | — | 1 |
 | `minimax-m3` | ✓ | — | ✓ | ✓ | ✓ | — | — | — | 4 |
+| `minimax-m3.1-flash` | — | — | — | — | — | — | — | — | 0 |
 | `minimax-m3.1-flash-preview` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
 | `mistral-large-4` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
 | `mistral-medium-3.5` | ✓ | — | ✓ | ✓ | ✓ | — | — | — | 4 |
@@ -93,6 +96,7 @@
 | `muse-spark-1.2-contributor` | — | — | — | — | — | — | — | — | 0 |
 | `muse-spark-1.3` | ✓ | ✓ | — | ✓ | ✓ | ✓ | ✓ | — | 6 |
 | `muse-spark-1.3-contributor` | — | — | — | — | — | — | — | — | 0 |
+| `muse-wonder` | ✓ | — | ✓ | — | — | — | — | — | 2 |
 | `nemotron-3-ultra` | ✓ | — | ✓ | — | ✓ | — | — | — | 3 |
 | `qwen3.6-max-preview` | — | — | — | ✓ | — | — | — | — | 1 |
 | `qwen3.6-plus` | — | — | — | ✓ | — | — | — | — | 1 |
@@ -107,6 +111,7 @@
 | `qwen3.8-max` | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ | 5 |
 | `qwen3.8-max-0902` | — | ✓ | — | ✓ | — | — | — | — | 2 |
 | `qwen3.8-omni-flash` | — | — | — | — | — | — | — | — | 0 |
+| `qwen4-max` | ✓ | — | ✓ | — | — | — | — | — | 2 |
 | `step-3.5-flash` | — | — | — | — | — | — | — | — | 0 |
 | `step-3.7-flash` | — | — | — | — | — | — | — | — | 0 |
 | `step-5-preview` | ✓ | — | ✓ | ✓ | ✓ | ✓ | — | — | 5 |
@@ -127,7 +132,7 @@
 
 ### 案例 2：「任务用时轴没有 Haiku」
 
-`claude-haiku-5.5` 的 117 条映射配置全部没有 `response_time_seconds`（榜单未发布响应时间/速度档），因此「任务用时」轴上没有任何一行可画；切回「真实单价」轴即可看到（该轴不需要榜分数）。
+`claude-haiku-5.5` 的 130 条映射配置全部没有 `response_time_seconds`（榜单未发布响应时间/速度档），因此「任务用时」轴上没有任何一行可画；切回「真实单价」轴即可看到（该轴不需要榜分数）。
 
 ## 5. 自查命令
 
@@ -143,4 +148,4 @@
 python3 -c "import json;d=json.load(open('web/public/data/site.json'));c={x['configuration_id']:x for x in d['configurations']};print(sorted({c[m['configuration_id']]['board'] for m in d['mappings'] if c[m['configuration_id']]['model']=='claude-haiku-5.5' and c[m['configuration_id']]['score'] is not None}))"
 ```
 
-（当前快照：88 个模型 / 8 个榜 / 2426 条映射；其中 13 个模型在所有榜均无分。）
+（当前快照：93 个模型 / 8 个榜 / 2587 条映射；其中 14 个模型在所有榜均无分。）

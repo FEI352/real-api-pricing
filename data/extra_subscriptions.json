@@ -156,22 +156,6 @@
    "note": "新增 20.30 亿：土区额度池与美国版相同（与地区无关），标准价折算后与 google_ai_ultra_5x_us_std 同值。real = 29.73 ÷ 2,030 MTok = $0.014645/MTok，仍为美国标准价口径 $99.99 的 29.7%。"
   },
   {
-   "plan_id": "google_ai_pro_us",
-   "plan_name": "Google AI Pro",
-   "plan_name_en": "Google AI Pro",
-   "price": 19.99,
-   "currency": "USD",
-   "model": "gemini-4-carbon",
-   "monthly_yi": 8.12,
-   "confidence": "low",
-   "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
-   "note": "新增 8.12 亿：7d $200 ÷ 官方 5× = 7d $40，×4 周 = $160/月，÷ 促销 blended $0.197/MTok。与同档 flash 点（25.81 亿）不冲突：Carbon 是独立小额度池，两者是不同模型口径。12-01 促销结束后按标准价 $0.394/MTok 折算只剩 4.06 亿，除非 Google 同步上调 credits。标准价口径见 google_ai_*_std 点。",
-   "date_inherit": [
-    "google_ai_pro_us",
-    "gemini-4-carbon"
-   ]
-  },
-  {
    "plan_id": "google_ai_ultra_5x_us",
    "plan_name": "Google AI Ultra 5x",
    "plan_name_en": "Google AI Ultra 5x",
@@ -183,7 +167,7 @@
    "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
    "note": "新增 40.61 亿：7d $200（Keeper 基准）×4 周 = $800/月 ÷ $0.197/MTok。同档 flash 点 129.05 亿，Carbon 口径只有其 31%，这就是「Carbon 额度少」的量化结果。12-01 后标准价折算降为 20.30 亿。标准价口径见 google_ai_*_std 点。",
    "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -199,7 +183,7 @@
    "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
    "note": "新增 162.44 亿：7d $200 × 4（20× ÷ 5×）= 7d $800，×4 周 = $3200/月 ÷ $0.197/MTok。纯倍率外推，无任何 20x 侧实测；12-01 后标准价折算降为 81.22 亿。标准价口径见 google_ai_*_std 点。",
    "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -215,23 +199,7 @@
    "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json（促销 $2/$10/$0.1，12-01 后标准价 $4/$20/$0.2）；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
    "note": "新增 40.61 亿：额度与美国版同池（与地区无关），价格取土耳其官网直购 TRY 1,479.99 ≈ $29.73。real = 29.73 ÷ 4,061 MTok = $0.007321/MTok，为美国版 $99.99 的 29.7%。即土区用 30% 的价格买同样的 Carbon 额度，但绝对量仍只有同档 flash 点的 31%。标准价口径另立 google_ai_*_std 点（额度减半），见同批录入。",
    "date_inherit": [
-    "google_ai_pro_us",
-    "gemini-4-carbon"
-   ]
-  },
-  {
-   "plan_id": "google_ai_pro_us_std",
-   "plan_name": "Google AI Pro（标准价）",
-   "plan_name_en": "Google AI Pro (Standard)",
-   "price": 19.99,
-   "currency": "USD",
-   "model": "gemini-4-carbon",
-   "monthly_yi": 4.06,
-   "confidence": "low",
-   "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
-   "note": "新增 4.06 亿：与 google_ai_pro_us 同一月池 $160/月，但按 12-01 后的标准价 blended $0.394/MTok 折算，额度恰好是促销口径 8.12 亿的一半。价格仍记 $19.99，故 real 单价翻倍至 $0.0492/MTok。两个点同模型同分，本点更贵，属被支配的额度情景，不应进前沿。",
-   "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -247,7 +215,7 @@
    "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
    "note": "新增 20.30 亿：同 $800/月池 ÷ $0.394/MTok，为促销口径 40.61 亿的一半。这正是社区所说「12-01 促销结束额度再砍一半」的量化结果 —— 若 Google 不调整 credits，token 直接腰斩。",
    "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -263,7 +231,7 @@
    "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
    "note": "新增 81.22 亿：同 $3200/月池 ÷ $0.394/MTok，为促销口径 162.44 亿的一半。纯倍率外推，无 20x 侧实测。",
    "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -279,7 +247,7 @@
    "source": "社区预估基准：Keeper 统计 Ultra 5x 的 Gemini 4 Carbon 额度为 5h $50 / 7d $200（非官方数字）；官方档位倍率 Pro 1× / Ultra 5x 5× / Ultra 20x 20×（https://one.google.com/about/google-ai-plans/）；Carbon 三段价见 list-prices-gemini-4-carbon-round1-2026-10-29.json；按项目标准负载 cache 97% / input 2.5% / output 0.5% 折算，月池按 4 周计",
    "note": "新增 20.30 亿：土区额度池与美国版相同（与地区无关），标准价折算后与 google_ai_ultra_5x_us_std 同值。real = 29.73 ÷ 2,030 MTok = $0.014645/MTok，仍为美国标准价口径 $99.99 的 29.7%。",
    "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -566,7 +534,7 @@
    "main": true,
    "plan_name_en": "Google AI Ultra 5x (India)",
    "date_inherit": [
-    "google_ai_pro_us",
+    "google_ai_ultra_5x_us",
     "gemini-4-carbon"
    ]
   },
@@ -639,19 +607,19 @@
    ]
   },
   {
-   "plan_id": "chatgpt_pro_5x",
-   "plan_name": "ChatGPT Pro 5x",
-   "plan_name_en": "ChatGPT Pro 5x",
+   "plan_id": "chatgpt_pro_10x",
+   "plan_name": "ChatGPT Pro 10x",
+   "plan_name_en": "ChatGPT Pro 10x",
    "price": 100.0,
    "currency": "USD",
    "model": "gpt-6.2-astra",
-   "monthly_yi": 16.976,
+   "monthly_yi": 33.952,
    "confidence": "low",
-   "source": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_5x::gpt-6-astra 9.1 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
-   "note": "新增 16.976 亿：由 ChatGPT Pro 5x 的 GPT-6 Astra 9.1 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.058907/MTok；非独立实测。",
+   "source": "OpenAI 官方定价与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Astra 积分单价 200/10/1000（$8/$0.40/$40 per MTok），较 GPT-6 Astra 250/25/1250（$10/$1/$50）按项目标准负载折算混合价比 $1.47/$0.788 = 1.865482×，由同套餐 chatgpt_pro_10x::gpt-6-astra 18.2 亿派生；list-prices-gpt-62-round1-2026-11-18.json",
+   "note": "新增 33.952 亿：由 ChatGPT Pro 10x 的 GPT-6 Astra 18.2 亿 × 官方积分混合比 1.865482（$1.47÷$0.788）派生，real = $0.029453/MTok；非独立实测。",
    "main": false,
    "date_inherit": [
-    "chatgpt_pro_5x",
+    "chatgpt_pro_10x",
     "gpt-6-astra"
    ]
   },
@@ -679,10 +647,10 @@
    "price": 20.0,
    "currency": "USD",
    "model": "gpt-6.2-sol",
-   "monthly_yi": 8.7,
+   "monthly_yi": 15.16,
    "confidence": "medium",
-   "source": "OpenAI 官方发布说明 https://openai.com/index/introducing-gpt-6-2-astra-sol/ 与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Sol 沿用 GPT-6.1 Sol 完全相同的积分与 API 费率（50/2.5/250 credits，即 $2/$0.10/$10 per MTok），沿用 chatgpt_plus::gpt-6.1-sol 实测口径 8.7 亿；list-prices-gpt-62-round1-2026-11-18.json",
-   "note": "新增 8.7 亿：GPT-6.2 Sol 与 GPT-6.1 Sol 积分与三段费率完全一致，沿用 ChatGPT Plus 实测基准 8.7 亿，real = $0.022989/MTok；Pro 5x/20x 沿 Sol 裁定不派生。",
+   "source": "OpenAI 官方发布说明 https://openai.com/index/introducing-gpt-6-2-astra-sol/ 与 Codex 积分表 https://learn.chatgpt.com/docs/pricing ；GPT-6.2 Sol 沿用 GPT-6.1 Sol 完全相同的积分与 API 费率（50/2.5/250 credits，即 $2/$0.10/$10 per MTok），沿用 chatgpt_plus::gpt-6.1-sol 实测口径 15.16 亿；list-prices-gpt-62-round1-2026-11-18.json",
+   "note": "新增 15.16 亿：GPT-6.2 Sol 与 GPT-6.1 Sol 积分与三段费率完全一致，沿用 ChatGPT Plus 最新周中点实测基准 15.16 亿，real = $0.013193/MTok；Pro 10x/20x 沿 Sol 裁定不派生。",
    "main": true,
    "date_inherit": [
     "chatgpt_plus",
@@ -790,6 +758,158 @@
     "google_ai_pro_us",
     "gemini-4-neon"
    ]
+  },
+  {
+   "plan_id": "qwen_token_plan_standard",
+   "plan_name": "Qwen Token Plan Standard",
+   "plan_name_en": "Qwen Token Plan Standard",
+   "price": 18.0,
+   "currency": "USD",
+   "model": "qwen4-max",
+   "monthly_yi": 6.611,
+   "confidence": "low",
+   "source": "阿里云 Model Studio Token Plan 概览 https://help.aliyun.com/en/model-studio/token-plan-personal-overview 与 X @SSHCodes 2026-11-18 满月消耗实测 https://x.com/SSHCodes/status/2123184045572096137 （T3 Code 2,094 次响应耗尽 $18 档全部 80,000 credits，749M tokens 折合 API 价值 $87.76）；qwen-token-plan-standard-round1-2026-11-19.json",
+   "note": "新增 6.611 亿：@SSHCodes 耗尽 Standard 档（$18/月、80,000 credits）全月额度折合 API 价值 $87.76，按项目标准负载混合价 $0.13275/MTok（$0.075/$1.50/$4.50）折算月池 6.611 亿 tokens（real = $0.027227/MTok，4.88× 补贴）；单用户实测 n=1（preliminary）→ low。",
+   "main": true,
+   "data_date": "2026-11-16",
+   "data_date_kind": "sample"
+  },
+  {
+   "plan_id": "tencent_token_plan_lite",
+   "plan_name": "Tencent Token Plan Lite",
+   "plan_name_en": "Tencent Token Plan Lite",
+   "price": 7.0,
+   "currency": "USD",
+   "model": "hy4",
+   "monthly_yi": 0.864,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 0.864 亿：月费 $7 含 1,000 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.081019/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+   "main": true,
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_lite",
+   "plan_name": "Tencent Token Plan Lite",
+   "plan_name_en": "Tencent Token Plan Lite",
+   "price": 7.0,
+   "currency": "USD",
+   "model": "hy4-preview",
+   "monthly_yi": 1.17,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 1.17 亿：月费 $7 含 1,000 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+   "main": false,
+   "promo_until": "2026-11-30",
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_standard",
+   "plan_name": "Tencent Token Plan Standard",
+   "plan_name_en": "Tencent Token Plan Standard",
+   "price": 17.0,
+   "currency": "USD",
+   "model": "hy4",
+   "monthly_yi": 2.246,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 2.246 亿：月费 $17 含 2,600 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.075690/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+   "main": false,
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_standard",
+   "plan_name": "Tencent Token Plan Standard",
+   "plan_name_en": "Tencent Token Plan Standard",
+   "price": 17.0,
+   "currency": "USD",
+   "model": "hy4-preview",
+   "monthly_yi": 3.041,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 3.041 亿：月费 $17 含 2,600 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+   "main": false,
+   "promo_until": "2026-11-30",
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_pro",
+   "plan_name": "Tencent Token Plan Pro",
+   "plan_name_en": "Tencent Token Plan Pro",
+   "price": 51.0,
+   "currency": "USD",
+   "model": "hy4",
+   "monthly_yi": 6.823,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 6.823 亿：月费 $51 含 7,900 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.074747/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+   "main": true,
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_pro",
+   "plan_name": "Tencent Token Plan Pro",
+   "plan_name_en": "Tencent Token Plan Pro",
+   "price": 51.0,
+   "currency": "USD",
+   "model": "hy4-preview",
+   "monthly_yi": 9.24,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 9.24 亿：月费 $51 含 7,900 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+   "main": false,
+   "promo_until": "2026-11-30",
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_max",
+   "plan_name": "Tencent Token Plan Max",
+   "plan_name_en": "Tencent Token Plan Max",
+   "price": 103.0,
+   "currency": "USD",
+   "model": "hy4",
+   "monthly_yi": 13.733,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 13.733 亿：月费 $103 含 15,900 credits，按 Hy4 常态扣减系数（cached 6.563 / input 130.313 / output 390.781 credits/MTok，标准负载混合 11.5778 credits/MTok）折算，real = $0.075002/MTok；Hy4 首发促销已于 2026-11-17 12:00 结束。",
+   "main": false,
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "tencent_token_plan_max",
+   "plan_name": "Tencent Token Plan Max",
+   "plan_name_en": "Tencent Token Plan Max",
+   "price": 103.0,
+   "currency": "USD",
+   "model": "hy4-preview",
+   "monthly_yi": 18.596,
+   "confidence": "medium",
+   "source": "腾讯云国际站 TokenHub 个人 Token Plan 定价与积分扣减规则 https://intl.cloud.tencent.com/document/product/1300/81315 与 https://intl.cloud.tencent.com/document/product/1300/81316 ；tencent-token-plan-round1-2026-11-19.json",
+   "note": "新增 18.596 亿：月费 $103 含 15,900 credits，按 Hy4 preview 限时促销扣减系数（cached 5 / input 105 / output 215 credits/MTok，有效期至 2026-11-30 12:00 CST，2026-12-07 下线）折算；到期须复核。",
+   "main": false,
+   "promo_until": "2026-11-30",
+   "data_date": "2026-11-19",
+   "data_date_kind": "official"
+  },
+  {
+   "plan_id": "command_code_max_10x",
+   "plan_name": "Command Code Max 10×",
+   "plan_name_en": "Command Code Max 10×",
+   "price": 100.0,
+   "currency": "USD",
+   "model": "muse-wonder",
+   "monthly_yi": 3.807,
+   "confidence": "medium",
+   "source": "Command Code 官方定价页 https://commandcode.ai/pricing （Max 10× 月费 $100 含 $150 零加价通用 credits，可使用全部高级与开源模型）；Muse Wonder 官方/AA 标价 $0.20/$4.00/$20.00 per MTok；list-prices-qwen4-hy4-round1-2026-11-19.json",
+   "note": "新增 3.807 亿：Max 10× 月费 $100 含 $150 零加价 credits，按 Muse Wonder 标准负载混合价 $0.394/MTok（$0.20/$4.00/$20.00）折算月池 3.807 亿 tokens（real = $0.262674/MTok，1.5× 补贴）；无面板 token+% 截图，按官方绝对 credits + 价表计算 → medium。",
+   "main": true
   }
  ]
 }

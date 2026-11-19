@@ -1,0 +1,66 @@
+{
+  "collectedAt": "2026-11-19",
+  "collectionMethod": "Direct capture of Tencent Cloud International LLM Service TokenHub Personal Token Plan Overview (https://intl.cloud.tencent.com/document/product/1300/81315) and Credit Deduction Rules (https://intl.cloud.tencent.com/document/product/1300/81316) on 2026-11-19.",
+  "sources": [
+    "https://intl.cloud.tencent.com/document/product/1300/81315",
+    "https://intl.cloud.tencent.com/document/product/1300/81316"
+  ],
+  "scope": "Tencent Cloud Token Plan Personal Edition (Lite $7/1,000 credits, Standard $17/2,600 credits, Pro $51/7,900 credits, Max $103/15,900 credits) monthly credit allowances and per-model credit deduction coefficients for Hy4 (hy4) and Hy4 preview (hy4-preview, promo until 2026-11-30 12:00 UTC+8).",
+  "observed": {
+    "tiers": [
+      {
+        "plan_id": "tencent_token_plan_lite",
+        "plan_name": "Tencent Token Plan Lite",
+        "feeUsd": 7,
+        "monthlyCredits": 1000
+      },
+      {
+        "plan_id": "tencent_token_plan_standard",
+        "plan_name": "Tencent Token Plan Standard",
+        "feeUsd": 17,
+        "monthlyCredits": 2600
+      },
+      {
+        "plan_id": "tencent_token_plan_pro",
+        "plan_name": "Tencent Token Plan Pro",
+        "feeUsd": 51,
+        "monthlyCredits": 7900
+      },
+      {
+        "plan_id": "tencent_token_plan_max",
+        "plan_name": "Tencent Token Plan Max",
+        "feeUsd": 103,
+        "monthlyCredits": 15900
+      }
+    ],
+    "creditRatesPerMTok": {
+      "hy4": {
+        "standard": {
+          "cached": 6.563,
+          "input": 130.313,
+          "output": 390.781
+        },
+        "promoNote": "Hy4 promo (33/98/2) expired 2026-11-17 12:00 CST; standard credit rate applies."
+      },
+      "hy4-preview": {
+        "standard": {
+          "cached": 6.563,
+          "input": 130.313,
+          "output": 390.781
+        },
+        "promo": {
+          "cached": 5.0,
+          "input": 105.0,
+          "output": 215.0,
+          "until": "2026-11-30T12:00:00+08:00"
+        },
+        "discontinuedAt": "2026-12-07"
+      }
+    },
+    "derivedStandardMixMonthlyYi": {
+      "standardMix": "97% cache read / 2.5% input / 0.5% output",
+      "hy4_blended_credits_per_mtok": 11.57784,
+      "hy4_preview_promo_blended_credits_per_mtok": 8.549999999999999
+    }
+  }
+}

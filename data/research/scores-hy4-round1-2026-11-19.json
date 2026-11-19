@@ -1,0 +1,123 @@
+{
+  "collectedAt": "2026-11-19",
+  "supplement": true,
+  "supplementNote": "Tencent Hy4 于 2026-11-19 从 AA models 榜载荷录入：intelligenceIndex 34.5552、Terminal-Bench 4.0 37.3737%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-11-19",
+      "note": "2026-11-19 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-11-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "hy4",
+      "variantLabel": "Tencent Hy4",
+      "score": 34.5552,
+      "secondary": {
+        "configurationRank": 50,
+        "costPerTaskUsd": 1.0311,
+        "scoreRoundedDisplay": 35,
+        "intelligenceIndexIsEstimated": null,
+        "slug": "d274918e-ea82-4951-8b37-8ed9ab898dbc",
+        "shortName": "Tencent Hy4",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Tencent",
+        "effort": null,
+        "terminalBench40": 0.373737373737374,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 0.834,
+        "price1mOutputTokens": 2.501,
+        "cacheHitPrice": 0.042,
+        "intelligenceIndex": 34.5552385392508,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "hy4",
+      "variantLabel": "Artificial Analysis - Tencent Hy4",
+      "score": 37.3737,
+      "secondary": {
+        "configurationRank": 50,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "d274918e-ea82-4951-8b37-8ed9ab898dbc",
+        "shortName": "Tencent Hy4",
+        "terminalBench40Fraction": 0.373737373737374
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "id": "d274918e-ea82-4951-8b37-8ed9ab898dbc",
+        "release": {
+          "slug": "tencent-hy4",
+          "name": "Tencent Hy4"
+        },
+        "name": "Tencent Hy4",
+        "shortName": "Tencent Hy4",
+        "suffix": null,
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "medium",
+        "modelCreatorName": "Tencent",
+        "modelCreatorColor": "#5CB9FF",
+        "modelCreatorLogo": "/img/logos/tencent-hy.svg",
+        "contextWindowTokens": 1048576,
+        "intelligenceIndex": 34.5552385392508,
+        "omniscience": 5.4,
+        "scores": {
+          "aa-briefcase": 1445.86,
+          "omniscience-accuracy": 0.49966666666666665,
+          "omniscience-non-hallucination": 0.10926049300466356,
+          "automationbench-aa": 0.6561018180201071,
+          "terminal-bench-science": 0.128571428571429,
+          "frontiercode-2-0": 0.31447601010101,
+          "hle-diamond": 0.327,
+          "gdp-pdf": 0.216,
+          "terminalbench-4-0": 0.373737373737374,
+          "critpt-v2-hard": 0.39,
+          "mlcr-aa": 0.327777777777778
+        },
+        "intelligenceIndexCostPerTask": 1.0311060706397974,
+        "intelligenceIndexTimePerTask": 816.1748605440482,
+        "price1mInputTokens": 0.834,
+        "price1mOutputTokens": 2.501,
+        "cacheHitPrice": 0.042,
+        "cacheWritePrice": null,
+        "outputSpeed": 95.6388780304586,
+        "timeToFirstToken": 2.64979510705765,
+        "timeToFirstAnswerToken": 112.114339806265,
+        "terminalBench40": 0.373737373737374,
+        "slug": "d274918e-ea82-4951-8b37-8ed9ab898dbc"
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

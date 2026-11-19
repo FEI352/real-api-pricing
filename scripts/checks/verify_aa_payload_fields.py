@@ -29,7 +29,8 @@ MIN_RAW_ROWS = 250
 MIN_TIMED_ROWS = 150
 # 快照指纹：claude-haiku-5-5（max effort 行）在当前 v5.0 快照的 configurationRank。
 # 2026-11-18：新增 GPT-6.2 Astra / Sol 各 effort 档后顺移至 40。
-EXPECTED_HAIKU_RANK = 40
+# 2026-11-19：新增 Gemini 4 Neon 4 档后顺移至 44。
+EXPECTED_HAIKU_RANK = 44
 SCORE_TOLERANCE = 1e-9     # score 是 round(raw, 4) 的精确副本，只留浮点比较余量
 
 failures = []

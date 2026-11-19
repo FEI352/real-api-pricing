@@ -1,0 +1,315 @@
+{
+  "collectedAt": "2026-11-19",
+  "checkedAt": "2026-11-19T09:05:00+08:00",
+  "probeType": "daily-pricing-verification",
+  "scope": "2026-11-19 每日标价与采用值核查：1) 只读核验今日早间提交 237c5e5a 已入库的 Google Gemini 4 Neon (list-prices-gemini-4-neon-round1-2026-11-19.json) 与 OpenCode Go GLM-5.3 $500 限时促销 (opencode-go-glm53-boost-round1-2026-11-19.json)、scripts/build_adopted.py、scripts/compute.py 及全量标价/配置守卫；2) 对照今日 AA 实时载荷 (/tmp/aa_models_raw.json, 287 行) 与昨日快照 (scores-aa-round6-2026-11-18.json, 302 行) 核查新增、移除与改价 slug；3) 评估 /tmp/upstream.json 57 个上游新提交（重点 PR #242 / #243 / #244 与暂存区 8 个 staged 文件）；4) 核对主流厂商与订阅渠道当前标价及额度状态并形成候选清单。",
+  "summary": "2026-11-19 官方 API 标价与采用值核验结论：1) list-prices 无需新增：早间提交 237c5e5a 已创建并登记 data/research/list-prices-gemini-4-neon-round1-2026-11-19.json（$3.00/$0.15/$15.00，标准混合价 $0.2955/MTok），与今日 AA 载荷 4 个 gemini-4-neon-* 思考档及 Google 官方定价 100% 一致。今日 AA 新出现的其余 3 个 slug（inkling-high 为既有 inkling 次高档；joyvl2_v27 为 $0/$0 免费预览；k2-horizon-32b 无公开定价）均无需新建标价档。2) build_adopted.py 无需改动：早间已完备写入 OpenCode Go glm-5.3 $500 促销（16.171 亿/月，已由 live models API 复核确认）及 google_gemini4_neon_api / google_ai_pro_us::gemini-4-neon 等行，生成 400 行 data/adopted.csv，现有价格与配置守卫（verify_list_blended 367/367、verify_haiku55_tiers、verify_scenario_points、verify_hidden_defaults、verify_benchmark_configs）全部 PASS。3) AA 价格变动告警（无需改档但须留痕）：AA 今日将 gemini-4-carbon / -low / -medium 的 cacheHitPrice 由 $0.10 跳变为 $0.20（input/output 维持 $2/$10），但 Google 官方首发优惠（$2/$10/$0.10）有效至 2026-11-30，判定为 AA 提前采用标准期缓存价，比值 1.492x 落在 [0.5, 2.0] 内，暂维持既有引入档不变。4) compute.py 只读检查与 Lead 插入提示：LIST_PRICE_FILES（第 125 行）与 DISPLAY（第 144 行）已完备包含 gemini-4-neon；Lead 插入今日全量快照 scores-aa-round6-2026-11-19.json 时须紧跟第 85 行 scores-aa-round6-2026-11-18.json 之后、第 86 行 scores-terminal-bench4-round3-2026-10-01.json 之前，并注意复核第 102 行 supplement scores-gemini-4-neon-round1-2026-11-19.json 是否与今日全量快照重复计入。5) 上游 57 提交评估：PR #242/#243/#244 均为纯 research-only（其中 PR #243 的 GLM-5.3 $200 已被本地 $500 覆盖），暂存区 8 个 staged 文件与 upstream/main 字节级一致，源码级 5 个冲突文件维持严禁裸 merge。",
+  "listPricesInventory": {
+    "diskFilesCount": 22,
+    "registeredInComputePyCount": 21,
+    "unregisteredDraftFile": "data/research/list-prices-claude55-round1-2026-10-08.json (历史草稿，已被 list-prices-claude-sonnet55-round2-2026-10-09.json 与 list-prices-claude-haiku55-round1-2026-10-08.json 替代)",
+    "newFileToday": null,
+    "reusedEarlyCommitFile": "data/research/list-prices-gemini-4-neon-round1-2026-11-19.json",
+    "gemini4NeonVerification": {
+      "file": "data/research/list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "schemaValid": true,
+      "model": "gemini-4-neon",
+      "input": 3.0,
+      "cachedInput": 0.15,
+      "output": 15.0,
+      "currency": "USD",
+      "standardBlendedUsdPerMtok": 0.2955,
+      "aaPayloadMatch": "exact across all 4 slugs (gemini-4-neon-xhigh/high/medium/low: in=3, out=15, cache=0.15; scores match scores-gemini-4-neon-round1-2026-11-19.json)",
+      "officialPricingCheck": "matches Google Gemini API official pricing ($3.00 / $15.00 / $0.15 cache read, 1M context, no launch promo)"
+    },
+    "aaDailyDiffCheck": {
+      "todayRawRows": 287,
+      "yesterdayRawRows": 302,
+      "newSlugs": [
+        {
+          "slug": "gemini-4-neon-xhigh",
+          "index": 61.3982,
+          "rates": [3, 15, 0.15],
+          "listPriceStatus": "covered by list-prices-gemini-4-neon-round1-2026-11-19.json"
+        },
+        {
+          "slug": "gemini-4-neon-high",
+          "index": 59.6189,
+          "rates": [3, 15, 0.15],
+          "listPriceStatus": "covered by list-prices-gemini-4-neon-round1-2026-11-19.json"
+        },
+        {
+          "slug": "gemini-4-neon-medium",
+          "index": 54.8623,
+          "rates": [3, 15, 0.15],
+          "listPriceStatus": "covered by list-prices-gemini-4-neon-round1-2026-11-19.json"
+        },
+        {
+          "slug": "gemini-4-neon-low",
+          "index": 44.0832,
+          "rates": [3, 15, 0.15],
+          "listPriceStatus": "covered by list-prices-gemini-4-neon-round1-2026-11-19.json"
+        },
+        {
+          "slug": "inkling-high",
+          "index": 11.0316,
+          "rates": [1, 4.05, 0.17],
+          "listPriceStatus": "covered by existing inkling entry in list-prices-subscription-gaps-round1-2026-10-08.json; lower effort than inkling (xhigh 12.4782)"
+        },
+        {
+          "slug": "joyvl2_v27",
+          "index": 28.0361,
+          "rates": [0, 0, null],
+          "listPriceStatus": "not in adopted.csv; free preview, no list-prices needed"
+        },
+        {
+          "slug": "k2-horizon-32b",
+          "index": 13.8805,
+          "rates": [null, null, null],
+          "listPriceStatus": "not in adopted.csv; unpriced open model, no list-prices needed"
+        }
+      ],
+      "priceDiffsOnExistingSlugs": [
+        {
+          "slugs": ["gemini-4-carbon", "gemini-4-carbon-low", "gemini-4-carbon-medium"],
+          "yesterdayRates": {"input": 2, "output": 10, "cacheHitPrice": 0.1},
+          "todayRates": {"input": 2, "output": 10, "cacheHitPrice": 0.2},
+          "evaluation": "Google 官方首发优惠价（$2/$10，缓存读 $0.10）有效至 2026-11-30，12-01 起恢复标准价 $4/$20/$0.20；AA 今日将缓存读提至 $0.20 属提前按标准期缓存计价。AA 混合价 $0.294 vs 项目引入档 $0.197 比值 1.492x 在 [0.5, 2.0] 内，暂不新建 round2，2026-12-01 统一按到期窗口切换。"
+        }
+      ]
+    }
+  },
+  "vendors": {
+    "Google": {
+      "status": "gemini_4_neon_adopted_and_carbon_watch",
+      "recentChanges": [
+        "Gemini 4 Neon（2026-11-18 发布）标准目录价 $3.00 输入 / $0.15 隐式缓存读 / $15.00 输出（混合 $0.2955/MTok），已在早间提交 237c5e5a 完成 list-prices、API 按量行与 6 条 Google AI Pro/Ultra 订阅行入库",
+        "Gemini 4 Carbon 官方首发优惠（$2/$10/$0.10）维持至 2026-11-30（倒计时 T-11 天），12-01 起恢复 $4/$20/$0.20；今日 AA 榜单把 Carbon 的 cacheHitPrice 提前调至 $0.20",
+        "Gemini 4 Hydrogen ($1.50/$7.50/$0.075)、Gemini 4 Argon ($2/$10/$0.10 至 11-30) 与 Gemini 3.8 Flash ($0.75/$3.75/$0.075 至 12-31) 维持稳定"
+      ],
+      "handling": "Gemini 4 Neon 已完备；Carbon 缓存价异常只留痕不改档，待 12-01 到期统一切换"
+    },
+    "OpenCode_Go": {
+      "status": "glm53_500_promo_verified_and_qwen4_hy4_live",
+      "recentChanges": [
+        "实时拉取 https://opencode.ai/inference/go/v1/models（共 32 个目录条目）确认：glm-5.3 月额度为 Go $500 / Go Plus $1,000 / Go Teams $505，三段价 $1.40/$4.40/$0.26（限时至 2026-11-22，倒计时 T-3 天），与本地 237c5e5a 采用值 16.171 亿/月一致",
+        "live API 已包含 qwen4-max（$1.50/$4.50/$0.075，write 5m $1.875 / 1h $3，Go $15 / Go Plus $60 / Go Teams $20）、hy4（$0.834/$2.501/$0.042，Go $60 / Go Plus $240 / Go Teams $65）、hy4-flash-free（$0/$0）与 minimax-m3.1-flash（$0.15/$0.60/$0.015，Go $20 / Go Plus $80 / Go Teams $25）",
+        "deepseek-v4.1-flash 维持 Go $100 / Go Plus $200 / Go Teams $105；kimi-k3.1-pro 维持 Go $15 / Go Plus $60 / Go Teams $20"
+      ],
+      "handling": "glm-5.3 已采纳并需在 11-22 到期复核；qwen4-max / hy4 / minimax-m3.1-flash 列入候选清单"
+    },
+    "Command_Code_GOAT": {
+      "status": "pr242_tencent_hy4_observed",
+      "recentChanges": [
+        "PR #242 (2026-11-18): 新增付费模型 Tencent Hy4（tencent/hy4，slug hy4，$0.834/$2.501/$0.042，GOAT $20 / Go $6 / Pro $30），与既有 Hy4 Preview 价格和额度一致",
+        "PR #241 (2026-11-17): 新增 Qwen 4 Max（$1.50/$4.50/$0.075，GOAT $15 / Go $6 / Pro $25）与 Tencent Hy4 Flash（$0.07/$0.281/$0.003，GOAT $15 / Go $6 / Pro $25）",
+        "GLM-5.3 维持 boosted credits $70；DeepSeek V4.1 Flash 维持 $100"
+      ],
+      "handling": "Qwen 4 Max 与 Tencent Hy4 列入候选；Hy4 Flash 尚未上 AA 榜，继续观察"
+    },
+    "OpenAI": {
+      "status": "rates_stable_gpt62_adopted",
+      "recentChanges": [
+        "GPT-6.2 Astra ($8/$40/$0.40) 与 GPT-6.2 Sol ($2/$10/$0.10) 标价与 2026-11-18 入库值一致，未见新调价"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Anthropic": {
+      "status": "rates_stable_droid_fable52_pending",
+      "recentChanges": [
+        "Claude Fable 5.2 ($8/$40/$0.20)、Fable 5.1 ($10/$50/$0.25)、Opus 5.5 ($4/$20/$0.20)、Sonnet 5.5 ($2/$10/$0.20)、Haiku 5.5 ($0.10/$0.50/$0.01 <=100K) 标价稳定",
+        "Factory Droid 文档 (docs.factory.ai/docs/models) 列明 claude-fable-5.2 倍率为 3.2x（Opus 5.5 为 1.6x）"
+      ],
+      "handling": "官方 API 与 Claude 订阅完备；Droid Fable 5.2 3.2x 倍率留作候选"
+    },
+    "DeepSeek": {
+      "status": "rates_stable_search_fee_removed",
+      "recentChanges": [
+        "V4.1 Flash（闲时 $0.15/$0.60/$0.003，忙时 $0.30/$1.20/$0.006）与 V4 Pro 令牌单价稳定；2026-11-18 起 DeepSeek 取消搜索/抓取服务端额外计费，仅按模型 token 计费，不影响既有模型标价"
+      ],
+      "handling": "标价与采用值完备"
+    },
+    "Qwen": {
+      "status": "qwen4_max_ga_ready",
+      "recentChanges": [
+        "Qwen4 Max ($1.50/$4.50/$0.075，1M 上下文) 已在 AA 稳定出分（42.8915）且 OpenCode Go 与 Command Code GOAT 均已公开月额度"
+      ],
+      "handling": "维持高优先级待采纳候选"
+    },
+    "Mistral": {
+      "status": "rates_stable",
+      "recentChanges": ["Mistral Large 4 ($0.70/$2.10/$0.07) 与 Mistral Medium 3.5 ($1.50/$7.50) 稳定"],
+      "handling": "标价与采用值完备"
+    },
+    "MiniMax": {
+      "status": "rates_stable_m31_flash_in_opencode",
+      "recentChanges": [
+        "MiniMax M3.1 Flash ($0.15/$0.60/$0.015) 与 M3 ($0.30/$1.20/$0.06) 稳定；OpenCode Go live API 已上架 minimax-m3.1-flash ($20/月)"
+      ],
+      "handling": "API 与 MiniMax M Plan 完备；OpenCode Go 的 minimax-m3.1-flash 列入候选"
+    },
+    "Kimi": {
+      "status": "rates_stable",
+      "recentChanges": ["Kimi K3.1 Pro ($2/$10/$0.20) 与 K3 ($3/$15/$0.30) 稳定"],
+      "handling": "标价与采用值完备"
+    },
+    "StepFun": {
+      "status": "rates_stable",
+      "recentChanges": ["Step 3.5 / 3.7 Flash 与 Step 5 Preview 稳定"],
+      "handling": "标价与采用值完备"
+    },
+    "Factory_Droid_and_Devin": {
+      "status": "promo_and_multiplier_watch",
+      "recentChanges": [
+        "Factory Droid claude-fable-5.2 3.2x 倍率继续观察；gpt-5.6-sol 促销倍率将于 2026-11-22 到期（倒计时 T-3 天）",
+        "Devin SWE-2 维持本地 2026-11-12 官方永久权益定制（permanentUnmetered.devin_swe2）"
+      ],
+      "handling": "维持现状，11-22 复核 Droid 促销倍率"
+    }
+  },
+  "upstreamEvaluation": {
+    "checkedAt": "2026-11-19T09:00:55+08:00",
+    "upstreamRef": "upstream/main",
+    "head": "237c5e5a72b704994c78b608e9b34b3962d28932",
+    "upstreamHead": "40cfb4e34ca2263ef4ddf4b06c44cfa578a3d10c",
+    "mergeBase": "ed33da5febba8c4e0b3315d02b881c64765bbaed",
+    "commitCount": 57,
+    "verdict": "do_not_merge_directly",
+    "newPRsSince20261118": [
+      {
+        "pr": "#244",
+        "commits": ["40cfb4e3", "da423765"],
+        "date": "2026-11-18",
+        "files": ["data/research/opencode-go-qwen4-max-round2-2026-11-17.json"],
+        "classification": "research-only",
+        "conflict": false,
+        "summary": "OpenCode Go Qwen4 Max 月额度（Go $15 / Go Plus $60 / Go Teams $20）与三段价（$1.50/$4.50/$0.075，write 5m $1.875 / 1h $3）"
+      },
+      {
+        "pr": "#243",
+        "commits": ["b1cde5f0", "d1cc66e6"],
+        "date": "2026-11-18",
+        "files": ["data/research/opencode-go-glm53-limit-round1-2026-11-18.json"],
+        "classification": "research-only",
+        "conflict": false,
+        "summary": "OpenCode Go GLM-5.3 月额度 $15 -> $200（Phase 2）；已被本地 237c5e5a 采用的 Phase 3 $500 促销（opencode-go-glm53-boost-round1-2026-11-19.json）超越"
+      },
+      {
+        "pr": "#242",
+        "commits": ["588a552c", "464ef382"],
+        "date": "2026-11-18",
+        "files": ["data/research/goat-hy4-round1-2026-11-18.json"],
+        "classification": "research-only",
+        "conflict": false,
+        "summary": "Command Code GOAT 新增付费模型 Tencent Hy4（tencent/hy4，$0.834/$2.501/$0.042，GOAT $20 / Go $6 / Pro $30，与既有 Hy4 Preview 同价同额度）"
+      }
+    ],
+    "stagedLocalOverlapFiles": [
+      "data/research/goat-hy4-flash-round1-2026-11-17.json",
+      "data/research/goat-hy4-round1-2026-11-18.json",
+      "data/research/goat-qwen4-max-round1-2026-11-17.json",
+      "data/research/magpie-single-model-weekly-round3-2026-11-16-aligned-evidence.csv",
+      "data/research/magpie-single-model-weekly-round3-2026-11-16.json",
+      "data/research/magpie-single-model-weekly-round3-2026-11-16.md",
+      "data/research/opencode-go-glm53-limit-round1-2026-11-18.json",
+      "data/research/opencode-go-qwen4-max-round2-2026-11-17.json"
+    ],
+    "stagedFilesVerification": "8 个 staged 研究文件经逐一 diff 确认与 upstream/main 字节级 100% 一致，无任何脚本/配置冲突",
+    "sourceConflictFiles": [
+      "scripts/build_adopted.py",
+      "scripts/compute.py",
+      "scripts/plot_svg.py",
+      "scripts/checks/verify_deepswe.py",
+      "web/src/domain.test.ts"
+    ],
+    "conclusion": "5 个源码/测试文件与本地定制存在真冲突（SWE-2 永久权益、LOCAL_HARDWARE_HIDDEN、Haiku 5.5 full 档、OpenCode DeepSeek $100 / GLM-5.3 $500、Hydrogen / Neon / GPT-6.2 等），严禁直接 merge upstream/main；PR #242/#243/#244 与 PR #238/#241 共 8 份研究文件已安全处于暂存区且与上游一致。"
+  },
+  "candidateList": {
+    "adoptedEarlyToday": [
+      {
+        "model": "gemini-4-neon",
+        "listPricesFile": "data/research/list-prices-gemini-4-neon-round1-2026-11-19.json",
+        "rates": {"input": 3.0, "cachedInput": 0.15, "output": 15.0, "blended": 0.2955},
+        "adoptedRowsCount": 7,
+        "notes": "237c5e5a 已完成建档、7 条 adopted 行及 compute.py LIST_PRICE_FILES / DISPLAY 登记"
+      },
+      {
+        "planAndModel": "opencode_go::glm-5.3",
+        "rates": {"input": 1.4, "cachedInput": 0.26, "output": 4.4, "blended": 0.3092},
+        "monthlyUsageUsd": 500,
+        "monthlyYi": 16.171,
+        "realUsdPerMtok": 0.00618391,
+        "promoUntil": "2026-11-22",
+        "notes": "237c5e5a 已更新，live models API 验证一致，11-22 到期须复核"
+      }
+    ],
+    "watchlistAndCandidates": [
+      {
+        "model": "qwen4-max",
+        "priority": "high",
+        "aaRawScore": "42.8915 (aa_intelligence_index, TB4 48.48%, slug=qwen4-max, unmapped in 11-18 snapshot)",
+        "rates": {"input": 1.5, "cachedInput": 0.075, "output": 4.5, "cacheWrite5m": 1.875},
+        "quotas": "OpenCode Go: $15 Go / $60 Go Plus / $20 Go Teams (PR #244); Command Code GOAT: $15 GOAT / $6 Go / $25 Pro (PR #241)",
+        "actionRecommended": "交 Lead 决定是否本轮或下轮正式纳入（需 list-prices + AA --slug-map + build_adopted + i18n）"
+      },
+      {
+        "model": "tencent-hy4",
+        "priority": "medium",
+        "aaRawScore": "34.5552 (aa_intelligence_index, TB4 37.37%, slug=tencent-hy4, unmapped in 11-18 snapshot)",
+        "rates": {"input": 0.834, "cachedInput": 0.042, "output": 2.501},
+        "quotas": "OpenCode Go: $60 Go / $240 Go Plus / $65 Go Teams (live API: hy4); Command Code GOAT: $20 GOAT / $6 Go / $30 Pro (PR #242)",
+        "actionRecommended": "待 Lead 评估是否作为独立模型（区别于 hy4-preview）正式纳入"
+      },
+      {
+        "model": "claude-fable-5.2 (droid_max)",
+        "priority": "medium",
+        "aaRawScore": "64.5636 (已入榜)",
+        "rates": {"input": 8.0, "cachedInput": 0.2, "output": 40.0},
+        "quotas": "Factory Droid 文档 (docs.factory.ai/docs/models) 倍率 3.2x（Opus 5.5 为 1.6x）",
+        "actionRecommended": "待 Lead 确认后补入 DROID_MULTIPLIERS"
+      },
+      {
+        "model": "opencode_go::minimax-m3.1-flash",
+        "priority": "low",
+        "aaRawScore": "minimax-m3.1-flash-preview 已在库",
+        "rates": {"input": 0.15, "cachedInput": 0.015, "output": 0.6},
+        "quotas": "OpenCode Go live API: $20 Go / $80 Go Plus / $25 Go Teams",
+        "actionRecommended": "待确认是否将 minimax-m3.1-flash 纳入 OPENCODE_GO_MODELS"
+      },
+      {
+        "model": "inkling-high",
+        "priority": "low (AA slug mapping only)",
+        "aaRawScore": "11.0316 (今日 AA 新增 slug)",
+        "rates": {"input": 1.0, "cachedInput": 0.17, "output": 4.05},
+        "quotas": "已由 list-prices-subscription-gaps-round1-2026-10-08.json 的 inkling 覆盖",
+        "actionRecommended": "交 Worker-AA 视需要加 --slug-map inkling-high=inkling，无需建标价档"
+      },
+      {
+        "model": "hy4-flash",
+        "priority": "low (unscored)",
+        "aaRawScore": null,
+        "rates": {"input": 0.07, "cachedInput": 0.003, "output": 0.281},
+        "quotas": "Command Code GOAT $15 (PR #241); OpenCode Go 另有 hy4-flash-free",
+        "actionRecommended": "AA 未出分，保持 research-only 观察"
+      },
+      {
+        "model": "muse-ember / ling-3.1-flash-1019 / muse-wonder / deepseek-v4.1-flash-ultrafast",
+        "priority": "low",
+        "actionRecommended": "维持候选观察，无今日新增变动"
+      }
+    ],
+    "upcomingPromoExpirations": [
+      {"date": "2026-11-22", "daysLeft": 3, "items": ["OpenCode Go glm-5.3 $500 促销", "Factory Droid gpt-5.6-sol 促销倍率"]},
+      {"date": "2026-11-30", "daysLeft": 11, "items": ["Google gemini-4-carbon / gemini-4-argon 首发优惠价 ($2/$10/$0.10 -> $4/$20/$0.20)"]}
+    ]
+  },
+  "recommendationsForLead": {
+    "listPrices": "无需新增，确认复用早间提交 237c5e5a 已新建的 data/research/list-prices-gemini-4-neon-round1-2026-11-19.json。",
+    "buildAdopted": "无需改动（0 diff）。",
+    "computePy": {
+      "SCORE_FILES": "待 Worker-AA 产出今日全量快照后，紧跟第 85 行 'scores-aa-round6-2026-11-18.json' 之后、第 86 行 'scores-terminal-bench4-round3-2026-10-01.json' 之前插入 'scores-aa-round6-2026-11-19.json'（绝不能插到末尾）。同时请复核第 102 行 supplement 'scores-gemini-4-neon-round1-2026-11-19.json'：若 11-19 全量快照已包含 gemini-4-neon 4 档且该 supplement 仍留在第 102 行（位置在 11-19 之后且无 baseSnapshot），current_score_records() 会重复保留 8 条 gemini-4-neon 记录导致 verify_benchmark_configs 失败，需将其移至 11-19 全量快照之前或撤下。",
+      "LIST_PRICE_FILES": "无需新增（第 125 行已有 'list-prices-gemini-4-neon-round1-2026-11-19.json'）。",
+      "DISPLAY": "无需新增（第 144 行已有 'gemini-4-neon': 'Gemini 4 Neon'）。"
+    }
+  }
+}

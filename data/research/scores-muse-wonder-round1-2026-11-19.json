@@ -1,0 +1,133 @@
+{
+  "collectedAt": "2026-11-19",
+  "supplement": true,
+  "supplementNote": "Muse Wonder (max) 于 2026-11-19 从 AA models 榜载荷录入：intelligenceIndex 43.5748、Terminal-Bench 4.0 52.0202%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-11-19",
+      "note": "2026-11-19 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-11-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "muse-wonder",
+      "variantLabel": "Muse Wonder (max)",
+      "score": 43.5748,
+      "secondary": {
+        "configurationRank": 36,
+        "costPerTaskUsd": 6.952,
+        "scoreRoundedDisplay": 44,
+        "intelligenceIndexIsEstimated": null,
+        "slug": "ff2f3f3d-783f-4e27-8a39-47237501a313",
+        "shortName": "Muse Wonder (max)",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Meta",
+        "effort": null,
+        "terminalBench40": 0.52020202020202,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 4,
+        "price1mOutputTokens": 20,
+        "cacheHitPrice": 0.2,
+        "intelligenceIndex": 43.5748225998431,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "muse-wonder",
+      "variantLabel": "Artificial Analysis - Muse Wonder (max)",
+      "score": 52.0202,
+      "secondary": {
+        "configurationRank": 36,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "ff2f3f3d-783f-4e27-8a39-47237501a313",
+        "shortName": "Muse Wonder (max)",
+        "terminalBench40Fraction": 0.52020202020202
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "id": "ff2f3f3d-783f-4e27-8a39-47237501a313",
+        "release": {
+          "slug": "muse-wonder",
+          "name": "Muse Wonder"
+        },
+        "name": "Muse Wonder (Max)",
+        "shortName": "Muse Wonder (max)",
+        "suffix": "Max",
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "high",
+        "modelCreatorName": "Meta",
+        "modelCreatorColor": "#0089f4",
+        "modelCreatorLogo": "/img/logos/meta.svg",
+        "contextWindowTokens": 1048576,
+        "intelligenceIndex": 43.5748225998431,
+        "omniscience": 25.1,
+        "scores": {
+          "aa-briefcase": 1658.65,
+          "omniscience-accuracy": 0.38033333333333336,
+          "omniscience-non-hallucination": 0.7912856374394837,
+          "automationbench-aa": 0.6809455131207758,
+          "terminal-bench-science": 0.257142857142857,
+          "frontiercode-2-0": 0.27875303030303,
+          "hle-diamond": 0.39,
+          "gdp-pdf": 0.306,
+          "terminalbench-4-0": 0.52020202020202,
+          "critpt-v2-hard": 0.505,
+          "harvey-lab-aa": 0.1,
+          "gdpval-aa-normalized": 1770.34,
+          "code2video-aa": 997.01,
+          "mlcr-aa": 0.222222222222222,
+          "frontiercode": 0.464713333333333,
+          "vials-aa": 0.5527950310559007,
+          "mka": 0.47489477375902456,
+          "humanitys-last-exam": 0.500926784059314,
+          "artificial-analysis-long-context-reasoning": 0.806666666666667,
+          "scicode": 0.603009259259259,
+          "critpt": 0.282857142857143
+        },
+        "intelligenceIndexCostPerTask": 6.9520364786062245,
+        "intelligenceIndexTimePerTask": 823.5373175187085,
+        "price1mInputTokens": 4,
+        "price1mOutputTokens": 20,
+        "cacheHitPrice": 0.2,
+        "cacheWritePrice": null,
+        "outputSpeed": 116.646929104818,
+        "timeToFirstToken": 20.3767185066521,
+        "timeToFirstAnswerToken": 20.3767185066521,
+        "terminalBench40": 0.52020202020202,
+        "slug": "ff2f3f3d-783f-4e27-8a39-47237501a313"
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

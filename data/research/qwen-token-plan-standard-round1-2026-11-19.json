@@ -1,0 +1,35 @@
+{
+  "collectedAt": "2026-11-19",
+  "collectionMethod": "Direct capture of Alibaba Cloud Model Studio Token Plan Personal Edition overview (https://help.aliyun.com/en/model-studio/token-plan-personal-overview) and @SSHCodes full-month usage sample on X (https://x.com/SSHCodes/status/2123184045572096137, 2026-11-18) cross-checked against Priors PLAN_USAGE_SAMPLES.",
+  "sources": [
+    "https://help.aliyun.com/en/model-studio/token-plan-personal-overview",
+    "https://x.com/SSHCodes/status/2123184045572096137"
+  ],
+  "scope": "Alibaba Model Studio Token Plan Standard (CNY 139/month, $18/month equivalent used by @SSHCodes / Priors, 80,000 credits/month) full depletion sample on Qwen4 Max (qwen4-max).",
+  "observed": {
+    "plan": "Qwen Token Plan Standard",
+    "feeUsd": 18.0,
+    "feeCnyOfficial": 139.0,
+    "monthlyCredits": 80000,
+    "sample": {
+      "by": "@SSHCodes",
+      "period": "2026-11-15 to 2026-11-16",
+      "responses": 2094,
+      "harness": "T3 Code",
+      "tokens": {
+        "cached": 731600000,
+        "input": 15100000,
+        "output": 2260000
+      },
+      "listPricePerMTok": {
+        "cached": 0.075,
+        "input": 1.5,
+        "output": 4.5
+      },
+      "apiWorthUsd": 87.76,
+      "usedShare": 1.0,
+      "standardBlendedUsdPerMTok": 0.13275,
+      "derivedStandardLoadMonthlyYi": 6.611
+    }
+  }
+}

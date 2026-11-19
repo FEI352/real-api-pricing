@@ -1,0 +1,128 @@
+{
+  "collectedAt": "2026-11-19",
+  "supplement": true,
+  "supplementNote": "Qwen4 Max 于 2026-11-19 从 AA models 榜载荷录入：intelligenceIndex 42.8915、Terminal-Bench 4.0 48.4848%。",
+  "boards": [
+    {
+      "boardId": "aa_intelligence_index",
+      "name": "Artificial Analysis Intelligence Index v4.3",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Intelligence Index",
+      "snapshotDate": "2026-11-19",
+      "note": "2026-11-19 抓取 AA models 榜载荷中的该模型行。"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "name": "Terminal-Bench 4.0 (AA)",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "metric": "Resolution Rate %",
+      "snapshotDate": "2026-11-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段 × 100）。"
+    }
+  ],
+  "scores": [
+    {
+      "boardId": "aa_intelligence_index",
+      "model": "qwen4-max",
+      "variantLabel": "Qwen4 Max",
+      "score": 42.8915,
+      "secondary": {
+        "configurationRank": 37,
+        "costPerTaskUsd": 3.2681,
+        "scoreRoundedDisplay": 43,
+        "intelligenceIndexIsEstimated": null,
+        "slug": "fef6625d-9097-45f6-95c0-bcaa06e3d8e1",
+        "shortName": "Qwen4 Max",
+        "isReasoning": true,
+        "deprecated": false,
+        "modelCreatorName": "Alibaba",
+        "effort": null,
+        "terminalBench40": 0.484848484848485,
+        "scicode": null,
+        "hle": null,
+        "price1mInputTokens": 1.5,
+        "price1mOutputTokens": 4.5,
+        "cacheHitPrice": 0.075,
+        "intelligenceIndex": 42.8914543287565,
+        "medianOutputTokensPerSecond": null,
+        "medianTimeToFirstTokenSeconds": null,
+        "medianEndToEndResponseTimeSeconds": null,
+        "medianReasoningTimeSeconds": null
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-19"
+    },
+    {
+      "boardId": "aa_terminal_bench_4",
+      "model": "qwen4-max",
+      "variantLabel": "Artificial Analysis - Qwen4 Max",
+      "score": 48.4848,
+      "secondary": {
+        "configurationRank": 37,
+        "agentHarness": "Artificial Analysis",
+        "reasoningEffort": null,
+        "slug": "fef6625d-9097-45f6-95c0-bcaa06e3d8e1",
+        "shortName": "Qwen4 Max",
+        "terminalBench40Fraction": 0.484848484848485
+      },
+      "source": "https://artificialanalysis.ai/leaderboards/models",
+      "checkedAt": "2026-11-19",
+      "note": "AA 自家 harness 独立实测的 Terminal-Bench 4.0（models 榜载荷 terminalBench40 字段，fraction×100）；与 tbench.ai 官方榜分开计分。"
+    }
+  ],
+  "rawRecords": {
+    "aa_intelligence_index": [
+      {
+        "id": "fef6625d-9097-45f6-95c0-bcaa06e3d8e1",
+        "release": {
+          "slug": "qwen4-max",
+          "name": "Qwen4 Max"
+        },
+        "name": "Qwen4 Max",
+        "shortName": "Qwen4 Max",
+        "suffix": null,
+        "deprecated": false,
+        "isReasoning": true,
+        "isOpenWeights": false,
+        "paramClass": null,
+        "priceClass": "medium",
+        "modelCreatorName": "Alibaba",
+        "modelCreatorColor": "#ff7018",
+        "modelCreatorLogo": "/img/logos/alibaba.svg",
+        "contextWindowTokens": 983616,
+        "intelligenceIndex": 42.8914543287565,
+        "omniscience": 27.7,
+        "scores": {
+          "aa-briefcase": 1686.07,
+          "omniscience-accuracy": 0.437,
+          "omniscience-non-hallucination": 0.7158081705150977,
+          "automationbench-aa": 0.7256119376604481,
+          "terminal-bench-science": 0.233333333333333,
+          "frontiercode-2-0": 0.264534595959596,
+          "hle-diamond": 0.449,
+          "gdp-pdf": 0.262,
+          "terminalbench-4-0": 0.484848484848485,
+          "critpt-v2-hard": 0.43,
+          "aa-analyst-agent": 0.4625,
+          "harvey-lab-aa": 0.09444444444444443,
+          "enterprise-ops-gym-aa": 0.4852282900626679,
+          "gdpval-aa-normalized": 1808.69,
+          "mlcr-aa": 0.194444444444444,
+          "apex-agents-aa": 0.591445427728614
+        },
+        "intelligenceIndexCostPerTask": 3.2681327300897323,
+        "intelligenceIndexTimePerTask": 1876.9724529238817,
+        "price1mInputTokens": 1.5,
+        "price1mOutputTokens": 4.5,
+        "cacheHitPrice": 0.075,
+        "cacheWritePrice": null,
+        "outputSpeed": 55.9090660194196,
+        "timeToFirstToken": 6.25731434623756,
+        "timeToFirstAnswerToken": 146.144373841922,
+        "terminalBench40": 0.484848484848485,
+        "slug": "fef6625d-9097-45f6-95c0-bcaa06e3d8e1"
+      }
+    ],
+    "note": "AA 公开载荷原样留存，供 verify_aa_snapshot.py 交叉核对。"
+  }
+}

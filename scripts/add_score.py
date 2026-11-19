@@ -54,19 +54,28 @@ def fetch_payload(url: str, timeout: float = 90) -> list[dict]:
     return payload
 
 
+def _norm_key(s: object) -> str:
+    return str(s or "").lower().replace("-", "").replace(".", "").replace(" ", "").replace("_", "")
+
+
+def _row_ident(r: dict) -> str:
+    return str(r.get("slug") or r.get("id") or r.get("shortName") or r.get("name") or "")
+
+
 def pick_row(payload: list[dict], model: str, slug: str | None) -> dict:
     if slug:
-        row = next((r for r in payload if r.get("slug") == slug), None)
+        row = next((r for r in payload if r.get("slug") == slug or _norm_key(r.get("shortName") or r.get("name")) == _norm_key(slug)), None)
         if row is None:
-            near = [r["slug"] for r in payload if slug in str(r.get("slug"))][:5]
+            near = [_row_ident(r) for r in payload if slug.lower() in str(r.get("slug") or r.get("name") or "").lower()][:5]
             raise SystemExit(f"ERROR: 载荷里没有 slug={slug!r}；近似项：{near}")
         return row
-    key = model.lower().replace("-", "").replace(".", "")
+    key = _norm_key(model)
     hits = [r for r in payload
-            if key in str(r.get("name", "")).lower().replace("-", "").replace(".", "")
-            or key in str(r.get("slug", "")).lower().replace("-", "").replace(".", "")]
+            if key in _norm_key(r.get("name"))
+            or key in _norm_key(r.get("shortName"))
+            or key in _norm_key(r.get("slug"))]
     if len(hits) != 1:
-        names = [f'{r["slug"]} ({r.get("name")})' for r in hits[:8]]
+        names = [f'{r.get("slug")} ({r.get("shortName") or r.get("name")})' for r in hits[:8]]
         raise SystemExit(f"ERROR: --model {model!r} 命中 {len(hits)} 行，需用 --slug 指定：{names}")
     return hits[0]
 
@@ -80,9 +89,11 @@ def build_snapshot(row: dict, payload: list[dict], collected_at: str, round_no: 
 
     ranked = sorted((r for r in payload if r.get("intelligenceIndex") is not None),
                     key=lambda r: -r["intelligenceIndex"])
-    rank = next((i + 1 for i, r in enumerate(ranked) if r["slug"] == row["slug"]), None)
+    target_ident = _row_ident(row)
+    rank = next((i + 1 for i, r in enumerate(ranked) if _row_ident(r) == target_ident), None)
     label = row.get("shortName") or row["name"]
     idx = round(row["intelligenceIndex"], 4)
+    row_slug = row.get("slug") or row.get("id")
     scores = [{
         "boardId": BOARD_IDX,
         "model": None,  # 由调用方填项目 id
@@ -94,7 +105,7 @@ def build_snapshot(row: dict, payload: list[dict], collected_at: str, round_no: 
                                if row.get("intelligenceIndexCostPerTask") is not None else None),
             "scoreRoundedDisplay": round(row["intelligenceIndex"]),
             "intelligenceIndexIsEstimated": row.get("intelligenceIndexIsEstimated"),
-            "slug": row["slug"],
+            "slug": row_slug,
             "shortName": label,
             "isReasoning": row.get("isReasoning"),
             "deprecated": row.get("deprecated"),
@@ -125,7 +136,7 @@ def build_snapshot(row: dict, payload: list[dict], collected_at: str, round_no: 
                 "configurationRank": rank,
                 "agentHarness": "Artificial Analysis",
                 "reasoningEffort": None,
-                "slug": row["slug"],
+                "slug": row_slug,
                 "shortName": label,
                 "terminalBench40Fraction": row["terminalBench40"],
             },
@@ -205,7 +216,7 @@ def main() -> int:
     if out.exists():
         raise SystemExit(f"ERROR: {out.name} 已存在；确认要覆盖加 --round N 或先删旧档")
     label = doc["scores"][0]["variantLabel"]
-    print(f"slug     : {row['slug']}")
+    print(f"slug     : {row.get('slug') or row.get('id')}")
     print(f"model    : {args.model}")
     print(f"label    : {label}")
     print(f"index    : {doc['scores'][0]['score']}  (rank {doc['scores'][0]['secondary']['configurationRank']})")

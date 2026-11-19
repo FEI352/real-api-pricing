@@ -110,6 +110,10 @@ def extract_meta(html: str, slug: str = "") -> tuple[float | None, str | None, s
                     if "(max" in cname or "default" in cname:
                         matched_obj = c
                         break
+                if not matched_obj:
+                    no_paren = [c for c in candidates if "(" not in c.get("name", "")]
+                    if len(no_paren) == 1:
+                        matched_obj = no_paren[0]
                 if not matched_obj and len(candidates) == 1:
                     matched_obj = candidates[0]
 

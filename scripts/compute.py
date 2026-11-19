@@ -83,6 +83,8 @@ SCORE_FILES = (
     "scores-aa-round6-2026-11-16.json",
     "scores-aa-round6-2026-11-17.json",
     "scores-aa-round6-2026-11-18.json",
+    "scores-gemini-4-neon-round1-2026-11-19.json",
+    "scores-aa-round6-2026-11-19.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
     "scores-code-arena-round2-2026-10-01.json",
@@ -99,7 +101,9 @@ SCORE_FILES = (
     "scores-mistral-large-4-round1-2026-11-04.json",
     "scores-gemini-4-hydrogen-round1-2026-11-13.json",
     "scores-claude-fable-52-round1-2026-11-13.json",
-    "scores-gemini-4-neon-round1-2026-11-19.json",
+    "scores-qwen4-max-round1-2026-11-19.json",
+    "scores-hy4-round1-2026-11-19.json",
+    "scores-muse-wonder-round1-2026-11-19.json",
 )
 LIST_PRICE_FILES = (
     "list-prices-2026-09.json",
@@ -123,6 +127,7 @@ LIST_PRICE_FILES = (
     "list-prices-claude-fable-52-round1-2026-11-13.json",
     "list-prices-gpt-62-round1-2026-11-18.json",
     "list-prices-gemini-4-neon-round1-2026-11-19.json",
+    "list-prices-qwen4-hy4-round1-2026-11-19.json",
 )
 
 
@@ -151,7 +156,7 @@ DISPLAY = {
     "qwen3.8-27b": "Qwen3.8 27B", "qwen3.8-max-0902": "Qwen3.8 Max 0902",
     "qwen3.8-27b-dflash-5090": "Qwen3.8 27B (5090 DFlash)", "qwen3.8-27b-hyperqwen-3090": "Qwen3.8 27B (3090 HyperQwen)", "qwen3.8-27b-rtx-pro-6000": "Qwen3.8 27B (RTX Pro 6000)",
     "step-3.5-flash": "Step 3.5 Flash", "step-3.7-flash": "Step 3.7 Flash", "step-5-preview": "Step 5 Preview", "jev": "Jev",
-    "hy3": "Hy3", "hy4-preview": "Hy4 Preview", "omen-alpha": "Omen Alpha", "composer-2.5": "Composer 2.5",
+    "hy3": "Hy3", "hy4": "Hy4", "hy4-preview": "Hy4 Preview", "qwen4-max": "Qwen4 Max", "kimi-k3.1-pro": "Kimi K3.1 Pro", "minimax-m3.1-flash": "MiniMax M3.1 Flash", "muse-wonder": "Muse Wonder", "omen-alpha": "Omen Alpha", "composer-2.5": "Composer 2.5",
     "swe-2": "SWE-2",
 }
 VENDOR = {

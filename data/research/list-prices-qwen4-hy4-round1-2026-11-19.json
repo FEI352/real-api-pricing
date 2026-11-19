@@ -1,0 +1,33 @@
+{
+  "collectedAt": "2026-11-19",
+  "sourceType": "official model catalog & AA leaderboard metadata",
+  "source": "https://opencode.ai/inference/go/v1/models",
+  "checkedAt": "2026-11-19",
+  "scope": "Official list prices for Qwen4 Max (qwen4-max, $0.075/$1.50/$4.50) and Tencent Hy4 (hy4, $0.042/$0.834/$2.501) matching AA leaderboard and OpenCode Go / Command Code GOAT. Also includes Meta Muse Wonder (muse-wonder, $0.20/$4.00/$20.00 per MTok from AA models leaderboard).",
+  "models": [
+    {
+      "model": "qwen4-max",
+      "vendor": "Alibaba",
+      "input": 1.5,
+      "cachedInput": 0.075,
+      "output": 4.5,
+      "currency": "USD"
+    },
+    {
+      "model": "hy4",
+      "vendor": "Tencent",
+      "input": 0.834,
+      "cachedInput": 0.042,
+      "output": 2.501,
+      "currency": "USD"
+    },
+    {
+      "model": "muse-wonder",
+      "vendor": "Muse",
+      "input": 4.0,
+      "cachedInput": 0.2,
+      "output": 20.0,
+      "currency": "USD"
+    }
+  ]
+}
