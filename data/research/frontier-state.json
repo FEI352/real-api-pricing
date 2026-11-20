@@ -25,7 +25,7 @@
     {
       "id": "google_ai_pro_student::gemini-4-neon",
       "score": 61.3982,
-      "cost": 0.084501
+      "cost": 0.140836
     },
     {
       "id": "chatgpt_pro_20x::gpt-6.2-astra",
@@ -55,9 +55,19 @@
       "real_price": 0.0019372336
     },
     {
+      "id": "claude_max_20x::claude-sonnet-5.5",
+      "score": 54.5413,
+      "real_price": 0.0047320254
+    },
+    {
+      "id": "claude_max_20x::claude-opus-5.5",
+      "score": 59.106,
+      "real_price": 0.0063415562
+    },
+    {
       "id": "google_ai_pro_student::gemini-4-neon",
       "score": 61.3982,
-      "real_price": 0.0038744673
+      "real_price": 0.0064574454
     },
     {
       "id": "claude_pro::claude-fable-5.2",

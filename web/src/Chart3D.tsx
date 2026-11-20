@@ -112,6 +112,10 @@ export default function Chart3D({
   onSelect,
   handle,
   toolsSlot,
+  selectedCount,
+  totalCount,
+  isCustomSelection,
+  onOpenModelPicker,
 }: {
   rows: Row[];
   state: State;
@@ -122,6 +126,10 @@ export default function Chart3D({
   onSearch?: (query: string, lock: State["lock"]) => void;
   handle: React.RefObject<ChartHandle | null>;
   toolsSlot?: HTMLElement | null;
+  selectedCount?: number;
+  totalCount?: number;
+  isCustomSelection?: boolean;
+  onOpenModelPicker?: () => void;
 }) {
   const zh = state.lang === "zh";
   const dark = theme === "dark";
@@ -365,6 +373,29 @@ export default function Chart3D({
         </div>
 
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
+          {onOpenModelPicker && (
+            <button
+              type="button"
+              className="select-models"
+              onClick={onOpenModelPicker}
+              style={{ fontSize: 12, padding: "4px 10px" }}
+              title={
+                zh
+                  ? "独立于二维图的 3D 模型与套餐选择器（默认排除低于 Qwen3.8 27B 最高 AA 指数的模型）"
+                  : "Independent 3D model & plan selector (excludes models below Qwen3.8 27B max AA by default)"
+              }
+            >
+              <span>{zh ? "3D 模型" : "3D Models"}</span>
+              {selectedCount !== undefined && totalCount !== undefined && (
+                <span className="count">
+                  {selectedCount} / {totalCount}
+                </span>
+              )}
+              {isCustomSelection && (
+                <span style={{ color: dark ? "#F5B301" : "#B45309", fontWeight: 700 }}>•</span>
+              )}
+            </button>
+          )}
           <span className="fee-label">{zh ? "粒度" : "Scope"}</span>
           <div className="segmented">
             <button
@@ -1284,7 +1315,7 @@ function ThreeLogoDeckView({
 
   const bounds = useMemo(() => {
     if (!nodes.length) {
-      return { xMin: -2.5, xMax: 0.8, yMin: 2.0, yMax: 3.6, zMax: 68 };
+      return { xMin: -2.5, xMax: 0.8, yMin: 2.0, yMax: 3.6, zMin: 0, zMax: 68 };
     }
     const xs = nodes.map((n) => Math.log10(n.cost));
     const ys = nodes.map((n) => Math.log10(n.time));
@@ -1294,6 +1325,7 @@ function ThreeLogoDeckView({
       xMax: Math.max(...xs) + 0.16,
       yMin: Math.min(...ys) - 0.12,
       yMax: Math.max(...ys) + 0.12,
+      zMin: Math.min(...zs),
       zMax: Math.max(...zs, 62) + 6,
     };
   }, [nodes]);
@@ -1331,7 +1363,8 @@ function ThreeLogoDeckView({
         world: toWorld(bounds.xMax + 0.08, Math.log10(t), 0),
       });
     }
-    for (let s = 10; s <= 60; s += 10) {
+    const zStart = bounds.zMin >= 18 ? 20 : 10;
+    for (let s = zStart; s <= 60; s += 10) {
       specs.push({
         id: `sz-${s}`,
         text: `${s} pts`,

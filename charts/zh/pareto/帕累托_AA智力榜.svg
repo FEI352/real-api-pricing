@@ -9,7 +9,7 @@
 <text x="56.000" y="146.000" font-size="44" fill="#35483E" text-anchor="start" font-weight="400" class="serif" font-style="italic">Pareto frontier</text>
 <text x="384.000" y="143.000" font-size="16" fill="#858B81" text-anchor="start" font-weight="300" >帕累托前沿 · 全量</text>
 <text x="1388.000" y="76.000" font-size="31" fill="#343A33" text-anchor="end" font-weight="400" class="serif">Artificial Analysis</text>
-<text x="1388.000" y="107.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >榜单快照  2026-11-19</text>
+<text x="1388.000" y="107.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >榜单快照  2026-11-20</text>
 <text x="1388.000" y="136.000" font-size="12" fill="#737771" text-anchor="end" font-weight="400" >Intelligence Index v5.0.1</text>
 <rect x="40" y="184" width="1360" height="612" rx="20" fill="#FFFFFF"/>
 <path d="M1089.719 233V705" stroke="#E8EBE7" stroke-dasharray="2 7" opacity=".8"/>
@@ -64,7 +64,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Intelligence Index</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >真实单价 · 美元 / 百万 token</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >越右越便宜 →</text>
-<path id="frontier" d="M120.000,249.911 L650.738,249.911 L906.305,271.883 L1000.171,323.796 L1102.987,443.892 L1284.910,444.813 L1338.000,444.813" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,249.911 L650.738,249.911 L837.130,271.883 L839.582,287.794 L879.229,319.478 L1000.171,323.796 L1102.987,443.892 L1284.910,444.813 L1338.000,444.813" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.12578616" data-score="56.8539" data-x="435.022" data-y="303.426" transform="translate(435.022 303.426)"><title>GPT-6 Astra · Plus · $0.12579/MTok · 56.8539 · highGPT-6 Astra (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -119,8 +119,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.11574074" data-score="49.1602" data-x="446.293" data-y="356.829" transform="translate(446.293 356.829)"><title>Claude Fable 5.1 · Max 20x · 9/14+ · $0.11574/MTok · 49.1602 · mediumClaude Fable 5.1 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0063415562" data-score="59.106" data-x="839.582" data-y="287.794" transform="translate(839.582 287.794)"><title>Claude Opus 5.5 · Max 20x · 9/14+ / Claude Opus 5.5 · Max 5x · 9/14+ · $0.00634/MTok · 59.106 · mediumClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified. / Claude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0063415562" data-score="59.106" data-x="839.582" data-y="287.794" transform="translate(839.582 287.794)"><title>Claude Opus 5.5 · Max 20x · 9/14+ / Claude Opus 5.5 · Max 5x · 9/14+ · $0.00634/MTok · 59.106 · mediumClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified. / Claude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
+<circle r="4" fill="#CC5A2E"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0065659882" data-score="59.106" data-x="834.872" data-y="287.794" transform="translate(834.872 287.794)"><title>Claude Opus 5.5 · Pro · $0.00657/MTok · 59.106 · highClaude Opus 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
@@ -590,23 +591,23 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.013192612" data-score="57.2576" data-x="740.383" data-y="300.624" transform="translate(740.383 300.624)"><title>GPT-6.2 Sol · Plus · $0.01319/MTok · 57.2576 · mediumGPT-6.2 Sol (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.01549012" data-score="61.3982" data-x="718.642" data-y="271.883" transform="translate(718.642 271.883)"><title>Gemini 4 Neon · Google AI Pro · $0.01549/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.025816867" data-score="61.3982" data-x="649.466" data-y="271.883" transform="translate(649.466 271.883)"><title>Gemini 4 Neon · Google AI Pro · $0.02582/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.015496319" data-score="61.3982" data-x="718.588" data-y="271.883" transform="translate(718.588 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x · $0.0155/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.025827199" data-score="61.3982" data-x="649.412" data-y="271.883" transform="translate(649.412 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x · $0.02583/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0077485471" data-score="61.3982" data-x="812.446" data-y="271.883" transform="translate(812.446 271.883)"><title>Gemini 4 Neon · Google AI Ultra 20x · $0.00775/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.012914245" data-score="61.3982" data-x="743.271" data-y="271.883" transform="translate(743.271 271.883)"><title>Gemini 4 Neon · Google AI Ultra 20x · $0.01291/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0046075165" data-score="61.3982" data-x="882.840" data-y="271.883" transform="translate(882.840 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x (土耳其) · $0.00461/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0076791941" data-score="61.3982" data-x="813.664" data-y="271.883" transform="translate(813.664 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x (土耳其) · $0.00768/MTok · 61.3982 · lowGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0038744673" data-score="61.3982" data-x="906.305" data-y="271.883" transform="translate(906.305 271.883)"><title>Gemini 4 Neon · Google AI Pro 学生版 · $0.00387/MTok · 61.3982 · mediumGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0064574454" data-score="61.3982" data-x="837.130" data-y="271.883" transform="translate(837.130 271.883)"><title>Gemini 4 Neon · Google AI Pro 学生版 · $0.00646/MTok · 61.3982 · mediumGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#84CC16" stroke-width="1.35"/>
 <circle r="4" fill="#84CC16"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.010671833" data-score="61.3982" data-x="769.098" data-y="271.883" transform="translate(769.098 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x (印度) · $0.01067/MTok · 61.3982 · mediumGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.017786388" data-score="61.3982" data-x="699.923" data-y="271.883" transform="translate(699.923 271.883)"><title>Gemini 4 Neon · Google AI Ultra 5x (印度) · $0.01779/MTok · 61.3982 · mediumGemini 4 Neon (xhigh) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.027227348" data-score="42.8915" data-x="642.262" data-y="400.341" transform="translate(642.262 400.341)"><title>Qwen4 Max · Qwen Token Plan Standard · $0.02723/MTok · 42.8915 · lowQwen4 Max · Exact served-model reference; quota-measurement effort is unverified.</title>
@@ -648,8 +649,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0048866302" data-score="54.5413" data-x="874.875" data-y="319.478" transform="translate(874.875 319.478)"><title>Claude Sonnet 5.5 · Pro · $0.00489/MTok · 54.5413 · lowClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0047320254" data-score="54.5413" data-x="879.229" data-y="319.478" transform="translate(879.229 319.478)"><title>Claude Sonnet 5.5 · Max 20x · 9/14+ / Claude Sonnet 5.5 · Max 5x · 9/14+ · $0.00473/MTok · 54.5413 · lowClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified. / Claude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
-<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0047320254" data-score="54.5413" data-x="879.229" data-y="319.478" transform="translate(879.229 319.478)"><title>Claude Sonnet 5.5 · Max 20x · 9/14+ / Claude Sonnet 5.5 · Max 5x · 9/14+ · $0.00473/MTok · 54.5413 · lowClaude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified. / Claude Sonnet 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
+<rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#CC5A2E" stroke-width="1.35"/>
+<circle r="4" fill="#CC5A2E"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.00024497465" data-score="36.4845" data-x="1280.200" data-y="444.813" transform="translate(1280.200 444.813)"><title>Claude Haiku 5.5 · Pro · $0.00024/MTok · 36.4845 · mediumClaude Haiku 5.5 (max) · Exact served-model reference; quota-measurement effort is unverified.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
@@ -773,10 +775,22 @@
 <text x="630.738" y="237.911" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.02558</text>
 </g>
 <g class="front-label" data-model="gemini-4-neon">
-<path d="M900.447,258.074Q900.447,238.883 892.305,238.883" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="886.305" y="219.883" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Gemini 4 Neon · xhigh</text>
-<text x="886.305" y="239.883" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Google AI Pro 学生版</text>
-<text x="886.305" y="259.883" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00387</text>
+<path d="M842.700,257.956Q842.700,226.883 855.130,226.883" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="861.130" y="207.883" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Gemini 4 Neon · xhigh</text>
+<text x="861.130" y="227.883" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Google AI Pro 学生版</text>
+<text x="861.130" y="247.883" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00646</text>
+</g>
+<g class="front-label" data-model="claude-opus-5.5">
+<path d="M833.724,273.985Q833.724,254.794 825.582,254.794" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="819.582" y="235.794" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Claude Opus 5.5 · max</text>
+<text x="819.582" y="255.794" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Max 5x / 20x · 9/14+</text>
+<text x="819.582" y="275.794" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00634</text>
+</g>
+<g class="front-label" data-model="claude-sonnet-5.5">
+<path d="M888.991,308.089Q888.991,298.478 897.229,298.478" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="903.229" y="279.478" font-size="16" fill="#343C34" text-anchor="start" font-weight="400" class="label-name">Claude Sonnet 5.5 · max</text>
+<text x="903.229" y="299.478" font-size="11.5" fill="#8B9487" text-anchor="start" font-weight="400" >Max 5x / 20x · 9/14+</text>
+<text x="903.229" y="319.478" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.00473</text>
 </g>
 <g class="front-label" data-model="gemini-4-hydrogen">
 <path d="M986.045,318.751Q986.045,318.796 986.171,318.796" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
@@ -835,7 +849,7 @@
 <path d="M356.52 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="370.520" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5，Droid月=周×2 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >211 个订阅位置 / 21 个 API 位置 / 5 个前沿位置</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >211 个订阅位置 / 21 个 API 位置 / 7 个前沿位置</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >Claude Max：9/14 起永久额度估算；Pro：Opus 5 周池面板反推。Y 取同模型存档最高分变体。</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>

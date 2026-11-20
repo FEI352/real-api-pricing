@@ -52,11 +52,13 @@ import {
   csv,
   customRangeActive,
   dataDateLine,
+  default3dPointIds,
   defaultState,
   displayPlan,
   filterKeys,
   groups,
   manufacturer,
+  modelMaxAaIndex,
   number,
   options,
   pareto,
@@ -331,7 +333,7 @@ function Explorer({
   const [state, setState] = useState<State>(initial.state);
   const [warning, setWarning] = useState(initial.warning);
   const [panel, setPanel] = useState<
-    "models" | "filters" | "display" | "download" | "share" | null
+    "models" | "models3d" | "filters" | "display" | "download" | "share" | null
   >(null);
   const [detail, setDetail] = useState<Row[] | null>(null);
   const [modelSearch, setModelSearch] = useState("");
@@ -375,16 +377,39 @@ function Explorer({
   // Keyed on the fields each derivation reads, so typing in a search box does
   // not rebuild the rows (and with them the whole chart) on every keystroke.
   const {
-    board, harness, effort, modes, configuration, view, selected,
-    vendors, channels, plans, billing, confidence, feeBand,
+    board, harness, effort, modes, configuration, view, selected, selected3d,
+    vendors, channels, plans, billing, confidence, feeBand, hideOld, showHidden,
   } = state;
   const rows = useMemo(
     () => rowsFor(data, state),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, board, harness, effort, modes, configuration, view, selected,
-      vendors, channels, plans, billing, confidence, feeBand, state.xMode, state.scoreState,
+      vendors, channels, plans, billing, confidence, feeBand, hideOld, showHidden, state.xMode, state.scoreState,
       state.xMin, state.xMax, state.yMin, state.yMax, state.feeMin, state.feeMax],
   );
+  const defaultSelected3dIds = useMemo(() => default3dPointIds(data), [data]);
+  const selected3dIds = useMemo(
+    () => new Set(selected3d ?? defaultSelected3dIds),
+    [selected3d, defaultSelected3dIds],
+  );
+  const { floor: qwen38AaFloor, maxByModel: modelAaScores } = useMemo(
+    () => modelMaxAaIndex(data),
+    [data],
+  );
+  const state3d = useMemo(
+    () => ({ ...state, selected: selected3d ?? defaultSelected3dIds }),
+    [state, selected3d, defaultSelected3dIds],
+  );
+  const rows3d = useMemo(
+    () => rowsFor(data, state3d),
+    [data, state3d],
+  );
+  const pts3d = useMemo(
+    () => visiblePoints(data, state3d),
+    [data, state3d],
+  );
+  const gs3d = useMemo(() => groups(rows3d, state3d), [rows3d, state3d]);
+  const front3d = useMemo(() => pareto(gs3d), [gs3d]);
   const shown = useMemo(
     () => tableRows(rows, state),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -393,11 +418,12 @@ function Explorer({
   const pts = useMemo(
     () => visiblePoints(data, state),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data, view, selected, vendors, channels, plans, billing, confidence, feeBand],
+    [data, view, selected, vendors, channels, plans, billing, confidence, feeBand, hideOld, showHidden],
   );
   const axis = useMemo(() => barAxis(data, view), [data, view]);
   const gs = useMemo(() => groups(rows, state), [rows, state.xMode]);
   const front = useMemo(() => pareto(gs), [gs]);
+  const is3dView = state.view === "pareto" && state.xMode === "terrain3d";
   const frontRows = useMemo(
     () => new Set(front.flatMap((g) => g.rows.map((r) => r.key))),
     [front],
@@ -454,6 +480,14 @@ function Explorer({
       next.size === defaultSelectedIds.length &&
       defaultSelectedIds.every((id) => next.has(id));
     patch({ selected: isDefault ? null : [...next] });
+  };
+  const changeSelection3d = (ids: string[], checked: boolean) => {
+    const next = new Set(selected3dIds);
+    for (const id of ids) checked ? next.add(id) : next.delete(id);
+    const isDefault =
+      next.size === defaultSelected3dIds.length &&
+      defaultSelected3dIds.every((id) => next.has(id));
+    patch({ selected3d: isDefault ? null : [...next] });
   };
   const toggleFilter = (k: FilterKey, v: string) =>
     patch({
@@ -841,11 +875,11 @@ function Explorer({
                 )}
               </p>
               <div className="toolbar">
-                <button className="select-models" onClick={() => setPanel("models")}>
+                <button className="select-models" onClick={() => setPanel(is3dView ? "models3d" : "models")}>
                   <CheckSquare size={17} />
-                  <span>{t("Models & plans", "模型与套餐")}</span>
+                  <span>{is3dView ? t("3D models & plans", "3D 模型与套餐") : t("Models & plans", "模型与套餐")}</span>
                   <span className="count">
-                    {selectedIds.size} / {data.points.length}
+                    {(is3dView ? selected3dIds : selectedIds).size} / {data.points.length}
                   </span>
                   <CaretDown size={13} />
                 </button>
@@ -1005,7 +1039,7 @@ function Explorer({
                 <span className="results-count">
                   {state.view === "pareto" ? (
                     <>
-                      <b>{pts.length}</b> {t("points", "个数据点")}
+                      <b>{(is3dView ? pts3d : pts).length}</b> {t("points", "个数据点")}
                     </>
                   ) : (
                     <>
@@ -1014,11 +1048,17 @@ function Explorer({
                   )}
                 </span>
               </div>
-              {(activeFilters.length > 0 || state.selected !== null) && (
+              {(activeFilters.length > 0 || (is3dView ? state.selected3d !== null : state.selected !== null)) && (
                 <div className="chips">
-                  {state.selected !== null && (
+                  {!is3dView && state.selected !== null && (
                     <button onClick={() => patch({ selected: null })}>
                       {selectedIds.size} {t("selected points", "已选数据点")}
+                      <X size={12} />
+                    </button>
+                  )}
+                  {is3dView && state.selected3d !== null && (
+                    <button onClick={() => patch({ selected3d: null })}>
+                      {selected3dIds.size} {t("selected 3D points", "已选 3D 数据点")}
                       <X size={12} />
                     </button>
                   )}
@@ -1079,12 +1119,12 @@ function Explorer({
                   );
                 })}
               </OneLineLegend>
-              {!pts.length || (state.view === "pareto" && !gs.length) ? (
+              {!(is3dView ? pts3d : pts).length || (state.view === "pareto" && !(is3dView ? gs3d : gs).length) ? (
                 <div className="empty">
                   <ChartScatter size={35} />
                   <h3>{t("No points to plot", "没有可绘制的数据点")}</h3>
                   <p>
-                    {pts.length
+                    {(is3dView ? pts3d : pts).length
                       ? t(
                           "These models have no matching score for this benchmark configuration. Their data is still in the table.",
                           "当前模型没有匹配的榜单配置分数，仍可在表格中查看。",
@@ -1110,7 +1150,7 @@ function Explorer({
                 />
               ) : state.xMode === "terrain3d" ? (
                 <Chart3D
-                  rows={rows}
+                  rows={rows3d}
                   state={state}
                   data={data}
                   theme={theme}
@@ -1119,6 +1159,10 @@ function Explorer({
                   onSearch={(find, lock) => patch({ find, lock })}
                   handle={chart}
                   toolsSlot={chartSlot}
+                  selectedCount={selected3dIds.size}
+                  totalCount={data.points.length}
+                  isCustomSelection={state.selected3d !== null}
+                  onOpenModelPicker={() => setPanel("models3d")}
                 />
               ) : (
                 <Chart
@@ -1162,7 +1206,7 @@ function Explorer({
                     <span />
                   )}
                   <span className="foot-stats">
-                    {gs.length} {t("plotted coordinates", "绘制坐标")} · {front.length}{" "}
+                    {(is3dView ? gs3d : gs).length} {t("plotted coordinates", "绘制坐标")} · {(is3dView ? front3d : front).length}{" "}
                     {t("on the frontier", "前沿坐标")}
                   </span>
                 </div>
@@ -1326,7 +1370,9 @@ function Explorer({
       {panel && (
         <Modal
           title={
-            panel === "models"
+            panel === "models3d"
+              ? t("Choose 3D models & plans", "选择 3D 模型与套餐")
+              : panel === "models"
               ? t("Choose models & plans", "选择模型与套餐")
               : panel === "filters"
                 ? t("Refine your view", "筛选数据")
@@ -1337,16 +1383,25 @@ function Explorer({
                     : t("Take the data with you", "下载图表与数据")
           }
           onClose={() => setPanel(null)}
-          wide={panel === "models" || panel === "filters"}
+          wide={panel === "models" || panel === "models3d" || panel === "filters"}
           closeLabel={t("Close", "关闭")}
         >
-          {panel === "models" && (
+          {(panel === "models" || panel === "models3d") && (() => {
+            const is3dModal = panel === "models3d";
+            const activeSet = is3dModal ? selected3dIds : selectedIds;
+            const applyChange = is3dModal ? changeSelection3d : changeSelection;
+            return (
             <>
               <p className="panel-description">
-                {t(
-                  "Choose a model, then refine its access channels and plans. All selections update the chart and table together.",
-                  "选择整个模型，或展开选择具体渠道和套餐。图表与表格同步更新。",
-                )}
+                {is3dModal
+                  ? t(
+                      `Independent from 2D selection. By default, models below Qwen3.8 27B max AA index (${qwen38AaFloor.toFixed(2)}) such as Inkling Small are excluded.`,
+                      `与二维图模型选择完全解耦；默认已排除低于 Qwen3.8 27B 最高 AA 指数（${qwen38AaFloor.toFixed(2)}）的模型（如 Inkling Small 等）。`,
+                    )
+                  : t(
+                      "Choose a model, then refine its access channels and plans. All selections update the chart and table together.",
+                      "选择整个模型，或展开选择具体渠道和套餐。图表与表格同步更新。",
+                    )}
               </p>
               <label className="search">
                 <MagnifyingGlass size={18} />
@@ -1363,26 +1418,36 @@ function Explorer({
               </label>
               <div className="selection-actions">
                 <span>
-                  {selectedIds.size} / {data.points.length}{" "}
+                  {activeSet.size} / {data.points.length}{" "}
                   {t("selected", "已选择")}
                 </span>
                 <button
                   onClick={() =>
-                    patch({ selected: data.points.map((p) => p.id) })
+                    patch(
+                      is3dModal
+                        ? { selected3d: data.points.map((p) => p.id) }
+                        : { selected: data.points.map((p) => p.id) },
+                    )
                   }
                 >
                   {t("Select all", "全选")}
                 </button>
-                <button onClick={() => patch({ selected: [] })}>
+                <button
+                  onClick={() =>
+                    patch(is3dModal ? { selected3d: [] } : { selected: [] })
+                  }
+                >
                   {t("Clear", "清空")}
                 </button>
                 <button
                   onClick={() => {
-                    patch({ selected: null });
+                    patch(is3dModal ? { selected3d: null } : { selected: null });
                     setModelSearch("");
                   }}
                 >
-                  {t("Restore default", "恢复默认")}
+                  {is3dModal
+                    ? t("Restore default (≥ Qwen3.8 27B)", "恢复默认 (≥ 3.8 27B)")
+                    : t("Restore default", "恢复默认")}
                 </button>
               </div>
               <div className="model-list">
@@ -1396,8 +1461,10 @@ function Explorer({
                   )
                   .map(([id, points]) => {
                     const selected = points.filter((p) =>
-                      selectedIds.has(p.id),
+                      activeSet.has(p.id),
                     ).length;
+                    const modelAa = modelAaScores.get(id);
+                    const below38 = modelAa !== undefined && modelAa < qwen38AaFloor;
                     return (
                       // 搜索时自动展开：否则按套餐名命中的组（如 "mis" 命中
                       // GLM 5.3 组里的 Mistral Vibe Pro）只会露出模型名，
@@ -1413,7 +1480,7 @@ function Explorer({
                               checked={selected === points.length}
                               mixed={selected > 0 && selected < points.length}
                               onChange={() =>
-                                changeSelection(
+                                applyChange(
                                   points.map((p) => p.id),
                                   selected !== points.length,
                                 )
@@ -1429,6 +1496,12 @@ function Explorer({
                             <small>
                               {manufacturer(points[0].vendor)} · {points.length}{" "}
                               {t("plans", "个套餐")}
+                              {modelAa !== undefined && ` · AA max ${modelAa.toFixed(1)}`}
+                              {below38 && is3dModal && (
+                                <span className="deprecated-badge">
+                                  {t("< 3.8 27B", "低于 3.8 27B")}
+                                </span>
+                              )}
                               {points.every((p) => p.deprecated) && (
                                 <span className="deprecated-badge">
                                   {t("deprecated", "已弃用")}
@@ -1452,11 +1525,11 @@ function Explorer({
                                     <label key={p.id}>
                                       <input
                                         type="checkbox"
-                                        checked={selectedIds.has(p.id)}
+                                        checked={activeSet.has(p.id)}
                                         onChange={() =>
-                                          changeSelection(
+                                          applyChange(
                                             [p.id],
-                                            !selectedIds.has(p.id),
+                                            !activeSet.has(p.id),
                                           )
                                         }
                                       />
@@ -1483,7 +1556,8 @@ function Explorer({
                 </button>
               </div>
             </>
-          )}
+            );
+          })()}
           {panel === "filters" && (
             <>
               <p className="panel-description">

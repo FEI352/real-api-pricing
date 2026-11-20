@@ -1,0 +1,841 @@
+{
+  "generatedAt": "2026-11-20T09:13:35+08:00",
+  "dataSnapshot": "2026-11-19",
+  "root": "real-api-pricing",
+  "ignore": [],
+  "files": {
+    "charts/README.md": {
+      "sha256": "6173548c9ebd20461a9016097033200f480dfba294fe0c5aaa70232bc3f39b44",
+      "bytes": 13012,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-coding-agent-table.txt": {
+      "sha256": "5539018419797cd7df103d83c4885a73cc69cf084021b57115a3c2db91afad6d",
+      "bytes": 3780,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-coding-agent.png": {
+      "sha256": "e3c52b88963662b6dce11edbe58c03ffc62acb2a947c7b6c2025cfbcde5dc8d9",
+      "bytes": 374428,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-coding-agent.svg": {
+      "sha256": "78825c2ba1f8d0cf9c889f866faee80e61708c574e090c215662d16050a6ff95",
+      "bytes": 201023,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-intelligence-table.txt": {
+      "sha256": "9ca72678d2269feac26babbc587b2760a0781dec8d5f279f0d572d423f727f40",
+      "bytes": 3829,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-intelligence.png": {
+      "sha256": "38623fb3bac8cdd23a315b860f116b9b38f23c3b247cab4e87824b8322970a59",
+      "bytes": 381261,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-intelligence.svg": {
+      "sha256": "81248815b2238f83586622e917ee177edd2d623c414e32b0e5dd5b2287e18a0b",
+      "bytes": 195856,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-terminal-bench-4-table.txt": {
+      "sha256": "16178770d2a947700b6aed29329c5e3f39f62dcf778c2ebd4c88a5f9b37da5f1",
+      "bytes": 4005,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-terminal-bench-4.png": {
+      "sha256": "04ee069ef62e288adb1226f7348b513fb8d0c92b206193225108352748b12f6c",
+      "bytes": 390623,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-aa-terminal-bench-4.svg": {
+      "sha256": "9ddd0fcd411c4acdc76de162713d9b02272e84a2746fe87a9636a4c252add531",
+      "bytes": 208220,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-agent-arena-table.txt": {
+      "sha256": "dd4c7ea23044bf58198e92ad082e57372ebf16136f519277e73c94a9194fd325",
+      "bytes": 4000,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-agent-arena.png": {
+      "sha256": "c54b955582a551b1db2a6947b540b25f4f624f25bb793a947526c1f63da20c61",
+      "bytes": 396248,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-agent-arena.svg": {
+      "sha256": "d7a59ca0a4736c54310a4643e9af74cba6d2fa9691c9ed12797d1cc12e4ea12b",
+      "bytes": 200255,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-code-arena-table.txt": {
+      "sha256": "7c436eb8b668a80e8f8e8e64c12fee77b75c797b079fe6b5596fd10fd635242e",
+      "bytes": 3203,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-code-arena.png": {
+      "sha256": "2b6ad8c5d1dd1dbbd9a2e655aabd5d612aacaf96756095f615144af882e698d2",
+      "bytes": 319334,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-code-arena.svg": {
+      "sha256": "6da5fd2d376dcacd8319afde96a901106118ab8f01a669e936f5fcead3a5098c",
+      "bytes": 172221,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-deepswe-1-1-table.txt": {
+      "sha256": "bbb0c09708f991e245f36bc04e8b96ba5afb6c7f6b15ac7fec18968910ecfb0b",
+      "bytes": 2131,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-deepswe-1-1.png": {
+      "sha256": "466d31895aa4e4569ba602c15690dac7dd6c83f6f296165e9e2b72fbdeee58b0",
+      "bytes": 210522,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-deepswe-1-1.svg": {
+      "sha256": "2c277337a485c306021a5e6891fe12575033368dbed942165d977689c69e7a69",
+      "bytes": 135241,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-open-design-arena-table.txt": {
+      "sha256": "c90a623970d8af71dbafc13947786007f5b9b5ab722a02e3c880ba3e6afba7a2",
+      "bytes": 2957,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-open-design-arena.png": {
+      "sha256": "b2a2be0758b544827db9e69b0688205029b4735454c926f61a7f45137319cb45",
+      "bytes": 283187,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-open-design-arena.svg": {
+      "sha256": "d1569d33b6893636e559d50f71c783a11738d99f7169f263261957474c1160de",
+      "bytes": 160826,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-terminal-bench-4-table.txt": {
+      "sha256": "c73f6af9e63c540d98e563e82529556a609569d8367c6ef927d03ca4f4eb0394",
+      "bytes": 3777,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-terminal-bench-4.png": {
+      "sha256": "2674ea4cbd18e4133cfe8c41599a10dc030ce9d66ebed47929803f4e2efed9be",
+      "bytes": 345074,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-allowance-terminal-bench-4.svg": {
+      "sha256": "5a9b3426a6c17418aee725af7c2ee3796c62774517b9348ee0ae1655cd3a71b1",
+      "bytes": 187026,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-coding-agent-table.txt": {
+      "sha256": "c20523f9f711c72a86c5397efeadb27943cfa5535e40beeb8e2d3fad8f1d61da",
+      "bytes": 3757,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-coding-agent.png": {
+      "sha256": "381b93c78cdff259c01e03d7595066e9f850f87416df1afcedbab2ff7799d812",
+      "bytes": 378759,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-coding-agent.svg": {
+      "sha256": "79a7033ad89afc991e3e6a7f6c4b0728d4ec747854de79e63dc0e3c138b55927",
+      "bytes": 200502,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-intelligence-table.txt": {
+      "sha256": "404f855e7a89960cd2ffda125a0a4804ab187721826ee4fce6bf214b73e70b10",
+      "bytes": 3806,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-intelligence.png": {
+      "sha256": "9e2bde6aaec70bdcd753f34279e41efff8e0dad9e64ff0a841303f47e5ec269f",
+      "bytes": 388358,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-intelligence.svg": {
+      "sha256": "e39cc17e26e4ffa50fd43a18b7838457907dbf5089a4ce42e16a9ddfc4b6a14b",
+      "bytes": 197021,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-terminal-bench-4-table.txt": {
+      "sha256": "a2151eeb958651bace4e2b6b1245adca5744442379f8e266e98228f05994e90f",
+      "bytes": 3982,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-terminal-bench-4.png": {
+      "sha256": "e4a325526cf10c0ce8e3cd0bb1210ebb34522b2b87311f5aa29f99891e1c887f",
+      "bytes": 395595,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-aa-terminal-bench-4.svg": {
+      "sha256": "508f7243ddd65323a5b6e8eeb4d55dbe2c94164930bd2f51a140266c80a80aeb",
+      "bytes": 210137,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-agent-arena-table.txt": {
+      "sha256": "fd50165c8e9b83bb58c243a9a3816c67cd071d467cad22e2cb3d50ecd4f66b5d",
+      "bytes": 3977,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-agent-arena.png": {
+      "sha256": "ac3abb0fc12d41eb524c0e957702ff2fb1aa07171dda558d1baaff7d58d3694b",
+      "bytes": 402782,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-agent-arena.svg": {
+      "sha256": "1473fa8eadcae16d6ca6da7dc6791d7a03c877ab8ac6d75c4bdd171bbc53d6a8",
+      "bytes": 201329,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-code-arena-table.txt": {
+      "sha256": "137cdc462ff6e79b96a25e8b3d40ccea2a4e6c9afae874bcf67db98f5e9462ac",
+      "bytes": 3180,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-code-arena.png": {
+      "sha256": "d03bb635976e72bc5c3168b004b97d3cc0a0d956690202282812464203ac5a58",
+      "bytes": 323798,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-code-arena.svg": {
+      "sha256": "a15082f964696d90ea3c9abf69bd6f2ea84a08abace77570ad07d2cb6208d0f3",
+      "bytes": 173010,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-deepswe-1-1-table.txt": {
+      "sha256": "20f72978482b6365d3161f52826a49bfa644b602f13fd2cd43baeabcb9960044",
+      "bytes": 2108,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-deepswe-1-1.png": {
+      "sha256": "09dabba1ed75e1fad9760bb97d56ce68f7d19e5580731f5454584d5b3e59d3ef",
+      "bytes": 218779,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-deepswe-1-1.svg": {
+      "sha256": "b650baafe5e93d931f3b70aa048e0ac7b2334a1ea0533bc9ba9aee25f4fd19cb",
+      "bytes": 139550,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-open-design-arena-table.txt": {
+      "sha256": "62380475ed1330793bd880d9caa5a193ad9e8744bc22d467036cf9117f7d04a2",
+      "bytes": 2934,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-open-design-arena.png": {
+      "sha256": "c7ed6a839bc01616b8e200c7d87c6461ceedab0890b615318b8d61033a892d65",
+      "bytes": 290260,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-open-design-arena.svg": {
+      "sha256": "7816b4992789a7a67ca65d1603d0d40fe4b58dd3f243805d9b93656f40b8d87d",
+      "bytes": 164558,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-terminal-bench-4-table.txt": {
+      "sha256": "c00f822eeebc10b18459cb14a9272b73a5fa1897e7397ae809810c884aa42b80",
+      "bytes": 3754,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-terminal-bench-4.png": {
+      "sha256": "e65785d8a89780cab1231a53b808cefddd7cba318c22f813cd474280e9212609",
+      "bytes": 347305,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/frontier/frontier-price-terminal-bench-4.svg": {
+      "sha256": "661677e043cbbd2d48f384fc3c2fe1de154ac5ee8f0003220ff1df35d95adbd0",
+      "bytes": 186015,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-0-30-usd-table.txt": {
+      "sha256": "8578842ffec6c1878d0868fc6e46297ad0da8747521ce5fad0f8a7da03ef13c9",
+      "bytes": 28113,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-0-30-usd.png": {
+      "sha256": "2475dba986ce9f35e8d5240fbee92db3385bd512b4522ef215773a4ed5673e74",
+      "bytes": 2523894,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-0-30-usd.svg": {
+      "sha256": "21e28839ab6a2bdffed9b6c7206c62c3b3dfe7c6e5df21cefaf70cbc08fc9876",
+      "bytes": 1234448,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-100-300-usd-table.txt": {
+      "sha256": "856c35e9367f88cc31e62ec9b7d6cc4b40fc26d62ae275cb5fa73088990d2cbe",
+      "bytes": 10389,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-100-300-usd.png": {
+      "sha256": "13d53d56c37ffb27bb5723dbfec9bccf3f067cd71298c9ea50e63a804fc0b5f2",
+      "bytes": 1035315,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-100-300-usd.svg": {
+      "sha256": "3377c9ea04528b2646571331b5e26b33753e97821893aadf3b271c0ae69d153c",
+      "bytes": 541679,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-30-100-usd-table.txt": {
+      "sha256": "7edf8ca0d8cdf34b5d9736c87e2615f973b079d2e372d4d67e44496212aef173",
+      "bytes": 11413,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-30-100-usd.png": {
+      "sha256": "895395a6e0e37edbe1b646ed724985ad9e1e86d31ea054f28d958f1de3a8df03",
+      "bytes": 1122856,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-fee-30-100-usd.svg": {
+      "sha256": "cf56ecee48e6759b5b660653e49c8823cdfe962201ec657b6a249370568ac6a8",
+      "bytes": 593648,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-hybrid-scale.png": {
+      "sha256": "d759cbdc3644b3a5a72e0c4a477b799e3d8d039dff95466c21ecd6161c95cc87",
+      "bytes": 4152526,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-hybrid-scale.svg": {
+      "sha256": "98a01c082f1d6cadd56bf3d97fb3773eb61f6e05273360816f06f1dd2c9e27cf",
+      "bytes": 2063745,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview-table.txt": {
+      "sha256": "7a4190e2b55d628c2d4e43ffb5f3441ba1c758f9b176acb624b5de7cd03501e1",
+      "bytes": 49800,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview.png": {
+      "sha256": "fde4b5eb87a4429c74735585e4c2e7328b9ce0c2623b16b0d4f3eab1fc7be46c",
+      "bytes": 4112994,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/monthly-allowance-overview.svg": {
+      "sha256": "18e3aa12e828d4ebe5b95679f37ce4d8f95b71af42d9fba7a801354dc4bf0c4a",
+      "bytes": 2037673,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/en/overview/real-price-overview-table.txt": {
+      "sha256": "cb06f9758b6f888efddf4651eea7dcc5c3b2ab74a744c938289d1fd4cfa8910c",
+      "bytes": 60292,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/overview/real-price-overview.png": {
+      "sha256": "58eb2360861354f99da0ecedf3a58b7bfffd9cfcaede8e8ac071b0d4a4f35d6f",
+      "bytes": 4656036,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/overview/real-price-overview.svg": {
+      "sha256": "decff379d6e195c7b4bd334625dbc452f6ba01c4141573eb246f404b9f4e3ea7",
+      "bytes": 2261301,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-aa-coding-agent.png": {
+      "sha256": "9792d417b8f1720029c1d6a7bedbcee1104b328ccb49d923989c60b1ff63d9c4",
+      "bytes": 376089,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-aa-coding-agent.svg": {
+      "sha256": "b8c3445e09b16edf1f6c657c2c21a00493222134352f26523352bdea1aa696d1",
+      "bytes": 89070,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-aa-intelligence.png": {
+      "sha256": "edce91b7cbbe7946eb5f1c28f6b4928058f988e0fb03d67d701e29754c184804",
+      "bytes": 405843,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-aa-intelligence.svg": {
+      "sha256": "520bdd2a49e0227a189e51bb2901afc09456dfdb7ed33b756c5d3c1855291cf1",
+      "bytes": 136903,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-aa-terminal-bench-4.png": {
+      "sha256": "48128da3104b4be2e15b413071f8401b451ab1aab653104cb3701f55fd7ac67a",
+      "bytes": 437677,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-aa-terminal-bench-4.svg": {
+      "sha256": "f09a7b739587cd176be40aa40e4caf80739b3cb64f7feb205b020b2d097a12f0",
+      "bytes": 163184,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-agent-arena.png": {
+      "sha256": "32165cd9395b7391ad9b1e280a9c2a75f966de04e5a41525aa2c5606b284e27a",
+      "bytes": 423512,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-agent-arena.svg": {
+      "sha256": "0dffa236c36277fb9886d09b19ad7580026e13a15cba8742b710d58954ad5da2",
+      "bytes": 176168,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-code-arena.png": {
+      "sha256": "4c48ac9721f2c77324f4bcc846e882e17ea821162f03f389b8fc822e211326ca",
+      "bytes": 381226,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-code-arena.svg": {
+      "sha256": "f297aa25b5d3a6110cb9a75d9f93f3eab04d9695fdc670fec2902ae884c68d5a",
+      "bytes": 174471,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-deepswe-1-1.png": {
+      "sha256": "f498462147aa202df545490a9d22973741530da863d5dab17de5f5215a53d215",
+      "bytes": 315349,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-deepswe-1-1.svg": {
+      "sha256": "b91236f4ef7d5ac08694341a03dc530b6013ebf45ea1cbff40cfc5841e612fd0",
+      "bytes": 128911,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-open-design-arena.png": {
+      "sha256": "414f09670f5c758cd4cfe6f375a15cfb2c1f7472964ab52e9a90fa79bf988ab1",
+      "bytes": 334787,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-open-design-arena.svg": {
+      "sha256": "a13dcade9023f6dc2f06fe8fa2c5ccfa4f4208fc4bef4e8ff0ee53577b20244c",
+      "bytes": 63614,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-terminal-bench-4.png": {
+      "sha256": "f6a2a5c2d55933606d86e1527b195dc39799fda3a3adc0111a16902478f42226",
+      "bytes": 391448,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/en/pareto/pareto-terminal-bench-4.svg": {
+      "sha256": "9e0db2ba5dbdf80fb928e25e4159897d090f926a61e0a1e2cc825ab7f9e02cb2",
+      "bytes": 108744,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_AA智力榜.png": {
+      "sha256": "cb926619c705c9554b137adb264dbc7150592a9bb4a44c7cea9536118e78565d",
+      "bytes": 377742,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_AA智力榜.svg": {
+      "sha256": "9ccfdeaebc973e50f4105874bf77d0062b4216f5cdf762c201892635c834db60",
+      "bytes": 274749,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_AA编程Agent榜.png": {
+      "sha256": "4bfd3a5de7b359167b3b4dad2da27708792abc8d85e12659f9eeee8775c448d0",
+      "bytes": 369086,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_AA编程Agent榜.svg": {
+      "sha256": "336e072087ff89fccbe0bc9ded1d9500f374f41fa068ea6e20493019087a6350",
+      "bytes": 280539,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_AgentArena榜.png": {
+      "sha256": "43a5809a3898fa849eb17fae3e9da010908fd0479a4e11e8381132882fc71d07",
+      "bytes": 392551,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_AgentArena榜.svg": {
+      "sha256": "c0247d2bec29638484d5e8fbeb1335868b0cdd925395f27d1711cfef92dc7fb9",
+      "bytes": 279531,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_CodeArena榜.png": {
+      "sha256": "48573ce9a01d5b87846cf57099fbee84340e2adb69c09b6df9d34de1cc3afd73",
+      "bytes": 315228,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_CodeArena榜.svg": {
+      "sha256": "d9ae396bf54e61322de133dbcd1a54ee13f54336ad48974efa24308ad52a5cd2",
+      "bytes": 250279,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_DeepSWE榜.png": {
+      "sha256": "a111be6248a95afc7940510d96ec4b52dc7d90eaab0544faa5f601de0d0fa0f3",
+      "bytes": 205651,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_DeepSWE榜.svg": {
+      "sha256": "2ff43c519313e3d1b3a92f44a35fe45032517351ea6f880ad5fa959c023a9485",
+      "bytes": 217194,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_OpenDesign设计榜.png": {
+      "sha256": "da0c280033871929b0f36614194c8e8635921b34cc26638a294d2a19b8971228",
+      "bytes": 281406,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_OpenDesign设计榜.svg": {
+      "sha256": "d9e6cb5d06819499396c48ac62806da3dcf69757ee7b22b7698ebb5b26dbe566",
+      "bytes": 242142,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_TB4·AA榜.png": {
+      "sha256": "ab664f1b0fd30dcfef04b3ba0ee0dd0d1e5dbec189131ba9b9c8c1f98cd9a00f",
+      "bytes": 388006,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_TB4·AA榜.svg": {
+      "sha256": "da30324abd524463f8c917fa34b97317d39892b48bcb7e6fa0c9c45ead2efef3",
+      "bytes": 292288,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_TB4终端榜.png": {
+      "sha256": "cf23b922d73e1604a099adb8ebd0f64adf35b10be3838e5d8464343cb3d42df9",
+      "bytes": 336273,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价_TB4终端榜.svg": {
+      "sha256": "9c94260772bcb339dfb35a7b273a711cbc8dc51c427fc9bc123cfd73f6fbf4a2",
+      "bytes": 263449,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_AA智力榜.txt": {
+      "sha256": "7cf7a35d5cb73ba4afafbeec47660470acfdb918800839e073916c0a55943d29",
+      "bytes": 3522,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_AA编程Agent榜.txt": {
+      "sha256": "2674d64c4b0d38881a106fa6302634c3cbb343bd09ff8a4a3247e1043509a000",
+      "bytes": 3529,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_AgentArena榜.txt": {
+      "sha256": "3f4c1fa137c7a66449a9cdc379580c99956e3e5f05a120ccd1ce2fe91081cc92",
+      "bytes": 3701,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_CodeArena榜.txt": {
+      "sha256": "95c40893d5d6a122abad4f7e22cd7d1b23e3b8a5b43a5184801eeb0346a5c4ab",
+      "bytes": 2973,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_DeepSWE榜.txt": {
+      "sha256": "81126995af532b22248c4cdb7c891cf44d9b03bb6ff49767c5f4921ce7918b30",
+      "bytes": 1995,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_OpenDesign设计榜.txt": {
+      "sha256": "7b275019dbd7860d650161dcdfa64d4180cdf7ba90231e11fc9d606f29b30295",
+      "bytes": 2751,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_TB4·AA榜.txt": {
+      "sha256": "a4acad761b3cff37c0915b9ce731142e0cbc18eaaf2bfe2a714f23d27a9abeed",
+      "bytes": 3755,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿单价表_TB4终端榜.txt": {
+      "sha256": "b5ab3c9b04ca65a18323830e2a3d87f0feb3ac097663ed0aad2e5dee3e63b304",
+      "bytes": 3437,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_AA智力榜.png": {
+      "sha256": "52df313c745d0d97507695e0f90d5757984cd90a9670474ccecea0cad1f6c61e",
+      "bytes": 374510,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_AA智力榜.svg": {
+      "sha256": "79e9d29192d37d408b767bd3ba6096e6b886e3174a577cc9857a2dfbdf038bb4",
+      "bytes": 276234,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_AA编程Agent榜.png": {
+      "sha256": "7d2c6a739ca975ccf76d7feae80e8638792fd8ecc9004e18a3d06f5d1b7de281",
+      "bytes": 368974,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_AA编程Agent榜.svg": {
+      "sha256": "9f734228108f80edd392f60208a05495a4a261dc1c831fddbc4caa3add06d9fe",
+      "bytes": 283845,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_AgentArena榜.png": {
+      "sha256": "3864ba9e9ac8664df654f3a605b217fac1b0dc88ad61889dd703c8fbd7b0ee5d",
+      "bytes": 391569,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_AgentArena榜.svg": {
+      "sha256": "839ca16d68033566f906ef9dc4413a6b90e40df3f96e8cdda2edd36d625cacd9",
+      "bytes": 281181,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_CodeArena榜.png": {
+      "sha256": "27ef79760404ebe8bff7d0289df51f4e692b2b04cee895e942f5e88f3952d232",
+      "bytes": 315564,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_CodeArena榜.svg": {
+      "sha256": "3456a73dd7e4bbc03d4567bb6a76ae8aa5ea9f02db5b97731908bb8f31c6c4cb",
+      "bytes": 252263,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_DeepSWE榜.png": {
+      "sha256": "4526b53607cf47710f32796a1bea063c85ead6b94fc4f6b8bd39121fb0b862e0",
+      "bytes": 204006,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_DeepSWE榜.svg": {
+      "sha256": "cb5e9930a99a8774744b1be2a4569aa9919039a8fb47bce101e06e2e11e44784",
+      "bytes": 215694,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_OpenDesign设计榜.png": {
+      "sha256": "3729cdeb92de44fb1b4a82202d49acd5c460933227ded5b9e53d491ad271e01e",
+      "bytes": 279643,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_OpenDesign设计榜.svg": {
+      "sha256": "b4fcb0c70210f67f42609af26746e5d50dda5d3d3146167b39ad7f10556635de",
+      "bytes": 242126,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_TB4·AA榜.png": {
+      "sha256": "a0df3c2950dc77a07cf413558190551bed2eceb27efe7ab80f12688cc719ba4b",
+      "bytes": 387135,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_TB4·AA榜.svg": {
+      "sha256": "3a20ce76f3febbfab39dc1d103a875d6b640fac8156ed944a29ab73bfcd47dca",
+      "bytes": 293130,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_TB4终端榜.png": {
+      "sha256": "8f493234e53794038c0f38af6696d0679c3cdfcc9b54a7061b28833c583a91e6",
+      "bytes": 339100,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度_TB4终端榜.svg": {
+      "sha256": "9cdd459a4d1e65045035a2dc532121df61f6260eb8fd4230bbe2eb4c5e6fa51b",
+      "bytes": 265813,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_AA智力榜.txt": {
+      "sha256": "1adac75932a6af1b6eb387bab3a786c787a6c1d9009ba89cf107ace6169311b3",
+      "bytes": 3538,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_AA编程Agent榜.txt": {
+      "sha256": "7219c9f09082d44ce1c1596341efddb10f259022b9ac2068830bd758308e2ba3",
+      "bytes": 3545,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_AgentArena榜.txt": {
+      "sha256": "248ff6cbc9a8119a565288bdb3027341b63ba63799c6e2bab2950f8665a78b56",
+      "bytes": 3717,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_CodeArena榜.txt": {
+      "sha256": "3f5a6a0596e92650ce967b07ffd2614d4e4e2e87cbdbbaed6eb82877f65b1a51",
+      "bytes": 2989,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_DeepSWE榜.txt": {
+      "sha256": "b2f1cca8d408291637a9eaf8bae882ee2ab06e54a4e20690c035b231bd2849de",
+      "bytes": 2011,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_OpenDesign设计榜.txt": {
+      "sha256": "78d455a840cd5a7e38a6ce09b2ae976539995a1bac311c95d54540d1a1900cdb",
+      "bytes": 2767,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_TB4·AA榜.txt": {
+      "sha256": "64c257b0d94f8fc28af6659422fc06497de772ea3e708189475c3ee521aac52e",
+      "bytes": 3771,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/frontier/前沿额度表_TB4终端榜.txt": {
+      "sha256": "5b5297f454de30940aa0a66b7d45e73ff5093397c6e3e20d10c1a5f7d5dbbcbf",
+      "bytes": 3453,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/单价总览.png": {
+      "sha256": "980d1f1ec93740bb9335d82854cc3e3ebbb7da9d481607461c469b25fefe9e44",
+      "bytes": 4636306,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/单价总览.svg": {
+      "sha256": "c98b6dad73b3fc100fe26251f83001c05b3ed88c490628b10e584febe839a5af",
+      "bytes": 2316696,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/单价总览表.txt": {
+      "sha256": "b64ec5bb53d978167adfb4f4655cb2b1dfe59e355edf9fb2a015616caff957d6",
+      "bytes": 57673,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览.png": {
+      "sha256": "9c183aa02925c0d75c8265787155c698379fb7d9feadd16285fae314fdce4590",
+      "bytes": 4067866,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览.svg": {
+      "sha256": "22b000385d76bdcd93b72586fbbeafc209f3e4f754f186172853c11487b02b4d",
+      "bytes": 2082312,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览_月费0-30美元.png": {
+      "sha256": "00a4b90b387095bb850804c7d7018afbf6a6def66be98466819e8583bc6573eb",
+      "bytes": 2470548,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览_月费0-30美元.svg": {
+      "sha256": "00345587bb691c2bd2ae758d443969d3952a7a84e290b7af0d5b0295a089251c",
+      "bytes": 1288713,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览_月费100-300美元.png": {
+      "sha256": "fbc86df3a59b2d505901fb9861d6b424bf4ec0b552829ae31221ea1cf36e0159",
+      "bytes": 1019162,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览_月费100-300美元.svg": {
+      "sha256": "4a02b5ec4baaf22fb9b27c3129fccc0d2c0410d81fd4705de21a947290902398",
+      "bytes": 608634,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/overview/额度总览_月费30-100美元.png": {
+      "sha256": "deebef133401ca7867ea7cc081809a44286b104f7314fb25ff6ea215e60beb42",
+      "bytes": 1100806,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览_月费30-100美元.svg": {
+      "sha256": "837b52b481f46f3911ef7f0d0df448b4faa2f176ed159ad6fe3b5f6d06a156ed",
+      "bytes": 659188,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览_混合比例.png": {
+      "sha256": "1d0896d9d6e5f462d997b910ed5a8e811a09553b935b766d3265e61d7c974463",
+      "bytes": 4100770,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览_混合比例.svg": {
+      "sha256": "3ec722d42d58246d2dd21e489c047dd601f685c689e01b6b54b189bf2a75fd46",
+      "bytes": 2120481,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览表.txt": {
+      "sha256": "e880959a67de552d2700ba2a8edda23e45342d58dc803d789587e2fa11e732ab",
+      "bytes": 48343,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览表_月费0-30美元.txt": {
+      "sha256": "3820ce6fffd8de8751002e60360f4cf65677fc145cae4012d5d6f5cba946582b",
+      "bytes": 26237,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览表_月费100-300美元.txt": {
+      "sha256": "af33830986db4ff507b2d57a4c4d6782ca8051d8af501fc14f38d6416fd66820",
+      "bytes": 10225,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/overview/额度总览表_月费30-100美元.txt": {
+      "sha256": "1f3cd034f2970fe070fe54f17fba31e3dcf1fea528851d9139a7d6acb0329221",
+      "bytes": 10767,
+      "mtime": "2026-11-20T01:11:11+00:00"
+    },
+    "charts/zh/pareto/帕累托_AA智力榜.png": {
+      "sha256": "e9e6451733ec340a83dcec47451d1f7a41b52a019a6b99ae0fd5caea84cf64ae",
+      "bytes": 394707,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_AA智力榜.svg": {
+      "sha256": "6baac9ae42006b338218d7861703192fa972346371883387cfb8f96937174f92",
+      "bytes": 136879,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_AA编程Agent榜.png": {
+      "sha256": "04056a4bf0dbc4454150d9d8848a4bc4648277826173bfb674aa4a46d86eed36",
+      "bytes": 362040,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_AA编程Agent榜.svg": {
+      "sha256": "e2f5318e3185d7839c08136a11020abd64de4598d775689b92dc274f8471eb0f",
+      "bytes": 88994,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_AgentArena榜.png": {
+      "sha256": "6281d234f348f6d82739143a70d2c174c3b30e3c245b05c097732d0c97fee271",
+      "bytes": 412120,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_AgentArena榜.svg": {
+      "sha256": "503f4f7a26f24857acff563fcf94dad8ec55f96557df4d1a709d1c17a05db031",
+      "bytes": 176198,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_CodeArena榜.png": {
+      "sha256": "003ede62086cf8c37d36f765b01ba806030fab94e3b32125566c7390fed4abbc",
+      "bytes": 371570,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_CodeArena榜.svg": {
+      "sha256": "9c2f76e82f04103210e4845824d4398839122fecaa380356731bd1c0f8250965",
+      "bytes": 174485,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_DeepSWE榜.png": {
+      "sha256": "893035a2ce3f8a4482d55e35c94d772593c0badc97dcb9840157edec866d105a",
+      "bytes": 306872,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_DeepSWE榜.svg": {
+      "sha256": "ce0435e08888ecad89ea90263dd3a49e9e7118d5d45be270273fdced7600a0a5",
+      "bytes": 128981,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_OpenDesign设计榜.png": {
+      "sha256": "26527bf85b47e14dcb2008f4753b17545c355d331f2f727b799537c0e6766b44",
+      "bytes": 324570,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_OpenDesign设计榜.svg": {
+      "sha256": "2c692a852ed87b287838291d94bb3b4cebf5cd89b32b1b05921a3cb94fcb0b08",
+      "bytes": 63651,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_TB4·AA榜.png": {
+      "sha256": "8b07595c521be3f0c6bac7964550bda88af08b23946032627797f79d38d0f4b5",
+      "bytes": 428431,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_TB4·AA榜.svg": {
+      "sha256": "3467026846cea638768a2e6ff43dd0c3ea041910aa0ced0a78618f3ea703ff8e",
+      "bytes": 163246,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_TB4终端榜.png": {
+      "sha256": "de3eaa188075c35ab11b7501784c842e10f535400aeb71adb97b723b4edbf29c",
+      "bytes": 378246,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托_TB4终端榜.svg": {
+      "sha256": "37cf0c204bcd4e575c2f2a00cd79e1aab056e0495c467b0d374f8988c5e110a7",
+      "bytes": 108622,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    },
+    "charts/zh/pareto/帕累托交互图.html": {
+      "sha256": "2567116a7ea02889afd7d0c9d0d05c006b046acad46f024f4c9c4216b48cd6ad",
+      "bytes": 6110358,
+      "mtime": "2026-11-20T01:11:10+00:00"
+    }
+  },
+  "summary": {
+    "total": 164,
+    "totalBytes": 85393465,
+    "byDir": {
+      "charts": 1,
+      "charts/en/frontier": 48,
+      "charts/en/overview": 17,
+      "charts/en/pareto": 16,
+      "charts/zh/frontier": 48,
+      "charts/zh/overview": 17,
+      "charts/zh/pareto": 17
+    }
+  }
+}

@@ -34,6 +34,7 @@ import glob
 import json
 import os
 import re
+import shutil
 import statistics as st
 import sys
 import time
@@ -137,9 +138,10 @@ def latest_snapshot() -> dict:
         return {}
 
 
-def aa_pairs(snapshot: dict) -> list[tuple[str, str]]:
-    """(project model id, AA slug) pairs across all currently active AA records (snapshot + supplements)."""
-    seen: list[tuple[str, str]] = []
+def aa_pairs(snapshot: dict) -> list[tuple[str, str, float | None]]:
+    """(project model id, AA slug, costPerTaskUsd) across all currently active AA records (snapshot + supplements)."""
+    seen: list[tuple[str, str, float | None]] = []
+    seen_keys: set[tuple[str, str]] = set()
     try:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import compute  # noqa: PLC0415
@@ -158,10 +160,14 @@ def aa_pairs(snapshot: dict) -> list[tuple[str, str]]:
         records = snapshot.get("scores", [])
 
     for row in records:
-        slug = (row.get("secondary") or {}).get("slug")
+        sec = row.get("secondary") or {}
+        slug = sec.get("slug")
         model = row.get("model")
-        if slug and model and (model, slug) not in seen:
-            seen.append((model, slug))
+        cpt = sec.get("costPerTaskUsd")
+        cpt_val = float(cpt) if isinstance(cpt, (int, float)) else None
+        if slug and model and (model, slug) not in seen_keys:
+            seen_keys.add((model, slug))
+            seen.append((model, slug, cpt_val))
     return seen
 
 
@@ -189,25 +195,57 @@ def extract_object(html: str, key: str):
     return None
 
 
-def aa_page_tokens(slug: str):
-    cached = read_cache("aa", slug)
+def aa_page_tokens(slug: str, cpt_usd: float | None = None, model_id: str | None = None):
+    cache_key = f"{slug}@{cpt_usd:.4f}" if cpt_usd is not None else slug
+    cached = read_cache("aa", cache_key)
     if cached is not None:
         return cached
-    try:
-        html = get(AA_PAGE.format(slug=slug))
-    except Exception as exc:  # noqa: BLE001
-        print(f"  ! AA {slug}: {exc}")
+    base_slug = re.sub(r"-(?:xhigh|high|medium|low|non-reasoning|minimal|max)$", "", slug)
+    cands = [slug]
+    if base_slug != slug:
+        cands.append(base_slug)
+    if re.fullmatch(r"[0-9a-f-]{36}", slug) and model_id:
+        m_slug = norm(model_id)
+        cands.extend([m_slug, f"tencent-{m_slug}"])
+    html = None
+    last_exc = None
+    for cand_slug in dict.fromkeys(cands):
+        try:
+            html = get(AA_PAGE.format(slug=cand_slug))
+            break
+        except Exception as exc:  # noqa: BLE001
+            last_exc = exc
+    if html is None:
+        print(f"  ! AA {slug}: {last_exc}")
         return None
-    obj = extract_object(html, "intelligenceIndexOutputTokensPerTask")
-    if not isinstance(obj, dict) or not isinstance(obj.get("output"), (int, float)):
+    # Decode escaped quotes so multi-effort comparison blocks match cleanly
+    dec = html.replace('\\"', '"').replace("\\\\", "\\")
+    blocks: list[tuple[float | None, dict]] = []
+    for match in re.finditer(r'"intelligenceIndexOutputTokensPerTask"\s*:\s*(\{[^}]+\})', dec):
+        try:
+            obj = json.loads(match.group(1))
+        except Exception:  # noqa: BLE001
+            continue
+        if not isinstance(obj, dict) or not isinstance(obj.get("output"), (int, float)):
+            continue
+        ctx = dec[max(0, match.start() - 1200):match.end() + 400]
+        cpt_m = re.findall(r'"cost"\s*:\s*\{\s*"total"\s*:\s*([0-9.]+)', ctx)
+        cpt_val = float(cpt_m[-1]) if cpt_m else None
+        blocks.append((cpt_val, obj))
+    if not blocks:
         print(f"  ! AA {slug}: no intelligenceIndexOutputTokensPerTask")
         return None
+    chosen = blocks[0][1]
+    if cpt_usd is not None:
+        hit = next((b[1] for b in blocks if b[0] is not None and abs(b[0] - cpt_usd) < 0.002), None)
+        if hit is not None:
+            chosen = hit
     record = {
-        "tokens_per_task": round(float(obj["output"]), 1),
-        "reasoning_tokens": round(float(obj.get("reasoning") or 0), 1),
-        "answer_tokens": round(float(obj.get("answer") or 0), 1),
+        "tokens_per_task": round(float(chosen["output"]), 1),
+        "reasoning_tokens": round(float(chosen.get("reasoning") or 0), 1),
+        "answer_tokens": round(float(chosen.get("answer") or 0), 1),
     }
-    write_cache("aa", slug, record)
+    write_cache("aa", cache_key, record)
     return record
 
 
@@ -295,6 +333,8 @@ def main() -> int:
     ap.add_argument("--show", action="store_true")
     ap.add_argument("--out", default="")
     ap.add_argument("--no-latency", action="store_true")
+    ap.add_argument("--no-cache", action="store_true", help="Clear _build/or-tasktime-cache before fetching")
+    ap.add_argument("--model", default="", help="Only refresh matching project model id(s)")
     args = ap.parse_args()
 
     if args.show:
@@ -305,21 +345,26 @@ def main() -> int:
         print(open(latest, encoding="utf-8").read()[:4000])
         return 0
 
+    if args.no_cache and os.path.exists(CACHE_DIR):
+        shutil.rmtree(CACHE_DIR, ignore_errors=True)
     os.makedirs(CACHE_DIR, exist_ok=True)
     snapshot = latest_snapshot()
     pairs = aa_pairs(snapshot)
+    if args.model:
+        kw = args.model.lower()
+        pairs = [p for p in pairs if kw in p[0].lower()]
     if args.limit:
         pairs = pairs[: args.limit]
     print(f"AA snapshot: {snapshot.get('collectedAt')}  model→slug pairs: {len(pairs)}")
 
-    # AA tokens per exact slug (the effort-specific slug is what the config points at)
-    aa_tokens: dict[str, dict] = {}
-    slugs = sorted({slug for _, slug in pairs})
+    # AA tokens per exact slug (matched by costPerTaskUsd on multi-effort pages)
+    aa_tokens: dict[tuple[str, str, float | None], dict] = {}
+    slug_cpts = sorted({(model, slug, cpt) for model, slug, cpt in pairs}, key=lambda sc: (sc[0], sc[1], -1.0 if sc[2] is None else sc[2]))
     with futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        for slug, record in zip(slugs, pool.map(aa_page_tokens, slugs)):
+        for (model, slug, cpt), record in zip(slug_cpts, pool.map(lambda sc: aa_page_tokens(sc[1], sc[2], sc[0]), slug_cpts)):
             if record:
-                aa_tokens[slug] = record
-    print(f"AA tokens: {len(aa_tokens)}/{len(slugs)} slugs")
+                aa_tokens[(model, slug, cpt)] = record
+    print(f"AA tokens: {len(aa_tokens)}/{len(slug_cpts)} slug/effort pairs")
 
     # OpenRouter throughput per project model.
     # The endpoint must be the one AA actually measured. AA's slug carries the version
@@ -338,13 +383,13 @@ def main() -> int:
         return None
 
     picked: dict[str, dict] = {}
-    for model, slug in pairs:
+    for model, slug, _ in pairs:
         if model in picked:
             continue
         hit = or_pick(model, slug)
         if hit is not None:
             picked[model] = hit
-    print(f"OpenRouter: {len(picked)}/{len({m for m, _ in pairs})} models matched")
+    print(f"OpenRouter: {len(picked)}/{len({m for m, _, _ in pairs})} models matched")
 
     or_stats_by_model: dict[str, dict] = {}
     with futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
@@ -355,8 +400,8 @@ def main() -> int:
     by_model_slug: dict[str, dict] = {}
     no_aa: list[str] = []
     derived = aa_derived_tokens()
-    for model, slug in pairs:
-        tokens = aa_tokens.get(slug)
+    for model, slug, cpt in pairs:
+        tokens = aa_tokens.get((model, slug, cpt))
         source = "aa-page"
         if not tokens and slug in derived:
             tokens = {"tokens_per_task": derived[slug]}
@@ -388,6 +433,18 @@ def main() -> int:
         by_model.setdefault(key.split("::")[0], value)
 
     stamp = time.strftime("%Y-%m-%d")
+    out = args.out or os.path.join(RESEARCH, f"or-tasktime-{stamp}.json")
+    if args.model:
+        # Merge into existing latest or-tasktime file so single-model refresh doesn't drop other models
+        base_file = out if os.path.exists(out) else max(glob.glob(os.path.join(RESEARCH, "or-tasktime-*.json")), default="")
+        if base_file and os.path.exists(base_file):
+            prev = json.load(open(base_file, encoding="utf-8"))
+            merged_slug = {k: v for k, v in (prev.get("byModelSlug") or {}).items() if args.model.lower() not in k.split("::")[0].lower()}
+            merged_slug.update(by_model_slug)
+            by_model_slug = dict(sorted(merged_slug.items()))
+            merged_model = {k: v for k, v in (prev.get("byModel") or {}).items() if args.model.lower() not in k.lower()}
+            merged_model.update(by_model)
+            by_model = dict(sorted(merged_model.items()))
     payload = {
         "collectedAt": stamp,
         "aaSnapshot": snapshot.get("collectedAt"),
@@ -399,7 +456,6 @@ def main() -> int:
         "byModel": dict(sorted(by_model.items())),
         "noAaTokens": sorted(no_aa),
     }
-    out = args.out or os.path.join(RESEARCH, f"or-tasktime-{stamp}.json")
     json.dump(payload, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"wrote {out}  ({len(by_model_slug)} model/effort pairs, {len(by_model)} models)")
     if no_aa:

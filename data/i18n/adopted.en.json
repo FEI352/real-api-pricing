@@ -1387,36 +1387,52 @@
       "en": "Added 1.516B: GPT-6.2 Sol shares identical credits and three-part rates with GPT-6.1 Sol, carrying over ChatGPT Plus's latest weekly-midpoint measured baseline 1.516B, real = $0.013193/MTok; Pro 10x/20x not derived per the Sol ruling."
     },
     {
-      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，输入 $3.00 / 输出 $15.00 / 隐式缓存读 $0.15，三段均为 Gemini 4 Hydrogen $1.50/$7.50/$0.075 的 2×）；维护者确认 Antigravity 内 Neon 与 Hydrogen 同池，按同美元池 ÷ 2× 标价折算（标准档 $0.2955 vs $0.14775、低缓存档 $0.6375 vs $0.31875，比值均为 2.0）；list-prices-gemini-4-neon-round1-2026-11-19.json",
-      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and launch announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (launched 2026-11-18: input $3.00 / output $15.00 / implicit cached read $0.15, exactly 2x Gemini 4 Hydrogen $1.50/$7.50/$0.075 across all three tiers); maintainer confirmed Neon shares the same Antigravity pool as Hydrogen, derived via equal USD pool / 2x list price (standard mix $0.2955 vs $0.14775, low-cache mix $0.6375 vs $0.31875, ratio 2.0 in both); list-prices-gemini-4-neon-round1-2026-11-19.json"
+      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，隐式缓存读 $0.15 / 输入 $3.00 / 输出 $15.00，低缓存档混合价 $0.6375/MTok）；按 Google AI Pro 实测月美元池 $493.66（$123.42/周×4周，来自 3.8 Flash 同池双样本）÷ $0.6375/MTok 折算；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (released 2026-11-18; implicit cache read $0.15 / input $3.00 / output $15.00, low-cache blended price $0.6375/MTok); converted from measured Google AI Pro monthly pool $493.66 ($123.42/week x 4 weeks from 3.8 Flash same-pool samples) / $0.6375/MTok; list-prices-gemini-4-neon-round1-2026-11-19.json"
     },
     {
-      "zh": "新增 12.905 亿：与 Hydrogen 同池按等额美元反推（25.81 亿 ÷ 2 = 12.905 亿，三段标价均为 2×）；19.99 美元/月 ÷ 1,290.5 MTok → real = $0.015490/MTok；无首发促销，非独立实测。",
-      "en": "Added 1.2905B: derived from the shared Hydrogen USD pool (2.581B / 2 = 1.2905B, 2x list price across all three tiers); $19.99/mo / 1,290.5 MTok -> real = $0.015490/MTok; no intro promo, not independently measured."
+      "zh": "12.905→7.743亿：修正为按 Google AI Pro 实测月美元池 $493.66 ÷ Neon 低缓存混合价 $0.6375/MTok（$0.15/$3.00/$15.00）折算（旧值 12.905 亿沿用 Hydrogen ÷ 2、忽略了 Neon 实际比 Hydrogen 贵且 Hydrogen 沿用了 3.8 Flash 促销期旧池口径）；19.99 美元/月 ÷ 774.3 MTok → real = $0.025817/MTok；非独立实测。",
+      "en": "1.2905B->774.3M: corrected using measured Google AI Pro monthly pool $493.66 / Neon low-cache blended price $0.6375/MTok ($0.15/$3.00/$15.00) (prior 1.2905B reused Hydrogen / 2, overlooking that Neon costs more than Hydrogen and Hydrogen carried 3.8 Flash promo pool); $19.99/mo / 774.3 MTok -> real = $0.025817/MTok; not independently measured."
     },
     {
-      "zh": "新增 64.525 亿：与 Hydrogen 同池按等额美元反推（129.05 亿 ÷ 2 = 64.525 亿，三段标价均为 2×）；99.99 美元/月 ÷ 6,452.5 MTok → real = $0.015496/MTok；无首发促销，非独立实测。",
-      "en": "Added 6.4525B: derived from the shared Hydrogen USD pool (12.905B / 2 = 6.4525B, 2x list price across all three tiers); $99.99/mo / 6,452.5 MTok -> real = $0.015496/MTok; no intro promo, not independently measured."
+      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （低缓存档混合价 $0.6375/MTok）；官方 Ultra 5x = 5× Pro 月池（$2,468.3/月 ÷ $0.6375/MTok）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (low-cache blended price $0.6375/MTok); official Ultra 5x = 5x Pro monthly pool ($2,468.3/mo / $0.6375/MTok); list-prices-gemini-4-neon-round1-2026-11-19.json"
     },
     {
-      "zh": "新增 258.1 亿：与 Hydrogen 同池按等额美元反推（516.2 亿 ÷ 2 = 258.1 亿，三段标价均为 2×）；199.99 美元/月 ÷ 25,810 MTok → real = $0.007749/MTok；无首发促销，非独立实测。",
-      "en": "Added 25.81B: derived from the shared Hydrogen USD pool (51.62B / 2 = 25.81B, 2x list price across all three tiers); $199.99/mo / 25,810 MTok -> real = $0.007749/MTok; no intro promo, not independently measured."
+      "zh": "64.525→38.715亿：Pro 月额度 7.743 亿 × 官方 5× 倍率；99.99 美元/月 ÷ 3871.5 MTok → real = $0.025827/MTok；非独立实测。",
+      "en": "6.4525B->3.8715B: Pro monthly quota 774.3M x official 5x multiplier; $99.99/mo / 3871.5 MTok -> real = $0.025827/MTok; not independently measured."
     },
     {
-      "zh": "新增 64.525 亿：土耳其区 Ultra 5x（TRY 1,479.99 ≈ $29.73）与美国版同池，按 Hydrogen 129.05 亿 ÷ 2 反推；29.73 美元/月 ÷ 6,452.5 MTok → real = $0.004608/MTok；标价不含土区 20% VAT，非独立实测。",
-      "en": "Added 6.4525B: Turkey Ultra 5x (TRY 1,479.99 ~ $29.73) shares the US quota pool, derived as Hydrogen 12.905B / 2; $29.73/mo / 6,452.5 MTok -> real = $0.004608/MTok; list price excludes Turkey 20% VAT, not independently measured."
+      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （低缓存档混合价 $0.6375/MTok）；官方 Ultra 20x = 20× Pro 月池（$9,873.2/月 ÷ $0.6375/MTok）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (low-cache blended price $0.6375/MTok); official Ultra 20x = 20x Pro monthly pool ($9,873.2/mo / $0.6375/MTok); list-prices-gemini-4-neon-round1-2026-11-19.json"
     },
     {
-      "zh": "新增 12.905 亿：$5 学生版与标准 Pro 同池，按 Hydrogen 25.81 亿 ÷ 2 反推；5 美元/月 ÷ 1,290.5 MTok → real = $0.003874/MTok；学生资质限制，非独立实测。",
-      "en": "Added 1.2905B: $5 student tier shares the standard Pro pool, derived as Hydrogen 2.581B / 2; $5/mo / 1,290.5 MTok -> real = $0.003874/MTok; student eligibility required, not independently measured."
+      "zh": "258.1→154.86亿：Pro 月额度 7.743 亿 × 官方 20× 倍率；199.99 美元/月 ÷ 15486 MTok → real = $0.012914/MTok；非独立实测。",
+      "en": "25.81B->15.486B: Pro monthly quota 774.3M x official 20x multiplier; $199.99/mo / 15486 MTok -> real = $0.012914/MTok; not independently measured."
     },
     {
-      "zh": "Google 官方印度区定价 feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json （PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500，按 2026-11-13 USD/INR 94.4 折 USD 68.86）；Neon 官方目录价 https://ai.google.dev/gemini-api/docs/pricing （$3.00/$15.00/$0.15，为 Hydrogen 的 2×），按同美元池 ÷ 2× 标价折算；list-prices-gemini-4-neon-round1-2026-11-19.json",
-      "en": "Google official India pricing feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json (PRICE_GEN_AI_ULTRA_100_MONTHLY = INR 6,500, converted at 2026-11-13 USD/INR 94.4 to USD 68.86); Neon official list price https://ai.google.dev/gemini-api/docs/pricing ($3.00/$15.00/$0.15, 2x Hydrogen), derived via equal USD pool / 2x list price; list-prices-gemini-4-neon-round1-2026-11-19.json"
+      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （低缓存档混合价 $0.6375/MTok）；土耳其区 Ultra 5x（TRY 1,479.99 ≈ $29.73）与美国版同池；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (low-cache blended price $0.6375/MTok); Turkey Ultra 5x (TRY 1,479.99 approx $29.73) shares US pool; list-prices-gemini-4-neon-round1-2026-11-19.json"
     },
     {
-      "zh": "新增 64.525 亿：印度区 Ultra 5x（₹6,500 ≈ $68.86，含 18% GST）与美国版同池，按 Hydrogen 129.05 亿 ÷ 2 反推；68.86 美元/月 ÷ 6,452.5 MTok → real = $0.010672/MTok；非独立实测。",
-      "en": "Added 6.4525B: India Ultra 5x (INR 6,500 ~ $68.86, includes 18% GST) shares the US quota pool, derived as Hydrogen 12.905B / 2; $68.86/mo / 6,452.5 MTok -> real = $0.010672/MTok; not independently measured."
+      "zh": "64.525→38.715亿：土耳其区 Ultra 5x 与美国版同池（5× Pro = 38.715 亿）；29.73 美元/月 ÷ 3871.5 MTok → real = $0.007679/MTok；标价不含土区 20% VAT，非独立实测。",
+      "en": "6.4525B->3.8715B: Turkey Ultra 5x shares US pool (5x Pro = 3.8715B); $29.73/mo / 3871.5 MTok -> real = $0.007679/MTok; list excludes 20% Turkey VAT, not independently measured."
+    },
+    {
+      "zh": "Google 官方 API 定价页 https://ai.google.dev/gemini-api/docs/pricing 与发布公告 https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ （2026-11-18 发布，低缓存档混合价 $0.6375/MTok）；$5 学生版与标准 Pro 同池（$493.66/月 ÷ $0.6375/MTok）；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official API pricing https://ai.google.dev/gemini-api/docs/pricing and announcement https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/ (released 2026-11-18, low-cache blended price $0.6375/MTok); $5 Student shares standard Pro pool ($493.66/mo / $0.6375/MTok); list-prices-gemini-4-neon-round1-2026-11-19.json"
+    },
+    {
+      "zh": "12.905→7.743亿：$5 学生版与标准 Pro 同池，按 Pro 月池 $493.66 ÷ Neon 低缓存混合价 $0.6375/MTok 折算；5 美元/月 ÷ 774.3 MTok → real = $0.006457/MTok；学生资质限制，非独立实测。",
+      "en": "1.2905B->774.3M: $5 Student shares standard Pro pool, converted at Pro monthly pool $493.66 / Neon low-cache blended price $0.6375/MTok; $5/mo / 774.3 MTok -> real = $0.006457/MTok; student eligibility required, not independently measured."
+    },
+    {
+      "zh": "Google 官方印度区定价 feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json （PRICE_GEN_AI_ULTRA_100_MONTHLY = ₹6,500，按 2026-11-13 USD/INR 94.4 折 USD 68.86）；Neon 低缓存档混合价 $0.6375/MTok，Ultra 5x = 5× Pro 月池；list-prices-gemini-4-neon-round1-2026-11-19.json",
+      "en": "Google official India pricing feed https://one.google.com/intl/ALL_in/about/feeds/pricing_2026_07_28.json (PRICE_GEN_AI_ULTRA_100_MONTHLY = INR 6,500, converted at 2026-11-13 USD/INR 94.4 to USD 68.86); Neon low-cache blended price $0.6375/MTok, Ultra 5x = 5x Pro monthly pool; list-prices-gemini-4-neon-round1-2026-11-19.json"
+    },
+    {
+      "zh": "64.525→38.715亿：印度区 Ultra 5x（₹6,500 ≈ $68.86，含 18% GST）与美国版同池（5× Pro = 38.715 亿）；68.86 美元/月 ÷ 3871.5 MTok → real = $0.017786/MTok；非独立实测。",
+      "en": "6.4525B->3.8715B: India Ultra 5x (INR 6,500 approx $68.86 incl. 18% GST) shares US pool (5x Pro = 3.8715B); $68.86/mo / 3871.5 MTok -> real = $0.017786/MTok; not independently measured."
     },
     {
       "zh": "阿里云 Model Studio Token Plan 概览 https://help.aliyun.com/en/model-studio/token-plan-personal-overview 与 X @SSHCodes 2026-11-18 满月消耗实测 https://x.com/SSHCodes/status/2123184045572096137 （T3 Code 2,094 次响应耗尽 $18 档全部 80,000 credits，749M tokens 折合 API 价值 $87.76）；qwen-token-plan-standard-round1-2026-11-19.json",

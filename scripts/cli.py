@@ -753,10 +753,10 @@ def attach_email_analysis_notes(diff):
         return
     notes = diff.setdefault("notes", [])
     if diff.get("added"):
-        notes.append("【前沿变动与新进归因】本轮前沿新增 2 个双前沿（cost+price）点位：1) google_ai_pro_student::gemini-4-neon（Google 11-18 新发 Gemini 4 Neon，AA 智力 xhigh 61.3982 分，真实单价 $0.003874/MTok，单任务成本 $0.084501/task）；2) claude_pro::claude-fable-5.2（AA 智力 64.5636 分全榜 #1，真实单价 $0.025575/MTok，单任务成本 $1.142654/task）。此外留存前沿点 chatgpt_plus::gpt-6.2-sol（57.2576 分）因采纳最新周中点实测基准（8.7 → 15.16 亿/月，real $0.022989 → $0.013193/MTok），单任务成本下降 42.6%（$0.118373 → $0.067932/task）。")
-    notes.append("【被支配掉出的前沿点】本轮共 5 个旧前沿点位被严格支配移出：1) claude_max_20x::claude-fable-5.2（cost+price，64.5636 分，$5.171039 / $0.115741）被同分更便宜的 claude_pro::claude-fable-5.2（$1.142654 / $0.025575）支配；2) chatgpt_pro_20x::gpt-6.2-astra（price，62.1388 分，$0.028125）被 claude_pro::claude-fable-5.2 挤出单价前沿（仍稳居任务成本前沿 $0.142690）；3) claude_max_20x::claude-sonnet-5.5（54.5413 分，$0.004732）、claude_max_20x::claude-opus-5.5（59.1060 分，$0.006342）与 google_ai_ultra_5x_tr::gemini-4-carbon（59.4257 分，$0.007321）三点均被 google_ai_pro_student::gemini-4-neon（61.3982 分，$0.003874）严格支配挤出单价前沿。总收录点数由 393 点增至 420 点（+27 点）。")
-    notes.append("【新增模型采用值与数据日期】1) gemini-4-neon（2026-11-18 官方发布，标价 $3.00/$15.00/$0.15，混合价 $0.2955/MTok，标价档 list-prices-gemini-4-neon-round1-2026-11-19.json；API 按量 $0.2955/MTok [2026-11-18 official]，Google AI Pro/Student/Ultra 6 档按 Hydrogen 2.0× 标价比派生 [Student 12.905 亿/月 $0.003874/MTok]，继承 2026-09-12~2026-09-27 实测日期）；2) qwen4-max（$1.50/$4.50/$0.075，AA 42.8915 分，list-prices-qwen4-hy4-round1-2026-11-19.json；Qwen Token Plan Standard 6.611 亿/月 [2026-11-16]、OpenCode Go 1.13 亿/月 [2026-11-19]、Command Code GOAT 1.507 亿/月 [2026-11-17]）；3) hy4（$0.834/$2.501/$0.042，AA 34.5552 分，Tencent Token Plan 四档/OpenCode Go/GOAT [2026-11-19]）及 opencode_go::glm-5.3 限时 $500 促销（16.171 亿/月，$0.006184/MTok，2026-11-18）；4) AA 快照 scores-aa-round6-2026-11-19.json（309 原始行/191 scores，aa_recover_deprecated 补回 22 个 deprecated slug 含 inkling-small）与 or-tasktime-2026-11-19.json 数据日期为 2026-11-19。")
-    notes.append("【候选但未采用的模型及原因】1) Tencent Hy4 Flash（$0.07/$0.281/$0.003，OpenCode Go 两周免费至 ~11-30）：尚无 AA 智力榜跑分；2) MiniMax M3.1 Flash on OpenCode Go（$0.15/$0.60/$0.015，AA 29.0595 分）：已收录但分价比被 Muse Spark 1.3 / DeepSeek V4.1 Flash 严格支配；3) Claude Fable 5.2 on Droid Max（Factory 文档 3.2× 倍率）：缺本地实测倍率样本验证，暂不派生入库；4) GPT-6.2 Astra Pro mode（OpenRouter reasoning.mode=pro）：单价不变但推理消耗大幅上升，缺 AA 独立子档评分；5) Muse Wonder（Devin Pro / Command Code Max 10× 保留 raw 2.05 亿）：无官方公开三段 API 标价，列 verify_list_blended pending 观察；6) JoyAI-VL-Preview / K2 Horizon 32B / Ling 3.1 Flash 1019 / Muse Ember：缺商业订阅载体或已被前沿支配，均未入库。")
+        notes.append("【前沿变动与新进归因】本轮总收录点数保持 420 点（Δ=0），单价前沿（price_frontier）由 5 点增至 7 点，新进 2 点：1) claude_max_20x::claude-sonnet-5.5（54.5413 分，真实单价 $0.004732/MTok）；2) claude_max_20x::claude-opus-5.5（59.1060 分，真实单价 $0.006342/MTok）。触发原因：留存双前沿点 google_ai_pro_student::gemini-4-neon（61.3982 分）按最新核定月额度由 12.905 亿下调至 7.743 亿，其真实单价由 $0.003874/MTok 升至 $0.006457/MTok、单任务成本由 $0.084501 升至 $0.140836，从而解除了对 Claude Max 20x Sonnet 5.5 与 Opus 5.5 的严格支配，使两者重回单价前沿。")
+    notes.append("【被支配掉出的前沿点】本轮无旧前沿点掉出（removed: []）：任务成本前沿 7 点完整留存（Muse Spark 1.3 Contributor / GPT-6.1 Terra / Gemini 4 Hydrogen / GPT-6.2 Sol / Gemini 4 Neon / GPT-6.2 Astra / Claude Fable 5.2）；单价前沿净增 2 点至 7 点。")
+    notes.append("【模型采用值与数据日期】1) 今日 AA 快照 scores-aa-round6-2026-11-20.json（309 原始行 / 191 scores，aa_recover_deprecated HTTP 200 补回全部 22 个 deprecated slug，claude-haiku-5-5 rank 44 保持一致）与 OpenRouter 任务用时映射 or-tasktime-2026-11-20.json（86 对 / 38 模型，AA 93/96 & OR 38/48 命中）数据日期均为 2026-11-20；2) 在库 93 个唯一模型标价档（22 份）与 420 行采用值（conventions.updatedAt 2026-11-19）保持同步，387/387 订阅点 list_blended 全部非空；3) AA 载荷中 gemini-4-carbon 今日标价已提前跳至 $4/$20，但核实 Google 官方 ai.google.dev 首发优惠 $2/$10 仍有效至 2026-11-30（12-01 起恢复 $4/$20），仍在 [0.5, 2.0] 分歧阈值内，本轮维持 $2/$10 标价档。")
+    notes.append("【候选但未采用的模型及近期风险预警】1) Tencent Hy4 Flash（$0.07/$0.281/$0.003，OpenCode Go 两周免费至 ~11-30）：暂缺 AA 智力榜跑分；2) Droid Max::claude-fable-5.2（3.2× 倍率）：缺本地实测倍率样本验证，暂不派生入库；3) GitHub Copilot AI Credits（PR #237，Pro/Pro+/Max，Fusion 30% 折扣至 11-30）与 Synthetic.new（Go/Standard/Big）：上游纯研究证据，缺标准负载换算锚点；4) Muse Wonder（Devin Pro / Command Code Max 10×）：无官方公开三段 API 标价，列 verify_list_blended pending 观察；5) 风险与倒计时预警：Google AI Pro Student SKU 'Unavailable'/403 权限故障持续影响 Neon/Hydrogen 资格边界；OpenAI 公布 12 月起合并 ChatGPT 与 Codex 为单一共享 Token 池（需重估 chatgpt_pro_20x/plus）；11-22 (T-2) opencode_go::glm-5.3 $500 促销到期；11-25 (T-5) qwen4-max-preview 退役；11-30 (T-10) Carbon/Argon 翻倍、Copilot Fusion 30% 折扣、百炼优惠与 Hy4 Flash 免费窗口集中到期。")
 
 
 def send_report_email(to=None, report=None):
@@ -939,13 +939,24 @@ def main():
             pts = json.loads(points_file.read_text(encoding="utf-8")).get("points", [])
             kw = args.model.lower()
             matched = [p for p in pts if kw in p.get("model", "").lower() or kw in p.get("id", "").lower()]
+            dep_site = Path("/var/www/real-plan/data/site.json")
+            dep_map = {}
+            if dep_site.exists():
+                dep_map = {p["id"]: p for p in json.loads(dep_site.read_text(encoding="utf-8")).get("points", [])}
             print(f"找到 {len(matched)} 个匹配点位 ({args.model}):\n")
             for p in matched:
-                print(f"[{p['id']}] {p.get('label', '')}")
-                print(f"  Billing: {p.get('billing')} | Real USD/MTok: ${p.get('real_usd_per_mtok')}")
+                dep_p = dep_map.get(p["id"])
+                sync_tag = "IN_SYNC" if (dep_p and dep_p.get("real_usd_per_mtok") == p.get("real_usd_per_mtok") and dep_p.get("monthly_yi") == p.get("monthly_yi")) else "DRIFT/MISSING"
+                print(f"[{p['id']}] {p.get('label', '')} (deploy={sync_tag})")
+                print(f"  Billing: {p.get('billing')} | Monthly Yi: {p.get('monthly_yi')} | Real USD/MTok: ${p.get('real_usd_per_mtok')} | List Blended: ${p.get('list_blended_usd_per_mtok')}")
                 for b in ["aa_intelligence_index", "aa_terminal_bench_4", "aa_coding_agent_index"]:
                     if p.get(f"{b}__score") is not None:
-                        print(f"  {b}: score={p.get(f'{b}__score')}, cost_per_task=${p.get(f'{b}__mean_cost_usd_per_task')}")
+                        bl = p.get(f"{b}__benchmark_list_price") or p.get("list_blended_usd_per_mtok")
+                        aa_cpt = p.get(f"{b}__mean_cost_usd_per_task")
+                        sub_cpt = round(aa_cpt * p["real_usd_per_mtok"] / bl, 5) if (aa_cpt and bl and p.get("real_usd_per_mtok")) else None
+                        tps = p.get(f"{b}__output_speed_tps")
+                        tt = p.get(f"{b}__response_time_seconds")
+                        print(f"  {b}: score={p.get(f'{b}__score')}, aa_cpt=${aa_cpt}, sub_cpt=${sub_cpt}, tps={tps}, task_time={tt}s")
                 print()
             sys.exit(0)
         elif args.command == "cron-run":

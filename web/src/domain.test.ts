@@ -23,6 +23,7 @@ import {
   allowance,
   csv,
   dataDateLine,
+  default3dPointIds,
   defaultState,
   accessLine,
   displayPlan,
@@ -30,6 +31,7 @@ import {
   firstUrl,
   isThirdParty,
   manufacturer,
+  modelMaxAaIndex,
   mappingNoteLabel,
   frontierPath,
   groups,
@@ -423,6 +425,28 @@ test("Default state serializes to a minimal hash and selection states stay disti
     restore(serialize(defaultState()), data).state.selected,
     null,
   );
+  assert.equal(
+    restore(serialize(defaultState()), data).state.selected3d,
+    null,
+  );
+  const restored3d = restore(
+    serialize({ ...defaultState(), selected3d: ids }),
+    data,
+  ).state;
+  assert.deepEqual(restored3d.selected3d, ids);
+  assert.equal(restored3d.selected, null);
+});
+test("3D default selection excludes models below Qwen3.8 27B max AA index", () => {
+  const { floor, maxByModel } = modelMaxAaIndex(data);
+  assert.ok(floor >= 20, `expected Qwen3.8 27B floor >= 20, got ${floor}`);
+  const ids3d = new Set(default3dPointIds(data));
+  for (const p of data.points) {
+    const sc = maxByModel.get(p.model);
+    if (sc !== undefined && sc < floor) {
+      assert.ok(!ids3d.has(p.id), `${p.id} (AA ${sc} < ${floor}) should be excluded from 3D default`);
+    }
+  }
+  assert.ok(ids3d.has("command_code_goat::qwen3.8-27b"), "Qwen3.8 27B itself stays in 3D default");
 });
 test("Legacy #s=<json> share links still restore with the same validation", () => {
   const legacy =

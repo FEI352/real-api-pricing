@@ -135,6 +135,8 @@ export interface State {
   view: View;
   board: string;
   selected: string[] | null;
+  /** Independent model/plan selection for 3D Terrain view; null = default (>= Qwen3.8 27B max AA). */
+  selected3d: string[] | null;
   vendors: string[];
   channels: string[];
   plans: string[];

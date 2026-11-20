@@ -1,0 +1,614 @@
+{
+  "date": "2026-11-20",
+  "probeDate": "2026-11-20",
+  "checkedDate": "2026-11-20",
+  "checkedAt": "2026-11-20T09:05:00+08:00",
+  "collectedAt": "2026-11-20T09:05:00+08:00",
+  "scannedAt": "2026-11-20T09:05:00+08:00",
+  "collector": "Worker-Search (real-api-pricing automated daily sync agent team)",
+  "sourcesChecked": [
+    "Google Blog, Google AI Developers Forum & Google One Help (2026-11-19~20 跟踪：11-18 发布的 Gemini 4 Neon [gemini-4-neon, $3.00/$15.00/缓存 $0.15] 进入发布后 48 小时；Google AI Pro Student 优惠账号及部分捆绑促销账号在 Antigravity 出现的 Gemini 4 Neon/Carbon/Hydrogen/Argon 'Unavailable' / 403 / Starter Quota 权限脱节故障截至 11-19~20 仍未完全修复，用户依赖退登清缓存重登及规避 VPN/Workspace 等临时缓解措施；Carbon/Argon $2/$10 优惠距 11-30 到期倒计时进入 T-10 天)",
+    "OpenAI Official Help Center & OpenRouter (OpenAI 官方帮助文档 'Understanding ChatGPT and Codex usage limits' 公布：自 2026 年 12 月起，Plus、Pro 与 Business 套餐将把 ChatGPT 推理模型/Work 与 Codex 额度合并为单一共享 Token 池 [Instant chat 不计入]，Pro 100 / Pro 500 已前置调整额度；GPT-6.2 Astra [$8/$40/缓存 $0.40] 与 Sol [$2/$10/缓存 $0.10] 及 OpenRouter Astra Pro 模式、11-18 发布的 ChatGPT for Accounting 均维持稳定)",
+    "Anthropic Nasdaq Debut & Claude Pricing (Anthropic 于 11-18 按 $83.00/股定价后，11-19 正式以代码 ANT 在纳斯达克挂牌交易，开盘 $111.50、首日收涨约 17% 至 $97.17，11-20 完成发行交割；Claude Fable 5.2 [$8/$40/缓存 $0.20，Fast $16/$80]、Opus 5.5 [$4/$20/$0.20]、Sonnet 5.5 [$2/$10/$0.10]、Haiku 5.5 [<=100k $0.10/$0.50, >100k $0.50/$0.50] 标价与 Pro/Max 配额零变动)",
+    "Artificial Analysis & Terminal-Bench 4.1 & OpenRouter (AA Intelligence Index v5.0.1 维持 Fable 5.2 [64.5636] #1、GPT-6.2 Astra [62.1388] #2、Gemini 4 Neon xhigh [61.3982, 生成约 283M tokens 偏冗余] #3、Neon high [~60 分，标准任务成本低于 Carbon 一半]；Coding Agent Index v2.1 维持 Neon 58.6 #1；tbench.ai Terminal-Bench 4.1 维持 Copilot Fusion 71.2% #1；OpenRouter 近期新上架列表无 11-19~20 新突袭旗舰，最新为 11-17 HeyGen Avatar 6 Turbo 与 11-16 Qwen4 Max / Hy4 Flash / d1.2-ultra)",
+    "DeepSeek, Mistral AI, MiniMax, Alibaba Qwen, Tencent Hy4, Zhipu, Kimi, Xiaomi, xAI (Mistral AI 于 11-19 宣布通过德国电信 T.Capital 追加 €1 亿 Series D 融资 [总轮次约 €31~32 亿]，Mistral Large 4 维持 $0.70/$2.10/$0.07；DeepSeek 11-18 取消 API 服务端搜索/抓取单独收费 [$0.75/千次 -> 仅收 Token] 平稳运行，近期获约 1000 亿元人民币 [~$15B] 二轮外部融资冲击科创板 IPO，API 标价与消费端 4 万字/72h 限流不变；MiniMax H3 Image [$1.50/$3.80] 接入路由且 M2.5/M2.1 已于 11 月中旬退役，M3.1 Flash [$0.15/$0.60] 不变；Qwen4-Max 预览 11-25 到期倒计时 T-5 天、百炼优惠 11-30 到期 T-10 天；OpenCode Hy4 Flash 两周免费窗口 11-30 到期 T-10 天；GLM-5.3、Kimi K3.1 Pro、MiMo-V2.6-Pro、Grok 4.7 均无调价)",
+    "Coding Agent Subscriptions & Dev Tools (OpenCode Go [$10/$40/$20]、Command Code Go/GOAT [$1/$10/$20/$100/$200]、GitHub Copilot [$10/$39/$100, CLI v1.0.114 含 MAI Code 2/Flash, Fusion 30% 折扣倒计时 T-10]、Cursor [$8/$30/$100/$200 + Legacy $20]、Devin [$20/$80+$40/$200 + 11-17 Devin Bots + SWE-2 免费]、Factory Droids [$20/$100/$200]、Doubao Work [21 场景 AI 工作台 + 多模型倍率] 11-19~20 均维持既有定价与配额)",
+    "Community Dispatches (Google 开发者论坛与 Reddit 持续反馈 Google AI Pro Student / 捆绑账号在 Antigravity 报错 Unavailable / 403 / Starter Quota；Hacker News 与 Reddit r/singularity / r/GeminiAI / r/OpenAI 热议 Anthropic ANT 上市首日表现、OpenAI 12 月 ChatGPT+Codex 共享 Token 池政策引发对配额稀释的担忧、以及 Gemini 4 Neon 命名混乱与高输出冗余度；V2EX / Linux.do 讨论 DeepSeek 搭配 DSH / OpenCode Go 控本与 AI Coding 线上风险反思)"
+  ],
+  "searchScope": [
+    "Google Gemini 4 Neon 48h Post-Launch, AA High/Xhigh Cost-Verbosity Profile & Google AI Pro Student SKU 'Unavailable' Bug Status (Nov 19-20)",
+    "OpenAI December 2026 ChatGPT + Codex Shared Usage Pool Policy, Pro 100/500 Adjustments & GPT-6.2 Astra/Sol Stability",
+    "Anthropic Nasdaq Debut (ANT, Nov 19 Opening $111.50 / Close $97.17 / Nov 20 Closing) & Claude 5.2/5.5 Pricing Check",
+    "Artificial Analysis Intelligence Index v5.0.1, Coding Agent Index v2.1, Terminal-Bench 4.1 & OpenRouter Nov 19-20 Catalog",
+    "Mistral €100M Series D Extension (Nov 19), DeepSeek ~100B RMB Funding & Search Fee Removal Follow-up, MiniMax H3 Image & M2.x Retirement",
+    "Alibaba Qwen4-Max (T-5 Preview / T-10 Promo), Tencent Hy4 Flash OpenCode Free Window (T-10), Copilot Fusion 30% Discount (T-10), Carbon/Argon Promo (T-10)",
+    "Coding Subscriptions & IDEs: OpenCode Go, Command Code, Cursor, Devin, Factory Droids, GitHub Copilot, Doubao Work",
+    "Community Firsthand Threads: Google AI Dev Forums, Reddit, Hacker News, V2EX, LINUX DO (Nov 19-20)"
+  ],
+  "summary": "2026-11-20 全网大模型发布、定价调整、订阅变动与评测榜单核实报告（无新增前沿扩张发布，但存在两项需 Lead/Pricing 持续跟踪的订阅资格与配额风险）：\n1) 【前沿判定：NO_IMMEDIATE_THREAT】2026-11-19 至 2026-11-20 过去 24-48 小时内，全球头部实验室与开源生态未发布新的通用基础模型，亦未出现新的 API 降价或订阅单价下探；昨日（11-19）已纳入双前沿的 Google Gemini 4 Neon（61.3982 分，google_ai_pro_student::gemini-4-neon）与前日纳入的 GPT-6.2 Astra/Sol 构成当前最新稳态基线；\n2) 【高优风险 1：Google AI Pro Student SKU 'Unavailable' 故障仍未彻底修复】11-19~20 Google AI 开发者论坛与 Google One 帮助社区仍持续反馈 Student Offer 与运营商捆绑 Google AI Pro 账号在 Antigravity 出现 Gemini 4 Neon/Carbon/Hydrogen/Argon 灰显 'Unavailable'、'Model unavailable, retrying (attempt n/9)'、HTTP 403 或降级为 'Starter Quota'。虽然部分用户通过全端登出清缓存重登个人 Gmail、关闭代理/VPN 可临时缓解，但官方尚未发布根治公告，对当前占领双前沿的 google_ai_pro_student::{gemini-4-neon,gemini-4-hydrogen} 构成资格可用性隐患；\n3) 【高优政策预警 2：OpenAI 宣布 2026 年 12 月起合并 ChatGPT 与 Codex 共享 Token 额度池】OpenAI 官方帮助中心确认，自 12 月起 Plus、Pro 与 Business 套餐将把 ChatGPT（推理模型/Work）与 Codex 用量合并为单一共享 Token 池（Instant chat 不扣额，Pro 100/Pro 500 已先行调整额度）。今日现有采用口径暂不受影响，但 12 月落地后可能改变 Codex 实际可用折算额度；\n4) 【资本与生态动态（不改定价）】Anthropic 11-19 正式以 ANT 挂牌纳斯达克（开盘 $111.50，首日收 $97.17 较 $83 发行价涨约 17%，11-20 完成发行交割），Claude Fable 5.2 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 标价与配额零变动；Mistral AI 11-19 获德国电信 T.Capital 追加 €1 亿 Series D 融资，Large 4 标价不变；DeepSeek 11-18 免除服务端搜索抓取按次费平稳运行，并传出完成约 1000 亿元人民币二轮外部融资冲击科创板 IPO；MiniMax H3 Image ($1.50/$3.80) 上线路由且 M2.5/M2.1 退役；\n5) 【临期倒计时推进】11-25 Qwen4-Max 预览到期进入 T-5 天；11-30 四项重磅到期（Google Carbon/Argon 优惠翻倍、Copilot Fusion 30% 折扣、阿里百炼优惠、OpenCode Hy4 Flash 两周免费）全面进入 T-10 天倒计时。",
+  "frontierThreatEvaluation": "NO_IMMEDIATE_THREAT (2026-11-19~20 过去 24-48 小时无新模型发布或新 API/订阅降价冲击昨日 [11-19] 已吸纳 Gemini 4 Neon 后的最新帕累托前沿 [Cost 7 点 / Price 5 点]。但有两项高优先风险与政策变动需 Lead/Pricing 纳入追踪：(1) Google AI Pro Student SKU 在 Antigravity 的 Gemini 4 'Unavailable'/403/'Starter Quota' 权限故障截至 11-19~20 仍未解决，直接关联当前前沿点位 google_ai_pro_student::gemini-4-neon 与 hydrogen 的长期采信边界；(2) OpenAI 官方公布 2026 年 12 月起将 Plus/Pro/Business 的 ChatGPT 与 Codex 用量合并为单一共享 Token 池，12 月正式生效后需重估 chatgpt_pro_20x / chatgpt_plus 有效配额；此外 11-25 预览下线进入 T-5 天，11-30 四项优惠集中到期进入 T-10 天。)",
+  "frontierThreatAssessment": {
+    "assessmentDate": "2026-11-20",
+    "verdict": "NO_IMMEDIATE_THREAT",
+    "rationale": "过去 24-48 小时（2026-11-19 至 2026-11-20）全网未出现新的突破性基础模型发布或降价事件，昨日已由 Worker-AA 与 Worker-Pricing 完成入库的 Gemini 4 Neon (61.3982 分 @ google_ai_pro_student) 仍是最新前沿状态：\n1) 【今日新增动态均不改写当前单价/成本前沿】Anthropic ANT 11-19 纳斯达克首日挂牌收 $97.17（11-20 交割）、Mistral 11-19 追加 €1 亿融资、DeepSeek 约 1000 亿元融资报道与 MiniMax H3 Image（文生图独立计费）均未调整核心 LLM API 标价或编码订阅额度。\n2) 【既有前沿点资格隐忧：Google Student SKU Bug 持续至 11-20】11-19~20 社区仍持续反馈 Google AI Pro Student/捆绑账号无法稳定调用 Gemini 4 系列，报错 'Unavailable'、403 或回落 'Starter Quota'。若 Google 最终确认系对 Student/促销 SKU 实施长期能力分层而非临时同步 Bug，Lead/Pricing 需评估将 google_ai_pro_student::{gemini-4-neon,gemini-4-hydrogen} 剥离或切换为标准付费 Google AI Pro ($19.99/mo) 锚点。\n3) 【12 月规则变动预警：OpenAI ChatGPT + Codex 共享 Token 池】OpenAI 帮助中心确认 12 月起合并 Plus/Pro/Business 套餐的 ChatGPT 与 Codex 额度池，今日维持既有采用值不变，待 12 月正式条款与用量配额上线后重测。\n4) 【T-5 / T-10 倒计时】11-25 qwen4-max-preview 下线 (T-5)；11-30 Carbon/Argon $2/$10 翻倍至 $4/$20、Copilot Fusion 30% 折扣结束、百炼优惠结束与 Hy4 Flash 免费期结束 (T-10)。",
+    "costFrontierStatus": "UNCHANGED_TODAY (维持 2026-11-19 frontier-state.json 七点基线：muse-spark-1.3-contributor -> gpt-6.1-terra -> gemini-4-hydrogen -> gpt-6.2-sol -> gemini-4-neon -> gpt-6.2-astra -> claude-fable-5.2；AA 确认 Neon xhigh 输出达 ~283M tokens 偏冗余，High 档 ~60 分低于 Carbon 标准任务成本一半；需警惕 Student SKU 权限 Bug 与 12 月 OpenAI 共享池规则变化。)",
+    "priceFrontierStatus": "UNCHANGED_TODAY (维持 2026-11-19 frontier-state.json 五点基线：claude-haiku-5.5 -> muse-spark-1.3-contributor -> gemini-4-hydrogen -> gemini-4-neon -> claude-fable-5.2；需持续追踪 Google AI Pro Student SKU 'Unavailable' 问题对 hydrogen/neon 学生档资格的影响。)",
+    "criticalRisksAndCountdowns": [
+      {
+        "risk": "Google AI Pro Student SKU 在 Antigravity 的 'Unavailable' / 403 / Starter Quota 权限故障（11-19~20 仍未解决）",
+        "deadline": "Ongoing (自 11-17 持续至 11-20，待 Google 官方修复或确认 SKU 权限边界)",
+        "consequence": "直接影响当前位于 Cost 与 Price 双前沿的 google_ai_pro_student::gemini-4-neon 与 google_ai_pro_student::gemini-4-hydrogen；若确认长期限制学生/促销 SKU，需重算并切换至标准付费 Google AI Pro ($19.99/mo)。"
+      },
+      {
+        "risk": "Alibaba Qwen4-Max 百炼 Token Plan 预览窗口截止",
+        "deadline": "2026-11-25 预览窗口截止 (T-5 天)",
+        "consequence": "qwen4-max-preview 专属预览通道下线，全面并入标准 qwen4-max ($1.413~$1.50 / $4.24~$4.50) 计费。"
+      },
+      {
+        "risk": "11-30 四项重大促销/优惠集中到期（Carbon/Argon、Copilot Fusion、百炼、Hy4 Flash）",
+        "deadline": "2026-11-30 截止 (T-10 天倒计时)",
+        "consequence": "12-01 起 Gemini 4 Carbon/Argon 标价翻倍至 $4/$20（反超 Neon 的 $3/$15）；Copilot Fusion 30% Credits 折扣、阿里百炼 Token Plan 优惠与 OpenCode Hy4 Flash 两周免费窗口同步结束。"
+      },
+      {
+        "risk": "OpenAI 2026 年 12 月起合并 ChatGPT 与 Codex 为单一共享 Token 额度池",
+        "deadline": "2026-12 月生效 (具体日期与池容量将陆续公布于 Settings -> Usage)",
+        "consequence": "Plus/Pro/Business 套餐的 ChatGPT 推理任务与 Codex 共享同一 Token 池（Instant chat 除外），若综合工作负载挤占 Codex 额度，可能影响 chatgpt_pro_20x 与 chatgpt_plus 在订阅前沿的折算单价。"
+      },
+      {
+        "risk": "Google Gemini 3.8 Flash 首发优惠期截止倒计时",
+        "deadline": "2026-12-31 优惠期截止 (T-41 天倒计时)",
+        "consequence": "Gemini 3.8 Flash 首发优惠价 ($0.75/$3.75) 将于年底恢复标准价 ($1.50/$7.50)。"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Google AI Pro Student SKU 'Unavailable' 权限故障持续发酵（11-19~20 未解）与 Gemini 4 Neon 48h 跟踪",
+      "provider": "Google DeepMind",
+      "vendor": "Google DeepMind",
+      "category": "frontier_model_entitlement_risk",
+      "eventType": "entitlement_bug_and_post_launch_monitoring",
+      "event_type": "entitlement_bug_and_post_launch_monitoring",
+      "date": "2026-11-20",
+      "summary": "11-18 发布的 Gemini 4 Neon ($3.00/$15.00/缓存 $0.15) 已于 11-19 纳入 repo 双前沿（google_ai_pro_student::gemini-4-neon, AA 61.3982）。但截至 11-19~20，Google AI 开发者论坛与 Google One 帮助社区仍集中反馈 Student Offer 及运营商捆绑（如 Jio）Google AI Pro 账号在 Antigravity 出现 Gemini 4 Neon/Carbon/Hydrogen/Argon 灰显 'Unavailable'、'Model unavailable, retrying (attempt n/9)'、HTTP 403 或降级显示 'Starter Quota'。社区归因于计费档案与 Antigravity Token 校验脱节及高负载限流；Google 尚未给出官方修复时间表。",
+      "evidenceUrl": "https://ai.google.dev/pricing",
+      "sourceUrl": "https://blog.google/technology/developers/gemini-4-neon/",
+      "source_url": "https://artificialanalysis.ai/leaderboards/models",
+      "impact": "直接构成当前双前沿点位 google_ai_pro_student::{gemini-4-neon,gemini-4-hydrogen} 的资格合规风险，暂维持现状但需 Lead/Pricing 重点盯防。",
+      "impactAssessment": "Neon 本身无新调价或新分值变动；AA 补充显示 Neon xhigh 评估输出约 283M tokens（显著高于行业中位数 65M），而 Neon high 档 (~60 分) 任务成本低于 Carbon 标准价一半。重点风险在于 Student 渠道权限故障若长期持续或转为正式限制，需切换至标准付费 Pro ($19.99/mo) 口径。",
+      "impactOnFrontier": "今日暂维持 11-19 双前沿点位不变，列为 P0 资格审计风险。",
+      "impact_on_frontier": "今日无前沿变动，列为 P0 资格审计风险。",
+      "recommendation": "monitor_student_sku_fix_before_changing_adoption",
+      "model": "gemini-4-neon / gemini-4-hydrogen",
+      "modelOrPlan": "Google AI Pro / Student Offer ($19.99/mo vs Promo)",
+      "priceOrQuota": "Neon $3.00/$15.00/缓存 $0.15；Pro 5h 滚动刷新 + 周上限（约基础免费档 4x）；Student SKU 权限异常持续中",
+      "publishedPrice": "$3.00 / $15.00 (Cached $0.15) per MTok",
+      "quotaOrLimits": "1.05M 上下文 / 1M 输出；Pro 5h 刷新 + 周额度封顶",
+      "status": "Bug Unresolved as of Nov 20 (Workarounds: Clean Re-login / No VPN / Personal Gmail)",
+      "activeStatus": "active_admitted_with_entitlement_risk",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "factSummary": "Gemini 4 Neon 11-19 已入前沿；Student SKU 'Unavailable'/403/Starter Quota 故障至 11-20 仍未修复。",
+      "currentRepoState": "google_ai_pro_student::gemini-4-neon and gemini-4-hydrogen are active frontier points in 2026-11-19 frontier-state.json.",
+      "priority": "P0 (今日最高优先级资格风险监控)",
+      "rationale": "两项当前前沿支柱依赖 Student SKU 通道，必须持续确认权限是临时 Bug 还是永久分层。"
+    },
+    {
+      "name": "OpenAI 宣布 2026 年 12 月起合并 ChatGPT 与 Codex 为单一共享 Token 额度池",
+      "provider": "OpenAI",
+      "vendor": "OpenAI",
+      "category": "subscription_policy_change",
+      "eventType": "upcoming_quota_pool_merge",
+      "event_type": "upcoming_quota_pool_merge",
+      "date": "2026-11-19",
+      "summary": "OpenAI 官方帮助中心文档《Understanding ChatGPT and Codex usage limits》公布重大配额架构调整：自 2026 年 12 月起，Plus、Pro 与 Business 套餐将把 ChatGPT（推理模型及 Work 任务）与 Codex 的使用额度合并为单一共享 Token 池（按 Token 消耗计量，普通 Instant chat 不消耗该额度；超限后需等待重置、升级或加购 Credits）。此前 Pro 100 与 Pro 500 已先行进行额度调整；GPT-6.2 Astra ($8/$40) 与 Sol ($2/$10) 标价及今日订阅额度维持不变。",
+      "evidenceUrl": "https://help.openai.com",
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing",
+      "source_url": "https://openai.com",
+      "impact": "今日不改变现有 adopted.csv 采用值，但为 12 月订阅折算单价重估的明确预警。",
+      "impactAssessment": "目前 Plus/Pro 20x 均保持各自独立 Codex/Work 折算基线；12 月共享池落地后，同时运行 ChatGPT 推理与 Codex 的用户可用纯编码额度可能被稀释，届时需由 Worker-Pricing 依据官方公布的精确 Token 池上限重新标定。",
+      "impactOnFrontier": "今日无前沿变动（12 月生效后待重评 chatgpt_pro_20x / chatgpt_plus）。",
+      "impact_on_frontier": "今日无前沿变动，12 月重点复核。",
+      "recommendation": "track_december_shared_pool_implementation",
+      "model": "gpt-6.2-astra / gpt-6.2-sol / gpt-6.1-terra",
+      "modelOrPlan": "ChatGPT Plus / Pro / Business & Codex",
+      "priceOrQuota": "12 月起 ChatGPT(推理/Work) + Codex 合并为单一共享 Token 池；Instant chat 不扣额；API 标价不变",
+      "publishedPrice": "Plus $20 / Pro $200 (100/500 tiers) / Astra $8/$40 / Sol $2/$10",
+      "quotaOrLimits": "合并共享 Token 池于 2026-12 生效（Settings -> Usage 可查）",
+      "status": "Announced for December 2026 Rollout",
+      "activeStatus": "active_admitted_upcoming_policy_change",
+      "satisfiesInclusion": false,
+      "rejectionReason": "政策将于 2026 年 12 月生效且具体池大小尚未全部落地，今日维持现有采用口径。",
+      "factSummary": "OpenAI 确认 12 月起合并 Plus/Pro/Business 的 ChatGPT 与 Codex 为共享 Token 池。",
+      "currentRepoState": "chatgpt_pro_20x::gpt-6.2-astra, chatgpt_pro_20x::gpt-6.1-terra, chatgpt_plus::gpt-6.2-sol remain on cost frontier.",
+      "priority": "P0 (12 月核心订阅规则变更预警)",
+      "rationale": "涉及当前 Cost 前沿三大 OpenAI 订阅点位的未来配额计量方式。"
+    },
+    {
+      "name": "Anthropic 纳斯达克上市首日收涨约 17% ($97.17) 与 11-20 IPO 交割（Claude 定价配额零变动）",
+      "provider": "Anthropic",
+      "vendor": "Anthropic",
+      "category": "frontier_model",
+      "eventType": "ipo_listing_debut_and_steady_pricing",
+      "event_type": "ipo_listing_debut_and_steady_pricing",
+      "date": "2026-11-20",
+      "summary": "继 11-18 按 $83.00/股完成 IPO 定价后，Anthropic 于 2026-11-19 正式以代码 ANT 在纳斯达克全球精选市场挂牌交易，开盘 $111.50，首日收盘 $97.17（较发行价涨约 17%），并于今日 2026-11-20 完成 IPO 正式交割。全系模型 API 标价与订阅配额零变动：Claude Fable 5.2 ($8/$40/缓存 $0.20, Fast $16/$80)、Opus 5.5 ($4/$20/$0.20)、Sonnet 5.5 ($2/$10/$0.10)、Haiku 5.5 (<=100k $0.10/$0.50, >100k $0.50/$0.50)。",
+      "evidenceUrl": "https://www.anthropic.com",
+      "sourceUrl": "https://www.claude.com/pricing",
+      "source_url": "https://www.anthropic.com",
+      "impact": "资本市场里程碑落地，产品商业费率与前沿顶点点位完全稳定。",
+      "impactAssessment": "claude_pro::claude-fable-5.2 (64.5636 分，Cost+Price 双前沿顶峰) 与 claude_max_20x::claude-haiku-5.5 (Price 前沿底部支柱) 均无任何价格或配额变更。",
+      "impactOnFrontier": "无前沿变动，维持稳态。",
+      "impact_on_frontier": "无前沿变动。",
+      "recommendation": "maintain_all_claude_points",
+      "model": "claude-fable-5.2 / claude-opus-5.5 / claude-sonnet-5.5 / claude-haiku-5.5",
+      "modelOrPlan": "Anthropic API & Claude Pro / Max",
+      "priceOrQuota": "Fable $8/$40/$0.20；Opus 5.5 $4/$20；Sonnet 5.5 $2/$10；Haiku 5.5 $0.10/$0.50",
+      "publishedPrice": "全系不变",
+      "quotaOrLimits": "Max 20x Fable 周限额上限 50% 维持不变",
+      "status": "Nasdaq ANT Listed (2026-11-19 Debut, 11-20 Closing)",
+      "activeStatus": "active_admitted",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "factSummary": "Anthropic ANT 11-19 挂牌首日收 $97.17，11-20 正式交割，全系定价配额零变动。",
+      "currentRepoState": "claude_pro::claude-fable-5.2 & claude_max_20x::claude-haiku-5.5 on frontier unchanged.",
+      "priority": "P1",
+      "rationale": "确认头部上市实验室在 IPO 首周无促销或涨价动作。"
+    },
+    {
+      "name": "Mistral AI 11-19 追加 €1 亿 Series D 融资（总轮次约 €31~32 亿）与 Large 4 稳态",
+      "provider": "Mistral AI",
+      "vendor": "Mistral AI",
+      "category": "open_weight_and_cloud_ecosystem",
+      "eventType": "corporate_funding_and_steady_pricing",
+      "event_type": "corporate_funding_and_steady_pricing",
+      "date": "2026-11-19",
+      "summary": "Mistral AI 于 2026-11-19 宣布通过德国电信旗下投资机构 T.Capital 追加 €1 亿 Series D 融资（该轮总融资规模达 €31~32 亿），重点推进欧洲主权安全企业 AI 与慕尼黑研发中心建设。11-18 发布的 Vibe 桌面端与 Mistral Large 4 API 标价 ($0.70/$2.10/$0.07) 均维持不变。",
+      "evidenceUrl": "https://mistral.ai",
+      "sourceUrl": "https://mistral.ai",
+      "source_url": "https://mistral.ai",
+      "impact": "企业主权战略与资本扩张，不改写通用模型单价/成本前沿。",
+      "impactAssessment": "Mistral Large 4 定价未变，仍在既有包络内被支配。",
+      "impactOnFrontier": "无前沿冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "recommendation": "maintain_baseline_no_action",
+      "model": "mistral-large-4",
+      "modelOrPlan": "Mistral API / Vibe Desktop",
+      "priceOrQuota": "Mistral Large 4 $0.70/$2.10/缓存 $0.07",
+      "publishedPrice": "$0.70 / $2.10 per MTok",
+      "quotaOrLimits": "标准 API 按量",
+      "status": "Series D Extended (+€100M on 2026-11-19)",
+      "activeStatus": "active_dominated",
+      "satisfiesInclusion": false,
+      "rejectionReason": "纯融资合作新闻，无模型发布或降价。",
+      "factSummary": "Mistral 11-19 获 T.Capital 追加 €1 亿融资，API 定价不变。",
+      "currentRepoState": "catalog tracking only.",
+      "priority": "P2",
+      "rationale": "欧洲头部实验室资本与主权生态跟踪。"
+    },
+    {
+      "name": "DeepSeek 约 1000 亿元融资推进科创板 IPO 与 11-18 搜索抓取费免除稳态运行",
+      "provider": "DeepSeek",
+      "vendor": "DeepSeek",
+      "category": "frontier_model_ecosystem",
+      "eventType": "funding_milestone_and_policy_follow_up",
+      "event_type": "funding_milestone_and_policy_follow_up",
+      "date": "2026-11-19",
+      "summary": "财新等媒体披露 DeepSeek 已完成约 1000 亿元人民币（约 $150 亿）第二轮外部融资并瞄准上海科创板 IPO；同时 11-18 12:00 UTC+8 起实施的 API 服务端联网搜索/网页抓取单独按次收费取消政策（原 $0.75/千次，现仅收 Token 费用）进入稳态运行。商用 Token 标价、闲时 5 折及消费端 Web/App 4 万字输入/72h 非活跃限流均无新变化。",
+      "evidenceUrl": "https://api-docs.deepseek.com",
+      "sourceUrl": "https://www.deepseek.com",
+      "source_url": "https://api-docs.deepseek.com",
+      "impact": "资本充裕与工具生态降本，纯推理 Token 单价与现有包络位置不变。",
+      "impactAssessment": "DeepSeek V4.1 Flash / V4 Pro 标价不变，订阅点位（OpenCode Go 等）保持稳定。",
+      "impactOnFrontier": "无前沿变动。",
+      "impact_on_frontier": "无前沿变动。",
+      "recommendation": "maintain_baseline",
+      "model": "deepseek-v4.1-flash / deepseek-v4-pro",
+      "modelOrPlan": "DeepSeek API & Consumer Web/App",
+      "priceOrQuota": "Token 标价不变（闲时 5 折；服务端搜索/抓取单独收费 $0）",
+      "publishedPrice": "Token 标价不变",
+      "quotaOrLimits": "免费消费端 4 万字输入与 72h 限流持续",
+      "status": "Steady State (100B RMB Round Reported)",
+      "activeStatus": "active_admitted",
+      "satisfiesInclusion": false,
+      "rejectionReason": "融资进展与既定政策延续，无新模型价格变化。",
+      "factSummary": "DeepSeek 完成约 1000 亿元二轮外部融资冲刺科创板，11-18 搜索费免除平稳运行。",
+      "currentRepoState": "admitted API/sub points unchanged.",
+      "priority": "P2",
+      "rationale": "国内头部实验室融资进展与算力限流跟踪。"
+    },
+    {
+      "name": "MiniMax H3 Image 路由定价上线 ($1.50/$3.80) 与 M2.5/M2.1 退役，其余国产与 xAI 保持稳定",
+      "provider": "MiniMax / Alibaba / Tencent / Zhipu / Kimi / Xiaomi / ByteDance / xAI",
+      "vendor": "Multi-Vendor",
+      "category": "open_weight_and_cloud_ecosystem",
+      "eventType": "image_model_pricing_and_countdowns",
+      "event_type": "image_model_pricing_and_countdowns",
+      "date": "2026-11-20",
+      "summary": "1) MiniMax 图像生成模型 H3 Image ($1.50/$3.80 per MTok) 及 Highspeed 接入 ZenMux/LiteLLM 等第三方路由，旧版 M2.5/M2.1 已于 11 月中旬正式退役，M3.1 Flash ($0.15/$0.60) 稳定；2) Alibaba Qwen4-Max ($1.413~$1.50 / $4.24~$4.50) 预览窗口距 11-25 到期进入 T-5 天，百炼优惠距 11-30 到期进入 T-10 天，QwenWork 推进多厂商模型集成；3) OpenCode Go 下 Tencent Hy4 Flash 两周免费窗口距 11-30 到期进入 T-10 天；4) Zhipu GLM-5.3 ($1.40/$4.40)、Kimi K3.1 Pro ($2/$10)、Xiaomi MiMo-V2.6-Pro ($0.435/$0.87)、ByteDance Doubao Work、xAI Grok 4.7 ($2/$6) 均无新变动。",
+      "evidenceUrl": "https://www.alibabacloud.com/help/en/model-studio",
+      "sourceUrl": "https://openrouter.ai/models",
+      "source_url": "https://opencode.ai/docs/go/",
+      "impact": "H3 Image 属独立图像生成计费不入通用文本前沿；其余国产与 xAI 模型均无降价突破。",
+      "impactAssessment": "所有在库模型均维持昨日 11-19 评估状态，仅推进 Qwen4-Max (T-5) 与 Hy4 Flash/百炼 (T-10) 倒计时。",
+      "impactOnFrontier": "无前沿冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "recommendation": "maintain_dominated_catalog_track_countdowns",
+      "model": "minimax-h3-image / qwen4-max / hy4-flash / glm-5.3 / kimi-k3.1 / mimo-v2.6 / grok-4.7",
+      "modelOrPlan": "Commercial APIs & OpenCode Go / QwenWork / Doubao Work",
+      "priceOrQuota": "H3 Image $1.50/$3.80；Qwen4-Max $1.413~$1.50 / $4.24~$4.50；Hy4 Flash OpenCode 免费至 ~11-30",
+      "publishedPrice": "既有在库标价全部不变",
+      "quotaOrLimits": "各自官方与平台配额不变",
+      "status": "Countdown T-5 (Qwen4 Preview) & T-10 (Bailian / Hy4 Promo)",
+      "activeStatus": "active_dominated",
+      "satisfiesInclusion": false,
+      "rejectionReason": "H3 Image 为多模态图像生成且其余 LLM 均被基线包络严格支配。",
+      "factSummary": "MiniMax H3 Image 接入路由、M2.x 退役；Qwen4-Max 预览 T-5 天，Hy4 免费 T-10 天。",
+      "currentRepoState": "qwen4-max and hy4 already captured in 2026-11-19 list-prices.",
+      "priority": "P2",
+      "rationale": "倒计时推进与生态日常对账。"
+    },
+    {
+      "name": "Coding Agent 订阅工具链稳态对账与 11-30 优惠到期 T-10 天（Copilot / Cursor / Devin / Factory / Command Code / OpenCode）",
+      "provider": "GitHub / Cursor / Cognition / Factory / Command Code / OpenCode",
+      "vendor": "Developer Tools & Labs",
+      "category": "developer_tool_ecosystem",
+      "eventType": "steady_state_countdown",
+      "event_type": "steady_state_countdown",
+      "date": "2026-11-20",
+      "summary": "11-19~20 主流 AI 编程订阅与 IDE 均未调整价格或额度：GitHub Copilot (Pro $10 / Pro+ $39 / Max $100) Fusion 维持 Terminal-Bench 4.1 #1 (71.2%)，30% AI Credits 折扣距 11-30 到期进入 T-10 天；Cursor ($8/$30/$100/$200 + Legacy $20)、Devin ($20/$80+$40/$200 + SWE-2 永久免费 + 11-17 Devin Bots)、Factory Droids ($20/$100/$200 + Teams $60+$40)、Command Code ($1/$10/$20/$100/$200)、OpenCode Go ($10/$40/$20) 均维持稳态。",
+      "evidenceUrl": "https://github.com/features/copilot/plans",
+      "sourceUrl": "https://www.tbench.ai",
+      "source_url": "https://opencode.ai/docs/go/",
+      "impact": "全部工具链套餐维持昨日口径，无单价或前沿变动。",
+      "impactAssessment": "仅 Copilot Fusion 30% 折扣与 OpenCode Hy4 Flash 免费窗口推进至 T-10 天。",
+      "impactOnFrontier": "无前沿冲击。",
+      "impact_on_frontier": "无前沿冲击。",
+      "recommendation": "maintain_all_tool_subscriptions_track_t10",
+      "model": "github-copilot-fusion / cursor / devin / factory-droid / command-code / opencode-go",
+      "modelOrPlan": "IDE & CLI Subscriptions",
+      "priceOrQuota": "Copilot $10/$39/$100 (Fusion 30% 折扣至 11-30)；Cursor $8-$200；Devin $20-$200；Factory $20-$200；Command Code $1-$200；OpenCode $10/$40",
+      "publishedPrice": "全系不变",
+      "quotaOrLimits": "各自既有月度/5h 配额池",
+      "status": "Steady State (Copilot & Hy4 Promo T-10)",
+      "activeStatus": "active",
+      "satisfiesInclusion": false,
+      "rejectionReason": "无新增订阅调价或模型配额改变。",
+      "factSummary": "11-19~20 编程工具链订阅全面稳态，Copilot Fusion 30% 折扣进入 T-10 天。",
+      "currentRepoState": "all subscription baselines unchanged.",
+      "priority": "P2",
+      "rationale": "每日订阅盘点与临期促销确认。"
+    }
+  ],
+  "benchmarkUpdates": {
+    "artificialAnalysis": {
+      "version": "AA Intelligence Index v5.0.1 / Coding Agent Index v2.1 / Terminal-Bench 4.1",
+      "status": "STEADY_POST_NEON_INGESTION (Neon 61.3982 ingested on 2026-11-19; AA highlights Neon xhigh ~283M output tokens verbosity & Neon high ~60 scoring <50% of Carbon standard task cost)",
+      "topModels": [
+        {
+          "name": "Claude Fable 5.2 (Max)",
+          "score": 64.5636,
+          "status": "SOTA #1 (Intelligence Index)"
+        },
+        {
+          "name": "Claude Fable 5.2 (Xhigh)",
+          "score": 62.2167,
+          "status": "#2 variant"
+        },
+        {
+          "name": "GPT-6.2 Astra (Max)",
+          "score": 62.1388,
+          "status": "#2 model overall (41,029.5 out tokens/task)"
+        },
+        {
+          "name": "Claude Fable 5.2 (High)",
+          "score": 61.8219,
+          "status": "#4 variant"
+        },
+        {
+          "name": "GPT-6.2 Astra (Xhigh)",
+          "score": 61.5602,
+          "status": "#5 variant"
+        },
+        {
+          "name": "Gemini 4 Neon (Xhigh)",
+          "score": 61.3982,
+          "status": "#3 model overall (~283M total eval output tokens vs 65M industry median; Coding Agent Index v2.1 #1 at 58.6396)"
+        },
+        {
+          "name": "GPT-6.2 Astra (High)",
+          "score": 60.0882,
+          "status": "variant"
+        },
+        {
+          "name": "Gemini 4 Carbon (High)",
+          "score": 60.0257,
+          "status": "overtaken by Neon (high ~60 at <50% Carbon standard task cost)"
+        },
+        {
+          "name": "Claude Opus 5.5 (Max)",
+          "score": 59.106,
+          "status": "core frontier baseline"
+        },
+        {
+          "name": "GPT-6.2 Sol (Max)",
+          "score": 57.2576,
+          "status": "cost frontier active (40,360.4 out tokens/task)"
+        },
+        {
+          "name": "Qwen4 Max",
+          "score": 42.8915,
+          "status": "dominated by Hydrogen (53.9192)"
+        }
+      ],
+      "details": "11-19~20 未出现超越 Fable 5.2 (64.5636) / GPT-6.2 Astra (62.1388) / Gemini 4 Neon (61.3982) 的新上榜模型。AA 模型页补充说明 Neon (xhigh) 总输出约 283M tokens（较 65M 中位数偏冗余），而 Neon (high) 以约 60 分追平 Carbon (High) 且标准 API 单任务成本不到 Carbon 的一半；Coding Agent Index v2.1 仍由 Neon 58.6 居首。"
+    },
+    "terminalBench4": {
+      "version": "Terminal-Bench 4.1 (tbench.ai) & Terminal-Bench-Science 0.1",
+      "status": "STEADY (Copilot Fusion max 71.2% #1; Claude Fable 5.2 / Opus 5.5 65.8%; Gemini 4 Neon 65.2% on TB 4.1 & 70.0-70.5% on TB-Science 0.1)",
+      "details": "11-19~20 榜单前排无变动，GitHub Copilot Fusion (max) 71.2% 稳居第一。"
+    },
+    "openDesignArena": {
+      "version": "DesignArena / WebDev Arena / Vals Index (2026-11)",
+      "status": "Steady",
+      "details": "Claude Fable 5.2 (~1399) 与 Opus 5.5 (~1389) 继续领跑 WebDev Arena；OpenRouter 11-19~20 无新突袭旗舰上线。"
+    }
+  },
+  "providerUpdates": {
+    "Google_DeepMind": {
+      "vendor": "Google DeepMind",
+      "updateSummary": "Gemini 4 Neon 进入 48h 放量稳态；Student/促销 SKU 'Unavailable'/403/'Starter Quota' 权限故障至 11-20 仍未修复；Carbon/Argon 优惠倒计时 T-10 天",
+      "details": "Neon API $3.00/$15.00/缓存 $0.15 不变；Pro/Ultra 采用 5h 滚动算力额度 + 周上限；Google 论坛与 Google One 帮助页面在 11-19~20 仍有大量 Student Offer 不可用反馈。"
+    },
+    "OpenAI": {
+      "vendor": "OpenAI",
+      "updateSummary": "公布 2026-12 起合并 Plus/Pro/Business 的 ChatGPT 与 Codex 为共享 Token 池（Instant chat 除外）；GPT-6.2 Astra/Sol 标价稳态",
+      "details": "Pro 100 / Pro 500 已先行调整额度；GPT-6.2 Astra ($8/$40/$0.40) 与 Sol ($2/$10/$0.10) 维持不变，11-18 上线的 ChatGPT for Accounting 持续推广。"
+    },
+    "Anthropic": {
+      "vendor": "Anthropic",
+      "updateSummary": "11-19 纳斯达克 ANT 挂牌首日收 $97.17（较 $83 发行价涨 ~17%），11-20 完成交割；全系定价与配额零变动",
+      "details": "Claude Fable 5.2 ($8/$40/$0.20, Fast $16/$80)、Opus 5.5 ($4/$20)、Sonnet 5.5 ($2/$10)、Haiku 5.5 ($0.10/$0.50) 全部不变。"
+    },
+    "Mistral_AI": {
+      "vendor": "Mistral AI",
+      "updateSummary": "11-19 宣布获德国电信 T.Capital 追加 €1 亿 Series D 融资（总轮次 €31~32 亿）；Mistral Large 4 标价不变",
+      "details": "Vibe 桌面客户端与 Large 4 ($0.70/$2.10/$0.07) 维持稳定。"
+    },
+    "DeepSeek": {
+      "vendor": "DeepSeek",
+      "updateSummary": "11-18 取消服务端搜索/抓取按次收费平稳运行；传出完成约 1000 亿元人民币二轮外部融资冲击科创板 IPO",
+      "details": "商用 Token 标价与闲时 5 折不变；消费端 Web/App 4 万字输入与 72h 限流继续运行。"
+    },
+    "MiniMax_Alibaba_Tencent_Other": {
+      "vendor": "Chinese Labs & xAI",
+      "updateSummary": "MiniMax H3 Image ($1.50/$3.80) 上线路由且 M2.5/M2.1 退役；Qwen4-Max 预览 T-5 / 优惠 T-10；Hy4 Flash OpenCode 免费 T-10",
+      "details": "QwenWork 推进多厂商集成；GLM-5.3、Kimi K3.1 Pro、MiMo-V2.6-Pro、Grok 4.7 价格均保持稳定。"
+    },
+    "Coding_Tools_And_Platforms": {
+      "vendor": "OpenCode / Command Code / Copilot / Cursor / Devin / Factory / ByteDance",
+      "updateSummary": "全部编码订阅 11-19~20 价格配额稳态；Copilot Fusion 30% 折扣倒计时 T-10 天",
+      "details": "OpenCode Go ($10/$40/$20)、Command Code ($1-$200)、Cursor ($8-$200)、Devin ($20-$200)、Factory ($20-$200)、Doubao Work 均无新价目变更。"
+    }
+  },
+  "subscriptionAndPlatformUpdates": {
+    "googleStudentEntitlementBugOngoing": {
+      "status": "11-19~20 仍未解决（高风险监控）",
+      "description": "Google AI Pro 1-Year Student Offer 与部分捆绑账号在 Antigravity 调用 Gemini 4 Neon/Carbon/Hydrogen/Argon 持续报 Unavailable / 403 / Starter Quota，暂靠重登清缓存与停用 VPN 缓解。"
+    },
+    "openaiDecemberSharedUsagePool": {
+      "status": "已官方公告（2026-12 生效）",
+      "description": "Plus、Pro 与 Business 套餐将自 12 月起把 ChatGPT（推理/Work）与 Codex 合并为单一共享 Token 池（Instant chat 不扣额）。"
+    },
+    "anthropicNasdaqListing": {
+      "status": "11-19 挂牌交易（$97.17 收盘），11-20 正式交割",
+      "description": "IPO 未触发 Claude Pro/Max/API 任何定价或配额变动。"
+    },
+    "upcomingExpirationsT5AndT10": {
+      "status": "T-5 天（11-25）与 T-10 天（11-30）倒计时推进",
+      "description": "11-25 (T-5) qwen4-max-preview 退役；11-30 (T-10) Gemini 4 Carbon/Argon 优惠结束（12-01 翻倍至 $4/$20）、Copilot Fusion 30% 折扣结束、阿里百炼优惠结束、OpenCode Hy4 Flash 两周免费窗口结束。"
+    }
+  },
+  "toolAndIDEPlans": {
+    "googleAntigravityAndAIPro": {
+      "pricing": "Google AI Pro $19.99/mo / Ultra $99.99-$199.99/mo",
+      "features": "5h 滚动算力刷新 + 周限额（约免费档 4x），包含 Gemini 4 Neon 与 Orchestrator (Neon+Hydrogen)；Student/促销 SKU Unavailable Bug 持续至 11-20",
+      "frontierStatus": "google_ai_pro_student::{gemini-4-neon,gemini-4-hydrogen} 稳居双前沿，但带资格风险标注"
+    },
+    "openCodeGo": {
+      "pricing": "Go $10/mo / Go Plus $40/mo / Go Teams $20/member/mo",
+      "features": "Qwen4-Max $15 月限额（463 req/5h）；Hy4 Flash 免费至 ~11-30（T-10 天，不扣月配额）；Muse Spark 1.3 与 DeepSeek V4.1 Flash 不变",
+      "frontierStatus": "稳居双前沿底部支柱"
+    },
+    "commandCodeGoat": {
+      "pricing": "Go $1 / GOAT $10 / Pro $20 / Provider $15 / Max 10x $100 / Max 20x $200",
+      "features": "维持 taste-1 风格学习与 Gemini 4 Neon ($3/$15) 接入支持",
+      "frontierStatus": "既有采用值稳定"
+    },
+    "githubCopilot": {
+      "pricing": "Pro $10 (1,500 credits) / Pro+ $39 (7,000 credits) / Max $100 (20,000 credits)",
+      "features": "Copilot Fusion (max) 维持 Terminal-Bench 4.1 #1 (71.2%)，CLI v1.0.114 含 MAI Code 2/Flash；30% 折扣倒计时 T-10 天（至 11-30）",
+      "frontierStatus": "多模型编排器，透传底层模型"
+    },
+    "cursor": {
+      "pricing": "Free $0 / Plus $8 / Premium $30 / Super $100 / Ultra $200（Legacy Pro $20 保留）",
+      "features": "The X Subscription 按周重置积分池；Projects 多人协作与双向语音等功能稳定",
+      "frontierStatus": "无底层模型前沿冲击"
+    },
+    "factoryDroidAndDevin": {
+      "pricing": "Factory Pro $20 / Plus $100 / Max $200 / Teams $60+$40；Devin Free $0 / Pro $20 / Teams $80+$40 / Max $200",
+      "features": "11-17 Devin Bots 与 SWE-2 永久免费、11-18 Factory Azure MXC 集成均稳定，11-19~20 无价格变动",
+      "frontierStatus": "无前沿冲击"
+    }
+  },
+  "communitySignals": [
+    "【社区焦点 1：Google AI Pro Student / 捆绑账号在 Antigravity 权限脱节投诉持续至 11-19~20】Google 开发者论坛与 Google One 帮助页面仍高密度出现 'Model unavailable, retrying (attempt n/9)'、HTTP 403 与 Pro 账户错误显示 'Starter Quota' 的帖子。用户整理出登出清缓存重登个人 Gmail、停用 VPN/Proxy 及核验 pay.google.com 地区等临时规避方法，呼吁 Google 明确区分临时 Bug 与 Student SKU 限权。",
+    "【社区焦点 2：OpenAI 12 月 ChatGPT + Codex 共享 Token 池引发订阅性价比讨论】随着 OpenAI 帮助中心更新 12 月起 Plus/Pro/Business 将共享 ChatGPT 推理与 Codex 用量池的说明，Reddit 与开发者论坛热议高频 Codex 用户下月是否会被 ChatGPT 深度推理或 Work 任务挤占编码配额。",
+    "【社区焦点 3：Anthropic ANT 上市首日表现与 Gemini 4 Neon 实测对比】Hacker News 与 Reddit r/singularity / r/GeminiAI / r/OpenAI 热议 ANT 首日开盘 $111.50、收 $97.17 的高估值表现，同时复盘 Gemini 4 Neon 在真实代码库重构中的低成本表现与高达 283M tokens 的输出冗余特性，以及 GPT-6.2 Astra 在严格指令遵循上的争议。",
+    "【社区焦点 4：中文开发者社区 V2EX / LINUX DO 关注 DeepSeek 算力控本与 AI Coding 边界】V2EX 与 Linux.do 持续分享 DeepSeek-V4.1-Flash 配合 DSH / OpenCode Go 压低推理成本的实践，并对过度依赖 Vibe Coding 引发线上故障的风险展开讨论。"
+  ],
+  "coreConclusionsForLead": [
+    "【整体判断：NO_IMMEDIATE_THREAT】2026-11-19~20 无新增前沿级模型发布或新降价事件，昨日已将 Gemini 4 Neon (61.3982) 纳入后的双前沿（Cost 7 点 / Price 5 点）今日可维持现状。",
+    "【需 Lead/Pricing 重点关注 1：Google AI Pro Student SKU 'Unavailable' 故障至 11-20 仍未解决】当前占领双前沿的 google_ai_pro_student::gemini-4-neon 与 hydrogen 依赖 Student Offer 资格；若 Google 确认限制学生/促销 SKU 访问 Gemini 4，需立即切换为标准付费 Google AI Pro ($19.99/mo) 口径重算。",
+    "【需 Lead/Pricing 重点关注 2：OpenAI 12 月 ChatGPT + Codex 共享 Token 池政策】Plus/Pro/Business 将于 12 月合并推理与 Codex 额度池，今日无需改动采用值，但已锁定为 12 月初 Worker-Pricing 专项核查对象。",
+    "【需 Lead/Pricing 重点关注 3：T-5 与 T-10 倒计时临近】11-25 (T-5) qwen4-max-preview 退役；11-30 (T-10) Carbon/Argon 优惠结束翻倍 ($4/$20)、Copilot Fusion 30% 折扣结束、百炼优惠结束、OpenCode Hy4 Flash 免费窗口结束。",
+    "【确认维持现状清单】Anthropic (ANT 上市无定价配额变动，Fable 5.2 / Haiku 5.5 稳态)、Mistral (€1 亿融资无降价)、DeepSeek (1000 亿融资与搜索费免除延续，Token 标价不变)、MiniMax/Qwen/GLM/Kimi/MiMo/Grok 与 Cursor/Devin/Factory/Command Code/OpenCode Go 均确认维持昨日现状。"
+  ],
+  "items": [
+    {
+      "name": "Google AI Pro Student SKU 'Unavailable' 权限故障持续发酵（11-19~20 未解）与 Gemini 4 Neon 48h 跟踪",
+      "provider": "Google DeepMind",
+      "vendor": "Google DeepMind",
+      "category": "frontier_model_entitlement_risk",
+      "eventType": "entitlement_bug_and_post_launch_monitoring",
+      "event_type": "entitlement_bug_and_post_launch_monitoring",
+      "date": "2026-11-20",
+      "summary": "Gemini 4 Neon ($3/$15/$0.15) 已于 11-19 纳入 repo 双前沿（61.3982 分）；11-19~20 社区仍持续反馈 Student Offer 与促销 Google AI Pro 账号在 Antigravity 报 Gemini 4 'Unavailable'/403/'Starter Quota'，暂未获官方彻底修复。",
+      "evidenceUrl": "https://ai.google.dev/pricing",
+      "sourceUrl": "https://blog.google/technology/developers/gemini-4-neon/",
+      "source_url": "https://artificialanalysis.ai/leaderboards/models",
+      "impact": "维持昨日前沿点位，但列为 P0 订阅资格审计风险。",
+      "impactAssessment": "AA 补充 Neon xhigh 输出 ~283M tokens 偏冗余，High 档 ~60 分低于 Carbon 标准任务成本一半；Student SKU 权属边界直接影响当前双前沿锚点。",
+      "impactOnFrontier": "今日暂维持现状，持续跟踪修复与资格认定。",
+      "impact_on_frontier": "今日无前沿变动，高优跟踪资格风险。",
+      "recommendation": "monitor_student_sku_fix_before_changing_adoption",
+      "model": "gemini-4-neon / gemini-4-hydrogen",
+      "modelOrPlan": "Google AI Pro / Student Offer",
+      "priceOrQuota": "$3.00/$15.00/缓存 $0.15；Pro 5h 刷新 + 周上限；Student SKU 权限异常持续",
+      "publishedPrice": "$3.00 / $15.00 (Cached $0.15) per MTok",
+      "quotaOrLimits": "1.05M 上下文 / 1M 输出",
+      "status": "Bug Unresolved as of Nov 20",
+      "activeStatus": "active_admitted_with_entitlement_risk",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "factSummary": "Neon 已入前沿；Student SKU 'Unavailable'/403 故障至 11-20 未解。",
+      "currentRepoState": "google_ai_pro_student::gemini-4-neon and hydrogen on Cost+Price frontiers.",
+      "priority": "P0",
+      "rationale": "直接关联当前两大前沿点位的订阅可用性。"
+    },
+    {
+      "name": "OpenAI 宣布 2026 年 12 月起合并 ChatGPT 与 Codex 为单一共享 Token 额度池",
+      "provider": "OpenAI",
+      "vendor": "OpenAI",
+      "category": "subscription_policy_change",
+      "eventType": "upcoming_quota_pool_merge",
+      "event_type": "upcoming_quota_pool_merge",
+      "date": "2026-11-19",
+      "summary": "OpenAI 帮助中心确认 12 月起 Plus/Pro/Business 的 ChatGPT（推理/Work）与 Codex 用量合并为单一共享 Token 池（Instant chat 不扣额），Pro 100/500 已先行调整额度；GPT-6.2 Astra/Sol 标价不变。",
+      "evidenceUrl": "https://help.openai.com",
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing",
+      "source_url": "https://openai.com",
+      "impact": "今日维持现有采用值，12 月生效后需重评 OpenAI 订阅有效配额。",
+      "impactAssessment": "合并池若引发 ChatGPT 与 Codex 互相挤占，将影响 chatgpt_pro_20x 与 chatgpt_plus 折算单价。",
+      "impactOnFrontier": "今日无前沿变动。",
+      "impact_on_frontier": "今日无前沿变动。",
+      "recommendation": "track_december_shared_pool_implementation",
+      "model": "gpt-6.2-astra / gpt-6.2-sol / gpt-6.1-terra",
+      "modelOrPlan": "ChatGPT Plus / Pro / Business & Codex",
+      "priceOrQuota": "12 月起共享 Token 池（Instant chat 除外）",
+      "publishedPrice": "Plus $20 / Pro $200 / Astra $8/$40 / Sol $2/$10",
+      "quotaOrLimits": "2026-12 生效",
+      "status": "Announced for December 2026",
+      "activeStatus": "active_admitted_upcoming_policy_change",
+      "satisfiesInclusion": false,
+      "rejectionReason": "政策于 2026 年 12 月才生效，今日采用值不变。",
+      "factSummary": "OpenAI 12 月起合并 ChatGPT 与 Codex 为单一共享 Token 池。",
+      "currentRepoState": "OpenAI cost frontier points unchanged today.",
+      "priority": "P0",
+      "rationale": "涉及现存 3 个 OpenAI Cost 前沿点的下月配额规则。"
+    },
+    {
+      "name": "Anthropic 纳斯达克上市首日收涨约 17% ($97.17) 与 11-20 IPO 交割（Claude 定价配额零变动）",
+      "provider": "Anthropic",
+      "vendor": "Anthropic",
+      "category": "frontier_model",
+      "eventType": "ipo_listing_debut_and_steady_pricing",
+      "event_type": "ipo_listing_debut_and_steady_pricing",
+      "date": "2026-11-20",
+      "summary": "Anthropic 11-19 以 ANT 挂牌纳斯达克（开盘 $111.50，收盘 $97.17），11-20 正式交割；Claude Fable 5.2 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 标价与配额零变动。",
+      "evidenceUrl": "https://www.anthropic.com",
+      "sourceUrl": "https://www.claude.com/pricing",
+      "source_url": "https://www.anthropic.com",
+      "impact": "前沿顶端与底端 Claude 点位稳态。",
+      "impactAssessment": "IPO 未触发任何商业定价调整。",
+      "impactOnFrontier": "无前沿变动。",
+      "impact_on_frontier": "无前沿变动。",
+      "recommendation": "maintain_all_claude_points",
+      "model": "claude-fable-5.2 / claude-haiku-5.5",
+      "modelOrPlan": "Anthropic API & Claude Pro / Max",
+      "priceOrQuota": "Fable $8/$40；Opus $4/$20；Sonnet $2/$10；Haiku $0.10/$0.50",
+      "publishedPrice": "全系不变",
+      "quotaOrLimits": "Max 20x Fable 周限额 50% 上限",
+      "status": "Nasdaq ANT Listed (Nov 19-20)",
+      "activeStatus": "active_admitted",
+      "satisfiesInclusion": true,
+      "rejectionReason": null,
+      "factSummary": "Anthropic ANT 11-19 挂牌收 $97.17、11-20 交割，全系定价配额零变动。",
+      "currentRepoState": "claude_pro::claude-fable-5.2 & claude_max_20x::claude-haiku-5.5 unchanged.",
+      "priority": "P1",
+      "rationale": "确认重大资本事件后商业稳态。"
+    },
+    {
+      "name": "Mistral AI 11-19 追加 €1 亿 Series D 融资与 DeepSeek 1000 亿元融资报道（API 均无调价）",
+      "provider": "Mistral AI / DeepSeek",
+      "vendor": "Mistral AI / DeepSeek",
+      "category": "open_weight_and_cloud_ecosystem",
+      "eventType": "corporate_funding_and_steady_pricing",
+      "event_type": "corporate_funding_and_steady_pricing",
+      "date": "2026-11-19",
+      "summary": "Mistral 11-19 获德国电信 T.Capital 追加 €1 亿 Series D 融资（总计 €31~32 亿）；DeepSeek 传出完成约 1000 亿元二轮外部融资冲击科创板 IPO 且 11-18 搜索抓取费免除稳态运行；双方核心模型 Token 标价均不变。",
+      "evidenceUrl": "https://mistral.ai",
+      "sourceUrl": "https://api-docs.deepseek.com",
+      "source_url": "https://mistral.ai",
+      "impact": "无模型单价或前沿变动。",
+      "impactAssessment": "维持 Mistral Large 4 ($0.70/$2.10) 与 DeepSeek 既有采用值。",
+      "impactOnFrontier": "无前沿变动。",
+      "impact_on_frontier": "无前沿变动。",
+      "recommendation": "maintain_baseline",
+      "model": "mistral-large-4 / deepseek-v4.1-flash / deepseek-v4-pro",
+      "modelOrPlan": "Commercial APIs",
+      "priceOrQuota": "Token 标价全部不变",
+      "publishedPrice": "全系不变",
+      "quotaOrLimits": "DeepSeek 消费端 4 万字/72h 限流持续",
+      "status": "Funding Milestones / Steady Pricing",
+      "activeStatus": "active_admitted",
+      "satisfiesInclusion": false,
+      "rejectionReason": "纯融资新闻且模型定价无变动。",
+      "factSummary": "Mistral 追加 €1 亿融资、DeepSeek 传出 1000 亿元融资，双方 API 标价不变。",
+      "currentRepoState": "existing points unchanged.",
+      "priority": "P2",
+      "rationale": "头部开源/欧洲实验室资本动态对账。"
+    },
+    {
+      "name": "MiniMax H3 Image 路由定价上线与 11-25 (T-5) / 11-30 (T-10) 集中到期潮倒计时",
+      "provider": "MiniMax / Alibaba / Google / GitHub / OpenCode",
+      "vendor": "Multi-Vendor",
+      "category": "open_weight_and_cloud_ecosystem",
+      "eventType": "countdown_and_image_model_catalog",
+      "event_type": "countdown_and_image_model_catalog",
+      "date": "2026-11-20",
+      "summary": "MiniMax H3 Image ($1.50/$3.80) 上线路由且 M2.5/M2.1 退役；Qwen4-Max 预览 11-25 截止进入 T-5 天；11-30 到期的 Carbon/Argon 优惠翻倍、Copilot Fusion 30% 折扣、百炼优惠、OpenCode Hy4 Flash 两周免费全面进入 T-10 天倒计时。",
+      "evidenceUrl": "https://ai.google.dev/pricing",
+      "sourceUrl": "https://www.alibabacloud.com/help/en/model-studio",
+      "source_url": "https://opencode.ai/docs/go/",
+      "impact": "今日维持现状，11-25 与 11-30 到期节点将引发结构性价格回弹。",
+      "impactAssessment": "MiniMax H3 Image 属独立图像生成计费；其余 LLM 与订阅套餐均维持昨日口径。",
+      "impactOnFrontier": "今日无前沿变动，重点追踪 T-5 / T-10 到期。",
+      "impact_on_frontier": "今日无前沿变动。",
+      "recommendation": "maintain_baseline_track_t5_t10_countdowns",
+      "model": "minimax-h3-image / qwen4-max / hy4-flash / gemini-4-carbon / github-copilot-fusion",
+      "modelOrPlan": "APIs & Subscriptions",
+      "priceOrQuota": "H3 Image $1.50/$3.80；11-30 Carbon $2/$10 -> $4/$20",
+      "publishedPrice": "既有在库标价不变",
+      "quotaOrLimits": "临期优惠倒计时 T-5 / T-10",
+      "status": "Countdown T-5 & T-10",
+      "activeStatus": "active",
+      "satisfiesInclusion": false,
+      "rejectionReason": "倒计时推进与图像模型计费，今日无新 LLM 降价。",
+      "factSummary": "H3 Image 上线且 M2.x 退役；Qwen4 预览 T-5 天，11-30 四项促销 T-10 天。",
+      "currentRepoState": "all baseline prices unchanged.",
+      "priority": "P1",
+      "rationale": "精确跟踪 11 月底集中到期窗口。"
+    }
+  ]
+}

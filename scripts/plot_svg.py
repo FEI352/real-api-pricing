@@ -377,6 +377,12 @@ def label_position(p, board, x, y, tier="main"):
             # 2026-11-19：Neon (xhigh) 在 TB4·AA 进入前沿（学生档 $0.00387），默认左上 end 标签
             # 与左侧 kimi-k3.1-pro 压字；改为向右上 start，右侧为空白走廊，数据点不动。
             return x + 20, y - 52, "start"
+        if board == "aa_intelligence_index":
+            # 右上方空白走廊，避开左侧 claude-opus-5.5 与下方 claude-sonnet-5.5。
+            return x + 24, y - 64, "start"
+        if board == "aa_coding_agent_index":
+            # 上移避开下方 claude-sonnet-5.5 与右侧 claude-opus-5.5。
+            return x - 28, y - 82, "end"
     if model == "gpt-6.1-terra":
         if board == "aa_intelligence_index":
             return x + 16, y - 45, "start"

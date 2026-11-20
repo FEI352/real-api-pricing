@@ -32,6 +32,7 @@ export const defaultState = (): State => ({
   view: "pareto",
   board: "aa_intelligence_index",
   selected: null,
+  selected3d: null,
   vendors: [],
   channels: [],
   plans: [],
@@ -213,6 +214,44 @@ function configIndex(data: SiteData): Map<string, Configuration> {
     configIndexCache.set(data, idx);
   }
   return idx;
+}
+/**
+ * Maximum AA Intelligence Index score per model, plus the Qwen3.8 27B floor
+ * used by default to exclude sub-27B/small low-AA models (e.g. Inkling Small)
+ * from the 3D Terrain view.
+ */
+export function modelMaxAaIndex(data: SiteData): {
+  floor: number;
+  maxByModel: Map<string, number>;
+} {
+  const cfgs = configIndex(data);
+  const pointModel = new Map(data.points.map((p) => [p.id, p.model]));
+  const maxByModel = new Map<string, number>();
+  for (const m of data.mappings) {
+    const cfg = cfgs.get(m.configuration_id);
+    if (cfg?.board !== "aa_intelligence_index") continue;
+    const score = m.score ?? cfg.score;
+    if (score === null || !Number.isFinite(score)) continue;
+    const model = pointModel.get(m.point_id);
+    if (!model) continue;
+    const prev = maxByModel.get(model);
+    if (prev === undefined || score > prev) maxByModel.set(model, score);
+  }
+  const floor = maxByModel.get("qwen3.8-27b") ?? 20.1069;
+  return { floor, maxByModel };
+}
+/** Default point IDs for 3D Terrain: excludes models below Qwen3.8 27B's max AA index. */
+export function default3dPointIds(data: SiteData): string[] {
+  const { floor, maxByModel } = modelMaxAaIndex(data);
+  return data.points
+    .filter((p) => {
+      if (p.deprecated) return false;
+      if (p.model === "claude-haiku-5.5" && !p.id.includes("over100k")) return false;
+      const maxAa = maxByModel.get(p.model);
+      if (maxAa !== undefined && maxAa < floor) return false;
+      return true;
+    })
+    .map((p) => p.id);
 }
 /** AA mean cost per intelligence task for a row's configuration. */
 function mappingCost(m: Mapping | null, data: SiteData): number | null {
@@ -724,6 +763,11 @@ export function serialize(s: State): string {
       for (const id of s.selected) p.append("sel", id);
     else p.set("sel", "");
   }
+  if (s.selected3d !== null) {
+    if (s.selected3d.length)
+      for (const id of s.selected3d) p.append("sel3d", id);
+    else p.set("sel3d", "");
+  }
   for (const k of filterKeys) for (const v of s[k]) p.append(k, v);
   return "#" + p.toString();
 }
@@ -810,6 +854,15 @@ export function restore(
       const ids = new Set(data.points.map((p) => p.id));
       state.selected = wanted.filter((id) => ids.has(id));
       if (state.selected.length !== wanted.length) warning = true;
+    }
+  }
+  if (params.has("sel3d")) {
+    const wanted = params.getAll("sel3d").filter((id) => id !== "");
+    if (!wanted.length) state.selected3d = [];
+    else {
+      const ids = new Set(data.points.map((p) => p.id));
+      state.selected3d = wanted.filter((id) => ids.has(id));
+      if (state.selected3d.length !== wanted.length) warning = true;
     }
   }
   const opts = options(data);
