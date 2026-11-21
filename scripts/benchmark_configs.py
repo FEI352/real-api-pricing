@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RESEARCH = ROOT / "data" / "research"
 _raw_cache = {}
 
-def get_raw_record(archive_name, slug, name, model):
+def get_raw_record_with_archive(archive_name, slug, name, model):
     target_archives = [archive_name]
     if archive_name != "scores-aa-round5-2026-09-30.json":
         target_archives.append("scores-aa-round5-2026-09-30.json")
@@ -29,18 +29,23 @@ def get_raw_record(archive_name, slug, name, model):
         c = _raw_cache[arch]
         res = c["by_slug"].get(slug) or c["by_name"].get(name)
         if res:
-            return res
+            return res, arch
         if slug:
             norm_slug = slug.replace("-preview", "").replace("-0420", "").replace("-0202", "")
             res = c["by_slug"].get(norm_slug)
             if res:
-                return res
+                return res, arch
         if model:
             norm_m = model.replace("-preview", "").replace(".5", "-5").replace(".", "-")
             res = c["by_slug"].get(norm_m)
             if res:
-                return res
-    return None
+                return res, arch
+    return None, None
+
+
+def get_raw_record(archive_name, slug, name, model):
+    res, _ = get_raw_record_with_archive(archive_name, slug, name, model)
+    return res
 
 TIME_FALLBACKS = {
     "gemini-3-8-flash-medium": 18.0,
@@ -166,9 +171,11 @@ def configuration(record, archive):
         benchmark_list_price = round(0.97 * cached + 0.025 * inp + 0.005 * out_p, 6)
     else:
         benchmark_list_price = None
-    raw_item = get_raw_record(archive, secondary.get("slug"), record.get("variantLabel"), model)
+    raw_item, raw_arch = get_raw_record_with_archive(archive, secondary.get("slug"), record.get("variantLabel"), model)
     resp_time = None
     tps = None
+    speed_source = None
+    speed_detail = None
     if raw_item:
         rt = raw_item.get("medianEndToEndResponseTimeSeconds") or raw_item.get("intelligenceIndexTimePerTask")
         if isinstance(rt, (int, float)):
@@ -176,8 +183,23 @@ def configuration(record, archive):
         sp = raw_item.get("medianOutputTokensPerSecond") or raw_item.get("outputSpeed")
         if isinstance(sp, (int, float)):
             tps = round(float(sp), 1)
+        if resp_time is not None or tps is not None:
+            speed_source = "aa_archive"
+            speed_detail = {
+                "source": "aa_archive",
+                "archive": raw_arch or archive,
+                "tps": tps,
+                "task_time_s": resp_time,
+            }
     if resp_time is None and secondary.get("slug") in TIME_FALLBACKS:
         resp_time = TIME_FALLBACKS[secondary["slug"]]
+        if speed_source is None:
+            speed_source = "reference_fallback"
+            speed_detail = {
+                "source": "reference_fallback",
+                "tps": tps,
+                "task_time_s": resp_time,
+            }
 
     # AA 自 2026-11-05 停更 medianEndToEndResponseTimeSeconds，但旧快照仍在
     # get_raw_record 的归档链里（round5-2026-09-30 兜底），命中就会返回过期数字。
@@ -185,13 +207,31 @@ def configuration(record, archive):
     # 它自带 AA 的每任务 token 数与 OpenRouter 的当前吞吐，是唯一「今天还成立」的口径。
     from_or = False
     or_map = or_tasktime()
-    or_row = (or_map.get("byModelSlug", {}) or {}).get(f"{model}::{secondary.get('slug')}") \
-        or (or_map.get("byModel", {}) or {}).get(model)
+    slug_hit = (or_map.get("byModelSlug", {}) or {}).get(f"{model}::{secondary.get('slug')}")
+    or_row = slug_hit or (or_map.get("byModel", {}) or {}).get(model)
     if isinstance(or_row, dict) and isinstance(or_row.get("task_time_s"), (int, float)):
         resp_time = round(float(or_row["task_time_s"]), 2)
         if isinstance(or_row.get("p50_throughput_tps"), (int, float)):
             tps = round(float(or_row["p50_throughput_tps"]), 1)
         from_or = True
+        speed_source = "openrouter"
+        speed_detail = {
+            "source": "openrouter",
+            "match_kind": "slug" if slug_hit else "model",
+            "collected_at": or_row.get("collected_at") or or_map.get("collectedAt"),
+            "or_id": or_row.get("or_id"),
+            "or_url": or_row.get("or_url") or (f"https://openrouter.ai/{or_row['or_id']}" if or_row.get("or_id") else None),
+            "or_provider": or_row.get("or_provider") or or_row.get("provider"),
+            "p50_tps": tps,
+            "p50_latency_ms": or_row.get("p50_latency_ms"),
+            "tokens_per_task": or_row.get("tokens_per_task"),
+            "tokens_source": or_row.get("tokens_source"),
+            "reasoning_tokens": or_row.get("reasoning_tokens"),
+            "answer_tokens": or_row.get("answer_tokens"),
+            "generation_s": or_row.get("generation_s"),
+            "task_time_s": resp_time,
+            "endpoints": (or_row.get("or_endpoints") or [])[:12],
+        }
 
     # 用户 2026-10-18 裁决：Antigravity 环境实测 Gemini 3.8 约为 OpenRouter 测速的两倍，
     # 暂不抓 OpenRouter 数据，统一修正为 200.0 tok/s，用时按比例折算
@@ -200,6 +240,12 @@ def configuration(record, archive):
         tps = 200.0
         if resp_time is not None:
             resp_time = round(resp_time * (old_tps / 200.0), 2)
+        speed_source = "antigravity_measured"
+        speed_detail = {
+            "source": "antigravity_measured",
+            "tps": tps,
+            "task_time_s": resp_time,
+        }
 
     return dict(
         configuration_id=cid, board=board, model=model,
@@ -218,6 +264,8 @@ def configuration(record, archive):
         benchmark_list_price=benchmark_list_price,
         response_time_seconds=resp_time,
         output_speed_tps=tps,
+        speed_source=speed_source,
+        speed_detail=speed_detail,
         source=record.get("source"), checked_at=record.get("checkedAt"), archive=archive,
         raw_record=record,
     )

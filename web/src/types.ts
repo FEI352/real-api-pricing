@@ -53,6 +53,39 @@ export interface Point {
   decision_note_en?: string;
   evidence: { label: string; url: string }[];
 }
+export interface SpeedEndpoint {
+  provider: string;
+  slug?: string | null;
+  p50_tps: number;
+  p75_tps?: number | null;
+  p90_tps?: number | null;
+  p50_latency_ms: number;
+  requests?: number | null;
+}
+export interface SpeedDetail {
+  source:
+    | "openrouter"
+    | "aa_archive"
+    | "antigravity_measured"
+    | "reference_fallback"
+    | string;
+  match_kind?: "slug" | "model" | string;
+  collected_at?: string | null;
+  or_id?: string | null;
+  or_url?: string | null;
+  or_provider?: string | null;
+  p50_tps?: number | null;
+  p50_latency_ms?: number | null;
+  tokens_per_task?: number | null;
+  tokens_source?: string | null;
+  reasoning_tokens?: number | null;
+  answer_tokens?: number | null;
+  generation_s?: number | null;
+  task_time_s?: number | null;
+  archive?: string | null;
+  tps?: number | null;
+  endpoints?: SpeedEndpoint[];
+}
 export interface Configuration {
   configuration_id: string;
   board: string;
@@ -83,6 +116,8 @@ export interface Configuration {
   benchmark_list_price?: number | null;
   response_time_seconds?: number | null;
   output_speed_tps?: number | null;
+  speed_source?: string | null;
+  speed_detail?: SpeedDetail | null;
 }
 export interface Mapping extends Omit<Configuration, "model"> {
   point_id: string;

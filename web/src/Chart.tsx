@@ -36,6 +36,10 @@ import {
   searchCandidates,
   searchHits,
   metricLabel,
+  mappingSpeed,
+  mappingSpeedDetail,
+  mappingSpeedSource,
+  speedSourceShortLabel,
 } from "./domain";
 import {
   type AnchorPoint,
@@ -1142,6 +1146,23 @@ export default function Chart({
                   <i> · {selfReportTag(state.lang)}</i>
                 )}
               </span>
+              {(() => {
+                const m0 = hoverGroup.rows[0]?.mapping ?? null;
+                const tps = mappingSpeed(m0, data);
+                if (tps == null) return null;
+                const src = speedSourceShortLabel(
+                  mappingSpeedDetail(m0, data),
+                  mappingSpeedSource(m0, data),
+                  state.lang,
+                );
+                return (
+                  <span>
+                    <small>{zh ? "吞吐" : "TPS"}</small>
+                    {number(tps, state.lang, 1)} tok/s
+                    {src && <i> · {src}</i>}
+                  </span>
+                );
+              })()}
             </div>
             <div className="hover-foot">
               {hoverGroup.rows.length > 1

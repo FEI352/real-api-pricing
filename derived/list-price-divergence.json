@@ -6,7 +6,7 @@
   "description": "informational（2026-10-08 修正）：前端每任务成本 = cost × real ÷ list，cost ÷ list 是 AA 任务的 token 数，list 必须是 AA 价（benchmark_list_price），换分母即篡改 token 数。比值在 [min, max] 内标 consistent；超界标 data_quality_suspect（提示**项目档价可能错**，人工核实，不改数据）；无项目档价标 no_curated_baseline（保留 AA 价）。"
  },
  "counts": {
-  "consistent": 76,
+  "consistent": 91,
   "data_quality_suspect": 0,
   "no_curated_baseline": 8,
   "cross_model_suspect": 1
@@ -840,6 +840,215 @@
    "affected_point_board_cells": 0
   },
   {
+   "configuration_id": "aa_intelligence_index:ca2c270f44ad5321",
+   "board": "aa_intelligence_index",
+   "model": "deepseek-v4.1-flash",
+   "variant": "DeepSeek V4.1 Flash 1017 (high)",
+   "benchmark_list_price": 0.01932,
+   "curated_list_blended": 0.01932,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:6c7dc9de0b8677c8",
+   "board": "aa_intelligence_index",
+   "model": "deepseek-v4.1-flash",
+   "variant": "DeepSeek V4.1 Flash 1017 (non-reasoning)",
+   "benchmark_list_price": 0.01932,
+   "curated_list_blended": 0.01932,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:d00baf558d6da3f2",
+   "board": "aa_intelligence_index",
+   "model": "deepseek-v4-pro",
+   "variant": "DeepSeek V4 Pro 0813 (high)",
+   "benchmark_list_price": 0.09548,
+   "curated_list_blended": 0.09548,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:da64399dfe3a5d1a",
+   "board": "aa_intelligence_index",
+   "model": "qwen3.8-flash",
+   "variant": "Qwen3.8-Flash-Next",
+   "benchmark_list_price": 0.02162,
+   "curated_list_blended": 0.02162,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:14896cb5d517b97a",
+   "board": "aa_intelligence_index",
+   "model": "claude-fable-5.2",
+   "variant": "Claude Fable 5.2 (max)",
+   "benchmark_list_price": 0.594,
+   "curated_list_blended": 0.594,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:670e1c29d59cb523",
+   "board": "aa_intelligence_index",
+   "model": "claude-fable-5.2",
+   "variant": "Claude Fable 5.2 (low)",
+   "benchmark_list_price": 0.594,
+   "curated_list_blended": 0.594,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:52f607ee3464041f",
+   "board": "aa_intelligence_index",
+   "model": "claude-fable-5.2",
+   "variant": "Claude Fable 5.2 (medium)",
+   "benchmark_list_price": 0.594,
+   "curated_list_blended": 0.594,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:3ee71687690e6f17",
+   "board": "aa_intelligence_index",
+   "model": "claude-fable-5.2",
+   "variant": "Claude Fable 5.2 (high)",
+   "benchmark_list_price": 0.594,
+   "curated_list_blended": 0.594,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:090c8710ed9bc1a7",
+   "board": "aa_intelligence_index",
+   "model": "claude-fable-5.2",
+   "variant": "Claude Fable 5.2 (xhigh)",
+   "benchmark_list_price": 0.594,
+   "curated_list_blended": 0.594,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:fe63c87c8c960630",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-carbon",
+   "variant": "Gemini 4 Carbon (high)",
+   "benchmark_list_price": 0.394,
+   "curated_list_blended": 0.197,
+   "ratio": 2.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:b95162593350d7cf",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-carbon",
+   "variant": "Gemini 4 Carbon (low)",
+   "benchmark_list_price": 0.394,
+   "curated_list_blended": 0.197,
+   "ratio": 2.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:39c7e4f4166dd132",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-carbon",
+   "variant": "Gemini 4 Carbon (medium)",
+   "benchmark_list_price": 0.394,
+   "curated_list_blended": 0.197,
+   "ratio": 2.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:c1ef50f487c5695e",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-hydrogen",
+   "variant": "Gemini 4 Hydrogen (xhigh)",
+   "benchmark_list_price": 0.14775,
+   "curated_list_blended": 0.14775,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:5c4fcb2b31e9f418",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-hydrogen",
+   "variant": "Gemini 4 Hydrogen (low)",
+   "benchmark_list_price": 0.14775,
+   "curated_list_blended": 0.14775,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:a3ee85c1470c526a",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-hydrogen",
+   "variant": "Gemini 4 Hydrogen (medium)",
+   "benchmark_list_price": 0.14775,
+   "curated_list_blended": 0.14775,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:9970831fc20b9791",
+   "board": "aa_intelligence_index",
+   "model": "gemini-4-hydrogen",
+   "variant": "Gemini 4 Hydrogen (high)",
+   "benchmark_list_price": 0.14775,
+   "curated_list_blended": 0.14775,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:37728b3d21085c7b",
+   "board": "aa_intelligence_index",
+   "model": "grok-4.7",
+   "variant": "Grok 4.7 (low)",
+   "benchmark_list_price": 0.565,
+   "curated_list_blended": 0.565,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:7a5508933655119c",
+   "board": "aa_intelligence_index",
+   "model": "mistral-large-4",
+   "variant": "Mistral Large 4 (high)",
+   "benchmark_list_price": 0.0959,
+   "curated_list_blended": 0.0959,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
+   "configuration_id": "aa_intelligence_index:864cb6bfbd21140c",
+   "board": "aa_intelligence_index",
+   "model": "mistral-large-4",
+   "variant": "Mistral Large 4 (medium)",
+   "benchmark_list_price": 0.0959,
+   "curated_list_blended": 0.0959,
+   "ratio": 1.0,
+   "status": "consistent",
+   "affected_point_board_cells": 0
+  },
+  {
    "configuration_id": "aa_intelligence_index:064bdd2a40d3cf41",
    "board": "aa_intelligence_index",
    "model": "qwen3.8-27b-dflash-5090",
@@ -870,50 +1079,6 @@
    "curated_list_blended": null,
    "ratio": null,
    "status": "no_curated_baseline",
-   "affected_point_board_cells": 0
-  },
-  {
-   "configuration_id": "aa_intelligence_index:ce6f23e117ce193d",
-   "board": "aa_intelligence_index",
-   "model": "gemini-4-carbon",
-   "variant": "Gemini 4 Carbon (high)",
-   "benchmark_list_price": 0.394,
-   "curated_list_blended": 0.197,
-   "ratio": 2.0,
-   "status": "consistent",
-   "affected_point_board_cells": 0
-  },
-  {
-   "configuration_id": "aa_intelligence_index:6338e67ed131b4a3",
-   "board": "aa_intelligence_index",
-   "model": "mistral-large-4",
-   "variant": "Mistral Large 4 (high)",
-   "benchmark_list_price": 0.0959,
-   "curated_list_blended": 0.0959,
-   "ratio": 1.0,
-   "status": "consistent",
-   "affected_point_board_cells": 0
-  },
-  {
-   "configuration_id": "aa_intelligence_index:c4c2bb44f0ef4750",
-   "board": "aa_intelligence_index",
-   "model": "gemini-4-hydrogen",
-   "variant": "Gemini 4 Hydrogen (xhigh)",
-   "benchmark_list_price": 0.14775,
-   "curated_list_blended": 0.14775,
-   "ratio": 1.0,
-   "status": "consistent",
-   "affected_point_board_cells": 0
-  },
-  {
-   "configuration_id": "aa_intelligence_index:22507cdf6d1f98da",
-   "board": "aa_intelligence_index",
-   "model": "claude-fable-5.2",
-   "variant": "Claude Fable 5.2 (max)",
-   "benchmark_list_price": 0.594,
-   "curated_list_blended": 0.594,
-   "ratio": 1.0,
-   "status": "consistent",
    "affected_point_board_cells": 0
   },
   {

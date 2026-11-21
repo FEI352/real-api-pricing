@@ -39,6 +39,10 @@ def _load_recipient():
 DEFAULT_RECIPIENT = _load_recipient()
 SCREENSHOT_PATH = Path("/tmp/real-plan-cost-per-task.png")
 SCREENSHOT_URL = "https://ching.icu/downloads/cost-per-task-latest.png"
+TIME_SCREENSHOT_PATH = Path("/tmp/real-plan-task-time.png")
+TIME_SCREENSHOT_URL = "https://ching.icu/downloads/task-time-latest.png"
+PARETO_3D_SCREENSHOT_PATH = Path("/tmp/real-plan-3d.png")
+PARETO_3D_SCREENSHOT_URL = "https://ching.icu/downloads/pareto-3d-latest.png"
 # 通知通道定稿（2026-10-08）：页脚文案由纯文本 / HTML 双通道共用，语义必须一致
 FOOTER_NOTE = "每日巡检 · 有变动才发出"
 # 失败路径加固（2026-10-08）：变更判定无法进行时必须「吵」——非 0 退出 + 显式标记
@@ -175,23 +179,73 @@ def update_data():
         _info(f"🧹 清理 {len(removed)} 个旧构建残留：{preview}")
     _info("✅ 数据与网站更新部署成功！(https://real-plan.fja.su)")
 
-def capture_chart(output_path=SCREENSHOT_PATH):
-    """使用 headless chromium 截取最新图表"""
-    _info(f"正在截取 Cost per task 图表 -> {output_path}...")
-    url = "https://real-plan.fja.su/?v=" + datetime.now().strftime("%Y%m%d%H%M%S") + "#lang=zh&config=summary&xmode=cost"
-    cmd = (
-        f"chromium --headless --no-sandbox --disable-gpu "
-        f"--window-size=1600,1050 --virtual-time-budget=5000 "
-        f"--screenshot={output_path} '{url}'"
-    )
-    run_cmd(cmd)
-    
-    _info(f"正在通过 hermes-share 发布截图...")
+def _crop_chart_png(path, y1, y2):
+    """裁掉顶部重复导航与底部留白，突出高密图表与前沿卡片（2x HiDPI 坐标）"""
     try:
-        share_out = run_cmd(f"/root/.local/bin/hermes-share {output_path} --name cost-per-task-latest.png")
-        _info(share_out)
+        from PIL import Image
+        im = Image.open(path)
+        w, h = im.size
+        if w >= 2400 and h >= y2:
+            crop = im.crop((100, y1, w - 100, min(h, y2)))
+            crop.save(path, optimize=True)
     except Exception as e:
-        print(f"hermes-share 警告: {e}", file=sys.stderr)
+        _warn(f"图表裁剪跳过 ({path}): {e}")
+
+
+def _get_aa_floor_param():
+    """读取 site.json 中 Qwen3.8 27B 的最高 AA 智力分（默认 20.1），用于 Task Time 与 3D 下限过滤"""
+    try:
+        site_path = WEB_DIR / "public/data/site.json"
+        if site_path.is_file():
+            data = json.loads(site_path.read_text(encoding="utf-8"))
+            cfgs = {c["configuration_id"]: c for c in data.get("configurations", [])}
+            pt_mod = {p["id"]: p.get("model") for p in data.get("points", [])}
+            best = None
+            for m in data.get("mappings", []):
+                if pt_mod.get(m.get("point_id")) != "qwen3.8-27b":
+                    continue
+                c = cfgs.get(m.get("configuration_id"))
+                if not c or c.get("board") != "aa_intelligence_index":
+                    continue
+                sc = m.get("score") if m.get("score") is not None else c.get("score")
+                if isinstance(sc, (int, float)) and (best is None or sc > best):
+                    best = float(sc)
+            if best is not None:
+                import math as _math
+                return f"{_math.floor(float(best) * 100.0) / 100.0:.2f}"
+    except Exception:
+        pass
+    return "20.10"
+
+
+def capture_chart(output_path=SCREENSHOT_PATH):
+    """使用 headless chromium 截取 Cost / Task Time / 3D Pareto 三张最新图表并发布"""
+    ts = datetime.now().strftime("%Y%m%d%H%M%S")
+    aa_floor = _get_aa_floor_param()
+    specs = [
+        ("Cost per task", f"https://real-plan.fja.su/?v={ts}#lang=zh&config=all&xmode=cost",
+         Path(output_path), "cost-per-task-latest.png", 730, 2390),
+        ("Task time", f"https://real-plan.fja.su/?v={ts}#lang=zh&config=all&xmode=time&range=~~{aa_floor}~~~",
+         TIME_SCREENSHOT_PATH, "task-time-latest.png", 730, 2390),
+        ("3D Pareto", f"https://real-plan.fja.su/?v={ts}#lang=zh&config=all&xmode=terrain3d&eng=three",
+         PARETO_3D_SCREENSHOT_PATH, "pareto-3d-latest.png", 730, 2550),
+    ]
+    for label, url, dest, share_name, y1, y2 in specs:
+        _info(f"正在截取 {label} 图表 -> {dest}...")
+        cmd = (
+            f"chromium --headless --no-sandbox --disable-gpu "
+            f"--force-device-scale-factor=2 --enable-unsafe-swiftshader "
+            f"--window-size=1440,1360 --virtual-time-budget=6500 "
+            f"--screenshot={dest} '{url}'"
+        )
+        run_cmd(cmd)
+        _crop_chart_png(dest, y1, y2)
+        _info(f"正在通过 hermes-share 发布 {share_name}...")
+        try:
+            share_out = run_cmd(f"/root/.local/bin/hermes-share {dest} --name {share_name}")
+            _info(share_out)
+        except Exception as e:
+            print(f"hermes-share 警告 ({share_name}): {e}", file=sys.stderr)
     return output_path
 
 def ensure_site_data():
@@ -263,59 +317,106 @@ def load_site_json():
 
 def generate_report():
     """解析最新数据，计算前沿模型与对比报表（数据不可信时抛 HumanInterventionRequired）"""
+    import re as _re
     site_json = load_site_json()
     points = site_json["points"]
     configs = {c["configuration_id"]: c for c in site_json["configurations"]}
 
-    # 计算 Cost per Task 前沿 (Summary 模式)
-    by_point = {}
+    by_point_merged = {}
+    max_aa_by_model = {}
+    point_model_map = {p["id"]: p.get("model", "") for p in points}
     for m in site_json["mappings"]:
         c = configs.get(m["configuration_id"])
-        if c and c.get("board") == "aa_intelligence_index":
-            by_point.setdefault(m["point_id"], []).append(c)
+        if not c or c.get("board") != "aa_intelligence_index":
+            continue
+        merged = dict(c)
+        for k, v in m.items():
+            if v is not None:
+                merged[k] = v
+        by_point_merged.setdefault(m["point_id"], []).append(merged)
+        sc = merged.get("score")
+        mod = point_model_map.get(m["point_id"])
+        if isinstance(sc, (int, float)) and mod:
+            if mod not in max_aa_by_model or sc > max_aa_by_model[mod]:
+                max_aa_by_model[mod] = sc
 
+    def _is_visible_default(p):
+        if p.get("deprecated"):
+            return False
+        if isinstance(p.get("hiddenByDefault"), bool) and p["hiddenByDefault"]:
+            return False
+        if p.get("plan_gen") in ("v1", "v2"):
+            return False
+        if p.get("model") == "claude-haiku-5.5" and "over100k" not in p.get("id", ""):
+            return False
+        return True
+
+    def _point_task_cost(p, cfg):
+        if str(p.get("plan_id", "")).startswith("hyperqwen_local_"):
+            return None
+        cost_v = cfg.get("mean_cost_usd_per_task")
+        lp = cfg.get("benchmark_list_price") or p.get("list_blended_usd_per_mtok")
+        real_p = p.get("real_usd_per_mtok")
+        if isinstance(cost_v, (int, float)) and lp and lp > 0 and real_p is not None:
+            return cost_v * (real_p / lp)
+        if real_p is not None and real_p > 0:
+            return 3.51759 * real_p
+        return None
+
+    def _effort_tag(cfg):
+        eff = cfg.get("reasoning_effort")
+        if eff:
+            return eff
+        m = _re.search(r"\((non-reasoning|minimal|low|medium|high|xhigh|max|none|thinking)\)\s*$", cfg.get("variant") or "", _re.I)
+        return m.group(1).lower() if m else None
+
+    def _model_label(base_name, cfg, multi_cfg=True):
+        tag = _effort_tag(cfg)
+        if multi_cfg and tag and not _re.search(rf"\({_re.escape(tag)}\)\s*$", base_name, _re.I):
+            return f"{base_name} ({tag})"
+        return base_name
+
+    # 计算 Cost per Task & Real Price 前沿 (config=all 模式，与站点默认视图一致)
     cost_rows = []
     price_rows = []
 
     for p in points:
-        maps = by_point.get(p["id"], [])
+        if not _is_visible_default(p):
+            continue
+        maps = by_point_merged.get(p["id"], [])
         if not maps:
             continue
-        best_cfg = max(maps, key=lambda x: x["score"] or 0)
-        score = best_cfg["score"]
-        
-        # 计算 Cost per task
-        cost = best_cfg.get("mean_cost_usd_per_task")
-        list_price = best_cfg.get("benchmark_list_price") or p.get("list_blended_usd_per_mtok")
-        if isinstance(cost, (int, float)) and list_price and list_price > 0:
-            task_cost = cost * (p["real_usd_per_mtok"] / list_price)
-        elif p["real_usd_per_mtok"] > 0:
-            task_cost = 3.51759 * p["real_usd_per_mtok"]
-        else:
-            task_cost = None
+        multi_cfg = len(maps) > 1
+        for cfg in maps:
+            score = cfg.get("score")
+            if score is None:
+                continue
+            task_cost = _point_task_cost(p, cfg)
+            disp_model = _model_label(p["model_display"], cfg, multi_cfg=multi_cfg)
+            if task_cost is not None:
+                cost_rows.append({
+                    "id": p["id"],
+                    "variant": cfg.get("variant") or "",
+                    "model": disp_model,
+                    "plan": p["plan"],
+                    "vendor": p["vendor"],
+                    "fee": p.get("price_usd"),
+                    "score": score,
+                    "cost": task_cost,
+                    "real_price": p["real_usd_per_mtok"]
+                })
 
-        if task_cost is not None:
-            cost_rows.append({
-                "id": p["id"],
-                "model": p["model_display"],
-                "plan": p["plan"],
-                "vendor": p["vendor"],
-                "fee": p.get("price_usd"),
-                "score": score,
-                "cost": task_cost,
-                "real_price": p["real_usd_per_mtok"]
-            })
-
-        if p["real_usd_per_mtok"] is not None and score is not None:
-            price_rows.append({
-                "id": p["id"],
-                "model": p["model_display"],
-                "plan": p["plan"],
-                "vendor": p["vendor"],
-                "fee": p.get("price_usd"),
-                "score": score,
-                "real_price": p["real_usd_per_mtok"]
-            })
+            if p["real_usd_per_mtok"] is not None:
+                price_rows.append({
+                    "id": p["id"],
+                    "variant": cfg.get("variant") or "",
+                    "model": disp_model,
+                    "plan": p["plan"],
+                    "vendor": p["vendor"],
+                    "fee": p.get("price_usd"),
+                    "score": score,
+                    "real_price": p["real_usd_per_mtok"]
+                })
 
     # 计算 Cost 前沿 (cost 升序, score 降序)
     cost_rows.sort(key=lambda r: (r["cost"], -r["score"]))
@@ -347,22 +448,205 @@ def generate_report():
             f"{HUMAN_TAG} 前沿条目缺少有效 score：{bad_score[:5]}（共 {len(bad_score)} 条）；"
             "分数变化无法比较，拒绝在无法判定时静默")
 
+    points_by_id = {
+        p["id"]: {
+            "id": p["id"],
+            "model": p.get("model_display") or p.get("model") or p["id"],
+            "plan": p.get("plan") or "",
+            "vendor": p.get("vendor") or "",
+            "fee": p.get("price_usd"),
+            "real_price": p.get("real_usd_per_mtok"),
+        }
+        for p in points
+    }
+
+    # --- Task Time 前沿与 3D 帕累托非支配前沿（config=all，与 web/src/domain.ts & Chart3D.tsx 同口径）---
+    aa_floor_3d = max_aa_by_model.get("qwen3.8-27b", 20.1069)
+
+    time_rows = []
+    tier_counts = {}
+    for p in points:
+        if not _is_visible_default(p):
+            continue
+        mod_id = p.get("model")
+        if mod_id in max_aa_by_model and max_aa_by_model[mod_id] < aa_floor_3d:
+            continue
+        maps = by_point_merged.get(p["id"], [])
+        if not maps:
+            continue
+        multi_cfg = len(maps) > 1
+        for cfg in maps:
+            sc = cfg.get("score")
+            t_sec = cfg.get("response_time_seconds")
+            if not isinstance(sc, (int, float)) or sc < aa_floor_3d or not isinstance(t_sec, (int, float)) or t_sec <= 0:
+                continue
+            t_key = (round(float(t_sec), 2), round(float(sc), 4))
+            tier_counts[t_key] = tier_counts.get(t_key, 0) + 1
+            tc = _point_task_cost(p, cfg)
+            raw_name = p.get("model_display") or p.get("model") or p["id"]
+            time_rows.append({
+                "id": p["id"],
+                "variant": cfg.get("variant") or "",
+                "model": _model_label(raw_name, cfg, multi_cfg=multi_cfg),
+                "plan": p.get("plan") or "",
+                "vendor": p.get("vendor") or "",
+                "fee": p.get("price_usd"),
+                "score": sc,
+                "time_s": float(t_sec),
+                "tps": cfg.get("output_speed_tps"),
+                "cost": tc,
+                "real_price": p.get("real_usd_per_mtok"),
+                "_t_key": t_key,
+            })
+
+    time_rows.sort(key=lambda r: (
+        r["time_s"],
+        -r["score"],
+        r["cost"] if r["cost"] is not None else 1e9,
+        r["real_price"] if r["real_price"] is not None else 1e9,
+    ))
+    time_frontier = []
+    best_score = -1
+    for r in time_rows:
+        if r["score"] > best_score:
+            item = dict(r)
+            item["same_speed_plans"] = tier_counts.get(item.pop("_t_key"), 1)
+            time_frontier.append(item)
+            best_score = r["score"]
+
+    # 3D 帕累托非支配前沿 (与 Chart3D.tsx default3dPointIds + per-config score>=aaFloor + dedupeByModel 一致)
+    family_noise = _re.compile(
+        r"\s*\((?:v\d+|max|xhigh|high|medium|low)\)\s*$|\s+Contributor\s*$|\s+Eco\s*$",
+        _re.I,
+    )
+    by_family_3d = {}
+    for p in points:
+        if not _is_visible_default(p):
+            continue
+        if str(p.get("plan_id", "")).startswith("hyperqwen_local_"):
+            continue
+        mod_id = p.get("model")
+        if mod_id in max_aa_by_model and max_aa_by_model[mod_id] < aa_floor_3d:
+            continue
+        maps = by_point_merged.get(p["id"], [])
+        if not maps:
+            continue
+        for cfg in maps:
+            sc = cfg.get("score")
+            t_sec = cfg.get("response_time_seconds")
+            tc = _point_task_cost(p, cfg)
+            if (
+                not isinstance(sc, (int, float))
+                or sc < aa_floor_3d
+                or tc is None
+                or tc <= 0
+                or not isinstance(t_sec, (int, float))
+                or t_sec <= 0
+            ):
+                continue
+            raw_name = p.get("model_display") or p.get("model") or p["id"]
+            fam = family_noise.sub("", raw_name).strip()
+            cfg_id = cfg.get("configuration_id") or cfg.get("variant") or p.get("model")
+            tag = _effort_tag(cfg)
+            node_key = (fam, cfg_id)
+            cand = {
+                "id": p["id"],
+                "variant": cfg.get("variant") or "",
+                "_base_fam": fam,
+                "_cfg_id": cfg_id,
+                "_effort_tag": tag,
+                "family": fam,
+                "model": fam,
+                "model_display": raw_name,
+                "plan": p.get("plan") or "",
+                "vendor": p.get("vendor") or "",
+                "fee": p.get("price_usd"),
+                "cost": float(tc),
+                "time_s": float(t_sec),
+                "tps": cfg.get("output_speed_tps"),
+                "score": float(sc),
+                "is_cost_frontier": False,
+                "is_time_frontier": False,
+                "is_dual_winner": False,
+            }
+            prev = by_family_3d.get(node_key)
+            if prev is None or cand["cost"] < prev["cost"]:
+                by_family_3d[node_key] = cand
+
+    nodes_3d = list(by_family_3d.values())
+    fam_cfg_sets = {}
+    for n in nodes_3d:
+        fam_cfg_sets.setdefault(n["_base_fam"], set()).add(n["_cfg_id"])
+    for n in nodes_3d:
+        if len(fam_cfg_sets.get(n["_base_fam"], ())) > 1 and n.get("_effort_tag"):
+            lbl = f"{n['_base_fam']} ({n['_effort_tag']})"
+            n["family"] = lbl
+            n["model"] = lbl
+        n.pop("_base_fam", None)
+        n.pop("_cfg_id", None)
+        n.pop("_effort_tag", None)
+    # 标注 3D 节点在 2D 成本 / 2D 耗时投影上的角色
+    best_c = -1e9
+    for n in sorted(nodes_3d, key=lambda x: (x["cost"], -x["score"])):
+        if n["score"] > best_c:
+            n["is_cost_frontier"] = True
+            best_c = n["score"]
+    best_t = -1e9
+    for n in sorted(nodes_3d, key=lambda x: (x["time_s"], -x["score"])):
+        if n["score"] > best_t:
+            n["is_time_frontier"] = True
+            best_t = n["score"]
+    for n in nodes_3d:
+        n["is_dual_winner"] = n["is_cost_frontier"] and n["is_time_frontier"]
+
+    frontier_3d = []
+    for a in nodes_3d:
+        dominated = any(
+            b is not a
+            and b["cost"] <= a["cost"]
+            and b["time_s"] <= a["time_s"]
+            and b["score"] >= a["score"]
+            and (b["cost"] < a["cost"] or b["time_s"] < a["time_s"] or b["score"] > a["score"])
+            for b in nodes_3d
+        )
+        if not dominated:
+            frontier_3d.append(a)
+    frontier_3d.sort(key=lambda x: x["cost"])
+
     return {
         "date": site_json.get("generatedAt", datetime.now().strftime("%Y-%m-%d")),
         "total_points": len(points),
+        "aa_floor": aa_floor_3d,
         "cost_frontier": cost_frontier,
         "price_frontier": price_frontier,
+        "time_frontier": time_frontier,
+        "frontier_3d": frontier_3d,
+        "points_by_id": points_by_id,
     }
 
 def frontier_state(report):
-    """把前沿压成可比较的状态指纹（cost 前沿逐点 + price 前沿逐点）。"""
+    """把前沿压成可比较的状态指纹（cost 前沿逐配置 + price 前沿逐配置）。"""
     return {
         "date": report["date"],
         "total_points": report["total_points"],
-        "cost_frontier": [{"id": r["id"], "score": round(float(r["score"]), 4),
-                           "cost": round(float(r["cost"]), 6)} for r in report["cost_frontier"]],
-        "price_frontier": [{"id": r["id"], "score": round(float(r["score"]), 4),
-                            "real_price": r["real_price"]} for r in report["price_frontier"]],
+        "cost_frontier": [
+            {
+                "id": r["id"],
+                **({"variant": r["variant"]} if r.get("variant") else {}),
+                "score": round(float(r["score"]), 4),
+                "cost": round(float(r["cost"]), 6),
+            }
+            for r in report["cost_frontier"]
+        ],
+        "price_frontier": [
+            {
+                "id": r["id"],
+                **({"variant": r["variant"]} if r.get("variant") else {}),
+                "score": round(float(r["score"]), 4),
+                "real_price": r["real_price"],
+            }
+            for r in report["price_frontier"]
+        ],
     }
 
 
@@ -415,23 +699,30 @@ def write_state(state, path=None):
     return p
 
 
+def _state_item_key(r):
+    return (r["id"], r.get("variant") or "")
+
+
 def _frontier_delta(old_list, new_list, frontier):
     """单个前沿的 added / removed / score_changed，每项带 frontier 归属。"""
-    o = {r["id"]: r for r in old_list}
-    n = {r["id"]: r for r in new_list}
+    o = {_state_item_key(r): r for r in old_list}
+    n = {_state_item_key(r): r for r in new_list}
     added = [dict(n[k], frontier=frontier) for k in n if k not in o]
     removed = [dict(o[k], frontier=frontier) for k in o if k not in n]
-    score_changed = [{"id": k, "from": o[k]["score"], "to": n[k]["score"], "frontier": frontier}
-                     for k in n if k in o and o[k]["score"] != n[k]["score"]]
+    score_changed = [
+        {"id": n[k]["id"], **({"variant": n[k]["variant"]} if n[k].get("variant") else {}),
+         "from": o[k]["score"], "to": n[k]["score"], "frontier": frontier}
+        for k in n if k in o and o[k]["score"] != n[k]["score"]
+    ]
     return added, removed, score_changed
 
 
 def _merge_frontier_items(items):
     """同一点同时在 cost / price 前沿变化时合并为一条（frontier 记 cost+price），
-    避免邮件里同一 id 重复出现；其余保持单值 cost / price。"""
+    避免邮件里同一 (id, variant) 重复出现；其余保持单值 cost / price。"""
     merged, order = {}, []
     for it in items:
-        k = it["id"]
+        k = _state_item_key(it)
         if k not in merged:
             merged[k] = dict(it)
             merged[k]["frontier"] = [it["frontier"]]
@@ -440,7 +731,7 @@ def _merge_frontier_items(items):
         cur = merged[k]
         if it["frontier"] not in cur["frontier"]:
             cur["frontier"].append(it["frontier"])
-        for f in ("score", "cost", "real_price", "from", "to"):
+        for f in ("score", "cost", "real_price", "from", "to", "variant"):
             if f in it:
                 cur[f] = it[f]
     out = []
@@ -536,19 +827,111 @@ def _frontier_label(item):
     return f"[{item.get('frontier', '?')}]"
 
 
+def _frontier_label_zh(frontier):
+    mapping = {
+        "cost": "任务成本前沿",
+        "price": "真实单价前沿",
+        "cost+price": "双前沿",
+    }
+    return mapping.get(frontier, str(frontier or "前沿"))
+
+
+def _resolve_point_meta(point_id, points_by_id=None):
+    meta = (points_by_id or {}).get(point_id)
+    if meta:
+        return meta
+    if "::" in str(point_id):
+        plan_part, model_part = str(point_id).split("::", 1)
+        return {"id": point_id, "model": model_part, "plan": plan_part, "fee": None}
+    return {"id": point_id, "model": str(point_id), "plan": "", "fee": None}
+
+
+def _humanize_note_text(text, points_by_id=None):
+    """Replace raw `plan_id::model` tokens in prose with readable `Model (Plan)` labels."""
+    import re
+    if not points_by_id:
+        return text
+
+    def _repl(m):
+        pid = m.group(0)
+        meta = points_by_id.get(pid)
+        if not meta:
+            return pid
+        plan = meta.get("plan") or ""
+        model = meta.get("model") or pid
+        return f"{model}（{plan}）" if plan else model
+
+    return re.sub(r"\b[a-z0-9_]+::[a-z0-9._-]+\b", _repl, text)
+
+
+def _split_note_clauses(body, points_by_id=None):
+    """Split newline or `1) ...; 2) ...` note paragraphs into clean bullet items."""
+    import re
+    cleaned = _humanize_note_text(body.strip(), points_by_id)
+    if "\n" in cleaned:
+        lines = [ln.strip().lstrip("•·- ").strip() for ln in cleaned.splitlines() if ln.strip()]
+        if lines:
+            return lines
+    cleaned = re.sub(r"。\s*(触发原因[：:])", r"；\1", cleaned)
+    cleaned = re.sub(r"([：:])\s*(?=1\)\s)", r"\1；", cleaned)
+    parts = re.split(r"(?:^|[；;]\s*)(?=(?:\d+\)|触发原因[：:]))", cleaned)
+    items = []
+    for part in parts:
+        p = re.sub(r"^\d+\)\s*", "", part).strip().rstrip("；;")
+        if p:
+            items.append(p)
+    return items if len(items) > 1 else [cleaned]
+
+
+def _parse_notes_sections(notes, points_by_id=None):
+    """Parse `【Title】Body` notes into structured (kind, title, items) tuples."""
+    import re
+    summary_cards = []
+    detail_cards = []
+    for raw in notes or []:
+        m = re.match(r"^【([^】]+)】\s*(.*)$", raw.strip(), re.S)
+        if m:
+            title, body = m.group(1).strip(), m.group(2).strip()
+        else:
+            title, body = "分析说明", raw.strip()
+        items = _split_note_clauses(body, points_by_id)
+        entry = {"title": title, "items": items}
+        if any(k in title for k in ("归因", "变动", "解读", "选型", "速览", "掉出", "离开")):
+            summary_cards.append(entry)
+        else:
+            detail_cards.append(entry)
+    return summary_cards, detail_cards
+
+
+def _render_note_item_html(text):
+    import html as _html, re
+    esc = _html.escape(text)
+    # Highlight countdown tags such as T-2, T-5, T-10
+    esc = re.sub(
+        r"\((T-\d+)\)",
+        r'<span style="display:inline-block;padding:1px 6px;margin:0 2px;border-radius:4px;background:#fff8e8;border:1px solid #eedcae;color:#7a5b12;font-size:11px;font-weight:700;vertical-align:baseline;">\1</span>',
+        esc,
+    )
+    # Bold concise lead-in labels before colon (avoid URLs like https:)
+    m = re.match(r"^([^：:\n]{2,28})([：:])\s*(.+)$", esc)
+    if m and not m.group(1).endswith(("http", "https")):
+        return f'<strong style="color:#16191d;font-weight:600;">{m.group(1)}{m.group(2)}</strong> {m.group(3)}'
+    return esc
+
+
 def _num_suffix(item, score_label="分数"):
     """把变动项可用的数值拼成「（分数 x，任务成本 $y，真实单价 $z）」。"""
     parts = []
     if item.get("score") is not None:
-        parts.append(f"{score_label} {item['score']}")
+        parts.append(f"{score_label} {item['score']:.2f}")
     if item.get("cost") is not None:
-        parts.append(f"任务成本 ${item['cost']:.6f}")
+        parts.append(f"任务成本 ${item['cost']:.5f}")
     if item.get("real_price") is not None:
         parts.append(f"真实单价 ${item['real_price']:.6f}")
     return f"（{'，'.join(parts)}）" if parts else ""
 
 
-def _diff_block(diff):
+def _diff_block(diff, points_by_id=None):
     """邮件头部的「本轮变动」段；无变动时渲染为空，首次基线只报快照。"""
     if not diff or not diff.get("changed"):
         return ""
@@ -566,81 +949,339 @@ def _diff_block(diff):
         lines.append(f"· 收录点数 {diff['total_points_delta']:+d}"
                      f"{'' if alert else '，前沿榜无变化'}")
     for r in diff.get("added", []):
-        lines.append(f"· 新进前沿 {_frontier_label(r)}：{r['id']}{_num_suffix(r)}")
+        meta = _resolve_point_meta(r["id"], points_by_id)
+        m_name = r.get("variant") or meta["model"]
+        label = f"{m_name} · {meta['plan']}" if meta.get("plan") else r["id"]
+        lines.append(f"· 新进前沿 [{_frontier_label_zh(r.get('frontier'))}]：{label}{_num_suffix(r)}")
     for r in diff.get("removed", []):
-        lines.append(f"· 掉出前沿 {_frontier_label(r)}：{r['id']}{_num_suffix(r, '原分数')}")
+        meta = _resolve_point_meta(r["id"], points_by_id)
+        m_name = r.get("variant") or meta["model"]
+        label = f"{m_name} · {meta['plan']}" if meta.get("plan") else r["id"]
+        lines.append(f"· 掉出前沿 [{_frontier_label_zh(r.get('frontier'))}]：{label}{_num_suffix(r, '原分数')}")
     for r in diff.get("score_changed", []):
-        lines.append(f"· 分数变化 {_frontier_label(r)}：{r['id']} {r['from']} → {r['to']}")
+        meta = _resolve_point_meta(r["id"], points_by_id)
+        m_name = r.get("variant") or meta["model"]
+        label = f"{m_name} · {meta['plan']}" if meta.get("plan") else r["id"]
+        lines.append(f"· 分数变化 [{_frontier_label_zh(r.get('frontier'))}]：{label} {r['from']:.2f} → {r['to']:.2f}")
     for note in diff.get("notes", []):
-        lines.append(f"· {note}")
+        lines.append(f"· {_humanize_note_text(note, points_by_id)}")
     for key in diff.get("degraded", []):
         lines.append(f"· {HUMAN_TAG} 基线缺少 {key}（旧格式），本轮跳过该前沿比较")
     return "\n".join(lines)
 
 
-def _num_suffix_html(item, score_label="分数"):
-    """HTML 通道的数值后缀（与 _num_suffix 同构，数值加粗）。"""
+def _diff_metrics_html(item, score_label="AA 智力"):
     parts = []
     if item.get("score") is not None:
-        parts.append(f"{score_label} {item['score']}")
+        parts.append(f'{score_label} <strong style="color:#16191d;">{item["score"]:.2f}</strong>')
     if item.get("cost") is not None:
-        parts.append(f"任务成本 <b>${item['cost']:.6f}</b>")
+        parts.append(f'单任务 <strong style="color:#0b7a55;">${item["cost"]:.5f}</strong>')
     if item.get("real_price") is not None:
-        parts.append(f"真实单价 <b>${item['real_price']:.6f}</b>")
-    return f"（{'，'.join(parts)}）" if parts else ""
+        parts.append(f'真实单价 <strong style="color:#0b7a55;">${item["real_price"]:.6f}</strong>/MTok')
+    return " &nbsp;&middot;&nbsp; ".join(parts)
 
 
-def _diff_block_html(diff):
-    """HTML 通道的「本轮变动」块（纯文本版见 _diff_block）。"""
+def _diff_block_html(diff, points_by_id=None, summary_cards=None):
+    """HTML 通道的「本轮核心变动」区（warm-paper / emerald 排版，零 emoji 方块）。"""
+    import html as _html
     if not diff or not diff.get("changed"):
         return ""
     if diff.get("baseline"):
-        return ('  <h2 style="color:#0f172a;">🏁 首次基线（建立前沿监控快照，非变动）</h2>\n'
-                '  <ul style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:6px;padding:12px 12px 12px 28px;">\n'
-                f"    <li>已收录前沿点 <b>{len(diff.get('added', []))}</b> 个；完整清单见下方两个前沿表。</li>\n"
-                "  </ul>")
+        return (
+            '<div style="margin:22px 0 26px;padding:16px 18px;background:#fafaf7;border:1px solid #e4e0d6;border-left:4px solid #0b7a55;border-radius:10px;">'
+            '<div style="font-size:12px;font-weight:700;letter-spacing:0.06em;color:#0b7a55;text-transform:uppercase;margin-bottom:6px;">BASELINE SNAPSHOT</div>'
+            '<div style="font-size:16px;font-weight:700;color:#16191d;margin-bottom:4px;">首次基线已建立</div>'
+            f'<div style="font-size:13.5px;color:#3a4048;line-height:1.6;">已收录前沿点 <strong>{len(diff.get("added", []))}</strong> 个，完整清单见下方榜单。</div>'
+            '</div>'
+        )
+
     alert = bool(diff.get("alert"))
-    title = "🔔 本轮变动（触发本次通知）" if alert else "📣 本轮数据更新（前沿榜无变化）"
-    color, border, bg = (("#b45309", "#f59e0b", "#fffbeb") if alert
-                         else ("#0369a1", "#38bdf8", "#f0f9ff"))
-    rows = []
+    accent = "#b45309" if alert else "#0b7a55"
+    soft_bg = "#fffcf4" if alert else "#f4faf7"
+    soft_border = "#eedcae" if alert else "#b6dccb"
+    pill_bg = "#fff8e8" if alert else "#e7f4ee"
+    pill_fg = "#7a5b12" if alert else "#0b7a55"
+    pill_text = "前沿变动触发" if alert else "数据更新"
+    section_title = "本轮核心变动" if alert else "本轮数据同步摘要"
+
+    item_rows = []
     if diff.get("total_points_delta"):
-        rows.append(f"<li>收录点数 <b>{diff['total_points_delta']:+d}</b>"
-                    f"{'' if alert else '，前沿榜无变化'}</li>")
+        item_rows.append(
+            f'<tr><td style="padding:10px 12px;border-bottom:1px solid #f0ece2;font-size:13px;color:#3a4048;" colspan="2">'
+            f'<span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#f2f1ec;color:#3a4048;font-size:11.5px;font-weight:600;margin-right:8px;">点位规模</span>'
+            f'总收录点数变动 <strong style="color:#16191d;">{diff["total_points_delta"]:+d}</strong>'
+            f'{"（前沿结构未变）" if not alert else ""}</td></tr>'
+        )
+
     for r in diff.get("added", []):
-        rows.append(f"<li>新进前沿 <code>{_frontier_label(r)}</code>："
-                    f"<b>{r['id']}</b>{_num_suffix_html(r)}</li>")
+        meta = _resolve_point_meta(r["id"], points_by_id)
+        m_name = r.get("variant") or meta["model"]
+        fee_txt = f"${meta['fee']}/mo" if meta.get("fee") is not None else "按量"
+        item_rows.append(
+            '<tr>'
+            '<td class="diff-cell-l" style="padding:11px 12px;border-bottom:1px solid #f0ece2;vertical-align:middle;">'
+            '<span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#e7f4ee;border:1px solid #b6dccb;color:#0b7a55;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;white-space:nowrap;">新进前沿</span>'
+            f'<strong style="font-size:14px;color:#16191d;vertical-align:middle;">{_html.escape(m_name)}</strong>'
+            f'<div style="font-size:12px;color:#5c646e;margin-top:3px;">{_html.escape(meta["plan"])} &middot; {fee_txt} &middot; {_html.escape(_frontier_label_zh(r.get("frontier")))}</div>'
+            '</td>'
+            f'<td class="diff-cell-r" style="padding:11px 12px;border-bottom:1px solid #f0ece2;text-align:right;vertical-align:middle;font-size:12.5px;color:#3a4048;font-variant-numeric:tabular-nums;white-space:nowrap;">{_diff_metrics_html(r)}</td>'
+            '</tr>'
+        )
+
     for r in diff.get("removed", []):
-        rows.append(f"<li>掉出前沿 <code>{_frontier_label(r)}</code>："
-                    f"<b>{r['id']}</b>{_num_suffix_html(r, '原分数')}</li>")
+        meta = _resolve_point_meta(r["id"], points_by_id)
+        m_name = r.get("variant") or meta["model"]
+        item_rows.append(
+            '<tr>'
+            '<td class="diff-cell-l" style="padding:11px 12px;border-bottom:1px solid #f0ece2;vertical-align:middle;">'
+            '<span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;white-space:nowrap;">掉出前沿</span>'
+            f'<strong style="font-size:14px;color:#16191d;vertical-align:middle;">{_html.escape(m_name)}</strong>'
+            f'<div style="font-size:12px;color:#5c646e;margin-top:3px;">{_html.escape(meta["plan"])} &middot; {_html.escape(_frontier_label_zh(r.get("frontier")))}</div>'
+            '</td>'
+            f'<td class="diff-cell-r" style="padding:11px 12px;border-bottom:1px solid #f0ece2;text-align:right;vertical-align:middle;font-size:12.5px;color:#5c646e;font-variant-numeric:tabular-nums;white-space:nowrap;">{_diff_metrics_html(r, "原 AA 智力")}</td>'
+            '</tr>'
+        )
+
     for r in diff.get("score_changed", []):
-        rows.append(f"<li>分数变化 <code>{_frontier_label(r)}</code>："
-                    f"<b>{r['id']}</b> {r['from']} → {r['to']}</li>")
-    for note in diff.get("notes", []):
-        rows.append(f"<li>{note}</li>")
+        meta = _resolve_point_meta(r["id"], points_by_id)
+        m_name = r.get("variant") or meta["model"]
+        item_rows.append(
+            '<tr>'
+            '<td class="diff-cell-l" style="padding:11px 12px;border-bottom:1px solid #f0ece2;vertical-align:middle;">'
+            '<span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#fff8e8;border:1px solid #eedcae;color:#7a5b12;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;white-space:nowrap;">分数变动</span>'
+            f'<strong style="font-size:14px;color:#16191d;vertical-align:middle;">{_html.escape(m_name)}</strong>'
+            f'<div style="font-size:12px;color:#5c646e;margin-top:3px;">{_html.escape(meta["plan"])} &middot; {_html.escape(_frontier_label_zh(r.get("frontier")))}</div>'
+            '</td>'
+            f'<td class="diff-cell-r" style="padding:11px 12px;border-bottom:1px solid #f0ece2;text-align:right;vertical-align:middle;font-size:12.5px;color:#16191d;font-variant-numeric:tabular-nums;white-space:nowrap;"><strong>{r["from"]:.2f}</strong> &rarr; <strong style="color:#0b7a55;">{r["to"]:.2f}</strong></td>'
+            '</tr>'
+        )
+
     for key in diff.get("degraded", []):
-        rows.append(f"<li>⚠️ {HUMAN_TAG} 基线缺少 <code>{key}</code>（旧格式），本轮跳过该前沿比较</li>")
-    return (f'  <h2 style="color:{color};border-bottom-color:{border};">{title}</h2>\n'
-            f'  <ul style="background:{bg};border:1px solid {border};border-radius:6px;padding:12px 12px 12px 28px;">\n'
-            + "\n".join("    " + x for x in rows) + "\n  </ul>")
+        item_rows.append(
+            f'<tr><td colspan="2" style="padding:10px 12px;border-bottom:1px solid #f0ece2;font-size:12.5px;color:#991b1b;">'
+            f'<strong>{_html.escape(HUMAN_TAG)}</strong> 基线缺少 <code>{_html.escape(str(key))}</code>（旧格式），本轮跳过该前沿比较。</td></tr>'
+        )
+
+    items_table = ""
+    if item_rows:
+        items_table = (
+            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+            'style="width:100%;border-collapse:collapse;background:#ffffff;border:1px solid #e4e0d6;border-radius:8px;overflow:hidden;margin-top:12px;">'
+            + "".join(item_rows) +
+            '</table>'
+        )
+
+    notes_html = ""
+    for card in summary_cards or []:
+        li_html = "".join(
+            f'<li style="margin:0 0 6px 0;color:#3a4048;font-size:13px;line-height:1.65;">{_render_note_item_html(it)}</li>'
+            for it in card["items"]
+        )
+        notes_html += (
+            '<div style="margin-top:12px;padding:12px 14px;background:#ffffff;border:1px solid #ebe6da;border-radius:8px;">'
+            f'<div style="font-size:12.5px;font-weight:700;color:#16191d;margin-bottom:6px;">{_html.escape(card["title"])}</div>'
+            f'<ul style="margin:0;padding-left:18px;">{li_html}</ul>'
+            '</div>'
+        )
+
+    return (
+        f'<div style="margin:22px 0 26px;padding:18px 20px;background:{soft_bg};border:1px solid {soft_border};border-left:4px solid {accent};border-radius:10px;">'
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;"><tr>'
+        f'<td style="font-size:16px;font-weight:700;color:#16191d;">{section_title}</td>'
+        f'<td style="text-align:right;"><span style="display:inline-block;padding:3px 10px;border-radius:999px;background:{pill_bg};border:1px solid {soft_border};color:{pill_fg};font-size:11.5px;font-weight:700;">{pill_text}</span></td>'
+        '</tr></table>'
+        f'{items_table}'
+        f'{notes_html}'
+        '</div>'
+    )
+
+
+def _fmt_duration_short(seconds):
+    s = int(round(float(seconds)))
+    if s < 60:
+        return f"{s}s"
+    m, rem = divmod(s, 60)
+    return f"{m}m{rem:02d}s"
+
+
+def _render_frontier_rows_html(rows, value_key, value_fmt, added_keys=None, max_score=70.0):
+    import html as _html
+    added_keys = added_keys or set()
+    if rows:
+        top_score = max(max_score, max(float(r.get("score") or 0) for r in rows))
+    else:
+        top_score = max_score
+    out = []
+    for i, item in enumerate(rows, 1):
+        is_new = _state_item_key(item) in added_keys or (item["id"], "") in added_keys
+        row_bg = "#f7fcf9" if is_new else ("#ffffff" if i % 2 == 1 else "#fafaf7")
+        rank_bg = "#e7f4ee" if i == 1 else "#f2f1ec"
+        rank_fg = "#0b7a55" if i == 1 else "#5c646e"
+        fee_str = f"${item['fee']}/mo" if item.get("fee") is not None else "按量"
+        val_str = value_fmt(item[value_key])
+        score_val = float(item["score"])
+        bar_pct = max(8, min(100, round(score_val / top_score * 100)))
+        new_badge = (
+            '<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;'
+            'background:#e7f4ee;border:1px solid #b6dccb;color:#0b7a55;font-size:10.5px;font-weight:700;vertical-align:middle;">新进</span>'
+            if is_new else ""
+        )
+        out.append(
+            f'<tr style="background:{row_bg};">'
+            f'<td class="col-rank" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:center;vertical-align:middle;width:32px;">'
+            f'<span style="display:inline-block;min-width:20px;padding:2px 5px;border-radius:6px;background:{rank_bg};color:{rank_fg};font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;">{i}</span>'
+            f'</td>'
+            f'<td class="col-model" style="padding:11px 8px;border-bottom:1px solid #ece8de;vertical-align:middle;">'
+            f'<div style="font-size:13.5px;font-weight:700;color:#16191d;line-height:1.35;">{_html.escape(item["model"])}{new_badge}</div>'
+            f'<div style="font-size:12px;color:#5c646e;margin-top:2px;line-height:1.35;">{_html.escape(item["plan"])}</div>'
+            f'</td>'
+            f'<td class="col-fee" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;font-size:12.5px;color:#5c646e;font-variant-numeric:tabular-nums;">{_html.escape(fee_str)}</td>'
+            f'<td class="col-val" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;font-size:13.5px;font-weight:700;color:#0b7a55;font-variant-numeric:tabular-nums;">{val_str}</td>'
+            f'<td class="col-score" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;width:76px;">'
+            f'<div style="font-size:13px;font-weight:700;color:#16191d;font-variant-numeric:tabular-nums;">{score_val:.2f}</div>'
+            f'<div class="score-bar" style="margin-top:4px;height:4px;width:58px;margin-left:auto;background:#ebedf0;border-radius:99px;overflow:hidden;">'
+            f'<div style="height:4px;width:{bar_pct}%;background:#0b7a55;border-radius:99px;"></div>'
+            f'</div>'
+            f'</td>'
+            f'</tr>'
+        )
+    return "".join(out)
+
+
+def _render_time_rows_html(rows, max_score=70.0):
+    import html as _html
+    top_score = max(max_score, max((float(r.get("score") or 0) for r in rows), default=max_score))
+    out = []
+    for i, item in enumerate(rows, 1):
+        row_bg = "#ffffff" if i % 2 == 1 else "#fafaf7"
+        rank_bg = "#e7f4ee" if i == 1 else "#f2f1ec"
+        rank_fg = "#0b7a55" if i == 1 else "#5c646e"
+        fee_str = f"${item['fee']}/mo" if item.get("fee") is not None else "按量"
+        cost_part = f" &middot; 单任务 ${item['cost']:.5f}" if item.get("cost") is not None else ""
+        same_n = item.get("same_speed_plans") or 1
+        same_part = f" &middot; {same_n}套餐同速" if same_n > 1 else ""
+        tps_val = item.get("tps")
+        tps_str = f"{round(float(tps_val))} tok/s" if isinstance(tps_val, (int, float)) else "-"
+        t_sec = float(item["time_s"])
+        dur_sub = _fmt_duration_short(t_sec) if t_sec >= 60 else "极速档"
+        score_val = float(item["score"])
+        bar_pct = max(8, min(100, round(score_val / top_score * 100)))
+        out.append(
+            f'<tr style="background:{row_bg};">'
+            f'<td class="col-rank" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:center;vertical-align:middle;width:32px;">'
+            f'<span style="display:inline-block;min-width:20px;padding:2px 5px;border-radius:6px;background:{rank_bg};color:{rank_fg};font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;">{i}</span>'
+            f'</td>'
+            f'<td class="col-model" style="padding:11px 8px;border-bottom:1px solid #ece8de;vertical-align:middle;">'
+            f'<div style="font-size:13.5px;font-weight:700;color:#16191d;line-height:1.35;">{_html.escape(item["model"])}</div>'
+            f'<div style="font-size:12px;color:#5c646e;margin-top:2px;line-height:1.35;">{_html.escape(item["plan"])} &middot; {_html.escape(fee_str)}{cost_part}{same_part}</div>'
+            f'</td>'
+            f'<td class="col-fee" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;font-size:12.5px;color:#5c646e;font-variant-numeric:tabular-nums;">{_html.escape(tps_str)}</td>'
+            f'<td class="col-val" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;">'
+            f'<div style="font-size:13.5px;font-weight:700;color:#0b7a55;font-variant-numeric:tabular-nums;">{t_sec:.1f}s</div>'
+            f'<div style="font-size:11px;color:#5c646e;margin-top:1px;font-variant-numeric:tabular-nums;">{dur_sub}</div>'
+            f'</td>'
+            f'<td class="col-score" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;width:76px;">'
+            f'<div style="font-size:13px;font-weight:700;color:#16191d;font-variant-numeric:tabular-nums;">{score_val:.2f}</div>'
+            f'<div class="score-bar" style="margin-top:4px;height:4px;width:58px;margin-left:auto;background:#ebedf0;border-radius:99px;overflow:hidden;">'
+            f'<div style="height:4px;width:{bar_pct}%;background:#0b7a55;border-radius:99px;"></div>'
+            f'</div>'
+            f'</td>'
+            f'</tr>'
+        )
+    return "".join(out)
+
+
+def _render_3d_rows_html(rows, max_score=70.0):
+    import html as _html
+    top_score = max(max_score, max((float(r.get("score") or 0) for r in rows), default=max_score))
+    out = []
+    for i, item in enumerate(rows, 1):
+        is_dual = bool(item.get("is_dual_winner"))
+        row_bg = "#f7fcf9" if is_dual else ("#ffffff" if i % 2 == 1 else "#fafaf7")
+        rank_bg = "#e7f4ee" if is_dual else "#f2f1ec"
+        rank_fg = "#0b7a55" if is_dual else "#5c646e"
+        fee_str = f"${item['fee']}/mo" if item.get("fee") is not None else "按量"
+        if is_dual:
+            role_badge = '<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:#e7f4ee;border:1px solid #b6dccb;color:#0b7a55;font-size:10.5px;font-weight:700;vertical-align:middle;">双前沿</span>'
+        elif item.get("is_cost_frontier"):
+            role_badge = '<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:#fff8e8;border:1px solid #eedcae;color:#7a5b12;font-size:10.5px;font-weight:700;vertical-align:middle;">成本</span>'
+        elif item.get("is_time_frontier"):
+            role_badge = '<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:#eef4ff;border:1px solid #c7d9fc;color:#1d4ed8;font-size:10.5px;font-weight:700;vertical-align:middle;">耗时</span>'
+        else:
+            role_badge = '<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:#f2f1ec;border:1px solid #e4e0d6;color:#5c646e;font-size:10.5px;font-weight:700;vertical-align:middle;">3D折中</span>'
+        t_sec = float(item["time_s"])
+        dur_sub = _fmt_duration_short(t_sec)
+        score_val = float(item["score"])
+        bar_pct = max(8, min(100, round(score_val / top_score * 100)))
+        out.append(
+            f'<tr style="background:{row_bg};">'
+            f'<td class="col-rank" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:center;vertical-align:middle;width:32px;">'
+            f'<span style="display:inline-block;min-width:20px;padding:2px 5px;border-radius:6px;background:{rank_bg};color:{rank_fg};font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;">{i}</span>'
+            f'</td>'
+            f'<td class="col-model" style="padding:11px 8px;border-bottom:1px solid #ece8de;vertical-align:middle;">'
+            f'<div style="font-size:13.5px;font-weight:700;color:#16191d;line-height:1.35;">{_html.escape(item["model"])}{role_badge}</div>'
+            f'<div style="font-size:12px;color:#5c646e;margin-top:2px;line-height:1.35;">{_html.escape(item["plan"])} &middot; {_html.escape(fee_str)}</div>'
+            f'</td>'
+            f'<td class="col-fee" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;font-size:13px;font-weight:700;color:#0b7a55;font-variant-numeric:tabular-nums;">${item["cost"]:.5f}</td>'
+            f'<td class="col-val" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;">'
+            f'<div style="font-size:13px;font-weight:700;color:#16191d;font-variant-numeric:tabular-nums;">{t_sec:.1f}s</div>'
+            f'<div style="font-size:11px;color:#5c646e;margin-top:1px;font-variant-numeric:tabular-nums;">{dur_sub}</div>'
+            f'</td>'
+            f'<td class="col-score" style="padding:11px 8px;border-bottom:1px solid #ece8de;text-align:right;vertical-align:middle;white-space:nowrap;width:76px;">'
+            f'<div style="font-size:13px;font-weight:700;color:#16191d;font-variant-numeric:tabular-nums;">{score_val:.2f}</div>'
+            f'<div class="score-bar" style="margin-top:4px;height:4px;width:58px;margin-left:auto;background:#ebedf0;border-radius:99px;overflow:hidden;">'
+            f'<div style="height:4px;width:{bar_pct}%;background:#0b7a55;border-radius:99px;"></div>'
+            f'</div>'
+            f'</td>'
+            f'</tr>'
+        )
+    return "".join(out)
+
+
+def _render_chart_card_html(img_url, href, caption, alt):
+    import html as _html
+    return (
+        '<div style="margin-top:12px;border:1px solid #e4e0d6;border-radius:10px;overflow:hidden;background:#fafaf7;">'
+        f'<a href="{_html.escape(href)}" target="_blank" style="display:block;text-decoration:none;">'
+        f'<img src="{_html.escape(img_url)}" alt="{_html.escape(alt)}" style="display:block;width:100%;max-width:100%;height:auto;border:0;" />'
+        '</a>'
+        '<div style="padding:8px 12px;border-top:1px solid #ece8de;background:#fafaf7;font-size:11.5px;color:#5c646e;">'
+        f'{_html.escape(caption)} &middot; <a href="{_html.escape(href)}" target="_blank" style="color:#0b7a55;text-decoration:none;font-weight:600;">在交互看板中打开 &rarr;</a>'
+        '</div>'
+        '</div>'
+    )
 
 
 def format_email_content(report):
-    """格式化简报的纯文本与 HTML 邮件内容（标题 / 页脚双通道语义一致）"""
+    """格式化简报的纯文本与 HTML 邮件内容（对齐 real-plan.fja.su 编辑部纸感排版）"""
+    import html as _html
     date_str = report["date"]
-    alert = _is_alert(report.get("diff"))
+    diff = report.get("diff") or {}
+    points_by_id = report.get("points_by_id") or {}
+    time_frontier = report.get("time_frontier") or []
+    frontier_3d = report.get("frontier_3d") or []
+    alert = _is_alert(diff)
     banner = "前沿变动通知" if alert else "前沿简报"
-    icon = "🔔" if alert else "📊"
 
-    # 构造 Markdown / Text
+    # 构造纯文本回退版本
     text = f"""=== Real API Pricing {banner} ({date_str}) ===
 
 数据快照：{date_str}
 已收录套餐点：{report['total_points']} 个
 线上交互看板：https://real-plan.fja.su
-{_diff_block(report.get("diff"))}
+{_diff_block(diff, points_by_id)}
 --------------------------------------------------
-★ 任务成本前沿 (Cost per Task Frontier)
+★ 01 3D 帕累托非支配前沿 (Cost × Time × Intelligence 折中视图)
+--------------------------------------------------
+"""
+    for i, item in enumerate(frontier_3d, 1):
+        fee_str = f"${item['fee']}/mo" if item['fee'] is not None else "按量"
+        role = "双前沿" if item.get("is_dual_winner") else ("成本前沿" if item.get("is_cost_frontier") else ("耗时前沿" if item.get("is_time_frontier") else "3D折中"))
+        text += f"{i:2d}. {item['model']} [{role}] ({item['plan']}, {fee_str})\n    - 单任务成本: ${item['cost']:.5f} | 任务用时: {item['time_s']:.2f}s ({_fmt_duration_short(item['time_s'])}) | 智力分数: {item['score']:.2f}\n"
+
+    text += f"""
+--------------------------------------------------
+★ 02 任务成本前沿 (Cost per Task Frontier)
 --------------------------------------------------
 计算口径：AA 智力榜任务基准 × (套餐实际单价 / 官方基准标价)
 """
@@ -650,7 +1291,19 @@ def format_email_content(report):
 
     text += f"""
 --------------------------------------------------
-★ 真实单价前沿 (Real Price Frontier)
+★ 03 任务用时前沿 (Task Time Frontier)
+--------------------------------------------------
+计算口径：OpenRouter P50 延迟 + AA 每任务 Output Token / P50 吞吐
+"""
+    for i, item in enumerate(time_frontier, 1):
+        fee_str = f"${item['fee']}/mo" if item['fee'] is not None else "按量"
+        tps_str = f"{round(float(item['tps']))} tok/s" if isinstance(item.get("tps"), (int, float)) else "-"
+        cost_str = f"${item['cost']:.5f}" if item.get("cost") is not None else "-"
+        text += f"{i:2d}. {item['model']} ({item['plan']}, {fee_str})\n    - 任务用时: {item['time_s']:.2f}s ({_fmt_duration_short(item['time_s'])}) | 吞吐: {tps_str} | 任务成本: {cost_str} | 智力分数: {item['score']:.2f}\n"
+
+    text += f"""
+--------------------------------------------------
+★ 04 真实单价前沿 (Real Price Frontier · 附表对照)
 --------------------------------------------------
 """
     for i, item in enumerate(report["price_frontier"], 1):
@@ -660,7 +1313,9 @@ def format_email_content(report):
     text += f"""
 --------------------------------------------------
 最新图表直链预览：
-{SCREENSHOT_URL}
+- 3D Pareto: {PARETO_3D_SCREENSHOT_URL}
+- Cost per Task: {SCREENSHOT_URL}
+- Task Time: {TIME_SCREENSHOT_URL}
 
 此邮件由 Real API Pricing 自动化监控管道 {FOOTER_NOTE}。
 
@@ -668,95 +1323,403 @@ All the best,
 Hermes (Real API Pricing Monitor)
 """
 
-    # 构造 HTML
-    cost_rows_html = "".join([
-        f"<tr><td><b>#{i}</b></td><td><b>{item['model']}</b></td><td>{item['plan']}</td><td>{'$' + str(item['fee']) if item['fee'] is not None else '按量'}</td><td><b>${item['cost']:.5f}</b></td><td>{item['score']:.2f}</td></tr>"
-        for i, item in enumerate(report["cost_frontier"], 1)
-    ])
-    price_rows_html = "".join([
-        f"<tr><td><b>#{i}</b></td><td><b>{item['model']}</b></td><td>{item['plan']}</td><td>{'$' + str(item['fee']) if item['fee'] is not None else '按量'}</td><td><b>${item['real_price']:.6f}</b></td><td>{item['score']:.2f}</td></tr>"
-        for i, item in enumerate(report["price_frontier"], 1)
-    ])
+    added_cost_keys = {
+        _state_item_key(r) for r in diff.get("added", [])
+        if r.get("frontier") in ("cost", "cost+price")
+    }
+    added_price_keys = {
+        _state_item_key(r) for r in diff.get("added", [])
+        if r.get("frontier") in ("price", "cost+price")
+    }
+    summary_cards, detail_cards = _parse_notes_sections(diff.get("notes"), points_by_id)
+
+    cost_rows_html = _render_frontier_rows_html(
+        report["cost_frontier"], "cost", lambda v: f"${v:.5f}", added_keys=added_cost_keys
+    )
+    time_rows_html = _render_time_rows_html(time_frontier)
+    rows_3d_html = _render_3d_rows_html(frontier_3d)
+    price_rows_html = _render_frontier_rows_html(
+        report["price_frontier"], "real_price", lambda v: f"${v:.6f}", added_keys=added_price_keys
+    )
+
+    aa_floor = report.get("aa_floor")
+    if isinstance(aa_floor, (int, float)):
+        import math as _math
+        aa_floor_param = f"{_math.floor(float(aa_floor) * 100.0) / 100.0:.2f}"
+    else:
+        aa_floor_param = _get_aa_floor_param()
+
+    cost_chart_html = _render_chart_card_html(
+        SCREENSHOT_URL,
+        "https://real-plan.fja.su/#lang=zh&config=all&xmode=cost",
+        "Cost per Task 帕累托前沿全景图（点击看交互原图）",
+        "Real API Pricing Cost per Task Frontier Chart",
+    )
+    time_chart_html = _render_chart_card_html(
+        TIME_SCREENSHOT_URL,
+        f"https://real-plan.fja.su/#lang=zh&config=all&xmode=time&range=~~{aa_floor_param}~~~",
+        "Task Time 任务用时前沿图（已过滤低于 Qwen3.8 27B 智力门槛的模型，越靠右越快）",
+        "Real API Pricing Task Time Frontier Chart",
+    )
+    pareto_3d_chart_html = _render_chart_card_html(
+        PARETO_3D_SCREENSHOT_URL,
+        "https://real-plan.fja.su/#lang=zh&config=all&xmode=terrain3d&eng=three",
+        "3D 全息徽章舱：金徽章 = 三维非支配最优，橙线 = 成本前沿，蓝线 = 耗时前沿",
+        "Real API Pricing 3D Pareto Terrain Chart",
+    )
+
+    diff_section_html = _diff_block_html(diff, points_by_id, summary_cards)
+
+    detail_section_html = ""
+    if detail_cards:
+        cards_html = []
+        for card in detail_cards:
+            is_risk = any(k in card["title"] for k in ("风险", "预警", "候选"))
+            border_color = "#eedcae" if is_risk else "#e4e0d6"
+            bg_color = "#fffcf4" if is_risk else "#fafaf7"
+            badge_bg = "#fff8e8" if is_risk else "#f2f1ec"
+            badge_fg = "#7a5b12" if is_risk else "#5c646e"
+            badge_txt = "观察与预警" if is_risk else "口径说明"
+            lis = "".join(
+                f'<li style="margin:0 0 8px 0;color:#3a4048;font-size:13px;line-height:1.68;">{_render_note_item_html(it)}</li>'
+                for it in card["items"]
+            )
+            cards_html.append(
+                f'<div style="margin-top:12px;padding:16px 18px;background:{bg_color};border:1px solid {border_color};border-radius:10px;">'
+                '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;margin-bottom:8px;"><tr>'
+                f'<td style="font-size:14px;font-weight:700;color:#16191d;">{_html.escape(card["title"])}</td>'
+                f'<td style="text-align:right;"><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:{badge_bg};color:{badge_fg};font-size:11px;font-weight:600;">{badge_txt}</span></td>'
+                '</tr></table>'
+                f'<ul style="margin:0;padding-left:18px;">{lis}</ul>'
+                '</div>'
+            )
+        detail_section_html = (
+            '<div style="margin-top:28px;">'
+            '<div style="margin-bottom:4px;">'
+            '<span style="display:inline-block;padding:2px 7px;border-radius:5px;background:#f2f1ec;color:#5c646e;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;">05</span>'
+            '<span style="font-size:17px;font-weight:700;color:#16191d;vertical-align:middle;">观察清单、口径备注与到期提醒</span>'
+            '</div>'
+            '<div style="font-size:12.5px;color:#5c646e;margin-bottom:6px;">暂未入库的候选方案、近期促销到期倒计时，以及影响实际可用性的平台规则动态。</div>'
+            + "".join(cards_html) +
+            '</div>'
+        )
+
+    delta_val = diff.get("total_points_delta") or 0
+    delta_chip = (
+        f' ({delta_val:+d})'
+        if delta_val else ""
+    )
 
     html = f"""<!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real API Pricing {banner} ({_html.escape(str(date_str))})</title>
 <style>
-  body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; color: #1e293b; background-color: #f8fafc; padding: 20px; }}
-  .container {{ max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 24px; }}
-  h2 {{ color: #0f172a; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-top: 24px; }}
-  table {{ width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13px; }}
-  th, td {{ border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; }}
-  th {{ background-color: #f1f5f9; color: #475569; }}
-  tr:nth-child(even) {{ background-color: #f8fafc; }}
-  .chart-box {{ margin: 20px 0; text-align: center; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }}
-  .chart-box img {{ max-width: 100%; height: auto; display: block; }}
-  .footer {{ margin-top: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 16px; }}
-  /* 手机端（≤480px）防横向溢出：原 13px 字号 + 8/10px 内边距会把第 6 列「AA 智力分」挤出视口
-     （2026-10-08 实测：375px 视口下该列完全不可见，而分数正是本邮件核心信息） */
-  @media (max-width: 480px) {{
-    table {{ font-size: 11px; }}
-    th, td {{ padding: 5px 4px; }}
+  @media (max-width: 560px) {{
+    .outer-pad {{ padding: 10px 6px !important; }}
+    .card-pad {{ padding: 16px 12px !important; }}
+    .kpi-cell {{ display: block !important; width: 50% !important; float: left !important; box-sizing: border-box !important; border-right: none !important; border-bottom: 1px solid #e4e0d6 !important; }}
+    .cta-cell {{ display: block !important; text-align: left !important; padding-top: 10px !important; }}
+    .head-cell {{ display: block !important; padding-bottom: 4px !important; }}
+    .diff-cell-l, .diff-cell-r {{ display: block !important; width: 100% !important; box-sizing: border-box !important; text-align: left !important; white-space: normal !important; }}
+    .diff-cell-l {{ border-bottom: none !important; padding-bottom: 4px !important; }}
+    .diff-cell-r {{ padding-top: 2px !important; padding-bottom: 10px !important; }}
+    .frontier-table th, .frontier-table td {{ padding: 8px 4px !important; font-size: 11.5px !important; }}
+    .frontier-table .col-rank {{ width: 22px !important; padding-left: 4px !important; padding-right: 2px !important; }}
+    .frontier-table .col-score {{ width: 52px !important; padding-right: 6px !important; }}
+    .frontier-table .score-bar {{ width: 42px !important; }}
   }}
 </style>
 </head>
-<body>
-<div class="container">
-  <h1>{icon} Real API Pricing {banner}</h1>
-  <p><b>数据快照：</b> {date_str} &nbsp;|&nbsp; <b>覆盖点数：</b> {report['total_points']} &nbsp;|&nbsp; <b>在线看板：</b> <a href="https://real-plan.fja.su" target="_blank">real-plan.fja.su</a></p>
-{_diff_block_html(report.get("diff"))}
+<body style="margin:0;padding:0;background-color:#f5f3ed;color:#16191d;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;background-color:#f5f3ed;border-collapse:collapse;">
+  <tr>
+    <td class="outer-pad" align="center" style="padding:28px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:760px;width:100%;background:#ffffff;border:1px solid #e4e0d6;border-radius:14px;border-collapse:separate;overflow:hidden;box-shadow:0 2px 10px rgba(22,25,29,0.04);">
+        <tr>
+          <td class="card-pad" style="padding:28px 30px;">
+            <!-- Masthead -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;padding-bottom:18px;border-bottom:1px solid #ece8de;">
+              <tr>
+                <td class="head-cell" style="vertical-align:top;padding-bottom:16px;">
+                  <div style="font-size:11px;font-weight:700;letter-spacing:0.09em;color:#0b7a55;text-transform:uppercase;margin-bottom:6px;">REAL API PRICING &middot; FRONTIER MONITOR</div>
+                  <h1 style="margin:0;font-size:23px;line-height:1.28;font-weight:700;color:#16191d;letter-spacing:-0.01em;">Real API Pricing {_html.escape(banner)}</h1>
+                  <div style="margin-top:6px;font-size:13px;color:#5c646e;">从「单任务成本 &times; 任务用时 &times; 3D 折中」评估真实生产力门槛 &middot; 已收录 <strong>{report['total_points']}</strong> 个方案{delta_chip}</div>
+                </td>
+                <td class="cta-cell" style="vertical-align:middle;text-align:right;padding-bottom:16px;white-space:nowrap;">
+                  <a href="https://real-plan.fja.su" target="_blank" style="display:inline-block;padding:9px 16px;background:#16191d;color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;border-radius:8px;">打开交互看板 &rarr;</a>
+                </td>
+              </tr>
+            </table>
 
-  <h2>🎯 任务成本前沿 (Cost per Task)</h2>
-  <p style="font-size: 12px; color: #64748b;">口径说明：以 Artificial Analysis 智力基准任务为基数，乘以各订阅套餐的真实单价换算而得。</p>
-  <table>
-    <thead>
-      <tr><th>#</th><th>模型</th><th>套餐</th><th>月费</th><th>单任务成本 ($)</th><th>AA 智力分</th></tr>
-    </thead>
-    <tbody>
-      {cost_rows_html}
-    </tbody>
-  </table>
+            <!-- KPI Strip -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin-top:18px;background:#fafaf7;border:1px solid #e4e0d6;border-radius:10px;border-collapse:collapse;">
+              <tr>
+                <td class="kpi-cell" width="25%" style="padding:12px 14px;border-right:1px solid #ece8de;">
+                  <div style="font-size:11px;color:#5c646e;margin-bottom:3px;">数据快照</div>
+                  <div style="font-size:15px;font-weight:700;color:#16191d;font-variant-numeric:tabular-nums;">{_html.escape(str(date_str))}</div>
+                </td>
+                <td class="kpi-cell" width="25%" style="padding:12px 14px;border-right:1px solid #ece8de;">
+                  <div style="font-size:11px;color:#5c646e;margin-bottom:3px;">3D 非支配前沿</div>
+                  <div style="font-size:15px;font-weight:700;color:#0b7a55;font-variant-numeric:tabular-nums;">{len(frontier_3d)} 个模型</div>
+                </td>
+                <td class="kpi-cell" width="25%" style="padding:12px 14px;border-right:1px solid #ece8de;">
+                  <div style="font-size:11px;color:#5c646e;margin-bottom:3px;">任务成本前沿</div>
+                  <div style="font-size:15px;font-weight:700;color:#0b7a55;font-variant-numeric:tabular-nums;">{len(report['cost_frontier'])} 个模型</div>
+                </td>
+                <td class="kpi-cell" width="25%" style="padding:12px 14px;">
+                  <div style="font-size:11px;color:#5c646e;margin-bottom:3px;">任务用时前沿</div>
+                  <div style="font-size:15px;font-weight:700;color:#0b7a55;font-variant-numeric:tabular-nums;">{len(time_frontier)} 个模型</div>
+                </td>
+              </tr>
+            </table>
 
-  <h2>📈 最新图表概览 (Cost per Task 视图)</h2>
-  <div class="chart-box">
-    <a href="https://real-plan.fja.su/#lang=zh&xmode=cost" target="_blank">
-      <img src="{SCREENSHOT_URL}" alt="Cost per Task Frontier Chart" />
-    </a>
-  </div>
+            <!-- Diff Summary -->
+            {diff_section_html}
 
-  <h2>💎 真实单价前沿 (Real Price / MTok)</h2>
-  <table>
-    <thead>
-      <tr><th>#</th><th>模型</th><th>套餐</th><th>月费</th><th>真实单价 ($/MTok)</th><th>AA 智力分</th></tr>
-    </thead>
-    <tbody>
-      {price_rows_html}
-    </tbody>
-  </table>
+            <!-- Section 01: 3D Pareto Compromise Frontier + Chart -->
+            <div style="margin-top:26px;">
+              <div style="margin-bottom:4px;">
+                <span style="display:inline-block;padding:2px 7px;border-radius:5px;background:#e7f4ee;color:#0b7a55;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;">01</span>
+                <span style="font-size:17px;font-weight:700;color:#16191d;vertical-align:middle;">3D 帕累托非支配前沿 (Cost &times; Time &times; 智力折中)</span>
+              </div>
+              <div style="font-size:12.5px;color:#5c646e;margin-bottom:12px;">同时权衡「单任务成本」「任务用时」与「智力分数」的三维非支配解集（已排除低于 Qwen3.8 27B 门槛的超小模型）；绿色高亮为同时站稳成本与耗时双前沿的交汇方案。</div>
+              <table class="frontier-table" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #e4e0d6;border-radius:10px;overflow:hidden;">
+                <thead>
+                  <tr style="background:#fafaf7;">
+                    <th class="col-rank" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:center;font-size:11.5px;font-weight:600;color:#5c646e;width:32px;">#</th>
+                    <th class="col-model" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:left;font-size:11.5px;font-weight:600;color:#5c646e;">模型 / 最优套餐</th>
+                    <th class="col-fee" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">单任务成本</th>
+                    <th class="col-val" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">任务用时</th>
+                    <th class="col-score" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;width:76px;">AA 智力分</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows_3d_html}
+                </tbody>
+              </table>
+              {pareto_3d_chart_html}
+            </div>
 
-  <div class="footer">
-    <p>此邮件由 <b>Real API Pricing 自动化监控管道</b> {FOOTER_NOTE}。<br/>
-    数据源自公开独立榜单及官方套餐规格测算。<br/><br/>
-    All the best,<br/>
-    <b>Hermes Agent</b></p>
-  </div>
-</div>
+            <!-- Section 02: Cost per Task Frontier + Chart -->
+            <div style="margin-top:30px;">
+              <div style="margin-bottom:4px;">
+                <span style="display:inline-block;padding:2px 7px;border-radius:5px;background:#e7f4ee;color:#0b7a55;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;">02</span>
+                <span style="font-size:17px;font-weight:700;color:#16191d;vertical-align:middle;">任务成本前沿 (Cost per Task)</span>
+              </div>
+              <div style="font-size:12.5px;color:#5c646e;margin-bottom:12px;">按 Artificial Analysis 智力基准的单任务 Token 消耗折算真实费用，直接反映完成一次标准任务的实际开销（比单纯看 MTok 单价更贴近生产力负载）。</div>
+              <table class="frontier-table" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #e4e0d6;border-radius:10px;overflow:hidden;">
+                <thead>
+                  <tr style="background:#fafaf7;">
+                    <th class="col-rank" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:center;font-size:11.5px;font-weight:600;color:#5c646e;width:32px;">#</th>
+                    <th class="col-model" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:left;font-size:11.5px;font-weight:600;color:#5c646e;">模型 / 套餐</th>
+                    <th class="col-fee" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">月费</th>
+                    <th class="col-val" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">单任务成本</th>
+                    <th class="col-score" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;width:76px;">AA 智力分</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cost_rows_html}
+                </tbody>
+              </table>
+              {cost_chart_html}
+            </div>
+
+            <!-- Section 03: Task Time Frontier + Chart -->
+            <div style="margin-top:30px;">
+              <div style="margin-bottom:4px;">
+                <span style="display:inline-block;padding:2px 7px;border-radius:5px;background:#e7f4ee;color:#0b7a55;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;">03</span>
+                <span style="font-size:17px;font-weight:700;color:#16191d;vertical-align:middle;">任务用时前沿 (Task Time)</span>
+              </div>
+              <div style="font-size:12.5px;color:#5c646e;margin-bottom:12px;">结合 OpenRouter 实时 P50 首字延迟、生成吞吐与每任务输出长度测算（已排除低于 Qwen3.8 27B 门槛的超小模型）；同速模型列示单任务成本最优方案。</div>
+              <table class="frontier-table" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #e4e0d6;border-radius:10px;overflow:hidden;">
+                <thead>
+                  <tr style="background:#fafaf7;">
+                    <th class="col-rank" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:center;font-size:11.5px;font-weight:600;color:#5c646e;width:32px;">#</th>
+                    <th class="col-model" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:left;font-size:11.5px;font-weight:600;color:#5c646e;">模型 / 最优套餐</th>
+                    <th class="col-fee" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">吞吐</th>
+                    <th class="col-val" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">任务用时</th>
+                    <th class="col-score" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;width:76px;">AA 智力分</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {time_rows_html}
+                </tbody>
+              </table>
+              {time_chart_html}
+            </div>
+
+            <!-- Section 04: Real Price Frontier (Reference) -->
+            <div style="margin-top:30px;">
+              <div style="margin-bottom:4px;">
+                <span style="display:inline-block;padding:2px 7px;border-radius:5px;background:#f2f1ec;color:#5c646e;font-size:11px;font-weight:700;margin-right:8px;vertical-align:middle;">04</span>
+                <span style="font-size:17px;font-weight:700;color:#16191d;vertical-align:middle;">真实单价前沿 (Real Price / MTok &middot; 附表对照)</span>
+              </div>
+              <div style="font-size:12.5px;color:#5c646e;margin-bottom:12px;">以订阅月费除以每月实测可用 Token 估算的单位吞吐下限，仅作纯 Token 价格对照参考（未计入模型单任务输出长度差异）。</div>
+              <table class="frontier-table" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #e4e0d6;border-radius:10px;overflow:hidden;">
+                <thead>
+                  <tr style="background:#fafaf7;">
+                    <th class="col-rank" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:center;font-size:11.5px;font-weight:600;color:#5c646e;width:32px;">#</th>
+                    <th class="col-model" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:left;font-size:11.5px;font-weight:600;color:#5c646e;">模型 / 套餐</th>
+                    <th class="col-fee" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">月费</th>
+                    <th class="col-val" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;">真实单价/MTok</th>
+                    <th class="col-score" style="padding:9px 8px;border-bottom:1px solid #e4e0d6;text-align:right;font-size:11.5px;font-weight:600;color:#5c646e;width:76px;">AA 智力分</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {price_rows_html}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Section 05: Details & Risk Watch -->
+            {detail_section_html}
+
+            <!-- Footer -->
+            <div style="margin-top:30px;padding-top:16px;border-top:1px solid #ece8de;font-size:12px;color:#6b737e;line-height:1.65;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
+                <tr>
+                  <td>
+                    此邮件由 <strong style="color:#3a4048;">Real API Pricing 自动化监控管道</strong>（{_html.escape(FOOTER_NOTE)}）生成。<br/>
+                    数据源自独立基准榜单及官方/实测套餐规格测算 &middot; 线上看板：<a href="https://real-plan.fja.su" style="color:#0b7a55;text-decoration:none;font-weight:600;">real-plan.fja.su</a>
+                  </td>
+                  <td style="text-align:right;vertical-align:bottom;white-space:nowrap;color:#5c646e;">
+                    Hermes Agent
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 </body>
 </html>"""
 
     return text, html
 
-def attach_email_analysis_notes(diff):
+def attach_email_analysis_notes(diff, report=None):
+    """生成面向人的简报解读与外部观察笔记（避免内部变量名、文件名与 CI 术语堆砌）。"""
     if not diff:
         return
     notes = diff.setdefault("notes", [])
-    if diff.get("added"):
-        notes.append("【前沿变动与新进归因】本轮总收录点数保持 420 点（Δ=0），单价前沿（price_frontier）由 5 点增至 7 点，新进 2 点：1) claude_max_20x::claude-sonnet-5.5（54.5413 分，真实单价 $0.004732/MTok）；2) claude_max_20x::claude-opus-5.5（59.1060 分，真实单价 $0.006342/MTok）。触发原因：留存双前沿点 google_ai_pro_student::gemini-4-neon（61.3982 分）按最新核定月额度由 12.905 亿下调至 7.743 亿，其真实单价由 $0.003874/MTok 升至 $0.006457/MTok、单任务成本由 $0.084501 升至 $0.140836，从而解除了对 Claude Max 20x Sonnet 5.5 与 Opus 5.5 的严格支配，使两者重回单价前沿。")
-    notes.append("【被支配掉出的前沿点】本轮无旧前沿点掉出（removed: []）：任务成本前沿 7 点完整留存（Muse Spark 1.3 Contributor / GPT-6.1 Terra / Gemini 4 Hydrogen / GPT-6.2 Sol / Gemini 4 Neon / GPT-6.2 Astra / Claude Fable 5.2）；单价前沿净增 2 点至 7 点。")
-    notes.append("【模型采用值与数据日期】1) 今日 AA 快照 scores-aa-round6-2026-11-20.json（309 原始行 / 191 scores，aa_recover_deprecated HTTP 200 补回全部 22 个 deprecated slug，claude-haiku-5-5 rank 44 保持一致）与 OpenRouter 任务用时映射 or-tasktime-2026-11-20.json（86 对 / 38 模型，AA 93/96 & OR 38/48 命中）数据日期均为 2026-11-20；2) 在库 93 个唯一模型标价档（22 份）与 420 行采用值（conventions.updatedAt 2026-11-19）保持同步，387/387 订阅点 list_blended 全部非空；3) AA 载荷中 gemini-4-carbon 今日标价已提前跳至 $4/$20，但核实 Google 官方 ai.google.dev 首发优惠 $2/$10 仍有效至 2026-11-30（12-01 起恢复 $4/$20），仍在 [0.5, 2.0] 分歧阈值内，本轮维持 $2/$10 标价档。")
-    notes.append("【候选但未采用的模型及近期风险预警】1) Tencent Hy4 Flash（$0.07/$0.281/$0.003，OpenCode Go 两周免费至 ~11-30）：暂缺 AA 智力榜跑分；2) Droid Max::claude-fable-5.2（3.2× 倍率）：缺本地实测倍率样本验证，暂不派生入库；3) GitHub Copilot AI Credits（PR #237，Pro/Pro+/Max，Fusion 30% 折扣至 11-30）与 Synthetic.new（Go/Standard/Big）：上游纯研究证据，缺标准负载换算锚点；4) Muse Wonder（Devin Pro / Command Code Max 10×）：无官方公开三段 API 标价，列 verify_list_blended pending 观察；5) 风险与倒计时预警：Google AI Pro Student SKU 'Unavailable'/403 权限故障持续影响 Neon/Hydrogen 资格边界；OpenAI 公布 12 月起合并 ChatGPT 与 Codex 为单一共享 Token 池（需重估 chatgpt_pro_20x/plus）；11-22 (T-2) opencode_go::glm-5.3 $500 促销到期；11-25 (T-5) qwen4-max-preview 退役；11-30 (T-10) Carbon/Argon 翻倍、Copilot Fusion 30% 折扣、百炼优惠与 Hy4 Flash 免费窗口集中到期。")
+    if notes:
+        return
+
+    points_by_id = (report or {}).get("points_by_id") or {}
+    added = diff.get("added") or []
+    removed = diff.get("removed") or []
+    cost_f = (report or {}).get("cost_frontier") or []
+    f3d = (report or {}).get("frontier_3d") or []
+
+    # 1. 本轮变动解读（自然语言，说明改了什么、为什么变、对主力选型的影响）
+    change_lines = []
+    if added:
+        added_names = []
+        for r in added:
+            meta = _resolve_point_meta(r["id"], points_by_id)
+            label = f"{meta['model']}（{meta['plan']}）" if meta.get("plan") else meta["model"]
+            added_names.append(label)
+        front_kinds = {r.get("frontier") for r in added}
+        if front_kinds == {"price"}:
+            change_lines.append(
+                "变动详情：纯 Token 单价前沿新增 " + "、".join(added_names) + "。"
+            )
+            if any("claude-" in r.get("id", "") for r in added):
+                change_lines.append(
+                    "成因说明：Google AI Pro 学生版（Gemini 4 Neon）核定月额度由 12.91 亿下调至 7.74 亿 Token 后，"
+                    "单位成本上升约 67%，不再能以低价全面压制 Anthropic 高阶席位，使上述方案重回单价前沿。"
+                )
+        else:
+            change_lines.append("新进前沿：" + "、".join(added_names) + "。")
+    if removed:
+        rem_names = []
+        for r in removed:
+            meta = _resolve_point_meta(r["id"], points_by_id)
+            rem_names.append(f"{meta['model']}（{meta['plan']}）" if meta.get("plan") else meta["model"])
+        change_lines.append("退出前沿：" + "、".join(rem_names) + "。")
+    if not added and not removed and diff.get("total_points_delta"):
+        change_lines.append(
+            f"收录规模：新增 {diff['total_points_delta']:+d} 个方案点位，各维度前沿结构维持不变。"
+        )
+    if cost_f or f3d:
+        stability_parts = []
+        if cost_f:
+            stability_parts.append(f"任务成本前沿（{len(cost_f)} 席）")
+        if f3d:
+            stability_parts.append(f"3D 折中前沿（{len(f3d)} 席）")
+        if added and all(r.get("frontier") == "price" for r in added) and not removed:
+            change_lines.append(
+                f"格局结论：实际生产主力关注的{'与'.join(stability_parts)}本轮完整留存、无任何退出，日常选型无需调整。"
+            )
+        elif not removed:
+            change_lines.append(f"留存情况：{'、'.join(stability_parts)}无旧方案被淘汰出局。")
+    if change_lines:
+        notes.append("【本轮变动解读】" + "\n".join(change_lines))
+
+    # 2. 3D 折中选型速览（基于 3D 非支配前沿自动归纳甜点）
+    if f3d:
+        pick_lines = []
+        cheapest = min(f3d, key=lambda x: x["cost"])
+        smartest = max(f3d, key=lambda x: x["score"])
+        pick_lines.append(
+            f"低成本入口：{cheapest['model']}（{cheapest['plan']}，单任务 ${cheapest['cost']:.5f}，用时 {_fmt_duration_short(cheapest['time_s'])}，{cheapest['score']:.1f} 分）。"
+        )
+        sweet_items = [
+            x for x in sorted(f3d, key=lambda n: n["time_s"])
+            if (x.get("is_time_frontier") or x.get("is_dual_winner"))
+            and _state_item_key(x) not in (_state_item_key(cheapest), _state_item_key(smartest))
+        ]
+        sweet_parts = []
+        for x in sweet_items:
+            tag = "，成本与耗时双前沿" if x.get("is_dual_winner") else ""
+            sweet_parts.append(
+                f"{x['model']}（{x['plan']}，${x['cost']:.5f} · {_fmt_duration_short(x['time_s'])} · {x['score']:.1f} 分{tag}）"
+            )
+        if sweet_parts:
+            pick_lines.append("速度与成本甜点：" + "；".join(sweet_parts) + "。")
+        pick_lines.append(
+            f"最高智力封顶：{smartest['model']}（{smartest['plan']}，{smartest['score']:.1f} 分，单任务 ${smartest['cost']:.5f}，用时 {_fmt_duration_short(smartest['time_s'])}）。"
+        )
+        notes.append("【3D 折中选型速览】" + "\n".join(pick_lines))
+
+    # 3. 外部观察与到期倒计时（从 data/research/email-watchnotes.json 读取，自动算 T-N 并过滤已过期项）
+    watch_path = DATA_DIR / "research" / "email-watchnotes.json"
+    if watch_path.is_file():
+        try:
+            watch = json.loads(watch_path.read_text(encoding="utf-8"))
+        except Exception as e:
+            _warn(f"读取 email-watchnotes.json 失败: {e}")
+            watch = {}
+        meth = watch.get("methodology_notes") or []
+        if meth:
+            notes.append("【数据基准与价格校对】" + "\n".join(meth))
+        cands = watch.get("candidates") or []
+        if cands:
+            notes.append("【暂未纳入的候选方案】" + "\n".join(cands))
+        risk_lines = list(watch.get("risks") or [])
+        ref_date = datetime.now().date()
+        for cd in watch.get("countdowns") or []:
+            dl_str = str(cd.get("deadline") or "").strip()
+            txt = str(cd.get("text") or "").strip()
+            if not dl_str or not txt:
+                continue
+            try:
+                dl = datetime.strptime(dl_str, "%Y-%m-%d").date()
+            except ValueError:
+                continue
+            days_left = (dl - ref_date).days
+            if days_left < 0:
+                continue
+            mmdd = dl.strftime("%m-%d")
+            tag = f"(T-{days_left})" if days_left > 0 else "(今日到期)"
+            risk_lines.append(f"优惠到期 {mmdd} {tag}：{txt}。")
+        if risk_lines:
+            notes.append("【风险与优惠到期提醒】" + "\n".join(risk_lines))
 
 
 def send_report_email(to=None, report=None):
@@ -771,10 +1734,10 @@ def send_report_email(to=None, report=None):
         report = generate_report()
     if "diff" not in report:
         diff = diff_state(load_state(), frontier_state(report))
-        attach_email_analysis_notes(diff)
+        attach_email_analysis_notes(diff, report)
         report["diff"] = diff
     else:
-        attach_email_analysis_notes(report["diff"])
+        attach_email_analysis_notes(report["diff"], report)
     text, html = format_email_content(report)
     
     # 标题遵循反垃圾规则：严禁包含收件人根域名 (如 ching.icu)

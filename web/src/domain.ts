@@ -1,4 +1,4 @@
-import type { State, SiteData, Row, Point, Group, FilterKey, Mapping, Configuration, Lang } from "./types";
+import type { State, SiteData, Row, Point, Group, FilterKey, Mapping, Configuration, Lang, SpeedDetail } from "./types";
 import feeBandDefinitions from "../../config/allowance-fee-bands.json";
 import { channelColors, FALLBACK_COLOR } from "./palette";
 export const feeBands = feeBandDefinitions;
@@ -42,7 +42,7 @@ export const defaultState = (): State => ({
   effort: [],
   modes: [],
   scoreState: [],
-  configuration: "summary",
+  configuration: "all",
   frontier: true,
   labels: "frontier",
   find: "",
@@ -309,6 +309,39 @@ export function mappingSpeed(m: Mapping | null, data: SiteData): number | null {
   if (typeof cfg?.output_speed_tps === "number") return cfg.output_speed_tps;
   return null;
 }
+export function mappingSpeedDetail(m: Mapping | null, data: SiteData): SpeedDetail | null {
+  if (!m) return null;
+  if (m.speed_detail) return m.speed_detail;
+  const cfg = configIndex(data).get(m.configuration_id);
+  return cfg?.speed_detail ?? null;
+}
+export function mappingSpeedSource(m: Mapping | null, data: SiteData): string | null {
+  if (!m) return null;
+  if (m.speed_source) return m.speed_source;
+  const cfg = configIndex(data).get(m.configuration_id);
+  return cfg?.speed_source ?? cfg?.speed_detail?.source ?? null;
+}
+export function speedSourceShortLabel(
+  detail: SpeedDetail | null,
+  source: string | null,
+  lang: Lang,
+): string | null {
+  const src = detail?.source ?? source;
+  if (!src) return null;
+  if (src === "openrouter") {
+    return detail?.or_provider ? `OpenRouter · ${detail.or_provider}` : "OpenRouter";
+  }
+  if (src === "aa_archive") {
+    return lang === "zh" ? "AA 存档" : "AA archive";
+  }
+  if (src === "antigravity_measured") {
+    return lang === "zh" ? "Antigravity 实测" : "Antigravity measured";
+  }
+  if (src === "reference_fallback") {
+    return lang === "zh" ? "参考兜底" : "Reference fallback";
+  }
+  return src;
+}
 
 /** Capability-chart X value for a row under the current xMode. */
 export function rowX(r: Row, s: State, data: SiteData): number | null {
@@ -359,10 +392,22 @@ export function rowsFor(data: SiteData, s: State): Row[] {
             : p.real_usd_per_mtok,
     }));
   });
+  const aaFloor3d =
+    s.view === "pareto" &&
+    s.xMode === "terrain3d" &&
+    s.selected3d === null &&
+    s.board === "aa_intelligence_index"
+      ? modelMaxAaIndex(data).floor
+      : null;
   // Cost or time mode plots only rows whose X value is defined.
   const plotRows =
     s.view === "pareto" && s.xMode === "terrain3d"
-      ? rows.filter((r) => r.x !== null && mappingTime(r.mapping, data) !== null)
+      ? rows.filter(
+          (r) =>
+            r.x !== null &&
+            mappingTime(r.mapping, data) !== null &&
+            (aaFloor3d === null || (r.score !== null && r.score >= aaFloor3d)),
+        )
       : s.view === "pareto" && (s.xMode === "cost" || s.xMode === "time")
         ? rows.filter((r) => r.x !== null)
         : rows;

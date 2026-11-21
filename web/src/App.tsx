@@ -79,6 +79,11 @@ import {
   effortLabel,
   firstUrl,
   mappingNoteLabel,
+  mappingSpeed,
+  mappingSpeedDetail,
+  mappingSpeedSource,
+  mappingTime,
+  speedSourceShortLabel,
 } from "./domain";
 
 const REPO = "https://github.com/FEI352/real-api-pricing";
@@ -906,11 +911,11 @@ function Explorer({
                         patch({ configuration: e.target.value as State["configuration"] })
                       }
                     >
-                      <option value="summary">
-                        {t("Best score per model", "每个模型取最高分")}
-                      </option>
                       <option value="all">
                         {t("All configurations", "全部评测配置")}
+                      </option>
+                      <option value="summary">
+                        {t("Best score per model", "每个模型取最高分")}
                       </option>
                     </select>
                   </label>
@@ -1976,6 +1981,12 @@ function Details({
                 ? (srcText ?? "").split(srcUrl).slice(1).join("").trim()
                 : srcText;
               const recordNote = zh ? m.record_note_zh : m.record_note_en;
+              const taskTime = mappingTime(m, data);
+              const tps = mappingSpeed(m, data);
+              const speedDetail = mappingSpeedDetail(m, data);
+              const speedSource = mappingSpeedSource(m, data);
+              const speedSrcLabel = speedSourceShortLabel(speedDetail, speedSource, lang);
+              const orEndpoints = speedDetail?.endpoints ?? [];
               return (
                 <section className="configuration-detail" key={r.key}>
                   <strong>{variantLabel(m.variant, lang)}</strong>
@@ -2015,7 +2026,105 @@ function Details({
                         ? "—"
                         : price(m.median_cost_usd_per_task)}
                     </dd>
+                    {(taskTime != null || tps != null || speedSrcLabel) && (
+                      <>
+                        <dt>{t("Task time", "任务用时")}</dt>
+                        <dd>
+                          {taskTime == null ? "—" : `${number(taskTime, lang, 2)}s`}
+                        </dd>
+                        <dt>{t("Output throughput (TPS) & source", "输出吞吐 (TPS) 与来源")}</dt>
+                        <dd>
+                          {tps == null ? "—" : `${number(tps, lang, 1)} tok/s`}
+                          {speedSrcLabel ? ` · ${speedSrcLabel}` : ""}
+                          {speedDetail?.source === "openrouter" && speedDetail.collected_at
+                            ? ` (${t("30m P50 · sampled", "30m P50 · 采集于")} ${speedDetail.collected_at})`
+                            : ""}
+                          {speedDetail?.source === "aa_archive" && speedDetail.archive
+                            ? ` (${speedDetail.archive})`
+                            : ""}
+                        </dd>
+                      </>
+                    )}
+                    {speedDetail?.source === "openrouter" && speedDetail.tokens_per_task != null && (
+                      <>
+                        <dt>{t("Task time formula", "用时计算拆解")}</dt>
+                        <dd>
+                          {speedDetail.p50_latency_ms != null
+                            ? `${number(speedDetail.p50_latency_ms / 1000, lang, 2)}s + `
+                            : ""}
+                          {number(speedDetail.tokens_per_task, lang, 0)} tok
+                          {speedDetail.reasoning_tokens != null && speedDetail.answer_tokens != null
+                            ? ` (${t("reasoning", "思考")} ${number(speedDetail.reasoning_tokens, lang, 0)} + ${t("answer", "输出")} ${number(speedDetail.answer_tokens, lang, 0)})`
+                            : ""}
+                          {speedDetail.p50_tps != null
+                            ? ` ÷ ${number(speedDetail.p50_tps, lang, 1)} tok/s`
+                            : ""}
+                          {speedDetail.task_time_s != null
+                            ? ` = ${number(speedDetail.task_time_s, lang, 2)}s`
+                            : ""}
+                        </dd>
+                      </>
+                    )}
                   </dl>
+                  {speedDetail?.source === "openrouter" && (speedDetail.or_url || orEndpoints.length > 0) && (
+                    <details className="evidence-fold" open>
+                      <summary>
+                        {t(
+                          `OpenRouter 30m TPS breakdown (${orEndpoints.length} endpoints · fastest: ${speedDetail.or_provider ?? "—"} ${number(speedDetail.p50_tps ?? tps, lang, 1)} tok/s)`,
+                          `OpenRouter 各供应商实时 TPS 记录（30 分钟窗口，${orEndpoints.length} 个端点 · 最快 ${speedDetail.or_provider ?? "—"} ${number(speedDetail.p50_tps ?? tps, lang, 1)} tok/s）`,
+                        )}
+                      </summary>
+                      <p className="original-text">
+                        {t(
+                          `Output token count source: ${speedDetail.tokens_source === "aa-page" ? "AA model page (intelligenceIndexOutputTokensPerTask)" : "AA leaderboard columns"}. `,
+                          `每任务输出 token 口径：${speedDetail.tokens_source === "aa-page" ? "AA 模型页 (intelligenceIndexOutputTokensPerTask)" : "AA 榜单列"}。`,
+                        )}
+                        {speedDetail.or_url && (
+                          <a href={safeUrl(speedDetail.or_url)} target="_blank" rel="noreferrer">
+                            {speedDetail.or_id ?? speedDetail.or_url}
+                            <ArrowUpRight size={12} />
+                          </a>
+                        )}
+                      </p>
+                      {orEndpoints.length > 0 && (
+                        <div className="tps-table-wrap">
+                          <table className="tps-table">
+                            <thead>
+                              <tr>
+                                <th>{t("Provider", "供应商")}</th>
+                                <th>{t("P50 TPS", "P50 吞吐")}</th>
+                                <th>{t("P75 / P90", "P75 / P90")}</th>
+                                <th>{t("P50 Latency", "P50 首字延迟")}</th>
+                                <th>{t("30m Req", "30m 请求数")}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {orEndpoints.map((ep, idx) => (
+                                <tr key={`${ep.provider}-${ep.slug ?? idx}-${idx}`} className={idx === 0 ? "is-winner" : undefined}>
+                                  <td>
+                                    {ep.provider}
+                                    {idx === 0 && (
+                                      <span className="tps-winner-tag">
+                                        {t("Adopted", "采用")}
+                                      </span>
+                                    )}
+                                  </td>
+                                  <td>{number(ep.p50_tps, lang, 1)} tok/s</td>
+                                  <td>
+                                    {ep.p75_tps != null || ep.p90_tps != null
+                                      ? `${ep.p75_tps != null ? number(ep.p75_tps, lang, 0) : "—"} / ${ep.p90_tps != null ? number(ep.p90_tps, lang, 0) : "—"}`
+                                      : "—"}
+                                  </td>
+                                  <td>{number(ep.p50_latency_ms / 1000, lang, 2)}s</td>
+                                  <td>{ep.requests != null ? number(ep.requests, lang, 0) : "—"}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                    </details>
+                  )}
                   <p>
                     {t(
                       "This is a reference mapping, not a benchmark of this subscription/API channel. Harness and quota-measurement effort alignment are unverified. Source task costs are not subscription task costs.",
@@ -2163,8 +2272,8 @@ function Method({
           </h2>
           <p>
             {t(
-              "Each leaderboard uses one selected snapshot; different benchmark versions are never mixed. Code Arena refers to WebDev Overall, not general coding ability. The default view is each model's highest-score configuration; every archived configuration and the reasoning-effort filter remain available. Harness, reasoning effort, service mode, and known score intervals are retained.",
-              "每张榜单使用一份选定快照，不混合不同版本的分数。Code Arena 指 WebDev Overall，不代表通用编程能力。默认取每个模型的最高分配置；全部存档配置和推理强度筛选仍可切换。保留框架、推理强度、模式与已知分数区间。",
+              "Each leaderboard uses one selected snapshot; different benchmark versions are never mixed. Code Arena refers to WebDev Overall, not general coding ability. The default view shows all archived configurations (reasoning-effort levels and harnesses); a per-model highest-score summary view and the reasoning-effort filter remain available. Harness, reasoning effort, service mode, and known score intervals are retained.",
+              "每张榜单使用一份选定快照，不混合不同版本的分数。Code Arena 指 WebDev Overall，不代表通用编程能力。默认展示全部存档评测配置（含各推理强度与框架）；仍可切换为每模型最高分汇总或按推理强度筛选。保留框架、推理强度、模式与已知分数区间。",
             )}
           </p>
           <p>

@@ -85,6 +85,10 @@ SCORE_FILES = (
     "scores-aa-round6-2026-11-18.json",
     "scores-gemini-4-neon-round1-2026-11-19.json",
     "scores-aa-round6-2026-11-19.json",
+    "scores-gemini-4-carbon-round1-2026-10-29.json",
+    "scores-mistral-large-4-round1-2026-11-04.json",
+    "scores-gemini-4-hydrogen-round1-2026-11-13.json",
+    "scores-claude-fable-52-round1-2026-11-13.json",
     "scores-aa-round6-2026-11-20.json",
     "scores-terminal-bench4-round3-2026-10-01.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-01.json",
@@ -92,16 +96,12 @@ SCORE_FILES = (
     "scores-agent-arena-round2-2026-10-01.json",
     "scores-open-design-round2-2026-10-01.json",
     "scores-hyperqwen-local-2026-10-02.json",
-    "scores-gemini-4-carbon-round1-2026-10-29.json",
     "scores-terminal-bench4-round4-2026-10-20.json",
     "scores-terminal-bench4-selfreport-carry-2026-10-20.json",
     "scores-code-arena-round3-2026-10-20.json",
     "scores-agent-arena-round3-2026-10-20.json",
     "scores-agent-arena-round4-2026-11-13.json",
     "scores-deepswe-selfreport-1017-2026-10-20.json",
-    "scores-mistral-large-4-round1-2026-11-04.json",
-    "scores-gemini-4-hydrogen-round1-2026-11-13.json",
-    "scores-claude-fable-52-round1-2026-11-13.json",
     "scores-qwen4-max-round1-2026-11-19.json",
     "scores-hy4-round1-2026-11-19.json",
     "scores-muse-wonder-round1-2026-11-19.json",
@@ -380,7 +380,7 @@ def main() -> None:
     (OUT / "benchmark-points.json").write_text(json.dumps(configuration_points, ensure_ascii=False, indent=2), encoding="utf-8")
     for name, records in (("benchmark-configurations", scores), ("benchmark-points", configuration_points)):
         with (OUT / (name + ".csv")).open("w", encoding="utf-8-sig", newline="") as f:
-            fields = [k for k in records[0] if k != "raw_record"]
+            fields = [k for k in records[0] if k not in ("raw_record", "speed_detail")]
             writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
             writer.writeheader()
             writer.writerows(records)

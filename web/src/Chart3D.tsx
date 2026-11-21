@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import type { Group, Row, SiteData, State } from "./types";
+import type { Group, Mapping, Row, SiteData, State } from "./types";
 import type { ChartHandle } from "./Chart";
 import {
   color,
@@ -9,11 +9,15 @@ import {
   isLocalHardware,
   manufacturer,
   mappingSpeed,
+  mappingSpeedDetail,
+  mappingSpeedSource,
   mappingTime,
   metricLabel,
+  modelMaxAaIndex,
   number,
   price,
   searchHits,
+  speedSourceShortLabel,
 } from "./domain";
 import { providerLogoUrl } from "./ProviderLogo";
 import { formatTickPrice, formatTickTime } from "./chartScene";
@@ -33,6 +37,7 @@ interface Node3D {
   time: number;
   score: number;
   tps: number;
+  speedSourceLabel: string | null;
   tokens: number;
   isFrontier3D: boolean;
   isCostFrontier: boolean;
@@ -69,6 +74,19 @@ const FAMILY_NOISE =
 
 function cleanFamily(name: string): string {
   return name.replace(FAMILY_NOISE, "").trim();
+}
+
+function effortTagOf(m: Mapping | null): string | null {
+  if (!m) return null;
+  if (m.reasoning_effort) return m.reasoning_effort;
+  const match = /\(([^)]+)\)\s*$/.exec(m.variant);
+  if (
+    match &&
+    /non-reasoning|minimal|low|medium|high|xhigh|max|none|thinking/i.test(match[1])
+  ) {
+    return match[1].toLowerCase();
+  }
+  return null;
 }
 
 function normalizeEngineParam(eng: string | null): EngineMode | null {
@@ -172,16 +190,39 @@ export default function Chart3D({
         : Math.min(760, Math.max(600, Math.round(width * 0.56)));
 
   const { nodes, frontier3D, dualWinners, costFrontier, timeFrontier } = useMemo(() => {
-    const rawList: Node3D[] = [];
-    const byKey = new Map<string, Node3D>();
+    type InternalNode3D = Node3D & {
+      _baseFam: string;
+      _cfgId: string;
+      _effortTag: string | null;
+    };
+    const { floor: aaFloor } = modelMaxAaIndex(data);
+    const rawList: InternalNode3D[] = [];
+    const byKey = new Map<string, InternalNode3D>();
 
     for (const r of rows) {
       if (r.score === null || !Number.isFinite(r.score)) continue;
+      if (
+        state.selected3d === null &&
+        state.board === "aa_intelligence_index" &&
+        r.score < aaFloor
+      )
+        continue;
       if (isLocalHardware(r.point)) continue;
       const cost = costPerTaskX(r.point, r.mapping, data);
       const time = mappingTime(r.mapping, data);
       if (cost === null || cost <= 0 || time === null || time <= 0) continue;
-      const tps = mappingSpeed(r.mapping, data) ?? 100;
+      const rawTps = mappingSpeed(r.mapping, data);
+      const tps = rawTps ?? 100;
+      const speedSourceLabel =
+        rawTps === null
+          ? zh
+            ? "无实测TPS(估算)"
+            : "Est. fallback"
+          : speedSourceShortLabel(
+              mappingSpeedDetail(r.mapping, data),
+              mappingSpeedSource(r.mapping, data),
+              state.lang,
+            );
       const aaCost = r.mapping?.mean_cost_usd_per_task;
       const listPrice =
         r.mapping?.benchmark_list_price ?? r.point.list_blended_usd_per_mtok;
@@ -191,8 +232,10 @@ export default function Chart3D({
           : time * tps;
 
       const fam = cleanFamily(r.point.model_display || r.point.model);
+      const cfgId = r.mapping?.configuration_id ?? r.point.model;
+      const effortTag = effortTagOf(r.mapping);
       const groupKey = dedupeByModel
-        ? fam
+        ? `${fam}|${cfgId}`
         : `${cost.toFixed(6)}|${time.toFixed(2)}|${r.score.toFixed(4)}`;
 
       const existing = byKey.get(groupKey);
@@ -203,15 +246,19 @@ export default function Chart3D({
           existing.time = time;
           existing.score = r.score;
           existing.tps = tps;
+          existing.speedSourceLabel = speedSourceLabel;
           existing.tokens = tokens;
           existing.planDisplay = displayPlan(r.point.plan, state.lang);
           existing.channel = r.point.channel;
           existing.hexColor = color(r.point);
         }
       } else {
-        const node: Node3D = {
+        const node: InternalNode3D = {
           key: groupKey,
           family: fam,
+          _baseFam: fam,
+          _cfgId: cfgId,
+          _effortTag: effortTag,
           modelDisplay: r.point.model_display,
           planDisplay: displayPlan(r.point.plan, state.lang),
           channel: r.point.channel,
@@ -222,6 +269,7 @@ export default function Chart3D({
           time,
           score: r.score,
           tps,
+          speedSourceLabel,
           tokens,
           isFrontier3D: false,
           isCostFrontier: false,
@@ -231,6 +279,21 @@ export default function Chart3D({
         };
         byKey.set(groupKey, node);
         rawList.push(node);
+      }
+    }
+
+    const famCfgSets = new Map<string, Set<string>>();
+    for (const n of rawList) {
+      let set = famCfgSets.get(n._baseFam);
+      if (!set) {
+        set = new Set();
+        famCfgSets.set(n._baseFam, set);
+      }
+      set.add(n._cfgId);
+    }
+    for (const n of rawList) {
+      if ((famCfgSets.get(n._baseFam)?.size ?? 0) > 1 && n._effortTag) {
+        n.family = `${n._baseFam} (${n._effortTag})`;
       }
     }
 
@@ -285,7 +348,7 @@ export default function Chart3D({
       costFrontier: costF,
       timeFrontier: timeF,
     };
-  }, [rows, data, dedupeByModel, state.lang]);
+  }, [rows, data, dedupeByModel, state.lang, state.selected3d, state.board, zh]);
 
   const hitSet = useMemo(() => {
     if (!state.find.trim() && !state.lock) return null;
@@ -416,16 +479,15 @@ export default function Chart3D({
         </div>
       </div>
 
-      {/* Sub-banner showing active frontier */}
+      {/* Sub-banner showing active frontier + fixed-height hover readout (never shifts canvas vertically) */}
       <div
         style={{
           padding: "7px 14px",
           fontSize: 12,
           borderBottom: "1px solid var(--border, rgba(148,163,184,0.12))",
           display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          gap: 8,
+          flexDirection: "column",
+          gap: 3,
         }}
       >
         <div>
@@ -444,16 +506,34 @@ export default function Chart3D({
               .join("  ·  ")}
           </span>
         </div>
-        {hovered && (
-          <div style={{ color: "var(--text, #9AA5B8)" }}>
-            <b style={{ color: "var(--ink, #F4F7FC)" }}>{hovered.family}</b> ({hovered.planDisplay}) ·{" "}
-            {zh ? "成本" : "Cost"} <b>{price(hovered.cost)}</b> ·{" "}
-            {zh ? "用时" : "Time"} <b>{formatTickTime(hovered.time)}</b> ·{" "}
-            {zh ? "吞吐" : "Speed"} <b>{Math.round(hovered.tps)} tok/s</b> ·{" "}
-            Token <b>{Math.round(hovered.tokens / 1000)}k</b> ·{" "}
-            {metricLabel(board.metric, state.lang)} <b>{number(hovered.score, state.lang)}</b>
-          </div>
-        )}
+        <div
+          style={{
+            height: 20,
+            lineHeight: "20px",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            color: "var(--text, #9AA5B8)",
+          }}
+        >
+          {hovered ? (
+            <>
+              <b style={{ color: "var(--ink, #F4F7FC)" }}>{hovered.family}</b> ({hovered.planDisplay}) ·{" "}
+              {zh ? "成本" : "Cost"} <b>{price(hovered.cost)}</b> ·{" "}
+              {zh ? "用时" : "Time"} <b>{formatTickTime(hovered.time)}</b> ·{" "}
+              {zh ? "吞吐" : "Speed"} <b>{Math.round(hovered.tps)} tok/s</b>
+              {hovered.speedSourceLabel ? ` (${hovered.speedSourceLabel})` : ""} ·{" "}
+              Token <b>{Math.round(hovered.tokens / 1000)}k</b> ·{" "}
+              {metricLabel(board.metric, state.lang)} <b>{number(hovered.score, state.lang)}</b>
+            </>
+          ) : (
+            <span style={{ opacity: 0.72 }}>
+              {zh
+                ? "悬停任意模型节点查看成本、用时、吞吐与智力分 · 点击节点打开套餐明细"
+                : "Hover any model badge for cost, time, speed & score · Click to inspect plans"}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Active Engine Viewport */}
@@ -1178,8 +1258,8 @@ function OrthogonalTriadView({
               },
               {
                 label: zh
-                  ? `速度优势  ${formatTickTime(activeNode.time)} · ${Math.round(activeNode.tps)} tok/s`
-                  : `Speed  ${formatTickTime(activeNode.time)} · ${Math.round(activeNode.tps)} tok/s`,
+                  ? `速度优势  ${formatTickTime(activeNode.time)} · ${Math.round(activeNode.tps)} tok/s${activeNode.speedSourceLabel ? ` (${activeNode.speedSourceLabel})` : ""}`
+                  : `Speed  ${formatTickTime(activeNode.time)} · ${Math.round(activeNode.tps)} tok/s${activeNode.speedSourceLabel ? ` (${activeNode.speedSourceLabel})` : ""}`,
                 val: normSpeed,
                 col: cyan,
                 y: yB0 + 96,
@@ -2186,17 +2266,19 @@ function ThreeLogoDeckView({
                   : dark
                     ? "rgba(15, 23, 42, 0.78)"
                     : "rgba(255, 255, 255, 0.88)",
-                border: isHovered
+                border: n.isFrontier3D
                   ? dark
-                    ? "1.8px solid #FFFFFF"
-                    : "1.8px solid #0F172A"
-                  : n.isFrontier3D
-                    ? dark
-                      ? "1.6px solid #FBBF24"
-                      : "1.6px solid #D97706"
-                    : dark
-                      ? `1px solid ${n.hexColor}99`
-                      : `1px solid ${n.hexColor}AA`,
+                    ? "1.6px solid #FBBF24"
+                    : "1.6px solid #D97706"
+                  : dark
+                    ? `1px solid ${n.hexColor}99`
+                    : `1px solid ${n.hexColor}AA`,
+                outline: isHovered
+                  ? dark
+                    ? "2px solid #FFFFFF"
+                    : "2px solid #0F172A"
+                  : "none",
+                outlineOffset: isHovered ? "1px" : undefined,
                 boxShadow: isHovered
                   ? dark
                     ? "0 0 16px rgba(255,255,255,0.45), 0 4px 12px rgba(0,0,0,0.55)"

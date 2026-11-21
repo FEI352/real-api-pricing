@@ -27,7 +27,7 @@ def main() -> int:
     }
     xmode = mode_map.get(args.mode, "price")
     ts = datetime.now().strftime("%Y%m%d%H%M%S")
-    url = f"https://real-plan.fja.su/?v={ts}#lang=zh&config=summary&xmode={xmode}"
+    url = f"https://real-plan.fja.su/?v={ts}#lang=zh&config=all&xmode={xmode}"
     out_name = args.name or f"real-plan-{args.mode}-{datetime.now().strftime('%Y%m%d')}.png"
 
     cmd = [

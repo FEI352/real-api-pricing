@@ -2349,6 +2349,56 @@ tbody tr.sentinel-row {
   font-size: 12.5px;
   line-height: 1.65;
 }
+.tps-table-wrap {
+  margin-top: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-s, 6px);
+}
+.tps-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.tps-table th,
+.tps-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--line-2);
+  text-align: right;
+  white-space: nowrap;
+}
+.tps-table th:first-child,
+.tps-table td:first-child {
+  text-align: left;
+}
+.tps-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-weight: 600;
+}
+.tps-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.tps-table tbody tr.is-winner td {
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--accent-soft);
+}
+.tps-winner-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: 1px;
+}
 
 /* ==========================================================================
    Methodology page

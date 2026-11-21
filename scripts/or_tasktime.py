@@ -285,42 +285,92 @@ def build_or_index(models: list[dict]) -> dict[str, dict]:
     return index
 
 
-def parse_or_page(text: str):
-    """Pick the provider row with the highest p50 throughput and take *its own* latency.
+def parse_or_page_endpoints(text: str):
+    """Extract all OpenRouter provider endpoint stats and pick the highest-throughput one.
 
     Taking max throughput and min latency independently would invent a route nobody can
     buy — those two numbers usually come from different providers. The page advertises
     "P50, best across providers" for throughput, so the fastest provider is the headline,
     and its latency is what you actually get when you route to it.
     """
-    names = [(m.group(1), m.start()) for m in PROV_RE.finditer(text)]
-    rows = []
-    for match in STATS_RE.finditer(text):
+    dec = text.replace('\\"', '"').replace("\\\\", "\\")
+    prov_spans = [(m.group(1), m.start()) for m in re.finditer(r'"provider_display_name":"([^"]+)"', dec)]
+    ep_names = dict(re.findall(r'"([0-9a-f-]{36})":"([^"]+)"', dec))
+    endpoints = []
+    for match in re.finditer(
+        r'"stats":\{("endpoint_id":"([0-9a-f-]{36})","latency_metric":"[^"]*"[^}]*"p50_throughput":([0-9.]+)[^}]*)\}',
+        dec,
+    ):
+        body, eid, tps = match.group(1), match.group(2), float(match.group(3))
+        lat_m = re.search(r'"p50_latency":([0-9.]+)', body)
+        if not lat_m:
+            continue
+        latency = float(lat_m.group(1))
+        p75_m = re.search(r'"p75_throughput":([0-9.]+)', body)
+        p90_m = re.search(r'"p90_throughput":([0-9.]+)', body)
+        req_m = re.search(r'"throughput_request_count":([0-9]+)', body) or re.search(r'"request_count":([0-9]+)', body)
         owner = None
-        for name, position in names:
-            if position < match.start() and (owner is None or position > owner[1]):
-                owner = (name, position)
-        rows.append((float(match.group(2)), float(match.group(1)), owner[0] if owner else None))
-    if not rows:
+        for name, position in prov_spans:
+            if position < match.start():
+                owner = name
+            else:
+                break
+        provider_name = owner or ep_names.get(eid) or "Unknown"
+        endpoints.append({
+            "provider": provider_name,
+            "slug": ep_names.get(eid),
+            "p50_tps": round(tps, 1),
+            "p75_tps": round(float(p75_m.group(1)), 1) if p75_m else None,
+            "p90_tps": round(float(p90_m.group(1)), 1) if p90_m else None,
+            "p50_latency_ms": round(latency, 1),
+            "requests": int(req_m.group(1)) if req_m else None,
+        })
+    if not endpoints:
+        # Fallback to legacy regexes if OpenRouter alters endpoint JSON shape
+        names = [(m.group(1), m.start()) for m in PROV_RE.finditer(text)]
+        rows = []
+        for match in STATS_RE.finditer(text):
+            owner = None
+            for name, position in names:
+                if position < match.start() and (owner is None or position > owner[1]):
+                    owner = (name, position)
+            rows.append((float(match.group(2)), float(match.group(1)), owner[0] if owner else None))
+        if not rows:
+            return None
+        throughput, latency, provider = max(rows)
+        return latency, throughput, provider, []
+    endpoints.sort(key=lambda e: (-e["p50_tps"], e["p50_latency_ms"]))
+    best = endpoints[0]
+    return best["p50_latency_ms"], best["p50_tps"], best["provider"], endpoints
+
+
+def parse_or_page(text: str):
+    res = parse_or_page_endpoints(text)
+    if res is None:
         return None
-    throughput, latency, provider = max(rows)
-    return latency, throughput, provider
+    return res[0], res[1], res[2]
 
 
 def or_stats(slug: str):
     cached = read_cache("or", slug)
-    if cached is not None:
+    if cached is not None and "endpoints" in cached:
         return cached
     try:
-        parsed = parse_or_page(get(OR_PAGE.format(slug=slug)))
+        parsed = parse_or_page_endpoints(get(OR_PAGE.format(slug=slug)))
     except Exception as exc:  # noqa: BLE001
         print(f"  ! OR {slug}: {exc}")
         return None
     if parsed is None:
         print(f"  ! OR {slug}: no stats on page")
         return None
-    latency_ms, tps, provider = parsed
-    record = {"or_id": slug, "p50_latency_ms": latency_ms, "p50_throughput_tps": tps, "provider": provider}
+    latency_ms, tps, provider, endpoints = parsed
+    record = {
+        "or_id": slug,
+        "p50_latency_ms": latency_ms,
+        "p50_throughput_tps": tps,
+        "provider": provider,
+        "endpoints": endpoints,
+    }
     write_cache("or", slug, record)
     return record
 
@@ -421,11 +471,14 @@ def main() -> int:
             "reasoning_tokens": tokens.get("reasoning_tokens"),
             "answer_tokens": tokens.get("answer_tokens"),
             "or_id": or_row["or_id"],
+            "or_url": f"https://openrouter.ai/{or_row['or_id']}",
+            "or_provider": or_row.get("provider"),
             "p50_latency_ms": or_row["p50_latency_ms"],
             "p50_throughput_tps": tps,
             "latency_used_s": round(latency, 2),
             "generation_s": round(generation, 2),
             "task_time_s": round(latency + generation, 2),
+            "or_endpoints": or_row.get("endpoints") or [],
         }
 
     by_model: dict[str, dict] = {}
@@ -434,6 +487,8 @@ def main() -> int:
 
     stamp = time.strftime("%Y-%m-%d")
     out = args.out or os.path.join(RESEARCH, f"or-tasktime-{stamp}.json")
+    for row in by_model_slug.values():
+        row["collected_at"] = stamp
     if args.model:
         # Merge into existing latest or-tasktime file so single-model refresh doesn't drop other models
         base_file = out if os.path.exists(out) else max(glob.glob(os.path.join(RESEARCH, "or-tasktime-*.json")), default="")

@@ -1,0 +1,31 @@
+{
+  "snapshot_date": "2026-11-19",
+  "methodology_notes": [
+    "数据对齐：本轮同步 Artificial Analysis 最新智力榜与 OpenRouter 实时响应耗时统计，在库 93 款模型标价与 387 个订阅方案已全部校验对齐。",
+    "优惠口径：Gemini 4 Carbon 目前仍按 Google 官方 ai.google.dev 首发优惠价 $2/$10 计入；官方将于 12 月 1 日恢复原价 $4/$20，届时任务成本将同步上调。"
+  ],
+  "candidates": [
+    "Tencent Hy4 Flash（OpenCode Go 限免至 11 月底）：目前缺少 Artificial Analysis 智力榜公开跑分，暂不参与前沿排序。",
+    "Droid Max · Claude Fable 5.2（标称 3.2x 配额倍率）：仍待本地实测消费样本核验，暂不按倍比派生入库。",
+    "GitHub Copilot AI Credits（Fusion 30% 折扣至 11-30）与 Synthetic.new：计费方式尚缺可横向对比的标准任务 Token 换算锚点，持续观察。",
+    "Muse Wonder（Devin Pro / Command Code Max 10x）：官方未公布三段 API 公开标价，无法折算标准任务成本。"
+  ],
+  "risks": [
+    "平台权限波动：Google AI Pro 学生版近期持续出现地区/权限受限（403）故障，影响 Gemini 4 Neon 与 Hydrogen 实际可用性。",
+    "配额池规则变更：OpenAI 已公布将于 12 月起把 ChatGPT 与 Codex 合并为单一共享 Token 池，后续需重新核定 Pro 20x 与 Plus 的实际额度。"
+  ],
+  "countdowns": [
+    {
+      "deadline": "2026-11-22",
+      "text": "OpenCode Go 的 GLM 5.3 $500 促销窗口到期"
+    },
+    {
+      "deadline": "2026-11-25",
+      "text": "Qwen4 Max Preview 停止服务退役"
+    },
+    {
+      "deadline": "2026-11-30",
+      "text": "Gemini 4 Carbon / Argon 首发半价、Copilot Fusion 30% 折扣、百炼优惠及 Hy4 Flash 免费窗口集中到期"
+    }
+  ]
+}

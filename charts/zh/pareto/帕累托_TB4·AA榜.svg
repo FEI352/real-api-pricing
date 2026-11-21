@@ -66,7 +66,7 @@
 <text x="66.000" y="469.000" font-size="12" fill="#697169" text-anchor="middle" font-weight="400" transform="rotate(-90 66 469.0)">Resolution Rate %</text>
 <text x="720.000" y="775.000" font-size="13" fill="#5D655E" text-anchor="middle" font-weight="400" >真实单价 · 美元 / 百万 token</text>
 <text x="1338.000" y="775.000" font-size="12" fill="#737B74" text-anchor="end" font-weight="400" >越右越便宜 →</text>
-<path id="frontier" d="M120.000,264.219 L720.075,264.219 L818.903,277.281 L878.138,287.077 L959.595,339.325 L999.368,352.388 L1200.850,479.743 L1284.784,486.275 L1338.000,486.275" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="frontier" d="M120.000,264.219 L720.075,264.219 L818.903,277.281 L878.138,287.077 L959.595,339.325 L999.368,349.122 L1200.850,479.743 L1284.784,486.275 L1338.000,486.275" fill="none" stroke="#303630" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.12578616" data-score="59.596" data-x="432.874" data-y="313.201" transform="translate(432.874 313.201)"><title>GPT-6 Astra · Plus · $0.12579/MTok · 59.596 · highArtificial Analysis - GPT-6 Astra (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
@@ -121,7 +121,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0065659882" data-score="59.596" data-x="833.675" data-y="313.201" transform="translate(833.675 313.201)"><title>Claude Opus 5.5 · Pro · $0.00657/MTok · 59.596 · highArtificial Analysis - Claude Opus 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.025575448" data-score="59.596" data-x="649.103" data-y="313.201" transform="translate(649.103 313.201)"><title>Claude Fable 5.2 · Pro · $0.02558/MTok · 59.596 · mediumArtificial Analysis - Claude Fable 5.2 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.025575448" data-score="61.6162" data-x="649.103" data-y="300.139" transform="translate(649.103 300.139)"><title>Claude Fable 5.2 · Pro · $0.02558/MTok · 61.6162 · mediumArtificial Analysis - Claude Fable 5.2 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.052447552" data-score="25.7576" data-x="551.616" data-y="531.992" transform="translate(551.616 531.992)"><title>Grok 4.7 · SuperGrok / Grok 4.7 · SuperGrok Heavy · $0.05245/MTok · 25.7576 · mediumArtificial Analysis - Grok 4.7 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - Grok 4.7 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
@@ -319,6 +319,9 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.011950287" data-score="2.0202" data-x="752.386" data-y="685.472" transform="translate(752.386 685.472)"><title>MiniMax M3 · OpenCode Go · $0.01195/MTok · 2.0202 · mediumArtificial Analysis - MiniMax-M3 · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0072066878" data-score="25.2525" data-x="821.037" data-y="535.258" transform="translate(821.037 535.258)"><title>Qwen3.8 Flash · OpenCode Go · $0.00721/MTok · 25.2525 · mediumArtificial Analysis - Qwen3.8-Flash-Next · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
+</g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0094670075" data-score="1.0101" data-x="784.006" data-y="692.003" transform="translate(784.006 692.003)"><title>Qwen3.7 Plus · OpenCode Go · $0.00947/MTok · 1.0101 · mediumArtificial Analysis - Qwen3.7 Plus · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0F766E" opacity=".68"/>
 </g>
@@ -366,6 +369,9 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.066357001" data-score="48.4848" data-x="519.685" data-y="385.043" transform="translate(519.685 385.043)"><title>Qwen4 Max · Command Code GOAT · $0.06636/MTok · 48.4848 · mediumArtificial Analysis - Qwen4 Max · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.010934937" data-score="25.2525" data-x="764.439" data-y="535.258" transform="translate(764.439 535.258)"><title>Qwen3.8 Flash · Command Code GOAT · $0.01093/MTok · 25.2525 · mediumArtificial Analysis - Qwen3.8-Flash-Next · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#DBA6FA" opacity=".68" stroke="#9571AA" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0048299845" data-score="12.1212" data-x="875.356" data-y="620.162" transform="translate(875.356 620.162)"><title>DeepSeek V4 Flash Vision Exp · Command Code GOAT · $0.00483/MTok · 12.1212 · mediumArtificial Analysis - DeepSeek V4 Flash Vision (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
@@ -580,29 +586,29 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.00071165717" data-score="33.8384" data-x="1135.302" data-y="479.743" transform="translate(1135.302 479.743)"><title>DeepSeek V4.1 Flash · Mistral Vibe Pro（年付） · $0.00071/MTok · 33.8384 · lowArtificial Analysis - DeepSeek V4.1 Flash 1017 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#8A94A6" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0077450601" data-score="53.5354" data-x="811.257" data-y="352.388" transform="translate(811.257 352.388)"><title>Gemini 4 Hydrogen · Google AI Pro · $0.00775/MTok · 53.5354 · lowArtificial Analysis - Gemini 4 Hydrogen (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0077450601" data-score="54.0404" data-x="811.257" data-y="349.122" transform="translate(811.257 349.122)"><title>Gemini 4 Hydrogen · Google AI Pro · $0.00775/MTok · 54.0404 · lowArtificial Analysis - Gemini 4 Hydrogen (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0077481596" data-score="53.5354" data-x="811.203" data-y="352.388" transform="translate(811.203 352.388)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x · $0.00775/MTok · 53.5354 · lowArtificial Analysis - Gemini 4 Hydrogen (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0077481596" data-score="54.0404" data-x="811.203" data-y="349.122" transform="translate(811.203 349.122)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x · $0.00775/MTok · 54.0404 · lowArtificial Analysis - Gemini 4 Hydrogen (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0038742735" data-score="53.5354" data-x="905.285" data-y="352.388" transform="translate(905.285 352.388)"><title>Gemini 4 Hydrogen · Google AI Ultra 20x · $0.00387/MTok · 53.5354 · lowArtificial Analysis - Gemini 4 Hydrogen (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0038742735" data-score="54.0404" data-x="905.285" data-y="349.122" transform="translate(905.285 349.122)"><title>Gemini 4 Hydrogen · Google AI Ultra 20x · $0.00387/MTok · 54.0404 · lowArtificial Analysis - Gemini 4 Hydrogen (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0023037582" data-score="53.5354" data-x="975.846" data-y="352.388" transform="translate(975.846 352.388)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x (土耳其) · $0.0023/MTok · 53.5354 · lowArtificial Analysis - Gemini 4 Hydrogen (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0023037582" data-score="54.0404" data-x="975.846" data-y="349.122" transform="translate(975.846 349.122)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x (土耳其) · $0.0023/MTok · 54.0404 · lowArtificial Analysis - Gemini 4 Hydrogen (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0019372336" data-score="53.5354" data-x="999.368" data-y="352.388" transform="translate(999.368 352.388)"><title>Gemini 4 Hydrogen · Google AI Pro 学生版 · $0.00194/MTok · 53.5354 · mediumArtificial Analysis - Gemini 4 Hydrogen (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="true" data-price="0.0019372336" data-score="54.0404" data-x="999.368" data-y="349.122" transform="translate(999.368 349.122)"><title>Gemini 4 Hydrogen · Google AI Pro 学生版 · $0.00194/MTok · 54.0404 · mediumArtificial Analysis - Gemini 4 Hydrogen (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF" stroke="#84CC16" stroke-width="1.35"/>
 <circle r="4" fill="#84CC16"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.11574074" data-score="59.596" data-x="444.171" data-y="313.201" transform="translate(444.171 313.201)"><title>Claude Fable 5.2 · Max 20x · 9/14+ · $0.11574/MTok · 59.596 · mediumArtificial Analysis - Claude Fable 5.2 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.11574074" data-score="61.6162" data-x="444.171" data-y="300.139" transform="translate(444.171 300.139)"><title>Claude Fable 5.2 · Max 20x · 9/14+ · $0.11574/MTok · 61.6162 · mediumArtificial Analysis - Claude Fable 5.2 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.11575414" data-score="59.596" data-x="444.156" data-y="313.201" transform="translate(444.156 313.201)"><title>Claude Fable 5.2 · Max 5x · 9/14+ · $0.11575/MTok · 59.596 · mediumArtificial Analysis - Claude Fable 5.2 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.11575414" data-score="61.6162" data-x="444.156" data-y="300.139" transform="translate(444.156 300.139)"><title>Claude Fable 5.2 · Max 5x · 9/14+ · $0.11575/MTok · 61.6162 · mediumArtificial Analysis - Claude Fable 5.2 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#CC5A2E" opacity=".68"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.19794141" data-score="59.596" data-x="371.330" data-y="313.201" transform="translate(371.330 313.201)"><title>Claude Fable 5.2 · Droid Max / GPT-6 Astra · Droid Max · $0.19794/MTok · 59.596 · mediumArtificial Analysis - Claude Fable 5.2 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel. / Artificial Analysis - GPT-6 Astra (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.19794141" data-score="61.6162" data-x="371.330" data-y="300.139" transform="translate(371.330 300.139)"><title>Claude Fable 5.2 · Droid Max · $0.19794/MTok · 61.6162 · mediumArtificial Analysis - Claude Fable 5.2 (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.016956415" data-score="65.1515" data-x="704.891" data-y="277.281" transform="translate(704.891 277.281)"><title>Gemini 4 Carbon · Google AI Ultra 5x (印度) · $0.01696/MTok · 65.1515 · highArtificial Analysis - Gemini 4 Carbon (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
@@ -611,7 +617,7 @@
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.016956415" data-score="57.0707" data-x="704.891" data-y="329.529" transform="translate(704.891 329.529)"><title>Gemini 4 Argon · Google AI Ultra 5x (印度) · $0.01696/MTok · 57.0707 · highArtificial Analysis - Gemini 4 Argon (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
-<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0053359163" data-score="53.5354" data-x="861.834" data-y="352.388" transform="translate(861.834 352.388)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x (印度) · $0.00534/MTok · 53.5354 · highArtificial Analysis - Gemini 4 Hydrogen (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.0053359163" data-score="54.0404" data-x="861.834" data-y="349.122" transform="translate(861.834 349.122)"><title>Gemini 4 Hydrogen · Google AI Ultra 5x (印度) · $0.00534/MTok · 54.0404 · highArtificial Analysis - Gemini 4 Hydrogen (high) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#84CC16" opacity=".68" stroke="#5A8B0F" stroke-width=".9"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.067430883" data-score="64.1414" data-x="517.506" data-y="283.812" transform="translate(517.506 283.812)"><title>GPT-6.2 Astra · Plus · $0.06743/MTok · 64.1414 · mediumArtificial Analysis - GPT-6.2 Astra (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
@@ -690,6 +696,9 @@
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#16A34A" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.039588282" data-score="63.6364" data-x="589.798" data-y="287.077" transform="translate(589.798 287.077)"><title>Claude Sonnet 5.5 · Droid Max · $0.03959/MTok · 63.6364 · mediumArtificial Analysis - Claude Sonnet 5.5 (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
+<rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
+</g>
+<g class="point" data-billing="subscription" data-frontier="false" data-price="0.19794141" data-score="59.596" data-x="371.330" data-y="313.201" transform="translate(371.330 313.201)"><title>GPT-6 Astra · Droid Max · $0.19794/MTok · 59.596 · mediumArtificial Analysis - GPT-6 Astra (xhigh) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
 <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.8" fill="#0A0ABF" opacity=".68"/>
 </g>
 <g class="point" data-billing="subscription" data-frontier="false" data-price="0.0019794141" data-score="12.6263" data-x="996.444" data-y="616.896" transform="translate(996.444 616.896)"><title>GPT-6 Luna · Droid Max · $0.00198/MTok · 12.6263 · mediumArtificial Analysis - GPT-6 Luna (max) · Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.</title>
@@ -798,10 +807,10 @@
 <text x="975.595" y="409.325" font-size="14" fill="#566150" text-anchor="start" font-weight="400" class="number">$0.0026</text>
 </g>
 <g class="front-label" data-model="gemini-4-hydrogen">
-<path d="M985.951,359.096Q985.951,359.388 985.368,359.388" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
-<text x="979.368" y="372.388" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Artificial Analysis · Gemini 4 Hydrogen · xhigh</text>
-<text x="979.368" y="392.388" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Google AI Pro 学生版</text>
-<text x="979.368" y="412.388" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00194</text>
+<path d="M985.951,355.831Q985.951,356.122 985.368,356.122" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
+<text x="979.368" y="369.122" font-size="16" fill="#343C34" text-anchor="end" font-weight="400" class="label-name">Artificial Analysis · Gemini 4 Hydrogen · high</text>
+<text x="979.368" y="389.122" font-size="11.5" fill="#8B9487" text-anchor="end" font-weight="400" >Google AI Pro 学生版</text>
+<text x="979.368" y="409.122" font-size="14" fill="#566150" text-anchor="end" font-weight="400" class="number">$0.00194</text>
 </g>
 <g class="front-label" data-model="deepseek-v4.1-flash-eco">
 <path d="M1194.992,465.935Q1194.992,446.743 1186.850,446.743" stroke="#C4CDC3" stroke-width=".8" fill="none"/>
@@ -854,7 +863,7 @@
 <path d="M356.52 849l5 5-5 5-5-5Z" fill="none" stroke="#8B958D" stroke-width="1.2"/>
 <text x="370.520" y="858.000" font-size="12" fill="#687168" text-anchor="start" font-weight="400" >按量 API</text>
 <text x="56.000" y="898.000" font-size="12" fill="#727B72" text-anchor="start" font-weight="400" >默认月=4周；Kimi月池=周池×5，Droid月=周×2 · 美元/credits换算：缓存97% / 输入2.5% / 输出0.5% · 直接total实测不重算</text>
-<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >215 个订阅位置 / 18 个 API 位置 / 7 个前沿位置</text>
+<text x="1384.000" y="898.000" font-size="12" fill="#727B72" text-anchor="end" font-weight="400" >218 个订阅位置 / 18 个 API 位置 / 7 个前沿位置</text>
 <text x="56.000" y="922.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >最高存档配置参考；标注harness与effort。产品/额度实测配置未对齐，不代表各渠道的实测成绩。</text>
 <text x="56.000" y="943.000" font-size="11" fill="#929A90" text-anchor="start" font-weight="400" >订阅与按量API共同参与前沿；连线中间不代表可购套餐。完整出处与假设见项目核对报告。</text>
 <text x="1384.000" y="943.000" font-size="11" fill="#929A90" text-anchor="end" font-weight="400" >artificialanalysis.ai/leaderboards/models</text>
